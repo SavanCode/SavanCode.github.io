@@ -1,7 +1,7 @@
 ---
-title: Troubleshooting Jekyll build errors for GitHub Pages sites
+title: Trouble shooting Jekyll build errors for GitHub Pages sites
 date: 2020-11-07 17:14:39
-tags:
+tags:Hexo
 ---
 "About Jekyll build errors for GitHub Pages sites."
 
