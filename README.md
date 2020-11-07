@@ -1,2 +1,0 @@
-# SavanCode.github.io
-SavannahBlog
