@@ -51,3 +51,11 @@ npm install hexo --no-optional
 $ npm uninstall hexo-cli -g
 $ npm install hexo-cli -g
 （实际上是没有办法上传node modules）
+
+问题5：
+hexo yilia主题配置中的确实模块- 右侧的文章列表
+按照官方指引，但是没有实现列表
+
+可能的解决办法：
+1.有没有安装在blog的根目录
+2.在config中的配置，复制粘贴时，注意缩进距离（此处文件，格式很重要）
