@@ -11,25 +11,25 @@ tags: css&html
 
 - 选择器 ：.className{ }      #id{ }	 	div.box1{}    p,.hello,#box{}    *{ }
 
-- 字体：i,em  斜体        strong,b 加粗
+- 字体：`<i>,<em>`  斜体        `<strong>,<b>` 加粗
 
-- q与 blockquote 的区别
+- `<q>`与 `<blockquote>` 的区别
 
    q标签在本质上与 [blockquote](https://www.w3school.com.cn/tags/tag_blockquote.asp) 是一样的。不同之处在于它们的显示和应用。q 标签用于简短的行内引用。如果需要从周围内容分离出来比较长的部分（通常显示为缩进的块），请使用 blockquote标签。
 
    也就是 q比blockquote多显示一对双引号 
 
-- sup和sub sup和sub用于定义上标和下标。例子：
+- `<sup>`和`<sub>` `<sup>`和`<sub>`用于定义上标和下标。例子：
 
-   ![](Review-HTML-&-CSS-1/css中10^3.png)
+   ![](Review-HTML-&-CSS-1/css_10^3.png)
 
-- del刪除文本~~加刪除線~~，ins為插入文本u加下劃線/u
+- `<del>`刪除文本~~加刪除線~~，`<ins>`為插入<u>文本加下劃線</u>
 
-- 插入代码： pre行块  code 块状
+- 插入代码： `<pre>`行块  `<code>` 块状
 
-- 不同列表ol ,li vs ul,li       自定义: dl,dt(=ul),dd(=li)
+- 不同列表`<ol> ,<li>` vs `<ul>,<li>`       自定义: `<dl>,<dt>(=ul),<dd>(=li)`
 
-- 单位：px;%;em
+- 单位：`px;%;em`
 
 - 行间距= line-height –font-size
 
@@ -47,7 +47,7 @@ tags: css&html
 
 # table
 
-- tr一行th一头td 中 & Caption 标题、thead 头部、tbody、tfoot
+- `<tr>`一行`<th>`一头`<td>` 中 & `<Caption>` 标题、`<thead>` 头部、`<tbody>`、`<tfoot>`
 
 - 横向合并–colspan（ colspan="2"） 纵向合并–rowspan
 
@@ -75,7 +75,7 @@ tags: css&html
   </table>
   ```
 
-  ![](Review-HTML-&-CSS-1/table_sample.png)
+  ![](../table_sample.png)
 
 - border-collapse & separate (default) 表格的边与内容的边
 
