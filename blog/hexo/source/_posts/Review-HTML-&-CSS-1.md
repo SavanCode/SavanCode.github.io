@@ -1,10 +1,10 @@
 ---
-layout: post
 title: Review HTML& CSS 1
 date: 2020-11-08 08:48:34
-tags: Hexo
+tags: css&html
 ---
 
+[TOC]
 
 
 #   普通css
@@ -21,7 +21,7 @@ tags: Hexo
 
 - sup和sub sup和sub用于定义上标和下标。例子：
 
-   ![](../img/Writting-in-Hexo/css中10^3.png)
+   ![](Review-HTML-&-CSS-1/css中10^3.png)
 
 - del刪除文本~~加刪除線~~，ins為插入文本u加下劃線/u
 
@@ -45,7 +45,7 @@ tags: Hexo
 
 - Z-index
 
-  # table中
+# table
 
 - tr一行th一头td 中 & Caption 标题、thead 头部、tbody、tfoot
 
@@ -75,11 +75,11 @@ tags: Hexo
   </table>
   ```
 
-  ![](../img/Writting-in-Hexo/table_sample.png)
+  ![](Review-HTML-&-CSS-1/table_sample.png)
 
 - border-collapse & separate (default) 表格的边与内容的边
 
-  # Form中
+# Form
 
 - 表单中 action提交服务器的地址 method 提交方式
 
