@@ -1,0 +1,25 @@
+.body{
+    max-resolution: 0;
+    background-color: white;
+}
+
+.side-bar{
+    background-color: gray;
+    float: left;
+    width:20%;
+}
+.main{
+    float: right;
+    width: 80%;
+}
+
+.header .logo {
+    padding: 10px 20px 10px 20px ;
+    font-size: large;
+   
+    display: inline-block; 
+    border: 5px solid white;
+}
+ .header{
+     padding-top: 20px;
+ }
