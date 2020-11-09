@@ -31,4 +31,3 @@ hexo clean && hexo generate && hexo s 运行查看
 ![](hexo-add-img/setupImg.png)
 
 注意：一定要先设置了图片根目录后再插入图片，否则图片路径会不正确
-

@@ -76,12 +76,12 @@ var ctx = canvas.getContext("2d");
   m11 m21 dx
   m12 m22 dy
   0     0     1
-```
-
+  ```
+  
   用以上矩阵进行图像变换。
-
+  
   setTransform()：将当前的变换矩阵设置为默认的单位矩阵，然后在单位矩阵之上运用用户指定的变换。
-
+  
   resetTransform()：重置为单位矩阵
 
 ## 渐变
@@ -126,6 +126,7 @@ gradient.addColorStop("1.0", "red");
 ctx.strokeStyle = gradient;
 ctx.strokeText("Big smile!", 10, 90);
 
+
 ctx.fillText("Hello !", 150, 50);
 </script>
 ```
@@ -163,100 +164,15 @@ function draw() {
   // 创建新 image 对象，用作图案
   var img = new Image();
   img.src = 'images/wallpaper.png';
-  img.onload = function() {
+  img.onload = function(){
     // 创建图案
     var ptrn = ctx.createPattern(img,'repeat');
     ctx.fillStyle = ptrn;
     ctx.fillRect(0,0,150,150);
+
   }
 }
 ```
-
-## 图片样式
-
-createPattern(image, type)：该方法接受两个参数。Image 可以是一个 Image 对象的引用，或者另一个 canvas 对象。Type 必须是下面的字符串值之一：repeat，repeat-x，repeat-y 和 no-repeat。
-**使用 Image 对象的 onload handler 来确保设置图案之前图像已经装载完毕。**
-
-```html
-<!DOCTYPE html>
-<html>
-<body>
-
-<p>Image to use:</p>
-<img src="img_lamp.jpg" id="lamp" width="32" height="32">
-<p>Canvas:</p>
-<canvas id="myCanvas" width="300" height="150" style="border:1px solid #d3d3d3;">
-Your browser does not support the HTML5 canvas tag.</canvas>
-<br><br>
-
-<button onclick="draw('repeat')">Repeat</button> 
-<button onclick="draw('repeat-x')">Repeat-x</button> 
-<button onclick="draw('repeat-y')">Repeat-y</button> 
-<button onclick="draw('no-repeat')">No-repeat</button>     
-
-<script>
-function draw(direction){
-  var c = document.getElementById("myCanvas");
-  var ctx = c.getContext("2d");
-  ctx.clearRect(0, 0, c.width, c.height); 
-  var img = document.getElementById("lamp")
-  var pat = ctx.createPattern(img, direction);
-  ctx.rect(0, 0, 150, 100);
-  ctx.fillStyle = pat;
-  ctx.fill();
-}
-</script>
-
-</body>
-</html>
-```
-
-
-
-## 图片合成
-
-全局透明度的设置 globalAlpha = value 这个属性影响到 canvas 里所有图形的透明度， 有效的值范围是 0.0 （完全透明）到 1.0（完全不透明） 默认是 1.0
-
-###覆盖合成 source:新的图像(源) destination:已经绘制过的图形(目标)
-
-**ctx.globalCompositeOperation = type**
-
-- source-over(默认值):源在上面,新的图像层级比较高
-
-- source-in  :只留下源与目标的重叠部分(源的那一部分)
-
-- source-out :只留下源超过目标的部分
-
-- source-atop:砍掉源溢出的部分
-
-- destination-over:目标在上面,旧的图像层级比较高
-
-- destination-in:只留下源与目标的重叠部分(目标的那一部分)
-
-- destination-out:只留下目标超过源的部分
-
-- destination-atop:砍掉目标溢出的部分
-
-  ```html
-  <!DOCTYPE html>
-  <meta charset="utf-8"> 
-  <canvas id="canvas-1" width="400" height="300">
-  </canvas>
-  
-  <script>
-  var c   = document.getElementById("canvas-1");
-  var ctx = c.getContext("2d");
-  ctx.globalCompositeOperation = "xor";
-  ctx.fillStyle = "blue";
-  ctx.fillRect(10, 10, 100, 100);
-  ctx.fillStyle = "red";
-  ctx.fillRect(50, 50, 100, 100);
-  </script>
-  ```
-
-  ![](Canvas-2/1604931155410.png)
-
-  
 
 ## 绘制阴影
 
@@ -279,37 +195,5 @@ getImageData(x, y, width, height):这个方法会返回一个ImageData对象，�
 
 putImageData(myImageData, dx, dy):对场景进行像素数据的写入.
 
-## 导出图像
-
-将画布导出为图像 toDataURL(注意是canvas元素接口上的方法)
-
-```javascript
-var canvas  = document.getElementById("ex1");
-var dataUrl = canvas.toDataURL();
-```
-
-
-
-## 判断线上的点
-
-事件操作 ctx.isPointInPath(x, y) 判断在当前路径中是否包含检测点 x:检测点的X坐标 y:检测点的Y坐标
-
-注意，此方法只作用于最新画出的canvas图像
-
-```javascript
-<script>
-var c = document.getElementById("myCanvas");
-var ctx = c.getContext("2d");
-ctx.rect(20, 20, 150, 100);
-if (ctx.isPointInPath(20, 50)){
-  ctx.stroke();
-};
-</script> 
-```
-
-Reference：
-
-[W3school]: https://www.w3schools.com/tags/ref_canvas.asp
-
-[Canvas Tutorial]: http://tutorials.jenkov.com/html5-canvas/index.html
+[Reference]: https://www.w3schools.com/tags/ref_canvas.asp
 
