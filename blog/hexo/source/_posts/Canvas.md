@@ -209,7 +209,8 @@ ctx.stroke();
 
 ![](Canvas/1604920656659.png)
 
+Reference：
 
+W3school <https://www.w3schools.com/tags/ref_canvas.asp>
 
-[Reference]: https://www.w3schools.com/tags/ref_canvas.asp
-
+Canvas Tutorial  http://tutorials.jenkov.com/html5-canvas/index.html  

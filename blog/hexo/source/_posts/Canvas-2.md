@@ -311,7 +311,7 @@ if (ctx.isPointInPath(20, 50)){
 
 Reference：
 
-[W3school]: https://www.w3schools.com/tags/ref_canvas.asp
+W3school <https://www.w3schools.com/tags/ref_canvas.asp>
 
-[Canvas Tutorial]: http://tutorials.jenkov.com/html5-canvas/index.html
+Canvas Tutorial  http://tutorials.jenkov.com/html5-canvas/index.html 
 
