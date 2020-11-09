@@ -1,7 +1,12 @@
 ---
 title: hexo markdown-typora
 date: 2020-11-08 10:55:38
+top: false
+cover: false
+toc: true
+mathjax: true
 tags: [Hexo,Typora]
+categories:
 ---
 
 # Typora 大纲目录

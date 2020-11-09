@@ -1,13 +1,18 @@
 ---
 title: Review HTML& CSS 1
 date: 2020-11-08 08:48:34
+top: false
+cover: false
+toc: true
+mathjax: true
 tags: css&html
+categories:
 ---
 
-[TOC]
 
 
-#   普通css
+
+##   普通css
 
 - 选择器 ：.className{ }      #id{ }	 	div.box1{}    p,.hello,#box{}    *{ }
 
@@ -27,8 +32,6 @@ tags: css&html
 
 - 插入代码： `<pre>`行块  `<code>` 块状
 
-- 不同列表`<ol> ,<li>` vs `<ul>,<li>`       自定义: `<dl>,<dt>(=ul),<dd>(=li)`
-
 - 单位：`px;%;em`
 
 - 行间距= line-height –font-size
@@ -45,13 +48,16 @@ tags: css&html
 
 - Z-index
 
-# table
+## table
+
+- 不同列表`<ol> ,<li>` vs `<ul>,<li>`       自定义: `<dl>,<dt>(=ul),<dd>(=li)`
 
 - `<tr>`一行`<th>`一头`<td>` 中 & `<Caption>` 标题、`<thead>` 头部、`<tbody>`、`<tfoot>`
 
 - 横向合并–colspan（ colspan="2"） 纵向合并–rowspan
 
   ```html
+  <!--标准列表-->
   <table> 
     <caption>Monthly savings</caption>
     <thead>
@@ -77,13 +83,28 @@ tags: css&html
 
   ![](../table_sample.png)
 
+  ```html
+  <!--定义自定义列表-->
+  <dl>
+      <!--定义自定义项目-->
+      <dt>cast:</dt>
+      <!--定义自定义描述-->
+          <dd>vi. 1投掷扔抛, 2丢弃, 抛弃 3把...投向, 抛射, 4分派..., 扮演角色 5铸造, 浇铸 n. 全体演员</dd>
+      <dt>forecast:</dt>
+          <dd>v. 预测, 预报, /dd>
+          <dd>n. 预测, 预报<</dd>
+      <dt>insight:</dt>
+       <dd>n. 洞察力, 领悟 v. 洞悉, 了解</dd>
+  </dl>
+  ```
+
+  ![](Review-HTML-&-CSS-1/1604912356663.png)
+
 - border-collapse & separate (default) 表格的边与内容的边
 
-# Form
+## Form
 
 - 表单中 action提交服务器的地址 method 提交方式
-
-- Input type：text / password / checkbox / radio / submit
 
 - select中optgroup组中option 选项 
 

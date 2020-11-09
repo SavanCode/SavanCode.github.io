@@ -1,7 +1,12 @@
 ---
 title: hexo-add-img
+top: false
+cover: false
+toc: true
+mathjax: true
 date: 2020-11-08 20:20:47
 tags: Hexo
+categories:
 ---
 
 ### Hexo本地图片显示问题
