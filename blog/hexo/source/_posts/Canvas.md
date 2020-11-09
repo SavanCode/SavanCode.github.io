@@ -32,6 +32,8 @@ By default, the `<canvas> `element has no border and no content.
 
 ## initial canvas
 
+![](Canvas/1604930565014.png)
+
 ```html
 <html>
 <head>
