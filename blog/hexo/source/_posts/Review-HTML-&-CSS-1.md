@@ -43,19 +43,21 @@ categories:
    [attr=val]：选择 attr 属性被赋值为 val 的所有元素。
    [attr~=val]：以 attr 命名的属性的元素，并且该属性是一个以空格作为分隔的值列表，其中至少一个值为val。
    	
+   ```
+
 //子串值属性选择器
    [attr|=val] : 选择attr属性的值是val（包括val）或以val-开头的元素。
 [attr^=val] : 选择attr属性的值以val开头（包括val）的元素。
    [attr$=val] : 选择attr属性的值以val结尾（包括val）的元素。
 [attr*=val] : 选择attr属性的值中包含字符串val的元素。
-   
+
 //伪类选择器：(链接，表单，动态，结构，为元素)
    a:link {color: red;} /* 未访问的链接状态 */
    a:visited {color: green;} /* 已访问的链接状态 */
    a:hover {color: blue;} /* 鼠标滑过链接状态 */
    a:active {color: yellow;} /* 鼠标按下去时的状态 */
    div:first-child last-child root target /*当前活动*/
-   
+
    //相邻元素选择器
    h1 + p {color:red;} /*选择紧接在 h1 元素后出现的段落，h1 和 p 元素拥有共同的父元素*/
    ```
@@ -89,7 +91,6 @@ categories:
    5.结合符对选择器特殊性没有一点贡献
    6.内联声明的特殊性都是1,0,0,0
    7.继承没有特殊性
-   ```
 
    ![](Review-HTML-&-CSS-1/1605182527129.png)
 
@@ -105,9 +106,7 @@ categories:
 
    **当您绝对需要确保某个元素具有特定的CSS时，可以使用`!important`**
 
-   ```css
-   color: red !important;/*!important不影响就近原则*/
-   ```
+ color: red !important;/*!important不影响就近原则*/
 
 
 - 字体：`<i>,<em>`  斜体        `<strong>,<b>` 加粗

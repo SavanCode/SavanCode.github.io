@@ -21,7 +21,7 @@ background-size:100% 100% ;
 
 景深+移动（例子 蓝天白云，远近移动)
 
-变形，移位： transform（2D，3D）， translate
+变形，移位： transform（2D，3D）， translate，animation
 
 倒影：-webkit-box-reflect:
 

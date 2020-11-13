@@ -7,7 +7,7 @@ mathjax: true
 date: 2020-11-11 21:58:10
 password:
 summary:
-tags:
+tags:  css&html
 categories:
 ---
 
@@ -96,7 +96,7 @@ categories:
      </div>
      ```
 
-     ![1605106109638](水平居中-centering/1605106109638.png)
+     ![](水平居中-centering/1605106109638.png)
 
    - center both vertically and horizontally
 
@@ -126,7 +126,7 @@ categories:
      }
      ```
 
-     ![1605106167637](水平居中-centering/1605106167637.png)
+     ![](水平居中-centering/1605106167637.png)
 
      
 
