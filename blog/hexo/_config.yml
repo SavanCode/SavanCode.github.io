@@ -112,7 +112,8 @@ theme: hexo-theme-matery-master
 deploy:
   type: git
   repo: http://github.com/savancode/savancode.github.io.git 
-  branch: master
+  branch: hexo_1 
+  #master
 
 
 #add for post list

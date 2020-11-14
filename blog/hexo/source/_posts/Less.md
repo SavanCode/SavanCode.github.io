@@ -131,7 +131,7 @@ categories:
 
 ## 变量
 
-1. 变量定义与使用
+1. ### 变量定义与使用
 
    - 定义：@name: value; （@black: #000;）
    - @arguments表示所有可变参数
@@ -180,7 +180,7 @@ categories:
    
    ```
 
-2. 变量的加载声明与作用域
+2. ###变量的加载声明与作用域
 
    - 变量的加载声明
 
@@ -224,7 +224,7 @@ categories:
      }
      ```
 
-3. 混合（mixins）
+3. ###混合（mixins）
 
    1. 一般的混合
 
@@ -325,7 +325,7 @@ categories:
       }
       ```
 
-   4. 多个参数
+   4. ###多个参数
 
       多个参数时，参数之间可以用分号或逗号分隔
 
@@ -381,7 +381,7 @@ categories:
       }
       ```
 
-   5. 参数使用时候，顺序不限制
+   5. ###参数使用时候，顺序不限制
 
       ```less
       .mixin(@color: black; @margin: 10px; @padding: 20px) {
@@ -411,7 +411,7 @@ categories:
 
       
 
-   6. 类似函数的匹配模式
+   6. ###类似函数的匹配模式
 
       ```less
       .border(all, @w: 5px) {
@@ -454,7 +454,7 @@ categories:
 
       
 
-   7. 用> 或者 空格 的命名空格
+   7. ###用> 或者 空格 的命名空格
 
       ```less
       //混合集
@@ -492,12 +492,12 @@ categories:
 
       
 
-4. 引入
+4. ##引入
 
    - 引入一个或多个less或者css文件，这些文件定义的规则可在当前less文件中使用
    - 使用@import
 
-5. 条件表达
+5. ##条件表达
 
    ​	条件表达式：
 
@@ -543,7 +543,7 @@ categories:
 
    ​		ispixel / ispercentage / isem / isunit
 
-6. 循环
+6. ##循环
 
    ```less
    .loop(@counter) when(@counter > 0) {
@@ -559,7 +559,7 @@ categories:
 
    
 
-7. 合并属性
+7. ##合并属性
 
    - 在需要合并的属性的冒号之前加上 **“+”**，合并后用逗号分隔
    - 在需要合并的属性的冒号之前加上 “+_”，合并用空格分隔
@@ -581,5 +581,5 @@ categories:
    }
    ```
 
-8. less中封装了非常多[函数库](http://lesscss.cn/functions/)
+8. ##less中封装了非常多[函数库](http://lesscss.cn/functions/)
 
