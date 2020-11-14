@@ -11,7 +11,7 @@ tags: css&html
 categories:
 ---
 
-# **Layout**
+# **Layout - Flex**
 
 ![](Layout-flex/1605245444171.png)
 
@@ -50,6 +50,22 @@ align-content ：： https://developer.mozilla.org/en-US/docs/Web/CSS/align-cont
   /*align-self属性允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性*/
 }
 ```
+
+
+
+注意：
+
+当元素的排列方向为**横**向：
+
+​	元素的总宽度小于容器的宽度，使用flex-grow属性；
+
+​	元素的总宽度大于容器的宽度，使用flex-shrink属性；
+
+当元素排列的方向为**纵**向：
+
+​	元素的总高度小于容器的高度，使用flex-grow属性；
+
+​	元素的总高度小于容器的高度，使用flex-shrink属性；
 
 #  Flexbox  demo
 
