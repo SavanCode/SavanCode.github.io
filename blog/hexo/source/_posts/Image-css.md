@@ -11,7 +11,9 @@ tags:  css&html
 categories:  Front-end
 ---
 
-**Image in CSS** 
+# **Image in CSS** 
+
+## 基本函数
 
 background: url(img/avatar.jpg) no-repeat;
 
@@ -27,4 +29,34 @@ background-size:100% 100% ;
 
 颜色渐变：linear-gradient
 
+动态动画控制：@keyframes animation
+
 ​               
+
+## animation
+
+### rainbow变色块
+
+```html
+<style>
+  div {
+    height: 40px;
+    width: 70%;
+    background: black;
+    margin: 50px auto;
+    border-radius: 5px;
+  }
+
+#rect {
+animation-name:rainbow;
+animation-duration:4s;}
+
+@keyframes rainbow {
+0% {background-color: blue;}
+50% {background-color: green;}
+100% {background-color: yellow;}}
+
+</style>
+<div id="rect"></div>
+```
+
