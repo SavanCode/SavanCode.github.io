@@ -17,7 +17,7 @@ categories:
 
 允许简单地定义多列文本
 
-### 声明：
+### 基本声明
 
 ```css
 columns: column-width | column-count;

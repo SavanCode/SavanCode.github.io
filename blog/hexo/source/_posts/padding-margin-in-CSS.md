@@ -11,9 +11,9 @@ tags: css&html
 categories:
 ---
 
+## Padding & Margin 基础
+
 Padding-bottom & Margin-bottom 可以控制伪等高
-
-
 
 **不要对float元素指定margin和padding属性(能够在float元素内部嵌套一个div来设置margin和padding)。**
 

@@ -13,15 +13,13 @@ categories:
 
 # **图上字下的方法-css**
 
-3个方法
 
-1.  flex布局 使用了background img link
 
-2.  表格
+## 1.flex布局 使用了background img link
 
-3. img块与文字块（文本块存放在div中）放在同一个div 中，然后设置他们之间的位置 **或者** img块与文字块（文字块采用
+## 2.表格
 
-   span/a标签显示）放在同一个div 
+## 3.img块与文字块（文本块存放在div中）放在同一个div 中，然后设置他们之间的位置 **或者** img块与文字块（文字块采用span/a标签显示）放在同一个div 
 
 ```
 <!DOCTYPE html>
