@@ -8,7 +8,7 @@ date: 2020-11-11 21:58:10
 password:
 summary:
 tags:  css&html
-categories:
+categories: Front-end
 ---
 
 # 纯CSS七大居中方法

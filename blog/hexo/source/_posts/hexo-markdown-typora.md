@@ -6,7 +6,7 @@ cover: false
 toc: true
 mathjax: true
 tags: [Hexo,Typora]
-categories:
+categories: 
 ---
 
 # Typora 大纲目录

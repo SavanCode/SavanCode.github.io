@@ -8,13 +8,12 @@ date: 2020-11-09 14:19:05
 password:
 summary:
 tags: css&html
-categories:
+categories: Front-end
 ---
 
 # HTML Video
 
 <video width="320" height="240" controls>  <source src="*****" type="video/mp4">  <source src="*8**" type="video/ogg">Your browser does not support the video tag.</video>
-
 ``<video width="320" height="240" controls> ``
 
 `` <source src="*****" type="video/mp4">  `` 
@@ -30,7 +29,6 @@ size control=> `<video>`
 
 
 <audio controls>  <source src="****" type="audio/ogg">  <source src="****" type="audio/mpeg">Your browser does not support the audio element.</audio>
-
 ``<audio controls> ``
    `` <source src="****" type="audio/ogg">  ``
    `` <source src="****" type="audio/mpeg">Your browser does not support the audio element.</audio>``

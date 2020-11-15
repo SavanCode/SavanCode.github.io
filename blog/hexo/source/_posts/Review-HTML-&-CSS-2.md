@@ -6,7 +6,7 @@ cover: false
 toc: true
 mathjax: true
 tags: css&html
-categories:
+categories: Front-end
 ---
 
 

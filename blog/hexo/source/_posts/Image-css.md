@@ -8,7 +8,7 @@ date: 2020-11-12 20:43:51
 password:
 summary:
 tags:  css&html
-categories:
+categories:  Front-end
 ---
 
 **Image in CSS** 

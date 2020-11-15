@@ -8,7 +8,7 @@ date: 2020-11-09 19:46:06
 password:
 summary:
 tags: css&html
-categories:
+categories: Front-end
 ---
 
 HTML Graphics - canvas 2

@@ -8,7 +8,7 @@ date: 2020-11-09 14:49:18
 password:
 summary:
 tags:  css&html
-categories:
+categories: Front-end
 ---
 
 ## Input
