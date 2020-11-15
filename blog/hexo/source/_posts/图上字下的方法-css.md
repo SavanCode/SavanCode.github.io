@@ -21,7 +21,7 @@ categories: Front-end
 
 ## 3.img块与文字块（文本块存放在div中）放在同一个div 中，然后设置他们之间的位置 **或者** img块与文字块（文字块采用span/a标签显示）放在同一个div 
 
-```
+```html
 <!DOCTYPE html>
 <html>
     <head>
@@ -111,5 +111,4 @@ categories: Front-end
 </html>
 ```
 
-
-
+<a href="/demo/cssdemo1/cssdemo1.html">链接到demo1</a>
