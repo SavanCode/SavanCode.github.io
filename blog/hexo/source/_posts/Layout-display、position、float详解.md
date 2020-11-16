@@ -15,7 +15,7 @@ categories: Front-end
 
 ## display
 
-display 是 css 布局中很重要的一个属性，它定义了元素生成的显示框类型，常见的几个属性值有：`block`、`inline`、`inline-block`、`inherit`、`none`、`flex`。
+display 是 css 布局中很重要的一个属性，它定义了元素生成的显示框类型，常见的几个属性值有：`grid`、`block`、`inline`、`inline-block`、`inherit`、`none`、`flex`。
 
 每个元素都有默认的 display 属性，比如 div 标签的默认 display 属性是 block；span 标签的默认 display 属性是 inline
 
@@ -36,6 +36,12 @@ display 是 css 布局中很重要的一个属性，它定义了元素生成的�
 >  常见的行内元素 `<a>`、`<b>`、`<label>`、`<span>`、`<img>`、`<em>`、`<strong>`、`<i>`、`<input>` 等。
 
 ![](Layout-display、position、float详解/1605427342046.png)
+
+> Grid布局常用套路：容器定义布局方式为**网格布局**,按照项目需求去划分网格
+
+![](Layout-display、position、float详解/1605545544893.png)
+
+
 
 ## position(定位)
 
