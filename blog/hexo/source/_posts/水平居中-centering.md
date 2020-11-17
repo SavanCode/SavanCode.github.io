@@ -15,15 +15,28 @@ categories: Front-end
 
 ### 1.上下左右定位+margin居中法
 
-```
+```css
 父元素：position: relative;
 
 子元素：position: absolute; left: 0; right: 0; top: 0; bottom: 0; margin: auto;
+//或者
+子元素： margin-left: auto; margin-right: auto; display：block；
+```
+
+```css
+        nav{
+            position: relative; 
+            margin: 5vw 0;
+            width: 100%;
+        }
+        #title{  
+            left: 50%; top: 50%;  
+        } 
 ```
 
 
 
-### 2.50%定位+margin居中法
+### 2.50%定位+margin居中法（no）
 
 ```
 父元素：position: relative;
@@ -129,6 +142,8 @@ categories: Front-end
 ![](水平居中-centering/1605106167637.png)
 
 
+
+other trick： https://css-tricks.com/centering-css-complete-guide/
 
 Reference:
 

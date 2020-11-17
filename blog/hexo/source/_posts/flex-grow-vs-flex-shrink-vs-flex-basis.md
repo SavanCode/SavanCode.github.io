@@ -11,6 +11,10 @@ tags:  css&html
 categories: Front-end
 ---
 
+## Flex Layout Reference
+
+https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+
 ##  flex-basis 
 
  **flex-basis**  ，主要成分，所以他和width放在一起时,肯定把width干掉，basis遇到width时就会说我才是最主要的成分，你是次要成分，所以见到我的时候你要靠边站。
