@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        <form action="" id="survey-form">
+            <h1 id="title"> Title</h1>
+            <p id="description">This is a survey form</p>
+            <label for="name"  id="name-label">用户：</label>
+            <input type="text" id="name" placeholder="请填写用户名" required><br>
+            <label for="userPaw">密码：</label>
+            <input type="password" id="userPaw" placeholder="请填写密码" required><br>
+            <!--输入合法的邮箱，@-->
+            <label for="email" id="email-label">邮箱：</label>
+            <input type="email" id="email" placeholder="请填写邮箱" required><br>
+            <label for="number" id="number-label">ID：</label>
+            <input type="number" id="number" placeholder="请填写id号码" required min="1" max="4567890"><br>
+            <!--输入合法网址-->
+            网址：<input type="url"><br>
+            <!--无法输入字母-->
+            <!--max最大值
+            min最小值
+            value默认值-->
+            <label>select</label>
+            <select name="" id="dropdown">
+            <optgroup>
+                <!--value:具体的值  label:提示信息，辅助值-->
+            <option value="1" label="pretty" ></option>
+            <option value="2" label="pretty"></option>
+            <option value="3" label="pretty"></option>
+            </optgroup>
+            </select><br><br>
+            <fieldset>
+                <legend>Please select one of the following</legend>
+                <input type="radio" name="action" id="track" value="track" /><label for="track">Track Submission</label><br />
+                <input type="radio" name="action" id="event" value="event"  /><label for="event">Events and Artist booking</label><br />
+                <input type="radio" name="action" id="message" value="message" /><label for="message">Message us</label><br />
+            </fieldset>
+
+            <fieldset>
+                <legend>Please select one of the following</legend>
+                <input type="checkbox" name="1"  value="track" /><label for="track">Track Submission</label><br />
+                <input type="checkbox" name="1"  value="event"  /><label for="event">Events and Artist booking</label><br />
+                <input type="checkbox" name="1"  value="message" /><label for="message">Message us</label><br />
+            </fieldset>
+
+            <p>详细地址: <textarea cols="30" rows="10"></textarea></p>
+            <input type="submit" id="submit" value="立即注册"> <br> 
+
+        </form>
+         
+
+</body>
+</html>

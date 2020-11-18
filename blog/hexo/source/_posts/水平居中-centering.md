@@ -36,7 +36,7 @@ categories: Front-end
 
 
 
-### 2.50%定位+margin居中法（no）
+### 2.50%定位+margin居中法
 
 ```
 父元素：position: relative;
@@ -56,7 +56,7 @@ categories: Front-end
 
 
 
-### 4.50%定位+translate居中法
+### 4.50%定位+translate居中法（此方法很好用）
 
 ```
 父元素：position: relative;
@@ -90,7 +90,30 @@ categories: Front-end
 
 注：600px必须为父元素的高度，这里还需注意的一点是font-size需设为零，若未写该属性将导致元素并不能精确垂直居中。该方法即为我面试时所答的方法，缺点很明显，父元素高度须确定。
 
-### 8.对于图片以及文字居中 
+### 8.利用flex全页面居中
+
+![](水平居中-centering/1605667496243.png)
+
+```html
+.box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.box div {
+  width: 100px;
+  height: 100px;
+}
+<div class="box">
+  <div></div>
+</div>
+      
+```
+
+
+
+### 9.对于图片以及文字居中 
 
 #### Center Vertically
 
@@ -141,9 +164,47 @@ categories: Front-end
 
 ![](水平居中-centering/1605106167637.png)
 
+### 10.对于有多个div状态的保留块元素的排版，父元素居中
+
+```
+//父元素
+position: absolute;
+    left: 50%;
+    transform: translate(-50%,50%);
+```
+
+![](水平居中-centering/1605688618077.png)
+
+或者是（这种的话 多个div不好弄 代码很累赘）
+
+![](水平居中-centering/1605688640436.png)
+
+```html
+ .box {
+            display: flex;
+            justify-content: space-between;
+          }
+   <div class="box">
+      <div>One</div>
+      <div>Two</div>
+      <div>Three
+          <br>has
+          <br>extra
+          <br>text
+      </div>
+    </div>
+
+```
 
 
-other trick： https://css-tricks.com/centering-css-complete-guide/
+
+other trick：
+
+https://www.w3.org/Style/Examples/007/center.en.html#text
+
+https://www.w3schools.com/css/css_align.asp
+
+ https://css-tricks.com/centering-css-complete-guide/
 
 Reference:
 

@@ -24,10 +24,12 @@ Input type：text / password / checkbox / radio / submit
     密码：<input type="password" id="userPaw"><br>
     <!--输入合法的邮箱，@-->
     邮箱：<input type="email"><br>
-    电话：<input type="tel"><br>
+    电话：<input type="tel" min="0" max="10"><br>
     <!--输入合法网址-->
     网址：<input type="url"><br>
     <!--无法输入字母-->
+    <Label for="number" id="number-label">ID：</label>
+            <input type="number" id="number" placeholder="请填写id号码" required min="1" max="4567890"><br>
     <!--max最大值
     min最小值
     value默认值-->
@@ -63,11 +65,12 @@ Input type：text / password / checkbox / radio / submit
     ？：表示0个或者1个
     +：表示一个或多个-->
     <p>性别: <input type="radio" name="sex">男&nbsp;&nbsp;<input type="radio" name="sex">女</p>
-    <p>爱好: <input type="checkbox" name="like">运动
-            <input type="checkbox" name="like" >唱歌
-            <input type="checkbox" name="like" >跳舞
-            <input type="checkbox" name="like" >其他
-        </p>
+<fieldset>
+    <legend>请选一个</legend>
+    <input type="radio" name="action" id="track" value="track" /><label for="track">Track Submission</label><br />
+    <input type="radio" name="action" id="event" value="event"  /><label for="event">Events and Artist booking</label><br />
+    <input type="radio" name="action" id="message" value="message" /><label for="message">Message us</label><br />
+</fieldset>
     手机号：<input type="tel" required pattern="^(\+86)?1\d{10}$" name="phone"><br>
     <!--multiple:选择多个文件-->
     文件：<input type="file" name="photo" multiple><br>

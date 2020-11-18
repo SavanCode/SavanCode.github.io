@@ -67,6 +67,12 @@ align-content ：： https://developer.mozilla.org/en-US/docs/Web/CSS/align-cont
 
 ​	元素的总高度小于容器的高度，使用flex-shrink属性；
 
+## Flex Layout Reference
+
+https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+
+https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout
+
 #  Flexbox  demo
 
 DEMO地址:

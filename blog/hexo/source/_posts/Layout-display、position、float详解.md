@@ -51,6 +51,8 @@ display 是 css 布局中很重要的一个属性，它定义了元素生成的�
 		static：默认值，没有定位属性，元素正常出现在文档流中；
 		inherit：继承父元素的 position 属性值。 
 
+视图讲解; https://developer.mozilla.org/en-US/docs/Web/CSS/position
+
 ### Relative
 
  position 为 relative，但是不添加额外属性（left，right，top，bottom 等），它表现的如同 static 一样。但是注意红色框部分，由于特殊设置，偏离普通流（normal flow）
@@ -104,3 +106,8 @@ br 自带 clear 属性，clear 属性有 left、right 和 all 三个属性值可
 
 ![](Layout-display、position、float详解/1605429444021.png)
 
+
+
+基本layout demo：
+
+https://1linelayouts.glitch.me/
