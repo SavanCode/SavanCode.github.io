@@ -27,18 +27,27 @@ categories: Front-end
 .div {
   -webkit-box-orient:horizontal | vertical;/*-webkit-box-orient控制主轴和侧轴分别是哪一根 Safari 6.1 (及更新浏览器) 通过 -webkit-flex 属性支持*/
   flex-direction: row | row-reverse | column | column-reverse; /*主轴的方向*/
-  flex-wrap: nowrap | wrap | wrap-reverse;/*决定一条轴线排不下，如何换行*/
+  flex-wrap: nowrap | wrap | wrap-reverse;/* 挤一行 换行 反向走*/
   flex-flow: <flex-direction> || <flex-wrap>;/*flex-direction属性和flex-wrap*/
-  justify-content: flex-start | flex-end | center | space-between | space-around;/*项目在主轴上的对齐方式   左 右 中 两端&间隔对等 每个两侧间隔相等*/
-  align-items: flex-start | flex-end | center | baseline | stretch;/*项目对其方式 上下中 第一行文字的基线对齐 拉伸（默认）*/
-   -webkit-box-pack： start  富裕空间在右边 end     富裕空间在左边
-                  center  富裕空间在两边 justify 富裕空间在项目之间
   align-content: flex-start | flex-end | center | space-between | space-around | stretch;
-    /*align-content属性定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。*/
+    /*align-content属性定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。
+    align-content  https://developer.mozilla.org/en-US/docs/Web/CSS/align-content  */
 }
 ```
 
-align-content ：： https://developer.mozilla.org/en-US/docs/Web/CSS/align-content
+```css
+  justify-content: flex-start | flex-end | center | space-between | space-around;/*项目在主轴上的对齐方式   左 右 中 两端&间隔对等 每个两侧间隔相等*/
+```
+
+![](Layout-flex/1605776747612.png)
+
+```css
+  align-items: flex-start | flex-end | center | baseline | stretch;/*项目对其方式 上下中 第一行文字的基线对齐 拉伸（默认）*/
+```
+
+![](Layout-flex/1605776777298.png)
+
+
 
 ```css
 .item {
@@ -51,7 +60,11 @@ align-content ：： https://developer.mozilla.org/en-US/docs/Web/CSS/align-cont
 }
 ```
 
+`max-content`: 尺寸值会变得尽可能大, 没有自动换行的机会. 如果`flex`容器**太窄**， 它就会**溢出**其自身的盒子。
 
+`min-content`: 文本已尽可能抓住机会来自动换行, 变得尽可能小且没有溢出。
+
+![](Layout-flex/1605774609826.png)
 
 注意：
 

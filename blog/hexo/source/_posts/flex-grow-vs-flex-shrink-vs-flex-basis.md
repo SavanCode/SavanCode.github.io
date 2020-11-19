@@ -13,11 +13,9 @@ categories: Front-end
 
 ## Flex Layout Reference
 
-https://css-tricks.com/snippets/css/a-guide-to-flexbox/
-
 ##  flex-basis 
 
- **flex-basis**  ，主要成分，所以他和width放在一起时,肯定把width干掉，basis遇到width时就会说我才是最主要的成分，你是次要成分，所以见到我的时候你要靠边站。
+ **flex-basis**  ，主要成分，flex-basis 預設值爲 auto，表示其預設分配到的空間，與 width 很像，但優先程度較高。
 
 ![](flex-grow-vs-flex-shrink-vs-flex-basis/1605267508063.png)
 
@@ -27,11 +25,39 @@ https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 
 ![](flex-grow-vs-flex-shrink-vs-flex-basis/1605267618433.png)
 
+两个状况： 1大家一起分空间，2就是剩余会被大哥分掉
+
+container 寬度爲 1000px，每個 box 寬度爲 100px。粉色綠色藍色方塊皆爲 100px，剩餘區域爲 700px。
+
+![](flex-grow-vs-flex-shrink-vs-flex-basis/1605774181775.png)
+
+接著設定粉色盒子 `flex-grow:1;` ，表示剩餘空間 700px，分爲 1 份，皆分配給粉色盒子，則粉色盒子寬度爲 800px。效果如下：
+
+![](flex-grow-vs-flex-shrink-vs-flex-basis/1605774210372.png)
+
+接著將綠色盒子也設定 `flex-grow:1;` ，表示剩餘空間 700px，分爲 2 份，分配給粉色盒子及綠色盒子各一份，各分 350px，粉色盒子及綠色盒子寬度皆爲 450px。效果如下：
+
+![](flex-grow-vs-flex-shrink-vs-flex-basis/1605774235983.png)
+
 ##  flex-shrink
 
-**flex-shrink**， 收缩，这就代表当父元素的宽度小于子元素宽度之和时，并且超出了父元素的宽度，这时，flex-shrink就会说外面的世界太苦了，我还是回到父亲的怀抱中去吧！因此，flex-shrink就会按照一定的比例进行收缩。
+**flex-shrink**， 收缩，flex-shrink 是 flex-grow 的反向，有剩餘空間，就表示也有不夠空間的時候。flex-shrink 表示空間不夠時的壓縮比例。預設值爲 1。表示大家被壓縮的比例相同。
 
 ![](flex-grow-vs-flex-shrink-vs-flex-basis/1605267974102.png)
+
+container 寬度維持 1000px，每個 box 寬度改爲 400px，總共 1200px，超出 container 寬度。則每個盒子因爲 flex-shrink 預設爲 1 的關係，不夠的空間分均分壓縮三個盒子。效果如下(爲了可視化 container，設置紅色框線)：
+
+![](flex-grow-vs-flex-shrink-vs-flex-basis/1605774424023.png)
+
+接著試試看把盒子皆設定 flex-shrink 爲 0，不要有任何壓縮，則三個盒子會爆出 container ，這也是 flex 爲了預防爆版，預設值爲 1 的用意，效果如下：
+
+![](flex-grow-vs-flex-shrink-vs-flex-basis/1605774443655.png)
+
+接著試試看粉色盒子 flex-shrink 爲 1，其他盒子爲 0，則不夠的部分只會壓縮粉色盒子，效果如下：
+
+![](flex-grow-vs-flex-shrink-vs-flex-basis/1605774467911.png)
+
+
 
 ## 赋值计算
 
