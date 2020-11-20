@@ -94,11 +94,12 @@ categories: Front-end
 
 ![](水平居中-centering/1605667496243.png)
 
-```html
+```css
 .box {
   display: flex;
-  align-items: center;
+  align-items: center;/*Vertical Centering*/
   justify-content: center;
+     /* align-self: center;  want specific flex items to be centered vertically*/
 }
 
 .box div {
@@ -200,11 +201,11 @@ position: absolute;
 
 other trick：
 
+https://www.digitalocean.com/community/tutorials/css-centering-using-flexbox
+
 https://www.w3.org/Style/Examples/007/center.en.html#text
 
-https://www.w3schools.com/css/css_align.asp
-
- https://css-tricks.com/centering-css-complete-guide/
+https://www.w3schools.com/css/css_align.asp 
 
 Reference:
 
