@@ -194,5 +194,3 @@ categories: Front-end
 
 **a、b、c三个div中的flex值分别为1,1,2，其实就是相当于把空白部分分成4份，a、b各占1份，c占2份；**
 
-## 
-

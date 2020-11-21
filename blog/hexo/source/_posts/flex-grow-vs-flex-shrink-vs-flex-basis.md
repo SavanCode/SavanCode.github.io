@@ -89,3 +89,7 @@ container 寬度維持 1000px，每個 box 寬度改爲 400px，總共 1200px，
 ​	元素的总高度小于容器的高度，使用flex-grow属性；
 
 ​	元素的总高度小于容器的高度，使用flex-shrink属性；
+
+## Demo：
+
+<a href="/demo/quiz/html/flex.html">链接到demo1</a>
