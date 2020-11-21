@@ -60,3 +60,6 @@ animation-duration:4s;}
 <div id="rect"></div>
 ```
 
+## Reference:
+
+Image css: https://www.w3schools.com/howto/howto_js_slideshow.asp

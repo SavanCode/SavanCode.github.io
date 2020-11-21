@@ -1,5 +1,5 @@
 ---
-title: Media Queries-css"
+title: Media Queries-css
 top: false
 cover: false
 toc: true
@@ -10,6 +10,8 @@ summary:
 tags: css&html
 categories:  Front-end
 ---
+
+# Media Query-css
 
 目的：因为不同的设备，萤幕宽度不同，显示的要求不一样
 
