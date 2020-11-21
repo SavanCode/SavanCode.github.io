@@ -57,7 +57,9 @@ container 寬度維持 1000px，每個 box 寬度改爲 400px，總共 1200px，
 
 ![](flex-grow-vs-flex-shrink-vs-flex-basis/1605774467911.png)
 
-
+- flex-grow: 0.2 表示希望获得20%的蛋糕；
+- flex-grow: 1 表示希望获得100%整个蛋糕（有点过分啊，不考虑其他兄弟）；
+- flex-grow: 2 表示希望获得200%的蛋糕（这是明抢啊，态度很明确）。
 
 ## 赋值计算
 
