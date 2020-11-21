@@ -427,7 +427,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="display、position、float详解"><a href="#display、position、float详解" class="headerlink" title="display、position、float详解"></a>display、position、float详解</h1><h2 id="display"><a href="#display" class="headerlink" title="display"></a>display</h2><p>display 是 css 布局中很重要的一个属性，它定义了元素生成的显示框类型，常见的几个属性值有：<code>block</code>、<code>inline</code>、<code>inline-block</code>、<code>inherit</code>、<code>none</code>、<code>flex</code>。</p>
+                <h1 id="display、position、float详解"><a href="#display、position、float详解" class="headerlink" title="display、position、float详解"></a>display、position、float详解</h1><h2 id="display"><a href="#display" class="headerlink" title="display"></a>display</h2><p>display 是 css 布局中很重要的一个属性，它定义了元素生成的显示框类型，常见的几个属性值有：<code>grid</code>、<code>block</code>、<code>inline</code>、<code>inline-block</code>、<code>inherit</code>、<code>none</code>、<code>flex</code>。</p>
 <p>每个元素都有默认的 display 属性，比如 div 标签的默认 display 属性是 block；span 标签的默认 display 属性是 inline</p>
 <p><img src="/2020/11/15/Layout-display%E3%80%81position%E3%80%81float%E8%AF%A6%E8%A7%A3/1605427234056.png"></p>
 <p><img src="/2020/11/15/Layout-display%E3%80%81position%E3%80%81float%E8%AF%A6%E8%A7%A3/1605427256394.png"></p>
@@ -438,7 +438,12 @@
 <p>Span：<br> 行内元素不会独占一行，只会占领自身宽高所需要的空间；<br> 给行内元素设置宽高不会起作用，margin 值只对左右起作用，padding 值也只对左右起作用；<br> 行内元素一般不可以包含块级元素，只能包含行内元素和文本；<br> 常见的行内元素 <code>&lt;a&gt;</code>、<code>&lt;b&gt;</code>、<code>&lt;label&gt;</code>、<code>&lt;span&gt;</code>、<code>&lt;img&gt;</code>、<code>&lt;em&gt;</code>、<code>&lt;strong&gt;</code>、<code>&lt;i&gt;</code>、<code>&lt;input&gt;</code> 等。</p>
 </blockquote>
 <p><img src="/2020/11/15/Layout-display%E3%80%81position%E3%80%81float%E8%AF%A6%E8%A7%A3/1605427342046.png"></p>
+<blockquote>
+<p>Grid布局常用套路：容器定义布局方式为<strong>网格布局</strong>,按照项目需求去划分网格</p>
+</blockquote>
+<p><img src="/2020/11/15/Layout-display%E3%80%81position%E3%80%81float%E8%AF%A6%E8%A7%A3/1605545544893.png"></p>
 <h2 id="position-定位"><a href="#position-定位" class="headerlink" title="position(定位)"></a>position(定位)</h2><p> relative：相对定位，相对于元素的正常位置进行定位；<br>        absolute：绝对定位，相对于除 static 定位以外的元素进行定位；<br>        fixed：固定定位，相对于浏览器窗口进行定位，网站中的固定         header 和 footer 就是用固定定位来实现的；<br>        static：默认值，没有定位属性，元素正常出现在文档流中；<br>        inherit：继承父元素的 position 属性值。 </p>
+<p>视图讲解; <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/CSS/position">https://developer.mozilla.org/en-US/docs/Web/CSS/position</a></p>
 <h3 id="Relative"><a href="#Relative" class="headerlink" title="Relative"></a>Relative</h3><p> position 为 relative，但是不添加额外属性（left，right，top，bottom 等），它表现的如同 static 一样。但是注意红色框部分，由于特殊设置，偏离普通流（normal flow）</p>
 <p><img src="/2020/11/15/Layout-display%E3%80%81position%E3%80%81float%E8%AF%A6%E8%A7%A3/1605427536435.png"></p>
 <h3 id="Aboslute"><a href="#Aboslute" class="headerlink" title="Aboslute"></a>Aboslute</h3><p>absolute 会相对于最近的除 static 定位以外的元素进行定位，在使用时要注意设置父元素（或祖先元素）的 position 属性，若父元素（或祖先元素）都没有设置定位属性，absolute 会找到最上层即浏览器窗口，相对于它进行定位了。</p>
@@ -456,6 +461,8 @@
 <h4 id="3-给父元素设置-overflow"><a href="#3-给父元素设置-overflow" class="headerlink" title="3.给父元素设置 overflow"></a>3.给父元素设置 overflow</h4><p>添加 overflow 能解决问题，但是也可能因为内容增加导致超出尺寸的内容被隐藏</p>
 <p><img src="/2020/11/15/Layout-display%E3%80%81position%E3%80%81float%E8%AF%A6%E8%A7%A3/1605429394038.png"></p>
 <h4 id="4-使用after伪元素"><a href="#4-使用after伪元素" class="headerlink" title="4.使用after伪元素"></a>4.使用after伪元素</h4><p><img src="/2020/11/15/Layout-display%E3%80%81position%E3%80%81float%E8%AF%A6%E8%A7%A3/1605429444021.png"></p>
+<p>基本layout demo：</p>
+<p><a target="_blank" rel="noopener" href="https://1linelayouts.glitch.me/">https://1linelayouts.glitch.me/</a></p>
 
             </div>
             <hr/>

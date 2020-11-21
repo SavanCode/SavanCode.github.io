@@ -428,18 +428,105 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h1 id="各类的布局优缺点："><a href="#各类的布局优缺点：" class="headerlink" title="各类的布局优缺点："></a>各类的布局优缺点：</h1><h2 id="使用display-float或position属性进行页面布局的缺点"><a href="#使用display-float或position属性进行页面布局的缺点" class="headerlink" title="使用display/float或position属性进行页面布局的缺点"></a>使用display/float或position属性进行页面布局的缺点</h2><p>专门写了一篇</p>
-<h2 id="多栏布局"><a href="#多栏布局" class="headerlink" title="多栏布局"></a>多栏布局</h2><p>  使用多栏布局可以将<strong>一个元素中的内容分为两栏或多栏显示</strong>，并且<strong>确保各栏中内容底部对齐</strong></p>
+<h2 id="display中的grid"><a href="#display中的grid" class="headerlink" title="display中的grid"></a>display中的grid</h2><p>图文讲解: <a target="_blank" rel="noopener" href="https://css-tricks.com/snippets/css/complete-guide-grid/">https://css-tricks.com/snippets/css/complete-guide-grid/</a></p>
+<h3 id="划分格子"><a href="#划分格子" class="headerlink" title="划分格子"></a><strong>划分格子</strong></h3><pre class=" language-css"><code class="language-css">// <span class="token number">1.</span>划分格子用百分比 最常见
+<span class="token number">.</span>container&amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
+    <span class="token property">display</span><span class="token punctuation">:</span> grid<span class="token punctuation">;</span>
+    <span class="token property">grid-template-columns</span><span class="token punctuation">:</span> <span class="token number">30%</span> <span class="token number">70%</span><span class="token punctuation">;</span>
+
+&amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span>
+// <span class="token number">2.</span>划分格子用占几份的方式  最常见
+<span class="token number">.</span>container&amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
+    <span class="token property">display</span><span class="token punctuation">:</span> grid<span class="token punctuation">;</span>
+    <span class="token property">grid-template-columns</span><span class="token punctuation">:</span> <span class="token function">repeat</span><span class="token punctuation">(</span><span class="token number">12</span>,<span class="token number">1</span>fr<span class="token punctuation">)</span>
+
+&amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span>
+
+// <span class="token number">3.</span> 绝对长度结合自动
+<span class="token number">.</span>container&amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
+    <span class="token property">display</span><span class="token punctuation">:</span> grid<span class="token punctuation">;</span>
+    <span class="token property">grid-template-columns</span><span class="token punctuation">:</span> <span class="token number">200</span>px auto <span class="token number">200</span>px<span class="token punctuation">;</span>
+&amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span>
+
+// <span class="token number">4.</span>结对长度结合 占几份
+<span class="token number">.</span>container&amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
+    <span class="token property">display</span><span class="token punctuation">:</span> grid<span class="token punctuation">;</span>
+    <span class="token property">grid-template-columns</span><span class="token punctuation">:</span> <span class="token number">200</span>px <span class="token number">2</span>fr <span class="token number">1</span>fr<span class="token punctuation">;</span>
+&amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span></code></pre>
+<h3 id="区域的划分方式"><a href="#区域的划分方式" class="headerlink" title="区域的划分方式"></a><strong>区域</strong>的划分方式</h3><pre class=" language-css"><code class="language-css">// <span class="token number">1.</span>指定网格线开始和结束  常用
+<span class="token number">.</span>item-<span class="token number">1</span> &amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
+  <span class="token property">grid-column</span><span class="token punctuation">:</span> <span class="token number">1</span> / <span class="token number">3</span><span class="token punctuation">;</span>
+  <span class="token property">grid-row</span><span class="token punctuation">:</span> <span class="token number">1</span> / <span class="token number">3</span><span class="token punctuation">;</span>
+&amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span>
+// 也可以使用span关键字
+<span class="token number">.</span>item-<span class="token number">1</span> &amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
+  <span class="token property">grid-column</span><span class="token punctuation">:</span> <span class="token number">1</span> / span <span class="token number">2</span><span class="token punctuation">;</span>
+  <span class="token property">grid-row</span><span class="token punctuation">:</span> <span class="token number">1</span> / span <span class="token number">2</span><span class="token punctuation">;</span>
+&amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span>
+// 也可以直接用grid-area一次性分配好区域，可以说是grid-column和grid-row的结合体
+<span class="token number">.</span>item-<span class="token number">1</span> &amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
+  <span class="token property">grid-area</span><span class="token punctuation">:</span> <span class="token number">1</span> / <span class="token number">1</span> / <span class="token number">3</span> / <span class="token number">3</span><span class="token punctuation">;</span>
+&amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span>
+
+// <span class="token number">2.</span>在容器中直接划分好区域并命名
+<span class="token number">.</span>container &amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> grid<span class="token punctuation">;</span>
+  <span class="token property">grid-template-columns</span><span class="token punctuation">:</span> <span class="token number">100</span>px <span class="token number">100</span>px <span class="token number">100</span>px<span class="token punctuation">;</span>
+  <span class="token property">grid-template-rows</span><span class="token punctuation">:</span> <span class="token number">100</span>px <span class="token number">100</span>px <span class="token number">100</span>px<span class="token punctuation">;</span>
+  <span class="token property">grid-template-areas</span><span class="token punctuation">:</span> <span class="token string">"header header header"</span>
+                       <span class="token string">"main main sidebar"</span>
+                       <span class="token string">"footer footer footer"</span><span class="token punctuation">;</span>
+&amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span>
+// 项目中指定区域名
+<span class="token number">.</span>item-<span class="token number">1</span> &amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
+  <span class="token property">grid-area</span><span class="token punctuation">:</span> header<span class="token punctuation">;</span>
+&amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span></code></pre>
+<h3 id="最常用"><a href="#最常用" class="headerlink" title="最常用"></a>最常用</h3><pre class=" language-css"><code class="language-css">// 响应式布局  每列的宽度在<span class="token number">200</span>px到<span class="token number">1</span>fr之间（总宽度大于<span class="token number">200</span>px时每行尽可能多的放下更多子项目）
+<span class="token number">.</span>container &amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
+    <span class="token property">display</span><span class="token punctuation">:</span>grid<span class="token punctuation">;</span>
+    <span class="token property">grid-template-columns</span><span class="token punctuation">:</span> <span class="token function">repeat</span><span class="token punctuation">(</span>auto-fill,<span class="token function">minmax</span><span class="token punctuation">(</span><span class="token number">200</span>px,<span class="token number">1</span>fr<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+&amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span>
+
+
+// <span class="token number">12</span>等宽法+区域划分
+<span class="token number">.</span>container &amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
+    <span class="token property">display</span><span class="token punctuation">:</span> grid<span class="token punctuation">;</span>    
+    <span class="token property">grid-template-columns</span><span class="token punctuation">:</span> <span class="token function">repeat</span><span class="token punctuation">(</span><span class="token number">12</span>, <span class="token number">1</span>fr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token property">grid-template-rows</span><span class="token punctuation">:</span> <span class="token number">1</span>fr <span class="token number">4</span>fr <span class="token number">1</span>fr<span class="token punctuation">;</span>
+    <span class="token property">grid-template-areas</span><span class="token punctuation">:</span>
+        <span class="token string">"h h h h h h h h h h h h"</span>
+        <span class="token string">"m m c c c c c c c c c c"</span>
+        <span class="token string">"f f f f f f f f f f f f"</span><span class="token punctuation">;</span>
+&amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span>
+
+<span class="token number">.</span>header &amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
+    <span class="token property">grid-area</span><span class="token punctuation">:</span> h<span class="token punctuation">;</span>
+    <span class="token property">background-color</span><span class="token punctuation">:</span> steelblue<span class="token punctuation">;</span>
+&amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span>
+<span class="token number">.</span>menu &amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
+    <span class="token property">grid-area</span><span class="token punctuation">:</span> m<span class="token punctuation">;</span>
+    <span class="token property">background-color</span><span class="token punctuation">:</span> green<span class="token punctuation">;</span>
+&amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span>
+<span class="token number">.</span>content &amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
+    <span class="token property">grid-area</span><span class="token punctuation">:</span> c<span class="token punctuation">;</span>
+    <span class="token property">background-color</span><span class="token punctuation">:</span> pink<span class="token punctuation">;</span>
+&amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span>
+<span class="token number">.</span>footer &amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
+   <span class="token property">grid-area</span><span class="token punctuation">:</span> f<span class="token punctuation">;</span>
+   <span class="token property">background-color</span><span class="token punctuation">:</span> orange<span class="token punctuation">;</span>
+&amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span></code></pre>
+<h2 id="multi-columns布局"><a href="#multi-columns布局" class="headerlink" title="multi-columns布局"></a>multi-columns布局</h2><p>  使用多栏布局可以将<strong>一个元素中的内容分为两栏或多栏显示</strong>，并且<strong>确保各栏中内容底部对齐</strong></p>
 <p>以上的各个属性，在<strong>Firefox</strong>浏览器中要添加前缀 “**-moz-<strong>”;；在</strong>Safair、chrome或Opera<strong>浏览器中需要添加前缀 “</strong>-webkit-<strong>”; 在</strong>IE**浏览器中，不需要添加浏览器供应商前缀；</p>
-<h2 id="盒布局"><a href="#盒布局" class="headerlink" title="盒布局"></a>盒布局</h2><p>同样可以解决页面布局时底面不对齐的问题；</p>
+<h2 id="box布局"><a href="#box布局" class="headerlink" title="box布局"></a>box布局</h2><p>同样可以解决页面布局时底面不对齐的问题；</p>
 <p>通过<strong>box属性</strong>来使用盒布局，在Firefox浏览器中，需要书写成：“**-moz-box<strong>”，在Safari、Chrome、Opera浏览器中需要书写成：“</strong>-webkit-box**”；</p>
-<h2 id="盒布局与多栏布局的区别："><a href="#盒布局与多栏布局的区别：" class="headerlink" title="盒布局与多栏布局的区别："></a><strong>盒布局与多栏布局的区别：</strong></h2><ol>
+<h2 id="box布局与multi-columns布局的区别："><a href="#box布局与multi-columns布局的区别：" class="headerlink" title="box布局与multi-columns布局的区别："></a><strong>box布局与multi-columns布局的区别：</strong></h2><ol>
 <li><p>使用多栏布局时，各个栏宽度必须是相等的，在指定每栏宽度时，只能为所有的栏指定一个统一的宽度，栏与栏之间的宽度不可能是不一样的；</p>
 </li>
 <li><p>使用多栏布局，不可能具体指定什么栏中显示什么内容；</p>
 <p> 因此，多栏布局适合用于在显示文章内容的时候，不适合安排整个网页中各个元素组成的网页结构。</p>
 </li>
 </ol>
-<h2 id="弹性盒布局"><a href="#弹性盒布局" class="headerlink" title="弹性盒布局"></a>弹性盒布局</h2><p>只要使用<strong>flex属性</strong>就可以使盒布局变为弹性布局了，即，元素的高度与宽度具有自适应性；</p>
+<h2 id="flex布局"><a href="#flex布局" class="headerlink" title="flex布局"></a>flex布局</h2><p>只要使用<strong>flex属性</strong>就可以使盒布局变为弹性布局了，即，元素的高度与宽度具有自适应性；</p>
 <p><strong>使用盒布局的时候，元素的高度与宽度具有自适应</strong>；即，元素的高度与宽度根据排列方向的改变而改变；</p>
 <p>当为<strong>横向</strong>时：宽度与元素中的内容相等，<strong>高度等于容器高度</strong>；</p>
 <p>当为<strong>纵向</strong>时：高度为元素内容的高度，<strong>宽度为容器的宽度</strong>；</p>

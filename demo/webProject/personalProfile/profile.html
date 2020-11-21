@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>portfolio</title>
+    <style>
+         body{
+             margin: 0 0;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        #navbar{
+            position: fixed;
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            background-color: #be3144;
+            color: white;
+        } 
+        ul{
+            display: flex;
+        }
+       li{  
+        margin: 0 1em;
+        list-style-type: none;
+       }
+       li :hover{
+           background-color: midnightblue;
+       }
+       a{
+        text-decoration: none;
+       }
+       #welcome-section{
+        text-align: center;
+        background-color: khaki;
+       }
+    </style>
+</head>
+<body>
+    <nav id="navbar">
+        <ul>
+            <li><a href="#welcome-section">about</a></li>
+            <li><a href="#project">work</a></li>
+            <li><a href="#contact">contact</a></li> 
+        </ul>
+    </nav>
+    <div id="welcome-section">
+        <h1>Hey I am Savannah</h1>
+        <p>a web developer</p>
+    </div>
+    <div id="project">
+        <p>These are some of my projects</p>
+        <div class="project-tile"><a href=""></a></div>
+        <div class="project-tile"></div>
+        <div class="project-tile"></div>
+        <div class="project-tile"></div>
+        <div class="project-tile"></div>
+        <div class="project-tile"></div>
+    </div>
+    <div id="contact">
+        <p>Let's work together...</p>
+        <p>How do you take your coffee?</p>
+        <div> 
+        <span id="facebook">Facebook</span>
+        <span id="github">github</span>
+        <span id="twitter">twitter</span>
+        <span id="email">email</span>
+        <span id="phone">phone</span>
+         </div>
+
+    </div>
+
+
+
+
+
+</body>
+</html>

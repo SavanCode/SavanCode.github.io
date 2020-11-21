@@ -427,12 +427,25 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="flex-basis"><a href="#flex-basis" class="headerlink" title="flex-basis"></a>flex-basis</h2><p> <strong>flex-basis</strong>  ，主要成分，所以他和width放在一起时,肯定把width干掉，basis遇到width时就会说我才是最主要的成分，你是次要成分，所以见到我的时候你要靠边站。</p>
+                <h2 id="Flex-Layout-Reference"><a href="#Flex-Layout-Reference" class="headerlink" title="Flex Layout Reference"></a>Flex Layout Reference</h2><h2 id="flex-basis"><a href="#flex-basis" class="headerlink" title="flex-basis"></a>flex-basis</h2><p> <strong>flex-basis</strong>  ，主要成分，flex-basis 預設值爲 auto，表示其預設分配到的空間，與 width 很像，但優先程度較高。</p>
 <p><img src="/2020/11/13/flex-grow-vs-flex-shrink-vs-flex-basis/1605267508063.png"></p>
 <h2 id="flex-grow"><a href="#flex-grow" class="headerlink" title="flex-grow"></a>flex-grow</h2><p><strong>flex-grow</strong>，扩大，扩展，增加,这就代表当父元素的宽度大于子元素宽度之和时，并且父元素有剩余，这时，flex-grow就会说我要成长，我要长大，怎么样才能成长呢，当然是分享父元素的空间了。</p>
 <p><img src="/2020/11/13/flex-grow-vs-flex-shrink-vs-flex-basis/1605267618433.png"></p>
-<h2 id="flex-shrink"><a href="#flex-shrink" class="headerlink" title="flex-shrink"></a>flex-shrink</h2><p><strong>flex-shrink</strong>， 收缩，这就代表当父元素的宽度小于子元素宽度之和时，并且超出了父元素的宽度，这时，flex-shrink就会说外面的世界太苦了，我还是回到父亲的怀抱中去吧！因此，flex-shrink就会按照一定的比例进行收缩。</p>
+<p>两个状况： 1大家一起分空间，2就是剩余会被大哥分掉</p>
+<p>container 寬度爲 1000px，每個 box 寬度爲 100px。粉色綠色藍色方塊皆爲 100px，剩餘區域爲 700px。</p>
+<p><img src="/2020/11/13/flex-grow-vs-flex-shrink-vs-flex-basis/1605774181775.png"></p>
+<p>接著設定粉色盒子 <code>flex-grow:1;</code> ，表示剩餘空間 700px，分爲 1 份，皆分配給粉色盒子，則粉色盒子寬度爲 800px。效果如下：</p>
+<p><img src="/2020/11/13/flex-grow-vs-flex-shrink-vs-flex-basis/1605774210372.png"></p>
+<p>接著將綠色盒子也設定 <code>flex-grow:1;</code> ，表示剩餘空間 700px，分爲 2 份，分配給粉色盒子及綠色盒子各一份，各分 350px，粉色盒子及綠色盒子寬度皆爲 450px。效果如下：</p>
+<p><img src="/2020/11/13/flex-grow-vs-flex-shrink-vs-flex-basis/1605774235983.png"></p>
+<h2 id="flex-shrink"><a href="#flex-shrink" class="headerlink" title="flex-shrink"></a>flex-shrink</h2><p><strong>flex-shrink</strong>， 收缩，flex-shrink 是 flex-grow 的反向，有剩餘空間，就表示也有不夠空間的時候。flex-shrink 表示空間不夠時的壓縮比例。預設值爲 1。表示大家被壓縮的比例相同。</p>
 <p><img src="/2020/11/13/flex-grow-vs-flex-shrink-vs-flex-basis/1605267974102.png"></p>
+<p>container 寬度維持 1000px，每個 box 寬度改爲 400px，總共 1200px，超出 container 寬度。則每個盒子因爲 flex-shrink 預設爲 1 的關係，不夠的空間分均分壓縮三個盒子。效果如下(爲了可視化 container，設置紅色框線)：</p>
+<p><img src="/2020/11/13/flex-grow-vs-flex-shrink-vs-flex-basis/1605774424023.png"></p>
+<p>接著試試看把盒子皆設定 flex-shrink 爲 0，不要有任何壓縮，則三個盒子會爆出 container ，這也是 flex 爲了預防爆版，預設值爲 1 的用意，效果如下：</p>
+<p><img src="/2020/11/13/flex-grow-vs-flex-shrink-vs-flex-basis/1605774443655.png"></p>
+<p>接著試試看粉色盒子 flex-shrink 爲 1，其他盒子爲 0，則不夠的部分只會壓縮粉色盒子，效果如下：</p>
+<p><img src="/2020/11/13/flex-grow-vs-flex-shrink-vs-flex-basis/1605774467911.png"></p>
 <h2 id="赋值计算"><a href="#赋值计算" class="headerlink" title="赋值计算"></a>赋值计算</h2><blockquote>
 <p>flex-basis（默认值为auto）<br>flex-grow（默认值为0）<br>    可用空间 = (容器大小 - 所有相邻项目flex-basis的总和)<br>    可扩展空间 = (可用空间/所有相邻项目flex-grow的总和)<br>    每项伸缩大小 = (伸缩基准值flex-basis + (可扩展空间 x flex-grow值))<br>flex-shrink（默认值为1）<br>    –.计算收缩因子与基准值乘的总和<br>      var a = 每一项flex-shrink<em>flex-basis之和<br>     –.计算收缩因数<br>      收缩因数=（项目的收缩因子</em>项目基准值）/第一步计算总和<br>       var b =  (flex-shrink*flex-basis)/a<br>     –.移除空间的计算<br>       移除空间= 项目收缩因数 x 负溢出的空间<br>        var c =  b * 溢出的空间    </p>
 </blockquote>
@@ -442,6 +455,7 @@
 <p>当元素排列的方向为<strong>纵</strong>向：</p>
 <p>​    元素的总高度小于容器的高度，使用flex-grow属性；</p>
 <p>​    元素的总高度小于容器的高度，使用flex-shrink属性；</p>
+<h2 id="Demo："><a href="#Demo：" class="headerlink" title="Demo："></a>Demo：</h2><p><a href="/demo/quiz/html/flex.html">链接到demo1</a></p>
 
             </div>
             <hr/>

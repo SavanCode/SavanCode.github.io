@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学成在线</title>
+    <style>  
+         body{
+            margin: 2em 4em; 
+            min-width: 20%;
+        }
+
+        div{ box-sizing: border-box;}
+        a{
+            color: black;
+            text-decoration: none;
+        }
+
+        #head{
+            color:#00a4ff ;
+        }
+        a:hover{
+            color:#00a4ff ;
+        }
+       
+        #logo{
+            margin: 0 1em;
+            flex: 0 1 auto;
+            
+        }
+        nav{
+            flex-direction: row;
+                display: flex;
+            }
+        #navMenu{
+            display: flex;
+            flex: 2 1 auto;
+            justify-content: space-around;
+        }
+
+        #searchBar{
+            display: flex;
+            flex: 2 1 auto;
+        } 
+ 
+        #account {
+            display: flex;
+            flex: 1 1 auto;
+            justify-content: space-around;
+        }
+        form{
+            margin: auto;
+            display: flex;
+        }
+        input{
+            padding: 0 1em;
+            line-height: 2em;
+            width: 100%;
+        }
+        #bell{
+            position: relative;
+            top: 30%;
+
+        }
+        #pic{
+            top: 20%;
+            position: relative;
+            border-radius: 50%;
+        }
+        #upper{
+            display: flex;
+            position: absolute;
+            height: 99%;
+            width: 100%;
+            justify-content: space-around;
+            overflow: hidden;
+        }
+        #banner{
+            position: relative;
+        }
+        #bannerImg{
+            width: 100%;
+            z-index: -1;
+        } 
+
+        #bannerLeft  > ul, #bannerRight > ul{
+            list-style-type: none;
+            padding: 0 0;
+            margin: 0 0;
+            border-color: transparent;
+            height: 100%;
+        } 
+
+        #bannerLeft{
+            background-color: rgba(105, 102, 102, 0.582);
+            font-size: medium;
+            color: #f4f4f6;
+        } 
+        .bannerlistLeft{ 
+            margin: 2em; 
+
+        }
+
+        .bannerlistLeft>span{
+            margin-left: 2em;
+        }
+        #bannerRight{
+            background-color:white;
+            margin: 2em;
+            font-size: smaller;
+            width:20%;
+            max-height: 70%;
+        }
+        .bannerlistRight{
+            background-color: white;
+            text-indent: 1.5em;
+            border-bottom-color: lightgrey;
+            margin-top: 30px; 
+        }
+
+        #bannerbtn{
+            text-align: center;
+            margin: 0 0;
+        }
+
+        #bannerbtn > a{
+            padding: 0.5em 0em;
+            max-width: 50%;
+            color: #00a4ff;
+            background-color: white;
+            border-color: hsl(201, 100%, 50%);
+            border: solid;
+            margin-top: 20px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #bannerbtn > a:hover{
+            background-color: #00a4ff;
+            color: white;
+        }
+        #name{
+            font-size: x-large;
+            text-align: center;
+            background-color: #9bceea;
+            padding: 0.3em 1em;
+        }
+        #interestList{
+            display: flex;
+            list-style: none;
+            margin: 0 0;
+            text-align: center;
+        }
+        
+        #interest{
+            display: flex;
+            flex-direction: row;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+        #interestLeft{
+            flex: 3 1 auto;
+        }
+        #interestList > li{
+            margin: 0 1em;
+        }
+        #interestRight{
+            flex: 1 1 auto;
+            text-decoration: none;
+            text-align: center;
+        }
+        #navBar,#banner,#interest,#footer{
+            margin: 3em 0;
+        }
+        #courseList{
+            display: flex;
+            flex-flow: wrap;
+        }
+        .course{
+            width: min-content; 
+            padding: 1em 1em;
+            border-color: white;
+            background-color: white;
+            /* margin: auto; */
+        }
+        .course:hover{ 
+            transform: translate(0,-1em);  
+            box-shadow: 0px 20px 30px grey;
+        }
+        #courseHeader{
+            display: flex;
+            justify-content: space-between;
+        }
+        #level{
+            color:orange;
+        }
+
+        #footer{
+            display: flex;
+            flex-direction:row ;
+            justify-content: space-between;
+        }
+         
+
+        #footerRight > ul{
+            list-style: none;
+            font-size: smaller;
+            padding: 0 0;
+        } 
+        #title{
+            font-size: large;
+        }
+        #download{
+            padding: 1em 3em;
+            color: #00a4ff;
+            background-color: transparent;
+            border-color: #00a4ff;
+        }
+
+        #download:hover{
+            background-color: #00a4ff;
+            color: white;
+        }
+
+        .dropbtn { 
+        background-color: #00a4ff;
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        }
+
+        .dropbtn:focus {
+        background-color:white;
+        border-color: #00a4ff;
+        color:#00a4ff;
+        }
+
+        .dropdown {
+        display: inline-block;
+        }
+
+        .dropdown-content {
+        z-index: 11111;
+        display: none;
+        position: absolute;
+        background-color: white; 
+        overflow: auto;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        }
+
+        .dropdown-content a {
+        color: #00a4ff;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        }
+
+        .show {display:block;} 
+
+        @media only screen and (min-width: 990px) {
+            
+            .dropdown{
+                display: none;
+            }
+        }
+
+        @media only screen and (max-width: 1100px) {
+            #upper{
+                display: none;
+            }
+        }
+        @media only screen and (min-width: 631px) and (max-width: 990px) {
+            #navMenu{
+            display: none;
+            }
+            #account{
+                display: none;
+            }
+            #interest{
+                font-size: x-small;
+            }
+            #line{
+                display: none;
+            }
+            #footer{
+                flex-direction: column;
+            }
+            .course{
+                margin: auto;
+            }
+            #upper{
+                display: none;
+            }
+            
+        }
+
+        @media only screen and (min-width: 401px) and (max-width: 630px) {
+            #navMenu{
+            display: none;
+            }
+            #account{
+                display: none;
+            }
+            #interest{
+                display: none;
+            }
+            #footer{
+                flex-direction: column;
+            }
+            #footerRight, #footerLeft{
+                margin: 1em 0;
+            }   
+            .course{
+                margin: auto;
+            } 
+            #upper{
+                display: none;
+            }
+        }
+        @media only screen and (max-width: 400px) {
+            #navMenu{
+            display: none;
+            }
+            #searchBar{
+                display: none;
+            }
+            #account{
+                display: none;
+            }
+            #interest{
+                display: none;
+            }
+            #footer{
+                flex-direction: column;
+            }
+            #footerRight, #footerLeft{
+                margin: 1em 0;
+            }   
+            .course{
+                margin: auto;
+            }
+            #upper{
+                display: none;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <nav id="navBar">
+        <div id="logo">
+            <img src="./img/logo.png" alt="">
+
+        </div>
+        <div id="navMenu">
+            <div><p> 首页</p></div>
+            <div><p> 课程</p></div>
+            <div><p>职业规划</p></div>
+        </div>
+        <div id="searchBar">
+            <form action="">
+                <input type="text" placeholder="请输入关键字">
+                <!-- <button id="seachBtn" type="submit"> -->
+                    <img id="seachImg" src="./img/fa-search.png" alt="">
+                <!-- </button> -->
+            </form>
+        </div>
+        <div id="account">
+            <div><p>个人中心</p></div>
+            <div><img id="bell" src="./img/ld.png" alt=""></div>
+            <div><img id="pic" src="./img/pic.png" alt=""></div>
+            <div><p>橘子没熟</p> </div>
+        </div>
+        <div class="dropdown">
+            <button id="myBtn" class="dropbtn">菜单</button>
+            <div id="myDropdown" class="dropdown-content">
+                <a href="">首页</a>
+                <a href="">课程</a>
+                <a href="">职业规划</a>
+                <a href="">个人中心</a> 
+            </div>
+          </div>
+
+    </nav>
+    <div id="banner">
+        <div id="upper">
+            <div id="bannerLeft">
+                <ul>
+                    <li class="bannerlistLeft"><span>前端开发</span><span>></span></li>
+                    <li class="bannerlistLeft"><span>前端开发</span><span>></span></li>
+                    <li class="bannerlistLeft"><span>前端开发</span><span>></span></li>
+                    <li class="bannerlistLeft"><span>前端开发</span><span>></span></li>
+                    <li class="bannerlistLeft"><span>前端开发</span><span>></span></li>
+                    <li class="bannerlistLeft"><span>前端开发</span><span>></span></li>
+                    <li class="bannerlistLeft"><span>前端开发</span><span>></span></li>
+                </ul>
+            </div> 
+            <div id="bannerRight">  
+                    <ul>
+                    <li id="name">我的课程表</li> 
+                    <li class="bannerlistRight"><p>继续学习 程序语言设计</p>
+                        <p>正在学习-使用对象</p>
+                    </li>
+                    <li class="bannerlistRight"><p>继续学习 程序语言设计</p>
+                        <p>正在学习-使用对象</p>
+                    </li>
+                    <li class="bannerlistRight"><p>继续学习 程序语言设计</p>
+                        <p>正在学习-使用对象</p>
+                    </li> 
+                    <li id="bannerbtn"><a href="#">全部课程</a></li> 
+                    <!-- <li><button>全部课程</button></li> -->
+                    </li>
+                    </ul>  
+            </div>
+        </div>
+        <img id="bannerImg" src="./img/banner.jpg" alt="">
+    </div>
+    <div id="interest">
+        <div id="interestLeft">   
+        <ul id="interestList"> 
+            <li><p id="head"> 精品推荐</p></li>
+            <li><p> <span id="line">| &nbsp;&nbsp;</span> <a href="">jQuery</a>   </p></li>
+            <li><p> <span id="line">| &nbsp;&nbsp;</span>  <a href="">jQuery</a>     </p></li>
+            <li><p> <span id="line">| &nbsp;&nbsp;</span>  <a href="">jQuery</a>     </p></li>
+            <li><p> <span id="line">| &nbsp;&nbsp;</span>  <a href="">jQuery</a>     </p></li>
+            <li><p> <span id="line">| &nbsp;&nbsp;</span>  <a href="">jQuery</a>     </p></li>
+            <li><p> <span id="line">| &nbsp;&nbsp;</span>  <a href="">jQuery</a>     </p></li>
+            <li><p> <span id="line">| &nbsp;&nbsp;</span>  <a href="">jQuery</a>     </p></li>
+        </ul> 
+        </div> 
+        <div id="interestRight"><p><a href="#">修改兴趣</a></p></div>
+    </div>
+    <div id="courseHeader">
+        <div> <p>精品推荐</p> </div>
+        <div> <p>查看全部</p></div>
+    </div>
+    <div id="courseList">
+        <div class="course">
+            <div><img src="./img/pic1.png" alt=""> </div>
+            <div><p id="title">Think PHP 5.0博客系统实战项目演练</p></div>
+            <div><span id="level">高级</span><span>-</span><span>1125人学习</span></div>
+        </div>
+        <div class="course">
+            <div><img src="./img/pic1.png" alt=""> </div>
+            <div><p id="title">Think PHP 5.0博客系统实战项目演练</p></div>
+            <div><span id="level">高级</span><span>-</span><span>1125人学习</span></div>
+        </div>
+        <div class="course">
+            <div><img src="./img/pic1.png" alt=""> </div>
+            <div><p id="title">Think PHP 5.0博客系统实战项目演练</p></div>
+            <div><span id="level">高级</span><span>-</span><span>1125人学习</span></div>
+        </div>
+        <div class="course">
+            <div><img src="./img/pic1.png" alt=""> </div>
+            <div><p id="title">Think PHP 5.0博客系统实战项目演练</p></div>
+            <div><span id="level">高级</span><span>-</span><span>1125人学习</span></div>
+        </div>
+        <div class="course">
+            <div><img src="./img/pic1.png" alt=""> </div>
+            <div><p id="title">Think PHP 5.0博客系统实战项目演练</p></div>
+            <div><span id="level">高级</span><span>-</span><span>1125人学习</span></div>
+        </div>
+        <div class="course">
+            <div><img src="./img/pic1.png" alt=""> </div>
+            <div><p id="title">Think PHP 5.0博客系统实战项目演练</p></div>
+            <div><span id="level">高级</span><span>-</span><span>1125人学习</span></div>
+        </div>
+        <div class="course">
+            <div><img src="./img/pic1.png" alt=""> </div>
+            <div><p id="title">Think PHP 5.0博客系统实战项目演练</p></div>
+            <div><span id="level">高级</span><span>-</span><span>1125人学习</span></div>
+        </div>
+        <div class="course">
+            <div><img src="./img/pic1.png" alt=""> </div>
+            <div><p id="title">Think PHP 5.0博客系统实战项目演练</p></div>
+            <div><span id="level">高级</span><span>-</span><span>1125人学习</span></div>
+        </div>
+        <div class="course">
+            <div><img src="./img/pic1.png" alt=""> </div>
+            <div><p id="title">Think PHP 5.0博客系统实战项目演练</p></div>
+            <div><span id="level">高级</span><span>-</span><span>1125人学习</span></div>
+        </div>
+
+    </div>
+    <div id="footer">
+        <div id="footerLeft">
+            <img src="./img/logo.png" alt="">
+            <div>
+                <p>学成在线致力于普及中国最好的教育，它与中国一流大学和机构合作提供在线课程</p>
+                <p>© 2017年XTCC Inc.保留所有权利。沪ICP备15025210号</p>
+            </div>
+            <div><button id="download">下载APP</button></div>
+        </div>
+        <div id="footerRight">
+            <ul>
+                <p id="title">关于学成网</p>
+                <li> <p><a href="">关于</a> </p> </li>
+                <li><p><a href="">管理团队</a></p></li>
+                <li><p><a href="">工作机会</a></p></li>
+                <li><p><a href="">客户服务</a></p></li>
+                <li><p><a href="">帮助</a></p></li>
+            </ul>
+
+        </div>
+        <div id="footerRight">
+            <ul>
+                <p id="title">新手指南</p>
+                <li><p><a href="">如何注册</a></p></li>
+                <li><p><a href="">如何选课</a></p></li>
+                <li><p><a href="">如何拿到毕业证</a></p></li>
+                <li><p><a href="">学分是什么</a></p></li>
+                <li><p><a href="">考试未通过怎么办</a></p></li>
+            </ul>
+
+        </div>
+        <div id="footerRight">
+            <ul>
+                <p id="title">合作伙伴</p>
+                <li><p><a href="">合作机构</a></p></li>
+                <li><p><a href="">合作导师</a></p></li>
+            </ul>
+        </div>
+    </div>
+
+
+    <script>
+        // Get the button, and when the user clicks on it, execute myFunction
+        document.getElementById("myBtn").onclick = function() {myFunction()};
+        
+        /* myFunction toggles between adding and removing the show class, which is used to hide and show the dropdown content */
+        function myFunction() {
+          document.getElementById("myDropdown").classList.toggle("show");
+        }
+        </script>
+</body>
+</html>

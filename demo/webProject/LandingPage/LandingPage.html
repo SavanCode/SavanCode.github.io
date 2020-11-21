@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <style>
+        body{
+            margin:0; 
+        }
+        #header,#nav-bar{
+            position: fixed;
+            display: flex;
+            align-items: stretch;
+            background-color: antiquewhite;
+            width: 100%; 
+            padding: 10px 0;
+            z-index: 1;
+        }
+        a{
+            text-decoration: none;
+        }
+        .container{
+            padding-top: 100px;
+        }
+        #header-img{
+            margin-top: 5px;
+            max-width: 25vw;
+        }
+
+        #nav-bar > div { 
+        color: black;
+        width: 100px;
+        margin: 10px;
+        text-align: center;
+        line-height: 45px;
+        font-size: 15px;
+       flex-grow: 2;
+        }
+        #email{
+            line-height: 20px;
+        }
+        #submit{
+            border-color: transparent;
+            background-color: orange;
+            font-size: large;
+        }
+
+        .row{
+            width: 100%;
+            min-height: 10vw; 
+        }
+
+        .info{
+            position: relative;
+            left: 50%; 
+            transform: translate(-50%,0); 
+            font-size: x-large;
+            line-height: 30px; 
+            margin-top: 10px; 
+        }
+        .info >div{
+            margin-top: 10px;
+            text-align: center;
+        }
+         #search{
+             /* margin-left: 20%; */
+             font-size: medium;
+        }
+        button{
+            /* margin-left: 35%; */
+            border-color: transparent;
+            background-color: orange;
+            font-size: large;
+        }
+        .feature{  
+            width: 100%;
+            padding:30px 0;
+            background-color: antiquewhite;
+            max-height: 360px;
+        }
+        .detail{
+            /* min-width: 60vw;  */ 
+            display: flex;
+            justify-content: space-between;
+            min-height: 5vw;
+            max-height: 150px;  
+        }
+        .text{
+            flex-grow: 4;
+            font-size: 10px;
+            text-align: left;
+            padding: 10px;
+            margin: 0 0;
+            max-width: 60%;
+            margin-top: 15px;
+        }
+        .icon{
+            max-width: 50px;
+            max-height: 50px;
+            margin-top: 15px;
+            display: block;
+            margin-left: auto; 
+            margin-right: auto;
+            width: 50%;
+        }
+        .detail >div {
+            max-height: 80px;
+        }
+        video{
+            margin-top:20px; 
+            display: block;
+            margin-left: auto; 
+            margin-right: auto;
+            width: 50%;
+        }
+        .footer{
+            display: inline-flex;
+            width: 100%;
+            max-height: 10vw;
+            background-color:gainsboro;
+        }
+        
+        .name{ 
+            background-color:#ddd;
+        }
+        .price > li {
+        list-style-type:none; 
+        padding: 20px 0;
+        text-align: center;
+        }
+        .price{
+            padding: 0;
+            margin: 0 0;
+        }
+
+        .columns{
+            display: inline-block;
+            max-width: 20%;
+            background-color: antiquewhite;
+            margin-left: 30px;
+            padding: 0px 0px;
+            margin-top: 20px;
+            border: solid;
+            border-color: black;
+        }
+        .button {
+        background-color:#f1c40f;
+        border: none;
+        color: black;
+        padding: 10px 25px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 18px;
+        border-color: transparent;
+        }
+        @media (max-width: 700px) {
+        #nav-bar > div {   
+                width: 0px;
+                margin: -10px;
+        }
+        }
+        
+    </style>
+</head>
+<body>
+    <header  id="header">
+        <nav id="nav-bar">
+        <div><img id="header-img" src="https://s3.amazonaws.com/freecodecamp/original_trombones.png" alt=""></div>
+        <div></div>
+        <div></div>
+        <div><a href="#feature" class="nav-link">Features</a></div>
+        <div> <a href="#video" class="nav-link"> How it works</a></div>
+        <div><a href="#pricetag" class="nav-link"> Pricing</a></div>
+    </nav>
+    </header >
+    <div class="container">
+        <div class=row>
+            <div class="info"> 
+                <div>Handcrafted, home-made masterpieces</div>
+                <div id="search"> 
+                    <form action="https://www.freecodecamp.com/email-submit" id="form">
+                    <input type="email" name="email" id="email" placeholder="please enter your text here" size="35"> <br>
+                    <input type="submit" id="submit" value="Get started" style="margin-top: 15px;">
+                    </form>
+                </div>
+                <!-- <div><input type="submit" id="submit" value="Get started"></div> -->
+                <!-- <button> <b>Get started </b> </button> <br> -->
+            </div> 
+        </div>  
+       <div class="feature" id="feature">
+           <div class="detail">
+            <div style="flex-grow: 1"></div>
+            <div style="flex-grow: 2">
+                   <img class="icon" src="https://www.flaticon.com/svg/static/icons/svg/1085/1085688.svg" alt="">
+                </div>
+            <div style="flex-grow: 5" class="text"> <b> Premium Materials </b>  <br> 
+                Our trombones use the shiniest brass which is sourced locally. This will increase the longevity of your purchase.</div>
+            <div style="flex-grow: 1"></div>
+           </div>
+           <div class="detail">
+            <div style="flex-grow: 1"></div>
+            <div style="flex-grow: 2">
+                   <img class="icon" src="https://www.flaticon.com/svg/static/icons/svg/3202/3202875.svg" alt="">
+                </div>
+            <div style="flex-grow: 5" class="text"> <b> Fast Shipping</b>  <br> 
+                We make sure you recieve your trombone as soon as we have finished making it. We also provide free returns if you are not satisfied.</div>
+            <div style="flex-grow: 1"></div>
+           </div>
+           <div class="detail">
+            <div style="flex-grow: 1"></div>
+            <div style="flex-grow: 2">
+                   <img class="icon" src="https://www.flaticon.com/svg/static/icons/svg/733/733438.svg" alt="">
+                </div>
+            <div style="flex-grow: 5" class="text"> <b>  Quality Assurance </b>  <br> 
+                For every purchase you make, we will ensure there are no damages or faults and we will check and test the pitch of your instrument.</div>
+            <div style="flex-grow: 1"></div>
+           </div>
+       </div>
+       <div class="video" > 
+        <video controls id="video">
+            <source src="https://www.youtube.com/watch?v=y8Yv4pnO7qc" type="video/mp4"> 
+          </video>
+        </div>
+
+        <div class="priceArea" style="display: flex; margin: 20PX 0;" id="pricetag"> 
+            <div style="flex-grow: 1"></div>
+            <div class="columns" style="flex-grow: 2;">
+                <ul class="price">
+                <li class="name">TENOR TROMBONE</li>
+                <li class="grey">$600</li>
+                <li>Lorem ipsum.</li>
+                <li>Lorem ipsum.</li>
+                <li>Lorem ipsum dolor.</li>
+                <li>Lorem ipsum.</li>
+                <li class="grey"><a href="#" class="button">SELECT</a></li>
+                </ul>
+            </div> 
+      
+            <div class="columns" style="flex-grow: 2">
+                <ul class="price">
+                <li class="name">TENOR TROMBONE</li>
+                <li class="grey">$600</li>
+                <li>Lorem ipsum.</li>
+                <li>Lorem ipsum.</li>
+                <li>Lorem ipsum dolor.</li>
+                <li>Lorem ipsum.</li>
+                <li class="grey"><a href="#" class="button">SELECT</a></li>
+                </ul>
+            </div> 
+            <div class="columns" style="flex-grow: 2">
+                <ul class="price">
+                <li class="name">TENOR TROMBONE</li>
+                <li class="grey">$600</li>
+                <li>Lorem ipsum.</li>
+                <li>Lorem ipsum.</li>
+                <li>Lorem ipsum dolor.</li>
+                <li>Lorem ipsum.</li>
+                <li class="grey"><a href="#" class="button">SELECT</a></li>
+                </ul>
+            </div>
+            <div style="flex-grow: 1"></div>
+        </div>
+</div>
+    <div class="footer">
+        <div style="flex-grow: 1"></div>
+        <div style="flex-grow: 6;text-align: -webkit-right;">
+           <p> Privacy &nbsp  Terms  &nbsp Contact </p> 
+          <p> Copyright 2016, Original Trombones </p>  
+        </div>
+        <div style="flex-grow: 1"></div>
+    </div>
+</body>
+</html>

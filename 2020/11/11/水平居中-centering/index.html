@@ -427,9 +427,19 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="纯CSS七大居中方法"><a href="#纯CSS七大居中方法" class="headerlink" title="纯CSS七大居中方法"></a>纯CSS七大居中方法</h1><h3 id="1-上下左右定位-margin居中法"><a href="#1-上下左右定位-margin居中法" class="headerlink" title="1.上下左右定位+margin居中法"></a>1.上下左右定位+margin居中法</h3><pre><code>父元素：position: relative;
+                <h1 id="纯CSS七大居中方法"><a href="#纯CSS七大居中方法" class="headerlink" title="纯CSS七大居中方法"></a>纯CSS七大居中方法</h1><h3 id="1-上下左右定位-margin居中法"><a href="#1-上下左右定位-margin居中法" class="headerlink" title="1.上下左右定位+margin居中法"></a>1.上下左右定位+margin居中法</h3><pre class=" language-css"><code class="language-css">父元素：<span class="token property">position</span><span class="token punctuation">:</span> relative<span class="token punctuation">;</span>
 
-子元素：position: absolute; left: 0; right: 0; top: 0; bottom: 0; margin: auto;</code></pre>
+子元素：<span class="token property">position</span><span class="token punctuation">:</span> absolute<span class="token punctuation">;</span> <span class="token property">left</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token property">right</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token property">top</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token property">bottom</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token property">margin</span><span class="token punctuation">:</span> auto<span class="token punctuation">;</span>
+//或者
+子元素： <span class="token property">margin-left</span><span class="token punctuation">:</span> auto<span class="token punctuation">;</span> <span class="token property">margin-right</span><span class="token punctuation">:</span> auto<span class="token punctuation">;</span> display：block；</code></pre>
+<pre class=" language-css"><code class="language-css">        nav&amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
+            <span class="token property">position</span><span class="token punctuation">:</span> relative<span class="token punctuation">;</span> 
+            <span class="token property">margin</span><span class="token punctuation">:</span> <span class="token number">5</span>vw <span class="token number">0</span><span class="token punctuation">;</span>
+            <span class="token property">width</span><span class="token punctuation">:</span> <span class="token number">100%</span><span class="token punctuation">;</span>
+        &amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span>
+        #title&amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>  
+            <span class="token property">left</span><span class="token punctuation">:</span> <span class="token number">50%</span><span class="token punctuation">;</span> <span class="token property">top</span><span class="token punctuation">:</span> <span class="token number">50%</span><span class="token punctuation">;</span>  
+        &amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span> </code></pre>
 <h3 id="2-50-定位-margin居中法"><a href="#2-50-定位-margin居中法" class="headerlink" title="2.50%定位+margin居中法"></a>2.50%定位+margin居中法</h3><pre><code>父元素：position: relative;
 
 子元素：position: absolute; left: 50%; top: 50%; margin: -200px 0 0 -200px;</code></pre>
@@ -437,7 +447,7 @@
 <h3 id="3-table-cell居中法"><a href="#3-table-cell居中法" class="headerlink" title="3.table-cell居中法"></a>3.table-cell居中法</h3><pre><code>父元素：display: table-cell; text-align: center; vertical-align: middle;
 
 子元素：display: inline-block;</code></pre>
-<h3 id="4-50-定位-translate居中法"><a href="#4-50-定位-translate居中法" class="headerlink" title="4.50%定位+translate居中法"></a>4.50%定位+translate居中法</h3><pre><code>父元素：position: relative;
+<h3 id="4-50-定位-translate居中法（此方法很好用）"><a href="#4-50-定位-translate居中法（此方法很好用）" class="headerlink" title="4.50%定位+translate居中法（此方法很好用）"></a>4.50%定位+translate居中法（此方法很好用）</h3><pre><code>父元素：position: relative;
 
 子元素：position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%);</code></pre>
 <h3 id="5-Flexbox-margin居中法"><a href="#5-Flexbox-margin居中法" class="headerlink" title="5.Flexbox+margin居中法"></a>5.Flexbox+margin居中法</h3><pre><code>父元素：display: flex;
@@ -450,7 +460,23 @@
 
 子元素：display: inline-block; vertical-align: middle;</code></pre>
 <p>注：600px必须为父元素的高度，这里还需注意的一点是font-size需设为零，若未写该属性将导致元素并不能精确垂直居中。该方法即为我面试时所答的方法，缺点很明显，父元素高度须确定。</p>
-<h3 id="8-对于图片以及文字居中"><a href="#8-对于图片以及文字居中" class="headerlink" title="8.对于图片以及文字居中"></a>8.对于图片以及文字居中</h3><h4 id="Center-Vertically"><a href="#Center-Vertically" class="headerlink" title="Center Vertically"></a>Center Vertically</h4><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span><span class="token style language-css">
+<h3 id="8-利用flex全页面居中"><a href="#8-利用flex全页面居中" class="headerlink" title="8.利用flex全页面居中"></a>8.利用flex全页面居中</h3><p><img src="/2020/11/11/%E6%B0%B4%E5%B9%B3%E5%B1%85%E4%B8%AD-centering/1605667496243.png"></p>
+<pre class=" language-css"><code class="language-css"><span class="token number">.</span>box &amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
+  <span class="token property">align-items</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span><span class="token comment" spellcheck="true">/*Vertical Centering*/</span>
+  <span class="token property">justify-content</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+     <span class="token comment" spellcheck="true">/* align-self: center;  want specific flex items to be centered vertically*/</span>
+&amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span>
+
+<span class="token number">.</span>box div &amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> <span class="token number">100</span>px<span class="token punctuation">;</span>
+  <span class="token property">height</span><span class="token punctuation">:</span> <span class="token number">100</span>px<span class="token punctuation">;</span>
+&amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span>
+&lt;div class=<span class="token string">"box"</span>>
+  &lt;div>&lt;/div>
+&lt;/div>
+</code></pre>
+<h3 id="9-对于图片以及文字居中"><a href="#9-对于图片以及文字居中" class="headerlink" title="9.对于图片以及文字居中"></a>9.对于图片以及文字居中</h3><h4 id="Center-Vertically"><a href="#Center-Vertically" class="headerlink" title="Center Vertically"></a>Center Vertically</h4><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span><span class="token style language-css">
 <span class="token number">.</span>center &amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
   <span class="token property">padding</span><span class="token punctuation">:</span> <span class="token number">70</span>px <span class="token number">0</span><span class="token punctuation">;</span>//缺点：要知道父级的宽度
   <span class="token property">border</span><span class="token punctuation">:</span> <span class="token number">3</span>px solid green<span class="token punctuation">;</span>
@@ -483,6 +509,31 @@
   <span class="token property">vertical-align</span><span class="token punctuation">:</span> middle<span class="token punctuation">;</span>
 &amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span></code></pre>
 <p><img src="/2020/11/11/%E6%B0%B4%E5%B9%B3%E5%B1%85%E4%B8%AD-centering/1605106167637.png"></p>
+<h3 id="10-对于有多个div状态的保留块元素的排版，父元素居中"><a href="#10-对于有多个div状态的保留块元素的排版，父元素居中" class="headerlink" title="10.对于有多个div状态的保留块元素的排版，父元素居中"></a>10.对于有多个div状态的保留块元素的排版，父元素居中</h3><pre><code>//父元素
+position: absolute;
+    left: 50%;
+    transform: translate(-50%,50%);</code></pre>
+<p><img src="/2020/11/11/%E6%B0%B4%E5%B9%B3%E5%B1%85%E4%B8%AD-centering/1605688618077.png"></p>
+<p>或者是（这种的话 多个div不好弄 代码很累赘）</p>
+<p><img src="/2020/11/11/%E6%B0%B4%E5%B9%B3%E5%B1%85%E4%B8%AD-centering/1605688640436.png"></p>
+<pre class=" language-html"><code class="language-html"> .box <span class="token entity" title="&#123;">&amp;#123;</span>
+            display: flex;
+            justify-content: space-between;
+          <span class="token entity" title="&#125;">&amp;#125;</span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>box<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>One<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>Two<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>Three
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">></span></span>has
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">></span></span>extra
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">></span></span>text
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>other trick：</p>
+<p><a target="_blank" rel="noopener" href="https://www.digitalocean.com/community/tutorials/css-centering-using-flexbox">https://www.digitalocean.com/community/tutorials/css-centering-using-flexbox</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.w3.org/Style/Examples/007/center.en.html#text">https://www.w3.org/Style/Examples/007/center.en.html#text</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.w3schools.com/css/css_align.asp">https://www.w3schools.com/css/css_align.asp</a> </p>
 <p>Reference:</p>
 <ol>
 <li><a target="_blank" rel="noopener" href="https://developer.aliyun.com/article/635759?spm=a2c6h.14164896.0.0.54cf667ajTM2fR">https://developer.aliyun.com/article/635759?spm=a2c6h.14164896.0.0.54cf667ajTM2fR</a></li>
@@ -608,11 +659,10 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Image in CSS 
-background: url(img/avatar.jpg) no-repeat;
+                            Image in CSS基本函数background: url(img/avatar.jpg) no-repeat;
 background-size:100% 100% ;
  filter: blur(10px);
-景深+移动（例子 蓝天白云，
+景深+移动（例子 蓝天白
                         
                     </div>
                     <div class="publish-info">
@@ -664,7 +714,8 @@ background-size:100% 100% ;
                             Tools
 
 can i use ： https://caniuse.com/  (check support table for htmll css )
-dev web doc ：  https://developer.mozilla.o
+
+dev web doc ：  https://developer.mozilla.
                         
                     </div>
                     <div class="publish-info">

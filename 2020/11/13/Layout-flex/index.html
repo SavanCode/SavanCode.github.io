@@ -435,16 +435,16 @@
 <pre class=" language-css"><code class="language-css"><span class="token number">.</span>div &amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
   <span class="token property">-webkit-box-orient</span><span class="token punctuation">:</span>horizontal | vertical<span class="token punctuation">;</span><span class="token comment" spellcheck="true">/*-webkit-box-orient控制主轴和侧轴分别是哪一根 Safari 6.1 (及更新浏览器) 通过 -webkit-flex 属性支持*/</span>
   <span class="token property">flex-direction</span><span class="token punctuation">:</span> row | row-reverse | column | column-reverse<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">/*主轴的方向*/</span>
-  <span class="token property">flex-wrap</span><span class="token punctuation">:</span> nowrap | wrap | wrap-reverse<span class="token punctuation">;</span><span class="token comment" spellcheck="true">/*决定一条轴线排不下，如何换行*/</span>
+  <span class="token property">flex-wrap</span><span class="token punctuation">:</span> nowrap | wrap | wrap-reverse<span class="token punctuation">;</span><span class="token comment" spellcheck="true">/* 挤一行 换行 反向走*/</span>
   <span class="token property">flex-flow</span><span class="token punctuation">:</span> &lt;flex-direction> || &lt;flex-wrap><span class="token punctuation">;</span><span class="token comment" spellcheck="true">/*flex-direction属性和flex-wrap*/</span>
-  <span class="token property">justify-content</span><span class="token punctuation">:</span> flex-start | flex-end | center | space-between | space-around<span class="token punctuation">;</span><span class="token comment" spellcheck="true">/*项目在主轴上的对齐方式   左 右 中 两端&amp;间隔对等 每个两侧间隔相等*/</span>
-  <span class="token property">align-items</span><span class="token punctuation">:</span> flex-start | flex-end | center | baseline | stretch<span class="token punctuation">;</span><span class="token comment" spellcheck="true">/*项目对其方式 上下中 第一行文字的基线对齐 拉伸（默认）*/</span>
-   -webkit-box-pack： start  富裕空间在右边 end     富裕空间在左边
-                  center  富裕空间在两边 justify 富裕空间在项目之间
   <span class="token property">align-content</span><span class="token punctuation">:</span> flex-start | flex-end | center | space-between | space-around | stretch<span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">/*align-content属性定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。*/</span>
+    <span class="token comment" spellcheck="true">/*align-content属性定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。
+    align-content  https://developer.mozilla.org/en-US/docs/Web/CSS/align-content  */</span>
 &amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span></code></pre>
-<p>align-content ：： <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/CSS/align-content">https://developer.mozilla.org/en-US/docs/Web/CSS/align-content</a></p>
+<pre class=" language-css"><code class="language-css">  <span class="token property">justify-content</span><span class="token punctuation">:</span> flex-start | flex-end | center | space-between | space-around<span class="token punctuation">;</span><span class="token comment" spellcheck="true">/*项目在主轴上的对齐方式   左 右 中 两端&amp;间隔对等 每个两侧间隔相等*/</span></code></pre>
+<p><img src="/2020/11/13/Layout-flex/1605776747612.png"></p>
+<pre class=" language-css"><code class="language-css">  <span class="token property">align-items</span><span class="token punctuation">:</span> flex-start | flex-end | center | baseline | stretch<span class="token punctuation">;</span><span class="token comment" spellcheck="true">/*项目对其方式 上下中 第一行文字的基线对齐 拉伸（默认）*/</span></code></pre>
+<p><img src="/2020/11/13/Layout-flex/1605776777298.png"></p>
 <pre class=" language-css"><code class="language-css"><span class="token number">.</span>item &amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
   <span class="token property">order</span><span class="token punctuation">:</span> &lt;integer><span class="token punctuation">;</span><span class="token comment" spellcheck="true">/*项目的排列顺序。数值越小，排列越靠前，默认为0。*/</span>
   <span class="token property">flex-grow</span><span class="token punctuation">:</span> number|initial|inherit<span class="token punctuation">;</span><span class="token comment" spellcheck="true">/*弹性盒子的扩展比率*/</span>
@@ -453,6 +453,9 @@
   <span class="token property">align-self</span><span class="token punctuation">:</span> auto | flex-start | flex-end | center | baseline | stretch<span class="token punctuation">;</span>
   <span class="token comment" spellcheck="true">/*align-self属性允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性*/</span>
 &amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span></code></pre>
+<p><code>max-content</code>: 尺寸值会变得尽可能大, 没有自动换行的机会. 如果<code>flex</code>容器<strong>太窄</strong>， 它就会<strong>溢出</strong>其自身的盒子。</p>
+<p><code>min-content</code>: 文本已尽可能抓住机会来自动换行, 变得尽可能小且没有溢出。</p>
+<p><img src="/2020/11/13/Layout-flex/1605774609826.png"></p>
 <p>注意：</p>
 <p>当元素的排列方向为<strong>横</strong>向：</p>
 <p>​    元素的总宽度小于容器的宽度，使用flex-grow属性；</p>
@@ -460,6 +463,8 @@
 <p>当元素排列的方向为<strong>纵</strong>向：</p>
 <p>​    元素的总高度小于容器的高度，使用flex-grow属性；</p>
 <p>​    元素的总高度小于容器的高度，使用flex-shrink属性；</p>
+<h2 id="Flex-Layout-Reference"><a href="#Flex-Layout-Reference" class="headerlink" title="Flex Layout Reference"></a>Flex Layout Reference</h2><p><a target="_blank" rel="noopener" href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/">https://css-tricks.com/snippets/css/a-guide-to-flexbox/</a></p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout">https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout</a></p>
 <h1 id="Flexbox-demo"><a href="#Flexbox-demo" class="headerlink" title="Flexbox  demo"></a>Flexbox  demo</h1><p>DEMO地址:<br><a target="_blank" rel="noopener" href="https://lincenying.github.io/vue2-flex/">https://lincenying.github.io/vue2-flex/</a></p>
 <p>仓库地址:<br><a target="_blank" rel="noopener" href="https://github.com/lincenying/vue2-flex">https://github.com/lincenying/vue2-flex</a></p>
 <h1 id="Flexbox-布局demo"><a href="#Flexbox-布局demo" class="headerlink" title="Flexbox 布局demo"></a>Flexbox 布局demo</h1><p>仓库地址:<br><a target="_blank" rel="noopener" href="https://github.com/philipwalton/solved-by-flexbox">https://github.com/philipwalton/solved-by-flexbox</a></p>
@@ -592,7 +597,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            flex-basis flex-basis  ，主要成分，所以他和width放在一起时,肯定把width干掉，basis遇到width时就会说我才是最主要的成分，你是次要成分，所以见到我的时候你要靠边站。
+                            Flex Layout Referenceflex-basis flex-basis  ，主要成分，flex-basis 預設值爲 auto，表示其預設分配到的空間，與 width 很像，但優先程度較高。
 
 flex-growflex-gr
                         
@@ -643,11 +648,10 @@ flex-growflex-gr
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            文字变化
-文字阴影：text-shadow
+                            文字变化文字阴影：text-shadow
 文字模糊： transition: 1s ; + text-shadow
 //transition的用法很多 只要是变更原先位置的基本都有关
-文字方向： direction &amp; unico
+文字方向： direction &amp; unicod
                         
                     </div>
                     <div class="publish-info">
