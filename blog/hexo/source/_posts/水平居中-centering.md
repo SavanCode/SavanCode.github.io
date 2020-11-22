@@ -121,8 +121,9 @@ categories: Front-end
 ```html
 <style>
 .center {
-  padding: 70px 0;//缺点：要知道父级的宽度
-  border: 3px solid green;
+position: relative;
+top: 50%;
+transform: translateY(-50%);
 }
 </style>
 </head>
