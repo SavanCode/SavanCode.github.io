@@ -54,6 +54,23 @@ categories:
 - !function(形参){函数体}(实参)
 
 ```js
+var i = function(){ return 10; }();
+true && function(){ /* code */ }();
+0, function(){ /* code */ }();
+```
+
+甚至像下面这样写，也是可以的。
+
+```js
+!function () { /* code */ }();
+~function () { /* code */ }();
+-function () { /* code */ }();
++function () { /* code */ }();
+```
+
+
+
+```js
 　　var module1 = (function(){
 　　　　var _count = 0;
 　　　　var m1 = function(){
