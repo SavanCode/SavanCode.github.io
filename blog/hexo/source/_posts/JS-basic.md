@@ -11,15 +11,39 @@ tags: JS
 categories:
 ---
 
-## **this关键字和标识符**
+# 定义变量
 
-```js
-this;//返回当前对象
-i;//返回变量i的值
-sum;//返回变量sum的值
-```
+## let/const 一起和 var 的区别
 
-## **对象属性访问**
+| var                                       | let/const                        |
+| ----------------------------------------- | -------------------------------- |
+| 会进行预解析                              | 不会进行预解析, 必须先定义后使用 |
+| 声明重复变量名                            | 不能声明重复的变量名             |
+| 没有块级作用域,声明全局变量（函数内除外） | 有块级作用域                     |
+
+![](JS-basic/1606354411609.png)
+
+
+
+**以上报错i未定义，说明let定义变量i，只在所在的块作用域内起作用**
+
+![](JS-basic/1606354454983.png)
+
+**var 定义变量没有块级作用域，i在块级作用域照样可以输出结果**
+
+var在函数内命名的变量是只在整个函数作用域内起作用，出了这个函数作用域就不能用了
+
+## let vs const
+
+| let          | const          |
+| ------------ | -------------- |
+| 变量         | 常量           |
+| 可以先不赋值 | 必须声明时赋值 |
+| 变量可以改   | 不能改         |
+
+
+
+## 对象属性访问
 
 ```js
 var o = {x:1,y:{z:3}}; //对象字面量
@@ -32,9 +56,11 @@ a[1];//表达式a中索引为1的元素
 
 ## 运算符
 
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Left_shift
+  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Left_shift
 
 https://www.w3schools.com/js/js_operators.asp
+
+###  increment（i++ & ++i）
 
 ### Postfix increment
 
@@ -84,7 +110,21 @@ console.log(data);//[0,11,12]
  data[0]=16 data[1]=8 data[2]=9   i=2
 ```
 
-## 结合性
+
+
+## 结合性 - 数运算符
+
+
+
+![运算符结合性](JS-basic/1606353255160.png)
+
+
+- 优先级越高的优先运算，不用死记该图片，可以使用（）提升优先级 
+  赋值优先级最低
+
+- 先乘除后加减
+
+- 优先级相同情况下,从左到右依次计算
 
 数运算符都具有从左向右的结合性，只有一元运算符、条件运算符和赋值运算符具有从右向左的结合性
 
@@ -128,7 +168,9 @@ b = 1 + 2 * 1;
 
 ##  数据类型转换
 
-https://www.cnblogs.com/xiaohuochai/p/5674678.html
+https://www.runoob.com/js/js-type-conversion.html
+
+https://www.w3school.com.cn/js/js_type_conversion.asp
 
 ## Error
 
