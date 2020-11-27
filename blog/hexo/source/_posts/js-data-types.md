@@ -30,8 +30,10 @@ categories:
 同时有两种不能包含值的数据类型：
 
 - null
+
 - undefined
-- 
+
+  
 
 ## 原始值( primitive values )
 
@@ -248,3 +250,8 @@ Math.SQRT1_2       1/2的平方根，即2的平方根的倒数(约等于0.707)
 | { }              | NaN        | "[object Object]" | true       |
 | null             | **0**      | "null"            | false      |
 | undefined        | NaN        | "undefined"       | false      |
+
+# JavaScript 对象 实例
+
+[例子总结1](https://www.runoob.com/js/js-ex-objects.html)
+

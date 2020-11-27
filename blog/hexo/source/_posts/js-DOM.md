@@ -11,7 +11,9 @@ tags: JS
 categories:
 ---
 
-# DOM（文档对象模型）Document Object Model
+# DOM
+
+（文档对象模型）Document Object Model
 
 ## getElementById 方法
 
@@ -29,7 +31,7 @@ innerHTML 属性可用于获取或替换 HTML 元素的内容。
 
 innerHTML 属性可用于获取或改变任何 HTML 元素，包括 <html> 和 <body>。
 
-## 查找 HTML 元素
+## 查找 HTML 元素/DOM
 
 ### 通过标签
 
@@ -169,3 +171,68 @@ element.addEventListener("click", function(){ myFunction(p1, p2); });
 ```js
 element.removeEventListener("mousemove", myFunction);
 ```
+
+# DOM 集合
+
+getElementsByTagName() 方法返回 *HTMLCollection* 对象。
+
+```js
+var x = document.getElementsByTagName("p");
+y = x[1];//获取集合中的第二个p元素
+```
+
+length 属性定义了 HTMLCollection 中元素的数量
+
+```js
+var myCollection = document.getElementsByTagName("p");
+document.getElementById("demo").innerHTML = myCollection.length;
+//另一个实际利用
+var myCollection = document.getElementsByTagName("p");
+var i;
+for (i = 0; i < myCollection.length; i++) {
+    myCollection[i].style.backgroundColor = "red";
+}
+
+```
+
+> HTMLCollection 并非数组！
+
+# NodeList 对象
+
+querySelectorAll() 方法返回 NodeList 对象。
+
+```js
+var myNodeList = document.querySelectorAll("p");
+y = myNodeList[1];
+//索引从 0 开始。
+```
+
+length 属性定义节点列表中的节点数
+
+```js
+var myNodelist = document.querySelectorAll("p");
+document.getElementById("demo").innerHTML = myNodelist.length;
+```
+
+# HTMLCollection 与 NodeList 的区别
+
+- HTMLCollection（前一章）是 HTML 元素的集合。
+- NodeList 是文档节点的集合。
+- NodeList 和 HTML 集合几乎完全相同。
+- HTMLCollection 和 NodeList 对象都是类数组的对象列表（集合）。
+- 它们都有定义列表（集合）中项目数的 length 属性。
+- 它们都可以通过索引 (0, 1, 2, 3, 4, ...) 像数组那样访问每个项目。
+- 访问 HTMLCollection 项目，可以通过它们的名称、id 或索引号。
+- 访问 NodeList 项目，只能通过它们的索引号。
+- 只有 NodeList 对象能包含属性节点和文本节点。
+- 节点列表不是数组！
+- 节点数组看起来像数组，但并不是。
+- 您能够遍历节点列表并像数组那样引用其节点。
+- 不过，您无法对节点列表使用数组方法，比如 valueOf()、push()、pop() 或 join()。
+
+[HTMLCollection vs. NodeList](https://www.jianshu.com/p/f6ff5ebe45fd)
+
+# DOM实例
+
+[例子集合](https://www.runoob.com/js/js-ex-dom.html)
+

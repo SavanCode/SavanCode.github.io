@@ -95,7 +95,7 @@ function myArrayMax(arr) {
 
 Math.min.apply 来查找数组中的最低值
 
-```
+```js
 function myArrayMin(arr) {
     return Math.min.apply(null, arr);
 }

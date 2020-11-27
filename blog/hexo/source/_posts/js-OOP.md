@@ -42,6 +42,16 @@ var Vehicle = function () {
 
 var v = new Vehicle();
 v.price // 1000
+////////////////////////////////////////////
+function Cat (name, color) {
+  this.name = name;
+  this.color = color;
+}
+
+var cat1 = new Cat('大毛', '白色');
+cat1.name // '大毛'
+cat1.color // '白色'
+
 ```
 
 ```js
@@ -58,7 +68,7 @@ var v = new Vehicle(500);
 ## Object.create() 创建实例对象
 
 ```js
-ar person1 = {
+var person1 = {
   name: '张三',
   age: 38,
   greeting: function() {

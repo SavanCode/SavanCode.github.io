@@ -11,15 +11,13 @@ tags: tool
 categories: Front-end
 ---
 
-Tools
+## Tools
 
 - can i use ： https://caniuse.com/  (check support table for htmll css )
 
 - dev web doc ：  https://developer.mozilla.org/en-US/
 
 - bootstrap ： https://v3.bootcss.com/css/
-
-- 大佬  ： https://www.zhangxinxu.com/
 
 - css trick ： https://css-tricks.com/guides/
 
@@ -35,7 +33,11 @@ Tools
 
   https://regexr.com/
 
-  
-  
-   
+- 在线工具： https://c.runoob.com/
 
+
+
+## 技术博客
+
+- 木之多   https://www.shuzhiduo.com/
+- 大佬  ： https://www.zhangxinxu.com/
