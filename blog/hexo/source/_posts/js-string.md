@@ -410,3 +410,16 @@ var a = ['a', 'b', 'c'];
 console.log(a,a.unshift('x','y','z')); //['x','y','z','a', 'b', 'c'] 6
 ```
 
+
+
+# 操作方程
+
+## js 替换指定位置的字符串
+
+```js
+//str:原始字符串，index,开始位置,changeStr，改变后的字
+changeStr(str,index,changeStr){
+	 return str.substr(0, index) + changeStr+ str.substr(index + changeStr.length);
+	 }
+```
+

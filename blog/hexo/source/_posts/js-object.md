@@ -63,6 +63,25 @@ var myMother = new Person("Sally", "Rally", 48, "green");
 
 ```
 
+```js
+function Dog(name) {
+  this.name = name;
+}
+
+// Only change code below this line
+Dog.prototype = {
+
+  numLegs: 4,
+  eat: function() {
+    console.log("nom nom nom");
+  },
+  describe: function() {
+    console.log("My name is " + this.name);
+  }
+};
+
+```
+
 
 
 ## 读取
@@ -326,3 +345,169 @@ Reference:
 
 1. https://wangdoc.com/javascript/types/object.html#%E7%94%9F%E6%88%90%E6%96%B9%E6%B3%95
 2. https://wangdoc.com/javascript/stdlib/object.html#object-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0
+
+# 练习例子
+
+## 从超类型继承行为
+
+```js
+function Animal() { }
+Animal.prototype.eat = function() {
+  console.log("nom nom nom");
+};
+let animal = new Animal();//有缺点所以不用
+let animal = Object.create(Animal.prototype);
+```
+
+`Object.create(obj)`创建一个新对象，并将其设置`obj`为新对象的`prototype`。回想一下，`prototype`就像创建对象的“配方”一样。通过将`prototype`of设置`animal`为`Animal's` `prototype`，您可以有效地给该`animal`实例与的任何其他实例相同的“配方” `Animal`。
+
+```js
+animal.eat(); // prints "nom nom nom"
+animal instanceof Animal; // => true
+```
+
+## 将子代的原型设置为父代的实例 （2层继承的函数）
+
+### 例子1
+
+```js
+function Animal() { }
+
+Animal.prototype = {
+  constructor: Animal,
+  eat: function() {
+    console.log("nom nom nom");
+  }
+};
+
+function Dog() { }
+
+// Only change code below this line
+Dog.prototype = Object.create(Animal.prototype);
+
+let beagle = new Dog();
+```
+
+### 例子2
+
+```js
+function Animal() { }
+Animal.prototype.eat = function() {
+  console.log("nom nom nom");
+};
+
+function Bird() { }
+Bird.prototype = Object.create(Animal.prototype);//这个要最前面 注意是create！！！
+Bird.prototype.constructor = Bird;
+
+Bird.prototype.fly = function() {
+  console.log("I'm flying!");
+};
+
+let duck = new Bird();
+duck.eat(); // prints "nom nom nom"
+duck.fly(); // prints "I'm flying!
+```
+
+## 重写继承下来的方法
+
+```js
+ChildObject.prototype = Object.create(ParentObject.prototype);//继承
+```
+
+```js
+ChildObject.prototype.methodName = function() {...};//改变                                          
+```
+
+```js
+function Animal() { }
+Animal.prototype.eat = function() {
+  return "nom nom nom";
+};
+function Bird() { }
+
+// Inherit all methods from Animal
+Bird.prototype = Object.create(Animal.prototype);
+
+// Bird.eat() overrides Animal.eat()
+Bird.prototype.eat = function() {
+  return "peck peck peck";
+};
+```
+
+JavaScript在`duck’s` `prototype`链上查找方法的方式：
+
+1. duck=>在这里定义了eat（）吗？没有。
+2. bird=>在这里定义了eat（）吗？=>是的。执行它并停止搜索。
+3. 还定义了Animal => eat（），但是JavaScript在达到此级别之前停止搜索。
+4. Object => JavaScript在达到此级别之前已停止搜索。
+
+## 重置继承的构造方法属性
+
+当一个对象`prototype`从另一个对象继承其对象时，它还将继承超类型的构造函数属性。
+
+```js
+function Bird() { }
+Bird.prototype = Object.create(Animal.prototype);
+let duck = new Bird();
+duck.constructor // function Animal(){...}
+```
+
+但是`duck`和的所有实例`Bird`都应表明它们是由`Bird`和不是构造的`Animal`。为此，您可以手动将`Bird's`构造函数属性设置为该`Bird`对象：
+
+```js
+Bird.prototype.constructor = Bird;
+duck.constructor // function Bird(){...}
+```
+
+修改代码，`duck.constructor`然后`beagle.constructor`返回它们各自的构造函数。
+
+## 使用Mixin在不相关的对象之间添加通用行为
+
+```js
+let bird = {
+  name: "Donald",
+  numLegs: 2
+};
+
+let boat = {
+  name: "Warrior",
+  type: "race-boat"
+};
+
+// 此处创建办法
+let glideMixin  = function(obj) {
+  obj.glide = function() {
+    console.log("Flying, wooosh!");
+  }
+};
+
+glideMixin(bird); // prints "Flying, wooosh!"
+glideMixin(boat); // prints "Flying, wooosh!"
+```
+
+
+
+## 创建模块-利用立马执行函数
+
+```js
+let motionModule = (function () {
+  return {
+    glideMixin: function(obj) {
+      obj.glide = function() {
+        console.log("Gliding on the water");
+      };
+    },
+    flyMixin: function(obj) {
+      obj.fly = function() {
+        console.log("Flying, wooosh!");
+      };
+    }
+  }
+})(); // The two parentheses cause the function to be immediately invoked
+
+//////////////////////////////////////////////////////////
+motionModule.glideMixin(duck);
+duck.glide();
+```
+

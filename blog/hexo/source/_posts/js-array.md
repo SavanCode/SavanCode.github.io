@@ -39,9 +39,37 @@ arr['0'] // 'a'
 arr[0] // 'a'
 ```
 
+## 
+
+# Array 基本的进出
+
+在数组最后增加一个元素,删除数组最后一个元素, 在数组头部增加一个元素,删除数组第一个元素
+
+```js
+arr.push(yourElement);
+arr.pop();
+arr.unshift(yourElement);
+arr.shift()
+```
+
+![](js-array/1606539463669.png)
+
+
+
+# Array字符串化 - toString()
+
+将数组字符串化。用逗号分割。相当于join(“,”);
+
+```js
+var num = 15;
+var n = num.toString();
+```
+
+
+
 # 稀疏数组 （不连续索引的数组）
 
-使用delete操作符
+## 使用delete操作符
 
 ```js
 var a = [1,2,3,4,5];
@@ -50,7 +78,7 @@ console.log(a[1]);//undefined
 console.log(1 in a);//false
 ```
 
-省略元素值
+## 省略元素值
 
 ```js
 var a =[1,,3,4,5];
@@ -58,7 +86,7 @@ console.log(a[1]);//undefined
 console.log(1 in a);//false
 ```
 
-undefined元素
+## undefined元素
 
 ```js
 var a =[1,,3,4,5];
@@ -101,10 +129,6 @@ function myArrayMin(arr) {
 }
 ```
 
-
-
-
-
 # 数组排序办法
 
 ## reverse()
@@ -120,7 +144,11 @@ console.log(array,array.reverse());//[3,true,'str'] [3,true,'str']
 
 ## sort()
 
+### 默认排序
+
 　　默认情况下，sort()方法按字符串升序排列数组项，sort方法会调用每个数组项的toString()方法，然后比较得到的字符串排序，返回经过排序之后的数组，而原数组顺序也发生改变
+
+> sort方法会调用每个数组项的`toString()`方法，得到字符串，然后再对得到的字符串进行排序。虽然数值15比3大，但在进行字符串比较时”15”则排在”3”前面。
 
 ```js
 var array = [1,2,4,3,5];
@@ -129,6 +157,8 @@ var array = ['3str',3,2,'2'];
 console.log(array,array.sort());//[2, "2", 3, "3str"] [2, "2", 3, "3str"]
 var array = [1,5,10,50];
 console.log(array,array.sort());//[1, 10, 5, 50] [1, 10, 5, 50]
+//强行要求
+arr.sort((a, b) => a - b)
 ```
 
 　　**如果数组包含undefined元素，它们会被排到数组的尾部**
@@ -136,6 +166,38 @@ console.log(array,array.sort());//[1, 10, 5, 50] [1, 10, 5, 50]
 ```js
 var array = ['3',3,undefined,2,'2'];
 console.log(array,array.sort());//["2", 2, "3", 3, undefined] ["2", 2, "3", 3, undefined]
+```
+
+### 自定义排序
+
+#### Array.sort(function(a,b));
+
+> 方法函数function有两个参数a和b，通过比较两个值的大小，然后返回比较的结果，用于表明用何种方法进行排序。
+
+- **负值(a<b)**：如果返回一个小于零的数，数组将按照升序排序。
+- **零(a=b)**： 如果返回一个等于零的数，即两个参数相等。
+- **正值(a>b)**：如果返回一个大于零的数，数组将按照降序排序。
+
+**简单的来说就是：**
+
+- 若：**return a-b;** **表示数组将按照升序排序。**
+- 若：**return a=b;** **表示数组不进行排序。**
+- 若：**return b-a;** **表示数组将按照降序排序。**
+
+**例1：Array数组均为数字或数字型字符串，则按指定的规则顺序：**
+
+```javascript
+var arr = ['87',64,'81',27,21];
+arr.sort(function(a,b){return a-b});
+alert(arr);
+//输出：21,27,64,81,87
+1234
+var arr = ['87',64,'81',27,21];
+function xmx(a,b){
+	return b-a;
+}
+alert(arr.sort(xmx));
+//输出：87,81,64,27,21
 ```
 
 # 数组拼接concat()- string也有
@@ -233,7 +295,7 @@ var a = [1,2,3,4,5,6,7,8];
 console.log(a,a.splice(1,100));// [1] [2,3,4,5,6,7,8]
 ```
 
-## 删除并添加
+## 删除并添加（中间插入）
 
 ```js
 var a = [1,2,3,4,5];
@@ -395,6 +457,57 @@ function myFunction() {
 }
 ```
 
+```js
+// The global variable
+var watchList = [
+  {
+    "Title": "Inception",
+    "Year": "2010",
+    "Rated": "PG-13",
+    "Released": "16 Jul 2010",
+    "imdbRating": "8.8",
+    "imdbVotes": "1,446,708",
+    "imdbID": "tt1375666",
+    "Type": "movie",
+    "Response": "True"
+  },
+  {
+    "Title": "Interstellar",
+    "Year": "2014",
+    "Rated": "PG-13",
+    "Released": "07 Nov 2014",
+    "imdbRating": "8.6",
+    "imdbVotes": "910,366",
+    "imdbID": "tt0816692",
+    "Type": "movie",
+    "Response": "True"
+  },
+  {
+    "Title": "The Dark Knight",
+    "Year": "2008",
+    "Rated": "PG-13",
+    "Released": "18 Jul 2008",
+    "imdbRating": "9.0",
+    "imdbVotes": "1,652,832",
+    "imdbID": "tt0468569",
+    "Type": "movie",
+    "Response": "True"
+  }
+];
+
+// Only change code below this line
+
+var ratings = [];
+ratings=watchList.map(item  => ({  title: item["Title"],
+  rating: item["imdbRating"]}));
+
+// Only change code above this line
+
+console.log(JSON.stringify(ratings));
+```
+
+
+
 ## forEach()
 
 本质上与for循环迭代数组一样。如果需要有返回值，一般使用map方法
@@ -449,6 +562,8 @@ a.every(function(elem, index, arr){return elem%2 ===0;});//false
 
 > 可以改变原数组的方法总共有7种：包括unshift()、shift()、push()、pop()这4种栈和队列方法，reverse()和sort()这2种数组排列方法，数组删改方法splice()
 
+## 除掉重复的元素
+
 ```js
 Array.prototype.norepeat = function(){
     var result = [];
@@ -462,3 +577,47 @@ Array.prototype.norepeat = function(){
 var arr = ['a','ab','a'];
 console.log(arr.norepeat());//['a','ab']
 ```
+
+## 创造本地copy-arry
+
+```js
+ var a = arr1.slice() // 创造本身的copy
+```
+
+## 特定位置后面增加一个元素
+
+```js
+var arr = ['kevin', 'jack', 'rose’]
+arr.splice(1(index+1), 0 ,’Lily’) //请注意 参数是 (index+1)
+//当下arr的结果是 ['kevin’, ‘Lily' , 'jack', 'rose']
+```
+
+##  删除特定位置的元素
+
+```js
+arr.splice(1(index), 1) //请注意 参数是 index
+```
+
+## 替换特定位置的元素
+
+```js
+arr.splice(1(index), 1, 'John')
+```
+
+## array中删除删掉偶数，只保留奇数
+
+```js
+　var arr = [1, 2, 4, 5, 6, 9, 10, 15]; 　　　　　　
+　var r = arr.filter(function (x) { 　　　　　　
+　return x % 2 !== 0; 　　　　　　
+　}); 　　　　　　
+　console.log(r); // [1, 5, 9, 15]
+```
+
+## array中删除删掉 null, 0, NaN, undefined, ""
+
+```js
+var array=[false, null, 0, NaN, undefined, ""];
+arr=arr.filter(Boolean);//[]
+```
+
