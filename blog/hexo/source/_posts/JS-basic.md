@@ -201,3 +201,34 @@ for(variable in object){
 }
 ```
 
+## argument object
+
+```js
+function viewArgs() {
+    return arguments;
+}
+console.log(viewArgs([3, 5, 1, 2, 2], 2, 3, 5));    
+console.log(viewArgs([2, 3, 2, 3, 2, 3]));   
+console.log(viewArgs(3,2,1,"life the universe and all"));
+console.log(viewArgs("Douglas","Adams"));
+console.log(viewArgs(["hello", "World!", 'and', 'thanks', 'for','all','the', 'fish'], "dolphines", 42));    
+```
+
+```js
+{ '0': [ 3, 5, 1, 2, 2 ], '1': 2, '2': 3, '3': 5 }
+{ '0': [ 2, 3, 2, 3, 2, 3 ] }
+{ '0': 3, '1': 2, '2': 1, '3': 'life the universe and all' }
+{ '0': 'Douglas', '1': 'Adams' }
+{ '0': [ 'hello', 'World!', 'and', 'thanks', 'for', 'all', 'the', 'fish' ],   '1': 'dolphins',   '2': 42 }
+```
+
+```js
+//treat it as array
+destroyer([3, 5, 1, 2, 2], 2, 3, 5);
+
+function destroyer(arr) {
+var arr1= arr.slice();//[3, 5, 1, 2, 2]
+var arr2 = Array.from(arguments).slice(1);//[2,3,5]
+}
+```
+

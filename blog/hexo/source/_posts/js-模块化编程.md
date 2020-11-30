@@ -157,6 +157,39 @@ setupBot( "Closure Bot 2", "#bot_2" );
 
 上面的案例中，有个相同的特点：先定义函数，后执行函数时能够调用到函数中的私有变量或者实参。这便是闭包的特点吧
 
+## Currying
+
+```js
+//Un-curried function
+function unCurried(x, y) {
+  return x + y;
+}
+
+//Curried function
+function curried(x) {
+  return function(y) {
+    return x + y;
+  }
+}
+//Alternative using ES6
+const curried = x => y => x + y
+
+curried(1)(2) // Returns 3
+```
+
+```js
+function add(x) {
+  // Only change code below this line
+return function(y) {
+    return function(z) {
+      return x + y + z;
+    };
+  };
+  // Only change code above this line
+}
+add(10)(20)(30);
+```
+
 #  自测
 
 - 下面代码会输出什么？
@@ -190,3 +223,4 @@ for (let i=1; i<=5; i++) {
 }
 ```
 
+##  

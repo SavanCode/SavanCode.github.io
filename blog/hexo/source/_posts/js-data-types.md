@@ -146,6 +146,10 @@ parseFloat()专门用于字符串转换浮点数。同样地，解析时会忽�
 >
 > toExponential()方法返回数值四舍五入后的指数表示法(e表示法)的字符串表示，参数表示转换后的小数位数
 
+Number.toFixed(n) // 保留n位小数，为0则只保留整数
+		Number.round() // 返回最接近的整数（相当于四舍五入）
+		Number.floor() // 向小取整
+
 ## Math
 
 ### 常量

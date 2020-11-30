@@ -39,8 +39,6 @@ arr['0'] // 'a'
 arr[0] // 'a'
 ```
 
-## 
-
 # Array 基本的进出
 
 在数组最后增加一个元素,删除数组最后一个元素, 在数组头部增加一个元素,删除数组第一个元素
@@ -170,7 +168,9 @@ console.log(array,array.sort());//["2", 2, "3", 3, undefined] ["2", 2, "3", 3, u
 
 ### 自定义排序
 
-#### Array.sort(function(a,b));
+#### 数字
+
+**Array.sort(function(a,b));**
 
 > 方法函数function有两个参数a和b，通过比较两个值的大小，然后返回比较的结果，用于表明用何种方法进行排序。
 
@@ -187,17 +187,99 @@ console.log(array,array.sort());//["2", 2, "3", 3, undefined] ["2", 2, "3", 3, u
 **例1：Array数组均为数字或数字型字符串，则按指定的规则顺序：**
 
 ```javascript
+//降序
 var arr = ['87',64,'81',27,21];
 arr.sort(function(a,b){return a-b});
 alert(arr);
 //输出：21,27,64,81,87
-1234
+//升序
 var arr = ['87',64,'81',27,21];
 function xmx(a,b){
 	return b-a;
 }
 alert(arr.sort(xmx));
 //输出：87,81,64,27,21
+```
+
+#### 区分大小写的字母排序
+
+```js
+var arr = ['Z','e','V','I','n'];
+arr.sort(function(a, b){
+    var x = a.toLowerCase(), y = b.toLowerCase();
+    return x < y ? -1 : x > y ? 1 : 0;
+});
+console.log(arr);
+
+
+——————OUTPUT——————
+[ 'e', 'I', 'n', 'V', 'Z' ]
+```
+
+#### 对象属性条件排序
+
+当数组元素为多属性的对象时，我们可能需要根据不同的属性来具体排序，比如以下数组中，我们想按照年龄降序排列：
+
+```javascript
+var arr = [{
+    name:"code",age:19,grade:98
+},{
+    name:"zevin",age:12,grade:94
+},{
+    name:"j",age:15,grade:91
+}];
+
+arr.sort(function(a,b){
+    if(a.age > b.age){
+        return 1;
+    }else{
+        return -1;
+    };
+});
+console.log(arr);
+
+
+——————OUTPUT——————
+[
+  { name: 'zevin', age: 12, grade: 94 },
+  { name: 'j', age: 15, grade: 91 },
+  { name: 'code', age: 19, grade: 98 }
+]
+```
+
+
+
+#### 自定义根据对象属性
+
+封装一个函数sort，接收两个形参：需要排序的数组arr以及排序依据的属性键名property。其中用闭包的写法
+
+```js
+var arr = [{
+    name:"code",age:19,grade:98
+},{
+    name:"zevin",age:12,grade:94
+},{
+    name:"j",age:15,grade:91
+}];
+
+function sort(arr,property){
+    arr.sort((function(prop){
+        return function(a,b){
+            return a[prop] > b[prop] ? -1 : a[prop] < b[prop] ? 1 : 0;
+        }
+    })(property));
+};
+
+sort(arr,"grade");
+console.log(arr);
+
+
+——————OUTPUT——————
+[
+  { name: 'code', age: 19, grade: 98 },
+  { name: 'zevin', age: 12, grade: 94 },
+  { name: 'j', age: 15, grade: 91 }
+]
 ```
 
 # 数组拼接concat()- string也有
@@ -211,9 +293,9 @@ console.log(numbers,numbers.concat([5,4,3],[3,4,5],1,2));//[1,2] [1,2,5,4,3,3,4,
 ```
 
 ```js
-var numbers = [1,2];
-var newNumbers = numbers.concat();
-console.log(numbers,newNumbers);//[1,2] [1,2]
+const array1 = ['a', 'b', 'c'];
+const array2 = ['d', 'e', 'f'];
+const array3 = array1.concat(array2);
 ```
 
 ```js
@@ -267,7 +349,7 @@ console.log(numbers.slice({}));//[1,2,3,4,5]
 console.log(numbers.slice('2',[5]));//[3,4,5]
 ```
 
-# 数组删改方法  splice()
+# 数组删改特定位置内容方法  splice()
 
 用于删除原数组的一部分成员，并可以在被删除的位置添加入新的数组成员，该方法**会改变原数组**
 
@@ -369,7 +451,7 @@ console.log(arr.lastIndexOf('b',-50));//max(0,-50+7)=0; -1
 
 # 数组归并方法
 
-## reduce(prev, cur, index, array) 
+## reduce(prev, cur, index, array) --求和 求积 求最大值 去重 obj中乘积求和
 
  - 初始变量，当前变量，索引，原数组对象
 
@@ -378,6 +460,25 @@ var a = [1,2,3,4,5];
 var sum = a.reduce(function(x,y){return x+y},0);//数组求和
 var product = a.reduce(function(x,y){return x*y},1);//数组求积
 var max = a.reduce(function(x,y){return (x>y)?x:y;});//求最大值
+//数组去重：
+const arr = [1,3,4,2,5,3,4]
+const slimArr = arr.reduce((prev, current) => {
+  if(prev.includes(current)) {
+    return prev
+  } else {
+    return prev.concat(current)
+  }
+}, [])
+ 
+//求对象里的数乘积再求和：
+const fruitArr = [
+ { name: 'apple', price: 10, quantity: 2 },
+ { name: 'orange', price: 15, quantity: 4 },
+ { name: 'banana', price: 5, quantity: 3 },
+]
+const totalPrice = fruitArr.reduce((prev, current) => {
+ return prev + current.price * current.quantity
+}, 0)
 ```
 
 ```js
@@ -437,6 +538,8 @@ function myFunction(num) {
   return num * 10;
 }
 document.getElementById("demo").innerHTML = newarray;
+
+
 ```
 
 ```js
@@ -496,7 +599,7 @@ var watchList = [
 ];
 
 // Only change code below this line
-
+//筛选元素
 var ratings = [];
 ratings=watchList.map(item  => ({  title: item["Title"],
   rating: item["imdbRating"]}));
@@ -506,11 +609,31 @@ ratings=watchList.map(item  => ({  title: item["Title"],
 console.log(JSON.stringify(ratings));
 ```
 
+```js
+var filteredList = watchList.map(movie => {
+    return {
+      title: movie.Title,
+      rating: movie.imdbRating
+    };
+  }).filter(movie => {
+    // return true it will keep the item
+    // return false it will reject the item
+    return parseFloat(movie.rating) >= 8.0;
+  });
+
+```
+
 
 
 ## forEach()
 
 本质上与for循环迭代数组一样。如果需要有返回值，一般使用map方法
+
+```js
+arr.forEach( function(item){
+            console.log(item)
+        } )
+```
 
 ```js
 var out = [];
@@ -519,6 +642,11 @@ var out = [];
 }, out);
 console.log(out);// [1, 4, 9]
 ```
+
+## forEach（）和map（）区别
+
+- forEach：用来遍历数组中的每一项，这个方法执行没有返回值，不影响原数组
+- map：支持return，相当与原数组克隆了一份，把克隆的每项改变了，也不影响原数组
 
 ## filter()
 
@@ -536,15 +664,36 @@ console.log(out);// [1, 4, 9]
 });// [1, 3, 5]
 ```
 
+```js
+function getRating(watchList){
+  // Only change code below this line
+  var averageRating=watchList
+    // Use filter to find films directed by Christopher Nolan
+    .filter(film => film.Director === "Christopher Nolan")
+    // Use map to convert their ratings from strings to numbers
+    .map(film => Number(film.imdbRating))
+    // Use reduce to add together their ratings
+    .reduce((sumOfRatings, rating) => sumOfRatings + rating) /
+  // Divide by the number of Nolan films to get the average rating
+  watchList.filter(film => film.Director === "Christopher Nolan").length;
+  return averageRating;
+}
+```
+
+
+
 ## some()
 
 对数组中的每一项运行给定函数，如果该函数对任一项返回true，则返回true。并且当且仅当数值中的所有元素调用判定函数都返回false，它才返回false
 
 ```js
 a = [1,2,3,4,5];
-a.some(function(elem, index, arr){
+return a.some(function(elem, index, arr){
     return elem%2===0;})//true
-a.some(isNaN);//false
+return a.some(isNaN);//false
+
+const isCheap = arr.some(item => item.price < 15)
+const isExpensive = arr.some(item => item.price > 20)
 
 ```
 
@@ -554,15 +703,65 @@ a.some(isNaN);//false
 
 ```js
 a = [1,2,3,4,5];
-a.every(function(elem, index, arr){elem < 10;})//true
-a.every(function(elem, index, arr){return elem%2 ===0;});//false
+return a.every(function(elem, index, arr){elem < 10;})//true
+return a.every(function(elem, index, arr){return elem%2 ===0;});//false
 ```
 
-# 总结
+## 遍历array for... in... & for ... of ....
+
+for....in 是es5标准， 此方法遍历数组效率低，主要是用来循环遍历对象的属性
+
+1)、 for......in  遍历数组
+
+```js
+for(let item in arr){
+            console.log(arr[item])
+        }
+```
+
+![](js-array/1606722436063.png)
+
+
+
+2)、for.....in 遍历对象
+
+循环遍历对象的属性，js中动态获取key，得到某对象中相对应的value = obj[key]
+
+```js
+const obj = {  a:1, b:2, c:3 }
+
+for(let key in obj){  console.log(key + '---' + obj[key] )}
+```
+
+ for.......of   方法    （es6支持）
+
+```js
+for(let item of arr){
+            console.log(item)
+        }
+```
+
+# 实例总结
+
+# 单个array
 
 > 可以改变原数组的方法总共有7种：包括unshift()、shift()、push()、pop()这4种栈和队列方法，reverse()和sort()这2种数组排列方法，数组删改方法splice()
 
-## 除掉重复的元素
+## 判断数组中是否存在某个元素
+
+```js
+const arr = [1, 2, 3, 4, 5]
+
+const includeNum4 = arr.includes(4)
+
+const includeNum7 = arr.includes(7)
+
+=> includeNum4 = true  includeNum7 = false  
+```
+
+
+
+## 单个array除掉重复的元素
 
 ```js
 Array.prototype.norepeat = function(){
@@ -619,5 +818,257 @@ arr.splice(1(index), 1, 'John')
 ```js
 var array=[false, null, 0, NaN, undefined, ""];
 arr=arr.filter(Boolean);//[]
+```
+
+## 找到Array中第一个满足条件的元素
+
+```js
+const arr = [1,5,3,22,6]
+const bigNum = arr.find(item => item > 6)
+
+=> bigNum = 22
+```
+
+
+
+## array中满足某一条件的index位置
+
+```js
+dropElements([1, 2, 3, 9, 2], function(n) {return n > 2;});
+function dropElements(arr, func) {
+  console.log(arr.findIndex(func));//找出满足条件的index
+ return arr.slice(arr.findIndex(func) >= 0 ? arr.findIndex(func) : arr.length);
+}
+```
+
+## 单个array中含有多层array，flatten array
+
+```js
+function steamrollArray(arr) {
+  let flat = [].concat(...arr);
+  return flat.some(Array.isArray) ? steamrollArray(flat) : flat;
+}
+
+steamrollArray([1, [2], [3, [[4]]]]);
+```
+
+
+
+# 两个array
+
+## 两个数组中的不同元素
+
+```js
+function getArrDifference(arr1, arr2) {
+        return arr1.concat(arr2).filter(function(v, i, arr) {
+            return arr.indexOf(v) === arr.lastIndexOf(v);
+        });
+    }
+```
+
+```js
+function diff(arr1, arr2) {
+      var newArr = [];
+      var arr3=arr1.concat(arr2);//将arr1和arr2合并为arr3
+
+      function isContain(value){
+      //找出arr3中不存在于arr1和arr2中的元素
+      return arr1.indexOf(value)==-1||arr2.indexOf(value)==-1；
+   }
+      newArr = arr3.filter(isContain);
+      return newArr;
+}  
+```
+
+```js
+function diffArray(arr1, arr2) {
+  return [...diff(arr1, arr2), ...diff(arr2, arr1)];
+
+  function diff(a, b) {
+    return a.filter(item => b.indexOf(item) === -1);
+  }
+}
+```
+
+```js
+a.filter(function(v){ return b.indexOf(v) > -1 })
+//return index true/false
+```
+
+
+
+
+
+## 取出两个数组的相同元素
+
+```js
+var arr1 = [0,1,2,3,4,5];
+var arr2 = [0,4,6,1,3,9];
+function getArrEqual(arr1, arr2) {
+        let newArr = [];
+        for (let i = 0; i < arr2.length; i++) {
+            for (let j = 0; j < arr1.length; j++) {
+                if(arr1[j] === arr2[i]){
+                    newArr.push(arr1[j]);
+                }
+        }
+     }
+     return newArr;
+}
+console.log(getArrEqual(arr1, arr2));
+```
+
+```js
+a.filter(function(v){ return !(b.indexOf(v) > -1) }).concat(b.filter(function(v){ return !(a.indexOf(v) > -1)}))
+```
+
+
+
+## array中找出 array1没有的
+
+```js
+ var arr1 = [2,3,4,5,6,7,8,9,0];
+  return arr.filter(function(val) {
+    return !arr1.includes(val);
+  });
+```
+
+## 两个array的遍历（多层array）
+
+```js
+function whatIsInAName(collection, source) {
+  var arr = [];
+  // Only change code below this line 
+  var sourceKeys = Object.keys(source);
+
+  for (var person in collection) {
+    var haveAll = true;
+    for (var key in sourceKeys) {
+      if (collection[person][sourceKeys[key]] !== source[sourceKeys[key]]) {
+        haveAll = false;
+        break;
+      }
+    }
+
+    if (haveAll) arr.push(collection[person]);
+  }
+
+  // Only change code above this line
+  return arr;
+}
+
+whatIsInAName([{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", last: "Capulet" }], { last: "Capulet" });
+```
+
+##  计算两个数组的交集、差集、并集、补集 （用filter concat）
+
+```js
+var a = [1,2,3,4,5]
+var b = [2,4,6,8,10]
+ 
+//交集
+var c = a.filter(function(v){ return b.indexOf(v) > -1 })
+ 
+//差集
+var d = a.filter(function(v){ return b.indexOf(v) == -1 })
+ 
+//补集
+var e = a.filter(function(v){ return !(b.indexOf(v) > -1) })
+        .concat(b.filter(function(v){ return !(a.indexOf(v) > -1)}))
+ 
+//并集
+var f = a.concat(b.filter(function(v){ return !(a.indexOf(v) > -1)}));
+
+
+////jquery
+// 交集
+let intersect = $(a).filter(b).toArray();
+ 
+// 差集
+let minus = $(a).not(b).toArray();
+ 
+// 补集
+let complement  = $(a).not(b).toArray().concat($(b).not(a).toArray());
+ 
+// 并集
+let unionSet = $.unique(a.concat(b));
+
+console.log("数组a：", a);
+console.log("数组b：", b);
+console.log("a与b的交集：", c);
+console.log("a与b的差集：", d);
+console.log("a与b的补集：", e);
+console.log("a与b的并集：", f);
+//
+console.log("a与b的交集：", intersect);
+console.log("a与b的差集：", minus);
+console.log("a与b的补集：", complement);
+console.log("a与b的并集：", unionSet);
+```
+
+## 数组功能扩展
+
+```js
+//数组功能扩展
+//数组迭代函数
+Array.prototype.each = function(fn){
+  fn = fn || Function.K;
+   var a = [];
+   var args = Array.prototype.slice.call(arguments, 1);
+   for(var i = 0; i < this.length; i++){
+       var res = fn.apply(this,[this[i],i].concat(args));
+       if(res != null) a.push(res);
+   }
+   return a;
+};
+ 
+//数组是否包含指定元素
+Array.prototype.contains = function(suArr){
+  for(var i = 0; i < this.length; i ++){
+      if(this[i] == suArr){
+          return true;
+      }
+   }
+   return false;
+}
+ 
+//不重复元素构成的数组
+Array.prototype.uniquelize = function(){
+   var ra = new Array();
+   for(var i = 0; i < this.length; i ++){
+      if(!ra.contains(this[i])){
+          ra.push(this[i]);
+      }
+   }
+   return ra;
+};
+ 
+//两个数组的交集
+Array.intersect = function(a, b){
+   return a.uniquelize().each(function(o){return b.contains(o) ? o : null});
+};
+ 
+//两个数组的差集
+Array.minus = function(a, b){
+   return a.uniquelize().each(function(o){return b.contains(o) ? null : o});
+};
+ 
+//两个数组的补集
+Array.complement = function(a, b){
+   return Array.minus(Array.union(a, b),Array.intersect(a, b));
+};
+ 
+//两个数组并集
+Array.union = function(a, b){
+   return a.concat(b).uniquelize();
+};
+var a = [1,2,3,4,5]
+var b = [2,4,6,8,10]
+console.log("数组a：", a);
+console.log("数组b：", b);
+console.log("a与b的交集：", Array.intersect(a, b));
+console.log("a与b的差集：", Array.minus(a, b));
+console.log("a与b的补集：", Array.complement(a, b));
+console.log("a与b的并集：", Array.union(a, b));
 ```
 

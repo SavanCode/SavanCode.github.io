@@ -142,6 +142,21 @@ o + 2;//3
 > '1,2,3,'.concat([4,5]);	//	'1,2,3,4,5'
 > 		[1,2,3].concat(',4,5');	//	[1, 2, 3, ",4,5"]
 
+##  string变array - split()
+
+```js
+stringObject.split(separator,howmany)
+//字符串或正则表达式，从该参数指定的地方分割 stringObject。
+//howmany (可选)该参数可指定返回的数组的最大长度。如果设置了该参数，返回的子串不会多于这个参数指定的数组。如果没有设置该参数，整个字符串都会被分割，不考虑它的长度。
+```
+
+```js
+str.split(/\W/);//去掉所有的非字母
+str.split(" ")；//按照空格
+```
+
+
+
 ## 创建子字符串 slice()、substr()（弃用）和substring()
 
 slice() 返回这个字符串中从start位置的字符到(但不包含)end位置的字符的一个子字符串；如果end为undefined或不存在，则返回从start位置到字符串结尾的所有字符。 **start 和 end 不能调换**
@@ -421,5 +436,61 @@ console.log(a,a.unshift('x','y','z')); //['x','y','z','a', 'b', 'c'] 6
 changeStr(str,index,changeStr){
 	 return str.substr(0, index) + changeStr+ str.substr(index + changeStr.length);
 	 }
+```
+
+js去掉所有的空格（连续空格）提内容
+
+```js
+array.trim().split(/\s+/)
+```
+
+## js 正则将大小写之间分开
+
+```js
+str.replace(/([a-z])([A-Z])/g, "$1 $2");
+//TheAndyGriffith_Show
+//The Andy Griffith_Show
+
+//is followed by an uppercase letter [(?=[A-Z])]
+//whitespace character [\s]
+str.split(/\s|_|(?=[A-Z])/)
+```
+
+## 应用正则
+
+### 替换指定符号
+
+```js
+function convertHTML(str) {
+  // Use Object Lookup to declare as many HTML entities as needed.
+  const htmlEntities = {
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&apos;"
+  };
+  // Using a regex, replace characters with it's corresponding html entity
+  return str.replace(/([&<>\"'])/g, match => htmlEntities[match]);
+}
+```
+
+## Binary to string 变化
+
+```js
+function binaryAgent(str) {
+   return str.split(/\s/).map(function (val){
+    return String.fromCharCode(parseInt(val, 2));
+  }).join("");
+}
+
+binaryAgent("01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 01100110 01110101 01101110 00100001 00111111");
+```
+
+## 字符串中的数字
+
+```js
+parseInt(str); // 会提取字符串中的整数部分，遇到非整数会立即停止提取；适合去掉css中的单位
+parseFloat(str) // 同上，可以提取小数
 ```
 

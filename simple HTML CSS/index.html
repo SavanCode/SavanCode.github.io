@@ -1,39 +1,90 @@
-<!DOCTYPE html>
+ <!-- <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+ </head>
+ <body>
+    <div id="one"   style="background-color:blue; width: 130px; height: 130px; ;">
+        one
+        <div id="two"   style="background-color: blueviolet; width: 100px; height: 100px;">
+            two
+            <div id="three" style="background-color: brown; width: 30px; height: 30px;">three</div>
+        </div>
+    </div>
+    
+    <script>
+    
+    one.addEventListener('click',function(e){
+        console.log('one');
+    },true);
+    
+    two.addEventListener('click',function(e){
+        console.log('two');
+    },true);
+    
+    three.addEventListener('click',function(e){
+        console.log('three');
+    },true);
+    </script>
+ </body>
+ </html> -->
+
+
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.bootcdn.net/ajax/libs/normalize/0/normalize.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/main.css">
-    <title>simple blog</title>
+    <title>bubble</title>
+    <style>
+        button{
+            background: red;
+            color:white;
+        }
+        #third{
+            width: 50px;
+            height: 50px;
+            border:thin solid red;
+        }
+        #second{
+            width: 100px;
+            height: 100px;
+            border:thin solid red;
+        }
+        #first{
+            width:200px;
+            height: 200px;
+            border:thin solid red;
+        }
+    </style>
 </head>
 <body>
-   <div class="side-bar">
-       <div class="header">
-           <a href="index.html" class="logo">SavanCode</a>
-           <div class="intro">Lorem ipsum dolor sit amet dolor sit ame.</div>
-       </div>
-       <div class="nav">
-           <a href="#" class="item">关于我</a>
-           <a href="#" class="item">联系我</a>
-           <a href="#" class="item">捐助我</a>
-       </div>
-       <div class="tag-list">
-        <a href="#" class="item">#夸夸我</a>
-        <a href="#" class="item">#抱抱我</a>
-        <a href="#" class="item">#亲亲我</a>
-       </div>
-   </div>
-   <div class="main">
-       <div class="article-list">
-           <div class="item">
-               <div class="title">Lorem ipsum dolor sit amet dolor sit</div>
-               <div class="status">发布于：2050-10-01 | 阅读：3500 |标签： #两性 #HTML</div>
-                <div class="content">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore nemo ea, magnam qui incidunt maxime commodi eveniet quam soluta, deserunt molestiae officiis adipisci assumenda, rerum, exercitationem architecto natus nihil quia.
-                </div>
-           </div>
-       </div>
-   </div>
+    <div id="first">
+        <div id="second" >
+            <div id="third" >
+                <button id="button">事件冒泡</button>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        document.getElementById("button").addEventListener("click",function(){
+            alert("button");
+        },false);
+
+        document.getElementById("third").addEventListener("click",function(){
+            alert("third");
+        },false);
+
+        document.getElementById("second").addEventListener("click",function(){
+            alert("second");
+        },false);        
+
+        document.getElementById("first").addEventListener("click",function(){
+            alert("first");
+        },false);
+
+    </script>
 </body>
 </html>

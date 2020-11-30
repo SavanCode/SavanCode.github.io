@@ -15,7 +15,7 @@ categories:
 
 ## 生成
 
-### 基本生成办法
+### 基本生成办法（直接生成obj）
 
 ```js
 var obj = {
@@ -46,9 +46,10 @@ var obj = {
 obj['100'] // true
 ```
 
-### constructor
+### constructor（用构造函数+new生成对象）
 
 ```js
+//构造函数
 function Person(first, last, age, eye) {
   this.firstName = first;
   this.lastName = last;
@@ -57,7 +58,7 @@ function Person(first, last, age, eye) {
   this.name = function() {return this.firstName + " " + this.lastName;};
     this.changeName = function (name) {this.lastName = name;};
 }
-
+//实例化
 var myFather = new Person("John", "Doe", 50, "blue");
 var myMother = new Person("Sally", "Rally", 48, "green");
 
@@ -119,9 +120,11 @@ obj.foo = 'Hello';
 obj['bar'] = 'World';
 ```
 
-## 查看
+## 查看obj内属性，验证obj是否有某属性
 
 `Object.keys`方法和`Object.getOwnPropertyNames`方法都用来遍历对象的属性。
+
+`Object.hasOwnProperty(Property)`确定是否含有对应属性
 
 ```js
 var obj = {
@@ -131,9 +134,36 @@ var obj = {
 
 Object.keys(obj);// ['key1', 'key2']
 Object.getOwnPropertyNames(obj);// ['key1', 'key2']
+Object.hasOwnProperty(key1)
+Boolean(obj[key1])
 ```
 
-## 删除
+## 验证obj的原型链
+
+**instanceof** **运算符**用于检测构造函数的 `prototype` 属性是否出现在某个实例对象的原型链
+
+```js
+object instanceof constructor
+```
+
+```js
+function Car(make, model, year) {
+  this.make = make;
+  this.model = model;
+  this.year = year;
+}
+const auto = new Car('Honda', 'Accord', 1998);
+
+console.log(auto instanceof Car);
+// expected output: true
+
+console.log(auto instanceof Object);
+// expected output: true
+```
+
+
+
+## 删除obj属性
 
 ```js
 var obj = { p: 1 };
@@ -409,6 +439,60 @@ duck.eat(); // prints "nom nom nom"
 duck.fly(); // prints "I'm flying!
 ```
 
+
+
+```js
+var Person = function(firstAndLast) {
+  // Only change code below this line
+  // Complete the method below and implement the others similarly
+  var firstName=firstAndLast.split(" ")[0];
+  var lastName=firstAndLast.split(" ")[1];
+  var fullName=firstAndLast;
+
+  this.setFullName = function(nameStr){
+    var arr=nameStr.split(" "); 
+    fullName=nameStr;
+    firstName=arr[0];
+    lastName=arr[1];
+    };
+    
+    this.setFirstName = function(nameStr){ 
+    firstName=nameStr; 
+    fullName=firstName+" "+lastName;
+    };
+
+    this.setLastName = function(nameStr){ 
+    lastName=nameStr; 
+    fullName=firstName+" "+lastName;
+    };
+
+
+  this.getFullName = function() {
+    console.log(firstName+" "+lastName);
+    return fullName;
+  };
+
+  this.getFirstName = function() {
+    console.log(firstName);
+    return firstName;
+  };
+   this.getLastName = function() {
+    console.log(lastName);
+    return lastName;
+  };
+
+
+};
+
+var bob = new Person('Bob Ross');
+bob.setFullName("Haskell Curry")
+bob.getFullName();
+bob.getFirstName()
+
+```
+
+
+
 ## 重写继承下来的方法
 
 ```js
@@ -509,5 +593,27 @@ let motionModule = (function () {
 //////////////////////////////////////////////////////////
 motionModule.glideMixin(duck);
 duck.glide();
+```
+
+
+
+## 查看obj array中 每个obj是否都存有有效的属性（ NaN undefined ）
+
+```js
+function truthCheck(collection, pre) {
+  // Is everyone being true?
+  return collection.every(obj => obj[pre]);
+}
+
+truthCheck([{"single": "double"}, {"single": NaN}], "single");
+
+```
+
+```js
+function truthCheck(collection, pre) {
+  return collection.every(function(element) {
+    return element.hasOwnProperty(pre) && Boolean(element[pre]);
+  });
+}
 ```
 
