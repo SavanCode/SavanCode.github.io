@@ -446,6 +446,11 @@
 <p><img src="/2020/11/13/flex-grow-vs-flex-shrink-vs-flex-basis/1605774443655.png"></p>
 <p>接著試試看粉色盒子 flex-shrink 爲 1，其他盒子爲 0，則不夠的部分只會壓縮粉色盒子，效果如下：</p>
 <p><img src="/2020/11/13/flex-grow-vs-flex-shrink-vs-flex-basis/1605774467911.png"></p>
+<ul>
+<li>flex-grow: 0.2 表示希望获得20%的蛋糕；</li>
+<li>flex-grow: 1 表示希望获得100%整个蛋糕（有点过分啊，不考虑其他兄弟）；</li>
+<li>flex-grow: 2 表示希望获得200%的蛋糕（这是明抢啊，态度很明确）。</li>
+</ul>
 <h2 id="赋值计算"><a href="#赋值计算" class="headerlink" title="赋值计算"></a>赋值计算</h2><blockquote>
 <p>flex-basis（默认值为auto）<br>flex-grow（默认值为0）<br>    可用空间 = (容器大小 - 所有相邻项目flex-basis的总和)<br>    可扩展空间 = (可用空间/所有相邻项目flex-grow的总和)<br>    每项伸缩大小 = (伸缩基准值flex-basis + (可扩展空间 x flex-grow值))<br>flex-shrink（默认值为1）<br>    –.计算收缩因子与基准值乘的总和<br>      var a = 每一项flex-shrink<em>flex-basis之和<br>     –.计算收缩因数<br>      收缩因数=（项目的收缩因子</em>项目基准值）/第一步计算总和<br>       var b =  (flex-shrink*flex-basis)/a<br>     –.移除空间的计算<br>       移除空间= 项目收缩因数 x 负溢出的空间<br>        var c =  b * 溢出的空间    </p>
 </blockquote>
