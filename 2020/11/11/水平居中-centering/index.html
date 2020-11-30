@@ -452,8 +452,9 @@
 <p>注：600px必须为父元素的高度，这里还需注意的一点是font-size需设为零，若未写该属性将导致元素并不能精确垂直居中。该方法即为我面试时所答的方法，缺点很明显，父元素高度须确定。</p>
 <h3 id="8-对于图片以及文字居中"><a href="#8-对于图片以及文字居中" class="headerlink" title="8.对于图片以及文字居中"></a>8.对于图片以及文字居中</h3><h4 id="Center-Vertically"><a href="#Center-Vertically" class="headerlink" title="Center Vertically"></a>Center Vertically</h4><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span><span class="token style language-css">
 <span class="token number">.</span>center &amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
-  <span class="token property">padding</span><span class="token punctuation">:</span> <span class="token number">70</span>px <span class="token number">0</span><span class="token punctuation">;</span>//缺点：要知道父级的宽度
-  <span class="token property">border</span><span class="token punctuation">:</span> <span class="token number">3</span>px solid green<span class="token punctuation">;</span>
+<span class="token property">position</span><span class="token punctuation">:</span> relative<span class="token punctuation">;</span>
+<span class="token property">top</span><span class="token punctuation">:</span> <span class="token number">50%</span><span class="token punctuation">;</span>
+<span class="token property">transform</span><span class="token punctuation">:</span> <span class="token function">translateY</span><span class="token punctuation">(</span>-<span class="token number">50%</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 &amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span>
 </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
@@ -662,8 +663,11 @@ background-size:100% 100% ;
                     <div class="summary block-with-text">
                         
                             Tools
-
 can i use ： https://caniuse.com/  (check support table for htmll css )
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 dev web doc ：  https://developer.mozilla.o
                         
                     </div>
