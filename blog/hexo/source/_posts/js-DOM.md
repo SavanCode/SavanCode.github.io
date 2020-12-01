@@ -212,6 +212,8 @@ btn.removeEventListener("click",eventOne);
 
 事件对象自动传递给回调函数 element.onclick = function(e){}; // e就是事件对象
 
+**注意： 注意listener的对象， this 是指拥有listener的对象，但是event.target是当时的event**
+
 ### e的常见属性：
 
 - e.target; //获取触发此事件的元素（不一定是绑定元素）（e.target.style.backgroundColor=""）

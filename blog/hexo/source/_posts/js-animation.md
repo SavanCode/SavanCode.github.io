@@ -116,7 +116,9 @@ categories:
 - scroll：隐藏溢出内容，但有一个滚动条
 - auto：发生溢出时才有滚动条，无溢出不滚动
 
-## 动画例子
+## js动画例子
+
+### 跟着鼠标走的动画
 
 ```html
     <style>
@@ -125,8 +127,7 @@ categories:
         }
         body{
             height: 1000px;
-            width: 1000px;
-
+            width: 1000px; 
         }
     </style>
 </head>
@@ -156,3 +157,163 @@ document.onmousemove = function(event){
 </body>
 ```
 
+### 匀速移动代码
+
+```html
+ <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+ 
+    div {
+      margin-top: 20px;
+      width: 200px;
+      height: 100px;
+      background-color: green;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  </style> 
+<body>
+<input type="button" value="移动到400px" id="btn1"/>
+<input type="button" value="移动到800px" id="btn2"/>
+<div id="dv">
+  <script src="common.js"></script>
+  <script>
+    //点击按钮移动div
+ 
+    my$("btn1").onclick = function () {
+      animate(my$("dv"), 400);
+    };
+    my$("btn2").onclick = function () {
+      animate(my$("dv"), 800);
+    };
+ 
+    //匀速动画
+    function animate(element, target) {
+      //清理定时器
+      clearInterval(element.timeId);
+      element.timeId = setInterval(function () {
+        //获取元素的当前位置
+        var current = element.offsetLeft;
+        //移动的步数
+        var step = 10;
+        step = target > current ? step : -step;
+        current += step;
+        if (Math.abs(current - target) > Math.abs(step)) {
+          element.style.left = current + "px";
+        } else {
+          clearInterval(element.timeId);
+          element.style.left = target + "px";
+        }
+      }, 20);
+    }
+      
+    function my$(id) {
+        return document.getElementById(id);
+    }
+  </script>
+</div>
+</body>
+
+```
+
+### 变速移动代码
+
+```html
+<script>
+    //点击按钮移动div
+ 
+    my$("btn1").onclick = function () {
+      animate(my$("dv"), 400);
+    };
+    my$("btn2").onclick = function () {
+      animate(my$("dv"), 800);
+    };
+ 
+    //变速动画
+    function animate(element, target) {
+      //清理定时器
+      clearInterval(element.timeId);
+      element.timeId = setInterval(function () {
+        //获取元素的当前位置
+        var current = element.offsetLeft;
+        //移动的步数
+        var step = (target-current)/10;
+        step = step>0?Math.ceil(step):Math.floor(step);
+        current += step;
+        element.style.left = current + "px";
+        if(current==target) {
+          //清理定时器
+          clearInterval(element.timeId);
+        }
+       
+      }, 20);
+    }
+    
+    function my$(id) {
+        return document.getElementById(id);
+    }
+  </script>
+```
+
+
+
+
+
+## @keyframes制作动画
+
+以百分比来规定改变发生的时间，或者通过关键词 "from" 和 "to"，等价于 0% 和 100%。
+
+0% 是动画的开始时间，100% 动画的结束时间。
+
+为了获得最佳的浏览器支持，您应该始终定义 0% 和 100% 选择器。
+
+**不同浏览器需要查一下**
+
+语法：
+
+```css
+@keyframes animationname {keyframes-selector {css-styles;}}
+```
+
+### 向下移动
+
+```html
+<style> 
+@keyframes mymove
+{
+from {top:0px;}
+to {top:200px;}
+}
+
+.element{
+	animation-name: mymove;
+    animation-duration: 0.4s}
+</style>
+```
+
+### 在一个动画中改变多个 CSS 样式
+
+```css
+@keyframes mymove
+{
+0%   {top:0px; background:red; width:100px;}
+100% {top:200px; background:yellow; width:300px;}
+}
+```
+
+### 带有多个 CSS 样式的多个 keyframe 选择器
+
+```css
+@keyframes mymove
+{
+0%   {top:0px; left:0px; background:red;}
+25%  {top:0px; left:100px; background:blue;}
+50%  {top:100px; left:100px; background:yellow;}
+75%  {top:100px; left:0px; background:green;}
+100% {top:0px; left:0px; background:red;}
+}
+```
