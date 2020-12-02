@@ -13,6 +13,8 @@ categories: Front-end
 
 ## Tools
 
+基本布局查询 ：http://demo.haoji.me/notebook/
+
 - can i use ： https://caniuse.com/  (check support table for htmll css )
 
 - dev web doc ：  https://developer.mozilla.org/en-US/
@@ -37,7 +39,16 @@ categories: Front-end
 
 
 
+
+
+## Demo 借鉴
+
+1. demo库      http://resource.haorooms.com/
+2. 基本布局  http://demo.haoji.me/2016/11/24-css-layout/
+3. 视频大小  http://demo.haoji.me/2016/01/09-html5-video-resize/
+
 ## 技术博客
 
 - 木之多   https://www.shuzhiduo.com/
 - 大佬  ： https://www.zhangxinxu.com/
+- js重点： http://blog.haoji.me/?cat=javascript

@@ -47,7 +47,7 @@ categories:
    </body>
 ```
 
-## 时间块
+## 时间块- timer
 
 `setTimeout("function", interval)`，让指定的函数经过某段时间（interval）之后才开始执行，单位为毫秒。 `variable = setTimeout("function", interval);` 
 
