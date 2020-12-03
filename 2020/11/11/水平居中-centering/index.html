@@ -427,10 +427,34 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
+<<<<<<< HEAD
                 <h1 id="纯CSS七大居中方法"><a href="#纯CSS七大居中方法" class="headerlink" title="纯CSS七大居中方法"></a>纯CSS七大居中方法</h1><h3 id="1-上下左右定位-margin居中法"><a href="#1-上下左右定位-margin居中法" class="headerlink" title="1.上下左右定位+margin居中法"></a>1.上下左右定位+margin居中法</h3><pre><code>父元素：position: relative;
 
 子元素：position: absolute; left: 0; right: 0; top: 0; bottom: 0; margin: auto;</code></pre>
 <h3 id="2-50-定位-margin居中法"><a href="#2-50-定位-margin居中法" class="headerlink" title="2.50%定位+margin居中法"></a>2.50%定位+margin居中法</h3><pre><code>父元素：position: relative;
+||||||| 178ffef
+                <h1 id="纯CSS七大居中方法"><a href="#纯CSS七大居中方法" class="headerlink" title="纯CSS七大居中方法"></a>纯CSS七大居中方法</h1><h3 id="1-上下左右定位-margin居中法"><a href="#1-上下左右定位-margin居中法" class="headerlink" title="1.上下左右定位+margin居中法"></a>1.上下左右定位+margin居中法</h3><pre class=" language-css"><code class="language-css">父元素：<span class="token property">position</span><span class="token punctuation">:</span> relative<span class="token punctuation">;</span>
+
+子元素：<span class="token property">position</span><span class="token punctuation">:</span> absolute<span class="token punctuation">;</span> <span class="token property">left</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token property">right</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token property">top</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token property">bottom</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token property">margin</span><span class="token punctuation">:</span> auto<span class="token punctuation">;</span>
+//或者
+子元素： <span class="token property">margin-left</span><span class="token punctuation">:</span> auto<span class="token punctuation">;</span> <span class="token property">margin-right</span><span class="token punctuation">:</span> auto<span class="token punctuation">;</span> display：block；</code></pre>
+<pre class=" language-css"><code class="language-css">        nav&amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
+            <span class="token property">position</span><span class="token punctuation">:</span> relative<span class="token punctuation">;</span> 
+            <span class="token property">margin</span><span class="token punctuation">:</span> <span class="token number">5</span>vw <span class="token number">0</span><span class="token punctuation">;</span>
+            <span class="token property">width</span><span class="token punctuation">:</span> <span class="token number">100%</span><span class="token punctuation">;</span>
+        &amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span>
+        #title&amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>  
+            <span class="token property">left</span><span class="token punctuation">:</span> <span class="token number">50%</span><span class="token punctuation">;</span> <span class="token property">top</span><span class="token punctuation">:</span> <span class="token number">50%</span><span class="token punctuation">;</span>  
+        &amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span> </code></pre>
+<h3 id="2-50-定位-margin居中法"><a href="#2-50-定位-margin居中法" class="headerlink" title="2.50%定位+margin居中法"></a>2.50%定位+margin居中法</h3><pre><code>父元素：position: relative;
+=======
+                <h1 id="纯CSS七大居中方法"><a href="#纯CSS七大居中方法" class="headerlink" title="纯CSS七大居中方法"></a>纯CSS七大居中方法</h1><h3 id="1-上下左右定位-margin居中法"><a href="#1-上下左右定位-margin居中法" class="headerlink" title="1.上下左右定位+margin居中法"></a>1.上下左右定位+margin居中法</h3><pre class=" language-css"><code class="language-css">父元素：<span class="token property">position</span><span class="token punctuation">:</span> relative<span class="token punctuation">;</span>
+
+子元素：<span class="token property">position</span><span class="token punctuation">:</span> absolute<span class="token punctuation">;</span> <span class="token property">left</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token property">right</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token property">top</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token property">bottom</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token property">margin</span><span class="token punctuation">:</span> <span class="token number">0</span> auto<span class="token punctuation">;</span>
+//或者
+子元素： <span class="token property">margin-left</span><span class="token punctuation">:</span> auto<span class="token punctuation">;</span> <span class="token property">margin-right</span><span class="token punctuation">:</span> auto<span class="token punctuation">;</span> display：block；</code></pre>
+<h3 id="2-50-定位-margin居中法-（通过子元素设置relative-负margin）"><a href="#2-50-定位-margin居中法-（通过子元素设置relative-负margin）" class="headerlink" title="2.50%定位+margin居中法 （通过子元素设置relative + 负margin）"></a>2.50%定位+margin居中法 （通过子元素设置relative + 负margin）</h3><pre><code>父元素：position: relative;
+>>>>>>> a5a08e807c85c161d6dd3d2dd376c47b53fff9f0
 
 子元素：position: absolute; left: 50%; top: 50%; margin: -200px 0 0 -200px;</code></pre>
 <p>注：200px须为该子元素的宽高的一半。例如该子元素宽为100px，高为50px，那么margin取值为-25px 0 0 -50px。该方法缺点是须确定子元素宽高。</p>
@@ -440,26 +464,86 @@
 <h3 id="4-50-定位-translate居中法"><a href="#4-50-定位-translate居中法" class="headerlink" title="4.50%定位+translate居中法"></a>4.50%定位+translate居中法</h3><pre><code>父元素：position: relative;
 
 子元素：position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%);</code></pre>
-<h3 id="5-Flexbox-margin居中法"><a href="#5-Flexbox-margin居中法" class="headerlink" title="5.Flexbox+margin居中法"></a>5.Flexbox+margin居中法</h3><pre><code>父元素：display: flex;
+<h3 id="5-Flexbox-margin居中法（此方法很好用）"><a href="#5-Flexbox-margin居中法（此方法很好用）" class="headerlink" title="5.Flexbox+margin居中法（此方法很好用）"></a>5.Flexbox+margin居中法（此方法很好用）</h3><pre><code>父元素：display: flex;
 
 子元素：margin: auto;</code></pre>
 <p>6.Flexbox居中法</p>
 <pre><code>父元素：display: flex; justify-content: center; align-items: center;</code></pre>
 <p>注：该方法使用了Flexbox弹性布局，移动端兼容性也存在很大问题。</p>
-<h3 id="7-line-height居中法"><a href="#7-line-height居中法" class="headerlink" title="7.line-height居中法"></a>7.line-height居中法</h3><pre><code>父元素：text-align: center; line-height:600px; font-size: 0;
+<h3 id="7-text-align居中法"><a href="#7-text-align居中法" class="headerlink" title="7.text-align居中法"></a>7.text-align居中法</h3><pre><code>父元素：text-align: center; line-height:600px; font-size: 0;
 
 子元素：display: inline-block; vertical-align: middle;</code></pre>
+<<<<<<< HEAD
 <p>注：600px必须为父元素的高度，这里还需注意的一点是font-size需设为零，若未写该属性将导致元素并不能精确垂直居中。该方法即为我面试时所答的方法，缺点很明显，父元素高度须确定。</p>
 <h3 id="8-对于图片以及文字居中"><a href="#8-对于图片以及文字居中" class="headerlink" title="8.对于图片以及文字居中"></a>8.对于图片以及文字居中</h3><h4 id="Center-Vertically"><a href="#Center-Vertically" class="headerlink" title="Center Vertically"></a>Center Vertically</h4><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span><span class="token style language-css">
+||||||| 178ffef
+<p>注：600px必须为父元素的高度，这里还需注意的一点是font-size需设为零，若未写该属性将导致元素并不能精确垂直居中。该方法即为我面试时所答的方法，缺点很明显，父元素高度须确定。</p>
+<h3 id="8-利用flex全页面居中"><a href="#8-利用flex全页面居中" class="headerlink" title="8.利用flex全页面居中"></a>8.利用flex全页面居中</h3><p><img src="/2020/11/11/%E6%B0%B4%E5%B9%B3%E5%B1%85%E4%B8%AD-centering/1605667496243.png"></p>
+<pre class=" language-css"><code class="language-css"><span class="token number">.</span>box &amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
+  <span class="token property">align-items</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span><span class="token comment" spellcheck="true">/*Vertical Centering*/</span>
+  <span class="token property">justify-content</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+     <span class="token comment" spellcheck="true">/* align-self: center;  want specific flex items to be centered vertically*/</span>
+&amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span>
+
+<span class="token number">.</span>box div &amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> <span class="token number">100</span>px<span class="token punctuation">;</span>
+  <span class="token property">height</span><span class="token punctuation">:</span> <span class="token number">100</span>px<span class="token punctuation">;</span>
+&amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span>
+&lt;div class=<span class="token string">"box"</span>>
+  &lt;div>&lt;/div>
+&lt;/div>
+</code></pre>
+<h3 id="9-对于图片以及文字居中"><a href="#9-对于图片以及文字居中" class="headerlink" title="9.对于图片以及文字居中"></a>9.对于图片以及文字居中</h3><h4 id="Center-Vertically"><a href="#Center-Vertically" class="headerlink" title="Center Vertically"></a>Center Vertically</h4><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span><span class="token style language-css">
+=======
+<h3 id="8-利用flex全页面居中"><a href="#8-利用flex全页面居中" class="headerlink" title="8.利用flex全页面居中"></a>8.利用flex全页面居中</h3><p><img src="/2020/11/11/%E6%B0%B4%E5%B9%B3%E5%B1%85%E4%B8%AD-centering/1605667496243.png"></p>
+<pre class=" language-css"><code class="language-css"><span class="token number">.</span>box &amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
+  <span class="token property">align-items</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span><span class="token comment" spellcheck="true">/*Vertical Centering*/</span>
+  <span class="token property">justify-content</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+     <span class="token comment" spellcheck="true">/* align-self: center;  want specific flex items to be centered vertically*/</span>
+&amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span>
+
+<span class="token number">.</span>box div &amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> <span class="token number">100</span>px<span class="token punctuation">;</span>
+  <span class="token property">height</span><span class="token punctuation">:</span> <span class="token number">100</span>px<span class="token punctuation">;</span>
+&amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span>
+&lt;div class=<span class="token string">"box"</span>>
+  &lt;div>&lt;/div>
+&lt;/div>
+</code></pre>
+<h3 id="9-对于图片以及文字居中-对于行元素"><a href="#9-对于图片以及文字居中-对于行元素" class="headerlink" title="9.对于图片以及文字居中  - 对于行元素"></a>9.对于图片以及文字居中  - 对于行元素</h3><h4 id="Center-horizontally"><a href="#Center-horizontally" class="headerlink" title="Center horizontally"></a>Center horizontally</h4><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span><span class="token style language-css">
+  div &amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
+   <span class="token property">display</span><span class="token punctuation">:</span>block<span class="token punctuation">;</span>
+   <span class="token property">text-align</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+   &amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span>
+  span &amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
+    <span class="token property">text-align</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+    &amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span>我是span<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span>我是span<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span>我是span<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span>我是span<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
+<p><img src="/2020/11/11/%E6%B0%B4%E5%B9%B3%E5%B1%85%E4%B8%AD-centering/1607004149205.png"></p>
+<p>或者其父元素(必须是块级元素)设置如下CSS样式</p>
+<pre class=" language-css"><code class="language-css">div &amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>  <span class="token property">text-align</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>   &amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span></code></pre>
+<p>对于多个子元素，排列为中间 - 设置元素自身display: block属性和text-align:center属性</p>
+<pre class=" language-css"><code class="language-css">span &amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
+           <span class="token property">display</span><span class="token punctuation">:</span> block<span class="token punctuation">;</span>
+           <span class="token property">text-align</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+       &amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span></code></pre>
+<p><img src="/2020/11/11/%E6%B0%B4%E5%B9%B3%E5%B1%85%E4%B8%AD-centering/1607004549132.png"></p>
+<h4 id="Center-Vertically"><a href="#Center-Vertically" class="headerlink" title="Center Vertically"></a>Center Vertically</h4><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span><span class="token style language-css">
+>>>>>>> a5a08e807c85c161d6dd3d2dd376c47b53fff9f0
 <span class="token number">.</span>center &amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
 <span class="token property">position</span><span class="token punctuation">:</span> relative<span class="token punctuation">;</span>
 <span class="token property">top</span><span class="token punctuation">:</span> <span class="token number">50%</span><span class="token punctuation">;</span>
 <span class="token property">transform</span><span class="token punctuation">:</span> <span class="token function">translateY</span><span class="token punctuation">(</span>-<span class="token number">50%</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 &amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span>
-</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
-
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span> 
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>center<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>I am vertically centered.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
@@ -467,23 +551,162 @@
 <h4 id="center-both-vertically-and-horizontally"><a href="#center-both-vertically-and-horizontally" class="headerlink" title="center both vertically and horizontally"></a>center both vertically and horizontally</h4><pre class=" language-css"><code class="language-css"><span class="token number">.</span>center &amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
   <span class="token property">padding</span><span class="token punctuation">:</span> <span class="token number">70</span>px <span class="token number">0</span><span class="token punctuation">;</span>
   <span class="token property">border</span><span class="token punctuation">:</span> <span class="token number">3</span>px solid green<span class="token punctuation">;</span>
-  <span class="token property">text-align</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+  <span class="token property">text-align</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span> //父级要求居中
 &amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span></code></pre>
 <p>或者</p>
 <pre class=" language-css"><code class="language-css"><span class="token number">.</span>center &amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
   <span class="token property">line-height</span><span class="token punctuation">:</span> <span class="token number">200</span>px<span class="token punctuation">;</span>
   <span class="token property">height</span><span class="token punctuation">:</span> <span class="token number">200</span>px<span class="token punctuation">;</span>
   <span class="token property">border</span><span class="token punctuation">:</span> <span class="token number">3</span>px solid green<span class="token punctuation">;</span>
-  <span class="token property">text-align</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+  <span class="token property">text-align</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>//父级要求居中
 &amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span>
 
 <span class="token comment" spellcheck="true">/* If the text has multiple lines, add the following: */</span>
 <span class="token number">.</span>center p &amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
   <span class="token property">line-height</span><span class="token punctuation">:</span> <span class="token number">1.5</span><span class="token punctuation">;</span>
-  <span class="token property">display</span><span class="token punctuation">:</span> inline-block<span class="token punctuation">;</span>
-  <span class="token property">vertical-align</span><span class="token punctuation">:</span> middle<span class="token punctuation">;</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> inline-block<span class="token punctuation">;</span> //子级显示
+  <span class="token property">vertical-align</span><span class="token punctuation">:</span> middle<span class="token punctuation">;</span>//纵向
 &amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span></code></pre>
 <p><img src="/2020/11/11/%E6%B0%B4%E5%B9%B3%E5%B1%85%E4%B8%AD-centering/1605106167637.png"></p>
+<<<<<<< HEAD
+||||||| 178ffef
+<h3 id="10-对于有多个div状态的保留块元素的排版，父元素居中"><a href="#10-对于有多个div状态的保留块元素的排版，父元素居中" class="headerlink" title="10.对于有多个div状态的保留块元素的排版，父元素居中"></a>10.对于有多个div状态的保留块元素的排版，父元素居中</h3><pre><code>//父元素
+position: absolute;
+    left: 50%;
+    transform: translate(-50%,50%);</code></pre>
+<p><img src="/2020/11/11/%E6%B0%B4%E5%B9%B3%E5%B1%85%E4%B8%AD-centering/1605688618077.png"></p>
+<p>或者是（这种的话 多个div不好弄 代码很累赘）</p>
+<p><img src="/2020/11/11/%E6%B0%B4%E5%B9%B3%E5%B1%85%E4%B8%AD-centering/1605688640436.png"></p>
+<pre class=" language-html"><code class="language-html"> .box <span class="token entity" title="&#123;">&amp;#123;</span>
+            display: flex;
+            justify-content: space-between;
+          <span class="token entity" title="&#125;">&amp;#125;</span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>box<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>One<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>Two<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>Three
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">></span></span>has
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">></span></span>extra
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">></span></span>text
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>other trick：</p>
+<p><a target="_blank" rel="noopener" href="https://www.digitalocean.com/community/tutorials/css-centering-using-flexbox">https://www.digitalocean.com/community/tutorials/css-centering-using-flexbox</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.w3.org/Style/Examples/007/center.en.html#text">https://www.w3.org/Style/Examples/007/center.en.html#text</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.w3schools.com/css/css_align.asp">https://www.w3schools.com/css/css_align.asp</a> </p>
+=======
+<h3 id="10-对于有多个div状态的保留块元素的排版，父元素居中"><a href="#10-对于有多个div状态的保留块元素的排版，父元素居中" class="headerlink" title="10.对于有多个div状态的保留块元素的排版，父元素居中"></a>10.对于有多个div状态的保留块元素的排版，父元素居中</h3><pre class=" language-css"><code class="language-css">//父元素
+<span class="token property">position</span><span class="token punctuation">:</span> absolute<span class="token punctuation">;</span>
+    <span class="token property">left</span><span class="token punctuation">:</span> <span class="token number">50%</span><span class="token punctuation">;</span>
+    <span class="token property">transform</span><span class="token punctuation">:</span> <span class="token function">translate</span><span class="token punctuation">(</span>-<span class="token number">50%</span>,<span class="token number">50%</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p><img src="/2020/11/11/%E6%B0%B4%E5%B9%B3%E5%B1%85%E4%B8%AD-centering/1605688618077.png"></p>
+<p>或者是（这种的话 多个div不好弄 代码很累赘）</p>
+<p><img src="/2020/11/11/%E6%B0%B4%E5%B9%B3%E5%B1%85%E4%B8%AD-centering/1605688640436.png"></p>
+<pre class=" language-html"><code class="language-html"> .box <span class="token entity" title="&#123;">&amp;#123;</span>
+            display: flex;
+            justify-content: space-between;
+          <span class="token entity" title="&#125;">&amp;#125;</span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>box<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>One<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>Two<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>Three
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">></span></span>has
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">></span></span>extra
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">></span></span>text
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+</code></pre>
+<h1 id="根据元素选择方式"><a href="#根据元素选择方式" class="headerlink" title="根据元素选择方式"></a>根据元素选择方式</h1><h2 id="1-元素为行内元素时"><a href="#1-元素为行内元素时" class="headerlink" title="(1)元素为行内元素时"></a>(1)元素为行内元素时</h2><ul>
+<li><p>给其父元素(必须是块级元素)设置 text-align: center;</p>
+</li>
+<li><p>元素自身display: block属性和text-align:center属性也能达到水平居中的效果</p>
+<p>例子-centering horizontally 上面的1</p>
+</li>
+</ul>
+<h2 id="2-元素为块级元素时"><a href="#2-元素为块级元素时" class="headerlink" title="(2)元素为块级元素时"></a>(2)元素为块级元素时</h2><ul>
+<li><p>该块级元素设置如下代码 margin: 0 auto - 上面的2</p>
+</li>
+<li><p>思路:先将子元素设置为块级表格来显示（类似），再将其设置水平居中.  <strong>display:table和margin</strong></p>
+</li>
+<li><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span><span class="token style language-css">
+      p&amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span> <span class="token property">display</span><span class="token punctuation">:</span> table<span class="token punctuation">;</span>
+          <span class="token property">margin</span><span class="token punctuation">:</span> <span class="token number">0</span> auto<span class="token punctuation">;</span>
+          <span class="token property">background-color</span><span class="token punctuation">:</span> orangered<span class="token punctuation">;</span> &amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span>
+   </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>div<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>我是一个段落,想要居中<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
+</li>
+<li><p><strong>absolute+transform</strong> - 上面的4</p>
+</li>
+<li><p><strong>flex+justify-content</strong> 上面的6</p>
+</li>
+</ul>
+<h2 id="3-多个块级元素时"><a href="#3-多个块级元素时" class="headerlink" title="(3)多个块级元素时"></a>(3)多个块级元素时</h2><ul>
+<li>多个块级元素时</li>
+<li>利用inline-block</li>
+</ul>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span><span class="token style language-css">
+        <span class="token number">.</span>div &amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span> <span class="token property">text-align</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span> &amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span>
+        p&amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span> <span class="token property">display</span><span class="token punctuation">:</span> inline-block<span class="token punctuation">;</span> &amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span>
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>div<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>p1<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>我是一个段落,想要居中<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>p2<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>我是一个段落,想要居中<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>p3<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>我是一个段落,想要居中<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
+<h2 id="4-浮动元素水平居中-父absolute-relative"><a href="#4-浮动元素水平居中-父absolute-relative" class="headerlink" title="(4)浮动元素水平居中 (父absolute/relative)"></a>(4)浮动元素水平居中 (父absolute/relative)</h2><ul>
+<li><p><strong>宽度不固定的浮动元素</strong></p>
+</li>
+<li><ul>
+<li>父元素和子元素同时左浮动，然后父元素相对左移动50%;</li>
+<li>再然后子元素相对右移动50%，或者子元素相对左移动-50%也就可以了.</li>
+</ul>
+</li>
+</ul>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span><span class="token style language-css">
+        <span class="token number">.</span>div&amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
+            <span class="token property">float</span><span class="token punctuation">:</span> left<span class="token punctuation">;</span>
+             <span class="token property">position</span><span class="token punctuation">:</span> absolute<span class="token punctuation">;</span>//<span class="token property">position</span><span class="token punctuation">:</span>relative<span class="token punctuation">;</span>
+            <span class="token property">left</span><span class="token punctuation">:</span> <span class="token number">50%</span><span class="token punctuation">;</span>
+        &amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span>
+        p&amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
+            <span class="token property">float</span><span class="token punctuation">:</span>left<span class="token punctuation">;</span>
+            <span class="token property">position</span><span class="token punctuation">:</span>relative<span class="token punctuation">;</span>
+            <span class="token property">right</span><span class="token punctuation">:</span><span class="token number">50%</span><span class="token punctuation">;</span>
+        &amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span>
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>div<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> 
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>我是一个段落,想要居中<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>我是一个段落,想要居中<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
+<p><img src="/2020/11/11/%E6%B0%B4%E5%B9%B3%E5%B1%85%E4%B8%AD-centering/1607005649322.png"></p>
+<h2 id="5-绝对定位的元素水平居中对齐"><a href="#5-绝对定位的元素水平居中对齐" class="headerlink" title="(5)绝对定位的元素水平居中对齐"></a>(5)绝对定位的元素水平居中对齐</h2><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span><span class="token style language-css">
+       <span class="token number">.</span>div &amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
+           <span class="token property">position</span><span class="token punctuation">:</span> absolute<span class="token punctuation">;</span>
+           <span class="token property">width</span><span class="token punctuation">:</span> <span class="token number">500</span>px<span class="token punctuation">;</span>
+           <span class="token property">height</span><span class="token punctuation">:</span> <span class="token number">300</span>px<span class="token punctuation">;</span>
+           <span class="token property">background</span><span class="token punctuation">:</span> palevioletred<span class="token punctuation">;</span>
+           <span class="token property">margin</span><span class="token punctuation">:</span> <span class="token number">0</span> auto<span class="token punctuation">;</span>
+           <span class="token property">left</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
+           <span class="token property">right</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
+       &amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span>
+
+       p &amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
+           <span class="token property">text-align</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+       &amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span>
+   </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>div<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>p1<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>我是一个段落,想要居中<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>p2<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>我是一个段落,想要居中<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>p3<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>我是一个段落,想要居中<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
+<h1 id="other-trick："><a href="#other-trick：" class="headerlink" title="other trick："></a>other trick：</h1><p><a target="_blank" rel="noopener" href="https://www.digitalocean.com/community/tutorials/css-centering-using-flexbox">https://www.digitalocean.com/community/tutorials/css-centering-using-flexbox</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.w3.org/Style/Examples/007/center.en.html#text">https://www.w3.org/Style/Examples/007/center.en.html#text</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.w3schools.com/css/css_align.asp">https://www.w3schools.com/css/css_align.asp</a> </p>
+>>>>>>> a5a08e807c85c161d6dd3d2dd376c47b53fff9f0
 <p>Reference:</p>
 <ol>
 <li><a target="_blank" rel="noopener" href="https://developer.aliyun.com/article/635759?spm=a2c6h.14164896.0.0.54cf667ajTM2fR">https://developer.aliyun.com/article/635759?spm=a2c6h.14164896.0.0.54cf667ajTM2fR</a></li>
@@ -662,13 +885,20 @@ background-size:100% 100% ;
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Tools
+                            Tools基本布局查询 ：http://demo.haoji.me/notebook/
+
 can i use ： https://caniuse.com/  (check support table for htmll css )
 <<<<<<< HEAD
 =======
 
+<<<<<<< HEAD
 >>>>>>> origin/master
 dev web doc ：  https://developer.mozilla.o
+||||||| 178ffef
+dev web doc ：  https://developer.mozilla.o
+=======
+dev
+>>>>>>> a5a08e807c85c161d6dd3d2dd376c47b53fff9f0
                         
                     </div>
                     <div class="publish-info">

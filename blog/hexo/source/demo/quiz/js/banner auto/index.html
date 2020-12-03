@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./style.css" rel="stylesheet" type="text/css" /> 
+    <title>modal</title>
+</head>
+<body>  
+    <nav>  
+        <p> 
+        基本想法：
+        只显示出一个图片，其他图片能显示 但是超出显示区域hidden
+
+        图片的显示由箭头以及下面的圆点控制- index
+
+        图片对应下面的点 对应图片-点点会有变化（双向绑定）
+
+        两边的箭头 index+1
+
+        图片hover，timer停止，显示图片 mouse离开 图片自动继续变
+
+        </p>
+         
+    </nav>
+    <div class="main">
+        <div id = "wrapper" class="wrapper">
+ 
+            <div class="bannerDiv" id="bannerDiv"> 
+                <ul id="banner">
+                    <li class=" img img1" >
+                        <img id="img1" src="./img/cat-flight.jpg" alt="">
+                    </li>
+                    <li class=" img img2">
+                        <img src="./img/Good-Morning-Cute-Cats-Image.jpg" alt="">
+                    </li>
+                    <li class=" img img3">
+                        <img src="./img/images 2.jfif" alt="">
+                    </li>
+                    <li class=" img img4">
+                        <img src="./img/images 3.jfif" alt="">
+                    </li>
+                    <li class=" img img5">
+                        <img src="./img/images 4.jfif" alt="">
+                    </li>
+                    <li class=" img img6">
+                        <img src="./img/images.jfif" alt="">
+                    </li>
+                    <div class="clearfloat"></div>
+                </ul>
+                <ul class='dots'>
+                    <!-- 应该根据图片数量增加的  -->
+                <button class="sliderBtn"> </button>
+                <button class="sliderBtn"> </button>
+                <button class="sliderBtn"> </button>
+                <button class="sliderBtn"> </button>
+                <button class="sliderBtn"> </button> 
+                <button class="sliderBtn"> </button> 
+                </ul>
+            </div>
+            <div class="btns">
+                <span id="left" class="left">&lt;</span>
+                <span id="right" class="right">&gt;</span>
+            </div>  
+        </div>
+    </div>
+
+    <footer>
+        <p>  here is footer   </p>
+    </footer>
+<script>
+    var indexImg=0;
+    var imgList=document.getElementsByClassName("img");
+    var left=document.getElementById("left");
+    var right=document.getElementById("right");
+    var btnIndex=document.getElementsByClassName("sliderBtn");
+
+    //显示index的对应图片,同时绑定下方btn
+    function display(i){
+        if(i>=imgList.length){
+            i=0;
+            indexImg=0;
+        };
+        if(i<0){
+            i=imgList.length-1;
+            indexImg=imgList.length-1;
+        };
+        for(let j=0;j<imgList.length;j++){
+            imgList[j].style.display='none';
+            btnIndex[j].setAttribute("style","background-color: rgba(255, 255, 255, 0.795); padding: 0.2em 0.8em;");
+        }
+        console.log("we are displaying"+ i);
+         
+        //imgList[i].children[0].setAttribute('style', 'display:block'); //html collection img
+        //imgList[i].childNodes[1].setAttribute('style', 'display:block') // nodelsit text img text
+        imgList[i].style.display='block';//element
+        btnIndex[i].setAttribute("style","background-color: rgba(255, 255, 255, 0.582);padding: 0.2em 1.5em;");
+    }
+ 
+    
+    //左右键控制index 
+    right.addEventListener("click",function(){
+        clearInterval(timer);
+        console.log("click goes to "+indexImg);
+        indexImg=indexImg+1;
+        display(indexImg);
+    });
+    left.addEventListener("click",function(){
+        clearInterval(timer);
+        console.log("click goes to "+indexImg);
+        indexImg=indexImg-1;
+        display(indexImg);
+    });
+
+    //下方btn控制显示
+    for(let i=0;i<btnIndex.length;i++){
+            btnIndex[i].addEventListener("mouseover",function(){
+                //console.log("this is the btnindex"+i );
+                clearInterval(timer);
+                indexImg=i;
+                display(i);
+            });
+    }
+    
+    //auto timer
+    var timer = setInterval(function(){
+            indexImg=indexImg+1;
+            display(indexImg);
+    },1500)
+
+    document.getElementById("bannerDiv").addEventListener("mouseover",function(){
+        clearInterval(timer);
+    });
+
+    document.getElementById("bannerDiv").addEventListener("mouseout",function(){
+         timer = setInterval(function(){
+            indexImg=indexImg+1;
+            display(indexImg);
+        },1500)
+    })
+
+</script>
+</body>
+</html> 

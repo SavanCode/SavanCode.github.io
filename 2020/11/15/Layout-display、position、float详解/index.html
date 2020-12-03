@@ -440,10 +440,16 @@
 <p><img src="/2020/11/15/Layout-display%E3%80%81position%E3%80%81float%E8%AF%A6%E8%A7%A3/1605427342046.png"></p>
 <h2 id="position-定位"><a href="#position-定位" class="headerlink" title="position(定位)"></a>position(定位)</h2><p> relative：相对定位，相对于元素的正常位置进行定位；<br>        absolute：绝对定位，相对于除 static 定位以外的元素进行定位；<br>        fixed：固定定位，相对于浏览器窗口进行定位，网站中的固定         header 和 footer 就是用固定定位来实现的；<br>        static：默认值，没有定位属性，元素正常出现在文档流中；<br>        inherit：继承父元素的 position 属性值。 </p>
 <h3 id="Relative"><a href="#Relative" class="headerlink" title="Relative"></a>Relative</h3><p> position 为 relative，但是不添加额外属性（left，right，top，bottom 等），它表现的如同 static 一样。但是注意红色框部分，由于特殊设置，偏离普通流（normal flow）</p>
+<blockquote>
+<p>注意下面的图中， box2本身的地方并不会被下面的box3占掉，但是box2会偏离</p>
+</blockquote>
 <p><img src="/2020/11/15/Layout-display%E3%80%81position%E3%80%81float%E8%AF%A6%E8%A7%A3/1605427536435.png"></p>
 <h3 id="Aboslute"><a href="#Aboslute" class="headerlink" title="Aboslute"></a>Aboslute</h3><p>absolute 会相对于最近的除 static 定位以外的元素进行定位，在使用时要注意设置父元素（或祖先元素）的 position 属性，若父元素（或祖先元素）都没有设置定位属性，absolute 会找到最上层即浏览器窗口，相对于它进行定位了。</p>
-<p>absolute中，组件的位置与父元素息息相关，父元素移动它也会跟着动。</p>
+<p>absolute中，组件的位置与父元素息息相关，<strong>父元素移动它也会跟着动</strong>。</p>
 <p><img src="/2020/11/15/Layout-display%E3%80%81position%E3%80%81float%E8%AF%A6%E8%A7%A3/1605427666542.png"></p>
+<p><strong>absolute的位置注意</strong></p>
+<p><img src="/2020/11/15/Layout-display%E3%80%81position%E3%80%81float%E8%AF%A6%E8%A7%A3/1607008433761.png"></p>
+<p><img src="/2020/11/15/Layout-display%E3%80%81position%E3%80%81float%E8%AF%A6%E8%A7%A3/1607008454537.png"></p>
 <h3 id="Fixed"><a href="#Fixed" class="headerlink" title="Fixed"></a>Fixed</h3><p>fixed 是相对于浏览器窗口的定位，一旦位置确定， 元素位置也不会改变</p>
 <p><img src="/2020/11/15/Layout-display%E3%80%81position%E3%80%81float%E8%AF%A6%E8%A7%A3/1605427716715.png"></p>
 <h2 id="Float"><a href="#Float" class="headerlink" title="Float"></a>Float</h2><p>float 属性定义元素在哪个方向浮动，常用属性值有 left、right，即向左浮动和向右浮动。设置了 float 的元素，会脱离文档流，然后向左或向右移动，直到碰到父容器的边界或者碰到另一个浮动元素。块级元素会忽略 float 元素，文本和行内元素却会环绕它，所以 float 最开始是用来实现文字环绕效果的。<br> <img src="/2020/11/15/Layout-display%E3%80%81position%E3%80%81float%E8%AF%A6%E8%A7%A3/1605427819727.png"></p>

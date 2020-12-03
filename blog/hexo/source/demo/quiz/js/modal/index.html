@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./main.css" rel="stylesheet" type="text/css" /> 
+    <title>modal</title>
+</head>
+<body>  
+    <nav>  
+        <p>  here is  content  </p>
+       
+        <button mat-button class="modalBtn" id="modalBtn">Modal button  </button> 
+
+        <div class="popLayer" id="popLayer" >
+            <div class="modal" id="modalContent">
+                <div class="iconDiv"> 
+                <p class="icon" id="icon">&times;</p> 
+                </div>
+                <div>this is the content </div> 
+            </div> 
+        </div> 
+    </nav>
+    <div class="main">
+        <p>  here is main   </p>
+    </div> 
+    <footer>
+        <p>  here is footer   </p>
+    </footer>
+<script>
+    var popLayer=document.getElementById("popLayer");
+    var modal=document.getElementById("modalContent");
+    var btn= document.getElementById("modalBtn");
+    var close=document.getElementById("icon");
+    var modalBtn=document.getElementById("modalBtn");
+
+ 
+window.addEventListener("click", function(event) {
+    //console.log(event.target);
+    if(event.target == modalBtn){
+        console.log("show modal");
+        popLayer.style.display = "flex";
+             
+    }
+    
+    if (event.target == close) {
+        popLayer.style.display = "none";
+  }
+    if (event.target != modal && event.target != modalBtn) {
+        console.log(event);
+        popLayer.style.display = "none";
+  }
+});
+
+
+</script>
+</body>
+</html> 
