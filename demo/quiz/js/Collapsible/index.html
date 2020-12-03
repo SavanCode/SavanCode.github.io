@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="main">
+        <div class="part1">
+            <div class="title">
+                <div class="titleName1">this is title for part 1</div>
+                <div class="icon"></div>
+            </div>
+            <div class=" content1" id="content1">
+                <p>fghjkljhgbvfcdghjkljhnbgvfcdxrtyuijnsbedl cnawilefhuwifbwf bablfeavilncanc jefoawnfeiwaf;naewi</p>
+            </div>
+        </div>
+        <div class="part2">
+            <div class="title">
+                <div class="titleName2">this is title for part 2</div>
+                <div class="icon"></div>
+            </div>
+            <div class=" content2" id="content2">
+                <p>fghjkljhgbvfcdghjkljhnbgvfcdxrtyuijnsbedl cnawilefhuwifbwf bablfeavilncanc jefoawnfeiwaf;naewi</p>
+            </div>
+        </div>
+        <div class="part3">
+            <div class="title">
+                <div class="titleName3">this is title for part 3</div>
+                <div class="icon"></div>
+            </div>
+            <div class=" content3" id="content3">
+                <p>fghjkljhgbvfcdghjkljhnbgvfcdxrtyuijnsbedl cnawilefhuwifbwf bablfeavilncanc jefoawnfeiwaf;naewi</p>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        //从外到内 不对
+        // window.addEventListener("click", function(event) { 
+        //     var content1=document.getElementById("content1");
+        //     var content2=document.getElementById("content2");
+        //     var content3=document.getElementById("content3");
+        //         console.log(event.target.className);
+        //         console.log(this);
+        //         //console.log(titleClick);
+        //     var display = function(content){
+        //         if (content.style.display === "block") {
+        //             content.style.display = "none";
+        //             } else {
+        //             content.style.display = "block";
+        //             }
+        //     }
+        //         if(event.target.className=="titleName1"){ 
+        //             display(content1);
+        //         }
+        //         if(event.target.className=="titleName2"){
+        //             display(content2);
+        //         }
+        //         if(event.target.className=="titleName3"){
+        //             display(content3);
+        //         }
+        // })
+
+        //每一个title都是listener
+        // var titleClick = document.getElementsByClassName("title");
+        // var display = function (content) {
+        // if (content.style.display === "block") {
+        //     content.style.display = "none";
+        //     } else {
+        //     content.style.display = "block";
+        //     }
+        // }
+
+        // for (let i = 0; i < titleClick.length; i++) {
+        //     titleClick[i].addEventListener("click", function (event) {
+        //         console.log(event.target);
+        //         console.log(this.nextElementSibling);
+        //         display(this.nextElementSibling);
+        //     })
+        // }
+       
+         //动态效果
+        var titleClick = document.getElementsByClassName("title");
+
+
+        function closeContent(){
+            for(let i = 0; i < titleClick.length; i++){
+                titleClick[i].nextElementSibling.style.maxHeight=null; 
+            }
+        }
+        
+        for (let i = 0; i < titleClick.length; i++) {
+            titleClick[i].addEventListener("click", function (event) {
+                console.log(this.nextElementSibling);
+                console.log(titleClick);
+                
+                //console.log(this.nextElementSibling);
+
+                var content = this.nextElementSibling;
+                if (content.style.maxHeight){
+                    console.log("this is null");
+                content.style.maxHeight = null;
+                } else {
+                    console.log("this is open");
+                    closeContent();
+                    content.style.maxHeight = content.scrollHeight + "px"; 
+                } 
+            })
+        }
+
+    </script>
+</body>
+
+</html>

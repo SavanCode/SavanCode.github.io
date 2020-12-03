@@ -1,0 +1,27 @@
+
+.main{
+    display: flex;
+    flex-direction: column;
+    margin: 10vw 10vw;
+}
+.part1,.part2,.part3{
+    margin-bottom: 1vw;
+}
+
+.title{
+    font-size: large;
+    line-height: 30px;
+    background-color: tan;
+}
+
+.content1,.content2,.content3{
+    /* display: none;   */ 
+    overflow: hidden;
+    background-color:#cec4c429;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    z-index:-1;
+
+}
+ 

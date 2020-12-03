@@ -1,0 +1,116 @@
+html, body {
+    height: 100%;
+   }
+
+body{
+    margin: 0 0;
+    display: flex;
+    flex-direction: column; 
+}
+
+div{ box-sizing: border-box;}
+
+nav{
+    flex: 1 1 auto; 
+    background-color: wheat;
+}
+
+.img{
+    float: left;
+}
+
+.img > img{ 
+   width: 700px   !important;
+   height: 500px  !important;
+}
+
+#banner{
+    list-style: none;  
+    /* height: 500px;
+    overflow: hidden; */
+    position: absolute;
+    margin: 0 0;
+    padding: 0 0;
+    height: 100%;
+}
+.wrapper{
+    width: 700px;
+    height: 500px;
+    position: relative;
+    overflow: hidden;
+}
+
+.bannerDiv{
+    /* position: absolute;  */
+    display: flex;
+    justify-content: center;
+    left: 0;
+    top: 0;
+    height: 100%;
+    
+}
+.btns{
+    position: absolute;
+    left: 0;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    font-size: xxx-large;
+}
+.left:hover,.right:hover{
+    opacity: 0.7;
+}
+
+.left{
+    padding: 1vw;
+    background-color: black;
+    color: white;
+    opacity: 0.3;
+}
+
+.right{
+    padding: 1vw;
+    background-color: black;
+    color: white;
+    opacity: 0.3;
+}
+
+.dots{
+    margin: 0 0;  
+    z-index: 1;
+    margin-top: auto;
+}
+
+
+.sliderBtn{
+    background-color: transparent;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.795); 
+    /* border-radius: 15px;  
+    display: inline-block; */
+    padding: 0.2em 0.8em;
+    margin: 0.8em;
+    cursor: pointer;
+}
+.sliderBtn:hover{
+    background-color: rgba(255, 255, 255, 0.582);
+    padding: 0.2em 1.5em;}
+
+
+
+.main{
+    flex: 5 1 auto; 
+    background-color: thistle; 
+    position: relative; 
+}
+
+
+.clearfloat{clear:both;height:0;font-size: 1px;line-height: 0px;} 
+
+
+footer{
+    flex: 1 1 auto; 
+    background-color: wheat;
+}
