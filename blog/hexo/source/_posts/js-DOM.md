@@ -94,7 +94,7 @@ for (i = 0; i < myCollection.length; i++) {
 
 ### HTMLCollection 与 NodeList 的区别
 
-- HTMLCollection（前一章）是 HTML 元素的集合。
+- HTMLCollection是 HTML 元素的集合。
 - NodeList 是文档节点的集合。
 - NodeList 和 HTML 集合几乎完全相同。
 - HTMLCollection 和 NodeList 对象都是类数组的对象列表（集合）。
@@ -121,11 +121,75 @@ for (i = 0; i < myCollection.length; i++) {
 >
 > document.getElementsByName ：根据元素的name属性查找，返回一个 NodeList 。
 >
-> document.querySelector ：返回单个Node，IE8+(含），如果匹配到多个结果，只返回第一个。
+> **document.querySelector ：返回单个Node，IE8+(含），如果匹配到多个结果，只返回第一个。**       
 >
-> document.querySelectorAll ：返回一个 NodeList ，IE8+(含）。
+> **document.querySelector("#app")      //获取到id名为app的首个元素**
+>
+> **document.querySelector(".app")      //获取到class名为app的首个元素**
+>
+> **document.querySelectorAll ：返回一个 NodeList ，IE8+(含）。**
 >
 > document.forms ：获取当前页面所有form，返回一个 HTMLCollection ；
+
+![](js-DOM/1606972235841.png)
+
+### 深入理解如何使用querySelector
+
+```html
+<div id="opo">
+    <span>
+        <p>
+            <i>1</i>
+        </p>
+        <p class="p">
+            <b>
+                <input type="text" name="tel">
+                <input type="text" name="age">
+            </b>
+        </p>
+    </span>
+</div>
+<script>
+//querySelector
+let c = document.querySelector('#opo');//CSS语法查找节点
+let c1 = document.querySelector('div span .p b input[name=age]');//他可以像css一样去选择
+console.log(c1)
+  
+//querySelectorAll
+let d = document.querySelectorAll('#opo span p');//跟getElementsByTagName很相似，获取当前选择的所有标签
+d.forEach((item,index)=>{//也可以循环})
+</script> 
+
+```
+
+
+
+```html
+<div id="my-id">
+        <img id="inside">
+        <div class="lonely"></div>
+        <div class="outer">
+            <div class="inner"></div>
+        </div>
+    </div>
+<script>
+document.querySelectorAll("div")//返回页面中所有div元素组成的节点列表（NodeList类型的对象）
+document.querySelector("div.lonely")//返回一个单独的div元素。
+document.querySelector("#my-id").querySelectorAll("img")//会查找#my-id下的图片子代元素（注意是子代而不是后代    
+</script>
+```
+
+```js
+//这下面两个是一样的意思嘛？
+document.querySelectorAll("#my-id div div");//实际上只有一个
+document.querySelector("#my-id").querySelectorAll("div div");//实际上三个 div.lonely，div.outer，div.inner
+//第一个是查询一个被#my-div下div包裹的div元素
+//另一个是查询一个被div包裹的div元素，而这个div是#my-id的子代元素
+```
+
+
+
+**4、Element.insertAdjacentElement()**
 
 ```html
 <p>
@@ -136,7 +200,7 @@ for (i = 0; i < myCollection.length; i++) {
 <!-- afterend -->
 ```
 
-**4、Element.insertAdjacentElement()**
+
 
 用法和上面类似，
 

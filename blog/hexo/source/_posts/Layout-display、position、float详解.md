@@ -57,15 +57,25 @@ display 是 css 布局中很重要的一个属性，它定义了元素生成的�
 
  position 为 relative，但是不添加额外属性（left，right，top，bottom 等），它表现的如同 static 一样。但是注意红色框部分，由于特殊设置，偏离普通流（normal flow）
 
+> 注意下面的图中， box2本身的地方并不会被下面的box3占掉，但是box2会偏离
+
 ![](Layout-display、position、float详解/1605427536435.png)
 
 ### Aboslute
 
 absolute 会相对于最近的除 static 定位以外的元素进行定位，在使用时要注意设置父元素（或祖先元素）的 position 属性，若父元素（或祖先元素）都没有设置定位属性，absolute 会找到最上层即浏览器窗口，相对于它进行定位了。
 
-absolute中，组件的位置与父元素息息相关，父元素移动它也会跟着动。
+absolute中，组件的位置与父元素息息相关，**父元素移动它也会跟着动**。
 
 ![](Layout-display、position、float详解/1605427666542.png)
+
+
+
+**absolute的位置注意**
+
+![](Layout-display、position、float详解/1607008433761.png)
+
+![](Layout-display、position、float详解/1607008454537.png)
 
 ### Fixed
 

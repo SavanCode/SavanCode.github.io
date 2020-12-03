@@ -22,7 +22,7 @@ categories:
 1. 目标
 2. 速度
 
-## 基本的元素移动
+## 基本的元素移动 - left
 
 ```html
       <script> 
@@ -46,6 +46,31 @@ categories:
       </form>
    </body>
 ```
+
+## css transition 过渡动画
+
+当元素 **从一种样式变换为另一种样式** 时为元素添加效果
+
+### 语法
+
+```css
+transition: propertyName duration+s timing-function dealy
+```
+
+### transition的各项子属性详细值
+
+| name                       | value                                | 是否必须 | 备注                                                         |
+| -------------------------- | ------------------------------------ | -------- | ------------------------------------------------------------ |
+| transition-property        | 需要应用过渡效果的CSS 属性的名字/all | 是       | 填写一个属性名则监听一个，填 **all** 则监听该元素的所有样式变化，当指定的 CSS 属性改变时，过渡效果将开始执行。 |
+| transition-duration        | 过渡时间                             | 是       | 不填写默认为0，不会发生动画渐变效果                          |
+| transition-timing-function | 过渡效果的时间曲线                   | 否       | 贝塞尔曲线，默认ease                                         |
+| transition-delay           | 是否延迟执行过渡                     | 否       | 不填写时默认为0                                              |
+
+
+
+
+
+# [css动画总结](https://www.yuque.com/xiexiaoxie-wxtcg/talizw/bfoodp#jCyrj)
 
 ## 时间块- timer
 
@@ -317,3 +342,7 @@ to {top:200px;}
 100% {top:0px; left:0px; background:red;}
 }
 ```
+
+# reference
+
+1. https://www.yuque.com/xiexiaoxie-wxtcg/talizw/bfoodp#jCyrj

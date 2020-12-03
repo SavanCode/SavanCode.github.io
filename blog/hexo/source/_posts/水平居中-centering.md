@@ -18,25 +18,14 @@ categories: Front-end
 ```css
 父元素：position: relative;
 
-子元素：position: absolute; left: 0; right: 0; top: 0; bottom: 0; margin: auto;
+子元素：position: absolute; left: 0; right: 0; top: 0; bottom: 0; margin: 0 auto;
 //或者
 子元素： margin-left: auto; margin-right: auto; display：block；
 ```
 
-```css
-        nav{
-            position: relative; 
-            margin: 5vw 0;
-            width: 100%;
-        }
-        #title{  
-            left: 50%; top: 50%;  
-        } 
-```
 
 
-
-### 2.50%定位+margin居中法
+### 2.50%定位+margin居中法 （通过子元素设置relative + 负margin）
 
 ```
 父元素：position: relative;
@@ -64,7 +53,7 @@ categories: Front-end
 子元素：position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%);
 ```
 
-### 5.Flexbox+margin居中法
+### 5.Flexbox+margin居中法（此方法很好用）
 
 ```
 父元素：display: flex;
@@ -80,15 +69,13 @@ categories: Front-end
 
 注：该方法使用了Flexbox弹性布局，移动端兼容性也存在很大问题。
 
-### 7.line-height居中法
+### 7.text-align居中法
 
 ```
 父元素：text-align: center; line-height:600px; font-size: 0;
 
 子元素：display: inline-block; vertical-align: middle;
 ```
-
-注：600px必须为父元素的高度，这里还需注意的一点是font-size需设为零，若未写该属性将导致元素并不能精确垂直居中。该方法即为我面试时所答的方法，缺点很明显，父元素高度须确定。
 
 ### 8.利用flex全页面居中
 
@@ -114,7 +101,50 @@ categories: Front-end
 
 
 
-### 9.对于图片以及文字居中 
+### 9.对于图片以及文字居中  - 对于行元素  
+
+#### Center horizontally
+
+```html
+<style>
+  div {
+   display:block;
+   text-align: center;
+   }
+  span {
+    text-align: center;
+    }
+</style>
+<div>
+    <span>我是span</span>
+    <span>我是span</span>
+    <span>我是span</span>
+    <span>我是span</span>
+</div>
+```
+
+![](水平居中-centering/1607004149205.png)
+
+或者其父元素(必须是块级元素)设置如下CSS样式
+
+```css
+div {  text-align: center;   }
+```
+
+对于多个子元素，排列为中间 - 设置元素自身display: block属性和text-align:center属性
+
+```css
+span {
+           display: block;
+           text-align: center;
+       }
+```
+
+
+
+![](水平居中-centering/1607004549132.png)
+
+
 
 #### Center Vertically
 
@@ -125,10 +155,7 @@ position: relative;
 top: 50%;
 transform: translateY(-50%);
 }
-</style>
-</head>
-<body>
-
+</style> 
 <div class="center">
   <p>I am vertically centered.</p>
 </div>
@@ -142,7 +169,7 @@ transform: translateY(-50%);
 .center {
   padding: 70px 0;
   border: 3px solid green;
-  text-align: center;
+  text-align: center; //父级要求居中
 }
 ```
 
@@ -153,14 +180,14 @@ transform: translateY(-50%);
   line-height: 200px;
   height: 200px;
   border: 3px solid green;
-  text-align: center;
+  text-align: center;//父级要求居中
 }
 
 /* If the text has multiple lines, add the following: */
 .center p {
   line-height: 1.5;
-  display: inline-block;
-  vertical-align: middle;
+  display: inline-block; //子级显示
+  vertical-align: middle;//纵向
 }
 ```
 
@@ -168,7 +195,7 @@ transform: translateY(-50%);
 
 ### 10.对于有多个div状态的保留块元素的排版，父元素居中
 
-```
+```css
 //父元素
 position: absolute;
     left: 50%;
@@ -200,7 +227,121 @@ position: absolute;
 
 
 
-other trick：
+# 根据元素选择方式
+
+## (1)元素为行内元素时 
+
+- 给其父元素(必须是块级元素)设置 text-align: center;
+
+- 元素自身display: block属性和text-align:center属性也能达到水平居中的效果
+
+  例子-centering horizontally 上面的1
+
+  
+
+## (2)元素为块级元素时
+
+- 该块级元素设置如下代码 margin: 0 auto - 上面的2
+- 思路:先将子元素设置为块级表格来显示（类似），再将其设置水平居中.  **display:table和margin**
+
+- ```html
+  <style>
+        p{ display: table;
+            margin: 0 auto;
+            background-color: orangered; }
+     </style>
+     <div class="div">
+         <p>我是一个段落,想要居中</p>
+     </div>
+  ```
+
+- **absolute+transform** - 上面的4
+- **flex+justify-content** 上面的6
+
+## (3)多个块级元素时
+
+- 多个块级元素时
+- 利用inline-block
+
+```html
+<style>
+        .div { text-align: center; }
+        p{ display: inline-block; }
+    </style>
+    <div class="div">
+        <p class="p1">我是一个段落,想要居中</p>
+        <p class="p2">我是一个段落,想要居中</p>
+        <p class="p3">我是一个段落,想要居中</p>
+    </div>
+```
+
+## (4)浮动元素水平居中 (父absolute/relative)
+
+- **宽度不固定的浮动元素**
+
+- - 父元素和子元素同时左浮动，然后父元素相对左移动50%;
+  - 再然后子元素相对右移动50%，或者子元素相对左移动-50%也就可以了.
+
+```html
+<style>
+        .div{
+            float: left;
+             position: absolute;//position:relative;
+            left: 50%;
+        }
+        p{
+            float:left;
+            position:relative;
+            right:50%;
+        }
+    </style>
+
+<div class="div"> 
+    <p>我是一个段落,想要居中</p>
+    <p>我是一个段落,想要居中</p>
+</div>
+```
+
+![](水平居中-centering/1607005649322.png)
+
+
+
+## (5)绝对定位的元素水平居中对齐
+
+```html
+<style>
+       .div {
+           position: absolute;
+           width: 500px;
+           height: 300px;
+           background: palevioletred;
+           margin: 0 auto;
+           left: 0;
+           right: 0;
+       }
+
+       p {
+           text-align: center;
+       }
+   </style>
+   <div class="div">
+       <p class="p1">我是一个段落,想要居中</p>
+       <p class="p2">我是一个段落,想要居中</p>
+       <p class="p3">我是一个段落,想要居中</p>
+   </div>
+```
+
+
+
+
+
+
+
+
+
+
+
+# other trick：
 
 https://www.digitalocean.com/community/tutorials/css-centering-using-flexbox
 
