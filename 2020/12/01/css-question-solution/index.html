@@ -419,8 +419,7 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="为什么height-100-不生效"><a href="#为什么height-100-不生效" class="headerlink" title="为什么height:100%不生效"></a>为什么height:100%不生效</h2><p>对于<code>height</code>属性，如果父元素<code>height</code>为<code>auto</code>，只要子元素在文档流中（即<code>position</code>不等于<code>fixed</code>或者<code>absolute</code>），其百分比值完全就被忽略了。</p>
-<pre class=" language-HTML"><code class="language-HTML"><head>
-  <title>黑色主题</title>
+<pre class=" language-HTML"><code class="language-HTML"> <title>黑色主题</title>
   <style>
     .box &#123;
       width: 100%; // 这是多余的
@@ -428,7 +427,6 @@
       background: #000;
     &#125;
   </style>
-</head>
 <body>
   <div class="box"></div>
 </body></code></pre>
