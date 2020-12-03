@@ -16,13 +16,13 @@ categories:
 对于`height`属性，如果父元素`height`为`auto`，只要子元素在文档流中（即`position`不等于`fixed`或者`absolute`），其百分比值完全就被忽略了。
 
 ```html
- <style>
+<style>
     .box {
       width: 100%; // 这是多余的
       height: 100%; // 这是无效的
       background: #000;
     }
-  </style>
+  </style> 
 <body>
   <div class="box"></div>
 </body>
