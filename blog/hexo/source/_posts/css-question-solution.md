@@ -56,7 +56,7 @@ html, body {
       background: #000;
     }
   </style>
-</head>
+
 <body>
   <div class="box">
   </div>
