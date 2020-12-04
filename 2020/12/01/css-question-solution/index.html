@@ -419,17 +419,16 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="为什么height-100-不生效"><a href="#为什么height-100-不生效" class="headerlink" title="为什么height:100%不生效"></a>为什么height:100%不生效</h2><p>对于<code>height</code>属性，如果父元素<code>height</code>为<code>auto</code>，只要子元素在文档流中（即<code>position</code>不等于<code>fixed</code>或者<code>absolute</code>），其百分比值完全就被忽略了。</p>
-<pre class=" language-HTML"><code class="language-HTML"> <title>黑色主题</title>
-  <style>
-    .box &#123;
-      width: 100%; // 这是多余的
-      height: 100%; // 这是无效的
-      background: #000;
-    &#125;
-  </style>
-<body>
-  <div class="box"></div>
-</body></code></pre>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span><span class="token style language-css">
+    <span class="token number">.</span>box &amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
+      <span class="token property">width</span><span class="token punctuation">:</span> <span class="token number">100%</span><span class="token punctuation">;</span> // 这是多余的
+      <span class="token property">height</span><span class="token punctuation">:</span> <span class="token number">100%</span><span class="token punctuation">;</span> // 这是无效的
+      <span class="token property">background</span><span class="token punctuation">:</span> <span class="token hexcode">#000</span><span class="token punctuation">;</span>
+    &amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span>
+  </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span> 
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>box<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span></code></pre>
 <h3 id="solution"><a href="#solution" class="headerlink" title="solution"></a>solution</h3><p>1.设定显式的高度值。</p>
 <pre class=" language-CSS"><code class="language-CSS">html, body &#123;
  height: 100%;
@@ -450,7 +449,7 @@
       <span class="token property">background</span><span class="token punctuation">:</span> <span class="token hexcode">#000</span><span class="token punctuation">;</span>
     &amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span>
   </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
+
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>box<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
