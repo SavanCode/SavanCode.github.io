@@ -54,3 +54,4 @@ categories: Front-end
 - 木之多   https://www.shuzhiduo.com/
 - 大佬  ： https://www.zhangxinxu.com/
 - js重点： http://blog.haoji.me/?cat=javascript
+- js详细讲解： https://wangdoc.com/javascript/index.html
