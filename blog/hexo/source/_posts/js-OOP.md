@@ -145,11 +145,79 @@ cat1.color // '白色'
 
 同一个构造函数的多个实例之间，无法共享属性，从而造成对系统资源的浪费。
 
+## 多个继承
+
+```js
+//parent
+function Person(){
+
+}
+Person.prototype.say= function(){
+    console.log("I am saying ....");
+}
+Person.prototype.walk=function(){
+    console.log("I am walking...");
+}
+
+//child
+function Female(){
+
+}
+
+
+Female.prototype =new Person();
+Female.prototype.sing=function(){
+    console.log("I am singing...");
+}
+
+var  obj= new Female();
+obj.say();
+obj.walk();
+obj.sing();
+
+
+function male(){
+
+}
+male.prototype=new Person();
+male.prototype,play=function(){
+    console.log("I am playing...");
+}
+
+var obj2=new Female();
+obj2.say();
+obj2.walk();
+obj2.play();
+```
+
+
+
 # prototype 属性- 函数的原型对象
 
 > 每个对象都有 **proto** 属性，但每个函数都有__proto__属性和prototype属性
 >
 > 对于函数的prototype，在函数定义之前，prototype 就已经创建了
+
+一个最基本的例子 new constrcut()
+
+```js
+function person(name) {
+       this.name = name;
+    }
+    var foo = new person("deen");
+    //通过new创建了一个对象
+    //new是一种语法糖，new person等价于
+    var bar = (function(name) {
+        var _newObj = {
+            constructor : person,
+            __proto__ : person.prototype,
+        };
+        _newObj.constructor(name);
+        return _newObj;
+    })();
+```
+
+
 
 ```js
 console.log(Animal.prototype);//已经存在
@@ -281,6 +349,8 @@ console.log(typeof  Function. prototype. prototype) //undefined
 ## 原型链的深层例子
 
 ![](js-OOP/1607098087945.png)
+
+> 所有的对象最深层的prototype都是object
 
 # 原型链的应用
 

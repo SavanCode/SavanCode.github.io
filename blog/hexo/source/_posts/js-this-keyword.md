@@ -53,16 +53,31 @@ document.getElementById("demo").innerHTML = x;
 
 
 
-## 在函数中，this 表示全局对象。
+## 普通函数中，this 表示全局对象。
 
 ```js
 function myFunction() {
   return this;
 }
 
+function sayMyName(){
+	var name = "JavaScript"
+	console.log(this.name);//undefined
+	console.log(this.name);//Window
+}
+sayMyName();
+window.sayMyName();
+
+//箭头函数
+var name = "windows";
+var arrowFun=()=>{
+	console.log(this.name);
+}
+arrowFun();  // 结果：windows
+// 原因：箭头函数this指向取决于它定义时的父级作用域
 ```
 
-思考下面的函数作用域
+**思考下面的函数作用域**
 
 ```js
 
@@ -111,7 +126,59 @@ f() // 1
 
 函数体内部声明的函数，作用域绑定函数体内部。
 
-## 在函数中，在严格模式下，this 是未定义的(undefined)。
+## 构造函数中，this指向constructor
+
+```js
+var name = "windows";
+function Person() {
+	this.name = "constructor";
+	this.fun1 = function () {
+		console.log(this.name);  // 结果：constructor
+	};
+	this.fun2 = () =>{
+		console.log(this.name);  // 结果：constructor
+	};
+}
+var p = new Person();
+p.fun1();  // 结果：constructor
+p.fun2();  // 结果：constructor
+// 构造函数里的普通方法this指向构造函数new后的实例
+// 箭头函数的this是父级作用域，父级是Person，Person是函数有自己的作用域且内部this指向自己
+// 所以箭头函数的this就是指向person的
+```
+
+
+
+## prototype函数中定义的this （箭头/一般函数）
+
+```js
+var name = "windows";
+function Person() {
+	this.name = "constructor";
+	this.fun1 = function () {
+		console.log(this.name);  // 结果：constructor
+	};
+	this.fun2 = () =>{
+		console.log(this.name);  // 结果：constructor
+	};
+}
+Person.prototype.fun3 = function() {
+	console.log(this.name);
+};
+Person.prototype.fun4 = () => {
+	console.log(this.name);
+}
+var p = new Person();
+p.fun3();  // 结果：constructor
+p.fun4();  // 结果：windows
+// 原因：fun3()挂在到原型上的普通方法的this指向构造函数new的实例
+// 原因：fun4()挂在到原型上的箭头函数this取决于上下文的作用域，
+// fun4()是在全局下挂载到Person的原型上的，所以this指向window
+```
+
+
+
+## 严格模式下，this 是未定义的(undefined)。
 
 ```js
 "use strict";
@@ -120,13 +187,204 @@ function myFunction() {
 }
 ```
 
-## 在事件中，this 表示接收事件的元素。
+
+
+## this直向上级对象（一层对象）
+
+```js
+ var book = {
+        name: "JavaScript",
+        getBookName: function(){
+            return this.name;
+        }
+    }
+    console.log(book.getBookName()); 
+// this指的是book 所以： JavaScript
+
+//但是对于箭头函数
+var name = "windows";
+var obj = {
+	name: "objFun",
+	arrawFun: () => {
+		console.log(this.name);  // 结果：windows
+	}
+}
+obj.arrawFun();  // 结果：windows
+// 原因：箭头函数的this取决于父级作用域，父级是对象没有自己独立的作用域而是位于全局，所以向上延申，找到了window
+```
+
+
+
+## event中，this 表示接收事件的元素。
 
 ```html
 <button onclick="this.style.display='none'">
 点我后我就消失了
 </button>
 ```
+
+
+
+## 难点*  多个对象嵌套
+
+### 对象内嵌对象，外层对象调用函数，函数的this只指向上级对象
+
+```js
+ var book = {
+            name: "JavaScript",
+     		getBookName: function() {  return this.name;}
+            computerBook: {
+                name: "Node.js",
+                getBookName: function() {  return this.name;}
+            }
+        }
+        console.log(book.computerBook.getBookName()); 
+//Node.js
+//this 指向的就是 computerBook这个对象 普通函数的this谁调用就指向谁
+
+        var book = {
+            name: "JavaScript",
+            getBookName: function() {  return this.name;}
+            computerBook: {
+                //name: "Node.js",
+                getBookName: function() {  return this.name;}
+            }
+        }
+        console.log(book.computerBook.getBookName()); 
+//undifined
+//this 指向的就是 computerBook这个对象
+
+//此时this指向是什么？
+        var book = {
+            name: "JavaScript",
+            getBookName: function() {  return this.name;}
+            computerBook: {
+                name: "Node.js",
+                getBookName: function() {  return this.name;}
+            }
+        }
+        // console.log(book.computerBook.getBookName());
+        var temp = book.computerBook.getBookName;
+        console.log(temp()); //undefined
+        console.log(window.temp()); //undefined
+//this只有在运行的时候，才能被确定，temp在执行这个函数的时候，默认是在全局环境下执行的。所以是Window
+```
+
+#### 箭头函数下
+
+```js
+var book = {
+            name: "JavaScript", 
+            computerBook: {
+                //name: "Node.js",
+            getBookName:()=> { console.log(this.name);}  // 结果：windows
+            }
+        }
+        console.log(book.computerBook.getBookName()); // 结果：windows
+// 原因；箭头函数的this取决于父级作用域，父级是对象没有自己独立的作用域
+// 所以向上延申一层，但还是对象，所以再向上延申一层，就找到了window
+```
+
+
+
+#### 延伸一下，看下跨对象取值
+
+```js
+var book = {
+            name: "JavaScript",
+     		"say":function(){ console.log(this);}
+            computerBook: {
+                name: "Node.js",
+                "sing":function(){console.log(this);}
+            }
+        }
+   //this 指向对象本身， 但是如果我想要从computerbook 取得book的name属性怎么办？
+```
+
+解决办法：
+
+```js
+var book = {
+            name: "JavaScript",
+     		"say":function(){ console.log(this);}
+    		var that = this; //此处命名随便
+            computerBook: {
+                name: "Node.js",
+                "sing":function(){
+                    console.log(this);
+                    console.log(that.name);//再次调用
+                }
+            }
+        }
+```
+
+
+
+### 链式使用中的this（连贯调用）
+
+```js
+var obj={
+    "age":40;
+    "son":{
+    	"age":20,
+    	"say":function(){console,log(this);}
+	}
+}
+obj.son.say()//此时this指向的是obj 
+```
+
+### 函数嵌套中的this
+
+函数嵌套，由于是普通函数调用，所有this都是指向window
+
+```js
+function f1(){
+	console.log(this); //window
+	function f2(){
+		console.log(this);//window
+	}
+	f2();
+}
+f1();
+```
+
+对象里的方法返回普通方法 （优化就是 跨域取值）
+
+```js
+var name = "windows";
+var obj = {
+	name: "obj",
+	fun: function () {
+		return function(){
+			console.log(this.name);
+		}
+	}
+}
+obj.fun();  // 结果：ƒ (){console.log(this.name);}
+obj.fun()();  // 结果：windows
+// 原因：obj.fun()执行后返回一个方法，所以再加一对“()”会执行
+// 执行的时候这个方法相当于被全局调用，所以this指向window。
+
+//但是对于箭头函数 就不一样了
+var name = "windows";
+var obj = {
+	name: "obj",
+	fun: function () {
+		return () => {
+			console.log(this.name);
+		}
+	}
+}
+obj.fun();  // 结果：() => {console.log(this.name);}
+obj.fun()();  // 结果：obj
+// 原因：箭头函数的this指向父级作用域，
+// 箭头函数的父级是function，function会形成独立的作用域
+// 而function作用域中的this指向obj，所以箭头函数的this就指向了obj
+```
+
+
+
+
 
 ## 显示函数绑定，类似 call() 和 apply() 方法可以将 this 引用到任何对象。
 
@@ -185,18 +443,38 @@ obj.m.apply(obj); //1
 
 ```js
 var n = 123;
-var obj = { n: 456 };
+var obj = { n: 456, "f":functoin(){}};
 
 function a() {
   console.log(this.n);
 }
+
+//重要的结论： a()=a.call(window) 如果是有参数的a("Hello world")=a.call(window,"Hello world")
 
 a.call() // 123
 a.call(null) // 123
 a.call(undefined) // 123
 a.call(window) // 123
 a.call(obj) // 456
+
+//当被对象调用的时候，指向就是对象了哦
+obj.f()--> obj.f.call(obj)
+person.hello("world") -->  person.hello.call(person, "world")
 ```
+
+对于匿名函数
+
+```js
+(function(name) {
+        //
+    })("aa");
+//等价于
+(function(name) {
+        //
+    }).call(window, "aa");
+```
+
+
 
 ```js
 //调用原生
@@ -280,4 +558,6 @@ Reference：
 
 - http://www.ruanyifeng.com/blog/2010/04/using_this_keyword_in_javascript.html
 - https://javascript.ruanyifeng.com/oop/this.html#toc3
+- https://blog.csdn.net/hellochenlu/article/details/52244276?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.control&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.control
+- https://blog.csdn.net/kindergarten_sir/article/details/109909886?utm_medium=distribute.pc_relevant.none-task-blog-title-3&spm=1001.2101.3001.4242
 

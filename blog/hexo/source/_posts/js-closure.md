@@ -84,28 +84,120 @@ function f1(){
 >
 > 所以，在本质上，闭包就是将函数内部和函数外部连接起来的一座桥梁。
 
-闭包可以用在许多地方。它的最大用处有两个，一个是前面提到的可以**读取函数内部的变量**，另一个就是**让这些变量的值始终保持在内存中**。
+闭包可以用在许多地方。它的最大用处有两个，一个是前面提到的可以**读取函数内部的变量**，另一个就是**让这些变量的值始终保持在内存中**。使用闭包十分容易造成浏览器的内存泄露，严重情况下会是浏览器挂死
 
-例子：
+## 基本例子
 
 ```js
-function f1(){
-　　　　var n=999;
-　　　　nAdd=function(){n+=1}
-　　　　function f2(){
-　　　　　　alert(n);
-　　　　}
-　　　　return f2;
-　　}
-　　var result=f1();
-　　result(); // 999
-　　nAdd();
-　　result(); // 1000
+function fn(){
+    var num=100;
+    console.log(num);
+    num++
+}
+fn();//100
+fn();//100
+
+
+function aa(){
+    var n =1;//常驻变量 不会被销毁
+    return function(){return n++;}
+}
+var a1=aa(),
+var a2=aa();
+    console.log(a1());//1 n=2
+    console.log(a1());//2 n=3
+	console.log(a2());//1 n=2
+```
+
+a1、a2中的变量n是独立的，存储在各自的作用域里，互不干涉
+
+
+
+## 匿名函数
+
+匿名函数最大的用途是创建闭包（这是JavaScript语言的特性之一），并且还可以构建命名空间，以减少全局变量的使用
+
+```js
+var oEvent = {}; 
+
+(function(){ 
+var addEvent = function(){ /*代码的实现省略了*/ }; 
+function removeEvent(){} 
+oEvent.addEvent = addEvent; 
+oEvent.removeEvent = removeEvent; 
+})();
+```
+
+在这段代码中函数addEvent和removeEvent都是局部变量，但我们可以通过全局变量oEvent使用它，这就大大减少了全局变量的使用，增强了网页的安全性。
+
+```js
+oEvent.addEvent(document.getElementById('box') , 'click' , function(){});
+var rainman = (function(x , y){ 
+return x + y; 
+})(2 , 3); 
+/** 
+* 也可以写成下面的形式，因为第一个括号只是帮助我们阅读，但是不推荐使用下面这种书写格式。 
+* var rainman = function(x , y){ 
+* return x + y; 
+* }(2 , 3);
+**/
 ```
 
 
 
-自测
+## 实际应用中经典例子
+
+```js
+/** 
+* <body> 
+* <ul> 
+* <li>one</li> 
+* <li>two</li> 
+* <li>three</li> 
+* <li>one</li> 
+* </ul> 
+*/
+var lists = document.getElementsByTagName('li'); 
+for(var i = 0 , len = lists.length ; i < len ; i++){ 
+lists[ i ].onmouseover = function(){ 
+alert(i); 
+}; 
+}
+```
+
+当mouseover事件调用监听函数时，首先在匿名函数（ function(){ alert(i); }）内部查找是否定义了 i，结果是没有定义；因此它会向上查找，查找结果是已经定义了，并且i的值是4（循环后的i值）；所以，最终每次弹出的都是4。
+
+解决方法一：
+
+```javascript
+var lists = document.getElementsByTagName('li'); 
+for(var i = 0 , len = lists.length ; i < len ; i++){     
+    (function(index){         
+        lists[ index ].onmouseover = function(){             
+            alert(index);         
+        };     
+    })(i); //这是一种自执行函数的格式，前一个括号是匿名函数，解析器执行后返回一个函数对象然后调用后面一个括号(i)，所以后面一个括号就是函数参数}
+```
+
+解决办法二：
+
+```js
+function eventListener(list, index){ 
+list.onmouseover = function(){ 
+alert(index); 
+}; 
+} 
+var lists = document.getElementsByTagName('li'); 
+for(var i = 0 , len = lists.length ; i < len ; i++){ 
+eventListener(lists[ i ] , i); 
+}
+```
+
+# 自测
+
+注意构造函数中的this，主要看是哪个obj调用这个function
+
+![](js-closure/1607174318636.png)
 
 ```js
 　　var name = "The Window";
