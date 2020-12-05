@@ -255,7 +255,7 @@ console.log(string.lastIndexOf('ld',[10]));//9
 
 ## 正则匹配方法
 
-match()
+### match()
 
 　　若匹配失败，则match()方法返回null
 
@@ -270,7 +270,9 @@ array = str1.match(/\d+/g);
 console.log(array);//["1", "342", "24", "234", "3", "24", "1"]
 ```
 
-　search()方法接受一个正则或字符串的参数，返回匹配的内容在字符串中首次出现的位置，类似于不能设置起始位置的indexOf，找不到返回-1 (全局标志g影响)
+### search()
+
+接受一个正则或字符串的参数，返回匹配的内容在字符串中首次出现的位置，类似于不能设置起始位置的indexOf，找不到返回-1 (全局标志g影响)
 
 ```js
 var string = 'cat,bat,sat,fat';
@@ -289,7 +291,9 @@ var pos = string.search(pattern);
 console.log(pos);//1
 ```
 
-　replace()方法用于替换一个或多个子字符串。它接收两个参数：第一个是正则表达式或字符串，表示待查找的内容；第二个是字符串或函数，表示替换内容。返回替换后的字符串 (全局标志g影响)
+### replace()
+
+用于替换一个或多个子字符串。它接收两个参数：第一个是正则表达式或字符串，表示待查找的内容；第二个是字符串或函数，表示替换内容。返回替换后的字符串 (全局标志g影响)
 
 ```js
 var string = 'cat,bat,sat,fat';
@@ -301,7 +305,9 @@ var result = string.replace(/at/g,'ond');
 console.log(result);//'cond,bond,sond,fond'
 ```
 
-plit()方法基于指定的分隔符将一个字符串分割成多个字符串，并将结果放在一个数组中，分隔符可以是字符串，也可以是一个RegExp
+### plit()
+
+基于指定的分隔符将一个字符串分割成多个字符串，并将结果放在一个数组中，分隔符可以是字符串，也可以是一个RegExp
 
 ```js
 var colorText = 'red,blue,green,yellow';
@@ -442,6 +448,12 @@ js去掉所有的空格（连续空格）提内容
 
 ```js
 array.trim().split(/\s+/)
+```
+
+## js正则去掉不是字母
+
+```js
+str = str.toLowerCase().replace(/[\W_]/g, "");
 ```
 
 ## js 正则将大小写之间分开
