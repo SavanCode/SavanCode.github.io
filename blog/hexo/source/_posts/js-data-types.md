@@ -35,6 +35,10 @@ categories:
 
   
 
+![](js-data-types/1607252500863.png)
+
+
+
 ## 原始值( primitive values )
 
 除 Object 以外的所有类型都是不可变的（值本身无法被改变。类似于：字符串（String）、数字(Number)、布尔(Boolean)、对空（Null）、未定义（Undefined）、Symbol。
@@ -96,9 +100,91 @@ myObject.foo = 'bar';//操作myObject中的值
 console.log(myObject,copyOfMyObject);//Object{foo="bar"}
 ```
 
+### js函数的call by value & call by reference 详细讲解
+
+#### **[js的数值类型：基本类型和引用类型](https://www.w3school.com.cn/js/pro_js_value.asp)**
+
+**js一共有六大数据类型。number string boolean object null underfind**
+
+ 基本类型存放在栈区，访问是**按值访问**的，就是说你可以操作保存在变量中的实际的值。
+
+**引用类型指的是对象：js中的array和object**。可以拥有属性和方法，并且我们可以修改其属性和方法。引用对象存放的方式是：在栈中存放变量名（该变量的值是堆中真实数据的指针（对象在堆中的存放地址）），在堆中存放数据（真正的数据）。
+
+对象使用的是**引用赋值**。当我们把一个对象赋值给一个新的变量时，赋的其实是该对象的在堆中的地址，而不是堆中的数据。也就是两个对象指向的是同一个存储空间，无论哪个对象发生改变，其实都是改变的存储空间的内容.
+
+
+
+|                    | call by value                                      | call by reference/sharing                                 |
+| ------------------ | -------------------------------------------------- | --------------------------------------------------------- |
+| 数据               | number string boolean object null underfind        | array  object                                             |
+| 存放地址           | 栈                                                 | 栈中地址，堆中数据                                        |
+| copy value         | 没有关系 互不影响                                  | 指向同一个存储空间，一个变，都会变( 两者联动)             |
+| 函数传值(访问类型) | 不改变原值<br />所有函数的参数都**是按值来传递**的 | 按引用访问 传地址<br />所有函数的参数都**是按值来传递**的 |
+| 函数内赋值/复制    | 按值复制                                           | 按值复制（指针，也是值）                                  |
+|                    |                                                    |                                                           |
+
+  call by value
+
+```js
+function add(num){
+    num+=1;
+    return num;
+}
+var n=3;
+var m=add(n);
+alert(n);//3
+alert(m);//4
+```
+
+call by reference/sharing：
+
+```js
+var obj1 = {  value:'111' };
+ 
+var obj2 = {  value:'222' };
+ 
+function changeStuff(obj){
+  obj.value = '333';
+  obj = obj2;
+  return obj.value;
+}
+ 
+var foo = changeStuff(obj1);
+ 
+console.log(foo);// '222' 参数obj指向了新的对象obj2
+console.log(obj1.value);//'333'
+```
+
+所以
+
+```js
+function changeStuff(a, b, c)
+{
+  a = a * 10;
+  b.item = "changed";
+  c = {item: "changed"};
+}
+
+var num = 10;
+var obj1 = {item: "unchanged"};
+var obj2 = {item: "unchanged"};
+
+changeStuff(num, obj1, obj2);
+
+console.log(num); //10
+console.log(obj1.item);//change
+console.log(obj2.item);//unchange
+```
+
+> But the item that is passed by value is *itself* a reference. Technically, this is called [call-by-sharing](http://en.wikipedia.org/wiki/Evaluation_strategy#Call_by_sharing).
+>
+> In practical terms, this means that if you change the parameter itself (as with `num` and `obj2`), that won't affect the item that was fed into the parameter. But if you change the **INTERNALS** of the parameter, that will propagate back up (as with `obj1`).
+
+# 详细数据类型
+
 ## undefined
 
-当声明的变量未初始化时，该变量的默认值是undefined.
+当声明的变量未初始化时，该变量的**默认值是undefined.** (null 的出现意味着是被操作者赋值的，而不是js赋值的)
 
 会出现场景
 
@@ -115,6 +201,30 @@ console.log(myObject,copyOfMyObject);//Object{foo="bar"}
 null是空对象指针，而[]是空数组，{}是空对象，三者不相同
 
 > null表示"空值"，undefined表示"未定义"。两者往往可以互换。判断相等运算符==认为两者是相等的
+
+
+
+## null 和undefined 区别
+
+|        | null                | undefined                   |
+| ------ | ------------------- | --------------------------- |
+| 相同点 | if语句中为false     | if语句中为false             |
+| 区别   | number（null）= 0   | number(undefined) = NaN     |
+|        | 作为argument，error | 作为argument，返回undefined |
+
+## NaN
+
+判断一个值是否是NaN 等号运算符（== 和 ===） 不能被用来判断一个值是否是 NaN。必须使用 **Number.isNaN() 或 isNaN()** 函数.**只有 NaN 能够实现不全等与自己**
+
+```js
+ var a = NaN;
+a!==a;//true
+
+ var a = 1;
+a!==a;//false
+```
+
+
 
 ## Boolean
 
@@ -192,6 +302,8 @@ Math.SQRT1_2       1/2的平方根，即2的平方根的倒数(约等于0.707)
 
 ## 运算符
 
+[类型对比table](https://dorey.github.io/JavaScript-Equality-Table/)
+
 | 运算符 | 描述                 | 比较      | 返回  |
 | :----- | :------------------- | :-------- | :---- |
 | ==     | 等于                 | x == 8    | false |
@@ -255,7 +367,22 @@ Math.SQRT1_2       1/2的平方根，即2的平方根的倒数(约等于0.707)
 | null             | **0**      | "null"            | false      |
 | undefined        | NaN        | "undefined"       | false      |
 
+
+
+## 确定对象类型
+
+JavaScript 有三种方法，可以确定一个值到底是什么类型。
+
+- `typeof`运算符
+- `instanceof`运算符
+- `Object.prototype.toString`方法
+
+![](js-data-types/1607253357351.png)
+
 # JavaScript 对象 实例
 
 [例子总结1](https://www.runoob.com/js/js-ex-objects.html)
 
+# reference:
+
+1. https://segmentfault.com/a/1190000014658470

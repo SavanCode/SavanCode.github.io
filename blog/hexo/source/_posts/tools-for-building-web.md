@@ -39,6 +39,8 @@ categories: Front-end
 
 - Css 库 （w3) ：https://www.w3schools.com/w3css/w3css_animate.asp
 
+- 类型对比： https://dorey.github.io/JavaScript-Equality-Table/
+
 
 
 

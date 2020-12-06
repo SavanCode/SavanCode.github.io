@@ -113,7 +113,7 @@ a1、a2中的变量n是独立的，存储在各自的作用域里，互不干涉
 
 
 
-## 匿名函数
+## 匿名函数 - IIFE - immediately Invoked Function Expression
 
 匿名函数最大的用途是创建闭包（这是JavaScript语言的特性之一），并且还可以构建命名空间，以减少全局变量的使用
 
@@ -121,10 +121,10 @@ a1、a2中的变量n是独立的，存储在各自的作用域里，互不干涉
 var oEvent = {}; 
 
 (function(){ 
-var addEvent = function(){ /*代码的实现省略了*/ }; 
-function removeEvent(){} 
-oEvent.addEvent = addEvent; 
-oEvent.removeEvent = removeEvent; 
+    var addEvent = function(){ /*代码的实现省略了*/ }; 
+    function removeEvent(){} 
+    oEvent.addEvent = addEvent; 
+    oEvent.removeEvent = removeEvent; 
 })();
 ```
 
@@ -143,6 +143,82 @@ return x + y;
 **/
 ```
 
+## 闭包中的匿名函数
+
+下面的情况是很熟悉的
+
+```js
+"use strict";
+var a=[];
+for(var i=0;i<10;i++){
+        a[i]=function(){
+            return i;
+        }
+}
+console.log(a[0]());
+console.log(a[1]());
+console.log(a[2]());
+```
+
+如果使用闭包能改变吗？
+
+```js
+"use strict";
+var a=[];
+for(var i=0;i<10;i++){
+    (function(){
+        a[i]=function(){
+            return i;
+        }
+    })()
+}
+console.log(a[0]());//10
+console.log(a[1]());//10
+console.log(a[2]());//10
+```
+
+实际上闭包是不能的，一定注意先循环后面函数被call时候，函数才被运行，实际解决办法
+
+```js
+"use strict";
+var a=[];
+for(var i=0;i<10;i++){
+    console.log(i);
+        a[i]=(function(){
+            console.log(i);
+            return i;
+        })();
+
+}
+
+//或者
+"use strict";
+var a=[];
+for(var i=0;i<10;i++){
+    (function(){
+        var y=i;//只有这样下层return才能知道i是多少
+        a[i]=function(){
+            return y;
+        }
+    })()
+}
+console.log(a[0]());
+console.log(a[1]());
+console.log(a[2]());
+
+//实际上面的写法 按照匿名函数，最好的写法是：
+"use strict";
+var a=[];
+for(var i=0;i<10;i++){
+    (function(y){
+        console.log("this is y : "+y);
+        a[y]=function(){
+            return y;
+        }
+    })(i)
+}
+```
+
 
 
 ## 实际应用中经典例子
@@ -159,9 +235,9 @@ return x + y;
 */
 var lists = document.getElementsByTagName('li'); 
 for(var i = 0 , len = lists.length ; i < len ; i++){ 
-lists[ i ].onmouseover = function(){ 
-alert(i); 
-}; 
+    lists[ i ].onmouseover = function(){ 
+    	alert(i); 
+    }; 
 }
 ```
 
@@ -183,9 +259,9 @@ for(var i = 0 , len = lists.length ; i < len ; i++){
 
 ```js
 function eventListener(list, index){ 
-list.onmouseover = function(){ 
-alert(index); 
-}; 
+    list.onmouseover = function(){ 
+    	alert(index); 
+    }; 
 } 
 var lists = document.getElementsByTagName('li'); 
 for(var i = 0 , len = lists.length ; i < len ; i++){ 

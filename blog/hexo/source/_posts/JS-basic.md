@@ -41,6 +41,27 @@ var在函数内命名的变量是只在整个函数作用域内起作用，出�
 | 可以先不赋值 | 必须声明时赋值 |
 | 变量可以改   | 不能改         |
 
+```js
+var a=[];
+for(var i=0;1<10;i++){
+	a[i]=function(){
+		console.log(i);
+	}
+}
+console.log(a[6]());//10
+
+
+var a=[];
+for(let=0;1<10;i++){
+	a[i]=function(){
+		console.log(i);
+	}
+}
+console.log(a[6]());//6
+```
+
+
+
 
 
 ## 对象属性访问
@@ -201,7 +222,43 @@ for(variable in object){
 }
 ```
 
-## argument object
+### 三元运算符 ?:
+JavaScript还有一个三元运算符（即该运算符需要三个运算子）?:，也可以用于逻辑判断。
+```js
+(条件) ? 表达式1 : 表达式2
+```
+上面代码中，如果“条件”为true，则返回“表达式1”的值，否则返回“表达式2”的值。
+```js
+var even = (n % 2 === 0) ? true : false;
+```
+上面代码中，如果n可以被2整除，则even等于true，否则等于false。它等同于下面的形式。
+```js
+var even;
+if (n % 2 === 0) {
+ even = true;
+} else {
+ even = false;
+}
+```
+这个三元运算符可以被视为if...else...的简写形式，因此可以用于多种场合。
+```js
+var myVar;
+console.log(
+ myVar ?
+ 'myVar has a value' :
+ 'myVar do not has a value'
+)
+// myVar do not has a value
+```
+上面代码利用三元运算符，输出相应的提示。
+```js
+var msg = '数字' + n + '是' + (n % 2 === 0 ? '偶数' : '奇数');
+```
+上面代码利用三元运算符，在字符串之中插入不同的值。
+
+
+
+## Argument object
 
 ```js
 function viewArgs() {

@@ -20,7 +20,7 @@ categories:
 > 1. new 绑定。`new`实例化
 > 2. 显示绑定。`call`、`apply`、`bind`手动更改指向
 > 3. 隐式绑定。由上下文对象调用，如 `obj.fn()`，`this` 指向 `obj`
-> 4. 默认绑定。默认绑定全局对象，在严格模式下会绑定到`undefined`
+> 4. 默认绑定。默认绑定全局对象（没有被上下文对象调用，也是全局对象），在严格模式下会绑定到`undefined`。
 >
 > 优先级new绑定最高，最后到默认绑定。 
 
@@ -343,7 +343,7 @@ function f1(){
 	function f2(){
 		console.log(this);//window
 	}
-	f2();
+	f2();//因为没有被上下文对象call 是Window call的
 }
 f1();
 ```
@@ -425,7 +425,7 @@ obj.m.apply(obj); //1
 
 
 
-## 改变 this 指向- this apply bind
+## 改变 this 指向- this()  apply()  bind()
 
 ### Function.prototype.call()
 
