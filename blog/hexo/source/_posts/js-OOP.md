@@ -17,12 +17,20 @@ object ：propert + method
 
 ![关系图](js-OOP/1607080521610.png)
 
-## 构造函数
+## 构造函数constructor
 
 特点：
 
 - 函数体内部使用了`this`关键字，代表了所要生成的对象实例。
 - 生成对象的时候，必须使用`new`命令
+- constructor是原型对象上的一个属性，默认指向这个原型的构造函数
+
+```js
+// 比如一个构造函数：
+function Foo() { }
+// 声明一个函数后，默认就生成下面这条语句。
+Foo.prototype.constructor === Foo // true
+```
 
 ```js
 function Person(name, age, job) {
@@ -33,6 +41,8 @@ function Person(name, age, job) {
 }
 var person1 = new Person('Zaxlct', 28, 'Software Engineer');
 var person2 = new Person('Mick', 23, 'Doctor');
+console.log(person1 instanceof Person); //true
+console.log(person1.__proto__ === Person.prototype); //true 
 ```
 
 ## new命令
@@ -41,6 +51,12 @@ var person2 = new Person('Mick', 23, 'Doctor');
 2. 将这个空对象的原型，指向构造函数的`prototype`属性。
 3. 将这个空对象赋值给函数内部的`this`关键字。
 4. 开始执行构造函数内部的代码。
+
+### 图解
+
+![](js-OOP/1607331349791.png)
+
+### 代码例子
 
 ```js
 var fn= function(){};//外部定义函数，根位置确定
@@ -127,7 +143,7 @@ var person = function () {
 };
 ```
 
-# 对象继承
+# 对象继承(详细另外一篇)
 
 ## 基本继承
 
@@ -160,10 +176,7 @@ Person.prototype.walk=function(){
 }
 
 //child
-function Female(){
-
-}
-
+function Female(){  }
 
 Female.prototype =new Person();
 Female.prototype.sing=function(){
@@ -175,10 +188,7 @@ obj.say();
 obj.walk();
 obj.sing();
 
-
-function male(){
-
-}
+function male(){ }
 male.prototype=new Person();
 male.prototype,play=function(){
     console.log("I am playing...");
@@ -190,14 +200,13 @@ obj2.walk();
 obj2.play();
 ```
 
-
-
 # prototype 属性- 函数的原型对象
 
-> 每个对象都有 **proto** 属性，但每个函数都有__proto__属性和prototype属性
+> 每个函数都有prototype属性，这个属性是一个指针，指向一个对象，记住只有函数才有,并且通过bind()绑定的也没有。
 >
 > 对于函数的prototype，在函数定义之前，prototype 就已经创建了
 
+![](js-OOP/1607323876459.png)
 一个最基本的例子 new constrcut()
 
 ```js
@@ -245,11 +254,9 @@ cat3.go();//'run'
 
 # `__`proto`__` - 对象&函数属性
 
-> JS 在创建对象（不论是普通对象还是函数对象）的时候，都有一个叫做**proto** 的内置属性，用于指向创建它的构造函数的原型对象，也就是 prototype。
+> JS 在创建实例对象（不论是普通对象还是函数对象）的时候，都有一个叫做**proto** 的内置属性，用于指向创建它的构造函数的原型对象（ prototype）。
 >
-> 所有的对象都有一个属性：`__proto__`，称之为隐式原型
-
-![](js-OOP/1607084602540.png)
+> 所有的对象都有一个属性：`__proto__`，称之为隐式原型，用来将对象与该对象的原型相连
 
 ```js
 function Person(name, age, job) {
@@ -281,13 +288,37 @@ console.log(obj1.__proto__.bcd, obj2.__proto__.bcd);//456  456
 
 > __proto__不建议使用，可以用Object.getPrototypeOf()和Object.setPrototypeOf()代替；
 
+## 确定对象之间是否存在原型关系
 
+1. instanceof,这个操作符只能处理对象(person1)和函数(带.prototype引用的Person)之间的关系
+2. isPrototypeOf，如果[[prototype]]指向调用此方法的对象，那么这个方法就会返回true
+3. Object.getPrototypeOf这个方法返回[[Prototype]]的值,可以获取到一个对象的原型
 
-##  **proto** 属性 与 prototype 属性 的区别
+```js
+
+person1 instanceof Person // true
+
+Person.prototype.isPrototypeOf(person1) // true
+Person.prototype.isPrototypeOf(person2) // true
+
+Object.getPrototypeOf(person1) === Person.prototype // true
+```
+
+## `__`proto`__` 的指向
+
+![](js-OOP/1607330943411.png)
+
+#  **proto** 属性 与 prototype 属性 的区别
 
 ![](js-OOP/1607083961666.png)
 
-# 原型链
+
+
+例子中
+
+![](js-OOP/1607350277074.png)
+
+# 原型链 
 
 ## 图解
 
@@ -332,6 +363,25 @@ Object.prototype.__proto__ === null;
 > 1. Function的__proto__指向自身的prototype
 > 2. Object的prototype的__proto__指向null
 
+
+
+## 原型链中实例属性（obj）和原型属性(constructor)
+
+```js
+function Person() {
+}
+// 原型属性
+Person.prototype.name = ‘Jiang’
+var person1 = new Person()
+// 实例属性
+person1.name = ‘J’
+console.log(person1.name) // J
+```
+
+当我们读取一个属性的时候，如果在实例属性上找到了，就读取它，不会管原型属性上是否还有相同的属性，这其实就是**属性屏蔽**。即当实例属性和原型属性拥有相同名字的时候，实例属性会屏蔽原型属性，记住只是屏蔽，不会修改，原型属性那个值还在
+
+
+
 ## 原型prototype
 
 ```js
@@ -351,6 +401,10 @@ console.log(typeof  Function. prototype. prototype) //undefined
 ![](js-OOP/1607098087945.png)
 
 > 所有的对象最深层的prototype都是object
+
+图例：
+
+![](js-OOP/1607332056648.png)
 
 # 原型链的应用
 
@@ -494,7 +548,10 @@ b.constructor === A // true
 b instanceof A // true
 ```
 
+### new与Object.create()区别
 
+- new创建一个对象，执行构造函数。
+- Object.create相当于创建一个对象，但是不执行构造函数。
 
 ### Object.prototype.__proto__ 
 
@@ -560,7 +617,15 @@ Date.hasOwnProperty('toString') // false
 
 另外，`hasOwnProperty`方法是 JavaScript 之中唯一一个处理对象属性时，不会遍历原型链的方法。
 
+### 获取对象的所有可枚举的属性的名字
 
+```js
+var keys = Object.keys(person1)
+console.log(keys) // ["name"]
+
+var keys = Object.keys(Person.prototype)
+console.log(keys) // ["age"]
+```
 
 ### 获取原型对象方法的比较
 
@@ -599,7 +664,7 @@ c.constructor.prototype === p // true
 
 ```js
 Array.prototype.slice.call(类数组);
-这个方法与[].slice.call(类数组)的区别：后者的[]是重新创建了一个数组从而得到slice方法，但是这是不必要的
+//这个方法与[].slice.call(类数组)的区别：后者的[]是重新创建了一个数组从而得到slice方法，但是这是不必要的
 ```
 
 
@@ -608,4 +673,5 @@ Array.prototype.slice.call(类数组);
 
 1. https://blog.csdn.net/qq_44197554/article/details/105438252
 2. Dr. Axel Rauschmayer, [JavaScript properties: inheritance and enumerability](http://www.2ality.com/2011/07/js-properties.html)
-
+3. https://wangdoc.com/javascript/oop/prototype.html#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%9A%84%E7%BC%BA%E7%82%B9
+4. https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg%3D%3D&chksm=80d66757b7a1ee41cd8bc2154baf7e8a15304d25bd289dda29061ebe1678eebaad4232557ec3&idx=1&mid=2665520916&scene=21&sn=76f110bb713ac67d0a678af0b088501e#wechat_redirect

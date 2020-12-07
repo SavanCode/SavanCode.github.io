@@ -15,3 +15,14 @@ categories:
 
 使用listener的时候， this可以跟踪对应的listener持有者。 event.target是当前的时间互动触发点
 
+## 2.作用域
+
+```js
+function loo(){
+	vargoo=1;moo();}
+function moo(){
+	console.log(goo);}
+loo();
+//UncaughtReferrenceError:goo is not defined
+```
+

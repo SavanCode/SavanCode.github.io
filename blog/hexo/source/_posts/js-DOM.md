@@ -539,7 +539,7 @@ document.getElementById("button").addEventListener("click",function(){
             alert("button");
         },true/false);
 true:时间捕捉 外入内
-false:事件冒泡 内到外
+false:事件冒泡 内到外 （默认）
 ```
 
 

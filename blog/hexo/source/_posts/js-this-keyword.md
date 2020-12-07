@@ -554,6 +554,20 @@ func();
 counter.count // 1
 ```
 
+```js
+"use strict";
+function fun(name){console.log("hello"+this+" "+name);}.bind("lucy");
+fun("bennet");
+//UncaughtSyntaxError:Unexpectedtoken'.'
+
+"use strict";
+var sayhello = function (name){console.log("hello"+this+" "+name);}.bind("lucy");
+fun("bennet");
+// hello bennet lucy
+```
+
+
+
 Reference：
 
 - http://www.ruanyifeng.com/blog/2010/04/using_this_keyword_in_javascript.html

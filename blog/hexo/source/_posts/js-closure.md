@@ -13,6 +13,11 @@ categories:
 
 # 基本作用域
 
+- 全局变量：在函数外部定义的变量，可以在函数内部使用
+- 局部变量：在函数内部定义的变量，只能在函数内部使用
+  其中，在函数内部定义的变量，如果不写var，也是全局变量。在外部使用前，需先执行这个函数（不推荐）
+- 如果全局变量与局部变量有冲突，使用局部变量。（作用域近的）
+
 Javascript语言的特殊之处，就在于函数内部可以直接读取全局变量。
 
 ![基本作用域例子](js-closure/1606362501029.png)
@@ -22,7 +27,33 @@ var n=999;
 function f1(){
 　　alert(n); 
 　　}
-f1(); // 999
+f1(); // 999 
+
+//外部函数之间的作用域是分开的
+function loo(){
+	vargoo=1;moo();}
+function moo(){
+	console.log(goo);}
+loo();
+//UncaughtReferrenceError:goo is not defined
+
+//注意下面的区别
+(function(){
+　　var n=999;
+　　})();
+console.log(n);//undefined
+
+var n=999;
+(function f1(){
+　　alert(n); //999
+　　})();
+
+
+var salary="653.582";
+(function(){
+    console.log("original salary"+salary);// undefined
+    var salary="789";//如果这里没有，那么上面不是undefined；但是内部有的 先看内部
+})();
 ```
 
 
@@ -36,7 +67,7 @@ f1(); // 999
 　　alert(n); // error
 ```
 
-这里有一个地方需要注意，函数内部声明变量的时候，一定要使用var命令。如果不用的话，你实际上声明了一个全局变量！
+这里有一个地方需要注意，函数内部声明变量的时候，一定要使用var命令。**如果不用的话，你实际上声明了一个全局变量！**
 
 ```js
 function f1(){
@@ -73,6 +104,60 @@ function f1(){
 　　var result=f1();
 　　result(); // 999
 ```
+
+# 函数作用域查找
+
+## 1、定义说明
+
+1）函数当前作用域查找不到，可以访问外层函数作用域的活动对象（参数、局部变量、定义在外层函数体里的函数）
+2）外层的外层函数。。。一直到全局
+
+第一条说明：定义在外层函数体里的函数，包括当前函数，当前函数调用自己的时候，就是递归调用。
+
+## 2、原理
+
+执行环境、作用域链、作用域、活动对象
+1）调用内层函数，会创建一个执行环境，执行环境会关联一个作用域链
+2）调用内层函数时，所有的外层函数都已经调用完毕或者外层函数调用中，所有只要把所用外层函数作用域（包括最外层全局）的活动对象，关联到当前内层函数的作用域链上。
+3）最后创建内层函数作用域的活动对象，并且关联到作用域链的最前端。
+
+活动对象注释：
+函数参数，函数体里面定义的局部变量，函数体里面定义的函数
+
+## 3、例子
+
+```js
+var str1 = '全局变量';
+function func(arg) {
+　　var str2 = '外层局部变量';
+　　function funcInner1() {
+　　　　console.log('外层函数的其他函数');
+　　}
+　　function funcInner2(argInner2) {
+　　　　var str3 = '内层函数变量';
+　　　　console.log(str3);
+　　　　console.log(argInner2);
+
+　　　　console.log(arg);
+　　　　console.log(str2);
+　　　　funcInner1();
+　　　　console.log(str1);
+　　}
+　　return funcInner2;
+}
+var result = func('外层函数参数')
+result('内层函数参数');
+/*
+执行结果：
+内层函数变量
+内层函数参数
+外层函数参数
+外层局部变量
+外层函数的其他函数
+全局变量*/
+```
+
+
 
 # 闭包实际概念
 
