@@ -15,34 +15,34 @@ categories:
 
 ## class基本定义
 
-语法
+### 语法
 
 ```js
 class ClassName {
-  constructor() { ... }
-  method_1() { ... }
+  constructor() { ... }//这里全部放属性
+  method_1() { ... }//方法之间不放逗号
   method_2() { ... }
   method_3() { ... }
   }
 }
 ```
 
-
+### 例子
 
 ```js
-class Car {
-  constructor(name, year) {
-    this.name = name;
-    this.year = yearclass Car {
-  constructor(name, year) {
-    this.name = name;
-    this.year = year;
-  }
-  age() {
-    let date = new Date();
-    return date.getFullYear() - this.year;
-  }
+ class Car {
+      constructor(name, year) {
+        this.name = name;
+        this.year = year;
+      }
+      age() {
+        let date = new Date();
+        return date.getFullYear() - this.year;
+      }
+     static coding(){ console.log("静态方法，不用实例化直接可以调用")}
 }
+
+Car.coding();
 
 let myCar = new Car("Ford", 2014);
 document.getElementById("demo").innerHTML =
@@ -81,6 +81,10 @@ class Model extends Car {
   }
   show() {
     return this.present() + ', it is a ' + this.model;
+  }
+    present() {
+        //super.present() 这样会调用父类方法
+    	console.log("我会覆盖父类方法");
   }
 }
 

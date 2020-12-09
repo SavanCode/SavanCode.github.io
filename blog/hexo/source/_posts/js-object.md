@@ -46,6 +46,14 @@ var obj = {
 obj['100'] // true
 ```
 
+```js
+var age=30;
+var name="dfghjkl";
+var sex="male";
+var obj={ age, name, sex}
+console.log(obj);
+```
+
 ### constructor（用构造函数+new生成对象）
 
 ```js
@@ -275,6 +283,7 @@ if ('toString' in obj) {
 
 - 它遍历的是对象所有可遍历（enumerable）的属性，会跳过不可遍历的属性。
 - 它不仅遍历对象自身的属性，还遍历继承的属性。
+- **注意： 不能用 for ... of**
 
 ```js
 var obj = {a: 1, b: 2, c: 3};

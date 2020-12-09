@@ -11,71 +11,35 @@ tags: JS
 categories:
 ---
 
-# 基本作用域
+# JS变量声明
 
-- 全局变量：在函数外部定义的变量，可以在函数内部使用
-- 局部变量：在函数内部定义的变量，只能在函数内部使用
-  其中，在函数内部定义的变量，如果不写var，也是全局变量。在外部使用前，需先执行这个函数（不推荐）
+JS中变量申明分显式申明和隐式申明。 
+
+- vari=100;//显式申明 
+- i=100;//隐式申明 
+
+# JS作用域 与变量（scope）
+
+- **全局变量 - global**：在函数外部定义的变量，可以在函数内部使用
+- **局部变量 - local** ：在函数内部定义的变量，只能在函数内部使用
+  - 其中，在函数内部定义的变量，如果不写var，也是全局变量。在外部使用前，需先执行这个函数（不推荐）
 - 如果全局变量与局部变量有冲突，使用局部变量。（作用域近的）
+- **块级作用域** Function scope/Block scope: 函数内部 或者 { } 内部
+  - for while if ，块级作用域可通过新增命令 let 和 const 声明，所声明的变量在指定块的作用域外无法被访问。
+  - 基本上可以用 let 来代替 var 进行变量声明，只有块级变量，没有块级函数
+- **作用域链**会先从自身开始查找作用域内的变量，有就执行，没有就往上一层作用域链查找，直到顶端为止，如果顶端还是没有就抛出异常。
+- **自由变量** :  当前作用域没有定义的变量
 
-Javascript语言的特殊之处，就在于函数内部可以直接读取全局变量。
+Javascript函数内部可以直接读取全局变量。
 
 ![基本作用域例子](js-closure/1606362501029.png)
 
-```js
-var n=999;
-function f1(){
-　　alert(n); 
-　　}
-f1(); // 999 
+最后输出的结果为 2, 4, 12
 
-//外部函数之间的作用域是分开的
-function loo(){
-	vargoo=1;moo();}
-function moo(){
-	console.log(goo);}
-loo();
-//UncaughtReferrenceError:goo is not defined
+- 泡泡 1 是全局作用域，有标识符 foo；
+- 泡泡 2 是作用域 foo，有标识符 a,bar,b；
+- 泡泡 3 是作用域 bar，仅有标识符 c。
 
-//注意下面的区别
-(function(){
-　　var n=999;
-　　})();
-console.log(n);//undefined
-
-var n=999;
-(function f1(){
-　　alert(n); //999
-　　})();
-
-
-var salary="653.582";
-(function(){
-    console.log("original salary"+salary);// undefined
-    var salary="789";//如果这里没有，那么上面不是undefined；但是内部有的 先看内部
-})();
-```
-
-
-
-另一方面，在函数外部自然无法读取函数内的局部变量。
-
-```js
-　function f1(){
-　　　　var n=999;
-　　}
-　　alert(n); // error
-```
-
-这里有一个地方需要注意，函数内部声明变量的时候，一定要使用var命令。**如果不用的话，你实际上声明了一个全局变量！**
-
-```js
-function f1(){
-　　　　n=999;
-　　}
-　　f1();
-　　alert(n); // 999
-```
 
 # 外部读取局部变量
 
@@ -111,8 +75,6 @@ function f1(){
 
 1）函数当前作用域查找不到，可以访问外层函数作用域的活动对象（参数、局部变量、定义在外层函数体里的函数）
 2）外层的外层函数。。。一直到全局
-
-第一条说明：定义在外层函数体里的函数，包括当前函数，当前函数调用自己的时候，就是递归调用。
 
 ## 2、原理
 
@@ -156,6 +118,105 @@ result('内层函数参数');
 外层函数的其他函数
 全局变量*/
 ```
+
+# 自测
+
+```js
+var n=999;
+function f1(){
+　　alert(n); 
+　　}
+f1(); // 999 
+
+//外部函数之间的作用域是分开的
+function loo(){
+	vargoo=1;moo();}
+function moo(){
+	console.log(goo);}
+loo();
+//UncaughtReferrenceError:goo is not defined
+
+//注意下面的区别
+(function(){
+　　var n=999;
+　　})();
+console.log(n);//undefined
+
+var n=999;
+(function f1(){
+　　alert(n); //999
+　　})();
+
+
+var salary="653.582";
+(function(){
+    console.log("original salary"+salary);// undefined
+    var salary="789";//如果这里没有，那么上面不是undefined；但是内部有的 先看内部
+})();
+
+
+{
+  const hello = 'Hello CSS-Tricks Reader!'
+  console.log(hello) // 'Hello CSS-Tricks Reader!'
+  function f1(){ console.log("this is inside")} //这个全局函数
+   let f= function(){};//块级变量
+}
+
+console.log(hello) // Error, hello is not defined
+f1();//"this is inside"
+```
+
+另一方面，在函数外部自然无法读取函数内的局部变量。
+
+```js
+　function f1(){
+　　　　var n=999;
+　　}
+　　alert(n); // error
+```
+
+这里有一个地方需要注意，函数内部声明变量的时候，一定要使用var命令。**如果不用的话，你实际上声明了一个全局变量！**
+
+```js
+function f1(){
+　　　　n=999;
+　　}
+　　f1();
+　　alert(n); // 999
+```
+
+关于自由变量取值
+
+```js
+var x = 10;
+function fn() {
+    console.log(x);
+}
+function show(f) {
+    var x = 20(function() {
+        f(); //10，而不是20
+    })();
+}
+show(fn);
+```
+
+> 在 fn 函数中，取自由变量 x 的值时，要到哪个作用域中取？——**要到创建这个函数的那个域”。—其实这就是所谓的”静态作用域”**
+
+```js
+var a = 10;
+function fn() {
+    var b = 20;
+    function bar() {
+        console.log(a + b); //30
+    }
+    return bar;
+}
+var x = fn(),
+    b = 200;
+x(); //bar()
+```
+
+> fn()返回的是 bar 函数，赋值给 x。执行 x()，即执行 bar 函数代码。取 b 的值时，直接在 fn 作用域取出。取 a 的值时，试图在 fn 作用域取，但是取不到，只能转向创建 fn 的那个作用域中去查找，结果找到了,所以最后的结果是 30
 
 
 

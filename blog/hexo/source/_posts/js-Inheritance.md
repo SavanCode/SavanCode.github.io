@@ -34,7 +34,7 @@ function Parent() {}
 function Child(){}
 // 继承
 Child.prototype = new Parent();
-Child.prototype.constructor=Child;
+Child.prototype.constructor=Child;//这里如果没有的话，原型链会有问题，因为child的构建函数会指向Parent
 ```
 
 ### 例子
@@ -112,7 +112,7 @@ console.log(stu2.hobbies) // music,reading,basketball
 >
 > 优点：  和原型链继承完全反过来 ; 父类的引用属性不会被共享 ; 子类构建实例时可以向父类传递参数，可以多继承（call 多个父类）
 >
-> 缺点：子类只是接用父类的构造函数，别的都没干
+> 缺点：子类只是接用父类的构造函数，别的都没干，原型上的东西子类都没有
 
 ### 语法
 
@@ -246,7 +246,7 @@ var s1 = new Student('Tom', 20, 15000)
 console.log(s1)
 ```
 
-### 组合继承优化2 (推荐使用)
+### 组合继承优化2 (推荐使用) - Object.create
 
 > 原理：借助原型可以基于已有的对象来创建对象，var B = Object.create(A)以A对象为原型，生成了B对象。B继承了A的所有属性和方法。
 
@@ -285,7 +285,7 @@ console.log(s1)
 
 
 
-## 4.原型式继承
+## 4.原型式继承 - Object.create
 
 > 核心：原型式继承的object方法本质上是对参数对象的一个浅复制。
 >

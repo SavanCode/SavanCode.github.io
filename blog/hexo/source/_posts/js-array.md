@@ -848,8 +848,32 @@ function steamrollArray(arr) {
   let flat = [].concat(...arr);
   return flat.some(Array.isArray) ? steamrollArray(flat) : flat;
 }
+steamrollArray([1, [2], [3, [[4]]]]);//1 2 3 4
 
-steamrollArray([1, [2], [3, [[4]]]]);
+//原生array
+const arr1 = [0, 1, 2, [3, 4]];
+console.log(arr1.flat());
+// expected output: [0, 1, 2, 3, 4]
+const arr2 = [0, 1, 2, [[[3, 4]]]];
+console.log(arr2.flat(2));//但是对于depth有要求
+// expected output: [0, 1, 2, [3, 4]]
+
+//其实要有递归的思想
+function arraySum(array) {
+    if (array.length == 0 || !(array instanceof Array)) {
+        return false
+    }
+    let sum = 0;
+    for (var i = 0; i < array.length; i++) {
+        if (typeof array[i] == "number") {
+            sum += array[i];
+        }
+        else if (array[i] instanceof Array)
+            sum += arraySum(array[i]);
+    }
+    return sum;
+}
+console.log(arraySum([1, [2], [[3]], [[[4]]]]));//10
 ```
 
 

@@ -11,15 +11,15 @@ tags: JS
 categories:
 ---
 
-# 定义变量
+## 定义变量
 
-## let/const 一起和 var 的区别
+### let/const 一起和 var 的区别
 
-| var                                       | let/const                        |
-| ----------------------------------------- | -------------------------------- |
-| 会进行预解析                              | 不会进行预解析, 必须先定义后使用 |
-| 声明重复变量名                            | 不能声明重复的变量名             |
-| 没有块级作用域,声明全局变量（函数内除外） | 有块级作用域                     |
+| var                                       | let/const                                                    |
+| ----------------------------------------- | ------------------------------------------------------------ |
+| 会进行预解析                              | 不会进行预解析, 必须先定义后使用                             |
+| 声明重复变量名                            | 不能声明重复的变量名, 不能重新赋值（不同作用域可以重新定义，但不可以重新赋值） |
+| 没有块级作用域,声明全局变量（函数内除外） | 有块级作用域                                                 |
 
 ![](JS-basic/1606354411609.png)
 
@@ -33,7 +33,7 @@ categories:
 
 var在函数内命名的变量是只在整个函数作用域内起作用，出了这个函数作用域就不能用了
 
-## let vs const
+### let vs const
 
 | let          | const          |
 | ------------ | -------------- |
@@ -255,6 +255,86 @@ console.log(
 var msg = '数字' + n + '是' + (n % 2 === 0 ? '偶数' : '奇数');
 ```
 上面代码利用三元运算符，在字符串之中插入不同的值。
+
+## 函数显式参数(Parameters)与隐式参数(Arguments)
+
+### 设置默认参数
+
+```js
+functionName(parameter1, parameter2, parameter3) {
+    // 要执行的代码……
+}
+```
+
+```js
+function myFunction(x, y) {
+    y = y || 0;
+    console.log(y);
+}
+myFunction(5);//0
+myFunction(5,9);//9
+
+//新写法
+function myFunction(x, y = 10) {
+    // y is 10 if not passed or undefined
+    return x + y;
+}
+ 
+myFunction(0, 2) // 输出 2
+myFunction(5); // 输出 15, y 参数的默认值
+```
+
+### 参数是array - 不确定长度
+
+```js
+function f1(m,n){
+    console.log(m,n)
+	return m+n;
+}
+console.log(f1(2,3))//一般参数
+var arr=[1,2,3]
+console.log(f1(...arr));//输入的参数只有前两位 1 2
+
+var arr=[1,2,3];  
+f1([a,b,c]){}//自动解构
+
+var arr=[1,2,3,4,5,6];   
+f1([a,b,c]){}//前三个
+
+var arr=[1,2,3,4,5,6];   
+f1([a,b,c,,e]){}//跳过一个
+console.log(a,b,c)
+
+var arr=[1,2,3,4,5,6];   
+f1([a,b,c]=[]){}//跳过一个
+```
+
+### 参数是object
+
+```js
+var {age,sex,say} =obj;//对应属性名字一定要对
+console.log(age,sex,say);
+say();
+```
+
+
+
+### 不定参数个数 
+
+```js
+//写法一
+function f2(...x){
+    console.log(x);
+}
+f2(2,3,5,4);
+
+//写法2
+function f2(m,n...x){
+    console.log(m,n,x);//单独前两个拿出来
+}
+f2(2,3,5,4);
+
+```
 
 
 

@@ -1130,7 +1130,7 @@ window.history.replaceState(data:json,title:string,url:string); // 不会存储�
 
 用来控制页面跳转
 
-```js
+```html
 location.replace("xx"); //跳转
 location.href = 'xxxx'; //同上
 location.reload(); //刷新页面
@@ -1138,19 +1138,31 @@ location.reload(); //刷新页面
 
 
 
-## 定时器
+## 定时器 - requestAnimationFrame
 
-`setInterval`在执行完一次代码之后，经过了那个固定的时间间隔，它还会**自动重复**执行代码，而`setTimeout`**只执行一次**那段代码。
+`requestAnimationFrame`是由浏览器专门为动画提供的API，在运行时浏览器会自动优化方法的调用
+
+`setInterval`在执行完一次代码之后，经过了那个固定的时间间隔，它还会**自动重复**执行代码，而`setTimeout`**只执行一次**那段代码。(问题就是不精确)
+
+requestAnimationFrame采用系统时间间隔，保持最佳绘制效率，不会因为间隔时间过短，造成过度绘制，增加开销；也不会因为间隔时间太长，使用动画卡顿不流畅，让各种网页动画效果能够有一个统一的刷新机制，从而节省系统资源，提高系统性能，改善视觉效果
 
 ```js
 var id = setInterval(callback/function,ms); //每隔ms毫秒执行一次函数（回调函数只写函数名）
 var id = setTimeout(callback/function,ms); //在ms毫秒后执行一次函数
 clearInterval(timer); //清理掉setInterval定时器
 clearTimeout(timeout); //让setTimeout定时器失效
+
+//对比：
+//设置timer
 window.requestAnimationFrame(callBack/function); //专门为动画设置的定时器（效果比setInterval流畅，每秒执行60次，大部分浏览器中，每秒执行次数和显示器刷新率一致）
+var timer = requestAnimationFrame(function(){});
+
+//取消
+cancelAnimationFrame(1);//可以直接使用返回值取消
+cancelAnimationFrame(timer);
 ```
 
-
+[**实际例子**](https://www.cnblogs.com/xiaohuochai/p/5777757.html)
 
 ## 滚动动态加载内容
 
@@ -1197,7 +1209,10 @@ oncontextmenu
 
 阻止a标签的默认事件：
 
-```js
+```html
 <a href="javascript:void(0)">链接</a>
 ```
 
+# Reference：
+
+https://www.cnblogs.com/xiaohuochai/p/5777757.html

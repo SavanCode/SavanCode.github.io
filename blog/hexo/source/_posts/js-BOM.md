@@ -134,7 +134,7 @@ alert(window.age)
 
 #### 3.1 设置定时器方法
 
-###### 3.1.1 `setTimeout()`
+###### 3.1.1.1 `setTimeout()`
 
 - `功能`
 
@@ -149,24 +149,66 @@ alert(window.age)
   setTimeout("调用的函数",等待的毫秒数)
   ```
 
-```js
-举例: 实现五秒后出现提示框
-
+```html
+//举例: 实现五秒后出现提示框
 <script>
-    function startWork(){
-        alert('我在准备中！')
-        setTimeout(function(){
-            alert('我开工了！')
-        },3000)
-    }
+var num=100;
+function startWork(){
+      alert('我在准备中！')
+      setTimeout(function(){
+          alert('我开工了！');
+          num=num+100;
+           if( num > 200){
+              clearInterval(timer);
+              return false;
+            }
+     ,3000)
+}
 </script>
 <body>
     <form action="">
         <input type="button" value="开始工作" onclick="startWork()">
     </form>
-</body>                                                     
-123456789101112131415
+</body>                              
 ```
+
+```js
+var num=0;
+var timer=setTimeout(function)(){
+        console.log (num++);
+    },3000);
+};
+```
+
+ ###### 3.1.1.2 立即改变用户输入
+
+```html
+<input type="text" id="myInput">
+<script>
+myInput.onkeypress = function(event) {
+    setTimeout(function(){
+        myInput.value = myInput.value.toUpperCase();
+    });
+}
+</script>
+```
+
+###### 3.1.1.3 js改变线性顺序
+
+**js是单线程的**
+
+所以我们看看
+
+```js
+setTimeout(function(){
+ console.log(1);
+}, 0);
+console.log(2);
+console.log(3);
+//结果： 2 3 1
+```
+
+js是单线程的，单线程就意味着，所有任务需要排队，前一个任务结束，才会执行后一个任务。如果前一个任务耗时很长，后一个任务就不得不一直等着。
 
 ###### 3.1.2 `setInterval()`
 
@@ -180,18 +222,29 @@ alert(window.age)
 
 ```js
 setInterval("调用的函数",间隔的毫秒数)
-1
-举例: 定时器
+```
 
+```html
 <div id="mydiv"></div>
 <script>
     setInterval(function(){
         var mydiv = document.getElementById('mydiv')
         mydiv.innerHTML = new Date().toLocaleString()
     }, 1000);
-</script>
-123456789
+</script> 
 ```
+
+```js
+var num=1;
+var timer = setInterval(function(){
+    count.innerHTML=num++;
+    if(num==11){
+        clearInterval(timer);
+    }
+},500);
+```
+
+
 
 #### 3.2 清除定时器方法
 

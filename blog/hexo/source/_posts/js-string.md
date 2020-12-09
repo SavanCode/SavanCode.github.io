@@ -19,7 +19,36 @@ categories:
 
 字符串String是由双引号(")或单引号(')声明的
 
-## 反斜线
+## 反引号 `` - 多行字符串 & 嵌入变量
+
+```js
+// 普通字符串
+console.log(`In JavaScript '\n' is a line-feed.`);
+
+// 多行字符串 - 空格、缩进和换行都会被保留在输出中。
+console.log(`In JavaScript this is
+not legal.`);
+
+
+// 字符串中嵌入变量 - 模板字符串中嵌入变量，要将变量名写在${}之中
+var name = "Bob", time = "today";
+console.log(`Hello ${name}, how are you ${time}?`);   // Hello Bob, how are you today?
+var x = 1, y = 2;
+
+console.log(`${x} + ${y} = ${x + y}`);
+// "1 + 2 = 3"
+
+function func() {
+    return 'Hello';
+}
+
+`${func()} World`;
+// "Hello World"
+```
+
+
+
+## 反斜线- 特殊符号
 
 ```js
 'Wouldn\'t you prefer this book?'    //"Wouldn't you prefer this book?"
@@ -470,6 +499,24 @@ str.split(/\s|_|(?=[A-Z])/)
 
 ## 应用正则
 
+### 去掉非数字
+
+```js
+var s ="价格4500元";
+
+var num= s.replace(/[^0-9]/ig,"");
+
+alert(num);//4500
+
+var s ="价格4500元，等级：2";
+
+var num = s.replace(/[^0-9]/ig,"");
+
+alert(num);//45002
+```
+
+
+
 ### 替换指定符号
 
 ```js
@@ -504,5 +551,12 @@ binaryAgent("01000001 01110010 01100101 01101110 00100111 01110100 00100000 0110
 ```js
 parseInt(str); // 会提取字符串中的整数部分，遇到非整数会立即停止提取；适合去掉css中的单位
 parseFloat(str) // 同上，可以提取小数
+```
+
+## js保留两位小数方法总结
+
+```js
+//num:要操作的数字     size：要保留的位数
+parseFloat(num).toFixed(size);
 ```
 

@@ -58,9 +58,9 @@ var sum = function sum() {
 };
 ```
 
-##  4.当遇到this
+##  4.箭头函数和普通函数有个明显的区别
 
-箭头函数和匿名函数有个明显的区别：箭头函数内部的`this`是词法作用域，由上下文确定。
+箭头函数内部的`this`是词法作用域，由上下文确定。
 
 ```js
 var obj = {
@@ -70,22 +70,26 @@ var obj = {
         var fn = function () {
             return new Date().getFullYear() - this.birth; // this指向window或undefined
         };
-        return fn();
+        return fn();//因为这里call
     }
 };
 
 var obj1 = {
     birth: 1990,
     getAge: function () {
-        var b = this.birth; // 1990
-        var fn = () => new Date().getFullYear() - this.birth; // this指向obj对象
+        var b = this.birth; //这里是obj
+        var fn = () => new Date().getFullYear() - this.birth; // this指向obj对象，跟上面的一样
         return fn();
     }
 };
 obj1.getAge(); // 26，箭头函数完全修复了this的指向，this总是指向词法作用域，也就是外层调用者obj1
 ```
 
+> 不能用arguments，但是可以用参数以及参数解构
+
 ## 5.什么时候不要用箭头函数
+
+- 不能作为构造函数，不可以实例化
 
 [详细解释](https://segmentfault.com/a/1190000007074846)
 
