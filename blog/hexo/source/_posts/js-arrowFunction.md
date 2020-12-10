@@ -44,7 +44,9 @@ var sum = (n1, n2) => {
 
 
 
-## 3. 使用箭头函数返回对象：必须在对象外面加上括号，否则就只是个代码块，从而就不会返回对象
+## 3. 使用箭头函数返回对象
+
+必须在对象外面加上括号，否则就只是个代码块，从而就不会返回对象
 
 ```js
 var sum = () => ({name: 'a'})
@@ -58,7 +60,7 @@ var sum = function sum() {
 };
 ```
 
-##  4.箭头函数和普通函数有个明显的区别
+##  4.箭头函数和普通函数明显的区别
 
 箭头函数内部的`this`是词法作用域，由上下文确定。
 
@@ -87,7 +89,43 @@ obj1.getAge(); // 26，箭头函数完全修复了this的指向，this总是指�
 
 > 不能用arguments，但是可以用参数以及参数解构
 
-## 5.什么时候不要用箭头函数
+## 5.创建立即执行函数表达式
+
+```js
+let person = ((name) => {
+  return {
+    getName: function( ) {
+      return name;
+    }
+  };
+})('Nicholas');
+
+console.log(person.getName()); // "Nicholas"
+
+// 实际上相当于：
+let person = function(name) {
+  return {
+    getName: function( ) {
+      return name;
+    }
+  };
+}('Nicholas');
+
+console.log(person.getName()); // "Nicholas"
+```
+
+## 6.不能与new一起用
+
+箭头函数缺少正常函数所以拥有的 `prototype` 属性，它的设计初衷是“即用即弃”，所有不能用它定义新的类型。如果尝试通过 `new` 关键字调用箭头函数，会报错，就像这样：
+
+```js
+var MyType = () => {},
+  object = new MyType(); // 错误，不可以通过 new 关键字抵用箭头函数
+```
+
+
+
+## 7.什么时候不要用箭头函数
 
 - 不能作为构造函数，不可以实例化
 
