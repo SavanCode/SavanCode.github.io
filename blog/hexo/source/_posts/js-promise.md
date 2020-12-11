@@ -1,5 +1,4 @@
----
-title: JS 回调函数以及Promise
+title: JS 回调函数 & Promise & async
 top: false
 cover: false
 toc: true
@@ -9,7 +8,6 @@ password:
 summary:
 tags: JS
 categories:
----
 
 
 # js处理error
@@ -208,26 +206,28 @@ Promise对象只有三种状态 （PromiseState）
 - 异步操作从“未完成”到“已完成”（pending -  resolved）
 - 异步操作从“未完成”到“失败”。( pending - rejected)
 
-因此，Promise对象的最终结果只有两种。**要么成功，要么失败。于是只会有一种数据产生，成功的结果数据称value,失败的结果数据称reason**
+因此，Promise对象的最终结果只有两种。**要么成功，要么失败。于是只会有一种数据产生，成功的结果数据称value,失败的结果数据称reason** （PromiseResult）
 
 - 异步操作**成功**，Promise对象传回一个值，状态变为 resolved。
 
 - 异步操作**失败**，Promise对象抛出一个错误，状态变为 rejected。
 
-  
+- 异步操作，函数返回promise （不管里面是成功失败），外面的状态是pending，proto的属性会保留结果状态
+
+  ![reject状态例子](js-promise/1607670125369.png)
 
 ```js
 var p1 = new Promise(function(resolve,reject){
-	resolve(1);
+	resolve(1);//成功
 });
 var p2 = new Promise(function(resolve,reject){
 setTimeout(function(){
-  	resolve(2);  
+  	resolve(2);  //成功
 }, 500);      
 });
 var p3 = new Promise(function(resolve,reject){
 setTimeout(function(){
-  	reject(3);  
+  	reject(3);  //失败
 }, 500);      
 });
 
@@ -451,16 +451,18 @@ p.then(function(value){
   说明：then()的语法糖，相当于：then(undefined, onRejected)
 
 ```javascript
-new Promise((resolve, reject)=>{
+let p = new Promise((resolve, reject)=>{
 	//一系列异步操作，得到结果result，成功则调用resolve，失败则调用reject
 	resolve(result)
 	// reject(result)
-}).then(  //对成功的结果的处理，参数是一个函数，此函数的参数value就是result，
+})
+
+	p.then(  //对成功的结果的处理，参数是一个函数，此函数的参数value就是result，
 	value=>{
-		//函数的内容里面写对异步结果的处理
 		console.log('onResolved()', value)
 	}
-).catch(   //对失败的结果的处理，参数是一个函数，此函数的参数reason就是result，
+)
+    p.catch(   //对失败的结果的处理，参数是一个函数，此函数的参数reason就是result
 	reason=>{
 		console.log('onRejected()', reason)
 	}
@@ -471,6 +473,9 @@ new Promise((resolve, reject)=>{
 
 - value: 成功的数据或promise对象
   说明：返回一个成功/失败的promise对象
+
+> 如果传入的参数是非promise对象，则返回结果为成功的promise对象
+> 	   如果传入参数为promise对象，则参数的结果决定了resolve的结果就是对应的promise对象 PromiseResult
 
 ## 5、Promise.reject方法：(reason)=>{}
 
@@ -521,6 +526,10 @@ let Promise1 = new Promise(function(resolve, reject){ resolve(v1); reject(r1); }
 let Promise2 = new Promise(function(resolve, reject){ resolve(v2); reject(r2); })
 let Promise3 = new Promise(function(resolve, reject){ resolve(v3); reject(r3); })
  
+let result = Promise.race([Promise1, Promise2, Promise3])
+// 假设Promise1, Promise2 resolve，Promise3 resolve，且Promise2 resolve最快
+console.log(result);//显示的是promise 2 的resolve
+
 let p = Promise.all([Promise1, Promise2, Promise3])
  // 假设Promise1, Promise2 resolve，Promise3 reject，且Promise2 resolve最快
 p.then((v2) => {
@@ -558,8 +567,8 @@ stat(‘.’)
 
 ```javascript
 const p= new Promise((resolve,reject)=>{
-	//resolve(1)  promise变为resolved成功状态
-	//reject(2)   promise变为rejected失败状态
+	//resolve(1)  promise变为resolved成功状态 pending => fulfilled/resolved
+	//reject(2)   promise变为rejected失败状态 pending => rejected
 	//throw new Error('出错了')  抛出异常，promise变为rejected失败异常，reason为抛出的异常
 	throw 3  //抛出异常，promise变为rejected失败状态，reason为抛出的3
 })
@@ -645,6 +654,7 @@ new Promise((resolve , reject) => {
 2. 使用then的链式调用串联多个同步异步任务
 
 ```javascript
+//下面的例子是怎么实现的呢?
 new Promise((resolve , reject) => {
   setTimeout(() => {
     console.log('执行异步任务1');
@@ -672,6 +682,24 @@ new Promise((resolve , reject) => {
     console.log('异步任务3的结果');
   }
 )
+
+//串联任务的实现
+let p = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve('OK');
+    }, 1000);
+});
+
+p.then(value => {
+    return new Promise((resolve, reject) => {
+        resolve("success");
+    });
+}).then(value => {
+    console.log(value);//这里打印是什么？
+}).then(value => {
+    console.log(value);//这里打印应该是什么？
+})
+//这里一定记得 then的实现取决于前面返回的是什么！！
 ```
 
 ## promise异常穿透
@@ -714,7 +742,7 @@ new Promise((resolve , reject) => {
 ## 中断promise链
 
 1. 当使用promise的链式调用时，在中间中断，不再调用后面的回调函数
-2. 办法：在回调函数中返回一个pendding状态的promise对象
+2. 办法：在回调函数中返回一个pendding状态的promise对象（对后面的then函数而言，由于一直是pending状态的，then是不能执行的），通过return false也没有用！！
 
 ```javascript
 new Promise((resolve , reject) => {
@@ -770,18 +798,70 @@ Promise 在resolve语句后面，再抛出错误，不会被捕获，等于没�
 
 1. async 函数
    - 函数的返回值为promise对象
+   
    - promise对象的结果由async函数执行的返回值决定
+   
+     
+   
+   ```js
+   //注意输出的result
+   async function main(){
+               //1. 如果返回值是一个非Promise类型的数据
+               // return 521;
+               //2. 如果返回的是一个Promise对象
+               // return new Promise((resolve, reject) => {// 这里返回promise的状态是什么呢？
+               //     // resolve('OK');
+               //     reject('Error');
+               // });
+               //3. 抛出异常
+               throw "Oh NO";
+           }
+   
+           let result = main();
+           console.log(result);
+   ```
+   
+   
+   
 2. await表达式
    - await右侧的表达式一般为promise对象，但也可以是其他值
+
    - 如果表达式是promise对象，await返回的都是promise的成功值
+
    - 如果表达式是其他值，直接将此值作为await返回值
+
+     
+
+   ```js
+    async function main(){
+               let p = new Promise((resolve, reject) => {
+                   // resolve('OK');
+                   reject('Error');
+               })
+               //1. 右侧为promise的情况
+               // let res = await p;
+               //2. 右侧为其他类型的数据
+               // let res2 = await 20;
+               //3. 如果promise是失败的状态
+               // let res3 = await p //这样是不行的 再reject的时候
+               try{
+                   let res3 = await p;
+               }catch(e){
+                   console.log(e);
+               }
+           }
+   
+           main();
+   ```
+
+   
+
 3. 注意
    - await必须写在async函数中，但async函数中可以没有await
    - 如果await的promise失败了，就会抛出异常，需要通过try … catch来捕获处理
 
 ```js
 // 使用async await 替代 Promise
- 
 const asyncFunction = async (params) => {
     try {
         const data1 = await get$(params);
@@ -792,6 +872,43 @@ const asyncFunction = async (params) => {
         conosle.log(error);
     }
 }
+
+//例子
+/**
+ * resource  1.html  2.html 3.html 读取文件内容
+ */
+
+const fs = require('fs');
+const util = require('util');
+const mineReadFile = util.promisify(fs.readFile);//将函数变成promise
+
+//回调函数的方式
+// fs.readFile('./resource/1.html', (err, data1) => {
+//     if(err) throw err;
+//     fs.readFile('./resource/2.html', (err, data2) => {
+//         if(err) throw err;
+//         fs.readFile('./resource/3.html', (err, data3) => {
+//             if(err) throw err;
+//             console.log(data1 + data2 + data3);
+//         });
+//     });
+// });
+
+//async 与 await
+async function main(){
+    try{
+        //读取第一个文件的内容
+        let data1 = await mineReadFile('./resource/1.html');
+        let data1error = await mineReadFile('./resource/1x.html');
+        let data2 = await mineReadFile('./resource/2.html');
+        let data3 = await mineReadFile('./resource/3.html');
+        console.log(data1 + data2 + data3 + data1error);
+    }catch(e){
+        console.log(e.code);
+    }
+}
+
+main();
 ```
 
 
