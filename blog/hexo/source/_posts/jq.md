@@ -7,7 +7,7 @@ mathjax: true
 date: 2020-12-12 13:18:20
 password:
 summary:
-tags: JS
+tags: jQuery
 categories:
 ---
 
@@ -66,6 +66,9 @@ var $div = $(div);    //将DOM对象作为jQuery函数的参数即可将该DOM�
 ```
 
 ## 1.3 jq选择器
+
+[Slector Reference](https://www.runoob.com/jquery/jquery-ref-selectors.html)
+
 ### a、基本选择器
 
 | 名称       | 用法               | 描述                                 |
@@ -220,6 +223,8 @@ alert(document.getElementById("id") == $("#aa").get(0));//返回true
 
 # 2.jq节点操作
 
+[节点操作reference](https://www.runoob.com/jquery/jquery-ref-traversing.html)
+
 ## 2.1 查找结点
 
 `$`(选择器字符串);    
@@ -323,7 +328,7 @@ $('div').replaceWith('<span>hello<span>');    //使用span节点替换所有div�
 ```
 
 
-​		replaeAll()    自身替换参数中的节点
+replaeAll()    自身替换参数中的节点
 
 ```js
 $('<span>hello</span>').replaeAll('div')    //使用span节点替换所有div节点【每个div均用span节点替换】
@@ -337,7 +342,7 @@ $('<span>hello</span>').replaeAll('div')    //使用span节点替换所有div节
 
 `wrapInner([wrappingElement])`  每个匹配元素里面内容(子元素)都会被这种结构包裹【匹配元素里面需要有内容；如果为空则最后一个空元素也会出现包裹html元素】  
 
-## 2.9 节点遍历
+## 2.9 [节点遍历](https://www.runoob.com/jquery/jquery-ref-traversing.html)
 
 children([selector])    获取匹配元素的子元素集合
 
@@ -372,6 +377,8 @@ parent([selector])    获取父元素
 parents([selector])    获取祖先元素
 
 # 3.jq事件
+
+[event reference](https://www.runoob.com/jquery/jquery-ref-events.html) 
 
 ## 3.1.基本事件函数
 
@@ -483,13 +490,462 @@ $("#p1").hover(
 
 ## 4.jq效果
 
-### 隐藏显示
+[效果reference](https://www.runoob.com/jquery/jquery-ref-effects.html)
+
+### 隐藏&显示
+
+```js
+$(selector).hide([speed][,easing][,callback]);
+$(selector).show([speed][,easing][,callback]);
+//隐藏&显示
+$(selector).toggle([speed][,easing][,callback]);
+```
+
+```js
+//第二个参数是一个字符串，表示过渡使用哪种缓动函数。（译者注：jQuery自身提供"linear" 和 "swing"，其他可以使用相关的插件）。
+$(document).ready(function(){
+  $(".hidebtn").click(function(){
+    $("div").hide(1000,"linear",function(){
+      alert("Hide() Done!");
+    });
+  });
+});
+
+$("button").click(function(){
+  $("p").toggle();
+})
+```
+
+![easing](jq/image-20201213113214390.png)
+
+> 对于可选的 callback 参数，有以下两点说明：
+> 1.$(*selector*)选中的元素的个数为n个，则callback函数会执行n次；
+> 2.callback 函数加上括号时，函数立即执行，只会调用一次， 如果不加括号，元素显示或隐藏后调用函数，才会调用多次。
+
+[例子](https://c.runoob.com/codedemo/5659)
+
+### 淡入淡出
+
+```js
+$(selector).fadeIn([speed][,easing][,callback]);
+$(selector).fadeOut([speed][,easing][,callback]);
+$(selector).fadeToggle([speed][,easing][,callback]);//淡入淡出之间转换
+$(selector).fadeTo(speed,opacity[,callback]);
+```
+
+```js
+//fadeIn fadeOut fadeToggle
+$("button").click(function(){
+  $("#div1").fadeIn();
+  $("#div2").fadeIn("slow");
+  $("#div3").fadeIn(3000);
+});
+//fadeTo()  没有默认参数，必须加上 slow/fast/Time &opacity
+$("button").click(function(){
+  $("#div1").fadeTo("slow",0.15);
+  $("#div2").fadeTo("slow",0.4);
+  $("#div3").fadeTo("slow",0.7);
+});
+```
+
+### 滑动效果
+
+```
+$(selector).slideDown([speed][,callback]);
+$(selector).slideUp([speed][,callback]);
+$(selector).slideToggle([speed][,callback]);
+```
+
+```js
+//三个都这样
+$("#flip").click(function(){
+  $("#panel").slideDown();
+});
+```
+
+### 自定义动画
+
+.animate(properties [, duration] [, easing] [, complete])
+
+| **參數**   | **型別**      | **說明**                                                     |
+| ---------- | ------------- | ------------------------------------------------------------ |
+| properties | Object        | 一组包含最后 CSS 样式                                        |
+| duration   | String,Number | 三种预定的速度 (slow, normal, fast)，或动画间隔的毫秒数值 (如一秒=1000) |
+| easing     | String        | 缓和方式，预设是 linear 线性，还有 swing 可選选              |
+| complete   | Function      | 每个元素在完成动画后要执行的函数                             |
+
+> .animate() 只支援 "可數字化" 的屬性，如 height, width, left, top, opacity 等。
 
 
 
+```js
+//基本的
+$("button").click(function(){
+  $("div").animate({
+    left:'250px',
+    opacity:'0.5',
+    height:'150px',
+    width:'150px'
+  });
+}); 
+
+//使用相对值
+$("button").click(function(){
+  $("div").animate({
+    left:'250px',
+    height:'+=150px',
+    width:'+=150px'
+  });
+});
+//属性预定值
+$("button").click(function(){
+  $("div").animate({
+    height:'toggle'
+  });
+});
+//队列功能
+$("button").click(function(){
+  var div=$("div");
+  div.animate({height:'300px',opacity:'0.4'},"slow");
+  div.animate({width:'300px',opacity:'0.8'},"slow");
+  div.animate({height:'100px',opacity:'0.4'},"slow");
+  div.animate({width:'100px',opacity:'0.8'},"slow");
+});
+```
+
+#### 操作动画队列
+
+jQuery提供了以下几种方法来操作动画队列。
+
+1. stop([clearQuery],[gotoEnd]):停止当前jQuery对象里每个DOM元素上正在执行的动画。
+2. queue([queueName,]callback):将callback动画数添加到当前jQuery对象里所有DOM元素的动画函数队列的尾部。
+3.  queue([queueName,]naeQueue):用newQueue动画函数队列代替当前jQuery对象里所的DOM元素的动画函数队列。
+4.  dequeue():执行动画函数队列头的第一个动画函数，并将该动画函数移出队列。
+5.  clearQueue([queueName]):清空动画函数队列中的所有动画函数。
 
 
 
-reference
+```html
+<style>
+	div {
+		width: 60px; 
+		height: 60px;
+		position:absolute;
+		top:60px; 
+		background: #f0f;
+		display:none;
+	}
+	</style> 
+<body>
+	<script type="text/javascript" src="../jquery-1.8.0.js">
+	</script>
+	<p>动画队列的长度是：<span></span></p>
+	<div></div>
+	<script type="text/javascript">
+	var div = $("div");
+	function runIt()
+	{
+		// 第1个动画：显示出来
+		div.show("slow");
+		// 第2个动画：自动动画，水平左移300px
+		div.animate({left:'+=300'},2000);
+		// 第3个动画：卷起来
+		div.slideToggle(1000);
+		// 第4个动画：放下来
+		div.slideToggle("fast");
+		// 第5个动画：自动动画，水平右移300px
+		div.animate({left:'-=300'},1500);
+		// 第6个动画：隐藏出来
+		div.hide("slow");
+		// 第7个动画：显示出来
+		div.show(1200);
+		// 第8个动画：卷起来，动画完成后回调runIt
+		div.slideUp("normal", runIt);
+	}
+	// 控制每0.1秒调用一次该方法，该方法用于显示动画队列的长度
+	function showIt()
+	{
+		var n = div.queue();
+		$("span").text(n.length);
+		setTimeout(showIt, 100);
+	}
+	runIt();
+	showIt();
+	</script>
+```
 
-https://www.jianshu.com/p/f8e3936b34c9
+
+
+### 停止动画
+
+```
+$(selector).stop(stopAll,goToEnd);
+```
+
+```js
+$("#stop").click(function(){
+  $("#panel").stop();
+});
+```
+
+动画队列停止动画测试，只停止当前正在进行的动画，停止当前动画后，队列中的下一个动画开始进行：
+
+```js
+$(document).ready(function(){
+  $("#flip").click(function(){
+    $("#panel").slideDown(5000);
+    $("#panel").slideUp(5000);
+  });
+  $("#stop").click(function(){
+    $("#panel").stop();
+  });
+});
+```
+
+可以在 stop() 中设置 stopAll 的参数为 true，这样就可以停止所有动画效果而不是只停止当前动画：
+
+```js
+$(document).ready(function(){
+  $("#flip").click(function(){
+    $("#panel").slideDown(5000);
+    $("#panel").slideUp(5000);
+  });
+  $("#stop").click(function(){
+    $("#panel").stop(true);
+  });
+});
+```
+
+### jQuery链条 - chaining
+
+```js
+$("#p1").css("color","red").slideUp(2000).slideDown(2000);
+```
+
+## 5.jQuery HTML
+
+### 获得内容与属性
+
+#### text()、html() & val()
+
+```js
+$("#btn1").click(function(){
+  alert("Text: " + $("#test").text()); 
+  alert("HTML: " + $("#test").html());
+  alert("值为: " + $("#test").val());
+});
+```
+
+#### attr()
+
+```js
+$("button").click(function(){
+  alert($("#runoob").attr("href"));
+});
+```
+
+### prop() vs attr()
+
+**prop()函数的结果:**
+
+   1.如果有相应的属性，返回指定属性值。
+
+   2.如果没有相应的属性，返回值是空字符串。
+
+**attr()函数的结果:**
+
+   1.如果有相应的属性，返回指定属性值。
+
+   2.如果没有相应的属性，返回值是 undefined。
+
+对于HTML元素本身就带有的固有属性，在处理时，使用prop方法。
+
+对于HTML元素我们自己自定义的DOM属性，在处理时，使用 attr 方法。
+
+具有 true 和 false 两个属性的属性，如 checked, selected 或者 disabled 使用prop()
+
+例子
+
+```html
+<a href="https://www.runoob.com" target="_self" class="btn">菜鸟教程</a>
+这个例子里 <a> 元素的 DOM 属性有: href、target 和 class，这些属性就是 <a> 元素本身就带有的属性，也是 W3C 标准里就包含有这几个属性，或者说在 IDE 里能够智能提示出的属性，这些就叫做固有属性。处理这些属性时，建议使用 prop 方法。
+
+<a href="#" id="link1" action="delete" rel="nofollow">删除</a>
+这个例子里 <a> 元素的 DOM 属性有: href、id 和 action，很明显，前两个是固有属性，而后面一个 action 属性是我们自己自定义上去的，<a> 元素本身是没有这个属性的。这种就是自定义的 DOM 属性。处理这些属性时，建议使用 attr 方法。
+```
+
+### 设置内容与属性
+
+#### text()、html() & val()
+
+```js
+$("#btn1").click(function(){
+    $("#test1").text("new contents");
+    $("#test2").html("<b>new contents</b>");
+    $("#test3").val("new contents");
+});
+```
+
+#### attr()
+
+```js
+$("button").click(function(){  $("#runoob").attr("href","http://www.runoob.com/jquery"); });
+```
+
+
+
+### 回调函数
+
+#### text()、html() & val()
+
+```js
+$("#btn1").click(function(){
+    $("#test1").text(function(i,origText){
+        return "旧文本: " + origText + " 新文本: Hello world! (index: " + i + ")"; 
+    });
+    $("#test2").html(function(i,origText){
+        return "旧 html: " + origText + " 新 html: Hello <b>world!</b> (index: " + i + ")"; 
+    });
+});
+```
+
+#### attr()
+
+```js
+$("button").click(function(){
+  $("#runoob").attr("href", function(i,origValue){
+    return origValue + "/jquery"; 
+  });
+});
+```
+
+
+
+### 添加元素
+
+- append() - 在被选元素的结尾插入内容
+- prepend() - 在被选元素的开头插入内容
+- after() - 在被选元素之后插入内容
+- before() - 在被选元素之前插入内容
+
+**append**
+
+```html
+<p>
+  <span class="s1">s1</span>
+</p>
+<script>
+$("p").append('<span class="s2">s2</span>');
+</script>
+```
+
+结果是这样的:
+
+```html
+<p>
+  <span class="s1">s1</span>
+  <span class="s2">s2</span>
+</p>
+```
+
+**after**
+
+```html
+<p>
+  <span class="s1">s1</span>
+</p>
+<script>
+$("p").after('<span class="s2">s2</span>');
+</script>
+```
+
+结果是这样的:
+
+```html
+<p>
+  <span class="s1">s1</span>
+</p>
+<span class="s2">s2</span>
+```
+
+增加多个元素
+
+```js
+function afterText(){
+    var txt1="<b>I </b>";                    // 使用 HTML 创建元素
+    var txt2=$("<i></i>").text("love ");     // 使用 jQuery 创建元素
+    var txt3=document.createElement("big");  // 使用 DOM 创建元素
+    txt3.innerHTML="jQuery!";
+    $("img").after([txt1,txt2,txt3]);          // 在图片后添加文本
+}
+```
+
+
+
+### append/prepend vs after/before
+
+1. append/prepend 是在选择元素内部嵌入。
+2. after/before 是在元素外面追加。
+
+### 删除元素
+
+- remove() - 删除被选元素（及其子元素）
+- empty() - 从被选元素中删除子元素
+
+```js
+$("p").remove(".italic"); //删除 class="italic" 的所有 <p> 元素，不能删除带有过滤器的子元素。
+```
+
+### 操作css类
+
+- addClass(className) - 向被选元素添加一个或多个类
+- hasClass(className) - 确定任何一个匹配元素是否有指定的类。
+- removeClass([className]) - 从被选元素删除一个或多个类
+- toggleClass() - 对被选元素进行添加/删除类的切换操作
+- css() - 设置或返回样式属性
+
+```js
+$(selector).css("*propertyname*","*value*");
+$(selector)css({"propertyname":"value","propertyname":"value",...});
+```
+
+### jQuery 尺寸
+
+- width()
+- height()
+- innerWidth()
+- innerHeight()
+- outerWidth()
+- outerHeight()
+
+![](jq/image-20201213143222879.png)
+
+例子
+
+```js
+$("button").click(function(){
+  var txt="";
+  txt+="div 的宽度是: " + $("#div1").width() + "</br>";
+  txt+="div 的高度是: " + $("#div1").height();
+  $("#div1").html(txt);
+});
+```
+
+设置了 box-sizing 后，width() 获取的是 css 设置的 width 减去 padding 和 border 的值。
+
+```css
+.test{width:100px;height:100px;padding:10px;border:10px;box-sizing:border-box;}
+```
+
+-  width() 获取为: 60
+-  innerWidth() 获取值为: 80
+-  outWidth() 获取值为: 100
+
+# reference
+
+1. https://docs.huihoo.com/jquery/jquery-fundamentals/zh-cn/book.html#N20CE6
+2. https://www.jianshu.com/p/f8e3936b34c9
+
+3. https://blog.csdn.net/owen_william/article/details/51339850?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control
+4. https://www.runoob.com/jquery/jquery-tutorial.html
+
