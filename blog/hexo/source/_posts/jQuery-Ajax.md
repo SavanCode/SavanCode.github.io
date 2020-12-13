@@ -169,3 +169,108 @@ $.getJSON(url,[data],[success(){}])   期待后台请求数据为JSON类型
     });
 ```
 
+## 6. 获取数据
+
+### 6.1XMLHttpRequest
+
+```js
+  document.addEventListener('DOMContentLoaded', function(){
+    document.getElementById('getMessage').onclick = function(){//事件取数据
+     	 const req = new XMLHttpRequest();
+          req.open("GET",'/json/cats.json',true);//get方式 true:异步请求
+          req.send();
+          req.onload = function(){//事件处理程序解析返回数据
+          const json = JSON.parse(req.responseText);//解析字符串
+          document.getElementsByClassName('message')[0].innerHTML = JSON.stringify(json);
+      };
+    };
+  });
+```
+
+### 6.2 JavaScript`fetch()`
+
+```js
+  document.addEventListener('DOMContentLoaded',function(){
+    document.getElementById('getMessage').onclick= () => {
+        fetch('/json/cats.json') //发出请求 返回promise
+            .then(response => response.json())//成功后 转换为json 返回promise
+            .then(data => {
+           document.getElementById('message').innerHTML = JSON.stringify(data);
+         })
+    };
+  });
+```
+
+## 7. 获得json数据 方法
+
+### 7.1forEach方法遍历数据
+
+- [ ]->方括号表示数组
+- { }->括号表示对象
+- “ ”->双引号表示字符串。它们还用于JSON中的键名
+
+```js
+//将所有的数据取出来 
+document.addEventListener('DOMContentLoaded', function(){
+    document.getElementById('getMessage').onclick = function(){
+      const req = new XMLHttpRequest();
+      req.open("GET",'/json/cats.json',true);
+      req.send();
+      req.onload = function(){
+        const json = JSON.parse(req.responseText);
+        let html = "";
+          json.forEach(function(val) {//去除所有的数据
+            const keys = Object.keys(val);
+            html += "<div class = 'cat'>";
+            keys.forEach(function(key) {
+              html += "<strong>" + key + "</strong>: " + val[key] + "<br>"; //将数据放进去
+            });
+            html += "</div><br>";
+          });
+        document.getElementsByClassName('message')[0].innerHTML = html;//数据直接放到html中 message
+```
+
+```js
+	let html = "";
+    json.forEach(function(val) {
+      html += "<div class = 'cat'>";
+        html += "<img src = '" + val.imageLink + "' " + "alt='" + val.altText + "'>";
+      html += "</div><br>";
+    });
+    document.getElementsByClassName('message')[0].innerHTML=html;
+```
+
+### 7.2 预先过滤JSON以获取所需的数据 - filter
+
+```js
+  json = json.filter(function(val) {
+      return (val.id !== 1);
+    });
+```
+
+## 8.发布数据方法
+
+### 8.1XMLHttpRequest方法发布数据
+
+```js
+   document.addEventListener('DOMContentLoaded', function(){
+    document.getElementById('sendMessage').onclick = function(){
+      // 基本元素
+      const userName = document.getElementById('name').value;
+      const url = 'https://jsonplaceholder.typicode.com/posts';
+      // 这里post数据
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', url, true);
+    xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4 && xhr.status === 201){
+        const serverResponse = JSON.parse(xhr.response);
+        document.getElementsByClassName('message')[0].textContent = serverResponse.userName + serverResponse.suffix;
+      }
+    };
+    const body = JSON.stringify({ userName: userName, suffix: ' loves cats!' });
+    xhr.send(body); 
+    };
+  });
+```
+

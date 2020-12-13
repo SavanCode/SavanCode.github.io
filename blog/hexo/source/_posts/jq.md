@@ -941,6 +941,12 @@ $("button").click(function(){
 -  innerWidth() 获取值为: 80
 -  outWidth() 获取值为: 100
 
+## 6.validation
+
+1. [详细](https://blog.csdn.net/lhzjj/article/details/17378435?utm_medium=distribute.pc_relevant.none-task-blog-title-6&spm=1001.2101.3001.4242)
+2. [document](https://jqueryvalidation.org/)
+3. https://xiaohuochai.site/FELib/jq/validate/validation.html
+
 # reference
 
 1. https://docs.huihoo.com/jquery/jquery-fundamentals/zh-cn/book.html#N20CE6
