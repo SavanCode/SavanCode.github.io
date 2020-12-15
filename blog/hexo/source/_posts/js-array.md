@@ -533,13 +533,14 @@ console.log(sum);
 对数组的每一项运行给定函数，返回每次函数调用的结果组成的数组。array.map(currentValue, index, arr)
 
 ```js
-var newarray = numbers.map(myFunction)
-function myFunction(num) {
-  return num * 10;
+const multiplier ={
+  number: [1,2,3,4,5],
+  multiplerBy:6,
+  multiply(){
+    return this.number.map((numbers)=> numbers*this.multiplerBy)
+  }
 }
-document.getElementById("demo").innerHTML = newarray;
-
-
+console.log(multiplier.multiply());//[6, 12, 18, 24, 30]
 ```
 
 ```js
@@ -598,13 +599,10 @@ var watchList = [
   }
 ];
 
-// Only change code below this line
 //筛选元素
 var ratings = [];
 ratings=watchList.map(item  => ({  title: item["Title"],
-  rating: item["imdbRating"]}));
-
-// Only change code above this line
+rating: item["imdbRating"]}));
 
 console.log(JSON.stringify(ratings));
 ```
