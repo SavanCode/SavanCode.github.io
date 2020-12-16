@@ -13,7 +13,7 @@ categories: React
 
 # 组件的数据挂载方式
 
-## 1、 无约束组件
+## 1、利用ES6进行属性修改
 
 ### 1.点击button修改属性值
 
@@ -66,7 +66,7 @@ const App ={
 }
 
 const onFormSubmit= (e)=>{
-  e.preventDefault();//防止刷新
+  e.preventDefault();  //防止刷新
   const option = e.target.elements.option.value;//获得输入值
   console.log(option);
   if(option){
