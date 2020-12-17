@@ -35,8 +35,12 @@ var sum = function(num1, num2) {
 
 简化判断
 
-```
-
+```jsx
+//自行判断，满足条件返回true，不满足条件返回false
+const isAdult =(age) => age>=18;
+const canDrink =(age) => age>=21;
+isAdult(21);//true
+canDrink(18);//false
 ```
 
 

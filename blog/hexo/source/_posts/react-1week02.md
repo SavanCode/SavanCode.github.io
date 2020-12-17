@@ -48,9 +48,56 @@ constructor()中完成了React数据的初始化，它接受两个参数：props
 
 componentWillMount()一般用的比较少，它更多的是在服务端渲染时使用。它代表的过程是组件已经经历了constructor()初始化数据后，但是还未渲染DOM时。
 
+```jsx
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  componentWillMount() { 
+  console.log(0); 
+  }
+  render() {
+    return <div />
+  }
+};
+//结果：执行多次哦
+//0
+//0
+//0
+```
+
+
+
 ## 3.componentDidMount()
 
 组件第一次渲染完成，此时dom节点已经生成，可以在这里调用ajax请求，返回数据setState后组件会重新渲染
+
+```jsx
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeUsers: null
+    };
+  }
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({
+        activeUsers: 1273
+      });
+    }, 2500);
+  }
+  render() {
+    return (
+      <div> 
+        <h1>Active Users:{this.state.activeUsers} </h1> 
+      </div>
+    );
+  }
+}
+```
+
+
 
 ## 4.componentWillUnmount ()
 
@@ -85,13 +132,13 @@ componentWillUnmount() {
 
 # 实际应用
 
-## componentDidUpdate(prevProps,prevState) 
+## 5、componentDidUpdate(prevProps,prevState) 
 
 数据发生变化之后才会被保存
 
 ![](react-1week02/image-20201216225110202.png)
 
-## componentDidMount()
+## 6、componentDidMount()
 
 渲染的时候，读取数据储存，刷新页面也还是根据localStorage
 
@@ -100,6 +147,55 @@ componentWillUnmount() {
 但是这里其实加多判断看有没有option这个数据，另外要注意页面error（JSON.parse()这个很容易有error，导致页面崩塌）
 
 ![](react-1week02/image-20201216230234924.png)
+
+
+
+# 实际应用
+
+```jsx
+class OnlyEvens extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('Should I update?'); 
+    //只有当摁了两次才会发生改变
+    if(nextProps.value %2 == 0){
+    return true;} 
+  }
+  componentDidUpdate() {
+    console.log('Component re-rendered.');
+  }
+  render() {
+    return <h1>{this.props.value}</h1>;
+  }
+}
+
+class Controller extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: 0
+    };
+    this.addValue = this.addValue.bind(this);
+  }
+  addValue() {
+    this.setState(state => ({
+      value: state.value + 1
+    }));
+  }
+  render() {
+    return (
+      <div>
+        <button onClick={this.addValue}>Add</button>
+        <OnlyEvens value={this.state.value} />
+      </div>
+    );
+  }
+}
+```
+
+
 
 ## 对于localstorage
 
@@ -177,7 +273,7 @@ const localStorageSet = (name, data) => {
 
 ### 5、读取缓存，且比较时间戳是否过期
 
-```text
+```json
 //读取缓存
 const localStorageGet = name => {
     const storage = localStorage.getItem(name);
@@ -406,5 +502,10 @@ render(<Index/>,document.getElementById('root'));
 
 # reference:
 
+- CodeCamp 练习题
+
 - https://zhuanlan.zhihu.com/p/151286410
+
 - https://www.cnblogs.com/Scar007/p/8081212.html
+
+  

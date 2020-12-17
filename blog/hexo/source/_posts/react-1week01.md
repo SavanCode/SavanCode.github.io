@@ -211,7 +211,6 @@ show = (arg1) => {
 class Options extends React.Component{
   removeAll(){
     console.log(this.props.optionArray);
-     
   }
   render(){
     return (
@@ -265,10 +264,13 @@ class Options extends React.Component{
 }
 ```
 
+### 方式三 箭头函数
+
 # State
 
 组件自身的state，**注意！！注意！！ 这是对象**
 
+## setState函数 
 做一个计数器中利用state进行改变数量
 
 ```jsx
@@ -287,7 +289,7 @@ incrementCount(){
 
 实际上不会，由于是异步，所以第一个设为0并没有完成，但是可能先+1；
 
-## setState函数 
+## 实际例子
 
 改变class内state变量
 
@@ -338,13 +340,171 @@ class Counter extends React.Component{
 ReactDOM.render( <Counter />, document.getElementById('root'));
 ```
 
+# Props
+
+## 默认props & 基本props
+
+```jsx
+//默认input设置
+const ShoppingCart = (props) => {
+  return (
+    <div>
+      <h1>Shopping Cart Component</h1>
+    </div>
+  )
+}; 
+ShoppingCart.defaultProps={items : 0}
+
+//输入变量
+const Items = (props) => {
+  return <h1>Current Quantity of Items in Cart: {props.quantity}</h1>
+}
+Items.defaultProps = {  quantity: 0 }
+
+class ShoppingCart extends React.Component {
+  constructor(props) { super(props); }
+  render() { 
+    return <Items quantity={ 10 }/> 
+  }
+};
+//数组
+<ChildComponent colors={["green", "blue", "red"]} />
+
+```
+
+## props 输入限制
+
+```jsx
+componentName.propTypes = {
+  inputName: PropTypes.string.isRequired//string 
+};
+componentName.propTypes = {
+  inputName: PropTypes.number.isRequired//number
+};
+
+```
+
+
+
+## Props children
+
+this.props.children。它表示组件所有的子节点。
+this.props.children 的值有三种可能：
+ - 如果当前组件没有子节点，它就是 undefined；
+ - 如果有一个子节点，数据类型是 object；
+ - 如果有多个子节点，数据类型就是 array
+
+### 基本语法
+
+一个 span 标签在 Parent 中作为Child的子节点传入，可在 Child 中通过 this.props.children 取到：
+```jsx
+class Parent extends React.Component {
+  render() {
+    return (
+      <Child>
+        <div>slot1</div>
+        <div>slot2</div>
+        <div>slot3</div>
+      </Child>
+    )
+  }
+}
+ 
+class Child extends React.Component {
+ render() {
+   return (
+    <div>
+      <div>{this.props.children[2]}</div>
+      <div>{this.props.children[1]}</div>
+      <div>{this.props.children[0]}</div>
+    </div>
+  )
+ }
+}
+```
+
+### React.Children 方法
+
+React 提供了工具方法 React.Children 来处理 this.props.children。
+
+1. React.Children.map
+
+```html
+object React.Children.map(object children, function fn)
+```
+
+遍历 props.children ，在每一个子节点上调用 fn 函数。
+
+2. React.Children.forEach
+
+```html
+React.Children.forEach(object children, function fn)
+```
+
+类似于 React.Children.map()，但是不返回对象。
+
+3. React.Children.count
+
+```html
+number React.Children.count(object children)
+```
+
+返回 children 当中的组件总数。
+
+4. React.Children.only
+
+```html
+object React.Children.only(object children)
+```
+
+返回 children 中仅有的子节点。如果在 props.children 传入多个子节点，将会抛出异常。
+
+### 实例
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script src="common/react.js"></script>
+    <script src="common/react-dom.js"></script>
+    <script src="https://cdn.bootcss.com/babel-core/5.8.38/browser.js"></script>
+    <script type="text/babel">
+       class App extends React.Component {
+           render() {
+               return <div>
+                    {/*props.children获取下面4个子节点:3个元素节点和1个文字节点*/}
+                    {this.props.children.map((item,index)=> <p key={index}>{item}</p>)}
+               </div>
+           }
+       }
+       ReactDOM.render(
+           <App>
+                {/*加一些子元素*/}
+                <span>rick</span>
+                <span>zhangamie</span>
+                <span>react</span>
+                2132132
+           </App>,
+           document.getElementById('app')
+       )
+    </script>
+</body>
+</html>
+```
 # Props vs State
 
 ![](react-1week01/image-20201216190719032.png)
 
 props是单向联动的
 
-# 函数组件
+# 函数组件-函数名称以大写字母开头
 
 ## 无状态组件
 
@@ -388,7 +548,7 @@ const Header=(props)=>{
 }
 ```
 
-## 默认input
+### 默认input
 
 ```jsx
 const Header=(props)=>{
@@ -435,7 +595,41 @@ ReactDOM.render(<IndecisionApp />, document.getElementById('root'));
 //ReactDOM.render(<IndecisionApp options={["option 1","option 2"]} />, document.getElementById('root'));
 ```
 
-## onclick函数
+
+
+### input双向绑定
+
+```jsx
+class ControlledInput extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      input: ''
+    };
+this.handleChange=this.handleChange.bind(this);
+  }
+handleChange(event){   
+  this.setState( {
+      input: event.target.value,
+    });
+}
+
+  render() {
+    return (
+      <div>
+        { /* 这里注意： 不仅input输入变状态 状态的改变也会改变输入*/}
+          <input type="text" value = {this.state.input} onChange={this.handleChange}  /> 
+        <h4>Controlled Input : </h4>
+        <p>{this.state.input}</p>
+      </div>
+    );
+  }
+};
+```
+
+
+
+### onclick函数
 
 ```jsx
 const Option = (props)=>{
@@ -443,8 +637,103 @@ const Option = (props)=>{
     <div> 
       <p>{props.optionText}</p>
       <button onClick={()=>{props.deleteFunc(props.inputText)}}>remove this</button>
+      <button onClick={this.handleClick}>Click Me</button>{/*handleClick是函数*/}
     </div>
   )
 }
 ```
 
+
+
+## 状态组件
+
+```jsx
+class StatefulComponent extends React.Component {
+  constructor(props) {
+    super(props);
+      this.state = {
+        name: ""
+      }
+  }
+  render() {
+      //或者可以这里有个const 拿到上面的state中的值，下面再次调取
+    return (
+      <div>
+        <h1>{this.state.name}</h1>
+      </div>
+    );
+  }
+};
+```
+
+
+
+# 父子组件之间的input传递以及事件传递 实例
+
+
+
+```jsx
+class MyApp extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      inputValue: ''
+    }
+    this.handleChange = this.handleChange.bind(this);
+  }
+  handleChange(event) {
+    this.setState({
+      inputValue: event.target.value
+    });
+  }
+  render() {
+    return (
+       <div>
+          <GetInput input={this.state.inputValue}  handleChange={this.handleChange}/>
+          <RenderInput input={this.state.inputValue}/>
+       </div>
+    );
+  }
+};
+
+class GetInput extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        <h3>Get Input:</h3>
+        <input
+          value={this.props.input}
+          onChange={this.props.handleChange}/>
+      </div>
+    );
+  }
+};
+
+class RenderInput extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        <h3>Input Render:</h3>
+        <p>{this.props.input}</p>
+      </div>
+    );
+  }
+};
+```
+
+
+
+# reference:
+
+- https://blog.csdn.net/u012372720/article/details/94000150
+- CodeCamp 练习题
+
+# 拓展读物
+
+[五分钟，简单聊一聊React Component的发展历程](https://doc.xuwenliang.com/docs/react/3503)

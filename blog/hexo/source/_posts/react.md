@@ -167,6 +167,8 @@ setInterval(clock,1000)
 
 5、属性和html内容一样都是用{}来插入内容
 
+6、class名 只能用className 换行符可以用`<hr />`&`<br />`
+
 ### 例子
 
 ```jsx
