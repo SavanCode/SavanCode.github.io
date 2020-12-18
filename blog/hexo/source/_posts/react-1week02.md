@@ -150,7 +150,9 @@ componentWillUnmount() {
 
 
 
-# 实际应用
+# 练习
+
+偶数点击，显示count
 
 ```jsx
 class OnlyEvens extends React.Component {
@@ -195,6 +197,28 @@ class Controller extends React.Component {
 }
 ```
 
+暂存option （indecision app）
+
+```jsx
+componentDidUpdate(prevProps,prevState){
+    if(prevState.options.length !== this.state.options.length){
+            console.log("options changed")
+            const json =JSON.stringify(this.state.options);
+            localStorage.setItem('option',json);
+    }
+}
+componentDidMount(){
+    try{
+        const json=localStorage.getItem('option');
+        const options=JSON.parse(json);
+        this.setState({
+            options,
+        })
+    }catch(error){
+        }
+}
+```
+
 
 
 ## 对于localstorage
@@ -231,7 +255,7 @@ Person p=new Person();
 
 ### 1、存
 
-```text
+```json
 localStorage.setItem("phone", "123")
 
 //对象
@@ -241,7 +265,7 @@ localStorage.setItem("phone",JSON.stringify(obj));
 
 ### 2、取
 
-```text
+```json
 localStorage.getItem("phone")
 
 //对象
@@ -250,7 +274,7 @@ let user = JSON.parse(localStorage.getItem("phone"))
 
 ### 3、删
 
-```text
+```json
 //指定删
 localStorage.removeItem('phone');
 
@@ -260,7 +284,7 @@ localStorage.clear();
 
 ### 4、设置localStorageSet 过期时间
 
-```text
+```json
 //设置缓存
 const localStorageSet = (name, data) => {
     const obj = {
@@ -293,7 +317,7 @@ const localStorageGet = name => {
 
 ### 6、使用
 
-```text
+```json
 //存
 localStorageSet('weather', data)
 
@@ -303,7 +327,7 @@ localStorageGet('weather')
 
 # 一个完整的例子
 
-```
+```jsx
 import React,{Component} from 'react';
 import {render} from 'react-dom';
 import './index.css';

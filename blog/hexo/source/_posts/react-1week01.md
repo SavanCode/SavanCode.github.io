@@ -109,6 +109,7 @@ class AddOption extends React.Component{
       <div>
         <p>This is AddOption Components</p>
         <form onSubmit={this.addOptionFunc}>
+            {/* name 用来取值*/}
           <input type="text" name="option"/>
           <button>+1</button>
         </form>
@@ -525,6 +526,8 @@ const User=(props)=>{
 ReactDOM.render( <User name="tom" age={28}/>, document.getElementById('root')); 
 ```
 
+### class组件 const组件对比
+
 ```jsx
 //注意区别 仔细看对比
 class Header extends React.Component{
@@ -668,9 +671,9 @@ class StatefulComponent extends React.Component {
 
 
 
-# 父子组件之间的input传递以及事件传递 实例
+# 父子组件之间的传递以及实例
 
-
+## 单纯的input传输
 
 ```jsx
 class MyApp extends React.Component {
@@ -727,12 +730,123 @@ class RenderInput extends React.Component {
 };
 ```
 
+## 子组件事件 影响父组件state
+
+父组件 - IndecisionApp
+
+```jsx
+class IndecisionApp extends React.Component{
+    constructor(props){
+        super(props);
+        this.state={
+            options : ["option 1","option 2","option 3"],//options : [ ]
+            pickedOption:null,
+        }
+    }
+    
+    handleRemove=(optionValue)=>{ 
+        console.log("remove this ",optionValue);
+        this.setState(()=>({
+            options: this.state.options.filter(function (elem, index, arr) {
+                return  elem !== optionValue
+              })
+        }))
+    }
+    render(){
+        const subtitle = 'Put your life in the hands of a computer'
+        return(
+            <div>
+                <Header subtitle={subtitle}/>
+                {/* What should i do  render pick- 弹窗+产生随机数 */}
+                <Action active={this.state.options.length} hanldPickOption={this.hanldPickOption} />
+                {/* show all options+ remove all + remove one */}
+                <Options options={this.state.options} removeAll={this.handleRemoveAll} remove={this.handleRemove}/>
+                {/* add one option */}
+                <AddOption addOption={this.handleAddOption}/>
+                {/* 弹框 */}
+                <OptionModal pickedOption={this.state.pickedOption} clearPickedOption={this.clearPickedOption} />  
+            </div>
+        )
+    }
+ }
+```
+
+子组件 - Options
+
+```jsx
+const Options = (props)=>{
+    return (
+        <div>
+        {props.options.length === 0 && <p>Add an option to started!</p>}
+        <ul>
+        {/* {props.options.map((i) => <li key={i}>{i} <button onClick={props.remove}> remove </button></li>)}  */}
+        {props.options.map((e,i) => <Option key={e} optionText={e} remove={props.remove}/>)}
+        </ul>
+        <button onClick={props.removeAll}>Remove all</button>
+    </div>
+    )
+}
+export default Options
+```
+
+## 子组件向父组件通信
+
+子组件通过 回调函数 向父组件传递数据。父组件将自己的某个方法传递给子组件，子组件通过this.props接收到父组件的方法后进行调用。
+
+如果子组件内需要修改父组件传递过来的数据，需要通过调用父组件的方法，在父组件中对数据进行修改。
+
+```jsx
+import React, { Component ,createRef} from 'react'
+import ReactDOM from 'react-dom';
+
+//子组件
+class Child extends Component{
+   state={
+     name:"admin",
+     age:18
+  }
+  childClickHandle=()=>{
+    this.props.showInfo({address:"beijing"})
+  }
+  render(){
+    return (
+	    <div>
+             {/*方式一：直接调用父组件的方法*/}
+		    <button onClick={this.props.showInfo.bind(this,this.state)}>按钮</button>
+		    {/*方式二：先调用自身的方法，再调用父组件的方法*/}
+		    <button onClick={this.childClickHandle}>按钮</button>
+	    </div>
+	)
+  }
+}
+
+//父组件
+class Parent extends Component{
+  clickHandle(data){
+    //data为子组件中传递过来的数据
+    //{address: "beijing"}
+    //{name: "admin", age: 18, sex: "woman"}
+	console.log(data);
+  }
+
+  render(){
+    return <Child showInfo={this.clickHandle.bind(this)}></Child>
+  }
+}
+
+ReactDOM.render(
+  <Parent/>,
+  document.getElementById('root')
+);
+```
+
 
 
 # reference:
 
 - https://blog.csdn.net/u012372720/article/details/94000150
 - CodeCamp 练习题
+- [React 组件通信的五种方式_props_ref_Context_Redux](https://blog.csdn.net/Charissa2017/article/details/105746685)
 
 # 拓展读物
 
