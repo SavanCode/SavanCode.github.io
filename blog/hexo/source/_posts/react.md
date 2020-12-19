@@ -47,11 +47,6 @@ $ npm install -g create-react-app
 
 ```sh
 $ create-react-app your-app 注意命名方式
-
-Creating a new React app in /dir/your-app.
-
-Installing packages. This might take a couple of minutes. 安装过程较慢，
-Installing react, react-dom, and react-scripts... 
 ```
 
 如果**不想全局安装**，可以直接使用npx
