@@ -308,6 +308,49 @@ path属性也可以使用相对路径（不以/开头），匹配时就会相对
 
 上面代码中，用户访问/about/me时，不会触发第二个路由规则，因为它会匹配/:userName/:id这个规则。因此，带参数的路径一般要写在路由规则的底部。 此外，URL的查询字符串/foo?bar=baz，可以用this.props.location.query.bar获取。
 
+### 例子
+
+```jsx
+const NotFoundPage= ()=>(
+  <div>
+    404 - <Link to="/">Go Home</Link>
+  </div>
+)
+
+const Item =()=>(
+      <div> 
+         <Link to= "/Portfolio/1" >item 1</Link> 
+         <Link to= "/Portfolio/2" >item 2</Link>   
+      </div>
+)
+      
+const ItemDetail =(props)=>{
+return (
+    <div>  
+      <h1>A Thing I've Done</h1>
+      <p>This page is for item with the id of {props.match.params.id}</p>
+    </div>
+)}
+
+const Content = () => (
+    <Switch>
+      <Route exact path="/Portfolio" component={Portfolio} />
+      <Route exact path="/Portfolio/:id"  component={ItemDetail} />
+      <Route component={NotFoundPage} />
+    </Switch>
+);
+
+const routes = (
+  <BrowserRouter>
+      <Content /> 
+  </BrowserRouter>
+ )
+
+ReactDOM.render(routes , document.getElementById('root'));    
+```
+
+
+
 ## Navigation : `<Link>`、`<NavLink>`、`<Redirect>`
 
 ### Link
@@ -334,15 +377,15 @@ path属性也可以使用相对路径（不以/开头），匹配时就会相对
   React 
 </NavLink>
 
-{/*当路径为/ react时，则渲染*/}
+{/*当路径为/ react时，则渲染
 <a href= "/react" className= "hurray" >React< /a> 
-{/*路径不匹配时，则渲染*/}
-<a href="/ react ">React< /a>
+路径不匹配时，则渲染
+<a href="/ react ">React< /a>*/}
 ```
 
 ### Redirect
 
-重新导向某路径
+重新导向某路径，直接跳转
 
 ```jsx
 <Redirect to= "/login" />
