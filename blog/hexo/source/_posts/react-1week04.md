@@ -1,5 +1,5 @@
 ---
-title: react_1week Day 4
+title: react-1week Day 4
 top: false
 cover: false
 toc: true
@@ -383,18 +383,57 @@ ReactDOM.render(routes , document.getElementById('root'));
 <a href="/ react ">React< /a>*/}
 ```
 
+> NavLink相比Link多了一些样式调节，作用其实相差不大
+
 ### Redirect
 
-重新导向某路径，直接跳转
+`<Redirect>`重定向到同等级的其他路由，直接跳转
 
 ```jsx
 <Redirect to= "/login" />
 ```
 
+`<IndexRedirect>`从父路由的目录开始重定向
+
+```jsx
+<Route path="/" component={App}>
+  <IndexRedirect to="/welcome" />
+  <Route path="welcome" component={Welcome} />
+  <Route path="about" component={About} />
+</Route>
+```
+
+## 渲染props
+
+有三种方式：component， render（）， children，但是我们最常用的还是component，render
+
+如果你有一个存在的组件，，而且你不想传递一个特定的组件内部变量信息的话，可以直接使用component，
+
+如果你想渲染一个组件需要传递局部变量，可以使用render
+
+```jsx
+const Home = () => <div>Home</div>;
+const App = () => {
+  const someVariable = true;
+  return (  
+    <Switch> 
+    <Route exact path="/" component={Home} />
+    <Route path="/about" render={props => <About {...props} extra={someVariable} />} /> 
+    <Route path="/contact" component={props => <Contact {...props} extra={someVariable} />} />
+    </Switch>
+ ); };
+```
+
+因为如果你不这样做，会引起期望之外的组件的卸载和重载。
+
 # reference
 
 https://ithelp.ithome.com.tw/articles/10204137
 
+https://blog.csdn.net/qq_39055963/article/details/100848845
+
+ 
+
 # 额外阅读
 
-https://ithelp.ithome.com.tw/users/20106935/ironman/1651
+https://imcy2018.appspot.com/projects.php

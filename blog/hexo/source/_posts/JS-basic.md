@@ -292,6 +292,7 @@ function f1(m,n){
 	return m+n;
 }
 console.log(f1(2,3))//一般参数
+
 var arr=[1,2,3]
 console.log(f1(...arr));//输入的参数只有前两位 1 2
 
@@ -306,7 +307,8 @@ f1([a,b,c,,e]){}//跳过一个
 console.log(a,b,c)
 
 var arr=[1,2,3,4,5,6];   
-f1([a,b,c]=[]){}//跳过一个
+const [,,,,a,b,c=10] = arr;
+console.log(a,b,c)//5 6 10
 ```
 
 ### 参数是object
@@ -315,6 +317,25 @@ f1([a,b,c]=[]){}//跳过一个
 var {age,sex,say} =obj;//对应属性名字一定要对
 console.log(age,sex,say);
 say();
+
+var {age,sex,say : speak} =obj;//对应属性换名字
+console.log(age,sex,speak);//say不存在 speak在 
+
+var {age,sex,say = "speak"} =obj;//重新赋值
+console.log(age,sex,say);//say本身的值不在，sa的值已经是"speak"
+
+
+const book ={
+  title: "titleName",
+  author : "author",
+  publisher:{
+    name: "jenny",
+    age:26
+  }
+}
+//取出
+const {name :publisherName= "self"}=book.publisher;
+console.log(publisherName)//jenny 如果name不存在，打印self
 ```
 
 
