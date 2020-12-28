@@ -490,14 +490,12 @@ var Person = function(firstAndLast) {
     return lastName;
   };
 
-
 };
 
 var bob = new Person('Bob Ross');
 bob.setFullName("Haskell Curry")
 bob.getFullName();
 bob.getFirstName()
-
 ```
 
 
@@ -615,7 +613,6 @@ function truthCheck(collection, pre) {
 }
 
 truthCheck([{"single": "double"}, {"single": NaN}], "single");
-
 ```
 
 ```js
@@ -626,3 +623,10 @@ function truthCheck(collection, pre) {
 }
 ```
 
+## obj复制并且更改属性
+
+```js
+var obj1={a:1,b:2,c:[1,2,3]};
+var obj2={...obj1};//{a:1,b:2,c:[1,2,3]}
+var obj2={...obj1,location:'china',a:200};//添加属性+更新a属性 
+```

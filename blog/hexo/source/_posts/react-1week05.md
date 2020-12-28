@@ -66,7 +66,7 @@ redux最核心的管理对象
 - `store.getState()` 获取store里面所有的数据内容
 - `store.subscribe()` 订阅store的改变，只要store发生改变，`store.subscribe()`中的回调函数就会执行
 
-#  例子
+#  单个redux例子
 
 ## 基础 reducer store action
 
@@ -99,31 +99,18 @@ const store =createStore(counterReducer)
 console.log(store.getState());
 
 //执行
-store.dispatch({
-  type: "INCREMENT"
-})
-store.dispatch({
-  type: "INCREMENT"
-})
-store.dispatch({
-  type: "INCREMENT"
-})
+store.dispatch({ type: "INCREMENT" })
+store.dispatch({ type: "INCREMENT" })
+store.dispatch({ type: "INCREMENT" })
 //3
 console.log(store.getState());
-store.dispatch({
-  type: "DECREMENT"
-})
+store.dispatch({ type: "DECREMENT" })
 //2
-console.log(store.getState());
+console.log(store.getState());s
 
-store.dispatch({
-  type: "RESET"
-})
+store.dispatch({ type: "RESET" })
 //0
-console.log(store.getState());
-ReactDOM.render(routes ,
-  document.getElementById('root')
-);
+console.log(store.getState()); 
 ```
 
 ## subscribe以及设置特殊值
@@ -156,37 +143,242 @@ const store = createStore((state=initState,action)=>{
 const unsub=store.subscribe(()=>{ console.log(store.getState()); })
 
 //执行
-store.dispatch({
-  type: "INCREMENT",
-  incrementBy:5
-})
-store.dispatch({
-  type: "INCREMENT"
-}) 
-store.dispatch({
-  type: "DECREMENT",
-  decrementBy:3
-}) 
+store.dispatch({ type: "INCREMENT", incrementBy:5})
+store.dispatch({ type: "INCREMENT" }) 
+store.dispatch({ type: "DECREMENT", decrementBy:3 }) 
+store.dispatch({ type: "SET", count : 100 }) 
 
-store.dispatch({
-  type: "SET",
-  count : 100
+//直接取消掉subscribe
+unsub();
+//后面执行但是不会跟踪
+store.dispatch({ type: "DECREMENT", decrementBy:3}) 
+console.log(store.getState())
+```
+
+利用解构 以及整理Action
+
+```jsx
+ const initState = {
+  count :0 ,
+  list:['任务一',"任务二"]
+};
+ //仓库放所有action选择 以及state 以及返回新的对象
+const store = createStore((state=initState,action)=>{
+  switch(action.type){
+  case "INCREMENT":  return { count:state.count+action.incrementBy };
+  
+  case "DECREMENT":  return { count:state.count-action.decrementBy };
+  
+  case "RESET": return { count:0 };
+
+  case "SET": return { count:action.count };
+  
+  default: return state
+  }
 }) 
+//实时监控
+const unsub=store.subscribe(()=>{ console.log(store.getState()); })
+
+//返回操作函数（对象包装函数）
+const increment =(payload={})=>{
+  return {
+  type: "INCREMENT",
+  incrementBy:typeof payload.incrementBy ==='number'? payload.incrementBy :1}
+}
+//这里利用解构 简化写法
+const decrement =({decrementBy=1}={})=>{
+ return{ type: "DECREMENT", decrementBy}}
+//执行
+store.dispatch(increment({incrementBy:6}))
+store.dispatch(increment({ type: "INCREMENT" }))
+store.dispatch(decrement({decrementBy:5})) 
+store.dispatch({ type: "SET", count : 100}) 
 //直接取消掉subscribe
 unsub();
 
 //后面执行但是不会跟踪
-store.dispatch({
-  type: "DECREMENT",
-  decrementBy:3
-}) 
+store.dispatch({ type: "DECREMENT", decrementBy:3}) 
 console.log(store.getState())
-
 ```
 
+## 最终完整单个redux例子
+
+最终得到基础的单个redux， 这里注意的重点是，我们用reducer 是为了通过得到一个state以及action 从而返回新的state，并没有改变原本的state，只是给了新的state
+
+```jsx
+const initState = {
+  count :0 ,
+  list:['任务一',"任务二"]
+};
+
+const countReducer=(state=initState,action)=>{
+  switch(action.type){
+  case "INCREMENT":  return { count:state.count+action.incrementBy };
+  
+  case "DECREMENT":  return { count:state.count-action.decrementBy };
+  
+  case "RESET": return { count:0 };
+
+  case "SET": return { count:action.setCount };
+  
+  default: return state
+  }
+}
 
 
+ //仓库放所有action选择 以及state 以及返回新的对象
+const store = createStore(countReducer) 
+//实时监控
+const unsub=store.subscribe(()=>{ console.log(store.getState()); })
 
+//返回操作函数（对象包装函数） action generator
+const increment =(payload={})=>{
+  return {
+  type: "INCREMENT",
+  incrementBy:typeof payload.incrementBy ==='number'? payload.incrementBy :1}
+}
+
+//这里利用解构 简化写法
+const decrement =({decrementBy=1}={})=>{
+ return{ type: "DECREMENT", decrementBy} 
+}
+
+const reset =()=>{
+  return { type: "RESET" }
+}
+
+const set =({setCount}={})=>{
+  return { type: "SET", setCount}
+}
+
+//执行
+store.dispatch(increment({incrementBy:6}))
+store.dispatch(increment({type: "INCREMENT"}))
+store.dispatch(decrement({decrementBy:5})) 
+store.dispatch(reset())
+store.dispatch(decrement({decrementBy:5})) 
+store.dispatch(set({setCount:-99})) 
+//直接取消掉subscribe
+unsub();
+
+//后面执行但是不会跟踪
+store.dispatch({ type: "DECREMENT", decrementBy:3 }) 
+console.log(store.getState())
+```
+
+# 多个reducer例子
+
+那么接下来看看多个reducer的时候 处理数据怎么做
+
+```js
+//两个数据例子
+const demoState={
+  expenses:[{
+    id:'poijasdfhwer',
+    description:'January Rent',
+    note:'This was the final payment',
+    amount:54500,
+    createdAt:0
+  }],
+  filters:{
+    text:'rent',
+    sortBy:'amount',//date or amount
+    startDate:undefined,
+    endDate:undefined,
+  }
+}
+
+//default state & reducer
+const expensesReducerDefaultState=[];
+const expensesReducer=(state=expensesReducerDefaultState,action)=> {
+  switch(action.type){
+    case "ADD_EXPENSE": 
+    //return  state.concat(action.expense);//此处不影响原先数组 只是返回新数组 
+    return [...state,action.expense];
+    case "REMOVE_EXPENSE": 
+    return state.filter(function (elem) {
+      return (elem.id !== action.id);
+    });
+    case "EDIT_EXPENSE": 
+    //return  state.concat(action.expense);//此处不影响原先数组 只是返回新数组 
+    return state.map((expense)=>{
+      if(expense.id===action.id){
+        return {
+          ...expense,
+          ...action.updates,
+        }
+      }else{
+        return expense
+      }
+    });
+    default: return state
+  }
+}
+
+
+//返回操作函数（对象包装函数） action generator
+const addExpense=({
+  description="",
+  note="",
+  amount=0,
+  createdAt=0
+}={})=>({
+    type:"ADD_EXPENSE",
+    expense:{
+    id:uuidv4(),
+    description,
+    note,
+    amount,
+    createdAt}
+  })
+
+const removeExpense=({id}={})=>({ type:"REMOVE_EXPENSE", id })
+
+const editExpense=(id,updates)=>({
+    type:"EDIT_EXPENSE",
+    id,
+    updates
+})
+
+//default state & reducer
+const filtersReducerDefaultState={
+    text:'',
+    sortBy:'amount',//date or amount
+    startDate:undefined,
+    endDate:undefined,
+};
+const filtersReducer=(state=filtersReducerDefaultState,action)=> {
+  switch(action.type){
+    case "SET_TEXT_FILTER": 
+    return {
+      ...state,
+      text:action.name
+    }
+    default: return state
+  }
+}
+
+//action
+const setTextFilter = (name)=>({
+  type:"SET_TEXT_FILTER",
+  name
+})
+
+
+//仓库放所有action选择 以及state 以及返回新的对象
+const store = createStore(combineReducers({expenses:expensesReducer,filters:filtersReducer})) 
+//实时监控
+const unsub=store.subscribe(()=>{ console.log(store.getState()); })
+
+const expenseOne = store.dispatch(addExpense({description:"Rent",amount:1000})) 
+const expenseTwo = store.dispatch(addExpense({description:"Coffee",amount:666}))  
+
+store.dispatch(removeExpense({id:expenseOne.expense.id}))  
+store.dispatch(editExpense(expenseTwo.expense.id,{description:"RentNew",amount:19999}))  
+store.dispatch(setTextFilter("Rent")); 
+```
+
+这里注意 对于箭头函数中，返回时对象，可以直接使用 ( )=>( {对象})
 
 # reference
 

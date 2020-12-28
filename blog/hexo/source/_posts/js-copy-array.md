@@ -116,5 +116,12 @@ console.log(obj1[2]); //[3,4]
 console.log(obj2[2]); //[3,4,5]
 ```
 
+# ...
 
+```js
+var obj1=[1,2,3];
+var newObj=[...obj1]
+var newObj1=['newElement',...obj1,'newElement']//此处与concat一样
+console.log(obj1,newObj,newObj1)//[1,2,3] [1,2,3] ['newElement',1,2,3,'newElement']
+```
 

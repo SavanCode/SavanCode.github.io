@@ -504,6 +504,13 @@ console.log(a,a.unshift('x','y','z')); //['x','y','z','a', 'b', 'c'] 6
 
 # 操作方程
 
+## js判断一个字符串是否包含在另一个字符串
+
+```js
+'Blue Whale'.includes('blue'); // returns false
+'Blue Whale'.includes('Blue'); // returns true
+```
+
 ## js 替换指定位置的字符串
 
 ```js

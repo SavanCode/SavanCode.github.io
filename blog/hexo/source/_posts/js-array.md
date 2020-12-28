@@ -63,8 +63,6 @@ var num = 15;
 var n = num.toString();
 ```
 
-
-
 # 稀疏数组 （不连续索引的数组）
 
 ## 使用delete操作符
@@ -301,11 +299,14 @@ const array3 = array1.concat(array2);
 ```js
 var newArray = Array.prototype.concat.call({ a: 1 }, { b: 2 })
 console.log(newArray);// [{ a: 1 }, { b: 2 }]
-console.log(newArray[0].a);//1
+console.log(newArray[0].a);//1 
 ```
+# 数组拼接用...
 
- 
-
+```js
+const array1 = ['a', 'b', 'c'];
+const array2 = ['newEle',...array1,'newEle'];
+```
 # 创建子数组方法slice()- string也有
 
 slice(start,end)方法需要两个参数start和end，返回这个数组中从start位置到(但不包含)end位置的一个子数组；如果end为undefined或不存在，则返回从start位置到数组结尾的所有项，不影响原数组。
@@ -646,7 +647,7 @@ console.log(out);// [1, 4, 9]
 - forEach：用来遍历数组中的每一项，这个方法执行没有返回值，不影响原数组
 - map：支持return，相当与原数组克隆了一份，把克隆的每项改变了，也不影响原数组
 
-## filter()
+## filter() - 可以用于删除个别obj元素
 
 对数组中的每一项运行给定函数，该函数会返回true的项组成的数组。该方法常用于查询符合条件的所有数组项 
 
