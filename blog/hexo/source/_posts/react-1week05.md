@@ -380,6 +380,183 @@ store.dispatch(setTextFilter("Rent"));
 
 这里注意 对于箭头函数中，返回时对象，可以直接使用 ( )=>( {对象})
 
+继续补充例子中的function
+
+```js
+
+//default state & reducer
+const expensesReducerDefaultState=[];
+const expensesReducer=(state=expensesReducerDefaultState,action)=> {
+  switch(action.type){
+    case "ADD_EXPENSE": 
+    //return  state.concat(action.expense);//此处不影响原先数组 只是返回新数组 
+    return [...state,action.expense];
+    case "REMOVE_EXPENSE": 
+    return state.filter(function (elem) {
+      return (elem.id !== action.id);
+    });
+    case "EDIT_EXPENSE": 
+    //return  state.concat(action.expense);//此处不影响原先数组 只是返回新数组 
+    return state.map((expense)=>{
+      if(expense.id===action.id){
+        return {
+          ...expense,
+          ...action.updates,
+        }
+      }else{
+        return expense
+      }
+    });
+    default: return state
+  }
+}
+
+//action
+const addExpense=({
+  description="",
+  note="",
+  amount=0,
+  createdAt=0
+}={})=>({
+    type:"ADD_EXPENSE",
+    expense:{
+    id:uuidv4(),
+    description,
+    note,
+    amount,
+    createdAt}
+  })
+
+const removeExpense=({id}={})=>({ type:"REMOVE_EXPENSE", id })
+
+const editExpense=(id,updates)=>({
+    type:"EDIT_EXPENSE",
+    id,
+    updates
+})
+
+
+const filtersReducerDefaultState={
+    text:'',
+    sortBy:'amount',//date or amount
+    startDate:undefined,
+    endDate:undefined,
+};
+const filtersReducer=(state=filtersReducerDefaultState,action)=> {
+  switch(action.type){
+  case "SET_TEXT_FILTER": 
+    return {
+      ...state,
+      text:action.name
+    }
+  case "SORT_BY_DATE": 
+    return {
+      ...state,
+      sortBy:'date'
+    }
+  case "SORT_BY_AMOUNT": 
+    return {
+      ...state,
+      sortBy:'amount'
+    }
+  case "SET_START_DATE": 
+    return {
+      ...state,
+      startDate:action.startDate
+    }
+  case "SET_END_DATE": 
+    return {
+      ...state,
+      endDate:action.endDate
+    }
+    default: return state
+  }
+}
+
+const setTextFilter = (name)=>({
+  type:"SET_TEXT_FILTER",
+  name
+})
+
+const sortByDate = ()=>({
+  type:"SORT_BY_DATE"
+})
+
+const sortByAmount = ()=>({
+  type:"SORT_BY_AMOUNT"
+})
+
+const setStartDate=(startDate)=>({
+  type:"SET_START_DATE",
+  startDate
+})
+
+const setEndDate=(endDate)=>({
+  type:"SET_END_DATE",
+  endDate
+})
+
+ //仓库放所有action选择 以及state 以及返回新的对象
+const store = createStore(combineReducers({expenses:expensesReducer,filters:filtersReducer})) 
+
+const getVisibleExpenses=(expenses,{text,sortBy,startDate,endDate})=>{
+  return expenses.filter((element)=>{
+    //if not set the startdate and createdAt is ok
+    const startDateMatch = typeof startDate !== 'number' || element.createdAt >= startDate;
+    const endDateMatch =  typeof endDate !== 'number' || element.createdAt <= endDate;
+    const textMatch = element.description.toLowerCase().includes(text.toLowerCase());
+    return startDateMatch && endDateMatch && textMatch;
+  }).sort((a,b)=>{
+    if(sortBy === "date"){
+      return a.createdAt > b.createdAt ? 1 : -1;
+    }else if(sortBy === "amount"){
+      return a.amount > b.amount ? 1 : -1;
+    }
+  })
+}
+
+//实时监控
+const unsub=store.subscribe(()=>{ 
+  const state=store.getState();
+  const visibleExpenses =getVisibleExpenses(state.expenses,state.filters);
+  console.log(visibleExpenses);
+  console.log(store.getState()); 
+})
+
+//返回操作函数（对象包装函数） action generator
+ const expenseOne = store.dispatch(addExpense({description:"cRent",amount:215610,createdAt:1000})) 
+ const expenseTwo = store.dispatch(addExpense({description:"Coffee1",amount:1,createdAt:-1000})) 
+ store.dispatch(addExpense({description:"Coffee2",amount:2,createdAt:2000})) 
+ store.dispatch(addExpense({description:"Coffee3",amount:3,createdAt:3000}))  
+
+ //store.dispatch(removeExpense({id:expenseOne.expense.id}))  
+ store.dispatch(editExpense(expenseTwo.expense.id,{description:"c",amount:9}))  
+ store.dispatch(setTextFilter("c")); 
+ store.dispatch(sortByAmount()); 
+ //store.dispatch(sortByDate()); 
+ //store.dispatch(setStartDate(0)); 
+ //store.dispatch(setEndDate(999)); 
+
+// const demoState={
+//   expenses:[{
+//     id:'poijasdfhwer',
+//     description:'January Rent',
+//     note:'This was the final payment',
+//     amount:54500,
+//     createdAt:0
+//   }],
+//   filters:{
+//     text:'rent',
+//     sortBy:'amount',//date or amount
+//     startDate:undefined,
+//     endDate:undefined,
+//   }
+// }
+
+```
+
+
+
 # reference
 
 https://blog.csdn.net/qq_26347769/article/details/109634399
