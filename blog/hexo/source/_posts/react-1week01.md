@@ -341,6 +341,61 @@ class Counter extends React.Component{
 ReactDOM.render( <Counter />, document.getElementById('root'));
 ```
 
+## setState 的三种写法
+
+**(1)对象**
+
+```js
+this.setState({key : value})
+//或者
+const new="newValue";
+this.setState({new})
+```
+
+**(2)函数，一般是用于在setState之前做一些操作**
+
+```js
+this.setState(state=>{
+    return {key : value}
+}) 
+//或者
+this.setState(
+  () => {
+    // TODO
+    console.log('')
+    return {
+      a:300
+    }
+  }
+) 
+```
+
+**(3)第二个参数，一般是用于在setState之后做一些操作**
+
+```js
+this.setState({
+  a:300
+}, () => {
+  // TODO
+  console.log('state值修改成功，现在的name值为' + this.state.name)
+})
+```
+
+## 存在props值的修改state的值 
+
+因为更新的 props 和状态是异步的。这里，我们根据这些 props 更新状态。
+
+```jsx
+// 错误方式
+this.setState({
+  total: this.state.total + this.props.count,
+})
+// 正确方式
+this.setState((state, props) => {
+ 	return {total: state.total + props.count}
+})
+```
+
 # Props
 
 ## 默认props & 基本props

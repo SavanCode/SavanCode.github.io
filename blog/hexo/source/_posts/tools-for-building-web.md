@@ -41,6 +41,8 @@ categories: Front-end
 
 - 类型对比： https://dorey.github.io/JavaScript-Equality-Table/
 
+- TIME STAMP 使用 tool      [Airbnb ：react dates](https://github.com/airbnb/react-dates) & [moment js](https://momentjs.com/)
+
 
 
 

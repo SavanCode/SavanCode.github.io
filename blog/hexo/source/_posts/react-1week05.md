@@ -555,10 +555,255 @@ const unsub=store.subscribe(()=>{
 
 ```
 
+# 高阶组件（Higher-Order Components）
+
+高阶组件就是一个函数，传给它一个组件，它返回一个新的组件
+
+```js
+import React, { Component } from 'react'
+
+export default (WrappedComponent) => {
+  class NewComponent extends Component {
+    // 可以做很多自定义逻辑
+    render () {
+      return <WrappedComponent />
+    }
+  }
+  return NewComponent
+}
+```
+
+## 例子
+
+## ![](react-1week05/image-20201229112941453.png)
+
+![](react-1week05/image-20201229113015799.png)
+
+# React Redux
+
+Redux 跟 React 並沒有關係。你可以用 React、Angular、Ember、jQuery 或甚至原生 JavaScript 來撰寫 Redux 應用程式。
+
+## [Installation](https://react-redux.js.org/introduction/quick-start#installation)
+```js
+npm install react-redux 
+yarn add react-redux
+```
+
+## Provider
+React Redux provides` <Provider />`, which makes the Redux store available to the rest of your app
+
+### 使用provider的例子
+
+```jsx
+import React from 'react'
+import ReactDOM from 'react-dom'
+
+import { Provider } from 'react-redux'
+import store from './store'
+
+import App from './App'
+
+const rootElement = document.getElementById('root')
+
+const store = createStore( 
+    combineReducers({
+        expenses:expensesReducer,
+        filters:filtersReducer
+    })
+); 
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  rootElement
+)
+```
+
+## connect()
+React Redux provides a connect function for you to connect your component to the store.
+
+connect 返回的是函数，不是组件
+
+### 使用connect例子1
+
+```jsx
+import {connect} from 'react-redux'
+const ExpenseList =(props)=>(
+    <div>
+        <h1>Expenses</h1>
+        {props.expenses.map((element)=>(
+          <ExpenseListItem key={element.id} {...element} />  
+        ))} 
+    </div>
+);
+//将state中的信息取出来
+const mapStateToProps = (state /*, ownProps*/) => {
+    return {
+      expenses: selectExpenses(state.expenses,state.filters),
+      filters:state.filters
+    }
+  }
+//connect传递mapStateToProps数据给ExpenseList
+const ConnectExpenseList= connect(mapStateToProps)(ExpenseList); 
+export default ConnectExpenseList
+```
+## 使用connect例子 - input
+
+```jsx
+import React from 'react'
+import {connect} from 'react-redux'
+import {setTextFilter} from '../actions/filters'
+
+//直接绑定input
+const ExpenseListFilters = (props)=>(
+    <div>
+        <input 
+        type="text" 
+        value={props.filters.text}
+        onChange={(e)=>{ props.dispatch(setTextFilter(e.target.value)) 
+        }}
+        />
+    </div>
+)
+
+const mapStateToProps = (state /*, ownProps*/) => {
+    return {
+      filters:state.filters
+    }
+  }
+
+//不用下面这种
+//const ConnectExpenseList= connect(mapStateToProps)(ExpenseListFilters);
+export default  connect(mapStateToProps)(ExpenseListFilters) ;
+```
+
+使用connect - 提交form
+
+```jsx
+import React from 'react';
+import ExpenseForm from './ExpenseForm'
+import {connect} from 'react-redux'
+import {addExpense} from '../actions/expenses'
+
+const AddExpensePage =(props)=> {
+return (
+    <div> 
+        <p>Add Expense</p>
+        <ExpenseForm 
+        onSubmit={(newExpense)=>{
+            props.dispatch(addExpense(newExpense))//这里相当于store.dispatch
+            }} />
+    </div>
+    )
+}
+
+export default connect()(AddExpensePage);
+```
 
 
-# reference
+
+```jsx
+//form本身，重点是要双向绑定 由于提交form 要用类元素 
+import React from 'react'
+import moment from 'moment'
+import "react-dates/initialize";
+import "react-dates/lib/css/_datepicker.css";
+import { SingleDatePicker } from "react-dates";
+
+const now = moment();
+console.log(now.format("Do, MMM YYYY"));
+
+export default class ExpenseForm extends React.Component{
+    state={
+        description:'',
+        amount:'',
+        note:'',
+        createdAt:moment(),
+        canlendarFocused: false,
+        error:''
+    }
+
+    onDescriptionChange =(e)=>{ 
+        //console.log(e.target.value);
+        this.setState(state => ({
+            description: e.target.value
+          }));
+    }
+    onAmountChange=(e)=>{
+        //console.log(e.target.value);
+        this.setState(state => ({
+            amount: e.target.value
+          }));
+    }
+    onDateChange=(createdAt)=>{
+        if(createdAt){
+            this.setState({createdAt})
+        }
+    }
+
+    onFocusChange=({ focused }) => {this.setState({ canlendarFocused: focused })};
+
+    onNoteChange=(e)=>{
+        //console.log(e.target.value);
+        this.setState(state => ({
+            note: e.target.value
+          }));
+    }
+	//onsubmit的函数赋予input 从上级拿处理函数主体
+    onSubmit=(e)=>{
+        e.preventDefault();  
+
+        if (!this.state.description || !this.state.amount) {
+            this.setState(() => ({
+            error: "Please provide description and amount!"
+            }));
+        } else {
+            console.log("submitting");
+            this.props.onSubmit({
+                description:this.state.description,
+                amount:parseFloat(this.state.amount,10)*100,
+                note:this.state.note,
+                createdAt:this.state.createdAt.valueOf()
+            })
+        }  
+    }
+
+
+render(){
+    return (
+        <div>
+             {this.state.error && <p>{this.state.error}</p>}
+            <form onSubmit={this.onSubmit}>
+                <input type="text" placeholder="Description" autoFocus    value={this.state.description} onChange={this.onDescriptionChange} />
+                <input type="text" placeholder="Amount"   value={this.state.amount} onChange={this.onAmountChange} />
+        
+                {/* 此处用airbnb date pick */}
+                <SingleDatePicker
+                    date={this.state.createdAt} // momentPropTypes.momentObj or null
+                    onDateChange={this.onDateChange} // PropTypes.func.isRequired
+                    focused={this.state.canlendarFocused} // PropTypes.bool
+                    onFocusChange={this.onFocusChange} // PropTypes.func.isRequired
+                    id="single_date_picker" // PropTypes.string.isRequired,
+                    isOutsideRange={()=>false}//当前时间之前的也可以加入
+                    numberOfMonths={1}//只显示一个月
+                />
+
+                <textarea type="text" placeholder="add note if you need (optional)" value={this.state.note} onChange={this.onNoteChange} ></textarea>
+                <button>Add expense</button>
+            </form>
+        </div>
+        )
+    }
+} 
+```
+
+
+
+# Reference
 
 https://blog.csdn.net/qq_26347769/article/details/109634399
 
 https://juejin.cn/post/6844903894082928654
+
+https://chentsulin.github.io/redux/docs/basics/UsageWithReact.html
