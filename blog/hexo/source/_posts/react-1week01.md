@@ -11,6 +11,22 @@ tags: React
 categories: React
 ---
 
+# React 开始
+
+通过react的脚手架，创建项目进行开发，部署。（推荐）
+
+全局安装create-react-app
+
+```sh
+$ npm install -g create-react-app
+```
+
+创建一个项目
+
+```sh
+$ create-react-app your-app 注意命名方式
+```
+
 # React 事件与方法
 
 通过前面的练习，我们将用class写
@@ -517,7 +533,7 @@ object React.Children.only(object children)
 
 ### 实例
 
-```html
+```jsx
 <!DOCTYPE html>
 <html lang="en">
 <head>

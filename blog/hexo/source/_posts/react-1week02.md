@@ -533,3 +533,7 @@ render(<Index/>,document.getElementById('root'));
 - https://www.cnblogs.com/Scar007/p/8081212.html
 
   
+
+# 练习
+
+react - indecisionApp & counterApp

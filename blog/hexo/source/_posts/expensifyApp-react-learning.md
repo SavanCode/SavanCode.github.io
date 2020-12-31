@@ -44,6 +44,59 @@ class Options extends React.Component{
 }
 ```
 
+### 注意props的区别
+
+```jsx
+class ExpenseListFilters extends React.Component {
+  render() {
+    return (
+    <div>
+        <input 
+        type="text" 
+        value={this.props.filters.text}
+        onChange={(e)=>{ this.props.dispatch(setTextFilter(e.target.value)) 
+        }}
+        />
+        <select
+        value={this.props.filters.sortBy}
+        onChange={(e)=>{
+          e.target.value === "date" ?  this.props.dispatch(sortByDate()) : this.props.dispatch(sortByAmount());
+          }}
+        >
+          <option value="date">Date</option>
+          <option value="amount">Amount</option> 
+        </select> 
+
+    </div>
+ 
+    )}
+  }
+-----------------------------------------------------
+    
+const ExpenseListFilters = (props)=>(
+    <div>
+        <input 
+        type="text" 
+        value={props.filters.text}
+        onChange={(e)=>{ props.dispatch(setTextFilter(e.target.value)) 
+        }}
+        />
+        <select
+        value={props.filters.sortBy}
+        onChange={(e)=>{
+          e.target.value === "date" ?  props.dispatch(sortByDate()) : props.dispatch(sortByAmount());
+          }}
+        >
+          <option value="date">Date</option>
+          <option value="amount">Amount</option>
+
+        </select>
+    </div>
+)
+```
+
+
+
 ## 改变state
 
 ```jsx
@@ -216,3 +269,12 @@ const EditExpensePage =(props)=> {
 ![props](expensifyApp-react-learning/image-20201230224502403.png)
 
 ![](expensifyApp-react-learning/image-20201230224637810.png)
+
+## Time compare 
+
+https://momentjs.com/docs/#/use-it/
+
+```jsx
+isSameOrAfter  isSameOrBefore moment()
+```
+
