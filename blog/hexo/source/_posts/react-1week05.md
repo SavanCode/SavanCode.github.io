@@ -41,9 +41,16 @@ yarn add redux
 **store、components、actionCreaters、reducers的关系即为：**
 
 - 首先有一个组件，组件要去获取store中的一些数据
+
 - actionCreaters通过dispatch(action)方法  让store知道 组件要获取数据
+
 - store在reducer查组件需要什么数据，reducer返回组件应该拿到的数据
+
 - store获得数据后把数据 返给 组件 
+
+  
+
+  ![](react-1week05/image-20210101012427891.png)
 
 # Redux核心概念(3个)
 
@@ -575,15 +582,26 @@ export default (WrappedComponent) => {
 
 ## 例子
 
-## ![](react-1week05/image-20201229112941453.png)
+ <img src="react-1week05/image-20201229112941453.png" style="zoom: 80%;" />
 
-![](react-1week05/image-20201229113015799.png)
+<img src="react-1week05/image-20201229113015799.png"  />
 
 # React Redux
 
-Redux 跟 React 並沒有關係。你可以用 React、Angular、Ember、jQuery 或甚至原生 JavaScript 來撰寫 Redux 應用程式。
+> **Redux 跟 React 並沒有關係。你可以用 React、Angular、Ember、jQuery 或甚至原生 JavaScript 來撰寫 Redux 應用程式。**
+
+
+
+<img src="react-1week05/image-20210101012541717.png" style="zoom:67%;" />
+
+`react-redux` 是 React 和 Redux 间的桥梁，使用 `Provider`、`connect` 去连结 `store` 和 React View。
+
+整合了 `react-redux` 后，我们的 React App 就可以解决传统跨 Component 之前传递 state 的问题和困难。只要通过 `Provider` 就可以让每个 React App 中的 `Component` 取用 store 中的 state，非常方便
+
+<img src="react-1week05/image-20210101012827213.png" style="zoom: 67%;" />
 
 ## [Installation](https://react-redux.js.org/introduction/quick-start#installation)
+
 ```js
 npm install react-redux 
 yarn add react-redux
@@ -798,9 +816,25 @@ render(){
 } 
 ```
 
+
+
+## 完整练习例子： expensifyApp indecisionApp counter
+
+理解图：
+
+![](react-1week05/image-20210101012217492.png)
+
 # tool 
 
 https://github.com/zalmoxisus/redux-devtools-extension
+
+
+
+# 推荐读物
+
+[从零开始学 ReactJS详细教学](https://wizardforcel.gitbooks.io/reactjs101/content/)
+
+[查api&简单解释](https://chentsulin.github.io/redux/docs/introduction/index.html)
 
 # Reference
 
@@ -809,3 +843,5 @@ https://blog.csdn.net/qq_26347769/article/details/109634399
 https://juejin.cn/post/6844903894082928654
 
 https://chentsulin.github.io/redux/docs/basics/UsageWithReact.html
+
+https://wizardforcel.gitbooks.io/reactjs101/content/Ch07/react-redux-real-world-example.html

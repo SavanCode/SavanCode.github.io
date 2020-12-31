@@ -204,8 +204,6 @@ import Option ......
 
 [例子](https://github.com/reactjs/react-modal) & [例子2](https://github.com/PsChina/React/tree/master/components#Modal)
 
-
-
 ## react components list
 
 | 属性         | 说明                             | 默认值          | 类型     |
@@ -222,3 +220,54 @@ import Option ......
 | height       | 对话框宽度                       | 'auto'          | string   |
 | width        | 对话框高度                       | '400px'         | string   |
 | opacity      | 对话框透明度                     | 0.6             | nunmber  |
+
+## 自己练习例子
+
+index.js
+
+```jsx
+import PopModal from './PopModal'
+clearError=()=>{
+    console.log("clearing error")
+    this.setState(()=>({
+        errorMsg:""
+    }))
+    console.log(this.state.errorMsg);
+}
+{this.state.errorMsg !=="" && <PopModal clearError={this.clearError} error={this.state.errorMsg} />} 
+```
+
+PopModal.js
+
+```jsx
+import React from 'react' 
+import Modal from "react-modal"
+
+const PopModal=(props)=>{
+    return (
+        <div>
+        <Modal 
+         style={
+          { overlay: {}, 
+          content: {
+            width: 'fit-content',
+            height: 'fit-content',
+            margin:' auto',
+            background: '#464b5e',
+            color: 'whitesmoke'
+          } }
+        }
+           isOpen={!!props.error}
+           onRequestClose={props.clearError}
+           ariaHideApp={false}
+        >
+          <p className="modalItem">{props.error}</p>
+          <button className=" modalItem acceptBtn" onClick={props.clearError}>ok</button>
+        </Modal>
+        </div>
+    )
+}
+
+export default PopModal
+```
+
