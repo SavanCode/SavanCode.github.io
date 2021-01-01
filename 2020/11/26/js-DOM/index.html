@@ -786,7 +786,7 @@ one<span class="token punctuation">.</span><span class="token function">addEvent
             <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"button"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span><span class="token boolean">true</span><span class="token operator">/</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token boolean">true</span><span class="token punctuation">:</span>时间捕捉 外入内
-<span class="token boolean">false</span><span class="token punctuation">:</span>事件冒泡 内到外</code></pre>
+<span class="token boolean">false</span><span class="token punctuation">:</span>事件冒泡 内到外 （默认）</code></pre>
 <h3 id="事件冒泡例子（内到外）"><a href="#事件冒泡例子（内到外）" class="headerlink" title="事件冒泡例子（内到外）"></a>事件冒泡例子（内到外）</h3><pre class=" language-html"><code class="language-html"><span class="token doctype">&lt;!DOCTYPE html></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
@@ -1204,15 +1204,26 @@ btn<span class="token punctuation">.</span><span class="token function">addEvent
 <pre class=" language-js"><code class="language-js">window<span class="token punctuation">.</span>history<span class="token punctuation">.</span><span class="token function">pushState</span><span class="token punctuation">(</span>data<span class="token punctuation">:</span>json<span class="token punctuation">,</span>title<span class="token punctuation">:</span>string<span class="token punctuation">,</span>url<span class="token punctuation">:</span>string<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 会存储在url历史中</span>
 window<span class="token punctuation">.</span>history<span class="token punctuation">.</span><span class="token function">replaceState</span><span class="token punctuation">(</span>data<span class="token punctuation">:</span>json<span class="token punctuation">,</span>title<span class="token punctuation">:</span>string<span class="token punctuation">,</span>url<span class="token punctuation">:</span>string<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 不会存储。。。</span></code></pre>
 <h2 id="location"><a href="#location" class="headerlink" title="location"></a>location</h2><p>用来控制页面跳转</p>
-<pre class=" language-js"><code class="language-js">location<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token string">"xx"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//跳转</span>
-location<span class="token punctuation">.</span>href <span class="token operator">=</span> <span class="token string">'xxxx'</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//同上</span>
-location<span class="token punctuation">.</span><span class="token function">reload</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//刷新页面</span></code></pre>
-<h2 id="定时器"><a href="#定时器" class="headerlink" title="定时器"></a>定时器</h2><p><code>setInterval</code>在执行完一次代码之后，经过了那个固定的时间间隔，它还会<strong>自动重复</strong>执行代码，而<code>setTimeout</code><strong>只执行一次</strong>那段代码。</p>
+<pre class=" language-html"><code class="language-html">location.replace("xx"); //跳转
+location.href = 'xxxx'; //同上
+location.reload(); //刷新页面</code></pre>
+<h2 id="定时器-requestAnimationFrame"><a href="#定时器-requestAnimationFrame" class="headerlink" title="定时器 - requestAnimationFrame"></a>定时器 - requestAnimationFrame</h2><p><code>requestAnimationFrame</code>是由浏览器专门为动画提供的API，在运行时浏览器会自动优化方法的调用</p>
+<p><code>setInterval</code>在执行完一次代码之后，经过了那个固定的时间间隔，它还会<strong>自动重复</strong>执行代码，而<code>setTimeout</code><strong>只执行一次</strong>那段代码。(问题就是不精确)</p>
+<p>requestAnimationFrame采用系统时间间隔，保持最佳绘制效率，不会因为间隔时间过短，造成过度绘制，增加开销；也不会因为间隔时间太长，使用动画卡顿不流畅，让各种网页动画效果能够有一个统一的刷新机制，从而节省系统资源，提高系统性能，改善视觉效果</p>
 <pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> id <span class="token operator">=</span> <span class="token function">setInterval</span><span class="token punctuation">(</span>callback<span class="token operator">/</span><span class="token keyword">function</span><span class="token punctuation">,</span>ms<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//每隔ms毫秒执行一次函数（回调函数只写函数名）</span>
 <span class="token keyword">var</span> id <span class="token operator">=</span> <span class="token function">setTimeout</span><span class="token punctuation">(</span>callback<span class="token operator">/</span><span class="token keyword">function</span><span class="token punctuation">,</span>ms<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//在ms毫秒后执行一次函数</span>
 <span class="token function">clearInterval</span><span class="token punctuation">(</span>timer<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//清理掉setInterval定时器</span>
 <span class="token function">clearTimeout</span><span class="token punctuation">(</span>timeout<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//让setTimeout定时器失效</span>
-window<span class="token punctuation">.</span><span class="token function">requestAnimationFrame</span><span class="token punctuation">(</span>callBack<span class="token operator">/</span><span class="token keyword">function</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//专门为动画设置的定时器（效果比setInterval流畅，每秒执行60次，大部分浏览器中，每秒执行次数和显示器刷新率一致）</span></code></pre>
+
+<span class="token comment" spellcheck="true">//对比：</span>
+<span class="token comment" spellcheck="true">//设置timer</span>
+window<span class="token punctuation">.</span><span class="token function">requestAnimationFrame</span><span class="token punctuation">(</span>callBack<span class="token operator">/</span><span class="token keyword">function</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//专门为动画设置的定时器（效果比setInterval流畅，每秒执行60次，大部分浏览器中，每秒执行次数和显示器刷新率一致）</span>
+<span class="token keyword">var</span> timer <span class="token operator">=</span> <span class="token function">requestAnimationFrame</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//取消</span>
+<span class="token function">cancelAnimationFrame</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//可以直接使用返回值取消</span>
+<span class="token function">cancelAnimationFrame</span><span class="token punctuation">(</span>timer<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/xiaohuochai/p/5777757.html"><strong>实际例子</strong></a></p>
 <h2 id="滚动动态加载内容"><a href="#滚动动态加载内容" class="headerlink" title="滚动动态加载内容"></a>滚动动态加载内容</h2><pre class=" language-js"><code class="language-js">window<span class="token punctuation">.</span>onscroll <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">// 页面滚动事件（一般加给window）</span>
     <span class="token comment" spellcheck="true">// 页面被卷起来的高度距离顶部或底部的距离</span>
     <span class="token keyword">var</span> juan <span class="token operator">=</span> document<span class="token punctuation">.</span>documentElement<span class="token punctuation">.</span>scrollTop<span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">// 获取页面被卷起来的高度，documentElement相当于html标签</span>
@@ -1238,7 +1249,8 @@ window<span class="token punctuation">.</span><span class="token function">reque
 </ul>
 <h2 id="阻止默认事件"><a href="#阻止默认事件" class="headerlink" title="阻止默认事件"></a>阻止默认事件</h2><p>建立onclick事件方法，加入var ev=window.event; ev.preventDefault();</p>
 <p>阻止a标签的默认事件：</p>
-<pre class=" language-js"><code class="language-js"><span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">"javascript:void(0)"</span><span class="token operator">></span>链接<span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">></span></code></pre>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>javascript:void(0)<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>链接<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span></code></pre>
+<h1 id="Reference："><a href="#Reference：" class="headerlink" title="Reference："></a>Reference：</h1><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/xiaohuochai/p/5777757.html">https://www.cnblogs.com/xiaohuochai/p/5777757.html</a></p>
 
             </div>
             <hr/>
@@ -1359,12 +1371,12 @@ window<span class="token punctuation">.</span><span class="token function">reque
                     <div class="summary block-with-text">
                         
                             对象基础object ：propert + method
-构造函数特点：
+
+构造函数constructor特点：
 
 函数体内部使用了this关键字，代表了所要生成的对象实例。
 生成对象的时候，必须使用new命令
-
-var Vehicle = function () &amp;#1
+constructor是原型对象上的一个属性
                         
                     </div>
                     <div class="publish-info">

@@ -602,7 +602,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>button<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>滚动窗口<span class="token punctuation">"</span></span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>scrollWindow()<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span></code></pre>
-<h2 id="3-定时器方法"><a href="#3-定时器方法" class="headerlink" title="3. 定时器方法"></a>3. 定时器方法</h2><h4 id="3-1-设置定时器方法"><a href="#3-1-设置定时器方法" class="headerlink" title="3.1 设置定时器方法"></a>3.1 设置定时器方法</h4><h6 id="3-1-1-setTimeout"><a href="#3-1-1-setTimeout" class="headerlink" title="3.1.1 setTimeout()"></a>3.1.1 <code>setTimeout()</code></h6><ul>
+<h2 id="3-定时器方法"><a href="#3-定时器方法" class="headerlink" title="3. 定时器方法"></a>3. 定时器方法</h2><h4 id="3-1-设置定时器方法"><a href="#3-1-设置定时器方法" class="headerlink" title="3.1 设置定时器方法"></a>3.1 设置定时器方法</h4><h6 id="3-1-1-1-setTimeout"><a href="#3-1-1-1-setTimeout" class="headerlink" title="3.1.1.1 setTimeout()"></a>3.1.1.1 <code>setTimeout()</code></h6><ul>
 <li><p><code>功能</code></p>
 <ul>
 <li>用于<code>在指定的毫秒数后调用函数或计算表达式</code></li>
@@ -615,22 +615,48 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <pre class=" language-js"><code class="language-js"><span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token string">"调用的函数"</span><span class="token punctuation">,</span>等待的毫秒数<span class="token punctuation">)</span></code></pre>
 </li>
 </ul>
-<pre class=" language-js"><code class="language-js">举例<span class="token punctuation">:</span> 实现五秒后出现提示框
-
-<span class="token operator">&lt;</span>script<span class="token operator">></span>
-    <span class="token keyword">function</span> <span class="token function">startWork</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-        <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">'我在准备中！'</span><span class="token punctuation">)</span>
-        <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-            <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">'我开工了！'</span><span class="token punctuation">)</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span><span class="token number">3000</span><span class="token punctuation">)</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span>
-<span class="token operator">&lt;</span>body<span class="token operator">></span>
-    <span class="token operator">&lt;</span>form action<span class="token operator">=</span><span class="token string">""</span><span class="token operator">></span>
-        <span class="token operator">&lt;</span>input type<span class="token operator">=</span><span class="token string">"button"</span> value<span class="token operator">=</span><span class="token string">"开始工作"</span> onclick<span class="token operator">=</span><span class="token string">"startWork()"</span><span class="token operator">></span>
-    <span class="token operator">&lt;</span><span class="token operator">/</span>form<span class="token operator">></span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>body<span class="token operator">></span>                                                     
-<span class="token number">123456789101112131415</span></code></pre>
+<pre class=" language-html"><code class="language-html">//举例: 实现五秒后出现提示框
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script language-javascript">
+<span class="token keyword">var</span> num<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">startWork</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">'我在准备中！'</span><span class="token punctuation">)</span>
+      <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+          <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">'我开工了！'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          num<span class="token operator">=</span>num<span class="token operator">+</span><span class="token number">100</span><span class="token punctuation">;</span>
+           <span class="token keyword">if</span><span class="token punctuation">(</span> num <span class="token operator">></span> <span class="token number">200</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+              <span class="token function">clearInterval</span><span class="token punctuation">(</span>timer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+              <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+     <span class="token punctuation">,</span><span class="token number">3000</span><span class="token punctuation">)</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">action</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>button<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>开始工作<span class="token punctuation">"</span></span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>startWork()<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>                              </code></pre>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> num<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> timer<span class="token operator">=</span><span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        console<span class="token punctuation">.</span>log <span class="token punctuation">(</span>num<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span><span class="token number">3000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">;</span></code></pre>
+<h6 id="3-1-1-2-立即改变用户输入"><a href="#3-1-1-2-立即改变用户输入" class="headerlink" title="3.1.1.2 立即改变用户输入"></a>3.1.1.2 立即改变用户输入</h6><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>myInput<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script language-javascript">
+myInput<span class="token punctuation">.</span>onkeypress <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        myInput<span class="token punctuation">.</span>value <span class="token operator">=</span> myInput<span class="token punctuation">.</span>value<span class="token punctuation">.</span><span class="token function">toUpperCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code></pre>
+<h6 id="3-1-1-3-js改变线性顺序"><a href="#3-1-1-3-js改变线性顺序" class="headerlink" title="3.1.1.3 js改变线性顺序"></a>3.1.1.3 js改变线性顺序</h6><p><strong>js是单线程的</strong></p>
+<p>所以我们看看</p>
+<pre class=" language-js"><code class="language-js"><span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+ console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//结果： 2 3 1</span></code></pre>
+<p>js是单线程的，单线程就意味着，所有任务需要排队，前一个任务结束，才会执行后一个任务。如果前一个任务耗时很长，后一个任务就不得不一直等着。</p>
 <h6 id="3-1-2-setInterval"><a href="#3-1-2-setInterval" class="headerlink" title="3.1.2 setInterval()"></a>3.1.2 <code>setInterval()</code></h6><ul>
 <li><code>功能</code><ul>
 <li>可<code>按照指定的周期(以毫秒计)来调用函数或计算表达式</code></li>
@@ -642,18 +668,21 @@ console<span class="token punctuation">.</span><span class="token function">log<
 </li>
 <li><strong>语法</strong></li>
 </ul>
-<pre class=" language-js"><code class="language-js"><span class="token function">setInterval</span><span class="token punctuation">(</span><span class="token string">"调用的函数"</span><span class="token punctuation">,</span>间隔的毫秒数<span class="token punctuation">)</span>
-<span class="token number">1</span>
-举例<span class="token punctuation">:</span> 定时器
-
-<span class="token operator">&lt;</span>div id<span class="token operator">=</span><span class="token string">"mydiv"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
-<span class="token operator">&lt;</span>script<span class="token operator">></span>
+<pre class=" language-js"><code class="language-js"><span class="token function">setInterval</span><span class="token punctuation">(</span><span class="token string">"调用的函数"</span><span class="token punctuation">,</span>间隔的毫秒数<span class="token punctuation">)</span></code></pre>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>mydiv<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script language-javascript">
     <span class="token function">setInterval</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         <span class="token keyword">var</span> mydiv <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'mydiv'</span><span class="token punctuation">)</span>
         mydiv<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toLocaleString</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span>
-<span class="token number">123456789</span></code></pre>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span> </code></pre>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> num<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> timer <span class="token operator">=</span> <span class="token function">setInterval</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    count<span class="token punctuation">.</span>innerHTML<span class="token operator">=</span>num<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>num<span class="token operator">==</span><span class="token number">11</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token function">clearInterval</span><span class="token punctuation">(</span>timer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span><span class="token number">500</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <h4 id="3-2-清除定时器方法"><a href="#3-2-清除定时器方法" class="headerlink" title="3.2 清除定时器方法"></a>3.2 清除定时器方法</h4><h6 id="3-2-1-clearTimeout"><a href="#3-2-1-clearTimeout" class="headerlink" title="3.2.1 clearTimeout()"></a>3.2.1 <code>clearTimeout()</code></h6><ul>
 <li><code>功能</code><ul>
 <li>可<code>取消</code>由 setTimeout() 方法设置的 timeout</li>
@@ -1072,10 +1101,9 @@ function isInteger(obj) &amp;#123;
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            class基础class基本定义语法
-class ClassName &amp;#123;
-  constructor() &amp;#123; ... &amp;#125;
-  method_1() &amp;#123; ... &amp
+                            class基础class基本定义语法class ClassName &amp;#123;
+  constructor() &amp;#123; ... &amp;#125;//这里全部放属性
+  method_1() &amp;#123; 
                         
                     </div>
                     <div class="publish-info">

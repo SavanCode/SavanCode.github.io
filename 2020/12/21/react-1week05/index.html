@@ -1,0 +1,1661 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="react-1week Day 5, Savannah">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>react-1week Day 5 | Savannah</title>
+    <link rel="icon" type="image/png" href="../../../../favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="../../../../libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="../../../../libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../../libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="../../../../libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../../libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../../css/matery.css">
+    <link rel="stylesheet" type="text/css" href="../../../../css/my.css">
+
+    <script src="../../../../libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="../../../../index.html" class="waves-effect waves-light">
+                    
+                    <img src="../../../../medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Savannah</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="../../../../index.html" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Index</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="../../../../tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>Tags</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="../../../../categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>Categories</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="../../../../archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>Archives</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="../../../../about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>About</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="../../../../medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Savannah</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="../../../../index.html" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Index
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="../../../../tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			Tags
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="../../../../categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			Categories
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="../../../../archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			Archives
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="../../../../about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			About
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/8.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">react-1week Day 5</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="../../../../libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="../../../../tags/React/">
+                                <span class="chip bg-color">React</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="../../../../categories/React/" class="post-category">
+                                React
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2020-12-21
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="Redux-必要条件"><a href="#Redux-必要条件" class="headerlink" title="Redux 必要条件"></a>Redux 必要条件</h1><p>The Redux core library is available as a package on NPM for use with a module bundler or in a Node application:</p>
+<pre><code># NPM
+npm install redux
+
+# Yarn
+yarn add redux</code></pre>
+<h1 id="redux理解"><a href="#redux理解" class="headerlink" title="redux理解"></a>redux理解</h1><p>什么: redux是专门做状态管理的独立第3方库, 不是react插件<br>作用: 对应用中状态进行集中式的管理(写/读)<br>开发: 与react-redux, redux-thunk等插件配合使用</p>
+<p><strong>类比图书馆借书流程：</strong></p>
+<ul>
+<li>首先，我们要借一本书，</li>
+<li>借书的人（React Components），他说‘我要借一本书’（actionCreaters）</li>
+<li>这句话被图书馆管理员（store）听见后，管理员去找这本书，但是他自己记不住</li>
+<li>于是管理员去查阅图书记录本（reducers），记录本会显示这本书放在哪（一来一回）</li>
+<li>管理员（store）知道这本书放在哪，找到这本书，把这本书给借书的人（React Components）</li>
+<li><img src="/2020/12/21/react-1week05/image-20201221164042337.png"></li>
+</ul>
+<p><strong>store、components、actionCreaters、reducers的关系即为：</strong></p>
+<ul>
+<li><p>首先有一个组件，组件要去获取store中的一些数据</p>
+</li>
+<li><p>actionCreaters通过dispatch(action)方法  让store知道 组件要获取数据</p>
+</li>
+<li><p>store在reducer查组件需要什么数据，reducer返回组件应该拿到的数据</p>
+</li>
+<li><p>store获得数据后把数据 返给 组件 </p>
+</li>
+</ul>
+<p>  <img src="/2020/12/21/react-1week05/image-20210101012427891.png"></p>
+<h1 id="Redux核心概念-3个"><a href="#Redux核心概念-3个" class="headerlink" title="Redux核心概念(3个)"></a>Redux核心概念(3个)</h1><h2 id="action"><a href="#action" class="headerlink" title="action"></a>action</h2><p>默认是对象(同步action), {type: ‘xxx’, data: value}, 需要通过对应的actionCreator产生,<br>它的值也可以是函数(异步action), 需要引入redux-thunk才可以</p>
+<h2 id="reducer"><a href="#reducer" class="headerlink" title="reducer"></a>reducer</h2><p>根据老的state和指定的action, 返回一个新的state<br>不能修改老的state</p>
+<h2 id="store"><a href="#store" class="headerlink" title="store"></a>store</h2><p>redux最核心的管理对象<br>内部管理着: state和reducer<br>提供方法: getState(), dispatch(action), subscribe(listener)</p>
+<ul>
+<li><code>createStore</code> 创建store</li>
+<li><code>store.dispatch</code> 派发action，action传递给store</li>
+<li><code>store.getState()</code> 获取store里面所有的数据内容</li>
+<li><code>store.subscribe()</code> 订阅store的改变，只要store发生改变，<code>store.subscribe()</code>中的回调函数就会执行</li>
+</ul>
+<h1 id="单个redux例子"><a href="#单个redux例子" class="headerlink" title="单个redux例子"></a>单个redux例子</h1><h2 id="基础-reducer-store-action"><a href="#基础-reducer-store-action" class="headerlink" title="基础 reducer store action"></a>基础 reducer store action</h2><pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">import</span> <span class="token entity" title="&#123;">&amp;#123;</span> createStore <span class="token entity" title="&#125;">&amp;#125;</span> <span class="token keyword">from</span> <span class="token string">'redux'</span> 
+<span class="token comment" spellcheck="true">/**
+ 这是 reducer - a function describing "what happened"
+ - reducer =  a current state value + an action object  
+ - returns a new state value.
+ - 格式： (state, action) => newState
+ *
+ * The Redux state ： plain JS objects, arrays, and primitives.
+ * The root state value is usually an object.   
+ */</span>
+<span class="token keyword">function</span> <span class="token function">counterReducer</span><span class="token punctuation">(</span>state <span class="token operator">=</span> <span class="token entity" title="&#123;">&amp;#123;</span> value<span class="token punctuation">:</span> <span class="token number">0</span> <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">,</span> action<span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+  <span class="token keyword">switch</span> <span class="token punctuation">(</span>action<span class="token punctuation">.</span>type<span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+    <span class="token keyword">case</span> <span class="token string">'INCREMENT'</span><span class="token punctuation">:</span>
+      <span class="token keyword">return</span> <span class="token entity" title="&#123;">&amp;#123;</span> value<span class="token punctuation">:</span> state<span class="token punctuation">.</span>value <span class="token operator">+</span> <span class="token number">1</span> <span class="token entity" title="&#125;">&amp;#125;</span>
+    <span class="token keyword">case</span> <span class="token string">'DECREMENT'</span><span class="token punctuation">:</span>
+      <span class="token keyword">return</span> <span class="token entity" title="&#123;">&amp;#123;</span> value<span class="token punctuation">:</span> state<span class="token punctuation">.</span>value <span class="token operator">-</span> <span class="token number">1</span> <span class="token entity" title="&#125;">&amp;#125;</span>
+    <span class="token keyword">case</span> <span class="token string">'RESET'</span><span class="token punctuation">:</span>
+      <span class="token keyword">return</span> <span class="token entity" title="&#123;">&amp;#123;</span> value<span class="token punctuation">:</span> <span class="token number">0</span><span class="token entity" title="&#125;">&amp;#125;</span>
+    <span class="token keyword">default</span><span class="token punctuation">:</span>
+      <span class="token keyword">return</span> state
+  <span class="token entity" title="&#125;">&amp;#125;</span>
+<span class="token entity" title="&#125;">&amp;#125;</span>
+
+<span class="token keyword">const</span> store <span class="token operator">=</span><span class="token function">createStore</span><span class="token punctuation">(</span>counterReducer<span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">//查状态 0</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>store<span class="token punctuation">.</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//执行</span>
+store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token entity" title="&#123;">&amp;#123;</span> type<span class="token punctuation">:</span> <span class="token string">"INCREMENT"</span> <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span>
+store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token entity" title="&#123;">&amp;#123;</span> type<span class="token punctuation">:</span> <span class="token string">"INCREMENT"</span> <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span>
+store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token entity" title="&#123;">&amp;#123;</span> type<span class="token punctuation">:</span> <span class="token string">"INCREMENT"</span> <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">//3</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>store<span class="token punctuation">.</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token entity" title="&#123;">&amp;#123;</span> type<span class="token punctuation">:</span> <span class="token string">"DECREMENT"</span> <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">//2</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>store<span class="token punctuation">.</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>s
+
+store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token entity" title="&#123;">&amp;#123;</span> type<span class="token punctuation">:</span> <span class="token string">"RESET"</span> <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">//0</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>store<span class="token punctuation">.</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> </code></pre>
+<h2 id="subscribe以及设置特殊值"><a href="#subscribe以及设置特殊值" class="headerlink" title="subscribe以及设置特殊值"></a>subscribe以及设置特殊值</h2><pre class=" language-jsx"><code class="language-jsx"> <span class="token comment" spellcheck="true">//仓库放所有action 以及state</span>
+<span class="token keyword">const</span> initState <span class="token operator">=</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+  count <span class="token punctuation">:</span><span class="token number">0</span> <span class="token punctuation">,</span>
+  list<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token string">'任务一'</span><span class="token punctuation">,</span><span class="token string">"任务二"</span><span class="token punctuation">]</span>
+<span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">;</span>
+ <span class="token comment" spellcheck="true">//仓库放所有action 以及state</span>
+<span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token function">createStore</span><span class="token punctuation">(</span><span class="token punctuation">(</span>state<span class="token operator">=</span>initState<span class="token punctuation">,</span>action<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token entity" title="&#123;">&amp;#123;</span>
+  <span class="token keyword">switch</span><span class="token punctuation">(</span>action<span class="token punctuation">.</span>type<span class="token punctuation">)</span><span class="token entity" title="&#123;">&amp;#123;</span>
+  <span class="token keyword">case</span> <span class="token string">"INCREMENT"</span><span class="token punctuation">:</span>
+    <span class="token keyword">const</span> incrementBy <span class="token operator">=</span> <span class="token keyword">typeof</span> action<span class="token punctuation">.</span>incrementBy <span class="token operator">===</span><span class="token string">'number'</span><span class="token operator">?</span> action<span class="token punctuation">.</span>incrementBy <span class="token punctuation">:</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token entity" title="&#123;">&amp;#123;</span> count<span class="token punctuation">:</span>state<span class="token punctuation">.</span>count<span class="token operator">+</span>incrementBy <span class="token entity" title="&#125;">&amp;#125;</span>
+
+  <span class="token keyword">case</span> <span class="token string">"DECREMENT"</span><span class="token punctuation">:</span> 
+  <span class="token keyword">const</span> decrementBy <span class="token operator">=</span> <span class="token keyword">typeof</span> action<span class="token punctuation">.</span>decrementBy <span class="token operator">===</span><span class="token string">'number'</span><span class="token operator">?</span> action<span class="token punctuation">.</span>decrementBy <span class="token punctuation">:</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token entity" title="&#123;">&amp;#123;</span> count<span class="token punctuation">:</span>state<span class="token punctuation">.</span>count<span class="token operator">-</span>decrementBy <span class="token entity" title="&#125;">&amp;#125;</span>
+
+  <span class="token keyword">case</span> <span class="token string">"RESET"</span><span class="token punctuation">:</span> <span class="token keyword">return</span> <span class="token entity" title="&#123;">&amp;#123;</span> count<span class="token punctuation">:</span><span class="token number">0</span> <span class="token entity" title="&#125;">&amp;#125;</span>
+
+  <span class="token keyword">case</span> <span class="token string">"SET"</span><span class="token punctuation">:</span> <span class="token keyword">return</span> <span class="token entity" title="&#123;">&amp;#123;</span> count<span class="token punctuation">:</span>action<span class="token punctuation">.</span>count <span class="token entity" title="&#125;">&amp;#125;</span>
+
+  <span class="token keyword">default</span><span class="token punctuation">:</span> <span class="token keyword">return</span> state
+  <span class="token entity" title="&#125;">&amp;#125;</span>
+<span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span> 
+<span class="token comment" spellcheck="true">//实时监控</span>
+<span class="token keyword">const</span> unsub<span class="token operator">=</span>store<span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token entity" title="&#123;">&amp;#123;</span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>store<span class="token punctuation">.</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true">//执行</span>
+store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token entity" title="&#123;">&amp;#123;</span> type<span class="token punctuation">:</span> <span class="token string">"INCREMENT"</span><span class="token punctuation">,</span> incrementBy<span class="token punctuation">:</span><span class="token number">5</span><span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span>
+store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token entity" title="&#123;">&amp;#123;</span> type<span class="token punctuation">:</span> <span class="token string">"INCREMENT"</span> <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span> 
+store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token entity" title="&#123;">&amp;#123;</span> type<span class="token punctuation">:</span> <span class="token string">"DECREMENT"</span><span class="token punctuation">,</span> decrementBy<span class="token punctuation">:</span><span class="token number">3</span> <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span> 
+store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token entity" title="&#123;">&amp;#123;</span> type<span class="token punctuation">:</span> <span class="token string">"SET"</span><span class="token punctuation">,</span> count <span class="token punctuation">:</span> <span class="token number">100</span> <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span> 
+
+<span class="token comment" spellcheck="true">//直接取消掉subscribe</span>
+<span class="token function">unsub</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//后面执行但是不会跟踪</span>
+store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token entity" title="&#123;">&amp;#123;</span> type<span class="token punctuation">:</span> <span class="token string">"DECREMENT"</span><span class="token punctuation">,</span> decrementBy<span class="token punctuation">:</span><span class="token number">3</span><span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span> 
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>store<span class="token punctuation">.</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<p>利用解构 以及整理Action</p>
+<pre class=" language-jsx"><code class="language-jsx"> <span class="token keyword">const</span> initState <span class="token operator">=</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+  count <span class="token punctuation">:</span><span class="token number">0</span> <span class="token punctuation">,</span>
+  list<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token string">'任务一'</span><span class="token punctuation">,</span><span class="token string">"任务二"</span><span class="token punctuation">]</span>
+<span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">;</span>
+ <span class="token comment" spellcheck="true">//仓库放所有action选择 以及state 以及返回新的对象</span>
+<span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token function">createStore</span><span class="token punctuation">(</span><span class="token punctuation">(</span>state<span class="token operator">=</span>initState<span class="token punctuation">,</span>action<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token entity" title="&#123;">&amp;#123;</span>
+  <span class="token keyword">switch</span><span class="token punctuation">(</span>action<span class="token punctuation">.</span>type<span class="token punctuation">)</span><span class="token entity" title="&#123;">&amp;#123;</span>
+  <span class="token keyword">case</span> <span class="token string">"INCREMENT"</span><span class="token punctuation">:</span>  <span class="token keyword">return</span> <span class="token entity" title="&#123;">&amp;#123;</span> count<span class="token punctuation">:</span>state<span class="token punctuation">.</span>count<span class="token operator">+</span>action<span class="token punctuation">.</span>incrementBy <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">case</span> <span class="token string">"DECREMENT"</span><span class="token punctuation">:</span>  <span class="token keyword">return</span> <span class="token entity" title="&#123;">&amp;#123;</span> count<span class="token punctuation">:</span>state<span class="token punctuation">.</span>count<span class="token operator">-</span>action<span class="token punctuation">.</span>decrementBy <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">case</span> <span class="token string">"RESET"</span><span class="token punctuation">:</span> <span class="token keyword">return</span> <span class="token entity" title="&#123;">&amp;#123;</span> count<span class="token punctuation">:</span><span class="token number">0</span> <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">case</span> <span class="token string">"SET"</span><span class="token punctuation">:</span> <span class="token keyword">return</span> <span class="token entity" title="&#123;">&amp;#123;</span> count<span class="token punctuation">:</span>action<span class="token punctuation">.</span>count <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">default</span><span class="token punctuation">:</span> <span class="token keyword">return</span> state
+  <span class="token entity" title="&#125;">&amp;#125;</span>
+<span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span> 
+<span class="token comment" spellcheck="true">//实时监控</span>
+<span class="token keyword">const</span> unsub<span class="token operator">=</span>store<span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token entity" title="&#123;">&amp;#123;</span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>store<span class="token punctuation">.</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true">//返回操作函数（对象包装函数）</span>
+<span class="token keyword">const</span> increment <span class="token operator">=</span><span class="token punctuation">(</span>payload<span class="token operator">=</span><span class="token entity" title="&#123;">&amp;#123;</span><span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token entity" title="&#123;">&amp;#123;</span>
+  <span class="token keyword">return</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+  type<span class="token punctuation">:</span> <span class="token string">"INCREMENT"</span><span class="token punctuation">,</span>
+  incrementBy<span class="token punctuation">:</span><span class="token keyword">typeof</span> payload<span class="token punctuation">.</span>incrementBy <span class="token operator">===</span><span class="token string">'number'</span><span class="token operator">?</span> payload<span class="token punctuation">.</span>incrementBy <span class="token punctuation">:</span><span class="token number">1</span><span class="token entity" title="&#125;">&amp;#125;</span>
+<span class="token entity" title="&#125;">&amp;#125;</span>
+<span class="token comment" spellcheck="true">//这里利用解构 简化写法</span>
+<span class="token keyword">const</span> decrement <span class="token operator">=</span><span class="token punctuation">(</span><span class="token entity" title="&#123;">&amp;#123;</span>decrementBy<span class="token operator">=</span><span class="token number">1</span><span class="token entity" title="&#125;">&amp;#125;</span><span class="token operator">=</span><span class="token entity" title="&#123;">&amp;#123;</span><span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token entity" title="&#123;">&amp;#123;</span>
+ <span class="token keyword">return</span><span class="token entity" title="&#123;">&amp;#123;</span> type<span class="token punctuation">:</span> <span class="token string">"DECREMENT"</span><span class="token punctuation">,</span> decrementBy<span class="token entity" title="&#125;">&amp;#125;</span><span class="token entity" title="&#125;">&amp;#125;</span>
+<span class="token comment" spellcheck="true">//执行</span>
+store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">increment</span><span class="token punctuation">(</span><span class="token entity" title="&#123;">&amp;#123;</span>incrementBy<span class="token punctuation">:</span><span class="token number">6</span><span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">increment</span><span class="token punctuation">(</span><span class="token entity" title="&#123;">&amp;#123;</span> type<span class="token punctuation">:</span> <span class="token string">"INCREMENT"</span> <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">decrement</span><span class="token punctuation">(</span><span class="token entity" title="&#123;">&amp;#123;</span>decrementBy<span class="token punctuation">:</span><span class="token number">5</span><span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span><span class="token punctuation">)</span> 
+store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token entity" title="&#123;">&amp;#123;</span> type<span class="token punctuation">:</span> <span class="token string">"SET"</span><span class="token punctuation">,</span> count <span class="token punctuation">:</span> <span class="token number">100</span><span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span> 
+<span class="token comment" spellcheck="true">//直接取消掉subscribe</span>
+<span class="token function">unsub</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//后面执行但是不会跟踪</span>
+store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token entity" title="&#123;">&amp;#123;</span> type<span class="token punctuation">:</span> <span class="token string">"DECREMENT"</span><span class="token punctuation">,</span> decrementBy<span class="token punctuation">:</span><span class="token number">3</span><span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span> 
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>store<span class="token punctuation">.</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<h2 id="最终完整单个redux例子"><a href="#最终完整单个redux例子" class="headerlink" title="最终完整单个redux例子"></a>最终完整单个redux例子</h2><p>最终得到基础的单个redux， 这里注意的重点是，我们用reducer 是为了通过得到一个state以及action 从而返回新的state，并没有改变原本的state，只是给了新的state</p>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">const</span> initState <span class="token operator">=</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+  count <span class="token punctuation">:</span><span class="token number">0</span> <span class="token punctuation">,</span>
+  list<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token string">'任务一'</span><span class="token punctuation">,</span><span class="token string">"任务二"</span><span class="token punctuation">]</span>
+<span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> countReducer<span class="token operator">=</span><span class="token punctuation">(</span>state<span class="token operator">=</span>initState<span class="token punctuation">,</span>action<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token entity" title="&#123;">&amp;#123;</span>
+  <span class="token keyword">switch</span><span class="token punctuation">(</span>action<span class="token punctuation">.</span>type<span class="token punctuation">)</span><span class="token entity" title="&#123;">&amp;#123;</span>
+  <span class="token keyword">case</span> <span class="token string">"INCREMENT"</span><span class="token punctuation">:</span>  <span class="token keyword">return</span> <span class="token entity" title="&#123;">&amp;#123;</span> count<span class="token punctuation">:</span>state<span class="token punctuation">.</span>count<span class="token operator">+</span>action<span class="token punctuation">.</span>incrementBy <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">case</span> <span class="token string">"DECREMENT"</span><span class="token punctuation">:</span>  <span class="token keyword">return</span> <span class="token entity" title="&#123;">&amp;#123;</span> count<span class="token punctuation">:</span>state<span class="token punctuation">.</span>count<span class="token operator">-</span>action<span class="token punctuation">.</span>decrementBy <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">case</span> <span class="token string">"RESET"</span><span class="token punctuation">:</span> <span class="token keyword">return</span> <span class="token entity" title="&#123;">&amp;#123;</span> count<span class="token punctuation">:</span><span class="token number">0</span> <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">case</span> <span class="token string">"SET"</span><span class="token punctuation">:</span> <span class="token keyword">return</span> <span class="token entity" title="&#123;">&amp;#123;</span> count<span class="token punctuation">:</span>action<span class="token punctuation">.</span>setCount <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">default</span><span class="token punctuation">:</span> <span class="token keyword">return</span> state
+  <span class="token entity" title="&#125;">&amp;#125;</span>
+<span class="token entity" title="&#125;">&amp;#125;</span>
+
+
+ <span class="token comment" spellcheck="true">//仓库放所有action选择 以及state 以及返回新的对象</span>
+<span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token function">createStore</span><span class="token punctuation">(</span>countReducer<span class="token punctuation">)</span> 
+<span class="token comment" spellcheck="true">//实时监控</span>
+<span class="token keyword">const</span> unsub<span class="token operator">=</span>store<span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token entity" title="&#123;">&amp;#123;</span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>store<span class="token punctuation">.</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true">//返回操作函数（对象包装函数） action generator</span>
+<span class="token keyword">const</span> increment <span class="token operator">=</span><span class="token punctuation">(</span>payload<span class="token operator">=</span><span class="token entity" title="&#123;">&amp;#123;</span><span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token entity" title="&#123;">&amp;#123;</span>
+  <span class="token keyword">return</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+  type<span class="token punctuation">:</span> <span class="token string">"INCREMENT"</span><span class="token punctuation">,</span>
+  incrementBy<span class="token punctuation">:</span><span class="token keyword">typeof</span> payload<span class="token punctuation">.</span>incrementBy <span class="token operator">===</span><span class="token string">'number'</span><span class="token operator">?</span> payload<span class="token punctuation">.</span>incrementBy <span class="token punctuation">:</span><span class="token number">1</span><span class="token entity" title="&#125;">&amp;#125;</span>
+<span class="token entity" title="&#125;">&amp;#125;</span>
+
+<span class="token comment" spellcheck="true">//这里利用解构 简化写法</span>
+<span class="token keyword">const</span> decrement <span class="token operator">=</span><span class="token punctuation">(</span><span class="token entity" title="&#123;">&amp;#123;</span>decrementBy<span class="token operator">=</span><span class="token number">1</span><span class="token entity" title="&#125;">&amp;#125;</span><span class="token operator">=</span><span class="token entity" title="&#123;">&amp;#123;</span><span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token entity" title="&#123;">&amp;#123;</span>
+ <span class="token keyword">return</span><span class="token entity" title="&#123;">&amp;#123;</span> type<span class="token punctuation">:</span> <span class="token string">"DECREMENT"</span><span class="token punctuation">,</span> decrementBy<span class="token entity" title="&#125;">&amp;#125;</span> 
+<span class="token entity" title="&#125;">&amp;#125;</span>
+
+<span class="token keyword">const</span> reset <span class="token operator">=</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token entity" title="&#123;">&amp;#123;</span>
+  <span class="token keyword">return</span> <span class="token entity" title="&#123;">&amp;#123;</span> type<span class="token punctuation">:</span> <span class="token string">"RESET"</span> <span class="token entity" title="&#125;">&amp;#125;</span>
+<span class="token entity" title="&#125;">&amp;#125;</span>
+
+<span class="token keyword">const</span> <span class="token keyword">set</span> <span class="token operator">=</span><span class="token punctuation">(</span><span class="token entity" title="&#123;">&amp;#123;</span>setCount<span class="token entity" title="&#125;">&amp;#125;</span><span class="token operator">=</span><span class="token entity" title="&#123;">&amp;#123;</span><span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token entity" title="&#123;">&amp;#123;</span>
+  <span class="token keyword">return</span> <span class="token entity" title="&#123;">&amp;#123;</span> type<span class="token punctuation">:</span> <span class="token string">"SET"</span><span class="token punctuation">,</span> setCount<span class="token entity" title="&#125;">&amp;#125;</span>
+<span class="token entity" title="&#125;">&amp;#125;</span>
+
+<span class="token comment" spellcheck="true">//执行</span>
+store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">increment</span><span class="token punctuation">(</span><span class="token entity" title="&#123;">&amp;#123;</span>incrementBy<span class="token punctuation">:</span><span class="token number">6</span><span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">increment</span><span class="token punctuation">(</span><span class="token entity" title="&#123;">&amp;#123;</span>type<span class="token punctuation">:</span> <span class="token string">"INCREMENT"</span><span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">decrement</span><span class="token punctuation">(</span><span class="token entity" title="&#123;">&amp;#123;</span>decrementBy<span class="token punctuation">:</span><span class="token number">5</span><span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span><span class="token punctuation">)</span> 
+store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">reset</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">decrement</span><span class="token punctuation">(</span><span class="token entity" title="&#123;">&amp;#123;</span>decrementBy<span class="token punctuation">:</span><span class="token number">5</span><span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span><span class="token punctuation">)</span> 
+store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token keyword">set</span><span class="token punctuation">(</span><span class="token entity" title="&#123;">&amp;#123;</span>setCount<span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">99</span><span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span><span class="token punctuation">)</span> 
+<span class="token comment" spellcheck="true">//直接取消掉subscribe</span>
+<span class="token function">unsub</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//后面执行但是不会跟踪</span>
+store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token entity" title="&#123;">&amp;#123;</span> type<span class="token punctuation">:</span> <span class="token string">"DECREMENT"</span><span class="token punctuation">,</span> decrementBy<span class="token punctuation">:</span><span class="token number">3</span> <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span> 
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>store<span class="token punctuation">.</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<h1 id="多个reducer例子"><a href="#多个reducer例子" class="headerlink" title="多个reducer例子"></a>多个reducer例子</h1><p>那么接下来看看多个reducer的时候 处理数据怎么做</p>
+<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">//两个数据例子</span>
+<span class="token keyword">const</span> demoState<span class="token operator">=</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  expenses<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    id<span class="token punctuation">:</span><span class="token string">'poijasdfhwer'</span><span class="token punctuation">,</span>
+    description<span class="token punctuation">:</span><span class="token string">'January Rent'</span><span class="token punctuation">,</span>
+    note<span class="token punctuation">:</span><span class="token string">'This was the final payment'</span><span class="token punctuation">,</span>
+    amount<span class="token punctuation">:</span><span class="token number">54500</span><span class="token punctuation">,</span>
+    createdAt<span class="token punctuation">:</span><span class="token number">0</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  filters<span class="token punctuation">:</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    text<span class="token punctuation">:</span><span class="token string">'rent'</span><span class="token punctuation">,</span>
+    sortBy<span class="token punctuation">:</span><span class="token string">'amount'</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">//date or amount</span>
+    startDate<span class="token punctuation">:</span>undefined<span class="token punctuation">,</span>
+    endDate<span class="token punctuation">:</span>undefined<span class="token punctuation">,</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//default state &amp; reducer</span>
+<span class="token keyword">const</span> expensesReducerDefaultState<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> expensesReducer<span class="token operator">=</span><span class="token punctuation">(</span>state<span class="token operator">=</span>expensesReducerDefaultState<span class="token punctuation">,</span>action<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token keyword">switch</span><span class="token punctuation">(</span>action<span class="token punctuation">.</span>type<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token string">"ADD_EXPENSE"</span><span class="token punctuation">:</span> 
+    <span class="token comment" spellcheck="true">//return  state.concat(action.expense);//此处不影响原先数组 只是返回新数组 </span>
+    <span class="token keyword">return</span> <span class="token punctuation">[</span><span class="token operator">...</span>state<span class="token punctuation">,</span>action<span class="token punctuation">.</span>expense<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token string">"REMOVE_EXPENSE"</span><span class="token punctuation">:</span> 
+    <span class="token keyword">return</span> state<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span>elem<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span> <span class="token punctuation">(</span>elem<span class="token punctuation">.</span>id <span class="token operator">!==</span> action<span class="token punctuation">.</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token string">"EDIT_EXPENSE"</span><span class="token punctuation">:</span> 
+    <span class="token comment" spellcheck="true">//return  state.concat(action.expense);//此处不影响原先数组 只是返回新数组 </span>
+    <span class="token keyword">return</span> state<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span>expense<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token keyword">if</span><span class="token punctuation">(</span>expense<span class="token punctuation">.</span>id<span class="token operator">===</span>action<span class="token punctuation">.</span>id<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+          <span class="token operator">...</span>expense<span class="token punctuation">,</span>
+          <span class="token operator">...</span>action<span class="token punctuation">.</span>updates<span class="token punctuation">,</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+      <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token keyword">else</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> expense
+      <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">default</span><span class="token punctuation">:</span> <span class="token keyword">return</span> state
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+
+<span class="token comment" spellcheck="true">//返回操作函数（对象包装函数） action generator</span>
+<span class="token keyword">const</span> addExpense<span class="token operator">=</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  description<span class="token operator">=</span><span class="token string">""</span><span class="token punctuation">,</span>
+  note<span class="token operator">=</span><span class="token string">""</span><span class="token punctuation">,</span>
+  amount<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span>
+  createdAt<span class="token operator">=</span><span class="token number">0</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token operator">=</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    type<span class="token punctuation">:</span><span class="token string">"ADD_EXPENSE"</span><span class="token punctuation">,</span>
+    expense<span class="token punctuation">:</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    id<span class="token punctuation">:</span><span class="token function">uuidv4</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    description<span class="token punctuation">,</span>
+    note<span class="token punctuation">,</span>
+    amount<span class="token punctuation">,</span>
+    createdAt<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> removeExpense<span class="token operator">=</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>id<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token operator">=</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> type<span class="token punctuation">:</span><span class="token string">"REMOVE_EXPENSE"</span><span class="token punctuation">,</span> id <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> editExpense<span class="token operator">=</span><span class="token punctuation">(</span>id<span class="token punctuation">,</span>updates<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    type<span class="token punctuation">:</span><span class="token string">"EDIT_EXPENSE"</span><span class="token punctuation">,</span>
+    id<span class="token punctuation">,</span>
+    updates
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true">//default state &amp; reducer</span>
+<span class="token keyword">const</span> filtersReducerDefaultState<span class="token operator">=</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    text<span class="token punctuation">:</span><span class="token string">''</span><span class="token punctuation">,</span>
+    sortBy<span class="token punctuation">:</span><span class="token string">'amount'</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">//date or amount</span>
+    startDate<span class="token punctuation">:</span>undefined<span class="token punctuation">,</span>
+    endDate<span class="token punctuation">:</span>undefined<span class="token punctuation">,</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> filtersReducer<span class="token operator">=</span><span class="token punctuation">(</span>state<span class="token operator">=</span>filtersReducerDefaultState<span class="token punctuation">,</span>action<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token keyword">switch</span><span class="token punctuation">(</span>action<span class="token punctuation">.</span>type<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token string">"SET_TEXT_FILTER"</span><span class="token punctuation">:</span> 
+    <span class="token keyword">return</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token operator">...</span>state<span class="token punctuation">,</span>
+      text<span class="token punctuation">:</span>action<span class="token punctuation">.</span>name
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token keyword">default</span><span class="token punctuation">:</span> <span class="token keyword">return</span> state
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//action</span>
+<span class="token keyword">const</span> setTextFilter <span class="token operator">=</span> <span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  type<span class="token punctuation">:</span><span class="token string">"SET_TEXT_FILTER"</span><span class="token punctuation">,</span>
+  name
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
+
+
+<span class="token comment" spellcheck="true">//仓库放所有action选择 以及state 以及返回新的对象</span>
+<span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token function">createStore</span><span class="token punctuation">(</span><span class="token function">combineReducers</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>expenses<span class="token punctuation">:</span>expensesReducer<span class="token punctuation">,</span>filters<span class="token punctuation">:</span>filtersReducer<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">)</span> 
+<span class="token comment" spellcheck="true">//实时监控</span>
+<span class="token keyword">const</span> unsub<span class="token operator">=</span>store<span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>store<span class="token punctuation">.</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> expenseOne <span class="token operator">=</span> store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">addExpense</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>description<span class="token punctuation">:</span><span class="token string">"Rent"</span><span class="token punctuation">,</span>amount<span class="token punctuation">:</span><span class="token number">1000</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">)</span> 
+<span class="token keyword">const</span> expenseTwo <span class="token operator">=</span> store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">addExpense</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>description<span class="token punctuation">:</span><span class="token string">"Coffee"</span><span class="token punctuation">,</span>amount<span class="token punctuation">:</span><span class="token number">666</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  
+
+store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">removeExpense</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>id<span class="token punctuation">:</span>expenseOne<span class="token punctuation">.</span>expense<span class="token punctuation">.</span>id<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  
+store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">editExpense</span><span class="token punctuation">(</span>expenseTwo<span class="token punctuation">.</span>expense<span class="token punctuation">.</span>id<span class="token punctuation">,</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>description<span class="token punctuation">:</span><span class="token string">"RentNew"</span><span class="token punctuation">,</span>amount<span class="token punctuation">:</span><span class="token number">19999</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  
+store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">setTextFilter</span><span class="token punctuation">(</span><span class="token string">"Rent"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> </code></pre>
+<p>这里注意 对于箭头函数中，返回时对象，可以直接使用 ( )=&gt;( {对象})</p>
+<p>继续补充例子中的function</p>
+<pre class=" language-js"><code class="language-js">
+<span class="token comment" spellcheck="true">//default state &amp; reducer</span>
+<span class="token keyword">const</span> expensesReducerDefaultState<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> expensesReducer<span class="token operator">=</span><span class="token punctuation">(</span>state<span class="token operator">=</span>expensesReducerDefaultState<span class="token punctuation">,</span>action<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token keyword">switch</span><span class="token punctuation">(</span>action<span class="token punctuation">.</span>type<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token string">"ADD_EXPENSE"</span><span class="token punctuation">:</span> 
+    <span class="token comment" spellcheck="true">//return  state.concat(action.expense);//此处不影响原先数组 只是返回新数组 </span>
+    <span class="token keyword">return</span> <span class="token punctuation">[</span><span class="token operator">...</span>state<span class="token punctuation">,</span>action<span class="token punctuation">.</span>expense<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token string">"REMOVE_EXPENSE"</span><span class="token punctuation">:</span> 
+    <span class="token keyword">return</span> state<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span>elem<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span> <span class="token punctuation">(</span>elem<span class="token punctuation">.</span>id <span class="token operator">!==</span> action<span class="token punctuation">.</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token string">"EDIT_EXPENSE"</span><span class="token punctuation">:</span> 
+    <span class="token comment" spellcheck="true">//return  state.concat(action.expense);//此处不影响原先数组 只是返回新数组 </span>
+    <span class="token keyword">return</span> state<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span>expense<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token keyword">if</span><span class="token punctuation">(</span>expense<span class="token punctuation">.</span>id<span class="token operator">===</span>action<span class="token punctuation">.</span>id<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+          <span class="token operator">...</span>expense<span class="token punctuation">,</span>
+          <span class="token operator">...</span>action<span class="token punctuation">.</span>updates<span class="token punctuation">,</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+      <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token keyword">else</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> expense
+      <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">default</span><span class="token punctuation">:</span> <span class="token keyword">return</span> state
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//action</span>
+<span class="token keyword">const</span> addExpense<span class="token operator">=</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  description<span class="token operator">=</span><span class="token string">""</span><span class="token punctuation">,</span>
+  note<span class="token operator">=</span><span class="token string">""</span><span class="token punctuation">,</span>
+  amount<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span>
+  createdAt<span class="token operator">=</span><span class="token number">0</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token operator">=</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    type<span class="token punctuation">:</span><span class="token string">"ADD_EXPENSE"</span><span class="token punctuation">,</span>
+    expense<span class="token punctuation">:</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    id<span class="token punctuation">:</span><span class="token function">uuidv4</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    description<span class="token punctuation">,</span>
+    note<span class="token punctuation">,</span>
+    amount<span class="token punctuation">,</span>
+    createdAt<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> removeExpense<span class="token operator">=</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>id<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token operator">=</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> type<span class="token punctuation">:</span><span class="token string">"REMOVE_EXPENSE"</span><span class="token punctuation">,</span> id <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> editExpense<span class="token operator">=</span><span class="token punctuation">(</span>id<span class="token punctuation">,</span>updates<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    type<span class="token punctuation">:</span><span class="token string">"EDIT_EXPENSE"</span><span class="token punctuation">,</span>
+    id<span class="token punctuation">,</span>
+    updates
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">const</span> filtersReducerDefaultState<span class="token operator">=</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    text<span class="token punctuation">:</span><span class="token string">''</span><span class="token punctuation">,</span>
+    sortBy<span class="token punctuation">:</span><span class="token string">'amount'</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">//date or amount</span>
+    startDate<span class="token punctuation">:</span>undefined<span class="token punctuation">,</span>
+    endDate<span class="token punctuation">:</span>undefined<span class="token punctuation">,</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> filtersReducer<span class="token operator">=</span><span class="token punctuation">(</span>state<span class="token operator">=</span>filtersReducerDefaultState<span class="token punctuation">,</span>action<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token keyword">switch</span><span class="token punctuation">(</span>action<span class="token punctuation">.</span>type<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token keyword">case</span> <span class="token string">"SET_TEXT_FILTER"</span><span class="token punctuation">:</span> 
+    <span class="token keyword">return</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token operator">...</span>state<span class="token punctuation">,</span>
+      text<span class="token punctuation">:</span>action<span class="token punctuation">.</span>name
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+  <span class="token keyword">case</span> <span class="token string">"SORT_BY_DATE"</span><span class="token punctuation">:</span> 
+    <span class="token keyword">return</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token operator">...</span>state<span class="token punctuation">,</span>
+      sortBy<span class="token punctuation">:</span><span class="token string">'date'</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+  <span class="token keyword">case</span> <span class="token string">"SORT_BY_AMOUNT"</span><span class="token punctuation">:</span> 
+    <span class="token keyword">return</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token operator">...</span>state<span class="token punctuation">,</span>
+      sortBy<span class="token punctuation">:</span><span class="token string">'amount'</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+  <span class="token keyword">case</span> <span class="token string">"SET_START_DATE"</span><span class="token punctuation">:</span> 
+    <span class="token keyword">return</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token operator">...</span>state<span class="token punctuation">,</span>
+      startDate<span class="token punctuation">:</span>action<span class="token punctuation">.</span>startDate
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+  <span class="token keyword">case</span> <span class="token string">"SET_END_DATE"</span><span class="token punctuation">:</span> 
+    <span class="token keyword">return</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token operator">...</span>state<span class="token punctuation">,</span>
+      endDate<span class="token punctuation">:</span>action<span class="token punctuation">.</span>endDate
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token keyword">default</span><span class="token punctuation">:</span> <span class="token keyword">return</span> state
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> setTextFilter <span class="token operator">=</span> <span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  type<span class="token punctuation">:</span><span class="token string">"SET_TEXT_FILTER"</span><span class="token punctuation">,</span>
+  name
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> sortByDate <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  type<span class="token punctuation">:</span><span class="token string">"SORT_BY_DATE"</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> sortByAmount <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  type<span class="token punctuation">:</span><span class="token string">"SORT_BY_AMOUNT"</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> setStartDate<span class="token operator">=</span><span class="token punctuation">(</span>startDate<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  type<span class="token punctuation">:</span><span class="token string">"SET_START_DATE"</span><span class="token punctuation">,</span>
+  startDate
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> setEndDate<span class="token operator">=</span><span class="token punctuation">(</span>endDate<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  type<span class="token punctuation">:</span><span class="token string">"SET_END_DATE"</span><span class="token punctuation">,</span>
+  endDate
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
+
+ <span class="token comment" spellcheck="true">//仓库放所有action选择 以及state 以及返回新的对象</span>
+<span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token function">createStore</span><span class="token punctuation">(</span><span class="token function">combineReducers</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>expenses<span class="token punctuation">:</span>expensesReducer<span class="token punctuation">,</span>filters<span class="token punctuation">:</span>filtersReducer<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">)</span> 
+
+<span class="token keyword">const</span> getVisibleExpenses<span class="token operator">=</span><span class="token punctuation">(</span>expenses<span class="token punctuation">,</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>text<span class="token punctuation">,</span>sortBy<span class="token punctuation">,</span>startDate<span class="token punctuation">,</span>endDate<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> expenses<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token punctuation">(</span>element<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//if not set the startdate and createdAt is ok</span>
+    <span class="token keyword">const</span> startDateMatch <span class="token operator">=</span> <span class="token keyword">typeof</span> startDate <span class="token operator">!==</span> <span class="token string">'number'</span> <span class="token operator">||</span> element<span class="token punctuation">.</span>createdAt <span class="token operator">>=</span> startDate<span class="token punctuation">;</span>
+    <span class="token keyword">const</span> endDateMatch <span class="token operator">=</span>  <span class="token keyword">typeof</span> endDate <span class="token operator">!==</span> <span class="token string">'number'</span> <span class="token operator">||</span> element<span class="token punctuation">.</span>createdAt <span class="token operator">&lt;=</span> endDate<span class="token punctuation">;</span>
+    <span class="token keyword">const</span> textMatch <span class="token operator">=</span> element<span class="token punctuation">.</span>description<span class="token punctuation">.</span><span class="token function">toLowerCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span>text<span class="token punctuation">.</span><span class="token function">toLowerCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> startDateMatch <span class="token operator">&amp;&amp;</span> endDateMatch <span class="token operator">&amp;&amp;</span> textMatch<span class="token punctuation">;</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">sort</span><span class="token punctuation">(</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span>b<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>sortBy <span class="token operator">===</span> <span class="token string">"date"</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span> a<span class="token punctuation">.</span>createdAt <span class="token operator">></span> b<span class="token punctuation">.</span>createdAt <span class="token operator">?</span> <span class="token number">1</span> <span class="token punctuation">:</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>sortBy <span class="token operator">===</span> <span class="token string">"amount"</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span> a<span class="token punctuation">.</span>amount <span class="token operator">></span> b<span class="token punctuation">.</span>amount <span class="token operator">?</span> <span class="token number">1</span> <span class="token punctuation">:</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//实时监控</span>
+<span class="token keyword">const</span> unsub<span class="token operator">=</span>store<span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> 
+  <span class="token keyword">const</span> state<span class="token operator">=</span>store<span class="token punctuation">.</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> visibleExpenses <span class="token operator">=</span><span class="token function">getVisibleExpenses</span><span class="token punctuation">(</span>state<span class="token punctuation">.</span>expenses<span class="token punctuation">,</span>state<span class="token punctuation">.</span>filters<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>visibleExpenses<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>store<span class="token punctuation">.</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true">//返回操作函数（对象包装函数） action generator</span>
+ <span class="token keyword">const</span> expenseOne <span class="token operator">=</span> store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">addExpense</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>description<span class="token punctuation">:</span><span class="token string">"cRent"</span><span class="token punctuation">,</span>amount<span class="token punctuation">:</span><span class="token number">215610</span><span class="token punctuation">,</span>createdAt<span class="token punctuation">:</span><span class="token number">1000</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">)</span> 
+ <span class="token keyword">const</span> expenseTwo <span class="token operator">=</span> store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">addExpense</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>description<span class="token punctuation">:</span><span class="token string">"Coffee1"</span><span class="token punctuation">,</span>amount<span class="token punctuation">:</span><span class="token number">1</span><span class="token punctuation">,</span>createdAt<span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">1000</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">)</span> 
+ store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">addExpense</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>description<span class="token punctuation">:</span><span class="token string">"Coffee2"</span><span class="token punctuation">,</span>amount<span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">,</span>createdAt<span class="token punctuation">:</span><span class="token number">2000</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">)</span> 
+ store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">addExpense</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>description<span class="token punctuation">:</span><span class="token string">"Coffee3"</span><span class="token punctuation">,</span>amount<span class="token punctuation">:</span><span class="token number">3</span><span class="token punctuation">,</span>createdAt<span class="token punctuation">:</span><span class="token number">3000</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  
+
+ <span class="token comment" spellcheck="true">//store.dispatch(removeExpense(&amp;#123;id:expenseOne.expense.id&amp;#125;))  </span>
+ store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">editExpense</span><span class="token punctuation">(</span>expenseTwo<span class="token punctuation">.</span>expense<span class="token punctuation">.</span>id<span class="token punctuation">,</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>description<span class="token punctuation">:</span><span class="token string">"c"</span><span class="token punctuation">,</span>amount<span class="token punctuation">:</span><span class="token number">9</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  
+ store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">setTextFilter</span><span class="token punctuation">(</span><span class="token string">"c"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+ store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">sortByAmount</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+ <span class="token comment" spellcheck="true">//store.dispatch(sortByDate()); </span>
+ <span class="token comment" spellcheck="true">//store.dispatch(setStartDate(0)); </span>
+ <span class="token comment" spellcheck="true">//store.dispatch(setEndDate(999)); </span>
+
+<span class="token comment" spellcheck="true">// const demoState=&amp;#123;</span>
+<span class="token comment" spellcheck="true">//   expenses:[&amp;#123;</span>
+<span class="token comment" spellcheck="true">//     id:'poijasdfhwer',</span>
+<span class="token comment" spellcheck="true">//     description:'January Rent',</span>
+<span class="token comment" spellcheck="true">//     note:'This was the final payment',</span>
+<span class="token comment" spellcheck="true">//     amount:54500,</span>
+<span class="token comment" spellcheck="true">//     createdAt:0</span>
+<span class="token comment" spellcheck="true">//   &amp;#125;],</span>
+<span class="token comment" spellcheck="true">//   filters:&amp;#123;</span>
+<span class="token comment" spellcheck="true">//     text:'rent',</span>
+<span class="token comment" spellcheck="true">//     sortBy:'amount',//date or amount</span>
+<span class="token comment" spellcheck="true">//     startDate:undefined,</span>
+<span class="token comment" spellcheck="true">//     endDate:undefined,</span>
+<span class="token comment" spellcheck="true">//   &amp;#125;</span>
+<span class="token comment" spellcheck="true">// &amp;#125;</span>
+</code></pre>
+<h1 id="高阶组件（Higher-Order-Components）"><a href="#高阶组件（Higher-Order-Components）" class="headerlink" title="高阶组件（Higher-Order Components）"></a>高阶组件（Higher-Order Components）</h1><p>高阶组件就是一个函数，传给它一个组件，它返回一个新的组件</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> Component <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">from</span> <span class="token string">'react'</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">(</span>WrappedComponent<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token keyword">class</span> <span class="token class-name">NewComponent</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 可以做很多自定义逻辑</span>
+    render <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span> <span class="token operator">&lt;</span>WrappedComponent <span class="token operator">/</span><span class="token operator">></span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> NewComponent
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2> <img src="/2020/12/21/react-1week05/image-20201229112941453.png" style="zoom: 80%;">
+
+<img src="/2020/12/21/react-1week05/image-20201229113015799.png">
+
+<h1 id="React-Redux"><a href="#React-Redux" class="headerlink" title="React Redux"></a>React Redux</h1><blockquote>
+<p><strong>Redux 跟 React 並沒有關係。你可以用 React、Angular、Ember、jQuery 或甚至原生 JavaScript 來撰寫 Redux 應用程式。</strong></p>
+</blockquote>
+<img src="/2020/12/21/react-1week05/image-20210101012541717.png" style="zoom:67%;">
+
+<p><code>react-redux</code> 是 React 和 Redux 间的桥梁，使用 <code>Provider</code>、<code>connect</code> 去连结 <code>store</code> 和 React View。</p>
+<p>整合了 <code>react-redux</code> 后，我们的 React App 就可以解决传统跨 Component 之前传递 state 的问题和困难。只要通过 <code>Provider</code> 就可以让每个 React App 中的 <code>Component</code> 取用 store 中的 state，非常方便</p>
+<img src="/2020/12/21/react-1week05/image-20210101012827213.png" style="zoom: 67%;">
+
+<h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a><a target="_blank" rel="noopener" href="https://react-redux.js.org/introduction/quick-start#installation">Installation</a></h2><pre class=" language-js"><code class="language-js">npm install react<span class="token operator">-</span>redux 
+yarn add react<span class="token operator">-</span>redux</code></pre>
+<h2 id="Provider"><a href="#Provider" class="headerlink" title="Provider"></a>Provider</h2><p>React Redux provides<code> &lt;Provider /&gt;</code>, which makes the Redux store available to the rest of your app</p>
+<h3 id="使用provider的例子"><a href="#使用provider的例子" class="headerlink" title="使用provider的例子"></a>使用provider的例子</h3><pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span>
+<span class="token keyword">import</span> ReactDOM <span class="token keyword">from</span> <span class="token string">'react-dom'</span>
+
+<span class="token keyword">import</span> <span class="token entity" title="&#123;">&amp;#123;</span> Provider <span class="token entity" title="&#125;">&amp;#125;</span> <span class="token keyword">from</span> <span class="token string">'react-redux'</span>
+<span class="token keyword">import</span> store <span class="token keyword">from</span> <span class="token string">'./store'</span>
+
+<span class="token keyword">import</span> App <span class="token keyword">from</span> <span class="token string">'./App'</span>
+
+<span class="token keyword">const</span> rootElement <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'root'</span><span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token function">createStore</span><span class="token punctuation">(</span> 
+    <span class="token function">combineReducers</span><span class="token punctuation">(</span><span class="token entity" title="&#123;">&amp;#123;</span>
+        expenses<span class="token punctuation">:</span>expensesReducer<span class="token punctuation">,</span>
+        filters<span class="token punctuation">:</span>filtersReducer
+    <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+ReactDOM<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Provider</span> <span class="token attr-name">store</span><span class="token attr-value"><span class="token punctuation">=</span>&amp;#123;store&amp;#125;</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>App</span> <span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Provider</span><span class="token punctuation">></span></span><span class="token punctuation">,</span>
+  rootElement
+<span class="token punctuation">)</span></code></pre>
+<h2 id="connect"><a href="#connect" class="headerlink" title="connect()"></a>connect()</h2><p>React Redux provides a connect function for you to connect your component to the store.</p>
+<p>connect 返回的是函数，不是组件</p>
+<h3 id="使用connect例子1"><a href="#使用connect例子1" class="headerlink" title="使用connect例子1"></a>使用connect例子1</h3><pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">import</span> <span class="token entity" title="&#123;">&amp;#123;</span>connect<span class="token entity" title="&#125;">&amp;#125;</span> <span class="token keyword">from</span> <span class="token string">'react-redux'</span>
+<span class="token keyword">const</span> ExpenseList <span class="token operator">=</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">(</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>Expenses<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+        <span class="token entity" title="&#123;">&amp;#123;</span>props<span class="token punctuation">.</span>expenses<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span>element<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">(</span>
+          <span class="token operator">&lt;</span>ExpenseListItem key<span class="token operator">=</span><span class="token entity" title="&#123;">&amp;#123;</span>element<span class="token punctuation">.</span>id<span class="token entity" title="&#125;">&amp;#125;</span> <span class="token entity" title="&#123;">&amp;#123;</span><span class="token operator">...</span>element<span class="token entity" title="&#125;">&amp;#125;</span> <span class="token operator">/</span><span class="token operator">></span>  
+        <span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token entity" title="&#125;">&amp;#125;</span> 
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//将state中的信息取出来</span>
+<span class="token keyword">const</span> mapStateToProps <span class="token operator">=</span> <span class="token punctuation">(</span>state <span class="token comment" spellcheck="true">/*, ownProps*/</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token entity" title="&#123;">&amp;#123;</span>
+    <span class="token keyword">return</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+      expenses<span class="token punctuation">:</span> <span class="token function">selectExpenses</span><span class="token punctuation">(</span>state<span class="token punctuation">.</span>expenses<span class="token punctuation">,</span>state<span class="token punctuation">.</span>filters<span class="token punctuation">)</span><span class="token punctuation">,</span>
+      filters<span class="token punctuation">:</span>state<span class="token punctuation">.</span>filters
+    <span class="token entity" title="&#125;">&amp;#125;</span>
+  <span class="token entity" title="&#125;">&amp;#125;</span>
+<span class="token comment" spellcheck="true">//connect传递mapStateToProps数据给ExpenseList</span>
+<span class="token keyword">const</span> ConnectExpenseList<span class="token operator">=</span> <span class="token function">connect</span><span class="token punctuation">(</span>mapStateToProps<span class="token punctuation">)</span><span class="token punctuation">(</span>ExpenseList<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+<span class="token keyword">export</span> <span class="token keyword">default</span> ConnectExpenseList</code></pre>
+<h2 id="使用connect例子-input"><a href="#使用connect例子-input" class="headerlink" title="使用connect例子 - input"></a>使用connect例子 - input</h2><pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span>
+<span class="token keyword">import</span> <span class="token entity" title="&#123;">&amp;#123;</span>connect<span class="token entity" title="&#125;">&amp;#125;</span> <span class="token keyword">from</span> <span class="token string">'react-redux'</span>
+<span class="token keyword">import</span> <span class="token entity" title="&#123;">&amp;#123;</span>setTextFilter<span class="token entity" title="&#125;">&amp;#125;</span> <span class="token keyword">from</span> <span class="token string">'../actions/filters'</span>
+
+<span class="token comment" spellcheck="true">//直接绑定input</span>
+<span class="token keyword">const</span> ExpenseListFilters <span class="token operator">=</span> <span class="token punctuation">(</span>props<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">(</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+        <span class="token operator">&lt;</span>input 
+        type<span class="token operator">=</span><span class="token string">"text"</span> 
+        value<span class="token operator">=</span><span class="token entity" title="&#123;">&amp;#123;</span>props<span class="token punctuation">.</span>filters<span class="token punctuation">.</span>text<span class="token entity" title="&#125;">&amp;#125;</span>
+        onChange<span class="token operator">=</span><span class="token entity" title="&#123;">&amp;#123;</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token entity" title="&#123;">&amp;#123;</span> props<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">setTextFilter</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>target<span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">)</span> 
+        <span class="token entity" title="&#125;">&amp;#125;</span><span class="token entity" title="&#125;">&amp;#125;</span>
+        <span class="token operator">/</span><span class="token operator">></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> mapStateToProps <span class="token operator">=</span> <span class="token punctuation">(</span>state <span class="token comment" spellcheck="true">/*, ownProps*/</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token entity" title="&#123;">&amp;#123;</span>
+    <span class="token keyword">return</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+      filters<span class="token punctuation">:</span>state<span class="token punctuation">.</span>filters
+    <span class="token entity" title="&#125;">&amp;#125;</span>
+  <span class="token entity" title="&#125;">&amp;#125;</span>
+
+<span class="token comment" spellcheck="true">//不用下面这种</span>
+<span class="token comment" spellcheck="true">//const ConnectExpenseList= connect(mapStateToProps)(ExpenseListFilters);</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span>  <span class="token function">connect</span><span class="token punctuation">(</span>mapStateToProps<span class="token punctuation">)</span><span class="token punctuation">(</span>ExpenseListFilters<span class="token punctuation">)</span> <span class="token punctuation">;</span></code></pre>
+<p>使用connect - 提交form</p>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> ExpenseForm <span class="token keyword">from</span> <span class="token string">'./ExpenseForm'</span>
+<span class="token keyword">import</span> <span class="token entity" title="&#123;">&amp;#123;</span>connect<span class="token entity" title="&#125;">&amp;#125;</span> <span class="token keyword">from</span> <span class="token string">'react-redux'</span>
+<span class="token keyword">import</span> <span class="token entity" title="&#123;">&amp;#123;</span>addExpense<span class="token entity" title="&#125;">&amp;#125;</span> <span class="token keyword">from</span> <span class="token string">'../actions/expenses'</span>
+
+<span class="token keyword">const</span> AddExpensePage <span class="token operator">=</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span> <span class="token entity" title="&#123;">&amp;#123;</span>
+<span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span> 
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>Add Expense<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+        <span class="token operator">&lt;</span>ExpenseForm 
+        onSubmit<span class="token operator">=</span><span class="token entity" title="&#123;">&amp;#123;</span><span class="token punctuation">(</span>newExpense<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token entity" title="&#123;">&amp;#123;</span>
+            props<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">addExpense</span><span class="token punctuation">(</span>newExpense<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">//这里相当于store.dispatch</span>
+            <span class="token entity" title="&#125;">&amp;#125;</span><span class="token entity" title="&#125;">&amp;#125;</span> <span class="token operator">/</span><span class="token operator">></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token punctuation">)</span>
+<span class="token entity" title="&#125;">&amp;#125;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token function">connect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">(</span>AddExpensePage<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token comment" spellcheck="true">//form本身，重点是要双向绑定 由于提交form 要用类元素 </span>
+<span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span>
+<span class="token keyword">import</span> moment <span class="token keyword">from</span> <span class="token string">'moment'</span>
+<span class="token keyword">import</span> <span class="token string">"react-dates/initialize"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string">"react-dates/lib/css/_datepicker.css"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token entity" title="&#123;">&amp;#123;</span> SingleDatePicker <span class="token entity" title="&#125;">&amp;#125;</span> <span class="token keyword">from</span> <span class="token string">"react-dates"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> now <span class="token operator">=</span> <span class="token function">moment</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>now<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span><span class="token string">"Do, MMM YYYY"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">ExpenseForm</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span><span class="token entity" title="&#123;">&amp;#123;</span>
+    state<span class="token operator">=</span><span class="token entity" title="&#123;">&amp;#123;</span>
+        description<span class="token punctuation">:</span><span class="token string">''</span><span class="token punctuation">,</span>
+        amount<span class="token punctuation">:</span><span class="token string">''</span><span class="token punctuation">,</span>
+        note<span class="token punctuation">:</span><span class="token string">''</span><span class="token punctuation">,</span>
+        createdAt<span class="token punctuation">:</span><span class="token function">moment</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        canlendarFocused<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+        error<span class="token punctuation">:</span><span class="token string">''</span>
+    <span class="token entity" title="&#125;">&amp;#125;</span>
+
+    onDescriptionChange <span class="token operator">=</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token entity" title="&#123;">&amp;#123;</span> 
+        <span class="token comment" spellcheck="true">//console.log(e.target.value);</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span>state <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">(</span><span class="token entity" title="&#123;">&amp;#123;</span>
+            description<span class="token punctuation">:</span> e<span class="token punctuation">.</span>target<span class="token punctuation">.</span>value
+          <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token entity" title="&#125;">&amp;#125;</span>
+    onAmountChange<span class="token operator">=</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token entity" title="&#123;">&amp;#123;</span>
+        <span class="token comment" spellcheck="true">//console.log(e.target.value);</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span>state <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">(</span><span class="token entity" title="&#123;">&amp;#123;</span>
+            amount<span class="token punctuation">:</span> e<span class="token punctuation">.</span>target<span class="token punctuation">.</span>value
+          <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token entity" title="&#125;">&amp;#125;</span>
+    onDateChange<span class="token operator">=</span><span class="token punctuation">(</span>createdAt<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token entity" title="&#123;">&amp;#123;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>createdAt<span class="token punctuation">)</span><span class="token entity" title="&#123;">&amp;#123;</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token entity" title="&#123;">&amp;#123;</span>createdAt<span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span>
+        <span class="token entity" title="&#125;">&amp;#125;</span>
+    <span class="token entity" title="&#125;">&amp;#125;</span>
+
+    onFocusChange<span class="token operator">=</span><span class="token punctuation">(</span><span class="token entity" title="&#123;">&amp;#123;</span> focused <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token entity" title="&#123;">&amp;#123;</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token entity" title="&#123;">&amp;#123;</span> canlendarFocused<span class="token punctuation">:</span> focused <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span><span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">;</span>
+
+    onNoteChange<span class="token operator">=</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token entity" title="&#123;">&amp;#123;</span>
+        <span class="token comment" spellcheck="true">//console.log(e.target.value);</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span>state <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">(</span><span class="token entity" title="&#123;">&amp;#123;</span>
+            note<span class="token punctuation">:</span> e<span class="token punctuation">.</span>target<span class="token punctuation">.</span>value
+          <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token entity" title="&#125;">&amp;#125;</span>
+    <span class="token comment" spellcheck="true">//onsubmit的函数赋予input 从上级拿处理函数主体</span>
+    onSubmit<span class="token operator">=</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token entity" title="&#123;">&amp;#123;</span>
+        e<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>description <span class="token operator">||</span> <span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>amount<span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">(</span><span class="token entity" title="&#123;">&amp;#123;</span>
+            error<span class="token punctuation">:</span> <span class="token string">"Please provide description and amount!"</span>
+            <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token entity" title="&#125;">&amp;#125;</span> <span class="token keyword">else</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"submitting"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span><span class="token function">onSubmit</span><span class="token punctuation">(</span><span class="token entity" title="&#123;">&amp;#123;</span>
+                description<span class="token punctuation">:</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>description<span class="token punctuation">,</span>
+                amount<span class="token punctuation">:</span><span class="token function">parseFloat</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>amount<span class="token punctuation">,</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">100</span><span class="token punctuation">,</span>
+                note<span class="token punctuation">:</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>note<span class="token punctuation">,</span>
+                createdAt<span class="token punctuation">:</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>createdAt<span class="token punctuation">.</span><span class="token function">valueOf</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span>
+        <span class="token entity" title="&#125;">&amp;#125;</span>  
+    <span class="token entity" title="&#125;">&amp;#125;</span>
+
+
+<span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token entity" title="&#123;">&amp;#123;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+             <span class="token entity" title="&#123;">&amp;#123;</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>error <span class="token operator">&amp;&amp;</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span><span class="token entity" title="&#123;">&amp;#123;</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>error<span class="token entity" title="&#125;">&amp;#125;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span><span class="token entity" title="&#125;">&amp;#125;</span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">onSubmit</span><span class="token attr-value"><span class="token punctuation">=</span>&amp;#123;this.onSubmit&amp;#125;</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">placeholder</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Description<span class="token punctuation">"</span></span> <span class="token attr-name">autoFocus</span>    <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span>&amp;#123;this.state.description&amp;#125;</span> <span class="token attr-name">onChange</span><span class="token attr-value"><span class="token punctuation">=</span>&amp;#123;this.onDescriptionChange&amp;#125;</span> <span class="token punctuation">/></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">placeholder</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Amount<span class="token punctuation">"</span></span>   <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span>&amp;#123;this.state.amount&amp;#125;</span> <span class="token attr-name">onChange</span><span class="token attr-value"><span class="token punctuation">=</span>&amp;#123;this.onAmountChange&amp;#125;</span> <span class="token punctuation">/></span></span>
+
+                <span class="token entity" title="&#123;">&amp;#123;</span><span class="token comment" spellcheck="true">/* 此处用airbnb date pick */</span><span class="token entity" title="&#125;">&amp;#125;</span>
+                <span class="token operator">&lt;</span>SingleDatePicker
+                    date<span class="token operator">=</span><span class="token entity" title="&#123;">&amp;#123;</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>createdAt<span class="token entity" title="&#125;">&amp;#125;</span> <span class="token comment" spellcheck="true">// momentPropTypes.momentObj or null</span>
+                    onDateChange<span class="token operator">=</span><span class="token entity" title="&#123;">&amp;#123;</span><span class="token keyword">this</span><span class="token punctuation">.</span>onDateChange<span class="token entity" title="&#125;">&amp;#125;</span> <span class="token comment" spellcheck="true">// PropTypes.func.isRequired</span>
+                    focused<span class="token operator">=</span><span class="token entity" title="&#123;">&amp;#123;</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>canlendarFocused<span class="token entity" title="&#125;">&amp;#125;</span> <span class="token comment" spellcheck="true">// PropTypes.bool</span>
+                    onFocusChange<span class="token operator">=</span><span class="token entity" title="&#123;">&amp;#123;</span><span class="token keyword">this</span><span class="token punctuation">.</span>onFocusChange<span class="token entity" title="&#125;">&amp;#125;</span> <span class="token comment" spellcheck="true">// PropTypes.func.isRequired</span>
+                    id<span class="token operator">=</span><span class="token string">"single_date_picker"</span> <span class="token comment" spellcheck="true">// PropTypes.string.isRequired,</span>
+                    isOutsideRange<span class="token operator">=</span><span class="token entity" title="&#123;">&amp;#123;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token boolean">false</span><span class="token entity" title="&#125;">&amp;#125;</span><span class="token comment" spellcheck="true">//当前时间之前的也可以加入</span>
+                    numberOfMonths<span class="token operator">=</span><span class="token entity" title="&#123;">&amp;#123;</span><span class="token number">1</span><span class="token entity" title="&#125;">&amp;#125;</span><span class="token comment" spellcheck="true">//只显示一个月</span>
+                <span class="token operator">/</span><span class="token operator">></span>
+
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>textarea</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">placeholder</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>add</span> <span class="token attr-name">note</span> <span class="token attr-name">if</span> <span class="token attr-name">you</span> <span class="token attr-name">need</span> <span class="token attr-name">(optional)"</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span>&amp;#123;this.state.note&amp;#125;</span> <span class="token attr-name">onChange</span><span class="token attr-value"><span class="token punctuation">=</span>&amp;#123;this.onNoteChange&amp;#125;</span> <span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>textarea</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span><span class="token punctuation">></span></span>Add expense<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+        <span class="token punctuation">)</span>
+    <span class="token entity" title="&#125;">&amp;#125;</span>
+<span class="token entity" title="&#125;">&amp;#125;</span> </code></pre>
+<h2 id="完整练习例子：-expensifyApp-indecisionApp-counter"><a href="#完整练习例子：-expensifyApp-indecisionApp-counter" class="headerlink" title="完整练习例子： expensifyApp indecisionApp counter"></a>完整练习例子： expensifyApp indecisionApp counter</h2><p>理解图：</p>
+<p><img src="/2020/12/21/react-1week05/image-20210101012217492.png"></p>
+<h1 id="tool"><a href="#tool" class="headerlink" title="tool"></a>tool</h1><p><a target="_blank" rel="noopener" href="https://github.com/zalmoxisus/redux-devtools-extension">https://github.com/zalmoxisus/redux-devtools-extension</a></p>
+<h1 id="推荐读物"><a href="#推荐读物" class="headerlink" title="推荐读物"></a>推荐读物</h1><p><a target="_blank" rel="noopener" href="https://wizardforcel.gitbooks.io/reactjs101/content/">从零开始学 ReactJS详细教学</a></p>
+<p><a target="_blank" rel="noopener" href="https://chentsulin.github.io/redux/docs/introduction/index.html">查api&amp;简单解释</a></p>
+<h2 id="其他练习"><a href="#其他练习" class="headerlink" title="其他练习"></a>其他练习</h2><p><a target="_blank" rel="noopener" href="https://github.com/blueflylin/reactjs101/blob/master/Ch09/react-router-redux-github-finder.md">练习1</a> </p>
+<p><a target="_blank" rel="noopener" href="https://github.com/blueflylin/reactjs101/blob/master/Ch10/react-router-redux-node-isomorphic-javascript-open-cook.md">练习2</a></p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_26347769/article/details/109634399">https://blog.csdn.net/qq_26347769/article/details/109634399</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903894082928654">https://juejin.cn/post/6844903894082928654</a></p>
+<p><a target="_blank" rel="noopener" href="https://chentsulin.github.io/redux/docs/basics/UsageWithReact.html">https://chentsulin.github.io/redux/docs/basics/UsageWithReact.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://wizardforcel.gitbooks.io/reactjs101/content/Ch07/react-redux-real-world-example.html">https://wizardforcel.gitbooks.io/reactjs101/content/Ch07/react-redux-real-world-example.html</a></p>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="../../../../about" rel="external nofollow noreferrer">Savannah</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://savancode.github.io">http://savancode.github.io</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint polocy. If reproduced, please indicate source
+                    <a href="../../../../about" target="_blank">Savannah</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="../../../../tags/React/">
+                                    <span class="chip bg-color">React</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="../../../../libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="../../30/expensifyApp-react-learning/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="../../../../medias/featureimages/19.jpg" class="responsive-img" alt="expensifyApp react learning">
+                        
+                        <span class="card-title">expensifyApp react learning</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                             做expensifyApp所遇到的基本笔记
+TOGGLE&amp;#123;visibility &amp;&amp; &lt; p>you got it&lt;/ p>&amp;#125;
+const showSomething=()=
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-12-30
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="../../../../categories/React/" class="post-category">
+                                    React
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="../../../../tags/React/">
+                        <span class="chip bg-color">React</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="../../19/temp/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="../../../../medias/featureimages/0.jpg" class="responsive-img" alt="">
+                        
+                        <span class="card-title"></span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            import React from 'react'
+import ReactDOM from 'react-dom'
+
+class IndecisionApp extends React.Component&amp;#123;
+  rend
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-19
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Savannah
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="../../../../libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="../../../../libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="../../../../libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="../../../../libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="../../../../libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4, h5, h6, h7, h8, h9, h10'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4, h5, h6, h7, h8, h9, h10').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="../../../../libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="../../../../libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2019</span>
+            <a href="../../../../about" target="_blank">Savannah</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/SavanCode/SavanCode.github.io" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1181062873@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="../../../../js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("../../../../search.xml", 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="../../../../libs/materialize/materialize.min.js"></script>
+    <script src="../../../../libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="../../../../libs/aos/aos.js"></script>
+    <script src="../../../../libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="../../../../libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="../../../../js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="../../../../libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="../../../../libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <script type="text/javascript" src="../../../../libs/background/ribbon-dynamic.js" async="async"></script>
+    
+
+    
+    <script src="../../../../libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

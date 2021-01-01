@@ -420,7 +420,29 @@
             <div id="articleContent">
                 <h1 id="String"><a href="#String" class="headerlink" title="String"></a>String</h1><p><img src="/2020/11/24/js-string/1606214735012.png"></p>
 <h2 id="引号"><a href="#引号" class="headerlink" title="引号"></a>引号</h2><p>字符串String是由双引号(“)或单引号(‘)声明的</p>
-<h2 id="反斜线"><a href="#反斜线" class="headerlink" title="反斜线"></a>反斜线</h2><pre class=" language-js"><code class="language-js"><span class="token string">'Wouldn\'t you prefer this book?'</span>    <span class="token comment" spellcheck="true">//"Wouldn't you prefer this book?"</span>
+<h2 id="反引号-多行字符串-amp-嵌入变量"><a href="#反引号-多行字符串-amp-嵌入变量" class="headerlink" title="反引号 `` - 多行字符串 &amp; 嵌入变量"></a>反引号 `` - 多行字符串 &amp; 嵌入变量</h2><pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// 普通字符串</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`In JavaScript '\n' is a line-feed.`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// 多行字符串 - 空格、缩进和换行都会被保留在输出中。</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`In JavaScript this is
+not legal.`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+<span class="token comment" spellcheck="true">// 字符串中嵌入变量 - 模板字符串中嵌入变量，要将变量名写在$&amp;#123;&amp;#125;之中</span>
+<span class="token keyword">var</span> name <span class="token operator">=</span> <span class="token string">"Bob"</span><span class="token punctuation">,</span> time <span class="token operator">=</span> <span class="token string">"today"</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`Hello $&amp;#123;name&amp;#125;, how are you $&amp;#123;time&amp;#125;?`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment" spellcheck="true">// Hello Bob, how are you today?</span>
+<span class="token keyword">var</span> x <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> y <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`$&amp;#123;x&amp;#125; + $&amp;#123;y&amp;#125; = $&amp;#123;x + y&amp;#125;`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// "1 + 2 = 3"</span>
+
+<span class="token keyword">function</span> <span class="token function">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token string">'Hello'</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token template-string"><span class="token string">`$&amp;#123;func()&amp;#125; World`</span></span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// "Hello World"</span></code></pre>
+<h2 id="反斜线-特殊符号"><a href="#反斜线-特殊符号" class="headerlink" title="反斜线- 特殊符号"></a>反斜线- 特殊符号</h2><pre class=" language-js"><code class="language-js"><span class="token string">'Wouldn\'t you prefer this book?'</span>    <span class="token comment" spellcheck="true">//"Wouldn't you prefer this book?"</span>
 <span class="token string">'Did she say \'Hello\'?'</span>             <span class="token comment" spellcheck="true">//"Did she say 'Hello'?"</span>
 <span class="token string">"Did she say \"Hello\"?"</span>             <span class="token comment" spellcheck="true">//"Did she say "Hello"?"</span>
 <span class="token string">"Prev \\ Next"</span>                         <span class="token comment" spellcheck="true">// "Prev \ Next"</span>
@@ -556,8 +578,111 @@ console<span class="token punctuation">.</span><span class="token function">log<
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>string<span class="token punctuation">.</span><span class="token function">lastIndexOf</span><span class="token punctuation">(</span><span class="token string">'ld'</span><span class="token punctuation">,</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//9</span>
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>string<span class="token punctuation">.</span><span class="token function">lastIndexOf</span><span class="token punctuation">(</span><span class="token string">'ld'</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//9 </span></code></pre>
 <p><strong>lastIndexOf()方法常用于获取URL地址中的扩展名</strong> </p>
-<h2 id="正则匹配方法"><a href="#正则匹配方法" class="headerlink" title="正则匹配方法"></a>正则匹配方法</h2><p>match()</p>
-<p>　　若匹配失败，则match()方法返回null</p>
+<h2 id="正则匹配"><a href="#正则匹配" class="headerlink" title="正则匹配"></a>正则匹配</h2><h3 id="正则基本介绍以及工具"><a href="#正则基本介绍以及工具" class="headerlink" title="正则基本介绍以及工具"></a><a target="_blank" rel="noopener" href="https://www.runoob.com/regexp/regexp-syntax.html"><strong>正则基本介绍以及工具</strong></a></h3><p>工具 ： <a target="_blank" rel="noopener" href="https://regex101.com/">https://regex101.com/</a></p>
+<p><strong>常用元字符</strong></p>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>.</td>
+<td>匹配除换行符以外的任意字符</td>
+</tr>
+<tr>
+<td>\w</td>
+<td>匹配字母或数字或下划线</td>
+</tr>
+<tr>
+<td>\s</td>
+<td>匹配任意的空白符</td>
+</tr>
+<tr>
+<td>\d</td>
+<td>匹配数字</td>
+</tr>
+<tr>
+<td>\b</td>
+<td>匹配单词的开始或结束</td>
+</tr>
+<tr>
+<td>^</td>
+<td>匹配字符串的开始</td>
+</tr>
+<tr>
+<td>$</td>
+<td>匹配字符串的结束</td>
+</tr>
+</tbody></table>
+<p><strong>常用限定符</strong></p>
+<table>
+<thead>
+<tr>
+<th>代码/语法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>*</td>
+<td>重复零次或更多次</td>
+</tr>
+<tr>
+<td>+</td>
+<td>重复一次或更多次</td>
+</tr>
+<tr>
+<td>?</td>
+<td>重复零次或一次</td>
+</tr>
+<tr>
+<td>{n}</td>
+<td>重复n次</td>
+</tr>
+<tr>
+<td>{n,}</td>
+<td>重复n次或更多次</td>
+</tr>
+<tr>
+<td>{n,m}</td>
+<td>重复n到m次</td>
+</tr>
+</tbody></table>
+<p><strong>常用反义词</strong></p>
+<table>
+<thead>
+<tr>
+<th>代码/语法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>\W</td>
+<td>匹配任意不是字母，数字，下划线，汉字的字符</td>
+</tr>
+<tr>
+<td>\S</td>
+<td>匹配任意不是空白符的字符</td>
+</tr>
+<tr>
+<td>\D</td>
+<td>匹配任意非数字的字符</td>
+</tr>
+<tr>
+<td>\B</td>
+<td>匹配不是单词开头或结束的位置</td>
+</tr>
+<tr>
+<td>[^x]</td>
+<td>匹配除了x以外的任意字符</td>
+</tr>
+<tr>
+<td>[^aeiou]</td>
+<td>匹配除了aeiou这几个字母以外的任意字符</td>
+</tr>
+</tbody></table>
+<h3 id="基本方法"><a href="#基本方法" class="headerlink" title="基本方法"></a>基本方法</h3><h4 id="match"><a href="#match" class="headerlink" title="match()"></a>match()</h4><p>　　若匹配失败，则match()方法返回null</p>
 <pre class=" language-js"><code class="language-js"><span class="token string">'x'</span><span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span><span class="token regex">/y/</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//null</span>
 <span class="token keyword">var</span> string <span class="token operator">=</span> <span class="token string">'cat,bat,sat,fat'</span><span class="token punctuation">;</span>
 <span class="token keyword">var</span> matches <span class="token operator">=</span> string<span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span><span class="token string">'at'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -566,7 +691,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <span class="token keyword">var</span> str1 <span class="token operator">=</span> <span class="token string">'j1h342jg24g234j 3g24j1'</span><span class="token punctuation">;</span>
 array <span class="token operator">=</span> str1<span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span><span class="token regex">/\d+/g</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>array<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//["1", "342", "24", "234", "3", "24", "1"]</span></code></pre>
-<p>　search()方法接受一个正则或字符串的参数，返回匹配的内容在字符串中首次出现的位置，类似于不能设置起始位置的indexOf，找不到返回-1 (全局标志g影响)</p>
+<h4 id="search"><a href="#search" class="headerlink" title="search()"></a>search()</h4><p>接受一个正则或字符串的参数，返回匹配的内容在字符串中首次出现的位置，类似于不能设置起始位置的indexOf，找不到返回-1 (全局标志g影响)</p>
 <pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> string <span class="token operator">=</span> <span class="token string">'cat,bat,sat,fat'</span><span class="token punctuation">;</span>
 <span class="token keyword">var</span> pattern <span class="token operator">=</span> <span class="token regex">/.at/</span><span class="token punctuation">;</span>
 <span class="token keyword">var</span> pos <span class="token operator">=</span> string<span class="token punctuation">.</span><span class="token function">search</span><span class="token punctuation">(</span>pattern<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -581,7 +706,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <span class="token keyword">var</span> pattern <span class="token operator">=</span> <span class="token string">'at'</span><span class="token punctuation">;</span>
 <span class="token keyword">var</span> pos <span class="token operator">=</span> string<span class="token punctuation">.</span><span class="token function">search</span><span class="token punctuation">(</span>pattern<span class="token punctuation">)</span><span class="token punctuation">;</span>
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>pos<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//1</span></code></pre>
-<p>　replace()方法用于替换一个或多个子字符串。它接收两个参数：第一个是正则表达式或字符串，表示待查找的内容；第二个是字符串或函数，表示替换内容。返回替换后的字符串 (全局标志g影响)</p>
+<h4 id="replace"><a href="#replace" class="headerlink" title="replace()"></a>replace()</h4><p>用于替换一个或多个子字符串。它接收两个参数：第一个是正则表达式或字符串，表示待查找的内容；第二个是字符串或函数，表示替换内容。返回替换后的字符串 (全局标志g影响)</p>
 <pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> string <span class="token operator">=</span> <span class="token string">'cat,bat,sat,fat'</span><span class="token punctuation">;</span>
 <span class="token keyword">var</span> result <span class="token operator">=</span> string<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token string">'at'</span><span class="token punctuation">,</span><span class="token string">'ond'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// var result = string.replace(/at/,'ond');</span>
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//'cond,bat,sat,fat'</span>
@@ -589,7 +714,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <span class="token keyword">var</span> string <span class="token operator">=</span> <span class="token string">'cat,bat,sat,fat'</span><span class="token punctuation">;</span>
 <span class="token keyword">var</span> result <span class="token operator">=</span> string<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex">/at/g</span><span class="token punctuation">,</span><span class="token string">'ond'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//'cond,bond,sond,fond'</span></code></pre>
-<p>plit()方法基于指定的分隔符将一个字符串分割成多个字符串，并将结果放在一个数组中，分隔符可以是字符串，也可以是一个RegExp</p>
+<h4 id="split"><a href="#split" class="headerlink" title="split()"></a>split()</h4><p>基于指定的分隔符将一个字符串分割成多个字符串，并将结果放在一个数组中，分隔符可以是字符串，也可以是一个RegExp</p>
 <pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> colorText <span class="token operator">=</span> <span class="token string">'red,blue,green,yellow'</span><span class="token punctuation">;</span>
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>colorText<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//["r", "e", "d", ",", "b", "l", "u", "e", ",", "g", "r", "e", "e", "n", ",", "y", "e", "l", "l", "o", "w"]</span>
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>colorText<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">','</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//["red", "blue", "green", "yellow"]</span>
@@ -653,12 +778,15 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <p>　　当使用多个参数调用unshift()时，参数是一次性插入的而非一次一个地插入。这意味着最终的数组中插入的元素的顺序和它们在参数列表中的顺序一致</p>
 <pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">,</span> <span class="token string">'c'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span>a<span class="token punctuation">.</span><span class="token function">unshift</span><span class="token punctuation">(</span><span class="token string">'x'</span><span class="token punctuation">,</span><span class="token string">'y'</span><span class="token punctuation">,</span><span class="token string">'z'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//['x','y','z','a', 'b', 'c'] 6</span></code></pre>
-<h1 id="操作方程"><a href="#操作方程" class="headerlink" title="操作方程"></a>操作方程</h1><h2 id="js-替换指定位置的字符串"><a href="#js-替换指定位置的字符串" class="headerlink" title="js 替换指定位置的字符串"></a>js 替换指定位置的字符串</h2><pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">//str:原始字符串，index,开始位置,changeStr，改变后的字</span>
+<h1 id="操作方程"><a href="#操作方程" class="headerlink" title="操作方程"></a>操作方程</h1><h2 id="js判断一个字符串是否包含在另一个字符串"><a href="#js判断一个字符串是否包含在另一个字符串" class="headerlink" title="js判断一个字符串是否包含在另一个字符串"></a>js判断一个字符串是否包含在另一个字符串</h2><pre class=" language-js"><code class="language-js"><span class="token string">'Blue Whale'</span><span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span><span class="token string">'blue'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// returns false</span>
+<span class="token string">'Blue Whale'</span><span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span><span class="token string">'Blue'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// returns true</span></code></pre>
+<h2 id="js-替换指定位置的字符串"><a href="#js-替换指定位置的字符串" class="headerlink" title="js 替换指定位置的字符串"></a>js 替换指定位置的字符串</h2><pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">//str:原始字符串，index,开始位置,changeStr，改变后的字</span>
 <span class="token function">changeStr</span><span class="token punctuation">(</span>str<span class="token punctuation">,</span>index<span class="token punctuation">,</span>changeStr<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
      <span class="token keyword">return</span> str<span class="token punctuation">.</span><span class="token function">substr</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> index<span class="token punctuation">)</span> <span class="token operator">+</span> changeStr<span class="token operator">+</span> str<span class="token punctuation">.</span><span class="token function">substr</span><span class="token punctuation">(</span>index <span class="token operator">+</span> changeStr<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span>
      <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
 <p>js去掉所有的空格（连续空格）提内容</p>
 <pre class=" language-js"><code class="language-js">array<span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token regex">/\s+/</span><span class="token punctuation">)</span></code></pre>
+<h2 id="js正则去掉不是字母"><a href="#js正则去掉不是字母" class="headerlink" title="js正则去掉不是字母"></a>js正则去掉不是字母</h2><pre class=" language-js"><code class="language-js">str <span class="token operator">=</span> str<span class="token punctuation">.</span><span class="token function">toLowerCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex">/[\W_]/g</span><span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <h2 id="js-正则将大小写之间分开"><a href="#js-正则将大小写之间分开" class="headerlink" title="js 正则将大小写之间分开"></a>js 正则将大小写之间分开</h2><pre class=" language-js"><code class="language-js">str<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex">/([a-z])([A-Z])/g</span><span class="token punctuation">,</span> <span class="token string">"$1 $2"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token comment" spellcheck="true">//TheAndyGriffith_Show</span>
 <span class="token comment" spellcheck="true">//The Andy Griffith_Show</span>
@@ -666,7 +794,18 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <span class="token comment" spellcheck="true">//is followed by an uppercase letter [(?=[A-Z])]</span>
 <span class="token comment" spellcheck="true">//whitespace character [\s]</span>
 str<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token regex">/\s|_|(?=[A-Z])/</span><span class="token punctuation">)</span></code></pre>
-<h2 id="应用正则"><a href="#应用正则" class="headerlink" title="应用正则"></a>应用正则</h2><h3 id="替换指定符号"><a href="#替换指定符号" class="headerlink" title="替换指定符号"></a>替换指定符号</h3><pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">convertHTML</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<h2 id="应用正则"><a href="#应用正则" class="headerlink" title="应用正则"></a>应用正则</h2><h3 id="去掉非数字"><a href="#去掉非数字" class="headerlink" title="去掉非数字"></a>去掉非数字</h3><pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> s <span class="token operator">=</span><span class="token string">"价格4500元"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> num<span class="token operator">=</span> s<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex">/[^0-9]/ig</span><span class="token punctuation">,</span><span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">alert</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//4500</span>
+
+<span class="token keyword">var</span> s <span class="token operator">=</span><span class="token string">"价格4500元，等级：2"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> num <span class="token operator">=</span> s<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex">/[^0-9]/ig</span><span class="token punctuation">,</span><span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">alert</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//45002</span></code></pre>
+<h3 id="替换指定符号"><a href="#替换指定符号" class="headerlink" title="替换指定符号"></a>替换指定符号</h3><pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">convertHTML</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
   <span class="token comment" spellcheck="true">// Use Object Lookup to declare as many HTML entities as needed.</span>
   <span class="token keyword">const</span> htmlEntities <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
     <span class="token string">"&amp;"</span><span class="token punctuation">:</span> <span class="token string">"&amp;amp;"</span><span class="token punctuation">,</span>
@@ -687,6 +826,8 @@ str<span class="token punctuation">.</span><span class="token function">split</s
 <span class="token function">binaryAgent</span><span class="token punctuation">(</span><span class="token string">"01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 01100110 01110101 01101110 00100001 00111111"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <h2 id="字符串中的数字"><a href="#字符串中的数字" class="headerlink" title="字符串中的数字"></a>字符串中的数字</h2><pre class=" language-js"><code class="language-js"><span class="token function">parseInt</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 会提取字符串中的整数部分，遇到非整数会立即停止提取；适合去掉css中的单位</span>
 <span class="token function">parseFloat</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 同上，可以提取小数</span></code></pre>
+<h2 id="js保留两位小数方法总结"><a href="#js保留两位小数方法总结" class="headerlink" title="js保留两位小数方法总结"></a>js保留两位小数方法总结</h2><pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">//num:要操作的数字     size：要保留的位数</span>
+<span class="token function">parseFloat</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toFixed</span><span class="token punctuation">(</span>size<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 
             </div>
             <hr/>
