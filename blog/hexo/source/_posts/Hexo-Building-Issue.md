@@ -6,7 +6,7 @@ toc: true
 mathjax: true
 date: 2020-11-07 21:28:54
 tags: Hexo
-categories: Front-end
+categories: Hexo
 ---
 
 

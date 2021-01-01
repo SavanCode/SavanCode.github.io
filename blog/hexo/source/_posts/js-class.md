@@ -8,7 +8,7 @@ date: 2020-11-27 13:30:23
 password:
 summary:
 tags: JS
-categories:
+categories: JS
 ---
 
 # class基础

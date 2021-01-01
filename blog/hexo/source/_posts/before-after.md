@@ -8,7 +8,7 @@ date: 2020-11-15 23:28:40
 password:
 summary:
 tags:  css&html
-categories:
+categories: Front-end
 ---
 
 # 伪元素

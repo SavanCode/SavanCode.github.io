@@ -8,7 +8,7 @@ date: 2020-12-01 19:42:39
 password:
 summary:
 tags: JS
-categories:
+categories: JS
 ---
 
 ## 1.this 与 event.target的区别

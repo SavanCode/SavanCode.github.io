@@ -8,7 +8,7 @@ date: 2020-11-25 18:46:00
 password:
 summary:
 tags: JS
-categories:
+categories: JS
 ---
 
 # 基本使用JS

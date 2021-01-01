@@ -8,10 +8,14 @@ date: 2020-11-11 20:06:34
 password:
 summary:
 tags: tool
-categories: Front-end
+categories: Front-end tool
 ---
 
 ## Tools
+
+### [GIT](https://backlog.com/git-tutorial/tw/reference/basic.html)
+
+### [HEXO](https://hexo.io/zh-cn/docs/commands.html)
 
 基本布局查询 ：http://demo.haoji.me/notebook/
 

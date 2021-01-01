@@ -8,7 +8,7 @@ date: 2020-11-27 18:19:41
 password:
 summary:
 tags: JS
-categories:
+categories: JS
 ---
 
 ## 1. BOM 对象

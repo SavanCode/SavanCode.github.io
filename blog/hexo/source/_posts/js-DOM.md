@@ -8,7 +8,7 @@ date: 2020-11-26 16:53:38
 password:
 summary:
 tags: JS
-categories:
+categories: JS
 ---
 
 # DOM

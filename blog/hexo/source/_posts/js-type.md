@@ -8,7 +8,7 @@ date: 2020-11-25 16:56:41
 password:
 summary:
 tags: JS
-categories:
+categories: JS
 ---
 
 # typeof

@@ -8,7 +8,7 @@ date: 2020-12-07 21:16:41
 password:
 summary:
 tags: JS
-categories:
+categories: JS
 ---
 
 # JavaScript深入之创建对象的多种方式以及优缺点

@@ -8,7 +8,7 @@ date: 2020-12-13 14:45:36
 password:
 summary:
 tags: jQuery
-categories:
+categories: jQuery
 ---
 
 # AJAX

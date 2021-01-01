@@ -8,7 +8,7 @@ date: 2020-11-23 11:48:53
 password:
 summary:
 tags: JS
-categories:
+categories: JS
 ---
 
 ## 定义变量

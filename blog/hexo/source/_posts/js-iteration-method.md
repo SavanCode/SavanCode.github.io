@@ -8,7 +8,7 @@ date: 2020-12-04 16:31:11
 password:
 summary:
 tags: JS
-categories:
+categories: JS
 ---
 
 # Javascript中常见的数组遍历方法总结

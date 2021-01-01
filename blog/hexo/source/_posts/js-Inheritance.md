@@ -8,7 +8,7 @@ date: 2020-12-07 17:19:52
 password:
 summary:
 tags: JS
-categories:
+categories: JS
 ---
 
 # JavaScript六种继承方式

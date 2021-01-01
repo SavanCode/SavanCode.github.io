@@ -8,7 +8,7 @@ date: 2020-11-26 17:03:20
 password:
 summary:
 tags: JS
-categories:
+categories: JS
 ---
 
 # 对象基础

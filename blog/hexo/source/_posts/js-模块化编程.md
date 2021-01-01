@@ -8,7 +8,7 @@ date: 2020-11-26 10:20:17
 password:
 summary:
 tags: JS
-categories:
+categories: JS
 ---
 
 # JS模块写法

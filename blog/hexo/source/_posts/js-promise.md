@@ -8,7 +8,7 @@ date: 2020-12-10 19:53:09
 password:
 summary:
 tags: JS
-categories:
+categories: JS
 ---
 
 # js处理error

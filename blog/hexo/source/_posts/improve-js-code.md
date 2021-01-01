@@ -8,7 +8,7 @@ date: 2020-11-23 21:18:59
 password:
 summary:
 tags: JS
-categories:
+categories: JS
 ---
 
 # javascript的代码优化

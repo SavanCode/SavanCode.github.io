@@ -8,7 +8,7 @@ date: 2020-11-25 19:13:17
 password:
 summary:
 tags: JS
-categories:
+categories: JS
 ---
 
 # 浅拷贝

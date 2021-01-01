@@ -8,7 +8,7 @@ date: 2020-11-24 13:46:55
 password:
 summary:
 tags: JS
-categories:
+categories: JS
 ---
 
 # JavaScript 数据类型

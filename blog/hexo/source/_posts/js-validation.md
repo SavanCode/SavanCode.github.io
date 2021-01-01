@@ -8,7 +8,7 @@ date: 2020-11-29 11:55:11
 password:
 summary:
 tags: JS
-categories:
+categories: JS
 ---
 
 # js判断是否为整数类型

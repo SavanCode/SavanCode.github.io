@@ -8,7 +8,7 @@ date: 2020-11-25 15:14:24
 password:
 summary:
 tags: JS
-categories:
+categories: JS
 ---
 
 # error 参数

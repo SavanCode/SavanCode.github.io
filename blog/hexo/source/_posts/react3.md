@@ -7,8 +7,8 @@ mathjax: true
 date: 2020-12-15 17:40:10
 password:
 summary:
-tags:
-categories:
+tags: React
+categories: React
 ---
 
 # react 之 表单组件

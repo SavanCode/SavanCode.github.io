@@ -8,7 +8,7 @@ date: 2020-11-25 02:05:36
 password:
 summary:
 tags: JS
-categories:
+categories: JS
 ---
 
 # 创建array

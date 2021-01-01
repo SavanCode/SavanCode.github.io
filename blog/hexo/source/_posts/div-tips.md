@@ -8,7 +8,7 @@ date: 2020-11-22 14:01:36
 password:
 summary:
 tags:  css&html
-categories:
+categories: Front-end
 ---
 
 ## 1. Div Size Automatically size of content

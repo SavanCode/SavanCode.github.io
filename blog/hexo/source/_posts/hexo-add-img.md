@@ -6,7 +6,7 @@ toc: true
 mathjax: true
 date: 2020-11-08 20:20:47
 tags: Hexo
-categories: Front-end
+categories: Hexo
 ---
 
 # Hexo本地图片显示问题

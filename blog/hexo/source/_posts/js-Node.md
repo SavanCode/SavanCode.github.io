@@ -8,7 +8,7 @@ date: 2020-11-27 10:41:43
 password:
 summary:
 tags: JS
-categories:
+categories: JS
 ---
 
 ## DOM 节点基本理解

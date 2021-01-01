@@ -8,7 +8,7 @@ date: 2020-11-25 15:59:47
 password:
 summary:
 tags: JS
-categories:
+categories: JS
 ---
 
 # date基本

@@ -8,7 +8,7 @@ date: 2020-11-26 13:05:55
 password:
 summary:
 tags: JS
-categories:
+categories: JS
 ---
 
 # 箭头函数

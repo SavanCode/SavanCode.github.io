@@ -8,7 +8,7 @@ date: 2020-11-25 15:08:32
 password:
 summary:
 tags: JS
-categories:
+categories: JS
 ---
 
 # PUSH

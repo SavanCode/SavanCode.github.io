@@ -8,7 +8,7 @@ date: 2020-12-12 13:18:20
 password:
 summary:
 tags: jQuery
-categories:
+categories: jQuery
 ---
 
 # 1. jQuery基础

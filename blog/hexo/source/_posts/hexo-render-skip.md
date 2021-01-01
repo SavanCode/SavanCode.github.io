@@ -8,7 +8,7 @@ date: 2020-11-15 20:12:05
 password:
 summary:
 tags: hexo
-categories: 
+categories: Hexo
 ---
 
 # Hexo博客跳过渲染，创建自定义网页方法

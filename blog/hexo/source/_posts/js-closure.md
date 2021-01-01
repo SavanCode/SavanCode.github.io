@@ -8,7 +8,7 @@ date: 2020-11-26 09:49:29
 password:
 summary:
 tags: JS
-categories:
+categories: JS
 ---
 
 # JS变量声明
