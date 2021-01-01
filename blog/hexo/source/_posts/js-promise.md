@@ -1,4 +1,5 @@
-title: JS 回调函数 & Promise & async
+---
+title: JS 回调函数,Promise, async
 top: false
 cover: false
 toc: true
@@ -8,7 +9,7 @@ password:
 summary:
 tags: JS
 categories:
-
+---
 
 # js处理error
 
