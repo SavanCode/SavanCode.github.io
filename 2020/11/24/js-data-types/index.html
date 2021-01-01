@@ -439,6 +439,7 @@
 <li><p>undefined</p>
 </li>
 </ul>
+<p><img src="/2020/11/24/js-data-types/1607252500863.png"></p>
 <h2 id="原始值-primitive-values"><a href="#原始值-primitive-values" class="headerlink" title="原始值( primitive values )"></a>原始值( primitive values )</h2><p>除 Object 以外的所有类型都是不可变的（值本身无法被改变。类似于：字符串（String）、数字(Number)、布尔(Boolean)、对空（Null）、未定义（Undefined）、Symbol。</p>
 <p>原始值明显的特征是不可更改，任何方法都无法更改一个原始值</p>
 <pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> s<span class="token operator">=</span> <span class="token string">'hello'</span><span class="token punctuation">;</span>
@@ -463,7 +464,95 @@ console<span class="token punctuation">.</span><span class="token function">log<
 myObject<span class="token punctuation">.</span>foo <span class="token operator">=</span> <span class="token string">'bar'</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//操作myObject中的值</span>
 <span class="token comment" spellcheck="true">//现在如果输出myObject和copyOfMyObject，则都会输出foo属性，因为它们引用的是同一个对象</span>
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>myObject<span class="token punctuation">,</span>copyOfMyObject<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//Object&amp;#123;foo="bar"&amp;#125;</span></code></pre>
-<h2 id="undefined"><a href="#undefined" class="headerlink" title="undefined"></a>undefined</h2><p>当声明的变量未初始化时，该变量的默认值是undefined.</p>
+<h3 id="js函数的call-by-value-amp-call-by-reference-详细讲解"><a href="#js函数的call-by-value-amp-call-by-reference-详细讲解" class="headerlink" title="js函数的call by value &amp; call by reference 详细讲解"></a>js函数的call by value &amp; call by reference 详细讲解</h3><h4 id="js的数值类型：基本类型和引用类型"><a href="#js的数值类型：基本类型和引用类型" class="headerlink" title="js的数值类型：基本类型和引用类型"></a><strong><a target="_blank" rel="noopener" href="https://www.w3school.com.cn/js/pro_js_value.asp">js的数值类型：基本类型和引用类型</a></strong></h4><p><strong>js一共有六大数据类型。number string boolean object null underfind</strong></p>
+<p> 基本类型存放在栈区，访问是<strong>按值访问</strong>的，就是说你可以操作保存在变量中的实际的值。</p>
+<p><strong>引用类型指的是对象：js中的array和object</strong>。可以拥有属性和方法，并且我们可以修改其属性和方法。引用对象存放的方式是：在栈中存放变量名（该变量的值是堆中真实数据的指针（对象在堆中的存放地址）），在堆中存放数据（真正的数据）。</p>
+<p>对象使用的是<strong>引用赋值</strong>。当我们把一个对象赋值给一个新的变量时，赋的其实是该对象的在堆中的地址，而不是堆中的数据。也就是两个对象指向的是同一个存储空间，无论哪个对象发生改变，其实都是改变的存储空间的内容.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>call by value</th>
+<th>call by reference/sharing</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>数据</td>
+<td>number string boolean object null underfind</td>
+<td>array  object</td>
+</tr>
+<tr>
+<td>存放地址</td>
+<td>栈</td>
+<td>栈中地址，堆中数据</td>
+</tr>
+<tr>
+<td>copy value</td>
+<td>没有关系 互不影响</td>
+<td>指向同一个存储空间，一个变，都会变( 两者联动)</td>
+</tr>
+<tr>
+<td>函数传值(访问类型)</td>
+<td>不改变原值<br>所有函数的参数都<strong>是按值来传递</strong>的</td>
+<td>按引用访问 传地址<br>所有函数的参数都<strong>是按值来传递</strong>的</td>
+</tr>
+<tr>
+<td>函数内赋值/复制</td>
+<td>按值复制</td>
+<td>按值复制（指针，也是值）</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>  call by value</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">add</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    num<span class="token operator">+</span><span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> num<span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> n<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> m<span class="token operator">=</span><span class="token function">add</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//3</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>m<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//4</span></code></pre>
+<p>call by reference/sharing：</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> obj1 <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>  value<span class="token punctuation">:</span><span class="token string">'111'</span> <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> obj2 <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>  value<span class="token punctuation">:</span><span class="token string">'222'</span> <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">changeStuff</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  obj<span class="token punctuation">.</span>value <span class="token operator">=</span> <span class="token string">'333'</span><span class="token punctuation">;</span>
+  obj <span class="token operator">=</span> obj2<span class="token punctuation">;</span>
+  <span class="token keyword">return</span> obj<span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> foo <span class="token operator">=</span> <span class="token function">changeStuff</span><span class="token punctuation">(</span>obj1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>foo<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">// '222' 参数obj指向了新的对象obj2</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>obj1<span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//'333'</span></code></pre>
+<p>所以</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">changeStuff</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c<span class="token punctuation">)</span>
+<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  a <span class="token operator">=</span> a <span class="token operator">*</span> <span class="token number">10</span><span class="token punctuation">;</span>
+  b<span class="token punctuation">.</span>item <span class="token operator">=</span> <span class="token string">"changed"</span><span class="token punctuation">;</span>
+  c <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>item<span class="token punctuation">:</span> <span class="token string">"changed"</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> num <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> obj1 <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>item<span class="token punctuation">:</span> <span class="token string">"unchanged"</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> obj2 <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>item<span class="token punctuation">:</span> <span class="token string">"unchanged"</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+
+<span class="token function">changeStuff</span><span class="token punctuation">(</span>num<span class="token punctuation">,</span> obj1<span class="token punctuation">,</span> obj2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//10</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>obj1<span class="token punctuation">.</span>item<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//change</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>obj2<span class="token punctuation">.</span>item<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//unchange</span></code></pre>
+<blockquote>
+<p>But the item that is passed by value is <em>itself</em> a reference. Technically, this is called <a target="_blank" rel="noopener" href="http://en.wikipedia.org/wiki/Evaluation_strategy#Call_by_sharing">call-by-sharing</a>.</p>
+<p>In practical terms, this means that if you change the parameter itself (as with <code>num</code> and <code>obj2</code>), that won’t affect the item that was fed into the parameter. But if you change the <strong>INTERNALS</strong> of the parameter, that will propagate back up (as with <code>obj1</code>).</p>
+</blockquote>
+<h1 id="详细数据类型"><a href="#详细数据类型" class="headerlink" title="详细数据类型"></a>详细数据类型</h1><h2 id="undefined"><a href="#undefined" class="headerlink" title="undefined"></a>undefined</h2><p>当声明的变量未初始化时，该变量的<strong>默认值是undefined.</strong> (null 的出现意味着是被操作者赋值的，而不是js赋值的)</p>
 <p>会出现场景</p>
 <ul>
 <li>已声明未赋值的变量</li>
@@ -477,6 +566,36 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <blockquote>
 <p>null表示”空值”，undefined表示”未定义”。两者往往可以互换。判断相等运算符==认为两者是相等的</p>
 </blockquote>
+<h2 id="null-和undefined-区别"><a href="#null-和undefined-区别" class="headerlink" title="null 和undefined 区别"></a>null 和undefined 区别</h2><table>
+<thead>
+<tr>
+<th></th>
+<th>null</th>
+<th>undefined</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>相同点</td>
+<td>if语句中为false</td>
+<td>if语句中为false</td>
+</tr>
+<tr>
+<td>区别</td>
+<td>number（null）= 0</td>
+<td>number(undefined) = NaN</td>
+</tr>
+<tr>
+<td></td>
+<td>作为argument，error</td>
+<td>作为argument，返回undefined</td>
+</tr>
+</tbody></table>
+<h2 id="NaN"><a href="#NaN" class="headerlink" title="NaN"></a>NaN</h2><p>判断一个值是否是NaN 等号运算符（== 和 ===） 不能被用来判断一个值是否是 NaN。必须使用 <strong>Number.isNaN() 或 isNaN()</strong> 函数.<strong>只有 NaN 能够实现不全等与自己</strong></p>
+<pre class=" language-js"><code class="language-js"> <span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">NaN</span><span class="token punctuation">;</span>
+a<span class="token operator">!==</span>a<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//true</span>
+
+ <span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+a<span class="token operator">!==</span>a<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//false</span></code></pre>
 <h2 id="Boolean"><a href="#Boolean" class="headerlink" title="Boolean"></a>Boolean</h2><p>用Boolean()转型函数，转换成false的值称为假值(falsy value)，这7个值包括undefined、null、+0、-0、NaN、false、””(空字符串)</p>
 <blockquote>
 <p>空字符串””转换为false，而空白字符串” “转换为true</p>
@@ -583,7 +702,8 @@ Math<span class="token punctuation">.</span>SQRT1_2       <span class="token num
 <td align="left">返回角的正切</td>
 </tr>
 </tbody></table>
-<h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><table>
+<h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><p><a target="_blank" rel="noopener" href="https://dorey.github.io/JavaScript-Equality-Table/">类型对比table</a></p>
+<table>
 <thead>
 <tr>
 <th align="left">运算符</th>
@@ -824,7 +944,17 @@ Math<span class="token punctuation">.</span>SQRT1_2       <span class="token num
 <td align="left">false</td>
 </tr>
 </tbody></table>
+<h2 id="确定对象类型"><a href="#确定对象类型" class="headerlink" title="确定对象类型"></a>确定对象类型</h2><p>JavaScript 有三种方法，可以确定一个值到底是什么类型。</p>
+<ul>
+<li><code>typeof</code>运算符</li>
+<li><code>instanceof</code>运算符</li>
+<li><code>Object.prototype.toString</code>方法</li>
+</ul>
+<p><img src="/2020/11/24/js-data-types/1607253357351.png"></p>
 <h1 id="JavaScript-对象-实例"><a href="#JavaScript-对象-实例" class="headerlink" title="JavaScript 对象 实例"></a>JavaScript 对象 实例</h1><p><a target="_blank" rel="noopener" href="https://www.runoob.com/js/js-ex-objects.html">例子总结1</a></p>
+<h1 id="reference"><a href="#reference" class="headerlink" title="reference:"></a>reference:</h1><ol>
+<li><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000014658470">https://segmentfault.com/a/1190000014658470</a></li>
+</ol>
 
             </div>
             <hr/>
@@ -946,8 +1076,8 @@ Math<span class="token punctuation">.</span>SQRT1_2       <span class="token num
                         
                             String
 引号字符串String是由双引号(“)或单引号(‘)声明的
-反斜线'Wouldn\'t you prefer this book?'    //"Wouldn't you prefer this book?"
-'Did she
+反引号 `` - 多行字符串 &amp; 嵌入变量// 普通字符串
+console.log(`In JavaScript '\n' is a line-feed.`)
                         
                     </div>
                     <div class="publish-info">

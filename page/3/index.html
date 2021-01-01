@@ -316,26 +316,29 @@
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="../../2020/11/26/js-IIFE/">
+                    <a href="../../2020/12/12/jq/">
                         <div class="card-image">
                             
                             
-                            <img src="../../medias/featureimages/2.jpg" class="responsive-img" alt="js IIFE 立即执行函数">
+                            <img src="../../medias/featureimages/18.jpg" class="responsive-img" alt="jQuery">
                             
-                            <span class="card-title">js IIFE 立即执行函数</span>
+                            <span class="card-title">jQuery</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                IIFE - Imdiately Invoked Function Expression一般用于构造私有变量，避免全局空间污染
-
+                                1. jQuery基础引入方法 - 国内
+&lt;head>
+&lt;script
+  src="https://code.jquery.com/jquery-3.5.1.js"
+  integrity="sha256-QWo7LDvxbW
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-26
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-12
                             </span>
                             <span class="publish-author">
                                 
@@ -347,37 +350,41 @@
                     </div>
 
                     
+                    <div class="card-action article-tags">
+                        
+                        <a href="../../tags/jQuery/">
+                            <span class="chip bg-color">jQuery</span>
+                        </a>
+                        
+                    </div>
+                    
                 </div>
             </div>
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="../../2020/11/26/js-closure/">
+                    <a href="../../2020/12/07/js-create-obj/">
                         <div class="card-image">
                             
                             
-                            <img src="../../medias/featureimages/20.jpg" class="responsive-img" alt="js closure">
+                            <img src="../../medias/featureimages/2.jpg" class="responsive-img" alt="js create obj">
                             
-                            <span class="card-title">js closure</span>
+                            <span class="card-title">js create obj</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                基本作用域Javascript语言的特殊之处，就在于函数内部可以直接读取全局变量。
-
-var n=999;
-function f1()&amp;#123;
-　　alert(n); 
-　　&amp;#125;
-f1(); // 999
-另一方
+                                JavaScript深入之创建对象的多种方式以及优缺点1. 工厂模式function createPerson(name) &amp;#123;
+    var o = new Object();
+    o.name = name;
+  
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-26
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-07
                             </span>
                             <span class="publish-author">
                                 
@@ -402,31 +409,32 @@ f1(); // 999
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="../../2020/11/25/js-this-keyword/">
+                    <a href="../../2020/12/07/js-Inheritance/">
                         <div class="card-image">
                             
                             
-                            <img src="../../medias/featureimages/6.jpg" class="responsive-img" alt="js this keyword">
+                            <img src="../../medias/featureimages/5.jpg" class="responsive-img" alt="js Inheritance">
                             
-                            <span class="card-title">js this keyword</span>
+                            <span class="card-title">js Inheritance</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                JavaScript this 关键字面向对象语言中 this 表示当前对象的一个引用, 它会随着执行环境的改变而改变。
+                                JavaScript六种继承方式
+1.原型链继承
+原理：将子类的原型挂载到父类上；
+优点：父类方法可以继承使用
+缺点：子类new出来的实例不能向父类传递参数，父类的引用属性没有隔离，会相互影响；不能多继承
 
-this绑定的四种情况：
-
-new 绑定。new实例化
-显示绑定。call、apply、bind手动更改指向
-隐式绑
+语法// 父类
+function
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-25
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-07
                             </span>
                             <span class="publish-author">
                                 
@@ -451,27 +459,28 @@ new 绑定。new实例化
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="../../2020/11/25/js-copy-object/">
+                    <a href="../../2020/12/04/js-iteration-method/">
                         <div class="card-image">
                             
                             
-                            <img src="../../medias/featureimages/19.jpg" class="responsive-img" alt="js copy object">
+                            <img src="../../medias/featureimages/21.jpg" class="responsive-img" alt="js iteration method">
                             
-                            <span class="card-title">js copy object</span>
+                            <span class="card-title">js iteration method</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                浅拷贝简单拷贝  新建一个空对象，使用for-in循环，将对象的所有属性复制到新建的空对象中
-function simpleClone1(obj)&amp;#123;
-    if(typeof obj != 'object')&amp;#
+                                Javascript中常见的数组遍历方法总结1、for循环的使用
+优化后的for循环，是用临时变量将长度缓存起来，避免了重复获取数组长度，当遍历的数组较长时，优化效果会比较明显。
+
+        var arr=[1,2,3,6,4,85
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-25
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-04
                             </span>
                             <span class="publish-author">
                                 
@@ -496,29 +505,27 @@ function simpleClone1(obj)&amp;#123;
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="../../2020/11/25/js-form-validation/">
+                    <a href="../../2020/12/01/js-question-solution/">
                         <div class="card-image">
                             
                             
-                            <img src="../../medias/featureimages/12.jpg" class="responsive-img" alt="js form validation 表单验证">
+                            <img src="../../medias/featureimages/6.jpg" class="responsive-img" alt="js question&amp;solution">
                             
-                            <span class="card-title">js form validation 表单验证</span>
+                            <span class="card-title">js question&amp;solution</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                基本使用JS添加交互事件&lt;h1 onclick="this.innerHTML='Ooops!'">点击文本!&lt;/h1>
-点击文本!
-
-操作DOM元素//例：向button元素分配onclick事件：
-document.getE
+                                1.this 与 event.target的区别使用listener的时候， this可以跟踪对应的listener持有者。 event.target是当前的时间互动触发点
+2.作用域function loo()&amp;#123;
+   
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-25
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-01
                             </span>
                             <span class="publish-author">
                                 
@@ -543,27 +550,27 @@ document.getE
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="../../2020/11/25/js-type/">
+                    <a href="../../2020/12/01/css-question-solution/">
                         <div class="card-image">
                             
                             
-                            <img src="../../medias/featureimages/18.jpg" class="responsive-img" alt="js type identification 数据类型查找">
+                            <img src="../../medias/featureimages/4.jpg" class="responsive-img" alt="css question&amp;solution">
                             
-                            <span class="card-title">js type identification 数据类型查找</span>
+                            <span class="card-title">css question&amp;solution</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                typeofconsole.log(typeof 'a');//'string'
-console.log(typeof ('a'));//'string'
-instanceof操作数是一个对象，右操作数是一个构造函数。如果左侧的对象是右侧构
+                                为什么height:100%不生效对于height属性，如果父元素height为auto，只要子元素在文档流中（即position不等于fixed或者absolute），其百分比值完全就被忽略了。
+&lt;style>
+    .box &
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-25
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-01
                             </span>
                             <span class="publish-author">
                                 
@@ -577,8 +584,8 @@ instanceof操作数是一个对象，右操作数是一个构造函数。如果�
                     
                     <div class="card-action article-tags">
                         
-                        <a href="../../tags/JS/">
-                            <span class="chip bg-color">JS</span>
+                        <a href="../../tags/css-html/">
+                            <span class="chip bg-color">css&amp;html</span>
                         </a>
                         
                     </div>
@@ -603,7 +610,7 @@ instanceof操作数是一个对象，右操作数是一个构造函数。如果�
             
         </div>
         <div class="page-info col m4 l4 hide-on-small-only">
-            <div class="center-align b-text-gray">3 / 10</div>
+            <div class="center-align b-text-gray">3 / 13</div>
         </div>
         <div class="col s6 m4 l4">
             
