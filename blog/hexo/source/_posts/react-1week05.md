@@ -836,6 +836,12 @@ https://github.com/zalmoxisus/redux-devtools-extension
 
 [查api&简单解释](https://chentsulin.github.io/redux/docs/introduction/index.html)
 
+## 其他练习
+
+[练习1](https://github.com/blueflylin/reactjs101/blob/master/Ch09/react-router-redux-github-finder.md) 
+
+[练习2](https://github.com/blueflylin/reactjs101/blob/master/Ch10/react-router-redux-node-isomorphic-javascript-open-cook.md)
+
 # Reference
 
 https://blog.csdn.net/qq_26347769/article/details/109634399
