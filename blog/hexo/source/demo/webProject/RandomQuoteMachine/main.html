@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Build a Random Quote Machine</title>
+    <style>
+        body{
+            margin: 0 0;
+            display: flex; 
+            font-size: larger;
+            min-height: 700px;
+            background-color: #a2b9bc;
+        }
+        #quote-box{
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            background-color: lightsteelblue;
+            padding: 2em;
+        }
+        #author{
+            text-align: end;
+        }
+        #new-quote{
+            max-width: fit-content;
+            border-style: none;
+            color: whitesmoke;
+            font-size: large;
+            font-weight: bold;
+            margin-left: auto;
+            background-color: lightsteelblue;
+        }
+        #new-quote:hover{
+            background-color: whitesmoke;
+            color: lightsteelblue;
+        }
+       
+    </style>
+</head>
+<body>
+    <div id="quote-box">
+        <div id="text">this is the quote display</div>
+        <div id="author">author</div>
+        <button id="new-quote" >Click Here for new quote</button>
+        <!-- User Story #10: 
+            I can tweet the current quote by clicking on the #tweet-quote``a element. 
+            This a element should include the "twitter.com/intent/tweet" path 
+            in its href attribute to tweet the current quote. -->
+        <a href="twitter.com/intent/tweet" target="_top" id="tweet-quote"> tweet the current quote.</a>
+    </div>
+
+     <script>
+        $(document).ready(function(){
+   
+            const quotes = [
+                {
+                    quote: "Don't cry because it's over, smile because it happened.",
+                    author: "Dr. Seuss"
+                },
+                {
+                    quote: "You only live once, but if you do it right, once is enough.",
+                    author: "Mae West"
+                },
+                {
+                    quote: "Be yourself; everyone else is already taken.",
+                    author: "Oscar Wilde"
+                },
+                {
+                    quote:
+                    "Two things are infinite: the universe and human stupidity; and I'm not sure about the universe.",
+                    author: "Albert Einstein"
+                },
+                { quote: "So many books, so little time.", author: "Frank Zappa" },
+                {
+                    quote: "A room without books is like a body without a soul.",
+                    author: "Marcus Tullius Cicero"
+                },
+                {
+                    quote:
+                    "If you want to know what a man's like, take a good look at how he treats his inferiors, not his equals.",
+                    author: "J.K. Rowling"
+                }
+            ];
+            $("#text").html(quotes[0].quote);
+            $("#author").html("-"+quotes[0].author);
+            
+            $("#new-quote").click(function(){
+                const randomNum = Math.floor(Math.random() * quotes.length);
+                $("#text").html(quotes[randomNum].quote);
+                $("#author").html("-"+quotes[randomNum].author);
+            });
+        });
+
+    </script>
+    
+</body>
+</html>

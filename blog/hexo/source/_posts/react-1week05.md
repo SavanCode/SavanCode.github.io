@@ -824,6 +824,22 @@ render(){
 
 ![](react-1week05/image-20210101012217492.png)
 
+
+
+## 改变obj属性
+
+```jsx
+const defaultState = {
+  user: 'CamperBot',
+  status: 'offline',
+  friends: '732,982',
+  community: 'freeCodeCamp'
+};
+Object.assign({},state,{status:'online'} )
+```
+
+
+
 # tool 
 
 https://github.com/zalmoxisus/redux-devtools-extension

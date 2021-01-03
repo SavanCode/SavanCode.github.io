@@ -169,6 +169,20 @@ console.log(auto instanceof Object);
 // expected output: true
 ```
 
+## 改变obj属性
+
+```jsx
+Object.assign({}, obj1, obj2)
+
+const defaultState = {
+  user: 'CamperBot',
+  status: 'offline',
+  friends: '732,982',
+  community: 'freeCodeCamp'
+};
+Object.assign({},state,{status:'online'} )
+```
+
 
 
 ## 删除obj属性
