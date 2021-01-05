@@ -27,11 +27,30 @@ size control=> `<video>`
 # HTML Audio
 
 
+```html
+<audio controls>  
+<source src="****" type="audio/ogg">  
+<source src="****" type="audio/mpeg">Your browser does not support the audio element.</audio>
+```
 
-<audio controls>  <source src="****" type="audio/ogg">  <source src="****" type="audio/mpeg">Your browser does not support the audio element.</audio>
-``<audio controls> ``
-   `` <source src="****" type="audio/ogg">  ``
-   `` <source src="****" type="audio/mpeg">Your browser does not support the audio element.</audio>``
+```jsx
+const BEEP =new Audio("https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3");
+
+BEEP.play();
+BEEP.pause();
+```
+
+```jsx
+//有问题
+this.audio = document.getElementById("beep");
+return(
+ <audio id="beep" src={BEEP} />
+ )
+this.audio.pause()
+this.audio.play()
+```
+
+
 
 `controls` attribute adds audio controls, like play, pause, and volume.
 

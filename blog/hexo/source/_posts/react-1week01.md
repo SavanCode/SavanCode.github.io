@@ -744,7 +744,7 @@ class StatefulComponent extends React.Component {
 
 # 父子组件之间的传递以及实例
 
-## 单纯的input传输
+## 单纯的input传输（子组件input给父）
 
 ```jsx
 class MyApp extends React.Component {

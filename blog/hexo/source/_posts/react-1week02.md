@@ -150,6 +150,32 @@ componentWillUnmount() {
 
 
 
+## 7.componentWillReceiveProps - 对子组件的props进行监视
+
+ Timer 练习中
+
+```jsx
+//但是并不安全
+    componentWillReceiveProps(nextProps){
+      console.log("nextProps",nextProps)
+      this.setState({
+        breakLength:nextProps.breakLength,
+        sessionLength:nextProps.sessionLength,
+      })
+      if(this.state.currentStatus==='Session'){
+        this.setState({
+          leftTime: nextProps.sessionLength*60*1000
+        })
+      }else if(this.state.currentStatus==='Break'){
+        this.setState({
+          leftTime: nextProps.breakLength*60*1000
+        })
+      } 
+    }
+```
+
+
+
 # 练习
 
 偶数点击，显示count

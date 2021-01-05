@@ -52,6 +52,10 @@ yarn add redux
 
   ![](react-1week05/image-20210101012427891.png)
 
+# [为什么要Redux](https://segmentfault.com/a/1190000012142449)
+
+![](https://miro.medium.com/max/875/1*f3gS9znOZvX8HfCLg7T--Q.gif)
+
 # Redux核心概念(3个)
 
 
@@ -867,3 +871,5 @@ https://juejin.cn/post/6844903894082928654
 https://chentsulin.github.io/redux/docs/basics/UsageWithReact.html
 
 https://wizardforcel.gitbooks.io/reactjs101/content/Ch07/react-redux-real-world-example.html
+
+https://medium.com/dailyjs/when-do-i-know-im-ready-for-redux-f34da253c85f
