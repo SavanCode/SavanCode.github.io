@@ -13,8 +13,6 @@ categories: React
 
 ## [marked](https://cdnjs.com/libraries/marked)
 
-
-
 ## 引入marked
 
 ```

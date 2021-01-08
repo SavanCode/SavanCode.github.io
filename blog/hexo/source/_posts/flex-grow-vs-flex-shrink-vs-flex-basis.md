@@ -13,7 +13,7 @@ categories: Front-end
 
 ## Flex Layout Reference
 
-flex 默认： 1 0 auto；
+flex 默认： 1 0 auto；（ `flex-grow,` `flex-shrink` and `flex-basis`）
 
 ##  flex-basis 
 

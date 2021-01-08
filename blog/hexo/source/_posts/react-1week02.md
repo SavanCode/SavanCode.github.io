@@ -176,6 +176,12 @@ componentWillUnmount() {
 
 
 
+## 简单总结
+
+- `componentWillMount`：组件挂载开始之前，也就是在组件调用 `render` 方法之前调用。
+- `componentDidMount`：组件挂载完成以后，也就是 DOM 元素已经插入页面后调用。
+- `componentWillUnmount`：组件对应的 DOM 元素从页面中删除之前调用。
+
 # 练习
 
 偶数点击，显示count
