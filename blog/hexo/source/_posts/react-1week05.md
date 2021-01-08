@@ -282,6 +282,7 @@ console.log(store.getState())
 那么接下来看看多个reducer的时候 处理数据怎么做
 
 ```js
+import {v4 as uuidv4} from 'uuid'
 //两个数据例子
 const demoState={
   expenses:[{
@@ -611,7 +612,95 @@ npm install react-redux
 yarn add react-redux
 ```
 
+
+
+## connect方法的完整 API 如下
+
+ ```javascript
+import { connect } from 'react-redux'
+
+const VisibleTodoList = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(TodoList)
+ ```
+
+上面代码中，`connect`方法接受两个参数：`mapStateToProps`和`mapDispatchToProps`。它们定义了 UI 组件的业务逻辑。前者负责输入逻辑，即将`state`映射到 UI 组件的参数（`props`），后者负责输出逻辑，即将用户对 UI 组件的操作映射成 Action。
+
+## mapStateToProps函数
+
+`mapStateToProps`是一个函数。它的作用就是像它的名字那样，建立一个从（外部的）`state`对象到（UI 组件的）`props`对象的映射关系。
+
+作为函数，`mapStateToProps`执行后应该返回一个对象，里面的每一个键值对就是一个映射。请看下面的例子。
+
+当 props接收到来自父组件一个小小的改动，那么你所使用的 ownProps 参数，mapStateToProps 都会被重新计算）。
+mapStateToProps可以不传，如果不传，组件不会监听store的变化，也就是说Store的更新不会引起UI的更新
+example:
+
+```javascript
+const state = []; 
+// change code below this line
+const mapStateToProps = (state)=>{
+  return {
+    messages: state
+  }
+}
+
+//或者 
+const mapStateToProps = (state) => {
+  return {
+    todoList: state.todoList
+  }
+} 
+```
+
+传入了props的：
+
+```javascript
+const mapStateToProps = (state, ownProps) => {
+  return {
+    active: ownProps.filter === state.visibilityFilter
+  }
+}
+```
+
+## mapDispatchToProps()
+
+`mapDispatchToProps`是`connect`函数的第二个参数，用来建立 UI 组件的参数到`store.dispatch`方法的映射。也就是说，它定义了哪些用户的操作应该当作 Action，传给 Store。它可以是一个函数，也可以是一个对象。
+
+如果`mapDispatchToProps`是一个函数，会得到`dispatch`和`ownProps`（容器组件的`props`对象）两个参数。
+
+ ```javascript
+const mapDispatchToProps = (
+   dispatch,
+   ownProps
+ ) => {
+   return {
+     onClick: () => {
+       dispatch({
+         type: 'SET_VISIBILITY_FILTER',
+         filter: ownProps.filter
+       });
+     } 
+  };
+}
+
+//或者
+//映射Redux actions到组件的属性
+function mapDispatchToProps(dispatch){
+    return{
+        onButtonClick:()=>dispatch(buttonClickAction),
+        onChangeText:()=>dispatch(changeTextAction)
+    }
+}
+
+//<button onClick={onButtonClick}>click me</button>
+ ```
+
+
+
 ## Provider
+
 React Redux provides` <Provider />`, which makes the Redux store available to the rest of your app
 
 ### 使用provider的例子
