@@ -11,7 +11,23 @@ tags: React
 categories: React
 ---
 
-# react-hooks
+react-hooks
+
+## hooks是针对在使用react时存在以下问题而产生的：
+1、组件之间复用状态逻辑很难，在hooks之前，实现组件复用，一般采用高阶组件和 Render Props，它们本质是将复用逻辑提升到父组件中，很容易产生很多包装组件，带来嵌套地域。
+2、组件逻辑变得越来越复杂，尤其是生命周期函数中常常包含一些不相关的逻辑，完全不相关的代码却在同一个方法中组合在一起。如此很容易产生 bug，并且导致逻辑不一致。
+3、复杂的class组件，使用class组件，需要理解 JavaScript 中 this 的工作方式，不能忘记绑定事件处理器等操作，代码复杂且冗余。除此之外，class组件也会让一些react优化措施失效。
+
+## 两方面**作用**：
+1、用于在函数组件中引入状态管理和生命周期方法
+2、取代高阶组件和render props来实现抽象和可重用性
+
+## 优点：
+1、避免在被广泛使用的函数组件在后期迭代过程中，需要承担一些副作用，而必须重构成类组件，它帮助函数组件引入状态管理和生命周期方法。
+2、Hooks 出现之后，我们将复用逻辑提取到组件顶层，而不是强行提升到父组件中。这样就能够避免 HOC 和 Render Props 带来的「嵌套地域」
+3、避免上面陈述的class组件带来的那些问题
+
+
 
 ## useState()使用- 简单state
 
@@ -94,7 +110,7 @@ const NodeApp =()=>{
 ReactDOM.render(  <NodeApp /> , document.getElementById('root'));
 ```
 
-## useEffect()使用 - 观察函数
+## useEffect()使用 - 观察函数 类似于 componentDidMount and componentDidUpdate
 
 ### 练习例子 - 加入localstorage
 
@@ -475,6 +491,7 @@ import React, { useEffect, useReducer } from 'react'
 import NoteList from './NoteList'
 import AddNoteForm from './AddNoteForm'
 import NotesContext from '../contexts/notes-context'
+//const NotesContext= React.createContext();
 
 const NodeApp =()=>{
     //const [note,setNotes] =useState([]);
@@ -607,3 +624,7 @@ const position =Mousemove();
 [awesome-react-hooks](https://github.com/rehooks/awesome-react-hooks)
 
 [@umi/hooks](https://github.com/umijs/hooks)
+
+# 拓展
+
+https://zhuanlan.zhihu.com/p/50597236
