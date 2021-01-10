@@ -136,17 +136,52 @@ componentWillUnmount() {
 
 数据发生变化之后才会被保存
 
-![](react-1week02/image-20201216225110202.png)
+```jsx
+componentDidUpdate(prevProps,prevState){
+    if(prevState.options.length !== this.state.options.length){
+            console.log("options changed")
+            const json =JSON.stringify(this.state.options);
+            localStorage.setItem('option',json);
+    }
+}
+```
+
+
 
 ## 6、componentDidMount()
 
 渲染的时候，读取数据储存，刷新页面也还是根据localStorage
 
-![](react-1week02/image-20201216225806344.png)
+```jsx
+componentDidMount(){  
+        const json=localStorage.getItem('option');
+        const options=JSON.parse(json);
+        if(options){
+            this.setState({
+                            options,
+            })
+        }
+}
+```
 
 但是这里其实加多判断看有没有option这个数据，另外要注意页面error（JSON.parse()这个很容易有error，导致页面崩塌）
 
-![](react-1week02/image-20201216230234924.png)
+```jsx
+componentDidMount(){ 
+    try{
+        const json=localStorage.getItem('option');
+        const options=JSON.parse(json);
+        if(options){
+            this.setState({
+                 options,
+            })
+        }
+
+    }catch(error){
+
+    } 
+}
+```
 
 
 
