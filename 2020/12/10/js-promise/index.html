@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Savannah">
+    <meta name="keywords" content="JS 回调函数 &amp; Promise &amp; async, Savannah">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Savannah</title>
+    <title>JS 回调函数 &amp; Promise &amp; async | Savannah</title>
     <link rel="icon" type="image/png" href="../../../../favicon.png">
 
     <link rel="stylesheet" type="text/css" href="../../../../libs/awesome/css/all.css">
@@ -264,12 +264,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/0.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/18.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title"></h1>
+                    <h1 class="description center-align post-title">JS 回调函数 &amp; Promise &amp; async</h1>
                 </div>
             </div>
         </div>
@@ -384,9 +384,13 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">No tag</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="../../../../tags/JS/">
+                                <span class="chip bg-color">JS</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
@@ -398,7 +402,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-12-19
+                    2020-12-10
                 </div>
                 
 
@@ -414,8 +418,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>title: JS 回调函数 &amp; Promise &amp; async<br>top: false<br>cover: false<br>toc: true<br>mathjax: true<br>date: 2020-12-10 19:53:09<br>password:<br>summary:<br>tags: JS<br>categories:</p>
-<h1 id="js处理error"><a href="#js处理error" class="headerlink" title="js处理error"></a>js处理error</h1><h2 id="错误的类型"><a href="#错误的类型" class="headerlink" title="错误的类型"></a>错误的类型</h2><ul>
+                <h1 id="js处理error"><a href="#js处理error" class="headerlink" title="js处理error"></a>js处理error</h1><h2 id="错误的类型"><a href="#错误的类型" class="headerlink" title="错误的类型"></a>错误的类型</h2><ul>
 <li><p>Error错误：所有错误的父类型</p>
 </li>
 <li><p>ReferenceError: 引用的变量不存在</p>
@@ -574,7 +577,7 @@ p<span class="token punctuation">.</span><span class="token function">then</span
 <li><p>异步操作<strong>失败</strong>，Promise对象抛出一个错误，状态变为 rejected。</p>
 </li>
 <li><p>异步操作，函数返回promise （不管里面是成功失败），外面的状态是pending，proto的属性会保留结果状态</p>
-<p><img src="/2020/12/19/js-promise/1607670125369.png" alt="reject状态例子"></p>
+<p><img src="/2020/12/10/js-promise/1607670125369.png" alt="reject状态例子"></p>
 </li>
 </ul>
 <pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> p1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>resolve<span class="token punctuation">,</span>reject<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
@@ -622,7 +625,7 @@ Promise &amp;#123;[[PromiseStatus]]: "rejected", [[PromiseValue]]: 3&amp;#125;
 */</span></code></pre>
 <p>  Promise的内部实现是一个状态机。Promise有三种状态：pending，resolved，rejected。当Promise刚创建完成时，处于pending状态；当Promise中的函数参数执行了resolve后，Promise由pending状态变成resolved状态；如果在Promise的函数参数中执行的不是resolve方法，而是reject方法，那么Promise会由pending状态变成rejected状态。</p>
 <p>p2、p3刚创建完成时，控制台输出的这两台Promise都处于pending状态，但为什么p1是resolved状态呢？ 这是因为p1 的函数参数中执行的是一段同步代码，Promise刚创建完成，resolve方法就已经被调用了，因而紧跟着的输出显示p1是resolved状态。我们通过两个<code>setTimeout</code>函数，延迟1s后再次输出p2、p3的状态，此时p2、p3已经执行完成，状态分别变成resolved和rejected。</p>
-<h2 id="promise-基本流程"><a href="#promise-基本流程" class="headerlink" title="promise 基本流程"></a>promise 基本流程</h2><p><img src="/2020/12/19/js-promise/1607606379135.png"></p>
+<h2 id="promise-基本流程"><a href="#promise-基本流程" class="headerlink" title="promise 基本流程"></a>promise 基本流程</h2><p><img src="/2020/12/10/js-promise/1607606379135.png"></p>
 <h2 id="promise-基本使用"><a href="#promise-基本使用" class="headerlink" title="promise 基本使用"></a>promise 基本使用</h2><pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// 1.创建一个新的promise对象</span>
 <span class="token keyword">const</span> p <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span>resolve <span class="token punctuation">,</span> reject<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//执行器函数, 是一个同步回调</span>
   console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'执行 excutor'</span><span class="token punctuation">)</span>
@@ -1162,7 +1165,7 @@ promise
 
 <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <h1 id="JS异步之宏队列与微队列"><a href="#JS异步之宏队列与微队列" class="headerlink" title="JS异步之宏队列与微队列"></a>JS异步之宏队列与微队列</h1><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/sunmarvell/p/9564815.html">详细的解释</a></p>
-<p><img src="/2020/12/19/js-promise/1607610096493.png"></p>
+<p><img src="/2020/12/10/js-promise/1607610096493.png"></p>
 <ul>
 <li><p><strong>宏列队</strong> <strong>macrotask</strong>：用来保存待执行的宏任务（回调），比如：定时器回调、DOM 事件回调、ajax 回调、script(整体代码)、setTimeout、setInterval、setImmediate、I/O、UI交互事件、postMessage、MessageChannel</p>
 <p><strong>优先级</strong>：主代码块 &gt; setImmediate &gt; MessageChannel &gt; setTimeout / setInterval</p>
@@ -1263,7 +1266,7 @@ setTimeout
 <p>异步队列：包括微观任务和宏观任务。</p>
 <p>微观任务：async1 end → promise2</p>
 <p>宏观任务: setTimeout →</p>
-<p><img src="/2020/12/19/js-promise/1607610913034.png"></p>
+<p><img src="/2020/12/10/js-promise/1607610913034.png"></p>
 <h1 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h1><ol>
 <li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1GA411x7z1?p=2">https://www.bilibili.com/video/BV1GA411x7z1?p=2</a></li>
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/Miss_liangrm/article/details/103182530?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control">https://blog.csdn.net/Miss_liangrm/article/details/103182530?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control</a></li>
@@ -1331,7 +1334,11 @@ setTimeout
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">No tag</span>
+                            
+                                <a href="../../../../tags/JS/">
+                                    <span class="chip bg-color">JS</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -1372,28 +1379,28 @@ setTimeout
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="../temp/">
+                <a href="../../12/jq/">
                     <div class="card-image">
                         
                         
-                        <img src="../../../../medias/featureimages/0.jpg" class="responsive-img" alt="">
+                        <img src="../../../../medias/featureimages/18.jpg" class="responsive-img" alt="jQuery">
                         
-                        <span class="card-title"></span>
+                        <span class="card-title">jQuery</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            import React from 'react'
-import ReactDOM from 'react-dom'
-
-class IndecisionApp extends React.Component&amp;#123;
-  rend
+                            1. jQuery基础引入方法 - 国内
+&lt;head>
+&lt;script
+  src="https://code.jquery.com/jquery-3.5.1.js"
+  integrity="sha256-QWo7LDvxbW
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-12-19
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-12-12
                         </span>
                         <span class="publish-author">
                             
@@ -1402,6 +1409,14 @@ class IndecisionApp extends React.Component&amp;#123;
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="../../../../tags/jQuery/">
+                        <span class="chip bg-color">jQuery</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -1413,38 +1428,32 @@ class IndecisionApp extends React.Component&amp;#123;
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="../../17/react-1week04/">
+                <a href="../../07/js-create-obj/">
                     <div class="card-image">
                         
                         
-                        <img src="../../../../medias/featureimages/9.jpg" class="responsive-img" alt="react-1week Day 4">
+                        <img src="../../../../medias/featureimages/2.jpg" class="responsive-img" alt="js create obj">
                         
-                        <span class="card-title">react-1week Day 4</span>
+                        <span class="card-title">js create obj</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            React 中 styleconst styles=&amp;#123;
-  color: "purple", 
-  fontSize: 40, 
-  border: "2px solid purple" 
-&amp;#125; 
-clas
+                            JavaScript深入之创建对象的多种方式以及优缺点1. 工厂模式function createPerson(name) &amp;#123;
+    var o = new Object();
+    o.name = name;
+  
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-17
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-07
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="../../../../categories/React/" class="post-category">
-                                    React
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Savannah
                             
                         </span>
                     </div>
@@ -1452,8 +1461,8 @@ clas
                 
                 <div class="card-action article-tags">
                     
-                    <a href="../../../../tags/React/">
-                        <span class="chip bg-color">React</span>
+                    <a href="../../../../tags/JS/">
+                        <span class="chip bg-color">JS</span>
                     </a>
                     
                 </div>
