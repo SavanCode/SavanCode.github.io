@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Relative Path, Savannah">
+    <meta name="keywords" content="React中使用marked, Savannah">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Relative Path | Savannah</title>
+    <title>React中使用marked | Savannah</title>
     <link rel="icon" type="image/png" href="../../../../favicon.png">
 
     <link rel="stylesheet" type="text/css" href="../../../../libs/awesome/css/all.css">
@@ -264,12 +264,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/15.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/5.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Relative Path</h1>
+                    <h1 class="description center-align post-title">React中使用marked</h1>
                 </div>
             </div>
         </div>
@@ -386,14 +386,23 @@
                     
                     <div class="article-tag">
                         
-                            <a href="../../../../tags/css-html/">
-                                <span class="chip bg-color">css&amp;html</span>
+                            <a href="../../../../tags/React/">
+                                <span class="chip bg-color">React</span>
                             </a>
                         
                     </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="../../../../categories/React/" class="post-category">
+                                React
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -402,7 +411,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-11-15
+                    2021-01-03
                 </div>
                 
 
@@ -418,20 +427,145 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="相对路径"><a href="#相对路径" class="headerlink" title="相对路径"></a>相对路径</h1><h2 id="同一个文件夹"><a href="#同一个文件夹" class="headerlink" title="同一个文件夹"></a>同一个文件夹</h2><p>2.html和3.html在同一个文件夹下， 如果2.html链接到3.html，可以在2.html中这样写:</p>
-<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>3.html<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>同目录下文件间互相链接<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span></code></pre>
-<h2 id="上级目录文件"><a href="#上级目录文件" class="headerlink" title="上级目录文件"></a>上级目录文件</h2><p>1.html是2.html和3.html的上级目录中的文件，如果2.html或3.html链接到1.html，可以在2.html或3.html中这样写</p>
-<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>../1.html<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>链接到上级目录中的文件<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span></code></pre>
-<p>../ 代表一级上级目录(间隔一个目录)<br>　　 ../../代表二级上级目录(间隔两个目录)<br>　　 比如4.html链接到1.html，可以在4.html中这样写</p>
-<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>../../1.html<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>链接到上级目录的上级目录中的文件<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span></code></pre>
-<h2 id="下级目录文件"><a href="#下级目录文件" class="headerlink" title="下级目录文件"></a>下级目录文件</h2><p>2.html和3.html是1.html的下级目录中的文件，如果在1.html中链接到2.html， 可以在1.html中这样写</p>
-<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>first/2.html<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>链接到下级目录(first)中的文件<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span></code></pre>
-<p>如果在1.html中链接到4.html，可以在1.html中这样写</p>
-<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>first/second/4.html<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>链接到下级目录(first/second/)中的文件<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span></code></pre>
-<h1 id="根目录"><a href="#根目录" class="headerlink" title="根目录"></a>根目录</h1><p>使用根目录的方式表示的路径和绝对路径的表示方式相似，去掉前面的域名就可。<br>　　比如：</p>
-<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/exe/1.html<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>链接到1.html<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>1
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/exe/first/2.html<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>链接到2.html<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>1</code></pre>
-<p><strong>../表示源文件所在目录（文件夹）的上一级目录（文件夹），../../表示源文件所在目录的上上级目录，以此类推。</strong></p>
+                <h2 id="marked"><a href="#marked" class="headerlink" title="marked"></a><a target="_blank" rel="noopener" href="https://cdnjs.com/libraries/marked">marked</a></h2><h2 id="引入marked"><a href="#引入marked" class="headerlink" title="引入marked"></a>引入marked</h2><pre><code>yarn add marked | npm install marked --save
+yarn add highlight.js  // 代码高亮插件(可用可不用，自由选择)</code></pre>
+<h2 id="dangerouslySetInnerHTML"><a href="#dangerouslySetInnerHTML" class="headerlink" title="dangerouslySetInnerHTML"></a>dangerouslySetInnerHTML</h2><p>React 提供 dangerouslySetInnerHTML 方法，用以取代瀏覽器 DOM 裡面的 innerHTML 方法。一般來說，直接把代碼看成 HTML 是一個危險的舉動，因為它很容易暴露跨網站指令碼 (XSS) 攻擊的風險。所以，React 會需要我們傳入一個對象，使用 __html 值來提醒我們這個是危險的舉動。</p>
+<p>使用方法：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">createMarkup</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> __html<span class="token punctuation">:</span> <span class="token string">"First &amp;middot; Second"</span> <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">MyComponent</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token operator">&lt;</span>div dangerouslySetInnerHTML<span class="token operator">=</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span><span class="token function">createMarkup</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token operator">/</span><span class="token operator">></span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
+<h2 id="简单例子"><a href="#简单例子" class="headerlink" title="简单例子"></a>简单例子</h2><pre class=" language-jsx"><code class="language-jsx">    <span class="token keyword">var</span> rendererMD <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">marked<span class="token punctuation">.</span>Renderer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    marked<span class="token punctuation">.</span><span class="token function">setOptions</span><span class="token punctuation">(</span><span class="token entity" title="&#123;">&amp;#123;</span>
+      renderer<span class="token punctuation">:</span> rendererMD<span class="token punctuation">,</span>
+      gfm<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+      tables<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+      breaks<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+      pedantic<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+      sanitize<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+      smartLists<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+      smartypants<span class="token punctuation">:</span> <span class="token boolean">false</span>
+    <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//基本设置</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">marked</span><span class="token punctuation">(</span><span class="token string">'I am using __markdown__.'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// Outputs: &lt;p>I am using &lt;strong>markdown&lt;/strong>.&lt;/p></span></code></pre>
+<h2 id="自定义解析"><a href="#自定义解析" class="headerlink" title="自定义解析"></a>自定义解析</h2><pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">const</span> renderer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">marked<span class="token punctuation">.</span>Renderer</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+<span class="token keyword">const</span> paragraphParse <span class="token operator">=</span> text <span class="token operator">=</span><span class="token operator">></span> <span class="token template-string"><span class="token string">`&lt;p>$&amp;#123;text&amp;#125;&lt;/p>`</span></span> 
+renderer<span class="token punctuation">.</span>paragraph <span class="token operator">=</span> paragraphParse 
+<span class="token keyword">return</span> <span class="token function">marked</span><span class="token punctuation">(</span>content<span class="token punctuation">,</span> <span class="token entity" title="&#123;">&amp;#123;</span> renderer <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span> </code></pre>
+<h2 id="练习例子"><a href="#练习例子" class="headerlink" title="练习例子"></a>练习例子</h2><pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> ReactDOM <span class="token keyword">from</span> <span class="token string">'react-dom'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string">'./index.css'</span><span class="token punctuation">;</span>  
+<span class="token keyword">import</span> marked <span class="token keyword">from</span> <span class="token string">'marked'</span> 
+
+<span class="token keyword">const</span> defaultContent <span class="token operator">=</span> 
+<span class="token template-string"><span class="token string">`# Welcome to my React Markdown Previewer!
+
+## This is a sub-heading...
+### And here's some other cool stuff:
+
+Heres some code, \`&lt;div>&lt;/div>\`, between 2 backticks.
+
+\`\`\`
+// this is multi-line code:
+
+function anotherExample(firstLine, lastLine) &amp;#123;
+  if (firstLine == '\`\`\`' &amp;&amp; lastLine == '\`\`\`') &amp;#123;
+    return multiLineCode;
+  &amp;#125;
+&amp;#125;
+\`\`\`
+
+You can also make text **bold**... whoa!
+Or _italic_.
+Or... wait for it... **_both!_**
+And feel free to go crazy ~~crossing stuff out~~.
+
+There's also [links](https://www.freecodecamp.com), and
+> Block Quotes!
+
+And if you want to get really crazy, even tables:
+
+Wild Header | Crazy Header | Another Header?
+------------ | ------------- | ------------- 
+Your content can | be here, and it | can be here....
+And here. | Okay. | I think we get it.
+
+- And of course there are lists.
+  - Some are bulleted.
+     - With different indentation levels.
+        - That look like this.
+
+
+1. And there are numbererd lists too.
+1. Use just 1s if you want! 
+1. But the list goes on...
+- Even if you use dashes or asterisks.
+* And last but not least, let's not forget embedded images:
+
+![React Logo w/ Text](https://goo.gl/Umyytc)
+`</span></span>
+<span class="token keyword">const</span> renderer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">marked<span class="token punctuation">.</span>Renderer</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+renderer<span class="token punctuation">.</span>link <span class="token operator">=</span> <span class="token punctuation">(</span>href<span class="token punctuation">,</span> title<span class="token punctuation">,</span> text<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token entity" title="&#123;">&amp;#123;</span>
+  <span class="token keyword">return</span> <span class="token template-string"><span class="token string">`&lt;a href=$&amp;#123;href&amp;#125; target="_blank">$&amp;#123;text&amp;#125;&lt;/a>`</span></span>
+<span class="token entity" title="&#125;">&amp;#125;</span>
+
+<span class="token keyword">const</span> Window <span class="token operator">=</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">(</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>windowTop<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token entity" title="&#123;">&amp;#123;</span>props<span class="token punctuation">.</span>title<span class="token entity" title="&#125;">&amp;#125;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> Previewer<span class="token operator">=</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token entity" title="&#123;">&amp;#123;</span>
+    <span class="token keyword">return</span><span class="token punctuation">(</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>previewDiv<span class="token punctuation">"</span></span> <span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Window</span> <span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">'</span>Previewer<span class="token punctuation">'</span>/</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>preview<span class="token punctuation">"</span></span> <span class="token attr-name">dangerouslySetInnerHTML</span><span class="token attr-value"><span class="token punctuation">=</span>&amp;#123;&amp;#123;</span>
+          <span class="token attr-name"><span class="token namespace">__html:</span></span> <span class="token attr-name">marked(props.content,</span> <span class="token attr-name">&amp;#123;</span>
+            <span class="token attr-name"><span class="token namespace">breaks:</span></span> <span class="token attr-name">true,</span>
+            <span class="token attr-name"><span class="token namespace">renderer:</span></span> <span class="token attr-name">renderer,</span>
+          <span class="token attr-name">&amp;#125;)</span>
+          <span class="token attr-name">&amp;#125;</span>
+       <span class="token attr-name">&amp;#125;</span> <span class="token punctuation">></span><span class="token attr-name">&lt;</span>/<span class="token attr-name">div</span><span class="token punctuation">></span>
+      <span class="token attr-name">&lt;</span>/<span class="token attr-name">div</span><span class="token punctuation">></span>
+    <span class="token attr-name">)</span>
+<span class="token attr-name">&amp;#125;</span>
+<span class="token attr-name">const</span> <span class="token attr-name">Editor</span><span class="token attr-value"><span class="token punctuation">=</span>(props)<span class="token punctuation">=</span></span><span class="token punctuation">></span><span class="token attr-name">&amp;#123;</span>
+  <span class="token attr-name">return(</span>
+    <span class="token attr-name">&lt;div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>editorDiv<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Window</span> <span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">'</span>Editor<span class="token punctuation">'</span>/</span><span class="token punctuation">></span></span> 
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>textarea</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>editor<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span>&amp;#123;props.content&amp;#125;</span> <span class="token attr-name">onChange</span><span class="token attr-value"><span class="token punctuation">=</span>&amp;#123;props.changeContent&amp;#125;</span>  <span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>textarea</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+  <span class="token punctuation">)</span>
+<span class="token entity" title="&#125;">&amp;#125;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">MarkdownPreviewer</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span><span class="token entity" title="&#123;">&amp;#123;</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span><span class="token entity" title="&#123;">&amp;#123;</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token operator">=</span><span class="token entity" title="&#123;">&amp;#123;</span> content<span class="token punctuation">:</span>defaultContent <span class="token entity" title="&#125;">&amp;#125;</span>
+  <span class="token entity" title="&#125;">&amp;#125;</span> 
+
+  changeContent<span class="token operator">=</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token entity" title="&#123;">&amp;#123;</span> 
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token entity" title="&#123;">&amp;#123;</span>
+      content<span class="token punctuation">:</span>e<span class="token punctuation">.</span>target<span class="token punctuation">.</span>value
+    <span class="token entity" title="&#125;">&amp;#125;</span><span class="token punctuation">)</span>
+  <span class="token entity" title="&#125;">&amp;#125;</span>
+
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token entity" title="&#123;">&amp;#123;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token operator">&lt;</span><span class="token operator">></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Editor</span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span>&amp;#123;this.state.content&amp;#125;</span> <span class="token attr-name">changeContent</span><span class="token attr-value"><span class="token punctuation">=</span>&amp;#123;this.changeContent&amp;#125;/</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Previewer</span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span>&amp;#123;this.state.content&amp;#125;</span> <span class="token punctuation">/></span></span> 
+    <span class="token operator">&lt;</span><span class="token operator">/</span><span class="token operator">></span>
+    <span class="token punctuation">)</span>
+  <span class="token entity" title="&#125;">&amp;#125;</span>
+<span class="token entity" title="&#125;">&amp;#125;</span>
+
+
+ReactDOM<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>MarkdownPreviewer</span> <span class="token punctuation">/></span></span> <span class="token punctuation">,</span>document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'root'</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p>codecamp练习</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/djtao/p/6224399.html">https://www.cnblogs.com/djtao/p/6224399.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/markedjs/marked">https://github.com/markedjs/marked</a></p>
 
             </div>
             <hr/>
@@ -495,8 +629,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="../../../../tags/css-html/">
-                                    <span class="chip bg-color">css&amp;html</span>
+                                <a href="../../../../tags/React/">
+                                    <span class="chip bg-color">React</span>
                                 </a>
                             
                         </div>
@@ -539,30 +673,35 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="../before-after/">
+                <a href="../../08/React-Bootstrap/">
                     <div class="card-image">
                         
                         
-                        <img src="../../../../medias/featureimages/9.jpg" class="responsive-img" alt="区别伪元素before after">
+                        <img src="../../../../medias/featureimages/21.jpg" class="responsive-img" alt="React Bootstrap">
                         
-                        <span class="card-title">区别伪元素before after</span>
+                        <span class="card-title">React Bootstrap</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            伪元素基本语法element:after  &amp;#123; style properties &amp;#125;  /* CSS2 语法 */
-element::after &amp;#123; style properties &
+                            应用bootstrap styleReact Bootstrap
+1.Install Bootstrap Commandnpm install react-bootstrap bootstrap
+2.import bootstrap in 
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-11-15
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-01-08
                         </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            Savannah
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="../../../../categories/React/" class="post-category">
+                                    React
+                                </a>
+                            
                             
                         </span>
                     </div>
@@ -570,8 +709,8 @@ element::after &amp;#123; style properties &
                 
                 <div class="card-action article-tags">
                     
-                    <a href="../../../../tags/css-html/">
-                        <span class="chip bg-color">css&amp;html</span>
+                    <a href="../../../../tags/React/">
+                        <span class="chip bg-color">React</span>
                     </a>
                     
                 </div>
@@ -585,32 +724,34 @@ element::after &amp;#123; style properties &
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="../hexo-render-skip/">
+                <a href="../../01/react-hooks/">
                     <div class="card-image">
                         
                         
-                        <img src="../../../../medias/featureimages/11.jpg" class="responsive-img" alt="hexo render skip">
+                        <img src="../../../../medias/featureimages/0.jpg" class="responsive-img" alt="react-1week Day 6 - react-hooks">
                         
-                        <span class="card-title">hexo render skip</span>
+                        <span class="card-title">react-1week Day 6 - react-hooks</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Hexo博客跳过渲染，创建自定义网页方法1.跳过渲染指令在html文件中添加跳过渲染指令：
-用编辑器打开 Hexo\source 创建的文件夹中的 index.html 文件，在开头添加如下代码即可
----layout: false---
-
+                            react-hooks
+hooks是针对在使用react时存在以下问题而产生的：1、组件之间复用状态逻辑很难，在hooks之前，实现组件复用，一般采用高阶组件和 Render Props，它们本质是将复用逻辑提升到父组件中，很容易产生很多包
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-15
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-01-01
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            Savannah
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="../../../../categories/React/" class="post-category">
+                                    React
+                                </a>
+                            
                             
                         </span>
                     </div>
@@ -618,8 +759,8 @@ element::after &amp;#123; style properties &
                 
                 <div class="card-action article-tags">
                     
-                    <a href="../../../../tags/hexo/">
-                        <span class="chip bg-color">hexo</span>
+                    <a href="../../../../tags/React/">
+                        <span class="chip bg-color">React</span>
                     </a>
                     
                 </div>
