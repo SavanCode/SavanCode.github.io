@@ -1,5 +1,5 @@
 ---
-title: Wechat-mini-prog-01
+title: Wechat-mini-prog-01 微信小程序基础1
 top: false
 cover: false
 toc: true
@@ -11,6 +11,27 @@ tags: WechatMini Program
 categories: WechatMini Program
 ---
 
+## 小程序架构分析
+
+主要部分构成：**主体部分 + 各个页面**
+
+**1.1，app - 主体部分 - 小程序框架**
+
+1. app.js：小程序逻辑，初始化APP
+2. app.json ：小程序配置，比如导航、窗口、页面http请求跳转等
+
+3. app.wxss：公共样式配置
+
+**1.2，page - 逻辑层调用 数据处理**
+
+1. js：页面逻辑，相当于控制层（C）；也包括部分的数据（M）
+2. wxml：页面结构展示，相当于视图层（V）
+3. wxss：页面样式表，纯前端，用于辅助wxml展示
+4. json：页面配置，配置一些页面展示的数据，充当部分的模型（M）
+
+![](Wechat-mini-prog-01/image-20210113213223410.png)
+
+[拓展阅读： App()和Page()](http://www.wxapp-union.com/article-466-1.html)
 
 ## 微信小程序项目结构
 
@@ -51,6 +72,10 @@ JSON 是**一种数据格式，并不是编程语言，在小程序中，JSON扮
 
 　　WXSS与Web开发中的CSS类似。为了更适合小程序开发，WXSS对CSS做了一些补充以及修改。
 
+## 小程序架构分析 - mvc结构 图解
+
+![](Wechat-mini-prog-01/image-20210113214644544.png)
+
 ## WXML - 小程序语言
 
 WXML 全称是 WeiXin Markup Language，**是小程序框架设计的一套标签语言**，结合小程序的基础组件、事件系统，可以构建出页面的结构。**文件后缀名是 .wxml**
@@ -66,7 +91,7 @@ WXML 全称是 WeiXin Markup Language，**是小程序框架设计的一套标�
 WXML 通过 `{{变量名}}`来绑定 WXML 文件和对应的 JavaScript 文件中的 data 对象属性
 
 ```js
-//newpage.wxml
+//neu'jwpage.wxml
 <text>pages/page2/newpage.wxml</text>
 <view>{{msg}}</view>
 <view id="{{id}}">绑定属性渲染</view>
@@ -93,7 +118,7 @@ Page({
 
 **在 {{ }} 内进行简单的逻辑运算**
 
-```
+```html
 <!--pages/page2/newpage.wxml-->
 <!-- 逻辑运算 -->
 <view>三个数的总和 ： {{a+b+c}}</view>
@@ -103,20 +128,22 @@ Page({
 
 ![](Wechat-mini-prog-01/image-20210112205503527.png)
 
-### 条件逻辑 
+### 条件逻辑  - if
 
 WXML 中，**使用 wx:if="{{condition}}" 来判断是否需要渲染该代码块**
 
-```
+```html
 <!-- 条件运算 -->
+
 <view wx:if="{{a==2}}">if的条件成立 你就会看到我</view>
 <view wx:if="{{b>1}}">另一个成立的条件</view>
+
 <view wx:if="{{c==4}}">确定c的if条件成立</view>
 <view wx:else>C不是4 的else条件</view>
-<block wx:if="{{a==2}}">
-  <view>显示a</view>
-  <view>显示b</view>
-</block>
+
+<text wx:if="{{num > 0}}"> 大于0 </text>
+<text wx:elif="{{num < 0}}"> 小于0 </text>
+<text wx:else> 等于0 </text>
 ```
 
 
@@ -132,10 +159,11 @@ WXML 中，**使用 wx:if="{{condition}}" 来判断是否需要渲染该代码�
   },
 ```
 
-```
+```html
 <!-- pages/page2/newpage.wxml-->
 <!-- 列表渲染 -->
-<block wx:for="{{array}}" wx:for-index="index" wx:for-item="item">
+<!-- 如果想要改变index的名字 wx:for-index="newIndexName" wx:for-item="newItemName" -->
+<block wx:for="{{array}}" wx:key="item" wx:for-index="index" wx:for-item="item">
   <item>{{index}}:</item>
   <view>{{item.message}}</view>
 </block>
@@ -143,11 +171,79 @@ WXML 中，**使用 wx:if="{{condition}}" 来判断是否需要渲染该代码�
 
 ![](Wechat-mini-prog-01/image-20210112212446506.png)
 
+#### 解释一下wx:key
+
+`wx:key`，小程序会以key作为一个查找标准，判断当前已经渲染出来的组件还有没有用，我们仔细看数组变化，它只是重新排了序，内容无变化，所以小程序会将之前已经创建好的组件直接再利用进行重排，而不是直接完全重新渲染一遍，这样就提升了渲染过程。
+
+可以理解为 有key就是在原有基础上新增一个即可，而不用重新遍历五个组件
+
+> `wx:key` 的值以两种形式提供：
+>
+> 1. 可以是一个字符串，代表在 for 循环的 array 中 item 的某个属性，该属性的值需要是列表中**唯一的字符串或数字**，且不能动态改变。
+> 2. 保留关键字 this 代表在 for 循环中的 item 本身，这种表示需要 item 本身是一个**唯一的字符串或者数字**。
+
+
+
+### 数据操作拓展
+
+####  array中的数据增加
+
+```js
+//newpage.js
+//这里注意 setData一定要 才能确保数据重新渲染
+addItem(){
+this.data.array.push({message:"message3"})
+this.setData({
+array: this.data.array
+})
+}
+```
+
+#### 跳转页面
+
+```js
+//js
+  goIndex(){
+    wx.navigateTo({
+    url:"/pages/page2/newpage"//注意相对位置
+    })
+},
+```
+
+```html
+ <!--index.wxml-->
+ <button bindtap="goIndex">跳转页面</button>
+```
+
+#### hidden属性
+
+```html
+<!--下面错的写法！！！！！ -->
+<text hidden="false">1</text> 
+```
+
+```html
+<!--！！这个是对的！！！ -->
+<text hidden="{{false}}">1</text>
+```
+
+建议写法
+
+```html
+<view hidden="{{bool}}">1</view>
+/////////js///////
+Page({
+  data: {
+    bool: false
+  },
+})
+```
+
 　### WXML template
 
 定义代码片段，然后在不同的地方调用
 
-```
+```html
 <!-- template -->
 <template name="odd">
   <view> odd template</view>
@@ -174,13 +270,16 @@ WXML 提供两种文件引用方式import和include
 
 在 item.wxml 中定义了一个叫 item的 template ：
 
-```
-<!-- item.wxml -->``<``template` `name="item">`` ``<``text``>{{text}}</``text``>``</``template``>
+```html
+<!-- item.wxml -->
+<template name="item"> 
+<text>{{text}}<text>
+</template>
 ```
 
 在 index.wxml 中引用了 item.wxml，就可以使用 item模板：
 
-```
+```html
 <import src="item.wxml"/>
 <template is="item" data="{{text: 'forbar'}}"/>
 ```
@@ -189,7 +288,7 @@ WXML 提供两种文件引用方式import和include
 
 **include 可以将目标文件中除了 `<template/> <wxs/>` 外的整个代码引入，相当于是拷贝到 include 位置**
 
-```
+```html
 <!-- index.wxml -->
 <include src="header.wxml"/> 
 <view> body </view>
@@ -198,14 +297,14 @@ WXML 提供两种文件引用方式import和include
 
 header.wxml
 
-```
+```html
 <!-- header.wxml -->
 <view> header </view>
 ```
 
 footer.wxml
 
-```
+```html
 <!-- footer.wxml -->
 <view> footer </view>
 ```
@@ -224,13 +323,13 @@ footer.wxml
 
 ### 引用WXSS文件
 
-```
+```html
 @import './test_0.wxss'
 ```
 
 ### 内联样式
 
-```
+```html
 <template name="odd">
   <view style='color:red'> odd template</view>
 </template>
@@ -238,7 +337,7 @@ footer.wxml
 
 ![](Wechat-mini-prog-01/image-20210112231922242.png)
 
-### 动态改变样式
+### 动态改变样式 -事件
 
 ```
  <!-- pages/page2/newpage.wxml-->
@@ -246,7 +345,7 @@ footer.wxml
  <button bindtap='clickBlue'>变蓝</button>
 ```
 
-```
+```js
 // pages/page2/newpage.js
 Page({
   /**
@@ -267,9 +366,18 @@ Page({
 
 ### 选择器
 
+| 项目            | 例子         | 含义                        |
+| --------------- | ------------ | --------------------------- |
+| #id             | #parent      | 选择id='parent'的组件       |
+| .class          | .child       | 选择所有class='child'的组件 |
+| element         | view         | 选择所有view组件            |
+| element,element | view,text    | 选择所有view组件和text组件  |
+| ::after         | text::after  | 在text组件后面插入内容      |
+| ::before        | text::before | 在text组件前面插入内容      |
+
 例子（权重）
 
-```
+```css
 view{ // 权重为 1
   color: blue
 }
@@ -291,7 +399,26 @@ view.ele{ // 权重为 1 + 10 = 11
 }
 ```
 
+例子
 
+```html
+<view class="box">
+	<text>一往情深深几许，</text>
+	<text>深山夕照深秋雨。</text>
+	<input placeholder="输入作者名字" />
+</view>
+.box>text:first-child {
+  color: #e4393c;
+}
+
+input:active {
+  border: 1px solid #ddd;
+}
+```
+
+
+
+## 推荐样式布局 - flex
 
 ## 项目配置文件 app.json
 
@@ -309,16 +436,57 @@ view.ele{ // 权重为 1 + 10 = 11
 
 > ```javascript
 > {
->   "pages": [
->     "pages/home/home"
+>   &quot;pages&quot;: [
+>     &quot;pages/home/home&quot;
 >   ],
->   "window": {
->     "navigationBarBackgroundColor": "#ff0000",
->     "navigationBarTextStyle": "white",
->     "navigationBarTitleText": "小程序 Demo"     
+>   &quot;window&quot;: {
+>     &quot;navigationBarBackgroundColor&quot;: &quot;#ff0000&quot;,
+>     &quot;navigationBarTextStyle&quot;: &quot;white&quot;,
+>     &quot;navigationBarTitleText&quot;: &quot;小程序 Demo&quot;     
 >   }
 > }
 > ```
+
+## tarBar
+
+用来定义 tabBar 的表现
+
+```js
+{
+  "tabBar": {
+    "backgroundColor": "#fbfbfb",
+    "borderStyle": "white",
+    "selectedColor":"#50e3c2",
+    "color": "#aaa",
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "首页",
+      "iconPath": "images/home.png",
+      "selectedIconPath": "images/homeHL.png"
+    },{
+      "pagePath": "pages/me/me",
+      "text": "我",
+      "iconPath": "images/me.png",
+      "selectedIconPath": "images/meHL.png"
+    }]
+  }
+}
+```
+
+
+
+## networkTimeout
+
+用来设置各种网络请求的超时时间。
+
+如果你不是很清楚这个`networkTimeout`配置有什么作用，那么忽略就好。这对实际开发并没有什么影响。
+
+| 属性          | 类型   | 必填 | 说明                                 |
+| :------------ | :----- | :--- | :----------------------------------- |
+| request       | Number | 否   | wx.request的超时时间，单位毫秒       |
+| connectSocket | Number | 否   | wx.connectSocket的超时时间，单位毫秒 |
+| uploadFile    | Number | 否   | wx.uploadFile的超时时间，单位毫秒    |
+| downloadFile  | Number | 否   | wx.downloadFile的超时时间，单位毫秒  |
 
 ## WeUI - [小程序组件库 - WeUI](https://developers.weixin.qq.com/miniprogram/dev/extended/weui/)
 
@@ -331,3 +499,10 @@ view.ele{ // 权重为 1 + 10 = 11
 https://www.cnblogs.com/MrSaver/p/8988220.html
 
 [阮一峰的网络日志-小程序](http://www.ruanyifeng.com/blog/2020/10/wechat-miniprogram-tutorial-part-one.html)
+
+[老陈打码的教程](https://www.bilibili.com/video/BV187411c7Bi?p=1)
+
+[微信小程序结构讲解](http://www.wxapp-union.com/portal.php?mod=view&aid=465)
+
+
+
