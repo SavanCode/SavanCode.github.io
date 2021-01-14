@@ -37,9 +37,7 @@ categories: WechatMini Program
 
 ## 全局变量
 
-每个JS文件都是独立的模块，所以不可能直接在一个模块中调用另一个模块的变量，但是有全局变量
-
-
+spp.js中全局变量设置，别的文件先 `const app = getApp()` 再取值
 
 ## 小程序事件
 

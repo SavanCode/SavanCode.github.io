@@ -33,6 +33,86 @@ categories: WechatMini Program
 
 [拓展阅读： App()和Page()](http://www.wxapp-union.com/article-466-1.html)
 
+## 文件默认函数 - App & Page
+
+**App()**
+
+用来注册一个小程序;在整个小程序的生命周期过程中，它都是存在的,它是单例的，全局的。 
+
+1）只能在app.js中注册一次。
+
+2）在代码的任何地方都可以通过 getApp() 获取这个唯一的小程序单例，
+
+比如 var appInstance = getApp();
+
+
+App()的参数是 object 类型 {} ，指定了小程序的声明周期函数。
+
+**onLaunch 函数**
+监听小程序初始化。
+当小程序初始化完成时，会触发 onLaunch（全局只触发一次）。
+
+**onShow 函数**
+监听小程序显示。
+当小程序启动，或从后台进入前台显示，会触发。
+
+**onHide 函数 **
+监听小程序隐藏。
+当小程序从前台进入后台，会触发。
+所谓前后台的定义，类似于手机上的app，比如当不在使用微信时，就进入了后台。
+
+**globalData 对象**
+全局数据
+
+**Page()**
+
+> 通过App()注册完成小程序之后，框架就开始注册页面。所以不要在App()的 onLaunch 中调用 getCurrentPage() 方法，因为此时页面还没有注册完成。
+> 同样的Page()也是有生命周期的。当页面注册完成之后，可以在 page.js 文件中调用 getCurrentPage() 方法，获取当前页面对象。
+
+**Page()的参数也是Object类型。**
+**onLoad**  
+监听页面加载
+页面刚开始加载的时候触发。只会调用一次。
+
+**onReady** 
+监听页面初次渲染完成
+类似于html的 onReady。只会调用一次。
+
+**onShow**  
+监听页面显示
+页面显示的时候触发，比如页面切换
+
+**onHide**  
+监听页面隐藏
+
+**onUnload**   
+监听页面卸载
+在 redirectTo 或 navigateBack 的时候调用
+
+**onPullDownRefresh**  
+监听用户下拉动
+
+*1）需要在config的window选项中开启enablePullDownRefresh。*
+*2）当处理完数据刷新后，wx.stopPullDownRefresh 可以停止当前页面的下拉刷新。*
+
+单个页面 - 页面的json -"enablePullDownRefresh": true
+
+**onReachBottom** 
+页面上拉触底事件的处理函数
+
+**data**
+页面的初始数据
+
+**Page.prototype.setData()**
+Page的函数 setData() 用于页面初始数据data的修改。如果该数据绑定到了视图层wxml中展示，那么无须刷新，视图层就会反映出修改。
+
+对于data的修改，只能使用 setData() ，不能直接通过 this.data 进行修改。数据量限制在 1024 kb以内。
+
+**getCurrentPages()**
+,获取当前页面栈的实例，以数组形式按栈的顺序给出，第一个元素为首页，最后一个元素为当前页面
+
+页面运行 - “ 只有 onLoad onShow onReady”
+
 ## 微信小程序项目结构
 
 > 小程序由配置代码JSON文件、模板代码 WXML 文件、样式代码 WXSS文件以及逻辑代码 JavaScript文件组成.
@@ -78,7 +158,7 @@ JSON 是**一种数据格式，并不是编程语言，在小程序中，JSON扮
 
 ## WXML - 小程序语言
 
-WXML 全称是 WeiXin Markup Language，**是小程序框架设计的一套标签语言**，结合小程序的基础组件、事件系统，可以构建出页面的结构。**文件后缀名是 .wxml**
+WXML 全称是 WeiXin Markup Language,**文件后缀名是 .wxml**
 
 > `<view>`标签表示一个区块，用于跟其他区块分隔，类似 HTML 语言的`<div>`标签。`<text>`表示一段行内文本，类似于 HTML 语言的`<span>`标签，多个`<text>`标签之间不会产生分行。
 
@@ -244,29 +324,69 @@ Page({
 定义代码片段，然后在不同的地方调用
 
 ```html
-<!-- template -->
+<!-- 定义template name：template name-->
+<!--wxml-->
+<template name="staffName">
+  <view>
+    FirstName: {{firstName}}, LastName: {{lastName}}
+  </view>
+</template>
+
+<template is="staffName" data="{{...staffA}}"></template>
+<template is="staffName" data="{{...staffB}}"></template>
+<template is="staffName" data="{{...staffC}}"></template>
+// page.js
+Page({
+  data: {
+    staffA: {firstName: 'Hulk', lastName: 'Hu'},
+    staffB: {firstName: 'Shang', lastName: 'You'},
+    staffC: {firstName: 'Gideon', lastName: 'Lin'}
+  }
+})
+<!--页面偷懒 只有一个的时候 不建议-->
 <template name="odd">
   <view> odd template</view>
 </template>
 <template name="even">
   <view> even template</view>
 </template>
+<!-- 使用 -->
 <block wx:for="{{[1,2,3,4,5]}}">,
 <template is="{{item % 2 ==0 ? 'even': 'odd'}}"  />
 </block>
+
+<!--使用模板时候 -->
+<template is="templateName"  data="{{input : #@#￥%……&}}" />
 ```
 
 
 
-![](Wechat-mini-prog-01/image-20210112213843776.png)
+### WXML export
 
-### WXML 两种文件引用
+![](Wechat-mini-prog-01/image-20210114120238896.png)
 
-WXML 提供两种文件引用方式import和include
+```js
+function PrintLog(value)
+{
+    console.log("Loger module: "+ value);
+}
+
+module.exports.PrintLog = PrintLog;
+```
+
+```js
+var Loger = require("../../utils/Loger.js");
+//使用时
+ Loger.PrintLog("execute PrintLog in index onShow");
+```
+
+
+
+### WXML import和include
 
 #### import 
 
-　　import 可以在该文件中使用目标文件定义的 template,**import 有作用域的概念，即只会 import 目标文件中定义的 template，而不会 import 目标文件中 import 的 template**，简言之就是 import 不具有递归的特性
+　　import 可以在该文件中使用目标文件定义的 template,**import 有作用域的概念, import 目标文件中定义的 template，而不会 import 目标文件中 import 的 template**，简言之就是 import 不具有递归的特性
 
 在 item.wxml 中定义了一个叫 item的 template ：
 
@@ -431,49 +551,6 @@ input:active {
 > `navigationBarTextStyle`：导航栏的文字颜色，只支持`black`（黑色）或`white`（白色），默认为`white`。
 >
 > `navigationBarTitleText`：导航栏的文字，默认为空。
-
-下面，改一下前面的`app.json`，加入`window`属性。
-
-> ```javascript
-> {
->   &quot;pages&quot;: [
->     &quot;pages/home/home&quot;
->   ],
->   &quot;window&quot;: {
->     &quot;navigationBarBackgroundColor&quot;: &quot;#ff0000&quot;,
->     &quot;navigationBarTextStyle&quot;: &quot;white&quot;,
->     &quot;navigationBarTitleText&quot;: &quot;小程序 Demo&quot;     
->   }
-> }
-> ```
-
-## tarBar
-
-用来定义 tabBar 的表现
-
-```js
-{
-  "tabBar": {
-    "backgroundColor": "#fbfbfb",
-    "borderStyle": "white",
-    "selectedColor":"#50e3c2",
-    "color": "#aaa",
-    "list": [{
-      "pagePath": "pages/index/index",
-      "text": "首页",
-      "iconPath": "images/home.png",
-      "selectedIconPath": "images/homeHL.png"
-    },{
-      "pagePath": "pages/me/me",
-      "text": "我",
-      "iconPath": "images/me.png",
-      "selectedIconPath": "images/meHL.png"
-    }]
-  }
-}
-```
-
-
 
 ## networkTimeout
 
