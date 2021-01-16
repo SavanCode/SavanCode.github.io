@@ -160,9 +160,7 @@ JSON 是**一种数据格式，并不是编程语言，在小程序中，JSON扮
 
 WXML 全称是 WeiXin Markup Language,**文件后缀名是 .wxml**
 
-> `<view>`标签表示一个区块，用于跟其他区块分隔，类似 HTML 语言的`<div>`标签。`<text>`表示一段行内文本，类似于 HTML 语言的`<span>`标签，多个`<text>`标签之间不会产生分行。
-
-
+> `<view>`标签表示一个区块，用于跟其他区块分隔，类似 HTML 语言的`<div>`标签。`<text>`表示一段行内文本，类似于 HTML 语言的`<span>`标签，多个`<text>`标签之间不会产生分行。**<view> 是一个组件，会在页面上做渲染；<block>不是一个组件，它仅仅是一个包装元素，只接受控制属性，不会在页面中做任何渲染**。
 
 ## WXML代码的基础操作
 
@@ -433,6 +431,8 @@ footer.wxml
 
 ## WXSS（WeiXin Style Sheets）
 
+利用reference https://www.w3cschool.cn/weixinapp/gqhd1q96.html
+
 - **项目公共样式：**根目录中的**app.wxss为项目公共样式，它会被注入到小程序的每个页面**。
 - **页面样式：**与app.json注册过的页面同名且位置同级的WXSS文件。比如注册了pages/rpx/index页面，那pages/rpx/index.wxss为页面pages/rpx/index.wxml的样式。
 - **其它样式：其它样式可以被项目公共样式和页面样式引用**。
@@ -540,6 +540,14 @@ input:active {
 
 ## 推荐样式布局 - flex
 
+## [使用weui](https://github.com/Tencent/weui)
+
+在app.wxss 中 @import 'weui.wxss';
+
+其他page就可以使用了
+
+
+
 ## 项目配置文件 app.json
 
 顶层的`app.json`文件用于整个项目的配置，对于所有页面都有效。
@@ -569,7 +577,7 @@ input:active {
 
 [github](https://github.com/Tencent/weui-wxss)
 
-
+[文档](https://developers.weixin.qq.com/miniprogram/dev/extended/weui/)
 
 ## Reference
 

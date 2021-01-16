@@ -312,6 +312,78 @@ markers: [{
 
 [map其他使用](https://www.jianshu.com/p/5b2f95a16fce)
 
+## 开放接口 - login
+
+### 了解小程序登录流程时序
+
+![](Wechat-mini-prog-03/api-login.jpg)
+
+> #### 说明：
+>
+> 1. 调用 [wx.login()](https://developers.weixin.qq.com/miniprogram/dev/api/open-api/login/wx.login.html) 获取 **临时登录凭证code** ，并回传到开发者服务器。
+> 2. 调用 [auth.code2Session](https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/login/auth.code2Session.html) 接口，换取 **用户唯一标识 OpenID** 和 **会话密钥 session_key**。
+>
+> 之后开发者服务器可以根据用户标识来生成自定义登录态，用于后续业务逻辑中前后端交互时识别用户身份。
+>
+> **注意：**
+>
+> 1. 会话密钥 `session_key` 是对用户数据进行 [加密签名](https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/signature.html) 的密钥。为了应用自身的数据安全，开发者服务器**不应该把会话密钥下发到小程序，也不应该对外提供这个密钥**。
+> 2. 临时登录凭证 code 只能使用一次
+
+<img src="Wechat-mini-prog-03/image-20210115170352058.png" style="zoom: 67%;" />
+
+<img src="Wechat-mini-prog-03/image-20210115170257245.png" style="zoom: 67%;" />
+
+
+
+### 微信小程序wx.getUserInfo授权获取用户信息（头像、昵称）- file: newteo
+
+https://segmentfault.com/a/1190000023682165
+
+### 利用opendata 获取用户info
+
+```html
+<view class="userinfo">  
+      <view class="userinfo-avatar">
+        <open-data type="userAvatarUrl"></open-data>
+      </view>
+       <open-data type="userNickName"></open-data>
+</view>
+```
+
+```css
+//style
+.userinfo {  
+  position: relative;  
+  width: 750rpx;  
+  height: 320rpx;  
+  color: #999999;  
+  display: flex;  
+  flex-direction: column;  
+  align-items: center;  
+}  
+  
+.userinfo-avatar {  
+  overflow:hidden;  
+  display: block;  
+  width: 160rpx;  
+  height: 160rpx;  
+  margin: 20rpx;  
+  margin-top: 50rpx;  
+  border-radius: 50%;  
+  border: 2px solid #fff;  
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);  
+}
+```
+
+
+
+### 微信用户登录openid 获取
+
+思维流程：小程序前台请求后台-> 后台请求微信服务器-> 微信服务器返回后台 -> 后台返回小程序前台
+
+https://developers.weixin.qq.com/community/develop/doc/0004e229464d78c1d557ed5e359404
+
 
 
 
@@ -321,3 +393,5 @@ markers: [{
 ## Reference
 
 [页面跳转- 小程序](https://juejin.cn/post/6844903960596185102#heading-13)
+
+[小程序登录流程官方解释](https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/login.html)
