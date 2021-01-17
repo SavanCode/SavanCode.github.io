@@ -291,7 +291,10 @@ icon: true
 /*<radio color="red">*/
 ```
 
+## image 控制大小
 
+1. 利用mode
+2. 定好width height
 
 # Reference
 

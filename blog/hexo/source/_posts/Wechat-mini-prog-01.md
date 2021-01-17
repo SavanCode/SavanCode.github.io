@@ -540,6 +540,23 @@ input:active {
 
 ## 推荐样式布局 - flex
 
+也可以选择 weui-flex__item 
+
+```html
+<view>
+  <view class="flex-row" style="display: flex; flex-direction: row;">
+    <view class="flex-view-item">1</view>
+    <view class="flex-view-item">2</view>
+    <view class="flex-view-item">3</view>
+  </view>
+  <view class="flex-column" style="display: flex; flex-direction: column;" >
+    <view class="flex-view-item">c1</view>
+    <view class="flex-view-item">c2</view>
+    <view class="flex-view-item">c3</view>
+  </view>
+</view>
+```
+
 ## [使用weui](https://github.com/Tencent/weui)
 
 在app.wxss 中 @import 'weui.wxss';
