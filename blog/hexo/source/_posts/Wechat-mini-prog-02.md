@@ -296,6 +296,59 @@ icon: true
 1. 利用mode
 2. 定好width height
 
+## 文字段落的限制显示
+
+### 显示三行
+
+```css
+.note_item text{
+    display: -webkit-box;
+    font-size:28rpx;
+    color:#000000;
+    line-height: 40rpx;
+    word-break: break-all;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp:3;
+    overflow: hidden;
+    text-overflow:ellipsis;
+}
+```
+
+#### 显示单行
+
+```css
+.note2_item text{
+    display: block;
+    font-size:28rpx;
+    color:#000000;
+    line-height: 40rpx;
+    height: 120rpx;
+    overflow: hidden;
+    white-space: nowrap;/* 换行不显示*/
+    text-overflow:ellipsis;
+}
+```
+
+其他例子
+
+```css
+text{
+  display: inline-block; 
+  width: 400rpx;
+  border: 1rpx solid gray;
+  margin: 30rpx 60rpx;
+  display: -webkit-box ;
+  overflow: hidden; /*隐藏溢出的文本  */
+  text-overflow: ellipsis;
+  word-break: break-all;/*自动换行*/
+  -moz-box-orient: vertical; /*从上到下自动排列子元素*/
+  -webkit-box-orient: vertical; 
+  -webkit-line-clamp:2; /*显示的行数*/
+}
+```
+
+
+
 # Reference
 
 [小程序学习笔记](https://www.cnblogs.com/MrSaver/p/9005641.html)

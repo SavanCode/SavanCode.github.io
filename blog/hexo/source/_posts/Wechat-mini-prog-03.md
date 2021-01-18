@@ -384,7 +384,7 @@ https://segmentfault.com/a/1190000023682165
 
 https://developers.weixin.qq.com/community/develop/doc/0004e229464d78c1d557ed5e359404
 
-
+这里需要 appid 跟 secret
 
 
 
