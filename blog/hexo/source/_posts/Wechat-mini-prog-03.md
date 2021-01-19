@@ -386,7 +386,22 @@ https://developers.weixin.qq.com/community/develop/doc/0004e229464d78c1d557ed5e3
 
 这里需要 appid 跟 secret
 
+## 页面刷新
 
+```
+ onPullDownRefresh:function()
+  {
+    wx.showNavigationBarLoading() //在标题栏中显示加载
+    
+    //模拟加载
+    setTimeout(function()
+    {
+      // complete
+      wx.hideNavigationBarLoading() //完成停止加载
+      wx.stopPullDownRefresh() //停止下拉刷新
+    },1500);
+  },
+```
 
 
 

@@ -294,6 +294,8 @@ console.log(numbers,numbers.concat([5,4,3],[3,4,5],1,2));//[1,2] [1,2,5,4,3,3,4,
 const array1 = ['a', 'b', 'c'];
 const array2 = ['d', 'e', 'f'];
 const array3 = array1.concat(array2);
+let arrNew= new Set(array3); //通过set集合去重
+console.log("arrNew",Array.from(arrNew)); //将set集合转化为数组
 ```
 
 ```js
@@ -301,12 +303,34 @@ var newArray = Array.prototype.concat.call({ a: 1 }, { b: 2 })
 console.log(newArray);// [{ a: 1 }, { b: 2 }]
 console.log(newArray[0].a);//1 
 ```
-# 数组拼接用...
+# 数组拼接解构参数
 
 ```js
 const array1 = ['a', 'b', 'c'];
 const array2 = ['newEle',...array1,'newEle'];
+//自己要处理重复数字
 ```
+反向操作
+
+```js
+[a, b, ...rest] = [10, 20, 30, 40, 50];
+console.log(a); // 10
+console.log(b); // 20
+console.log(rest); // [30, 40, 50]
+```
+
+https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
+
+# Array 去重
+
+array普通内容 https://segmentfault.com/a/1190000016418021
+
+array obj去重 https://stackoverflow.com/questions/2218999/remove-duplicates-from-an-array-of-objects-in-javascript
+
+```js
+arr.filter((v,i,a)=>a.findIndex(t=>(t.id === v.id))===i)
+```
+
 # 创建子数组方法slice()- string也有
 
 slice(start,end)方法需要两个参数start和end，返回这个数组中从start位置到(但不包含)end位置的一个子数组；如果end为undefined或不存在，则返回从start位置到数组结尾的所有项，不影响原数组。
