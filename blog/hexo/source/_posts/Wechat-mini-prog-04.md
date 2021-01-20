@@ -215,9 +215,148 @@ Page({
 
 ## 使用云函数操作数据库 - 不用云服务
 
+###  创建项目的时候不使用 云服务
 
+###  删除些无关文件，进行一个简单的函数布置
 
+-  删除logs以及utils文件夹;
+- `index.wxml` `index.wxss` 内的代码全部清空，`index.js`保留;
 
+###  配置云函数存储目录
+
+- 在`project.config.json`中新增如下代码
+
+```json
+"cloudfunctionRoot":"cloud"
+```
+- 在根目录下创建同名文件夹 - 自动的匹配环境
+
+### 云开发环境初始化
+
+在根目录的`app.js`中，删除所有代码，并新增如下：
+
+```js
+App({
+  onLaunch: function () {
+    wx.cloud.init({
+      env:"******"//你的环境ID
+    })
+  }
+})
+```
+###  创建并上传一个云函数
+
+   ![](Wechat-mini-prog-04/image-20210120230239015.png)
+-  在cloud文件夹中 新建Node.js云函数
+- 输入add并且回车 - 自动add文件在cloud下面
+- 在add文件夹中index.js 更新所有代码
+
+```js
+// 云函数入口文件
+const cloud = require('wx-server-sdk')
+
+cloud.init()
+
+// 云函数入口函数
+exports.main = async (event, context) => {
+  let a = event.a;
+  let b = event.b;
+  return a+b;
+}
+```
+
+**写完代码,上传部署！！！！ 选择云端安装依赖（不上传node modules）**
+
+![](Wechat-mini-prog-04/image-20210120230104972.png)
+
+如何确定成功？ 系统提示 上传函数add
+
+![](Wechat-mini-prog-04/image-20210120230117451.png)
+
+###  使用云函数
+
+   `index.wxml`中
+
+   ```html
+   <button bindtap="getSum">云函数的求和运算</button> 
+   ```
+
+   `index.js`中
+
+   ```js
+   Page({
+     getSum() {
+       wx.cloud.callFunction({
+         name:"add",
+         data:{
+           a:5,
+           b:6
+         },
+         success(res){
+           console.log("请求成功！", res)
+         },
+         fail(res){
+           console.log("请求失败！",res)
+         }
+       })
+     }
+   })
+   ```
+
+可以点击测试，是否成功~~ 操作台会有显示
+
+### 进阶代码 - 自定义add函数
+
+   `index.wxml`中
+
+   ```html
+   <input bindinput="handleInput1" placeholder="数字1"></input>
+   <input bindinput="handleInput2" placeholder="数字2"></input>
+   <button bindtap="getSum">云函数的求和运算</button> 
+   ```
+
+   `index.js`中
+
+   ```js
+   let a = 0
+   let b = 0
+   
+   Page({
+     handleInput1(event) {
+       //console.log(event.detail.value)
+       a = event.detail.value
+     },
+   
+     handleInput2(event) {
+       //console.log(event.detail.value)
+       b = event.detail.value
+     },
+   
+     getSum() {
+       wx.cloud.callFunction({
+         name: "add",
+         data: {
+           a: a - '',
+           b: b - ''
+         },
+         success(res) {
+           console.log("请求成功！", res)
+         },
+         fail(res) {
+           console.log("请求失败！", res)
+         }
+       })
+     }
+   })
+   ```
+
+## 使用云函数获取用户openid
+
+### 创建一个新的页面`getopenid`
+
+记得page的设置
+
+### 创建云函数`getopenid`
 
 # Reference
 

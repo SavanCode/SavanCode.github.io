@@ -164,12 +164,18 @@ WXML 全称是 WeiXin Markup Language,**文件后缀名是 .wxml**
 
 ## WXML代码的基础操作
 
+### 创建新的页面
+
+vscode 中安装了相对应的wechat开发工具，可以直接新建page文件夹
+
+本身微信开发软件，要创建新的文件夹，然后右键文件发，新建文件夹
+
 ### 基本的数据绑定/传输
 
 WXML 通过 `{{变量名}}`来绑定 WXML 文件和对应的 JavaScript 文件中的 data 对象属性
 
 ```js
-//neu'jwpage.wxml
+//newpage.wxml
 <text>pages/page2/newpage.wxml</text>
 <view>{{msg}}</view>
 <view id="{{id}}">绑定属性渲染</view>
@@ -607,8 +613,6 @@ input:active {
 https://www.cnblogs.com/MrSaver/p/8988220.html
 
 [阮一峰的网络日志-小程序](http://www.ruanyifeng.com/blog/2020/10/wechat-miniprogram-tutorial-part-one.html)
-
-[老陈打码的教程](https://www.bilibili.com/video/BV187411c7Bi?p=1)
 
 [微信小程序结构讲解](http://www.wxapp-union.com/portal.php?mod=view&aid=465)
 

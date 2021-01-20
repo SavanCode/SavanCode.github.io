@@ -91,7 +91,7 @@ wxml模板代码
 
 js代码
 
-```html
+```js
 data:{  
 	imageUrl:"https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg"   
 }, 
@@ -402,6 +402,10 @@ https://developers.weixin.qq.com/community/develop/doc/0004e229464d78c1d557ed5e3
     },1500);
   },
 ```
+
+
+
+这里没有实际的操作 下一个云函数部分有详细介绍 如何获得openid
 
 
 
