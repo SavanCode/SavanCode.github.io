@@ -405,6 +405,9 @@ https://developers.weixin.qq.com/community/develop/doc/0004e229464d78c1d557ed5e3
 
 
 
+## 推荐仿练习
+https://github.com/justjavac/awesome-wechat-weapp
+
 ## Reference
 
 [页面跳转- 小程序](https://juejin.cn/post/6844903960596185102#heading-13)

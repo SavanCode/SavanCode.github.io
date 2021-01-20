@@ -590,6 +590,12 @@ input:active {
 | uploadFile    | Number | 否   | wx.uploadFile的超时时间，单位毫秒    |
 | downloadFile  | Number | 否   | wx.downloadFile的超时时间，单位毫秒  |
 
+
+
+## 推荐的API查询
+
+微信小程序开发文档  https://www.w3cschool.cn/weixinapp/
+
 ## WeUI - [小程序组件库 - WeUI](https://developers.weixin.qq.com/miniprogram/dev/extended/weui/)
 
 [github](https://github.com/Tencent/weui-wxss)
