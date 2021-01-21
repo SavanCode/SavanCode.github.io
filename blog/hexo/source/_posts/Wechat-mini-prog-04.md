@@ -11,7 +11,7 @@ tags: WechatMini Program
 categories: WechatMini Program
 ---
 
-## 全局认识
+## 全局认识云开发
 
 小程序云开发目前提供三大基础能力支持：
 
@@ -22,6 +22,8 @@ categories: WechatMini Program
 ![](Wechat-mini-prog-04/image-20210120215836620.png)
 
 ## 云开发+数据库
+
+代码在miniprogram2
 
 ### 初始化准备
 
@@ -37,7 +39,7 @@ App({
   onLaunch: function () {
     //云开发环境初始化
     wx.cloud.init({
-      env:"cloud-learning-i44qm"//个人黄静名称
+      env:"******"//个人环境名称
     })
   }
 })
@@ -213,7 +215,9 @@ Page({
 
 
 
-## 使用云函数操作数据库 - 不用云服务
+## 使用云函数操作数据库 - 不用云服务 
+
+代码在 miniprogram-1
 
 ###  创建项目的时候不使用 云服务
 
@@ -357,6 +361,152 @@ exports.main = async (event, context) => {
 记得page的设置
 
 ### 创建云函数`getopenid`
+
+这里注意！
+
+文件夹只有显示这样的时候 才可以新建Node.js云函数
+
+![](Wechat-mini-prog-04/image-20210121102550477.png)
+
+### `getopenid.wxml`
+
+```html
+<button bindtap="getopenid">getopenid</button>
+```
+
+###  `getopenid.js`
+
+```js
+Page({
+  onLoad(){
+  },
+  getopenid:function(){
+    wx.cloud.callFunction({
+      name:"getopenid",
+      data:{ 
+      },
+      success(res) {
+        console.log("获取openid成功！所有返回数据：", res)
+        console.log("openid是：", res.result.openid)
+        console.log("appid是：", res.result.appid)
+      },
+      fail(res) {
+        console.log("获取openid失败！", res)
+      }
+    })
+  }
+})
+```
+
+### 数据库获取数据注意
+
+数据库API获取数据的权限是有限制，所以即使数据库有数据，未必都能直接获取全部
+
+![](Wechat-mini-prog-04/image-20210121110939322.png)
+
+但是！ 我练习的时候，好像都可以读到 / ( ╯□╰ ) /
+
+如果函数编写正确或者数据库读取编写正确，但是却读不到数据，可以查看
+1.云函数是否上传
+2.数据库权限问题
+
+##  云数据库读取数据 vs  云函数获取云数据库数据
+
+### 云数据库读取数据
+
+#### 创建页面cloudfunctionVSdatabaseAPI
+
+`cloudfunctionVSdatabaseAPI.wxml`中
+
+```html
+<button bindtap="database">数据库API获取数据</button> 
+```
+
+`cloudfunctionVSdatabaseAPI.js`中
+
+```js
+Page({
+  shujuku(){
+    wx.cloud.database().collection("testlist").get({
+      success(res) {
+        console.log("数据库API获取数据成功！", res)
+      },
+      fail(res) {
+        console.log("数据库API获取数据失败！", res)
+      }
+    })
+  }
+})
+```
+
+
+
+### 云函数获取云数据库数据
+
+#### 创建云函数 cloudfunctionVSdatabaseAPI 
+
+云函数`cloudfunctionVSdatabaseAPI.js`中的代码：
+
+```js
+// 云函数入口文件
+const cloud = require('wx-server-sdk')
+
+cloud.init()
+
+// 云函数入口函数
+exports.main = async (event, context) => {
+  return cloud.database().collection("testlist").get();
+}
+```
+
+> 记得上传并部署，注意这里没有`wx.`
+> 云函数调用：`cloud.database().collection("testlist").get();`
+> 本地调用：`wx.cloud.database().collection("testlist").get();`
+
+### 创建测试按键
+
+`cloudfunctionVSdatabaseAPI.wxml`中
+
+```html
+<button bindtap="databse">数据库API获取数据</button>
+<button bindtap="cloudFunction">云函数获取数据</button>
+```
+
+`cloudfunctionVSdatabaseAPI.js`中
+
+```js
+Page({
+  databse:function(){
+    wx.cloud.database().collection("testlist").get({
+      success(res) {
+        console.log("数据库API获取数据成功！", res)
+      },
+      fail(res) {
+        console.log("数据库API获取数据失败！", res)
+      }
+    })
+  },
+  cloudFunction:function(){
+    wx.cloud.callFunction({
+      name:"cloudfunctionVSdatabaseAPI",
+      success(res) {
+        console.log("云函数获取数据成功！", res)
+      },
+      fail(res) {
+        console.log("云函数获取数据失败！", res)
+      }
+    })
+  }
+})
+```
+
+![](Wechat-mini-prog-04/image-20210121123740420.png)
+
+
+
+## 云函数调用数据库的应用
+
+短信发送，邮件发送，复杂数据运算
 
 # Reference
 
