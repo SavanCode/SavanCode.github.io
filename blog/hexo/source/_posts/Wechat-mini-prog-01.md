@@ -56,7 +56,7 @@ App()的参数是 object 类型 {} ，指定了小程序的声明周期函数。
 监听小程序显示。
 当小程序启动，或从后台进入前台显示，会触发。
 
-**onHide 函数 **
+**onHide 函数**
 监听小程序隐藏。
 当小程序从前台进入后台，会触发。
 所谓前后台的定义，类似于手机上的app，比如当不在使用微信时，就进入了后台。
@@ -95,7 +95,7 @@ App()的参数是 object 类型 {} ，指定了小程序的声明周期函数。
 1）需要在config的window选项中开启enablePullDownRefresh
 2）当处理完数据刷新后，wx.stopPullDownRefresh 可以停止当前页面的下拉刷新
 
-单个页面 - 页面的json -"enablePullDownRefresh": true
+单个页面 - 页面的json `"enablePullDownRefresh": true`
 
 **onReachBottom** 
 页面上拉触底事件的处理函数
@@ -117,19 +117,17 @@ Page的函数 setData() 用于页面初始数据data的修改。如果该数据�
 
 ![](Wechat-mini-prog-01/image-20210122211256175.png)
 
-
-
 ## 微信小程序项目结构
 
 > 小程序由配置代码JSON文件、模板代码 WXML 文件、样式代码 WXSS文件以及逻辑代码 JavaScript文件组成.
 
 ### JSON文件
 
-JSON 是**一种数据格式，并不是编程语言，在小程序中，JSON扮演的静态配置的角色**。
+JSON 是**一种数据格式，并不是编程语言，在小程序中，JSON扮演的静态配置的角色**
 
 比如我们在app中键入window，可快速生成下列代码：
 
-　　![](https://images2018.cnblogs.com/blog/991470/201805/991470-20180503234346526-1853382577.png)
+![](https://images2018.cnblogs.com/blog/991470/201805/991470-20180503234346526-1853382577.png)
 
 这里对微信小程序进行了基本配置，比如标题、导航栏的样式、刷新情况等等。
 
@@ -206,12 +204,12 @@ Page({
 
 ### 逻辑运算
 
-**在 {{ }} 内进行简单的逻辑运算**
+**在 `{{ }}` 内进行简单的逻辑运算**
 
 ```html
 <!--pages/page2/newpage.wxml-->
 <!-- 逻辑运算 -->
-<view>三个数的总和 ： {{a+b+c}}</view>
+<view>三个数的总和 ：{{a+b+c}}</view>
 <view>{{a===1? "a是1":"a不是1"}}</view>
 <view>{{[a,b,c,4]}}</view>
 ```
