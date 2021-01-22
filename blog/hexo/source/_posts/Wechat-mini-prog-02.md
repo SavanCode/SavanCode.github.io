@@ -55,14 +55,6 @@ spp.js中全局变量设置，别的文件先 `const app = getApp()` 再取值
 | animationiteration | 会在一个 WXSS animation 一次迭代结束时触发                   |
 | animationend       | 会在一个 WXSS animation 动画完成时触发                       |
 
->  事件绑定 用bind或者bind：都可以
->
-
-例子
-
-```html
-<button bindtouchstart="alert">bindtap</button>
-```
 
 ## 事件对象
 
@@ -90,6 +82,49 @@ Page({
   }
 })
 ```
+
+## 事件分类
+
+1) 冒泡事件
+  a) 定义：冒泡事件：当一个组件上的事件被触发后，该事件会向父节点传递。
+  b) [冒泡事件列表](https://mp.weixin.qq.com/debug/wxadoc/dev/framework/view/wxml/event.html)
+
+2) 非冒泡事件
+  a) 定义：当一个组件上的事件被触发后，该事件不会向父节点传递。
+  b) [非冒泡事件：表单事件和自定义事件通常是非冒泡事件](https://mp.weixin.qq.com/debug/wxadoc/dev/framework/view/wxml/event.html)
+
+
+
+### 绑定事件
+
+1. **bind** 绑定：事件绑定不会阻止冒泡事件向上冒泡
+
+2. **catch** 绑定: 事件绑定可以阻止冒泡事件向上冒泡
+
+```html
+<view bindtap='handleTap' class='start_container'>
+
+ <text class='start'>开启小程序之旅</text>
+
+</view> 
+
+<view catchtap="handleTap" class='start_container'>
+
+ <text class='start'>开启小程序之旅</text>
+
+</view>
+```
+
+### 向事件对象传参
+
+1. 语法： data-key=value
+2. 获取: event.target.dataset.key || event.currentTarget.dataset.key
+
+#### Event.target 和 event.currentTarget 的区别
+
+  	a) Event.target 是触发事件的对象，但不一样是绑定事件的对象，如： 事件委托，冒泡
+  	b) currentTarget 触发时间的对象一定是绑定事件的对象， 没有事件委托
+
 
 ## 捕获与冒泡阶段
 
@@ -314,7 +349,7 @@ icon: true
 }
 ```
 
-#### 显示单行
+### 显示单行
 
 ```css
 .note2_item text{
@@ -348,6 +383,83 @@ text{
 ```
 
 
+
+
+## 常用API
+
+1. 界面交互
+a) 显示消息提示框: wx.showToast() 
+b) 显示消息加载框: wx.showLoading()
+c) 关闭消息提示框: wx.hideToast()
+d) 关闭消息加载框: wx.hideLoading()
+
+2. 路由跳转
+a) wx.navigateTo()
+b) wx.redirectTo()
+c) wx.switchTab()
+
+3. 网络请求
+a) wx.request()
+
+4. 本地存储
+a) wx.setStorage() 
+b) wx.setStorageSync() 
+c) wx.getStorage()
+d) wx.getStorageSync()
+
+5. 媒体
+    a) wx.getBackgroundAudioManager()
+    b) wx.playVoice()
+
+  
+
+## API查询
+
+微信小程序开发文档  https://www.w3cschool.cn/weixinapp/
+
+
+
+## [程序本地存储](https://developers.weixin.qq.com/miniprogram/dev/api/storage/wx.setStorage.html)
+
+1. 存入数据
+a) wx.setStorage() 异步
+b) wx.setStorageSync() 同步
+```js
+wx.setstorage({
+	key:"key",
+	data:"value"
+})
+```
+
+2. 读取数据
+a) wx.getStorage()异步
+b) wx.getStorageSync() 同步
+```js
+wx.getstorage({
+	key:"key",
+	success(res){
+		console.log(res.data)
+	}
+})
+```
+3. 删除数据
+a) wx.removeStorage() 异步
+b) wx.removeStroageSync() 同步
+```js
+wx.removeStorage({
+	key:"key",
+	success(res){
+		console.log(res)
+	}
+})
+```
+
+4. 清空数据
+a) wx.clearStorage() 异步
+b) wx.clearStorageSync() 同步
+```js
+wx.clearStorage()
+```
 
 # Reference
 

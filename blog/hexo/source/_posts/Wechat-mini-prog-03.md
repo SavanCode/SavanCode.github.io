@@ -11,14 +11,20 @@ tags: WechatMini Program
 categories: WechatMini Program
 ---
 
+## [网络- 前后端交互](https://developers.weixin.qq.com/miniprogram/dev/api/network/request/wx.request.html)
 
+## 语法 - wx.request()
 
-## [网络](https://developers.weixin.qq.com/miniprogram/dev/api/network/request/wx.request.html)
+-  服务器域名请在 「小程序后台-开发-开发设置-服务器域名」 中进行配置
+-  默认超时时间和最大超时时间都是 60s
+-  超时时间可以在 app.json 中通过 networktimeout 配置
+-  小程序为了安全起见只支持 Https 请求
+-  wx.request 最大并发限制 10 个
 
 ### 请求数据数据
 
 ```js
- //index.js
+//index.js
 //获取应用实例
 var app = getApp()
 Page({
@@ -249,9 +255,10 @@ url参数后面的查询字符串会被子页面直接接收
 
 about.js
 
-```
+```js
 onLoad:function(options){
     console.log(options)
+    let key = options.key//获得路由参数
   }
 ```
 
@@ -288,6 +295,8 @@ about.js
   }
 ```
 
+## 页面刷新 onPullDownRefresh
+
 ## [地图](https://developers.weixin.qq.com/miniprogram/dev/component/map.html)
 
 基本用法
@@ -314,7 +323,7 @@ markers: [{
 
 ## 开放接口 - login
 
-### 了解小程序登录流程时序
+### 登录流程时序
 
 ![](Wechat-mini-prog-03/api-login.jpg)
 
@@ -336,9 +345,20 @@ markers: [{
 
 
 
-### 微信小程序wx.getUserInfo授权获取用户信息（头像、昵称）- file: newteo
+### 授权获取用户信息（头像、昵称）- file: newteo
 
-https://segmentfault.com/a/1190000023682165
+demo 是否授权 https://segmentfault.com/a/1190000023682165
+
+### [首次登陆获取](https://developers.weixin.qq.com/miniprogram/dev/component/button.html)
+
+1. Button 组件设置 open-type 属性为 getUserInfo
+2. `<button open-type='getUserInfo'></button>`
+3. 设置后首次登陆点击 button 可以弹出授权窗口
+4. 注意： 授权的动作只发生一次，除非清除缓存，点击 butotn 授权一次之后再点击失效，不会弹出授权窗口
+
+### [授权之后获取基本信息](https://developers.weixin.qq.com/miniprogram/dev/api/open-api/user-info/wx.getUserInfo.html)
+
+`wx.getUserInfo()`
 
 ### 利用opendata 获取用户info
 
@@ -380,30 +400,13 @@ https://segmentfault.com/a/1190000023682165
 
 ### 微信用户登录openid 获取
 
+git 练习中有完整demo
+
 思维流程：小程序前台请求后台-> 后台请求微信服务器-> 微信服务器返回后台 -> 后台返回小程序前台
 
 https://developers.weixin.qq.com/community/develop/doc/0004e229464d78c1d557ed5e359404
 
 这里需要 appid 跟 secret
-
-## 页面刷新
-
-```
- onPullDownRefresh:function()
-  {
-    wx.showNavigationBarLoading() //在标题栏中显示加载
-    
-    //模拟加载
-    setTimeout(function()
-    {
-      // complete
-      wx.hideNavigationBarLoading() //完成停止加载
-      wx.stopPullDownRefresh() //停止下拉刷新
-    },1500);
-  },
-```
-
-
 
 这里没有实际的操作 下一个云函数部分有详细介绍 如何获得openid
 
