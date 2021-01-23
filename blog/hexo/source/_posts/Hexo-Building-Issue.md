@@ -1,5 +1,5 @@
 ---
-title: Hexo Building Issue
+title: Hexo Building Issue 博客搭建问题
 top: false
 cover: false
 toc: true
@@ -116,7 +116,19 @@ prism_plugin:
 
 解决办法：
 
-没找到
+hexo/node_modules/hexo-prism-plugin/src/index.js文件中map里未支持大括号，补上以下内容后发现有效，即在map中加上对应字符即可:
+
+```js
+const map = {
+  '&#39;': '\'',
+  '&amp;': '&',
+  '&gt;': '>',
+  '&lt;': '<',
+  '&quot;': '"',
+  '&#123;': '{',	//添加的代码
+  '&#125;': '}'		//添加的代码
+};
+```
 
 ## 问题7： TOC 跳转不成功
 

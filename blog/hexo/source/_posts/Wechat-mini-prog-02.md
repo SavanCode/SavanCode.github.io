@@ -72,7 +72,7 @@ spp.js中全局变量设置，别的文件先 `const app = getApp()` 再取值
 
 
 
-```
+```js
 <button bindtap="alert" id="btn" data-name="dataNames" data-age="27">bindtap</button>
 ///js
 Page({
@@ -93,8 +93,6 @@ Page({
   a) 定义：当一个组件上的事件被触发后，该事件不会向父节点传递。
   b) [非冒泡事件：表单事件和自定义事件通常是非冒泡事件](https://mp.weixin.qq.com/debug/wxadoc/dev/framework/view/wxml/event.html)
 
-
-
 ### 绑定事件
 
 1. **bind** 绑定：事件绑定不会阻止冒泡事件向上冒泡
@@ -103,15 +101,11 @@ Page({
 
 ```html
 <view bindtap='handleTap' class='start_container'>
-
  <text class='start'>开启小程序之旅</text>
-
 </view> 
 
 <view catchtap="handleTap" class='start_container'>
-
  <text class='start'>开启小程序之旅</text>
-
 </view>
 ```
 
@@ -122,8 +116,8 @@ Page({
 
 #### Event.target 和 event.currentTarget 的区别
 
-  	a) Event.target 是触发事件的对象，但不一样是绑定事件的对象，如： 事件委托，冒泡
-  	b) currentTarget 触发时间的对象一定是绑定事件的对象， 没有事件委托
+  a) Event.target 是触发事件的对象，但不一样是绑定事件的对象，如： 事件委托，冒泡
+  b) currentTarget 触发时间的对象一定是绑定事件的对象， 没有事件委托
 
 
 ## 捕获与冒泡阶段
