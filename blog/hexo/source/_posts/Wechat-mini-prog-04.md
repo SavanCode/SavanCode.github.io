@@ -55,26 +55,25 @@ App({
 本身在创建项目的时候，已经有一些提供的例子，可以操作看看
 
 ```html
+<input placeholder="输入名字" bindinput="addName"></input>
+<text>\n</text> <!-- 小程序分行 -->
+<input placeholder="输入年龄" bindinput="addAge"></input>
+<text>\n</text>
 
-	<input placeholder="输入名字" bindinput="addName"></input>
-	<text>\n</text>
-	<input placeholder="输入年龄" bindinput="addAge"></input>
-	<text>\n</text>
+<button bindtap="addData">新增数据</button>
+<button bindtap="getData">查询数据</button>
 
-	<button bindtap="addData">新增数据</button>
-	<button bindtap="getData">查询数据</button>
+<input placeholder="要删除数据的ID" bindinput="delDataInput"></input>
+<text>\n</text>
+<button bindtap="delData" type="primary">删除数据</button>
 
-	<input placeholder="要删除数据的ID" bindinput="delDataInput"></input>
-	<text>\n</text>
-	<button bindtap="delData" type="primary">删除数据</button>
+<input placeholder="输入要删除数据的name的属性的值" bindinput="delDataInputName"></input>
+<text>\n</text>
+<button bindtap="delDataByProperty" type="primary">通过name属性的内容删除</button>
 
-	<input placeholder="输入要删除数据的name的属性的值" bindinput="delDataInputName"></input>
-	<text>\n</text>
-	<button bindtap="delDataByProperty" type="primary">通过name属性的内容删除</button>
-
-	<input placeholder="输入要更新的数据的ID" bindinput="updateID"></input>
-	<input placeholder="输入更新后的name的值" bindinput="updateValue"></input>
-	<button bindtap="updateData" type="primary">修改更新数据</button>
+<input placeholder="输入要更新的数据的ID" bindinput="updateID"></input>
+<input placeholder="输入更新后的name的值" bindinput="updateValue"></input>
+<button bindtap="updateData" type="primary">修改更新数据</button>
 ```
 
 ```js
@@ -120,7 +119,7 @@ Page({
       }
     })
   },
-
+//增加
   addName(event){
       //console.log(event.detail.value)
       name = event.detail.value
@@ -130,7 +129,7 @@ Page({
     //console.log(event.detail.value)
     age = event.detail.value
   },
-
+//增加数据，有各自的_id
   addData() {
     console.log('调用添加数据的方法')
     DB.add({
@@ -146,7 +145,7 @@ Page({
       }
     })
   },
-
+//读取
   getData() {
     console.log('调用查询数据的方法')
     DB.get({
@@ -155,11 +154,13 @@ Page({
       }
     })
   },
-  delDataInput(event){
+    
+ delDataInput(event){
     //console.log(event.detail.value)
     id = event.detail.value
   },
-
+//这里doc寻找的是自动匹配的_id
+//删除
   delData() {
     console.log('调用删除数据的方法')
     DB.doc(id).remove({
@@ -172,7 +173,7 @@ Page({
     //console.log(event.detail.value)
     nameDelete = event.detail.value
   },
-  
+  //删除选中的特殊
   delDataByProperty() {
     console.log('调用属性删除数据的方法')
     DB.where({
@@ -190,12 +191,11 @@ Page({
     console.log(event.detail.value)
     updateID = event.detail.value
   },
-
   updateValue(event) {
     console.log(event.detail.value)
     updateValue = event.detail.value
   },
-  
+  //更新数据
   updateData() {
     console.log('调用修改更新数据的方法')
     DB.doc(updateID).update({
@@ -211,6 +211,24 @@ Page({
     })
   },
 })
+```
+
+查看某项是否存在
+
+```js
+  //查是否有返回内容的数据
+  checkCollected:function(id){
+    var that = this; // this 指向性的问题
+    DB.where({ id:id }).get({
+      success(res) { 
+        if(res.data.length!==0){ 
+          that.setData({
+          collected:true
+        })  
+        }   
+      }
+    })
+  }
 ```
 
 

@@ -70,8 +70,6 @@ spp.js中全局变量设置，别的文件先 `const app = getApp()` 再取值
 | touches        | Array   | 触摸事件，当前停留在屏幕中的触摸点信息的数组 |
 | changedTouches | Array   | 触摸事件，当前变化的触摸点信息的数组         |
 
-
-
 ```js
 <button bindtap="alert" id="btn" data-name="dataNames" data-age="27">bindtap</button>
 ///js
@@ -325,6 +323,21 @@ icon: true
 1. 利用mode
 2. 定好width height
 
+```html
+<!-- 基本的显示 -->
+<image class="detailImg" src="../../img/share.png"></image>
+```
+
+```html
+<!-- 选择性显示 -->
+<image src="{{isPlayMusic?'1.png':'2.png'}}">
+
+<view>
+   <image catch:tap="handleClickShow" wx:if="{{isShow}}" src="sc1.png" />
+   <image catch:tap="handleClickShow" wx:else src="sc2.png" />
+</view>
+```
+
 ## 文字段落的限制显示
 
 ### 显示三行
@@ -377,35 +390,33 @@ text{
 ```
 
 
-
-
 ## 常用API
 
 1. 界面交互
 a) 显示消息提示框: wx.showToast() 
+		title          ----------------     标题，要显示的提示信息
+		icon         ----------------     图标，只支持"success"、"loading"
+		image     ----------------     自定义图标的本地路径，image的优先级高于icon
+		duration  ----------------     提示的延迟时间，单位毫秒，默认：1500
+		mask       ----------------     是否显示透明蒙层，防止触摸穿透，默认：false
 b) 显示消息加载框: wx.showLoading()
 c) 关闭消息提示框: wx.hideToast()
 d) 关闭消息加载框: wx.hideLoading()
 
 2. 路由跳转
-a) wx.navigateTo()
-b) wx.redirectTo()
-c) wx.switchTab()
-
+    a) wx.navigateTo()
+    b) wx.redirectTo()
+    c) wx.switchTab()
 3. 网络请求
-a) wx.request()
-
+    a) wx.request()
 4. 本地存储
-a) wx.setStorage() 
-b) wx.setStorageSync() 
-c) wx.getStorage()
-d) wx.getStorageSync()
-
+    a) wx.setStorage() 
+    b) wx.setStorageSync() 
+    c) wx.getStorage()
+    d) wx.getStorageSync()
 5. 媒体
     a) wx.getBackgroundAudioManager()
     b) wx.playVoice()
-
-  
 
 ## API查询
 

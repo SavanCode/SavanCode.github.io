@@ -15,6 +15,8 @@ categories: Front-end
 
 flex 默认： 1 0 auto；（ `flex-grow,` `flex-shrink` and `flex-basis`）
 
+控制等分： 1  1  0;
+
 ##  flex-basis 
 
  **flex-basis**  ，主要成分，flex-basis 預設值爲 auto，表示其預設分配到的空間，與 width 很像，但優先程度較高。
