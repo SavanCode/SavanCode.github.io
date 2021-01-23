@@ -29,7 +29,8 @@
 
     <script src="../../../../libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 <body>
@@ -428,22 +429,22 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p>前端本地存储的方式有三种，分别是cookie，localstorage和sessionStorage </p>
-<h2 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h2><h3 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h3><pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">//保存cookie的值 </span>
+<h2 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h2><h3 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h3><pre class="line-numbers language-js"><code class="language-js"><span class="token comment" spellcheck="true">//保存cookie的值 </span>
 <span class="token keyword">var</span> dataCookie<span class="token operator">=</span><span class="token string">'110'</span><span class="token punctuation">;</span>
     document<span class="token punctuation">.</span>cookie <span class="token operator">=</span> <span class="token string">'token'</span> <span class="token operator">+</span> <span class="token string">"="</span> <span class="token operator">+</span>dataCookie<span class="token punctuation">;</span> 
 
 <span class="token comment" spellcheck="true">//获取指定名称的cookie值</span>
-<span class="token keyword">function</span> <span class="token function">getCookie</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> 
+<span class="token keyword">function</span> <span class="token function">getCookie</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
 <span class="token comment" spellcheck="true">// (^| )name=([^;]*)(;|$),match[0]为与整个正则表达式匹配的字符串，match[i]为正则表达式捕获数组相匹配的数组；</span>
 <span class="token keyword">var</span> arr <span class="token operator">=</span> document<span class="token punctuation">.</span>cookie<span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">RegExp</span><span class="token punctuation">(</span><span class="token string">"(^| )"</span><span class="token operator">+</span>name<span class="token operator">+</span><span class="token string">"=([^;]*)(;|$)"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">if</span><span class="token punctuation">(</span>arr <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span>arr <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token keyword">return</span> <span class="token function">unescape</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
- <span class="token keyword">var</span> cookieData<span class="token operator">=</span><span class="token function">getCookie</span><span class="token punctuation">(</span><span class="token string">'token'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//cookie赋值给变量。</span></code></pre>
-<h3 id="localStorage和sessionStorage"><a href="#localStorage和sessionStorage" class="headerlink" title="localStorage和sessionStorage:"></a>localStorage和sessionStorage:</h3><pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> name<span class="token operator">=</span><span class="token string">'sessionData'</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+ <span class="token keyword">var</span> cookieData<span class="token operator">=</span><span class="token function">getCookie</span><span class="token punctuation">(</span><span class="token string">'token'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//cookie赋值给变量。</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="localStorage和sessionStorage"><a href="#localStorage和sessionStorage" class="headerlink" title="localStorage和sessionStorage:"></a>localStorage和sessionStorage:</h3><pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">var</span> name<span class="token operator">=</span><span class="token string">'sessionData'</span><span class="token punctuation">;</span>
 <span class="token keyword">var</span> num<span class="token operator">=</span><span class="token number">120</span><span class="token punctuation">;</span>
 sessionStorage<span class="token punctuation">.</span><span class="token function">setItem</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//存储数据</span>
 sessionStorage<span class="token punctuation">.</span><span class="token function">setItem</span><span class="token punctuation">(</span><span class="token string">'value2'</span><span class="token punctuation">,</span><span class="token number">119</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -455,7 +456,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
 sessionStorage<span class="token punctuation">.</span><span class="token function">removeItem</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//删除指定键名数据</span>
   console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>dataAll<span class="token punctuation">,</span><span class="token string">'获取全部数据1'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
  sessionStorage<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//清空缓存数据：localStorage.clear();</span>
-  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>dataAll<span class="token punctuation">,</span><span class="token string">'获取全部数据2'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  </code></pre>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>dataAll<span class="token punctuation">,</span><span class="token string">'获取全部数据2'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="三者的异同"><a href="#三者的异同" class="headerlink" title="三者的异同"></a>三者的异同</h2><h3 id="生命周期："><a href="#生命周期：" class="headerlink" title="生命周期："></a>生命周期：</h3><p>cookie：可设置失效时间，没有设置的话，默认是关闭浏览器后失效</p>
 <p>localStorage：除非被手动清除，否则将会永久保存。</p>
 <p>sessionStorage： 仅在当前网页会话下有效，关闭页面或浏览器后就会被清除。</p>
@@ -645,8 +646,10 @@ padding+ border + height = 盒子的高度
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            伪元素基本语法element:after  &amp;#123; style properties &amp;#125;  /* CSS2 语法 */
-element::after &amp;#123; style properties &
+                            伪元素基本语法element:after  { style properties }  /* CSS2 语法 */
+element::after { style properties }  /* CSS3 语法 */
+同异
+同：      
                         
                     </div>
                     <div class="publish-info">
@@ -707,6 +710,7 @@ element::after &amp;#123; style properties &
 <style type="text/css">
 code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
 </style>
+
 
 
     </div>

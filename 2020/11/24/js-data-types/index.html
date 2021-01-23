@@ -29,7 +29,8 @@
 
     <script src="../../../../libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 <body>
@@ -451,28 +452,28 @@
 <p><img src="/2020/11/24/js-data-types/1607252500863.png"></p>
 <h2 id="原始值-primitive-values"><a href="#原始值-primitive-values" class="headerlink" title="原始值( primitive values )"></a>原始值( primitive values )</h2><p>除 Object 以外的所有类型都是不可变的（值本身无法被改变。类似于：字符串（String）、数字(Number)、布尔(Boolean)、对空（Null）、未定义（Undefined）、Symbol。</p>
 <p>原始值明显的特征是不可更改，任何方法都无法更改一个原始值</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> s<span class="token operator">=</span> <span class="token string">'hello'</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">var</span> s<span class="token operator">=</span> <span class="token string">'hello'</span><span class="token punctuation">;</span>
 s<span class="token punctuation">.</span><span class="token function">toUpperCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//'hello'</span></code></pre>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//'hello'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <h2 id="复杂值（引用数据类型）"><a href="#复杂值（引用数据类型）" class="headerlink" title="复杂值（引用数据类型）"></a>复杂值（<strong>引用数据类型</strong>）</h2><p>复杂值可以由很多不同类型的javascript对象组成。复杂对象其在内存中的大小是未知的，因为复杂对象可以包含任何值，而不是一个特定的已知值。比如：对象(Object)、数组(Array)、函数(Function)。</p>
 <p>对象和原始值不同，它们是可变的，它们的值是可修改的</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> o <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>x<span class="token punctuation">:</span><span class="token number">1</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">var</span> o <span class="token operator">=</span> <span class="token punctuation">{</span>x<span class="token punctuation">:</span><span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
 o<span class="token punctuation">.</span>x <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
-o<span class="token punctuation">.</span>y <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span></code></pre>
+o<span class="token punctuation">.</span>y <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <h2 id="储存方式"><a href="#储存方式" class="headerlink" title="储存方式"></a>储存方式</h2><h3 id="栈存储"><a href="#栈存储" class="headerlink" title="栈存储"></a>栈存储</h3><p>　　因为原始值占据空间固定，是简单的数据段，为了便于提升变量查询速度，将其存储在栈(stack)中</p>
 <h3 id="堆存储"><a href="#堆存储" class="headerlink" title="堆存储"></a>堆存储</h3><p>　　由于复杂值的大小会改变，所以不能将其存放在栈中，否则会降低变量查询速度，因此其存储在堆(heap)中，存储在变量处的值是一个指针，指向存储对象的内存处</p>
 <p><img src="/2020/11/24/js-data-types/1606200294359.png"></p>
 <h2 id="访问方式"><a href="#访问方式" class="headerlink" title="访问方式"></a>访问方式</h2><h3 id="按值访问"><a href="#按值访问" class="headerlink" title="按值访问"></a>按值访问</h3><p>　　原始值是作为不可细化的值进行存储和操作的，引用它们会转移其值</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> myString <span class="token operator">=</span> <span class="token string">'foo'</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">var</span> myString <span class="token operator">=</span> <span class="token string">'foo'</span><span class="token punctuation">;</span>
 <span class="token keyword">var</span> myStringCopy <span class="token operator">=</span> myString<span class="token punctuation">;</span>
 <span class="token keyword">var</span> myString <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>myString<span class="token punctuation">,</span>myStringCopy<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//null,'foo'</span></code></pre>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>myString<span class="token punctuation">,</span>myStringCopy<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//null,'foo'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="引用访问"><a href="#引用访问" class="headerlink" title="引用访问"></a>引用访问</h3><p>　　复杂值是通过引用进行存储和操作的，而不是实际的值。创建一个包含复杂对象的变量时，其值是内存中的一个引用地址。引用一个复杂对象时，使用它的名称(即变量或对象属性)通过内存中的引用地址获取该对象值</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> myObject <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">var</span> myObject <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
 <span class="token keyword">var</span> copyOfMyObject <span class="token operator">=</span> myObject<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//没有复制值，而是复制了引用</span>
 myObject<span class="token punctuation">.</span>foo <span class="token operator">=</span> <span class="token string">'bar'</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//操作myObject中的值</span>
 <span class="token comment" spellcheck="true">//现在如果输出myObject和copyOfMyObject，则都会输出foo属性，因为它们引用的是同一个对象</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>myObject<span class="token punctuation">,</span>copyOfMyObject<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//Object&amp;#123;foo="bar"&amp;#125;</span></code></pre>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>myObject<span class="token punctuation">,</span>copyOfMyObject<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//Object{foo="bar"}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="js函数的call-by-value-amp-call-by-reference-详细讲解"><a href="#js函数的call-by-value-amp-call-by-reference-详细讲解" class="headerlink" title="js函数的call by value &amp; call by reference 详细讲解"></a>js函数的call by value &amp; call by reference 详细讲解</h3><h4 id="js的数值类型：基本类型和引用类型"><a href="#js的数值类型：基本类型和引用类型" class="headerlink" title="js的数值类型：基本类型和引用类型"></a><strong><a target="_blank" rel="noopener" href="https://www.w3school.com.cn/js/pro_js_value.asp">js的数值类型：基本类型和引用类型</a></strong></h4><p><strong>js一共有六大数据类型。number string boolean object null underfind</strong></p>
 <p> 基本类型存放在栈区，访问是<strong>按值访问</strong>的，就是说你可以操作保存在变量中的实际的值。</p>
 <p><strong>引用类型指的是对象：js中的array和object</strong>。可以拥有属性和方法，并且我们可以修改其属性和方法。引用对象存放的方式是：在栈中存放变量名（该变量的值是堆中真实数据的指针（对象在堆中的存放地址）），在堆中存放数据（真正的数据）。</p>
@@ -517,46 +518,46 @@ console<span class="token punctuation">.</span><span class="token function">log<
 </tr>
 </tbody></table>
 <p>  call by value</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">add</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">add</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">{</span>
     num<span class="token operator">+</span><span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
     <span class="token keyword">return</span> num<span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 <span class="token keyword">var</span> n<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">;</span>
 <span class="token keyword">var</span> m<span class="token operator">=</span><span class="token function">add</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token function">alert</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//3</span>
-<span class="token function">alert</span><span class="token punctuation">(</span>m<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//4</span></code></pre>
+<span class="token function">alert</span><span class="token punctuation">(</span>m<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//4</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>call by reference/sharing：</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> obj1 <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>  value<span class="token punctuation">:</span><span class="token string">'111'</span> <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">var</span> obj1 <span class="token operator">=</span> <span class="token punctuation">{</span>  value<span class="token punctuation">:</span><span class="token string">'111'</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-<span class="token keyword">var</span> obj2 <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>  value<span class="token punctuation">:</span><span class="token string">'222'</span> <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> obj2 <span class="token operator">=</span> <span class="token punctuation">{</span>  value<span class="token punctuation">:</span><span class="token string">'222'</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-<span class="token keyword">function</span> <span class="token function">changeStuff</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">changeStuff</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span><span class="token punctuation">{</span>
   obj<span class="token punctuation">.</span>value <span class="token operator">=</span> <span class="token string">'333'</span><span class="token punctuation">;</span>
   obj <span class="token operator">=</span> obj2<span class="token punctuation">;</span>
   <span class="token keyword">return</span> obj<span class="token punctuation">.</span>value<span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
 <span class="token keyword">var</span> foo <span class="token operator">=</span> <span class="token function">changeStuff</span><span class="token punctuation">(</span>obj1<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>foo<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">// '222' 参数obj指向了新的对象obj2</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>obj1<span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//'333'</span></code></pre>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>obj1<span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//'333'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>所以</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">changeStuff</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c<span class="token punctuation">)</span>
-<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">changeStuff</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
   a <span class="token operator">=</span> a <span class="token operator">*</span> <span class="token number">10</span><span class="token punctuation">;</span>
   b<span class="token punctuation">.</span>item <span class="token operator">=</span> <span class="token string">"changed"</span><span class="token punctuation">;</span>
-  c <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>item<span class="token punctuation">:</span> <span class="token string">"changed"</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+  c <span class="token operator">=</span> <span class="token punctuation">{</span>item<span class="token punctuation">:</span> <span class="token string">"changed"</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
 <span class="token keyword">var</span> num <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
-<span class="token keyword">var</span> obj1 <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>item<span class="token punctuation">:</span> <span class="token string">"unchanged"</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
-<span class="token keyword">var</span> obj2 <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>item<span class="token punctuation">:</span> <span class="token string">"unchanged"</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> obj1 <span class="token operator">=</span> <span class="token punctuation">{</span>item<span class="token punctuation">:</span> <span class="token string">"unchanged"</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> obj2 <span class="token operator">=</span> <span class="token punctuation">{</span>item<span class="token punctuation">:</span> <span class="token string">"unchanged"</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
 
 <span class="token function">changeStuff</span><span class="token punctuation">(</span>num<span class="token punctuation">,</span> obj1<span class="token punctuation">,</span> obj2<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//10</span>
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>obj1<span class="token punctuation">.</span>item<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//change</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>obj2<span class="token punctuation">.</span>item<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//unchange</span></code></pre>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>obj2<span class="token punctuation">.</span>item<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//unchange</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
 <p>But the item that is passed by value is <em>itself</em> a reference. Technically, this is called <a target="_blank" rel="noopener" href="http://en.wikipedia.org/wiki/Evaluation_strategy#Call_by_sharing">call-by-sharing</a>.</p>
 <p>In practical terms, this means that if you change the parameter itself (as with <code>num</code> and <code>obj2</code>), that won’t affect the item that was fed into the parameter. But if you change the <strong>INTERNALS</strong> of the parameter, that will propagate back up (as with <code>obj1</code>).</p>
@@ -600,11 +601,11 @@ console<span class="token punctuation">.</span><span class="token function">log<
 </tr>
 </tbody></table>
 <h2 id="NaN"><a href="#NaN" class="headerlink" title="NaN"></a>NaN</h2><p>判断一个值是否是NaN 等号运算符（== 和 ===） 不能被用来判断一个值是否是 NaN。必须使用 <strong>Number.isNaN() 或 isNaN()</strong> 函数.<strong>只有 NaN 能够实现不全等与自己</strong></p>
-<pre class=" language-js"><code class="language-js"> <span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">NaN</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-js"><code class="language-js"> <span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">NaN</span><span class="token punctuation">;</span>
 a<span class="token operator">!==</span>a<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//true</span>
 
  <span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
-a<span class="token operator">!==</span>a<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//false</span></code></pre>
+a<span class="token operator">!==</span>a<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//false</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="Boolean"><a href="#Boolean" class="headerlink" title="Boolean"></a>Boolean</h2><p>用Boolean()转型函数，转换成false的值称为假值(falsy value)，这7个值包括undefined、null、+0、-0、NaN、false、””(空字符串)</p>
 <blockquote>
 <p>空字符串””转换为false，而空白字符串” “转换为true</p>
@@ -623,14 +624,14 @@ a<span class="token operator">!==</span>a<span class="token punctuation">;</span
 <p>toExponential()方法返回数值四舍五入后的指数表示法(e表示法)的字符串表示，参数表示转换后的小数位数</p>
 </blockquote>
 <p>Number.toFixed(n) // 保留n位小数，为0则只保留整数<br>        Number.round() // 返回最接近的整数（相当于四舍五入）<br>        Number.floor() // 向小取整</p>
-<h2 id="Math"><a href="#Math" class="headerlink" title="Math"></a>Math</h2><h3 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h3><pre class=" language-js"><code class="language-js">Math<span class="token punctuation">.</span>E             <span class="token function">自然对数的底数，即常量e的值</span><span class="token punctuation">(</span>约等于<span class="token number">2.71828</span><span class="token punctuation">)</span>
+<h2 id="Math"><a href="#Math" class="headerlink" title="Math"></a>Math</h2><h3 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h3><pre class="line-numbers language-js"><code class="language-js">Math<span class="token punctuation">.</span>E             <span class="token function">自然对数的底数，即常量e的值</span><span class="token punctuation">(</span>约等于<span class="token number">2.71828</span><span class="token punctuation">)</span>
 Math<span class="token punctuation">.</span>LN2           <span class="token number">2</span><span class="token function">的自然对数</span><span class="token punctuation">(</span>约等于<span class="token number">0.693</span><span class="token punctuation">)</span>
 Math<span class="token punctuation">.</span>LN10          <span class="token number">10</span><span class="token function">的自然对数</span><span class="token punctuation">(</span>约等于<span class="token number">2.303</span><span class="token punctuation">)</span>
 Math<span class="token punctuation">.</span>LOG2E         <span class="token function">以2为底e的对数</span><span class="token punctuation">(</span>约等于<span class="token number">1.443</span><span class="token punctuation">)</span>
 Math<span class="token punctuation">.</span>LOG10E        <span class="token function">以10为底e的对数</span><span class="token punctuation">(</span>约等于<span class="token number">0.434</span><span class="token punctuation">)</span>
 Math<span class="token punctuation">.</span>PI            <span class="token function">派的值</span><span class="token punctuation">(</span>约等于<span class="token number">3.14</span><span class="token punctuation">)</span>
 Math<span class="token punctuation">.</span>SQRT2         <span class="token number">2</span><span class="token function">的平方根</span><span class="token punctuation">(</span>约等于<span class="token number">1.414</span><span class="token punctuation">)</span>
-Math<span class="token punctuation">.</span>SQRT1_2       <span class="token number">1</span><span class="token operator">/</span><span class="token number">2</span><span class="token function">的平方根，即2的平方根的倒数</span><span class="token punctuation">(</span>约等于<span class="token number">0.707</span><span class="token punctuation">)</span></code></pre>
+Math<span class="token punctuation">.</span>SQRT1_2       <span class="token number">1</span><span class="token operator">/</span><span class="token number">2</span><span class="token function">的平方根，即2的平方根的倒数</span><span class="token punctuation">(</span>约等于<span class="token number">0.707</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="数学函数"><a href="#数学函数" class="headerlink" title="数学函数"></a>数学函数</h3><table>
 <thead>
 <tr>
@@ -1137,7 +1138,8 @@ console.log(`In JavaScript '\n' is a line-feed.`)
                         
                             javascript的代码优化js从css抽离出来css 从js中抽离出来减少全局变量事件处理隔离应用逻辑将应用逻辑从所有事件处理程序中抽离出来是一种最佳实践
 //不好的做法
-function handleClick(event)&amp;
+function handleClick(event){
+  v
                         
                     </div>
                     <div class="publish-info">
@@ -1198,6 +1200,7 @@ function handleClick(event)&amp;
 <style type="text/css">
 code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
 </style>
+
 
 
     </div>

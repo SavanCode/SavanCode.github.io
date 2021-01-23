@@ -29,7 +29,8 @@
 
     <script src="../../../../libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 <body>
@@ -553,7 +554,7 @@ Page(&#123;
 <li><p><strong>catch</strong> 绑定: 事件绑定可以阻止冒泡事件向上冒泡</p>
 </li>
 </ol>
-<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name">bindtap</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">'</span>handleTap<span class="token punctuation">'</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">'</span>start_container<span class="token punctuation">'</span></span><span class="token punctuation">></span></span>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name">bindtap</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">'</span>handleTap<span class="token punctuation">'</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">'</span>start_container<span class="token punctuation">'</span></span><span class="token punctuation">></span></span>
 
  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>text</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">'</span>start<span class="token punctuation">'</span></span><span class="token punctuation">></span></span>开启小程序之旅<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>text</span><span class="token punctuation">></span></span>
 
@@ -563,7 +564,7 @@ Page(&#123;
 
  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>text</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">'</span>start<span class="token punctuation">'</span></span><span class="token punctuation">></span></span>开启小程序之旅<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>text</span><span class="token punctuation">></span></span>
 
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="向事件对象传参"><a href="#向事件对象传参" class="headerlink" title="向事件对象传参"></a>向事件对象传参</h3><ol>
 <li>语法： data-key=value</li>
 <li>获取: event.target.dataset.key || event.currentTarget.dataset.key</li>
@@ -573,7 +574,7 @@ Page(&#123;
 <h2 id="捕获与冒泡阶段"><a href="#捕获与冒泡阶段" class="headerlink" title="捕获与冒泡阶段"></a>捕获与冒泡阶段</h2><p><code>bind</code>前缀就表示事件在冒泡阶段执行，而如果我们想事件在捕获阶段执行，可以在<code>bind</code>前面加上<code>capture</code>，即<code>capture-bind</code>表示捕获阶段执行</p>
 <p><img src="/2021/01/13/Wechat-mini-prog-02/image-20210113142641993.png"></p>
 <p><strong>bind不会阻止冒泡，添加capture前缀可以响应捕获阶段。</strong></p>
-<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>parent<span class="token punctuation">"</span></span>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>parent<span class="token punctuation">"</span></span>
   <span class="token attr-name"><span class="token namespace">bind:</span>tap</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>tap1<span class="token punctuation">"</span></span>
   <span class="token attr-name"><span class="token namespace">capture-bind:</span>tap</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>tap2<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
   outer view
@@ -582,26 +583,26 @@ Page(&#123;
     <span class="token attr-name"><span class="token namespace">capture-bind:</span>tap</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>tap4<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
     inner view
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span></code></pre>
-<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">///js</span>
-<span class="token function">Page</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-  data<span class="token punctuation">:</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
-  tap1<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>event<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'tap1'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
-  tap2<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>event<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'tap2'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
-  tap3<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>event<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'tap3'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
-  tap4<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>event<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'tap4'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre><code>///js
+Page(&#123;
+  data: &#123;&#125;,
+  tap1: function (event) &#123;
+    console.log(&#39;tap1&#39;);
+  &#125;,
+  tap2: function (event) &#123;
+    console.log(&#39;tap2&#39;);
+  &#125;,
+  tap3: function (event) &#123;
+    console.log(&#39;tap3&#39;);
+  &#125;,
+  tap4: function (event) &#123;
+    console.log(&#39;tap4&#39;);
+  &#125;,
+&#125;)</code></pre>
 <p><strong>结果是 2-4-3-1</strong></p>
 <h2 id="阻止冒泡"><a href="#阻止冒泡" class="headerlink" title="阻止冒泡"></a>阻止冒泡</h2><p>将<code>bind</code>替换为<code>catch</code>事件了，<code>catch</code>也支持两种写法<code>catch与catch:</code></p>
-<h3 id="例子-只显示子区域"><a href="#例子-只显示子区域" class="headerlink" title="例子 - 只显示子区域"></a>例子 - 只显示子区域</h3><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span>
+<h3 id="例子-只显示子区域"><a href="#例子-只显示子区域" class="headerlink" title="例子 - 只显示子区域"></a>例子 - 只显示子区域</h3><pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span>
   <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>parent<span class="token punctuation">"</span></span>
   <span class="token attr-name"><span class="token namespace">catch:</span>tap</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>tap1<span class="token punctuation">"</span></span>
 <span class="token punctuation">></span></span>
@@ -612,7 +613,7 @@ Page(&#123;
   <span class="token punctuation">></span></span>
     inner view
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>结果 - 3</p>
 <pre><code>&lt;view
   id=&quot;parent&quot;
@@ -635,29 +636,29 @@ Page(&#123;
 <p><code>catch</code>会阻止冒泡，如果添加<code>capture</code>前缀，捕获阶段会中断的同时，也会阻止冒泡。</p>
 </blockquote>
 <p>tabBar</p>
-<pre class=" language-json"><code class="language-json">//app.json sample
-<span class="token property">"tabBar"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-json"><code class="language-json">//app.json sample
+<span class="token property">"tabBar"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
     <span class="token property">"list"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
-      &amp;#<span class="token number">123</span><span class="token punctuation">;</span> <span class="token property">"text"</span><span class="token operator">:</span> <span class="token string">"Tab1"</span><span class="token punctuation">,</span> <span class="token property">"pagePath"</span><span class="token operator">:</span> <span class="token string">"pageA"</span> &amp;#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
-      &amp;#<span class="token number">123</span><span class="token punctuation">;</span> <span class="token property">"text"</span><span class="token operator">:</span> <span class="token string">"Tab1"</span><span class="token punctuation">,</span> <span class="token property">"pagePath"</span><span class="token operator">:</span> <span class="token string">"pageF"</span> &amp;#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
-      &amp;#<span class="token number">123</span><span class="token punctuation">;</span> <span class="token property">"text"</span><span class="token operator">:</span> <span class="token string">"Tab1"</span><span class="token punctuation">,</span> <span class="token property">"pagePath"</span><span class="token operator">:</span> <span class="token string">"pageG"</span> &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
+      <span class="token punctuation">{</span> <span class="token property">"text"</span><span class="token operator">:</span> <span class="token string">"Tab1"</span><span class="token punctuation">,</span> <span class="token property">"pagePath"</span><span class="token operator">:</span> <span class="token string">"pageA"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span> <span class="token property">"text"</span><span class="token operator">:</span> <span class="token string">"Tab1"</span><span class="token punctuation">,</span> <span class="token property">"pagePath"</span><span class="token operator">:</span> <span class="token string">"pageF"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span> <span class="token property">"text"</span><span class="token operator">:</span> <span class="token string">"Tab1"</span><span class="token punctuation">,</span> <span class="token property">"pagePath"</span><span class="token operator">:</span> <span class="token string">"pageG"</span> <span class="token punctuation">}</span>
     <span class="token punctuation">]</span>
-  &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
 
 //例子
- <span class="token property">"tabBar"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token property">"list"</span><span class="token operator">:</span> <span class="token punctuation">[</span>&amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+ <span class="token property">"tabBar"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"list"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
       <span class="token property">"pagePath"</span><span class="token operator">:</span> <span class="token string">"pages/index/index"</span><span class="token punctuation">,</span>
       <span class="token property">"text"</span><span class="token operator">:</span> <span class="token string">"首页"</span><span class="token punctuation">,</span>
       <span class="token property">"iconPath"</span><span class="token operator">:</span> <span class="token string">"images/icon_speed.png"</span><span class="token punctuation">,</span>
        <span class="token property">"selectedIconPath"</span><span class="token operator">:</span><span class="token string">"images/icon_speed_HL.png"</span>
-    &amp;#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
       <span class="token property">"pagePath"</span><span class="token operator">:</span> <span class="token string">"pages/logs/logs"</span><span class="token punctuation">,</span>
       <span class="token property">"text"</span><span class="token operator">:</span> <span class="token string">"日志"</span><span class="token punctuation">,</span>
        <span class="token property">"iconPath"</span><span class="token operator">:</span> <span class="token string">"images/icon_seo.png"</span><span class="token punctuation">,</span>
        <span class="token property">"selectedIconPath"</span><span class="token operator">:</span><span class="token string">"images/icon_seo_HL.png"</span>
-    &amp;#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">]</span>
-  &amp;#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
+    <span class="token punctuation">}</span><span class="token punctuation">]</span>
+  <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><img src="/2021/01/13/Wechat-mini-prog-02/image-20210113220306094.png"></p>
 <h2 id="微信小程序正则"><a href="#微信小程序正则" class="headerlink" title="微信小程序正则"></a>微信小程序正则</h2><pre><code>验证数字：^[0-9]*$ 
 验证n位的数字：^\d&#123;n&#125;$ 
@@ -691,33 +692,33 @@ Page(&#123;
 非正浮点数（负浮点数 + 0） ^((-\d+(.\d+)?)|(0+(.0+)?))$ 
 负浮点数 ^(-(([0-9]+.[0-9][1-9][0-9])|([0-9][1-9][0-9].[0-9]+)|([0-9][1-9][0-9])))$ 
 浮点数 ^(-?\d+)(.\d+)?$</code></pre>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token punctuation">(</span><span class="token regex">/^[\u4E00-\u9FA5A-Za-z]+$/</span><span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>你要验证的姓名<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-wx<span class="token punctuation">.</span><span class="token function">showToast</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token punctuation">(</span><span class="token regex">/^[\u4E00-\u9FA5A-Za-z]+$/</span><span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>你要验证的姓名<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+wx<span class="token punctuation">.</span><span class="token function">showToast</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
 title<span class="token punctuation">:</span> <span class="token string">'姓名有误'</span><span class="token punctuation">,</span>
 duration<span class="token punctuation">:</span> <span class="token number">2000</span><span class="token punctuation">,</span>
 icon<span class="token punctuation">:</span> <span class="token boolean">true</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 <span class="token comment" spellcheck="true">//另外一种</span>
-  <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>names<span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>username<span class="token punctuation">)</span><span class="token operator">||</span><span class="token operator">!</span>phonetel<span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>username<span class="token punctuation">)</span><span class="token operator">||</span><span class="token operator">!</span>emailnums<span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>username<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-      wx<span class="token punctuation">.</span><span class="token function">showModal</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>names<span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>username<span class="token punctuation">)</span><span class="token operator">||</span><span class="token operator">!</span>phonetel<span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>username<span class="token punctuation">)</span><span class="token operator">||</span><span class="token operator">!</span>emailnums<span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>username<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+      wx<span class="token punctuation">.</span><span class="token function">showModal</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
         title<span class="token punctuation">:</span><span class="token string">'错误提示'</span><span class="token punctuation">,</span>
         content<span class="token punctuation">:</span><span class="token string">'请输入正常的用户名/手机号/邮箱地址'</span><span class="token punctuation">,</span>
         showCancel<span class="token punctuation">:</span><span class="token boolean">false</span>
-      <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span> 
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span> 
+    <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="不同的页面不同title"><a href="#不同的页面不同title" class="headerlink" title="不同的页面不同title"></a>不同的页面不同title</h2><p>1.首先判断对应的 .json文件是否设置 navigationBarTitleText</p>
 <p>2.如果存在请删除对应属性设置，然后进行Title设置</p>
-<pre class=" language-js"><code class="language-js"> wx<span class="token punctuation">.</span><span class="token function">setNavigationBarTitle</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-js"><code class="language-js"> wx<span class="token punctuation">.</span><span class="token function">setNavigationBarTitle</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
         title<span class="token punctuation">:</span> <span class="token string">'你的顶部Title写这里即可'</span>
-      <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span></code></pre>
-<h2 id="radio-大小控制"><a href="#radio-大小控制" class="headerlink" title="radio 大小控制"></a>radio 大小控制</h2><pre class=" language-css"><code class="language-css">    radio &amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>      <span class="token property">transform</span><span class="token punctuation">:</span><span class="token function">scale</span><span class="token punctuation">(</span><span class="token number">0.7</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    &amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span>
-<span class="token comment" spellcheck="true">/*&lt;radio color="red">*/</span></code></pre>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h2 id="radio-大小控制"><a href="#radio-大小控制" class="headerlink" title="radio 大小控制"></a>radio 大小控制</h2><pre class="line-numbers language-css"><code class="language-css">    <span class="token selector">radio </span><span class="token punctuation">{</span>      <span class="token property">transform</span><span class="token punctuation">:</span><span class="token function">scale</span><span class="token punctuation">(</span><span class="token number">0.7</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">/*&lt;radio color="red">*/</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <h2 id="image-控制大小"><a href="#image-控制大小" class="headerlink" title="image 控制大小"></a>image 控制大小</h2><ol>
 <li>利用mode</li>
 <li>定好width height</li>
 </ol>
-<h2 id="文字段落的限制显示"><a href="#文字段落的限制显示" class="headerlink" title="文字段落的限制显示"></a>文字段落的限制显示</h2><h3 id="显示三行"><a href="#显示三行" class="headerlink" title="显示三行"></a>显示三行</h3><pre class=" language-css"><code class="language-css"><span class="token number">.</span>note_item text&amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
+<h2 id="文字段落的限制显示"><a href="#文字段落的限制显示" class="headerlink" title="文字段落的限制显示"></a>文字段落的限制显示</h2><h3 id="显示三行"><a href="#显示三行" class="headerlink" title="显示三行"></a>显示三行</h3><pre class="line-numbers language-css"><code class="language-css"><span class="token selector"><span class="token class">.note_item</span> text</span><span class="token punctuation">{</span>
     <span class="token property">display</span><span class="token punctuation">:</span> -webkit-box<span class="token punctuation">;</span>
     <span class="token property">font-size</span><span class="token punctuation">:</span><span class="token number">28</span>rpx<span class="token punctuation">;</span>
     <span class="token property">color</span><span class="token punctuation">:</span><span class="token hexcode">#000000</span><span class="token punctuation">;</span>
@@ -727,8 +728,8 @@ icon<span class="token punctuation">:</span> <span class="token boolean">true</s
     <span class="token property">-webkit-line-clamp</span><span class="token punctuation">:</span><span class="token number">3</span><span class="token punctuation">;</span>
     <span class="token property">overflow</span><span class="token punctuation">:</span> hidden<span class="token punctuation">;</span>
     <span class="token property">text-overflow</span><span class="token punctuation">:</span>ellipsis<span class="token punctuation">;</span>
-&amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span></code></pre>
-<h3 id="显示单行"><a href="#显示单行" class="headerlink" title="显示单行"></a>显示单行</h3><pre class=" language-css"><code class="language-css"><span class="token number">.</span>note<span class="token number">2</span>_item text&amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="显示单行"><a href="#显示单行" class="headerlink" title="显示单行"></a>显示单行</h3><pre class="line-numbers language-css"><code class="language-css"><span class="token selector"><span class="token class">.note2_item</span> text</span><span class="token punctuation">{</span>
     <span class="token property">display</span><span class="token punctuation">:</span> block<span class="token punctuation">;</span>
     <span class="token property">font-size</span><span class="token punctuation">:</span><span class="token number">28</span>rpx<span class="token punctuation">;</span>
     <span class="token property">color</span><span class="token punctuation">:</span><span class="token hexcode">#000000</span><span class="token punctuation">;</span>
@@ -737,9 +738,9 @@ icon<span class="token punctuation">:</span> <span class="token boolean">true</s
     <span class="token property">overflow</span><span class="token punctuation">:</span> hidden<span class="token punctuation">;</span>
     <span class="token property">white-space</span><span class="token punctuation">:</span> nowrap<span class="token punctuation">;</span><span class="token comment" spellcheck="true">/* 换行不显示*/</span>
     <span class="token property">text-overflow</span><span class="token punctuation">:</span>ellipsis<span class="token punctuation">;</span>
-&amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>其他例子</p>
-<pre class=" language-css"><code class="language-css">text&amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-css"><code class="language-css"><span class="token selector">text</span><span class="token punctuation">{</span>
   <span class="token property">display</span><span class="token punctuation">:</span> inline-block<span class="token punctuation">;</span> 
   <span class="token property">width</span><span class="token punctuation">:</span> <span class="token number">400</span>rpx<span class="token punctuation">;</span>
   <span class="token property">border</span><span class="token punctuation">:</span> <span class="token number">1</span>rpx solid gray<span class="token punctuation">;</span>
@@ -751,7 +752,7 @@ icon<span class="token punctuation">:</span> <span class="token boolean">true</s
   <span class="token property">-moz-box-orient</span><span class="token punctuation">:</span> vertical<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">/*从上到下自动排列子元素*/</span>
   <span class="token property">-webkit-box-orient</span><span class="token punctuation">:</span> vertical<span class="token punctuation">;</span> 
   <span class="token property">-webkit-line-clamp</span><span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">/*显示的行数*/</span>
-&amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="常用API"><a href="#常用API" class="headerlink" title="常用API"></a>常用API</h2><ol>
 <li><p>界面交互<br>a) 显示消息提示框: wx.showToast()<br>b) 显示消息加载框: wx.showLoading()<br>c) 关闭消息提示框: wx.hideToast()<br>d) 关闭消息加载框: wx.hideLoading()</p>
 </li>
@@ -767,29 +768,29 @@ icon<span class="token punctuation">:</span> <span class="token boolean">true</s
 <h2 id="API查询"><a href="#API查询" class="headerlink" title="API查询"></a>API查询</h2><p>微信小程序开发文档  <a target="_blank" rel="noopener" href="https://www.w3cschool.cn/weixinapp/">https://www.w3cschool.cn/weixinapp/</a></p>
 <h2 id="程序本地存储"><a href="#程序本地存储" class="headerlink" title="程序本地存储"></a><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/api/storage/wx.setStorage.html">程序本地存储</a></h2><ol>
 <li><p>存入数据<br>a) wx.setStorage() 异步<br>b) wx.setStorageSync() 同步</p>
-<pre class=" language-js"><code class="language-js">wx<span class="token punctuation">.</span><span class="token function">setstorage</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-js"><code class="language-js">wx<span class="token punctuation">.</span><span class="token function">setstorage</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
  key<span class="token punctuation">:</span><span class="token string">"key"</span><span class="token punctuation">,</span>
  data<span class="token punctuation">:</span><span class="token string">"value"</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span></code></pre>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li><p>读取数据<br>a) wx.getStorage()异步<br>b) wx.getStorageSync() 同步</p>
-<pre class=" language-js"><code class="language-js">wx<span class="token punctuation">.</span><span class="token function">getstorage</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-js"><code class="language-js">wx<span class="token punctuation">.</span><span class="token function">getstorage</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
  key<span class="token punctuation">:</span><span class="token string">"key"</span><span class="token punctuation">,</span>
- <span class="token function">success</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+ <span class="token function">success</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span><span class="token punctuation">{</span>
      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>data<span class="token punctuation">)</span>
- <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span></code></pre>
+ <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li><p>删除数据<br>a) wx.removeStorage() 异步<br>b) wx.removeStroageSync() 同步</p>
-<pre class=" language-js"><code class="language-js">wx<span class="token punctuation">.</span><span class="token function">removeStorage</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-js"><code class="language-js">wx<span class="token punctuation">.</span><span class="token function">removeStorage</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
  key<span class="token punctuation">:</span><span class="token string">"key"</span><span class="token punctuation">,</span>
- <span class="token function">success</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+ <span class="token function">success</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span><span class="token punctuation">{</span>
      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span>
- <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span></code></pre>
+ <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li><p>清空数据<br>a) wx.clearStorage() 异步<br>b) wx.clearStorageSync() 同步</p>
-<pre class=" language-js"><code class="language-js">wx<span class="token punctuation">.</span><span class="token function">clearStorage</span><span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+<pre class="line-numbers language-js"><code class="language-js">wx<span class="token punctuation">.</span><span class="token function">clearStorage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </li>
 </ol>
 <h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/MrSaver/p/9005641.html">小程序学习笔记</a></p>
@@ -1033,6 +1034,7 @@ app.wxss：公共样
 <style type="text/css">
 code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
 </style>
+
 
 
     </div>

@@ -29,7 +29,8 @@
 
     <script src="../../../../libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 <body>
@@ -428,9 +429,9 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h1 id="js判断是否为整数类型"><a href="#js判断是否为整数类型" class="headerlink" title="js判断是否为整数类型"></a>js判断是否为整数类型</h1><h3 id="方式一、使用取余运算符判断"><a href="#方式一、使用取余运算符判断" class="headerlink" title="方式一、使用取余运算符判断"></a>方式一、使用取余运算符判断</h3><p>任何整数都会被1整除，即余数是0。利用这个规则来判断是否是整数。</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">isInteger</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">isInteger</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span> <span class="token punctuation">{</span>
  <span class="token keyword">return</span> obj<span class="token operator">%</span><span class="token number">1</span> <span class="token operator">===</span> <span class="token number">0</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
 <span class="token function">isInteger</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// true</span>
 <span class="token function">isInteger</span><span class="token punctuation">(</span><span class="token number">3.3</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// false　</span>
@@ -438,20 +439,20 @@
 <span class="token function">isInteger</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// true</span>
 <span class="token function">isInteger</span><span class="token punctuation">(</span><span class="token string">'3'</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// true</span>
 <span class="token function">isInteger</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// true</span>
-<span class="token function">isInteger</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// true1234567891011</span></code></pre>
+<span class="token function">isInteger</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// true1234567891011</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>对于空字符串、字符串类型数字、布尔true、空数组都返回了true。对这些类型的内部转换细节感兴趣的请参考：JavaScript中奇葩的假值<br>因此，需要先判断下对象是否是数字，比如加一个typeof</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">isInteger</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">isInteger</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span> <span class="token punctuation">{</span>
  <span class="token keyword">return</span> <span class="token keyword">typeof</span> obj <span class="token operator">===</span> <span class="token string">'number'</span> <span class="token operator">&amp;&amp;</span> obj<span class="token operator">%</span><span class="token number">1</span> <span class="token operator">===</span> <span class="token number">0</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
 <span class="token function">isInteger</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// false</span>
 <span class="token function">isInteger</span><span class="token punctuation">(</span><span class="token string">'3'</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// false</span>
 <span class="token function">isInteger</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// false</span>
-<span class="token function">isInteger</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// false12345678</span></code></pre>
+<span class="token function">isInteger</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// false12345678</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="方式二、使用Math-round、Math-ceil、Math-floor判断"><a href="#方式二、使用Math-round、Math-ceil、Math-floor判断" class="headerlink" title="方式二、使用Math.round、Math.ceil、Math.floor判断"></a>方式二、使用Math.round、Math.ceil、Math.floor判断</h3><p>整数取整后还是等于自己。利用这个特性来判断是否是整数，Math.floor示例，如下</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">isInteger</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">isInteger</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span> <span class="token punctuation">{</span>
  <span class="token keyword">return</span> Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span> <span class="token operator">===</span> obj
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
 
 <span class="token function">isInteger</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// true</span>
@@ -459,10 +460,10 @@
 <span class="token function">isInteger</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// false</span>
 <span class="token function">isInteger</span><span class="token punctuation">(</span><span class="token string">'3'</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// false</span>
 <span class="token function">isInteger</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// false</span>
-<span class="token function">isInteger</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// false1234567891011</span></code></pre>
-<h3 id="方式三、通过parseInt判断"><a href="#方式三、通过parseInt判断" class="headerlink" title="方式三、通过parseInt判断"></a>方式三、通过parseInt判断</h3><pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">isInteger</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token function">isInteger</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// false1234567891011</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="方式三、通过parseInt判断"><a href="#方式三、通过parseInt判断" class="headerlink" title="方式三、通过parseInt判断"></a>方式三、通过parseInt判断</h3><pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">isInteger</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span> <span class="token punctuation">{</span>
  <span class="token keyword">return</span> <span class="token function">parseInt</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span> <span class="token operator">===</span> obj
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
 <span class="token function">isInteger</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// true</span>
 <span class="token function">isInteger</span><span class="token punctuation">(</span><span class="token number">3.3</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// false</span>
@@ -472,11 +473,11 @@
 <span class="token function">isInteger</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// false、</span>
 
 <span class="token comment" spellcheck="true">//很不错，但也有一个缺点</span>
-<span class="token function">isInteger</span><span class="token punctuation">(</span><span class="token number">1000000000000000000000</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// false12345678910111213</span></code></pre>
+<span class="token function">isInteger</span><span class="token punctuation">(</span><span class="token number">1000000000000000000000</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// false12345678910111213</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>原因是parseInt在解析整数之前强迫将第一个参数解析成字符串。这种方法将数字转换成整型不是一个好的选择。</p>
-<h3 id="方式四、通过位运算判断"><a href="#方式四、通过位运算判断" class="headerlink" title="方式四、通过位运算判断"></a>方式四、通过位运算判断</h3><pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">isInteger</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<h3 id="方式四、通过位运算判断"><a href="#方式四、通过位运算判断" class="headerlink" title="方式四、通过位运算判断"></a>方式四、通过位运算判断</h3><pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">isInteger</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span> <span class="token punctuation">{</span>
  <span class="token keyword">return</span> <span class="token punctuation">(</span>obj <span class="token operator">|</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">===</span> obj
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
 <span class="token function">isInteger</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// true</span>
 <span class="token function">isInteger</span><span class="token punctuation">(</span><span class="token number">3.3</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// false</span>
@@ -486,43 +487,43 @@
 <span class="token function">isInteger</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// false</span>
 
 <span class="token comment" spellcheck="true">//这个函数很不错，效率还很高。但有个缺陷，上文提到过，位运算只能处理32位以内的数字，对于超过32位的无能为力</span>
-<span class="token function">isInteger</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">pow</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">32</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 32位以上的数字返回false了12345678910111213</span></code></pre>
-<h3 id="方式五、ES6提供了Number-isInteger"><a href="#方式五、ES6提供了Number-isInteger" class="headerlink" title="方式五、ES6提供了Number.isInteger"></a>方式五、ES6提供了Number.isInteger</h3><pre class=" language-js"><code class="language-js">Number<span class="token punctuation">.</span><span class="token function">isInteger</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// true</span>
+<span class="token function">isInteger</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">pow</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">32</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 32位以上的数字返回false了12345678910111213</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="方式五、ES6提供了Number-isInteger"><a href="#方式五、ES6提供了Number-isInteger" class="headerlink" title="方式五、ES6提供了Number.isInteger"></a>方式五、ES6提供了Number.isInteger</h3><pre class="line-numbers language-js"><code class="language-js">Number<span class="token punctuation">.</span><span class="token function">isInteger</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// true</span>
 Number<span class="token punctuation">.</span><span class="token function">isInteger</span><span class="token punctuation">(</span><span class="token number">3.1</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// false</span>
 Number<span class="token punctuation">.</span><span class="token function">isInteger</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// false</span>
 Number<span class="token punctuation">.</span><span class="token function">isInteger</span><span class="token punctuation">(</span><span class="token string">'3'</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// false</span>
 Number<span class="token punctuation">.</span><span class="token function">isInteger</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// false</span>
-Number<span class="token punctuation">.</span><span class="token function">isInteger</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// false</span></code></pre>
-<h1 id="数字判断"><a href="#数字判断" class="headerlink" title="数字判断"></a>数字判断</h1><h2 id="验证数字type"><a href="#验证数字type" class="headerlink" title="验证数字type"></a>验证数字type</h2><pre class=" language-js"><code class="language-js"> <span class="token keyword">var</span> checkNum <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> num <span class="token operator">!==</span> <span class="token string">"number"</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+Number<span class="token punctuation">.</span><span class="token function">isInteger</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// false</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="数字判断"><a href="#数字判断" class="headerlink" title="数字判断"></a>数字判断</h1><h2 id="验证数字type"><a href="#验证数字type" class="headerlink" title="验证数字type"></a>验证数字type</h2><pre class="line-numbers language-js"><code class="language-js"> <span class="token keyword">var</span> checkNum <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> num <span class="token operator">!==</span> <span class="token string">"number"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
       <span class="token keyword">return</span> undefined<span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">else</span> <span class="token keyword">return</span> num<span class="token punctuation">;</span>
-  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">;</span></code></pre>
-<h2 id="奇数偶数"><a href="#奇数偶数" class="headerlink" title="奇数偶数"></a>奇数偶数</h2><pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">printOdd</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span>num<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>i <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">!==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">return</span> num<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="奇数偶数"><a href="#奇数偶数" class="headerlink" title="奇数偶数"></a>奇数偶数</h2><pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">printOdd</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span>num<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>i <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">!==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
       console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 
-<span class="token keyword">function</span> <span class="token function">printEven</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span>num<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>i <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">===</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">printEven</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span>num<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>i <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">===</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
       console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
-<h2 id="Prime-number"><a href="#Prime-number" class="headerlink" title="Prime number"></a>Prime number</h2><pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">isPrime</span><span class="token punctuation">(</span>number<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> number<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-      <span class="token keyword">if</span> <span class="token punctuation">(</span>number <span class="token operator">%</span> i <span class="token operator">===</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> number <span class="token operator">!=</span> i<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="Prime-number"><a href="#Prime-number" class="headerlink" title="Prime number"></a>Prime number</h2><pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">isPrime</span><span class="token punctuation">(</span>number<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> number<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>number <span class="token operator">%</span> i <span class="token operator">===</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> number <span class="token operator">!=</span> i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token comment" spellcheck="true">// return true if it is divisible by any number that is not itself.</span>
         <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
-      <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
     <span class="token comment" spellcheck="true">// if it passes the for loops conditions it is a prime</span>
     <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
+  <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
             </div>
             <hr/>
@@ -644,7 +645,7 @@ Number<span class="token punctuation">.</span><span class="token function">isInt
                         
                             为什么height:100%不生效对于height属性，如果父元素height为auto，只要子元素在文档流中（即position不等于fixed或者absolute），其百分比值完全就被忽略了。
 &lt;style>
-    .box &
+    .box {
                         
                     </div>
                     <div class="publish-info">
@@ -764,6 +765,7 @@ BOM可实现功能
 <style type="text/css">
 code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
 </style>
+
 
 
     </div>

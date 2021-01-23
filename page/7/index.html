@@ -29,7 +29,8 @@
 
     <script src="../../libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 <body>
@@ -434,11 +435,11 @@ constructor是原型对象上的一个属性
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                对象基本操作生成基本生成办法（直接生成obj）var obj = &amp;#123;
+                                对象基本操作生成基本生成办法（直接生成obj）var obj = {
   foo: 'Hello',
   'h w': 'Hello World',
   'p+q': 'Hello World'，
-  m: functio
+  m: function () { ..
                             
                         </div>
                         <div class="publish-info">
@@ -489,7 +490,8 @@ constructor是原型对象上的一个属性
 
 同样的写法
 
-var sum = (num1, num2) => &amp;#123; return num1 
+var sum = (num1, num2) => { return num1 + num2 }
+
                             
                         </div>
                         <div class="publish-info">
@@ -536,14 +538,15 @@ var sum = (num1, num2) => &amp;#123; return num1
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                JS模块写法一般写法　function m1()&amp;#123;
+                                JS模块写法一般写法　function m1(){
 　　　　//...
-　　&amp;#125;
+　　}
 
-　　function m2()&amp;#123;
+　　function m2(){
 　　　　//...
-　　&amp;#125;
-缺点：”污染”了全局变量
+　　}
+缺点：”污染”了全局变量，无法保证不与其他模块发生变量名冲突，而且模块成员之间看不出直接关系。
+
                             
                         </div>
                         <div class="publish-info">
@@ -590,14 +593,15 @@ var sum = (num1, num2) => &amp;#123; return num1
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                JS模块写法一般写法　function m1()&amp;#123;
+                                JS模块写法一般写法　function m1(){
 　　　　//...
-　　&amp;#125;
+　　}
 
-　　function m2()&amp;#123;
+　　function m2(){
 　　　　//...
-　　&amp;#125;
-缺点：”污染”了全局变量
+　　}
+缺点：”污染”了全局变量，无法保证不与其他模块发生变量名冲突，而且模块成员之间看不出直接关系。
+
                             
                         </div>
                         <div class="publish-info">

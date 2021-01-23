@@ -29,7 +29,8 @@
 
     <script src="../../libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 <body>
@@ -316,7 +317,7 @@
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="../../2020/12/01/js-question-solution/">
+                    <a href="../../2020/12/01/js-regular-expression/">
                         <div class="card-image">
                             
                             
@@ -330,8 +331,8 @@
                         <div class="summary block-with-text">
                             
                                 1.this 与 event.target的区别使用listener的时候， this可以跟踪对应的listener持有者。 event.target是当前的时间互动触发点
-2.作用域function loo()&amp;#123;
-   
+2.作用域function loo(){
+    vargoo=1
                             
                         </div>
                         <div class="publish-info">
@@ -380,7 +381,7 @@
                             
                                 为什么height:100%不生效对于height属性，如果父元素height为auto，只要子元素在文档流中（即position不等于fixed或者absolute），其百分比值完全就被忽略了。
 &lt;style>
-    .box &
+    .box {
                             
                         </div>
                         <div class="publish-info">
@@ -428,9 +429,11 @@
                         <div class="summary block-with-text">
                             
                                 js判断是否为整数类型方式一、使用取余运算符判断任何整数都会被1整除，即余数是0。利用这个规则来判断是否是整数。
-function isInteger(obj) &amp;#123;
+function isInteger(obj) {
  return obj%1 === 0
-&amp;#12
+}
+
+isInteger(3) /
                             
                         </div>
                         <div class="publish-info">
@@ -534,9 +537,10 @@ BOM可实现功能
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                class基础class基本定义语法class ClassName &amp;#123;
-  constructor() &amp;#123; ... &amp;#125;//这里全部放属性
-  method_1() &amp;#123; 
+                                class基础class基本定义语法class ClassName {
+  constructor() { ... }//这里全部放属性
+  method_1() { ... }//方法之间不放逗号
+  method_2() { ... }
                             
                         </div>
                         <div class="publish-info">

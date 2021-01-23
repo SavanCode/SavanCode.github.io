@@ -29,7 +29,8 @@
 
     <script src="../../libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 <body>
@@ -424,7 +425,7 @@
                             
                                 为什么height:100%不生效对于height属性，如果父元素height为auto，只要子元素在文档流中（即position不等于fixed或者absolute），其百分比值完全就被忽略了。
 &lt;style>
-    .box &
+    .box {
                             
                         </div>
                         <div class="publish-info">
@@ -518,13 +519,14 @@ width: min-content or width: max-c
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                Overlap Element1. Position Property.child &amp;#123; 
+                                Overlap Element1. Position Property.child { 
   position: absolute;
   top: 0;
   left: 0;
-&amp;#125;
+}
 
-.child &amp
+.child { 
+  position: absolut
                             
                         </div>
                         <div class="publish-info">
@@ -669,8 +671,10 @@ var dataCookie='110';
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                伪元素基本语法element:after  &amp;#123; style properties &amp;#125;  /* CSS2 语法 */
-element::after &amp;#123; style properties &
+                                伪元素基本语法element:after  { style properties }  /* CSS2 语法 */
+element::after { style properties }  /* CSS3 语法 */
+同异
+同：      
                             
                         </div>
                         <div class="publish-info">

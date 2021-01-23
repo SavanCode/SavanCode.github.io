@@ -29,7 +29,8 @@
 
     <script src="../../../../libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 <body>
@@ -432,7 +433,7 @@
 <p><strong>Flex 布局</strong>   —   flex属性是<code>flex-grow</code>, <code>flex-shrink</code> 和 <code>flex-basis</code> 的简写 </p>
 <p><strong>Flex 布局以后，子元素的<code>float</code>、<code>clear</code>和<code>vertical-align</code>属性将失效</strong></p>
 <p><img src="/2020/11/13/Layout-flex/1605247566336.png"></p>
-<pre class=" language-css"><code class="language-css"><span class="token number">.</span>div &amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-css"><code class="language-css"><span class="token selector"><span class="token class">.div</span> </span><span class="token punctuation">{</span>
   <span class="token property">-webkit-box-orient</span><span class="token punctuation">:</span>horizontal | vertical<span class="token punctuation">;</span><span class="token comment" spellcheck="true">/*-webkit-box-orient控制主轴和侧轴分别是哪一根 Safari 6.1 (及更新浏览器) 通过 -webkit-flex 属性支持*/</span>
   <span class="token property">flex-direction</span><span class="token punctuation">:</span> row | row-reverse | column | column-reverse<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">/*主轴的方向*/</span>
   <span class="token property">flex-wrap</span><span class="token punctuation">:</span> nowrap | wrap | wrap-reverse<span class="token punctuation">;</span><span class="token comment" spellcheck="true">/* 挤一行 换行 反向走*/</span>
@@ -440,19 +441,19 @@
   <span class="token property">align-content</span><span class="token punctuation">:</span> flex-start | flex-end | center | space-between | space-around | stretch<span class="token punctuation">;</span>
     <span class="token comment" spellcheck="true">/*align-content属性定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。
     align-content  https://developer.mozilla.org/en-US/docs/Web/CSS/align-content  */</span>
-&amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span></code></pre>
-<pre class=" language-css"><code class="language-css">  <span class="token property">justify-content</span><span class="token punctuation">:</span> flex-start | flex-end | center | space-between | space-around<span class="token punctuation">;</span><span class="token comment" spellcheck="true">/*项目在主轴上的对齐方式   左 右 中 两端&amp;间隔对等 每个两侧间隔相等*/</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-css"><code class="language-css">  <span class="token property">justify-content</span><span class="token punctuation">:</span> flex-start | flex-end | center | space-between | space-around<span class="token punctuation">;</span><span class="token comment" spellcheck="true">/*项目在主轴上的对齐方式   左 右 中 两端&amp;间隔对等 每个两侧间隔相等*/</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p><img src="/2020/11/13/Layout-flex/1605776747612.png"></p>
-<pre class=" language-css"><code class="language-css">  <span class="token property">align-items</span><span class="token punctuation">:</span> flex-start | flex-end | center | baseline | stretch<span class="token punctuation">;</span><span class="token comment" spellcheck="true">/*项目对其方式 上下中 第一行文字的基线对齐 拉伸（默认）*/</span></code></pre>
+<pre class="line-numbers language-css"><code class="language-css">  <span class="token property">align-items</span><span class="token punctuation">:</span> flex-start | flex-end | center | baseline | stretch<span class="token punctuation">;</span><span class="token comment" spellcheck="true">/*项目对其方式 上下中 第一行文字的基线对齐 拉伸（默认）*/</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p><img src="/2020/11/13/Layout-flex/1605776777298.png"></p>
-<pre class=" language-css"><code class="language-css"><span class="token number">.</span>item &amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-css"><code class="language-css"><span class="token selector"><span class="token class">.item</span> </span><span class="token punctuation">{</span>
   <span class="token property">order</span><span class="token punctuation">:</span> &lt;integer><span class="token punctuation">;</span><span class="token comment" spellcheck="true">/*项目的排列顺序。数值越小，排列越靠前，默认为0。*/</span>
   <span class="token property">flex-grow</span><span class="token punctuation">:</span> number|initial|inherit<span class="token punctuation">;</span><span class="token comment" spellcheck="true">/*弹性盒子的扩展比率*/</span>
   <span class="token property">flex-shrink</span><span class="token punctuation">:</span> &lt;number><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">/* default 1 在所有因子相加之后计算比率来进行空间收缩*/</span>
   flex-basis / <span class="token property">flex-grow</span><span class="token punctuation">:</span> &lt;width> | sizing keywords | content | auto<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">/* default auto */</span>
   <span class="token property">align-self</span><span class="token punctuation">:</span> auto | flex-start | flex-end | center | baseline | stretch<span class="token punctuation">;</span>
   <span class="token comment" spellcheck="true">/*align-self属性允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性*/</span>
-&amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><code>max-content</code>: 尺寸值会变得尽可能大, 没有自动换行的机会. 如果<code>flex</code>容器<strong>太窄</strong>， 它就会<strong>溢出</strong>其自身的盒子。</p>
 <p><code>min-content</code>: 文本已尽可能抓住机会来自动换行, 变得尽可能小且没有溢出。</p>
 <p><img src="/2020/11/13/Layout-flex/1605774609826.png"></p>
@@ -709,6 +710,7 @@ flex-basis flex-basis  ，主要成分，flex-basis
 <style type="text/css">
 code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
 </style>
+
 
 
     </div>

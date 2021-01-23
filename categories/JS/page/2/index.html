@@ -29,7 +29,8 @@
 
     <script src="../../../../libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 <body>
@@ -423,9 +424,11 @@
                         <div class="summary block-with-text">
                             
                                 js判断是否为整数类型方式一、使用取余运算符判断任何整数都会被1整除，即余数是0。利用这个规则来判断是否是整数。
-function isInteger(obj) &amp;#123;
+function isInteger(obj) {
  return obj%1 === 0
-&amp;#12
+}
+
+isInteger(3) /
                             
                         </div>
                         <div class="publish-info">
@@ -527,9 +530,10 @@ BOM可实现功能
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                class基础class基本定义语法class ClassName &amp;#123;
-  constructor() &amp;#123; ... &amp;#125;//这里全部放属性
-  method_1() &amp;#123; 
+                                class基础class基本定义语法class ClassName {
+  constructor() { ... }//这里全部放属性
+  method_1() { ... }//方法之间不放逗号
+  method_2() { ... }
                             
                         </div>
                         <div class="publish-info">

@@ -29,7 +29,8 @@
 
     <script src="../../../../libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 <body>
@@ -432,11 +433,11 @@
 <li><code>padding</code>+ <code>border</code> + <code>height</code> = 盒子的高度</li>
 </ul>
 <h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p>语法：<code>box-sizing:</code> <code>content-box</code> | <code>border-box</code> | <code>inherit</code>;</p>
-<pre class=" language-css"><code class="language-css">*&amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-css"><code class="language-css"><span class="token selector">*</span><span class="token punctuation">{</span>
      <span class="token property">margin</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">;</span>
       <span class="token property">padding</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">;</span>
      <span class="token property">box-sizing</span><span class="token punctuation">:</span>border-box<span class="token punctuation">;</span>
-&amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li>content-box：标准盒模型，CSS定义的宽高只包含content的宽高</li>
 <li>border-box：IE盒模型，CSS定义的宽高包括了content，padding和border</li>
@@ -560,13 +561,14 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Overlap Element1. Position Property.child &amp;#123; 
+                            Overlap Element1. Position Property.child { 
   position: absolute;
   top: 0;
   left: 0;
-&amp;#125;
+}
 
-.child &amp
+.child { 
+  position: absolut
                         
                     </div>
                     <div class="publish-info">
@@ -679,6 +681,7 @@ var dataCookie='110';
 <style type="text/css">
 code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
 </style>
+
 
 
     </div>

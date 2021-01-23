@@ -29,7 +29,8 @@
 
     <script src="../../../../libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 <body>
@@ -423,8 +424,9 @@
                         <div class="summary block-with-text">
                             
                                 浅拷贝简单拷贝  新建一个空对象，使用for-in循环，将对象的所有属性复制到新建的空对象中
-function simpleClone1(obj)&amp;#123;
-    if(typeof obj != 'object')&amp;#
+function simpleClone1(obj){
+    if(typeof obj != 'object'){
+        retur
                             
                         </div>
                         <div class="publish-info">
@@ -571,8 +573,8 @@ instanceof操作数是一个对象，右操作数是一个构造函数。如果�
                                 date基本时区格林尼治标准时间(GMT) –伦敦
 世界协调时间(UTC)又称世界统一时间
 闰年诀是：四年一闰，百年不闰，四百年再闰
-function IsLeapYear(year)&amp;#123;
-    if(typeof yea
+function IsLeapYear(year){
+    if(typeof year == 'num
                             
                         </div>
                         <div class="publish-info">
@@ -624,7 +626,7 @@ catch语句使您可以处理错误
 throw语句使您可以创建自定义错误 
 finally语句使您可以在尝试捕获后执行代码，而不管结果如何
 
-function myFunction() &
+function myFunction() {
                             
                         </div>
                         <div class="publish-info">
@@ -670,10 +672,10 @@ function myFunction() &
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                PUSHfunction copyArray(arr)&amp;#123;
+                                PUSHfunction copyArray(arr){
     var result = [];
-    for(var i = 0; i &lt; arr.length; i++)&amp;#123;
-        
+    for(var i = 0; i &lt; arr.length; i++){
+        result.push(arr[i]
                             
                         </div>
                         <div class="publish-info">
