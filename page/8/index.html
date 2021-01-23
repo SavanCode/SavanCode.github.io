@@ -29,7 +29,8 @@
 
     <script src="../../libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 <body>
@@ -316,28 +317,72 @@
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="../../2020/11/24/js-string/">
+                    <a href="../../2020/11/26/js-IIFE/">
                         <div class="card-image">
                             
                             
-                            <img src="../../medias/featureimages/0.jpg" class="responsive-img" alt="js string">
+                            <img src="../../medias/featureimages/2.jpg" class="responsive-img" alt="js IIFE 立即执行函数">
                             
-                            <span class="card-title">js string</span>
+                            <span class="card-title">js IIFE 立即执行函数</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                String
-引号字符串String是由双引号(“)或单引号(‘)声明的
-反引号 `` - 多行字符串 &amp; 嵌入变量// 普通字符串
-console.log(`In JavaScript '\n' is a line-feed.`)
+                                IIFE - Imdiately Invoked Function Expression一般用于构造私有变量，避免全局空间污染
+
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-24
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-26
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="../../categories/JS/" class="post-category">
+                                    JS
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="../../2020/11/26/js-closure/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="../../medias/featureimages/20.jpg" class="responsive-img" alt="js closure">
+                            
+                            <span class="card-title">js closure</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                JS变量声明JS中变量申明分显式申明和隐式申明。 
+
+vari=100;//显式申明 
+i=100;//隐式申明 
+
+JS作用域 与变量（scope）
+全局变量 - global：在函数外部定义的变量，可以在函数内部使用
+局部变量 - lo
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-26
                             </span>
                             <span class="publish-author">
                                 
@@ -366,28 +411,28 @@ console.log(`In JavaScript '\n' is a line-feed.`)
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="../../2020/11/24/js-this-keyword/">
+                    <a href="../../2020/11/25/js-copy-object/">
                         <div class="card-image">
                             
                             
-                            <img src="../../medias/featureimages/0.jpg" class="responsive-img" alt="js string">
+                            <img src="../../medias/featureimages/19.jpg" class="responsive-img" alt="js copy object">
                             
-                            <span class="card-title">js string</span>
+                            <span class="card-title">js copy object</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                String
-引号字符串String是由双引号(“)或单引号(‘)声明的
-反引号 `` - 多行字符串 &amp; 嵌入变量// 普通字符串
-console.log(`In JavaScript '\n' is a line-feed.`)
+                                浅拷贝简单拷贝  新建一个空对象，使用for-in循环，将对象的所有属性复制到新建的空对象中
+function simpleClone1(obj){
+    if(typeof obj != 'object'){
+        retur
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-24
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-25
                             </span>
                             <span class="publish-author">
                                 
@@ -416,37 +461,29 @@ console.log(`In JavaScript '\n' is a line-feed.`)
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="../../2020/11/24/js-data-types/">
+                    <a href="../../2020/11/25/js-form-validation/">
                         <div class="card-image">
                             
                             
-                            <img src="../../medias/featureimages/4.jpg" class="responsive-img" alt="js  data types">
+                            <img src="../../medias/featureimages/12.jpg" class="responsive-img" alt="js form validation 表单验证">
                             
-                            <span class="card-title">js  data types</span>
+                            <span class="card-title">js form validation 表单验证</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                JavaScript 数据类型包含值的数据类型：
+                                基本使用JS添加交互事件&lt;h1 onclick="this.innerHTML='Ooops!'">点击文本!&lt;/h1>
+点击文本!
 
-字符串（string）
-数字（number）
-布尔（boolean）
-对象（object）
-函数（function）
-
-有三种对象类型：
-
-对象（Object）
-日期（Date）
-数组（A
+操作DOM元素//例：向button元素分配onclick事件：
+document.getE
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-24
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-25
                             </span>
                             <span class="publish-author">
                                 
@@ -475,27 +512,27 @@ console.log(`In JavaScript '\n' is a line-feed.`)
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="../../2020/11/23/improve-js-code/">
+                    <a href="../../2020/11/25/js-type/">
                         <div class="card-image">
                             
                             
-                            <img src="../../medias/featureimages/4.jpg" class="responsive-img" alt="improve js code">
+                            <img src="../../medias/featureimages/18.jpg" class="responsive-img" alt="js type identification 数据类型查找">
                             
-                            <span class="card-title">improve js code</span>
+                            <span class="card-title">js type identification 数据类型查找</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                javascript的代码优化js从css抽离出来css 从js中抽离出来减少全局变量事件处理隔离应用逻辑将应用逻辑从所有事件处理程序中抽离出来是一种最佳实践
-//不好的做法
-function handleClick(event)&amp;
+                                typeofconsole.log(typeof 'a');//'string'
+console.log(typeof ('a'));//'string'
+instanceof操作数是一个对象，右操作数是一个构造函数。如果左侧的对象是右侧构
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-23
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-25
                             </span>
                             <span class="publish-author">
                                 
@@ -524,38 +561,29 @@ function handleClick(event)&amp;
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="../../2020/11/23/JS-basic/">
+                    <a href="../../2020/11/25/js-date/">
                         <div class="card-image">
                             
                             
-                            <img src="../../medias/featureimages/23.jpg" class="responsive-img" alt="JS basic">
+                            <img src="../../medias/featureimages/19.jpg" class="responsive-img" alt="js date">
                             
-                            <span class="card-title">JS basic</span>
+                            <span class="card-title">js date</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                定义变量let/const 一起和 var 的区别
-
-
-var
-let/const
-
-
-
-会进行预解析
-不会进行预解析, 必须先定义后使用
-
-
-声明重复变量名
-不能声明重复的变量名, 不能重新赋值（不同作用域可以重新定义，但不可以重新赋值）
+                                date基本时区格林尼治标准时间(GMT) –伦敦
+世界协调时间(UTC)又称世界统一时间
+闰年诀是：四年一闰，百年不闰，四百年再闰
+function IsLeapYear(year){
+    if(typeof year == 'num
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-23
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-25
                             </span>
                             <span class="publish-author">
                                 
@@ -575,55 +603,6 @@ let/const
                         
                         <a href="../../tags/JS/">
                             <span class="chip bg-color">JS</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="../../2020/11/22/div-tips/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="../../medias/featureimages/23.jpg" class="responsive-img" alt="div tips">
-                            
-                            <span class="card-title">div tips</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                1. Div Size Automatically size of contentdisplay: inline-block
-display: inline-block;
-width: min-content or width: max-c
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-22
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="../../categories/Front-end/" class="post-category">
-                                    Front-end
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="../../tags/css-html/">
-                            <span class="chip bg-color">css&amp;html</span>
                         </a>
                         
                     </div>
@@ -648,7 +627,7 @@ width: min-content or width: max-c
             
         </div>
         <div class="page-info col m4 l4 hide-on-small-only">
-            <div class="center-align b-text-gray">8 / 13</div>
+            <div class="center-align b-text-gray">8 / 15</div>
         </div>
         <div class="col s6 m4 l4">
             

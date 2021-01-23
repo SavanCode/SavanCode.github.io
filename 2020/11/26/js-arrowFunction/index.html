@@ -29,7 +29,8 @@
 
     <script src="../../../../libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 <body>
@@ -427,82 +428,82 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h1><h2 id="1-代码块只有一条语句时，不使用大括号"><a href="#1-代码块只有一条语句时，不使用大括号" class="headerlink" title="1. 代码块只有一条语句时，不使用大括号"></a>1. 代码块只有一条语句时，不使用大括号</h2><pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> sum <span class="token operator">=</span> <span class="token punctuation">(</span>num1<span class="token punctuation">,</span> num2<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> num1 <span class="token operator">+</span> num2 </code></pre>
+                <h1 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h1><h2 id="1-代码块只有一条语句时，不使用大括号"><a href="#1-代码块只有一条语句时，不使用大括号" class="headerlink" title="1. 代码块只有一条语句时，不使用大括号"></a>1. 代码块只有一条语句时，不使用大括号</h2><pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">var</span> sum <span class="token operator">=</span> <span class="token punctuation">(</span>num1<span class="token punctuation">,</span> num2<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> num1 <span class="token operator">+</span> num2 <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <ul>
 <li>同样的写法</li>
 </ul>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> sum <span class="token operator">=</span> <span class="token punctuation">(</span>num1<span class="token punctuation">,</span> num2<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> <span class="token keyword">return</span> num1 <span class="token operator">+</span> num2 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">var</span> sum <span class="token operator">=</span> <span class="token punctuation">(</span>num1<span class="token punctuation">,</span> num2<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span> <span class="token keyword">return</span> num1 <span class="token operator">+</span> num2 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <ul>
 <li>等同于</li>
 </ul>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> sum <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>num1<span class="token punctuation">,</span> num2<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">var</span> sum <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>num1<span class="token punctuation">,</span> num2<span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token keyword">return</span> num1 <span class="token operator">+</span> num2<span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">;</span></code></pre>
+<span class="token punctuation">}</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>简化判断</p>
-<pre class=" language-jsx"><code class="language-jsx"><span class="token comment" spellcheck="true">//自行判断，满足条件返回true，不满足条件返回false</span>
+<pre class="line-numbers language-jsx"><code class="language-jsx"><span class="token comment" spellcheck="true">//自行判断，满足条件返回true，不满足条件返回false</span>
 <span class="token keyword">const</span> isAdult <span class="token operator">=</span><span class="token punctuation">(</span>age<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> age<span class="token operator">>=</span><span class="token number">18</span><span class="token punctuation">;</span>
 <span class="token keyword">const</span> canDrink <span class="token operator">=</span><span class="token punctuation">(</span>age<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> age<span class="token operator">>=</span><span class="token number">21</span><span class="token punctuation">;</span>
 <span class="token function">isAdult</span><span class="token punctuation">(</span><span class="token number">21</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//true</span>
-<span class="token function">canDrink</span><span class="token punctuation">(</span><span class="token number">18</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//false</span></code></pre>
-<h2 id="2-如果有多条语句，使用大括号，同时使用return-否则没有返回值"><a href="#2-如果有多条语句，使用大括号，同时使用return-否则没有返回值" class="headerlink" title="2. 如果有多条语句，使用大括号，同时使用return(否则没有返回值)"></a>2. 如果有多条语句，使用大括号，同时使用return(否则没有返回值)</h2><pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> sum <span class="token operator">=</span> <span class="token punctuation">(</span>n1<span class="token punctuation">,</span> n2<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token function">canDrink</span><span class="token punctuation">(</span><span class="token number">18</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//false</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="2-如果有多条语句，使用大括号，同时使用return-否则没有返回值"><a href="#2-如果有多条语句，使用大括号，同时使用return-否则没有返回值" class="headerlink" title="2. 如果有多条语句，使用大括号，同时使用return(否则没有返回值)"></a>2. 如果有多条语句，使用大括号，同时使用return(否则没有返回值)</h2><pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">var</span> sum <span class="token operator">=</span> <span class="token punctuation">(</span>n1<span class="token punctuation">,</span> n2<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
   console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>n1<span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token keyword">return</span> n1 <span class="token operator">+</span> n2
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="3-使用箭头函数返回对象"><a href="#3-使用箭头函数返回对象" class="headerlink" title="3. 使用箭头函数返回对象"></a>3. 使用箭头函数返回对象</h2><p>必须在对象外面加上括号，否则就只是个代码块，从而就不会返回对象</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> sum <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>name<span class="token punctuation">:</span> <span class="token string">'a'</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span></code></pre>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">var</span> sum <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">(</span><span class="token punctuation">{</span>name<span class="token punctuation">:</span> <span class="token string">'a'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <ul>
 <li>等同于</li>
 </ul>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> sum <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token function">sum</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-  <span class="token keyword">return</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> name<span class="token punctuation">:</span> <span class="token string">'a'</span> <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">;</span></code></pre>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">var</span> sum <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token function">sum</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span> name<span class="token punctuation">:</span> <span class="token string">'a'</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <h2 id="4-箭头函数和普通函数明显的区别"><a href="#4-箭头函数和普通函数明显的区别" class="headerlink" title="4.箭头函数和普通函数明显的区别"></a>4.箭头函数和普通函数明显的区别</h2><p>箭头函数内部的<code>this</code>是词法作用域，由上下文确定。</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span>
     birth<span class="token punctuation">:</span> <span class="token number">1990</span><span class="token punctuation">,</span>
-    getAge<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    getAge<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">var</span> b <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>birth<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 1990</span>
-        <span class="token keyword">var</span> fn <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">var</span> fn <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getFullYear</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token keyword">this</span><span class="token punctuation">.</span>birth<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// this指向window或undefined</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> <span class="token function">fn</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//因为这里call</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-<span class="token keyword">var</span> obj1 <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> obj1 <span class="token operator">=</span> <span class="token punctuation">{</span>
     birth<span class="token punctuation">:</span> <span class="token number">1990</span><span class="token punctuation">,</span>
-    getAge<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    getAge<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">var</span> b <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>birth<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//这里是obj</span>
         <span class="token keyword">var</span> fn <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getFullYear</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token keyword">this</span><span class="token punctuation">.</span>birth<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// this指向obj对象，跟上面的一样</span>
         <span class="token keyword">return</span> <span class="token function">fn</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
-obj1<span class="token punctuation">.</span><span class="token function">getAge</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 26，箭头函数完全修复了this的指向，this总是指向词法作用域，也就是外层调用者obj1</span></code></pre>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+obj1<span class="token punctuation">.</span><span class="token function">getAge</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 26，箭头函数完全修复了this的指向，this总是指向词法作用域，也就是外层调用者obj1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
 <p>不能用arguments，但是可以用参数以及参数解构</p>
 </blockquote>
-<h2 id="5-创建立即执行函数表达式"><a href="#5-创建立即执行函数表达式" class="headerlink" title="5.创建立即执行函数表达式"></a>5.创建立即执行函数表达式</h2><pre class=" language-js"><code class="language-js"><span class="token keyword">let</span> person <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-  <span class="token keyword">return</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    getName<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span> <span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<h2 id="5-创建立即执行函数表达式"><a href="#5-创建立即执行函数表达式" class="headerlink" title="5.创建立即执行函数表达式"></a>5.创建立即执行函数表达式</h2><pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">let</span> person <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    getName<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span> <span class="token punctuation">)</span> <span class="token punctuation">{</span>
       <span class="token keyword">return</span> name<span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token string">'Nicholas'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token string">'Nicholas'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>person<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// "Nicholas"</span>
 
 <span class="token comment" spellcheck="true">// 实际上相当于：</span>
-<span class="token keyword">let</span> person <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-  <span class="token keyword">return</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    getName<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span> <span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> person <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    getName<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span> <span class="token punctuation">)</span> <span class="token punctuation">{</span>
       <span class="token keyword">return</span> name<span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">(</span><span class="token string">'Nicholas'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">(</span><span class="token string">'Nicholas'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>person<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// "Nicholas"</span></code></pre>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>person<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// "Nicholas"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="6-不能与new一起用"><a href="#6-不能与new一起用" class="headerlink" title="6.不能与new一起用"></a>6.不能与new一起用</h2><p>箭头函数缺少正常函数所以拥有的 <code>prototype</code> 属性，它的设计初衷是“即用即弃”，所有不能用它定义新的类型。如果尝试通过 <code>new</code> 关键字调用箭头函数，会报错，就像这样：</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> MyType <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
-  object <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MyType</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 错误，不可以通过 new 关键字抵用箭头函数</span></code></pre>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">var</span> MyType <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  object <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MyType</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 错误，不可以通过 new 关键字抵用箭头函数</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <h2 id="7-什么时候不要用箭头函数"><a href="#7-什么时候不要用箭头函数" class="headerlink" title="7.什么时候不要用箭头函数"></a>7.什么时候不要用箭头函数</h2><ul>
 <li>不能作为构造函数，不可以实例化</li>
 </ul>
@@ -628,11 +629,11 @@ console<span class="token punctuation">.</span><span class="token function">log<
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            对象基本操作生成基本生成办法（直接生成obj）var obj = &amp;#123;
+                            对象基本操作生成基本生成办法（直接生成obj）var obj = {
   foo: 'Hello',
   'h w': 'Hello World',
   'p+q': 'Hello World'，
-  m: functio
+  m: function () { ..
                         
                     </div>
                     <div class="publish-info">
@@ -681,14 +682,15 @@ console<span class="token punctuation">.</span><span class="token function">log<
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            JS模块写法一般写法　function m1()&amp;#123;
+                            JS模块写法一般写法　function m1(){
 　　　　//...
-　　&amp;#125;
+　　}
 
-　　function m2()&amp;#123;
+　　function m2(){
 　　　　//...
-　　&amp;#125;
-缺点：”污染”了全局变量
+　　}
+缺点：”污染”了全局变量，无法保证不与其他模块发生变量名冲突，而且模块成员之间看不出直接关系。
+
                         
                     </div>
                     <div class="publish-info">
@@ -749,6 +751,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <style type="text/css">
 code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
 </style>
+
 
 
     </div>

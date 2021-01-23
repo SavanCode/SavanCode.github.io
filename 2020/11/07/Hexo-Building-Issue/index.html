@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Hexo Building Issue, Savannah">
+    <meta name="keywords" content="Hexo Building Issue 博客搭建问题, Savannah">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Hexo Building Issue | Savannah</title>
+    <title>Hexo Building Issue 博客搭建问题 | Savannah</title>
     <link rel="icon" type="image/png" href="../../../../favicon.png">
 
     <link rel="stylesheet" type="text/css" href="../../../../libs/awesome/css/all.css">
@@ -29,7 +29,8 @@
 
     <script src="../../../../libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 <body>
@@ -264,12 +265,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/15.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/14.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Hexo Building Issue</h1>
+                    <h1 class="description center-align post-title">Hexo Building Issue 博客搭建问题</h1>
                 </div>
             </div>
         </div>
@@ -445,16 +446,16 @@
 <p><strong>Solution：</strong></p>
 <p>看清楚config中的toc 等级设置，由于不同主题，设置会不一样！（在config文件中）</p>
 <h2 id="问题7：代码高亮"><a href="#问题7：代码高亮" class="headerlink" title="问题7：代码高亮"></a>问题7：代码高亮</h2><p>代码高亮显示不好看，所以主题中使用到了 <a target="_blank" rel="noopener" href="https://github.com/ele828/hexo-prism-plugin">hexo-prism-plugin</a> 的 Hexo 插件来做代码高亮，安装命令如下：</p>
-<pre class=" language-haskell"><code class="language-haskell"><span class="token hvariable">npm</span> <span class="token hvariable">i</span> <span class="token operator">-</span><span class="token constant">S</span> <span class="token hvariable">hexo</span><span class="token operator">-</span><span class="token hvariable">prism</span><span class="token operator">-</span><span class="token hvariable">plugin</span></code></pre>
+<pre class="line-numbers language-haskell"><code class="language-haskell"><span class="token hvariable">npm</span> <span class="token hvariable">i</span> <span class="token operator">-</span><span class="token constant">S</span> <span class="token hvariable">hexo</span><span class="token operator">-</span><span class="token hvariable">prism</span><span class="token operator">-</span><span class="token hvariable">plugin</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>然后，修改 Hexo 根目录下 <code>_config.yml</code> 文件中 <code>highlight.enable</code> 的值为 <code>false</code>，并新增 <code>prism</code> 插件相关的配置，主要配置如下：</p>
-<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">highlight</span><span class="token punctuation">:</span>
+<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">highlight</span><span class="token punctuation">:</span>
   <span class="token key atrule">enable</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
 
 <span class="token key atrule">prism_plugin</span><span class="token punctuation">:</span>
   <span class="token key atrule">mode</span><span class="token punctuation">:</span> <span class="token string">"preprocess"</span> <span class="token comment" spellcheck="true"># realtime/preprocess</span>
   <span class="token key atrule">theme</span><span class="token punctuation">:</span> <span class="token string">"tomorrow"</span>
   <span class="token key atrule">line_number</span><span class="token punctuation">:</span> <span class="token boolean important">false </span><span class="token comment" spellcheck="true"># default false</span>
-  custom_css<span class="token punctuation">:</span></code></pre>
+  custom_css<span class="token punctuation">:</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="问题7：大括号的编译问题"><a href="#问题7：大括号的编译问题" class="headerlink" title="问题7：大括号的编译问题"></a>问题7：大括号的编译问题</h2><p>左右花括号（left/right curly brace）都不显示，在typora软件中代码块中显示无碍，但是hexo post中无法正常显示</p>
 <table>
 <thead>
@@ -494,7 +495,6 @@
 </tbody></table>
 <p><img src="/2020/11/07/Hexo-Building-Issue/1604935229359.png"></p>
 <p>解决办法：</p>
-<p>没找到</p>
 <h2 id="问题7：-TOC-跳转不成功"><a href="#问题7：-TOC-跳转不成功" class="headerlink" title="问题7： TOC 跳转不成功"></a>问题7： TOC 跳转不成功</h2><p>目录显示的层级正确，但是点击对应的标题，没有办法实现跳转</p>
 <p>solution：</p>
 <p>层级设置不可以跟排列序号同时使用</p>
@@ -619,8 +619,10 @@
                         
                             普通css（一定要注意继承性）基本选择器//基本样式
 &lt;h1 style="color: green;">
-.className&amp;#123; &amp;#125;//class      
-#id&amp;#123; &amp
+.className{ }//class      
+#id{ }//id         
+
+h3.class{ } /*并
                         
                     </div>
                     <div class="publish-info">
@@ -661,9 +663,9 @@
                     <div class="card-image">
                         
                         
-                        <img src="../../../../medias/featureimages/15.jpg" class="responsive-img" alt="Hexo Building Issue">
+                        <img src="../../../../medias/featureimages/14.jpg" class="responsive-img" alt="Hexo Building Issue 博客搭建问题">
                         
-                        <span class="card-title">Hexo Building Issue</span>
+                        <span class="card-title">Hexo Building Issue 博客搭建问题</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -731,6 +733,7 @@
 <style type="text/css">
 code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
 </style>
+
 
 
     </div>

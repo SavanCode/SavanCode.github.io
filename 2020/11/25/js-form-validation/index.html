@@ -29,7 +29,8 @@
 
     <script src="../../../../libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 <body>
@@ -427,15 +428,15 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="基本使用JS"><a href="#基本使用JS" class="headerlink" title="基本使用JS"></a>基本使用JS</h1><h2 id="添加交互事件"><a href="#添加交互事件" class="headerlink" title="添加交互事件"></a>添加交互事件</h2><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>this.innerHTML<span class="token punctuation">=</span><span class="token punctuation">'</span>Ooops!<span class="token punctuation">'</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>点击文本!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span></code></pre>
+                <h1 id="基本使用JS"><a href="#基本使用JS" class="headerlink" title="基本使用JS"></a>基本使用JS</h1><h2 id="添加交互事件"><a href="#添加交互事件" class="headerlink" title="添加交互事件"></a>添加交互事件</h2><pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>this.innerHTML<span class="token punctuation">=</span><span class="token punctuation">'</span>Ooops!<span class="token punctuation">'</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>点击文本!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h1 onclick="this.innerHTML='Ooops!'">点击文本!</h1>
 
-<h2 id="操作DOM元素"><a href="#操作DOM元素" class="headerlink" title="操作DOM元素"></a>操作DOM元素</h2><pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">//例：向button元素分配onclick事件：</span>
-document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"myBtn"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>onclick<span class="token operator">=</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span><span class="token function">displayDate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">;</span></code></pre>
-<h2 id="操作css"><a href="#操作css" class="headerlink" title="操作css"></a>操作css</h2><pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">//语法</span>
+<h2 id="操作DOM元素"><a href="#操作DOM元素" class="headerlink" title="操作DOM元素"></a>操作DOM元素</h2><pre class="line-numbers language-js"><code class="language-js"><span class="token comment" spellcheck="true">//例：向button元素分配onclick事件：</span>
+document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"myBtn"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>onclick<span class="token operator">=</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token function">displayDate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h2 id="操作css"><a href="#操作css" class="headerlink" title="操作css"></a>操作css</h2><pre class="line-numbers language-js"><code class="language-js"><span class="token comment" spellcheck="true">//语法</span>
 dom<span class="token punctuation">.</span>style<span class="token punctuation">.</span>属性名 <span class="token operator">=</span> 属性值<span class="token punctuation">;</span>
 <span class="token comment" spellcheck="true">//例如：</span>
-document<span class="token punctuation">.</span><span class="token function">getElementsByClassName</span><span class="token punctuation">(</span><span class="token string">'box'</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>style<span class="token punctuation">.</span>background <span class="token operator">=</span> <span class="token string">'red'</span><span class="token punctuation">;</span></code></pre>
+document<span class="token punctuation">.</span><span class="token function">getElementsByClassName</span><span class="token punctuation">(</span><span class="token string">'box'</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>style<span class="token punctuation">.</span>background <span class="token operator">=</span> <span class="token string">'red'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="验证表单"><a href="#验证表单" class="headerlink" title="验证表单"></a>验证表单</h1><h2 id="必填（或必选）"><a href="#必填（或必选）" class="headerlink" title="必填（或必选）"></a>必填（或必选）</h2><pre><code>&lt;script&gt;
 function validateForm()&#123;
 var x=document.forms[&quot;myForm&quot;][&quot;fname&quot;].value;
@@ -452,20 +453,20 @@ if (x==null || x==&quot;&quot;)&#123;
 &lt;/form&gt;</code></pre>
 <h2 id="Email验证"><a href="#Email验证" class="headerlink" title="Email验证"></a>Email验证</h2><p>检查输入的数据是否符合电子邮件地址的基本语法，只能做些基本检查：</p>
 <p>输入的数据必须包含 @ 符号和点号(.)。同时，@ 不可以是邮件地址的首字符，并且 @ 之后需有至少一个点号</p>
-<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>myForm<span class="token punctuation">"</span></span> <span class="token attr-name">action</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>demo-form.php<span class="token punctuation">"</span></span> <span class="token attr-name">onsubmit</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>return validateForm();<span class="token punctuation">"</span></span> <span class="token attr-name">method</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>post<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>myForm<span class="token punctuation">"</span></span> <span class="token attr-name">action</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>demo-form.php<span class="token punctuation">"</span></span> <span class="token attr-name">onsubmit</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>return validateForm();<span class="token punctuation">"</span></span> <span class="token attr-name">method</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>post<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
     Email: <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>提交<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">></span></span>
 
-function validateForm()<span class="token entity" title="&#123;">&amp;#123;</span>
+function validateForm(){
   var x=document.forms["myForm"]["email"].value;
   var atpos=x.indexOf("@");
   var dotpos=x.lastIndexOf(".");
-  if (atpos&lt;1 || dotpos<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>atpos+2</span> <span class="token attr-name">||</span> <span class="token attr-name">dotpos+2</span><span class="token punctuation">></span></span>=x.length)<span class="token entity" title="&#123;">&amp;#123;</span>
+  if (atpos&lt;1 || dotpos<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>atpos+2</span> <span class="token attr-name">||</span> <span class="token attr-name">dotpos+2</span><span class="token punctuation">></span></span>=x.length){
     alert("不是一个有效的 e-mail 地址");
     return false;
-  <span class="token entity" title="&#125;">&amp;#125;</span>
-<span class="token entity" title="&#125;">&amp;#125;</span></code></pre>
+  }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
             </div>
             <hr/>
@@ -586,8 +587,9 @@ function validateForm()<span class="token entity" title="&#123;">&amp;#123;</spa
                     <div class="summary block-with-text">
                         
                             浅拷贝简单拷贝  新建一个空对象，使用for-in循环，将对象的所有属性复制到新建的空对象中
-function simpleClone1(obj)&amp;#123;
-    if(typeof obj != 'object')&amp;#
+function simpleClone1(obj){
+    if(typeof obj != 'object'){
+        retur
                         
                     </div>
                     <div class="publish-info">
@@ -699,6 +701,7 @@ instanceof操作数是一个对象，右操作数是一个构造函数。如果�
 <style type="text/css">
 code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
 </style>
+
 
 
     </div>
