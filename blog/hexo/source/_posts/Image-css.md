@@ -35,7 +35,7 @@ background-size:100% 100% ;
 
 ## animation
 
-### rainbow变色块
+### rainbow变色块 - 单纯的背景颜色或者图片变色
 
 ```html
 <style>
@@ -60,6 +60,45 @@ animation-duration:4s;}
 <div id="rect"></div>
 ```
 
-## Reference:
+### 渐变色选色工具
+
+https://mycolor.space/gradient3
+
+https://cssgradient.io/gradient-backgrounds/
+
+
+
+##  使CSS背景图片变暗
+
+```css
+.bg{
+  background: url('http://res.cloudinary.com/wisdomabioye/image/upload/v1462961781/about_vbxvdi.jpg');
+  height: 500px;
+  -webkit-background-size: cover;
+  -moz-background-size:  cover;
+  -o-background-size: cover;
+   background-size: cover;
+}
+.content{
+  background: rgba(0,0,0,0.4);
+  color: white;
+  height: inherit;
+  padding-left: 10px;
+}
+```
+
+```html
+<div class='bg'>
+   <div class='content'>
+     <p>
+        Some content Some content Some content Some content Some content Some Some content Some content Some content Some content Some content Some Some content Some content Some content Some content Some content Some Some content Some content Some content Some content Some content Some Some content Some content Some content Some content Some content Some Some content Some content Some content Some content Some content Some Some content Some content Some content Some content Some content Some Some content Some content Some content Some content Some content Some Some content Some content Some content Some content Some content Some 
+    </p> 
+  </div> 
+ </div>
+```
+
+
+
+## Reference
 
 Image css: https://www.w3schools.com/howto/howto_js_slideshow.asp
