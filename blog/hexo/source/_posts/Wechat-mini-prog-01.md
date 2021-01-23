@@ -567,6 +567,40 @@ input:active {
 </view>
 ```
 
+## button 样式
+
+原生的button会处理比较的麻烦
+
+### button大小控制
+
+1. 行内样式写法
+
+2. app.json中的 “style”: “v2” 删除 （尽量不要，隐形炸弹可能会有）
+
+###  button 的样式设置为图片
+
+```html
+<view class="detailSetting">
+	<image class="detailImg" src="{{collected ? '../../img/Liked.png' :'../../img/notLiked.png'}}"></image>
+	<button open-type="share" catchtap="share" style="left:-28rpx;width: fit-content;margin: 0;padding: 0 !important;border:none" plain="true" ><image class="detailImg" src="../../img/share.png"></image></button>
+</view>
+```
+
+```css
+.detailImg{
+    width: 80rpx;
+    height: 80rpx;
+}
+.detailSetting{
+    display: flex;
+    position: fixed; 
+    flex-direction: column; 
+    top: 60%;
+}
+```
+
+![](Wechat-mini-prog-01/image-20210124002101467.png)
+
 ## [使用weui](https://github.com/Tencent/weui)
 
 在app.wxss 中 @import 'weui.wxss';
