@@ -40,8 +40,6 @@
             <div class="brand-logo">
                 <a href="../../../../index.html" class="waves-effect waves-light">
                     
-                    <img src="../../../../medias/logo.png" class="logo-img" alt="LOGO">
-                    
                     <span class="logo-span">Savannah</span>
                 </a>
             </div>
@@ -116,8 +114,6 @@
 <div id="mobile-nav" class="side-nav sidenav">
 
     <div class="mobile-head bg-color">
-        
-        <img src="../../../../medias/logo.png" class="logo-img circle responsive-img">
         
         <div class="logo-name">Savannah</div>
         <div class="logo-desc">
@@ -534,14 +530,14 @@
 <td>触摸事件，当前变化的触摸点信息的数组</td>
 </tr>
 </tbody></table>
-<pre><code>&lt;button bindtap=&quot;alert&quot; id=&quot;btn&quot; data-name=&quot;dataNames&quot; data-age=&quot;27&quot;&gt;bindtap&lt;/button&gt;
-///js
-Page(&#123;
-  data: &#123;&#125;,
-  alert: function (event) &#123;
-    console.log(event);
-  &#125;
-&#125;)</code></pre>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token operator">&lt;</span>button bindtap<span class="token operator">=</span><span class="token string">"alert"</span> id<span class="token operator">=</span><span class="token string">"btn"</span> data<span class="token operator">-</span>name<span class="token operator">=</span><span class="token string">"dataNames"</span> data<span class="token operator">-</span>age<span class="token operator">=</span><span class="token string">"27"</span><span class="token operator">></span>bindtap<span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">></span>
+<span class="token comment" spellcheck="true">///js</span>
+<span class="token function">Page</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  data<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  alert<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>event<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="事件分类"><a href="#事件分类" class="headerlink" title="事件分类"></a>事件分类</h2><ol>
 <li><p>冒泡事件<br>a) 定义：冒泡事件：当一个组件上的事件被触发后，该事件会向父节点传递。<br>b) <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/debug/wxadoc/dev/framework/view/wxml/event.html">冒泡事件列表</a></p>
 </li>
@@ -555,22 +551,17 @@ Page(&#123;
 </li>
 </ol>
 <pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name">bindtap</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">'</span>handleTap<span class="token punctuation">'</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">'</span>start_container<span class="token punctuation">'</span></span><span class="token punctuation">></span></span>
-
  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>text</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">'</span>start<span class="token punctuation">'</span></span><span class="token punctuation">></span></span>开启小程序之旅<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>text</span><span class="token punctuation">></span></span>
-
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span> 
 
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name">catchtap</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>handleTap<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">'</span>start_container<span class="token punctuation">'</span></span><span class="token punctuation">></span></span>
-
  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>text</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">'</span>start<span class="token punctuation">'</span></span><span class="token punctuation">></span></span>开启小程序之旅<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>text</span><span class="token punctuation">></span></span>
-
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="向事件对象传参"><a href="#向事件对象传参" class="headerlink" title="向事件对象传参"></a>向事件对象传参</h3><ol>
 <li>语法： data-key=value</li>
 <li>获取: event.target.dataset.key || event.currentTarget.dataset.key</li>
 </ol>
-<h4 id="Event-target-和-event-currentTarget-的区别"><a href="#Event-target-和-event-currentTarget-的区别" class="headerlink" title="Event.target 和 event.currentTarget 的区别"></a>Event.target 和 event.currentTarget 的区别</h4><pre><code>  a) Event.target 是触发事件的对象，但不一样是绑定事件的对象，如： 事件委托，冒泡
-  b) currentTarget 触发时间的对象一定是绑定事件的对象， 没有事件委托</code></pre>
+<h4 id="Event-target-和-event-currentTarget-的区别"><a href="#Event-target-和-event-currentTarget-的区别" class="headerlink" title="Event.target 和 event.currentTarget 的区别"></a>Event.target 和 event.currentTarget 的区别</h4><p>  a) Event.target 是触发事件的对象，但不一样是绑定事件的对象，如： 事件委托，冒泡<br>  b) currentTarget 触发时间的对象一定是绑定事件的对象， 没有事件委托</p>
 <h2 id="捕获与冒泡阶段"><a href="#捕获与冒泡阶段" class="headerlink" title="捕获与冒泡阶段"></a>捕获与冒泡阶段</h2><p><code>bind</code>前缀就表示事件在冒泡阶段执行，而如果我们想事件在捕获阶段执行，可以在<code>bind</code>前面加上<code>capture</code>，即<code>capture-bind</code>表示捕获阶段执行</p>
 <p><img src="/2021/01/13/Wechat-mini-prog-02/image-20210113142641993.png"></p>
 <p><strong>bind不会阻止冒泡，添加capture前缀可以响应捕获阶段。</strong></p>
@@ -584,22 +575,22 @@ Page(&#123;
     inner view
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre><code>///js
-Page(&#123;
-  data: &#123;&#125;,
-  tap1: function (event) &#123;
-    console.log(&#39;tap1&#39;);
-  &#125;,
-  tap2: function (event) &#123;
-    console.log(&#39;tap2&#39;);
-  &#125;,
-  tap3: function (event) &#123;
-    console.log(&#39;tap3&#39;);
-  &#125;,
-  tap4: function (event) &#123;
-    console.log(&#39;tap4&#39;);
-  &#125;,
-&#125;)</code></pre>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token comment" spellcheck="true">///js</span>
+<span class="token function">Page</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  data<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  tap1<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>event<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'tap1'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  tap2<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>event<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'tap2'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  tap3<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>event<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'tap3'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  tap4<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>event<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'tap4'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><strong>结果是 2-4-3-1</strong></p>
 <h2 id="阻止冒泡"><a href="#阻止冒泡" class="headerlink" title="阻止冒泡"></a>阻止冒泡</h2><p>将<code>bind</code>替换为<code>catch</code>事件了，<code>catch</code>也支持两种写法<code>catch与catch:</code></p>
 <h3 id="例子-只显示子区域"><a href="#例子-只显示子区域" class="headerlink" title="例子 - 只显示子区域"></a>例子 - 只显示子区域</h3><pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span>
