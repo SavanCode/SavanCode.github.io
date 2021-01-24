@@ -77,6 +77,8 @@ Page({
 </view>
 ```
 
+详细请看多个api接口请求数据方法 - 封装请求功能函数
+
 ## image
 
  第一种：加载本地图片，只要是路径没问题就会正常显示
@@ -130,7 +132,7 @@ data:{
 
 ### navigator
 
-#### redurect
+#### redirect
 
 ```html
 <navigator url="/pages/about/about" open-type="redirect">跳到关于页面(redirect)</navigator>
@@ -196,7 +198,7 @@ home.wxml
 
 home.js
 
-```
+```js
 handlePushAbout(){
     wx.navigateTo({
       url: '/pages/about/about?key=value',
@@ -208,7 +210,7 @@ handlePushAbout(){
 
 about.wxml
 
-```
+```html
 <button bind:tap="backHome">返回主页</button>
 ```
 
@@ -221,10 +223,6 @@ backHome(){
     })
   }
 ```
-
-
-
-
 
 ## 页面跳转数据传输
 
@@ -276,7 +274,7 @@ onLoad:function(options){
 
 about页面退出时, home页面message数据会被改变 home.js
 
-```
+```js
 data:{
     message: '本身内容'
 }
@@ -295,7 +293,61 @@ about.js
   }
 ```
 
-## 页面刷新 onPullDownRefresh
+## 页面刷新
+
+### 当前页面刷新
+
+#### onRefresh
+
+```js
+/**
+ * 刷新页面，页面设置点击刷新事件
+ */
+onRefresh: function() {
+  this.onLoad()
+  this.onReady()
+}
+```
+
+注意：如果onLoad函数中有其他页面传过来的参数，建议放setData中，以免刷新的时候获取不到值的情况出现，一般不会遗失参数的！
+
+#### onPullDownRefresh
+
+```js
+/*页面相关事件处理函数--监听用户下拉动作*/
+onPullDownRefresh: function() {
+	// 在此方法中实现数据加载的逻辑
+}
+
+//此方法需要在当前页面的json中设置如下参数，开启下拉刷新
+{
+  "enablePullDownRefresh": true
+} 
+```
+
+此种方法刷新，并不会重新加载页面，或者刷新数据，需要手动调用onLoad函数或加载数据函数，重新动态载入数据
+
+### 返回上一页刷新
+
+充分利用页面隐藏和显现的函数
+
+```js
+/**
+ * 生命周期函数--监听页面显示
+ */
+onShow: function() {
+	// 当返回当前页面的时候，会自动调用这个参数，则实现自动返回刷新
+	this.onLoad()
+    this.onReady()
+},
+/**
+ * 生命周期函数--监听页面隐藏
+ */
+onHide: function() {
+	// 此函数是当前页面隐藏挑战到其他页面的隐含函数，可以设置全局变量之类
+	app.globalData.NetWorkType = true;
+},
+```
 
 ## [地图](https://developers.weixin.qq.com/miniprogram/dev/component/map.html)
 
@@ -347,8 +399,6 @@ markers: [{
 
 ### 授权获取用户信息（头像、昵称）- file: newteo
 
-demo 是否授权 https://segmentfault.com/a/1190000023682165
-
 ### [首次登陆获取](https://developers.weixin.qq.com/miniprogram/dev/component/button.html)
 
 1. Button 组件设置 open-type 属性为 getUserInfo
@@ -356,15 +406,20 @@ demo 是否授权 https://segmentfault.com/a/1190000023682165
 3. 设置后首次登陆点击 button 可以弹出授权窗口
 4. 注意： 授权的动作只发生一次，除非清除缓存，点击 butotn 授权一次之后再点击失效，不会弹出授权窗口
 
-### [授权之后获取基本信息](https://developers.weixin.qq.com/miniprogram/dev/api/open-api/user-info/wx.getUserInfo.html)
+![](Wechat-mini-prog-03/image-20210124165949062.png)
 
-`wx.getUserInfo()`
+### [授权之后获取基本信息 - 再登陆](https://developers.weixin.qq.com/miniprogram/dev/api/open-api/user-info/wx.getUserInfo.html)
+
+ 用button事件之后，在onload函数中 `wx.getUserInfo()`，对于已经授权过的，会直接提供
+
+所以这里注意在onload中的wx.getUserInfo()中 对于success的，直接要setdata （官方文档有例子）
+
 
 ### 利用opendata 获取用户info
 
 ```html
 <view class="userinfo">  
-      <view class="userinfo-avatar">
+      <view class="userin fo-avatar">
         <open-data type="userAvatarUrl"></open-data>
       </view>
        <open-data type="userNickName"></open-data>

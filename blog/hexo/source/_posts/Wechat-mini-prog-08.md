@@ -1,5 +1,5 @@
 ---
-title: Wechat-mini-prog-08 微信小程序具体功能实现
+title: Wechat-mini-prog-08 微信小程序分享功能实现
 top: false
 cover: false
 toc: true
@@ -7,8 +7,8 @@ mathjax: true
 date: 2021-01-23 22:44:50
 password:
 summary:
-tags:
-categories:
+tags: WechatMini Program
+categories: WechatMini Program
 ---
 
 ## 分享功能

@@ -242,6 +242,14 @@ tabBar
 
 ![](Wechat-mini-prog-02/image-20210113220306094.png)
 
+## button的触发事件
+
+官方有给出非常多的互动事件，多数好用而且不用自己写。（简单的有 loading效果 摁住多少秒；强大的有客服消息回调 打开授权设置页后回调等等...(*￣０￣ *)ノ）
+可以多多探索 https://developers.weixin.qq.com/miniprogram/dev/component/button.html
+
+### open-type （重点）
+getUserInfo	获取用户信息，可以从bindgetuserinfo回调中获取到用户信息
+
 ## 微信小程序正则
 
 ```
@@ -338,36 +346,127 @@ icon: true
 </view>
 ```
 
-## 文字段落的限制显示
+## [轮播图](https://developers.weixin.qq.com/miniprogram/dev/component/swiper.html)
 
-### 显示三行
+练习
+
+```html
+<swiper
+ indicator-dots="true"
+ autoplay="true"
+ interval="2000"
+>
+	<swiper-item>
+		<image src="../../images/banner1.png"></image>
+	</swiper-item>
+	<swiper-item>
+		<image src="../../images/banner2.jpg"></image>
+	</swiper-item>
+	<swiper-item>
+		<image src="../../images/banner3.png"></image>t
+	</swiper-item>
+</swiper>
+```
+
+```css
+swiper {
+  width: 100%;
+  height: 500rpx;
+}
+swiper image {
+  width: 100%;
+  height: 500rpx;
+}
+```
+
+## [微信小程序 scroll-view 滚动视图](https://developers.weixin.qq.com/miniprogram/dev/component/scroll-view.html)
+
+![](Wechat-mini-prog-02/image-20210124202130657.png)
+
+```html
+<scroll-view
+	 class="albumScroll"
+	 enable-flex
+	 scroll-x
+	 bindscroll="scroll"
+	>
+		<!--此处重复多个 -->
+		<view
+		 class="album"
+		 hover-class="none"
+		 hover-stop-propagation="false"
+		>
+			<image
+			 src="../../images/icon_head.png"
+			 lazy-load="false"
+			 binderror=""
+			 bindload=""
+			>
+			</image>
+			<text selectable="false" space="false" decode="false">
+				专辑介绍专辑介绍专辑介绍专辑介绍专辑介绍专辑介绍专辑介绍专辑介绍专辑介绍专辑介绍专辑介绍专辑介绍专辑介绍专辑介绍专辑介绍专辑介绍
+			</text>
+		</view> 
+	</scroll-view>
+```
+
+```css
+.albumScroll{
+  display: flex;
+}
+.album{
+  width: 120rpx;
+  display: flex;
+  flex-direction: column;
+  margin-right: 30rpx;
+}
+.album > image{
+  width: 120rpx; 
+  height: 120rpx;
+}
+.album > text{
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp:3;
+  overflow: hidden;
+  text-overflow:ellipsis;/*这行以上必要*/
+  font-size: x-small;
+}
+```
+
+
+
+
+## 文字省略显示（文字溢出隐藏）
+
+### 文字显示三行
 
 ```css
 .note_item text{
     display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp:3;
+    overflow: hidden;
+    text-overflow:ellipsis;/*这行以上必要*/
     font-size:28rpx;
     color:#000000;
     line-height: 40rpx;
     word-break: break-all;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp:3;
-    overflow: hidden;
-    text-overflow:ellipsis;
 }
 ```
 
-### 显示单行
+### 文字显示单行
 
 ```css
 .note2_item text{
-    display: block;
+    display: block;/*重要的*/
+    overflow: hidden;
+    white-space: nowrap;/* 换行不显示*/
+    text-overflow:ellipsis;/*这行以上必要*/
     font-size:28rpx;
     color:#000000;
     line-height: 40rpx;
     height: 120rpx;
-    overflow: hidden;
-    white-space: nowrap;/* 换行不显示*/
-    text-overflow:ellipsis;
 }
 ```
 
@@ -390,7 +489,7 @@ text{
 ```
 
 
-## 常用API
+## 微信自带常用API
 
 1. 界面交互
 a) 显示消息提示框: wx.showToast() 
