@@ -117,6 +117,39 @@ Page({
   a) Event.target 是触发事件的对象，但不一样是绑定事件的对象，如： 事件委托，冒泡
   b) currentTarget 触发时间的对象一定是绑定事件的对象， 没有事件委托
 
+> 也就是 ：
+> 如果你在父容器上绑定了事件并传参，当你点击父容器时，事件绑定的组件和触发事件的源组件是同一个元素，所以currentTarget 、target 都可以拿到参数，但是当你点击子元素时，target 就不是事件绑定的组件了，所以拿不到参数。
+> 由于事件冒泡的机制，父容器上绑定的事件依然可以触发，所以currentTarget 依然可以拿到参数。
+
+#### 传多个参数 vs 传一个参数
+
+传递的数据比较多，通过**dataset**携带参数信息。如果只有一个参数，可以通过**id**来传递。
+
+```html
+<button bindtap='clickMe' data-id='1'>点击</button>
+```
+
+```js
+clickMe:function(e){
+  var id = e.currentTarget.dataset.id//这里用target也可以
+  console.log(id);
+},
+```
+
+
+```html
+<button bindtap='clickMe' id='1'>点击</button>
+```
+
+```js
+clickMe:function(e){
+  var id = e.currentTarget.id//这里用target也可以
+  console.log(id);
+},
+```
+
+> 其他传参：网页url直接携带（onload提取），表单提交，app.js全局变量
+
 
 ## 捕获与冒泡阶段
 
@@ -348,6 +381,8 @@ icon: true
 
 ## [轮播图](https://developers.weixin.qq.com/miniprogram/dev/component/swiper.html)
 
+> `<swiper>`以及`<scroll-view>` 的选择上，`<swiper>`是滑动是一滑一个，`</scroll-view>`会滑动更多
+
 练习
 
 ```html
@@ -434,7 +469,7 @@ swiper image {
 }
 ```
 
-
+如果想用swiper弄出前后都可以一直转动的
 
 
 ## 文字省略显示（文字溢出隐藏）
@@ -451,7 +486,9 @@ swiper image {
     font-size:28rpx;
     color:#000000;
     line-height: 40rpx;
-    word-break: break-all;
+    word-break: break-all;/*选择*/
+    word-wrap: break-word; 
+	white-space: normal !important;
 }
 ```
 
@@ -488,6 +525,7 @@ text{
 }
 ```
 
+> 将height设置为line-height的整数倍，防止超出的文字露出
 
 ## 微信自带常用API
 

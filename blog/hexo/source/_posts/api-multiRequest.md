@@ -11,6 +11,9 @@ tags: WechatMini Program
 categories: WechatMini Program
 ---
 
+> 看Json数据 pretty 网站 https://jsonformatter.org/
+>
+
 ## 封装请求函数
 
 这里主要是讲面对对于同个接口多个请求的时候，该怎么办
@@ -98,3 +101,35 @@ git clone ----> npm install —> node app.js的方式运行调试
 比如上面的例子
 
 ![](api-multiRequest/image-20210124223220969.png)
+
+## 一次请求多条数据 - 一个array
+
+例子：
+
+比如我现在要请求下面这个的数据中的tracks以及 name
+
+![](api-multiRequest/image-20210125142130291.png)
+
+实际上就是网易云本地跑起来 （http://localhost:3000/top/list?idx=6） 网上接口没法放上来 😵
+
+请求处
+
+```js
+      //musicRankList 这里我们需要请求5次
+      let index=0;
+      let result=[];
+      while(index<5){ 
+        let musicRank= await request('/top/list',{idx:index++});
+        let topListItem={name:musicRank.playlist.name,tracks:musicRank.playlist.tracks.slice(0,3)}
+        result.push(topListItem);
+        this.setData({
+          topList:result
+        })}
+        console.log("result",result)
+```
+
+![](api-multiRequest/image-20210125142521644.png)
+
+请求结果就出来啦
+
+> 这里实际上，如果要提升用户体验，就要读取的时候就渲染，不用等到最后完全渠道之后再更新
