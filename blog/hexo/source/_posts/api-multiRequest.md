@@ -133,3 +133,46 @@ git clone ----> npm install —> node app.js的方式运行调试
 请求结果就出来啦
 
 > 这里实际上，如果要提升用户体验，就要读取的时候就渲染，不用等到最后完全渠道之后再更新
+
+## 请求cookie 保存cookie
+
+```js
+//request页面的时候
+import config from './config'
+export default  (url, data={}, method='GET') => {
+  return new Promise((resolve, reject) => {
+    // 1. new Promise初始化promise实例的状态为pending
+    wx.request({
+      url: config.host + url,
+      data,
+      method,
+      header: {
+        cookie: wx.getStorageSync('cookies')?wx.getStorageSync('cookies').find(item => item.indexOf('MUSIC_U') !== -1):''
+      },
+      success: (res) => {
+        // console.log('请求成功: ', res);
+        if(data.isLogin){// 登录请求
+          // 将用户的cookie存入至本地
+          wx.setStorage({
+            key: 'cookies',
+            data: res.cookies
+          })
+        }
+        resolve(res.data); // resolve修改promise的状态为成功状态resolved
+      },
+      fail: (err) => {
+        // console.log('请求失败: ', err);
+        reject(err); // reject修改promise的状态为失败状态 rejected
+      }
+    })
+  })
+  
+}
+```
+
+> 这里一定要注意这里的`indexOf('MUSIC_U')`, 只是为了找到有效的标识符
+
+```
+//注意 这次
+```
+

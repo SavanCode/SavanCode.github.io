@@ -419,6 +419,7 @@ swiper image {
 ![](Wechat-mini-prog-02/image-20210124202130657.png)
 
 ```html
+<!-- 一定不要忘记enable-flex-->
 <scroll-view
 	 class="albumScroll"
 	 enable-flex
@@ -448,6 +449,7 @@ swiper image {
 ```css
 .albumScroll{
   display: flex;
+  white-space: nowrap; /*文字长也不换行*/
 }
 .album{
   width: 120rpx;

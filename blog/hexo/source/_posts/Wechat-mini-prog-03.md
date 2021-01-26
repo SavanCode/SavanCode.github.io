@@ -128,6 +128,10 @@ data:{
 
 ## 页面跳转
 
+> 注意：跳转回去tabbar页面 所以只能用switchtabbar 或者relaunch 
+>
+> 这里注意 跳转中relaunch会重新执行了onload 其他就是onshow
+
 页面两种跳转方式 navigator 和 wxAPI
 
 ### navigator
@@ -138,11 +142,11 @@ data:{
 <navigator url="/pages/about/about" open-type="redirect">跳到关于页面(redirect)</navigator>
 ```
 
-关闭当前页面, 跳到关于页面, 不允许跳转到tabbar页面, 不能反回, 安卓手机反回直接退出小程序
+关闭当前页面, 跳到关于页面, **不允许跳转到tabbar页面, 不能反回**, 安卓手机反回直接退出小程序
 
 #### switchTab
 
-switchTab：跳转到 tabBar 页面，并关闭其他所有非 tabBar 页面。（需要在tabBar中定义的）
+switchTab：**跳转到 tabBar 页面，并关闭其他所有非 tabBar 页面**。（需要在tabBar中定义的）
 
 ```html
 <navigator url="/pages/detail/detail" open-type="switchTab">跳到详情页面(switchTab)</navigator>
@@ -162,7 +166,7 @@ wx.switchTab({
 
 #### reLaunch
 
-关闭所有的页面，打开应用中某个页面。（直接展示某个页面，并且可以跳转到tabBar页面） 效果与redirect类似
+关闭所有的页面，打开应用中某个页面。（直接展示某个页面，并且**可以跳转到tabBar页面**） 效果与redirect类似
 
 #### navigateBack
 
@@ -292,6 +296,86 @@ about.js
     })
   }
 ```
+
+## 数据提交
+
+### form 形式
+
+```html
+  <form bindsubmit="formSubmit" bindreset="formReset">   
+  <input name="phone" placeholder="手机号" />  
+  <view class="section__title">密码</view>  
+  <input name="pwd" placeholder="密码" password/>  
+  <view class="btn-area">  
+  <button formType="submit">提交</button>  
+  <button formType="reset">重置</button>  
+  </view>  
+  </form>  
+  <view wx:if="{{isSubmit}}">  
+  {{warn ? warn : "是否公开信息："+isPub+"，手机号："+phone+"，密码："+pwd+"，性别："+sex}}  
+  </view> 
+```
+
+```js
+  formSubmit: function (e) {  
+    console.log('form发生了submit事件，携带数据为：', e.detail.value);  
+    let { phone, pwd, isPub, sex } = e.detail.value;  
+  if (!phone || !pwd) {  
+    this.setData({  
+    warn: "手机号或密码为空！",  
+    isSubmit: true  
+  })  
+    return;  
+  }  
+  },  
+  formReset: function () {  
+    console.log('form发生了reset事件')  
+  }  
+```
+
+
+### 直接用bindtap事件 传递数据
+
+
+```html
+	<view class="input-section">
+		<view class="input-item">
+			<text class="tit">手机号码</text>
+			<input
+			 type="text"
+			 placeholder="请输入手机号码"
+			 data-test="abc"
+			 data-type="phone"
+			 id="phone"
+			 bindinput="handleInput"
+			/>
+		</view>
+		<view class="input-item">
+			<text class="tit">密码</text>
+			<input
+			 type="password"
+			 placeholder="请输入密码"
+			 data-test="abc"
+			 data-type="password"
+			 id="password"
+			 bindinput="handleInput"
+			/>
+		</view>
+	</view>
+<button class="confirm-btn" bindtap="login">登录</button>
+```
+
+```js
+  handleInput(event){
+      console,log(event.currentTarget)//这里 test type都会的得到
+    // let type = event.currentTarget.id;// id传值 取值： phone || password 注意这是分别的
+    let type = event.currentTarget.dataset.type; // data-key=value //这个是同时
+    this.setData({
+      [type]: event.detail.value
+    })
+  },
+```
+
 
 ## 页面刷新
 

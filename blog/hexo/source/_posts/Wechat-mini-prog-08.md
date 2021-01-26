@@ -17,7 +17,7 @@ categories: WechatMini Program
 
 在设置完上面的小程序JS部分后，有时会需要在按钮上触发分享好友功能，这里涉及到微信小程序按钮自带的open-type 的合法值，可参考微信[官方文档](https://developers.weixin.qq.com/miniprogram/dev/component/button.html)
 
-### 效果1
+### 效果1 - 分享当前缩略图
 
 ```html
 <button  open-type="share">分享好友</button>
@@ -49,7 +49,7 @@ Page({
 
 ![](Wechat-mini-prog-08/image-20210123225245278.png)
 
-### 效果2
+### 效果2 - button & onShareAppMessage
 
 > 但是这里一定注意！ 他这里要设置一下catch事件，不然会有冒泡
 
@@ -69,9 +69,7 @@ onShareAppMessage: function(){
 
 ![](Wechat-mini-prog-08/image-20210123224905125.png)
 
-### 效果3
-
-在onload函数中显示
+### 效果3 - 在onload函数中显示
 
 ```js
 onLoad: function (options) {
@@ -84,3 +82,26 @@ onLoad: function (options) {
 ```
 
 ![](Wechat-mini-prog-08/image-20210123225624188.png)
+
+### 效果4 - 右上角菜单分享 -自定义
+
+```js
+//当你有两个分享的时候 
+onShareAppMessage: function ({from}) {
+    console.log(from);
+    if(from === 'button'){
+      return {
+        title: '来自button的转发',
+        page: '/pages/video/video',
+        imageUrl: '/static/images/nvsheng.jpg'
+      }
+    }else {
+      return {
+        title: '来自menu的转发',
+        page: '/pages/video/video',
+        imageUrl: '/static/images/nvsheng.jpg'
+      }
+    } 
+  }
+```
+

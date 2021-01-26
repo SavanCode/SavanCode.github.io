@@ -99,3 +99,13 @@ container 寬度維持 1000px，每個 box 寬度改爲 400px，總共 1200px，
 ## Demo：
 
 <a href="/demo/quiz/html/flex.html">链接到demo1</a>
+
+## 拓展一个css的灵活计算 cal()
+
+```css
+/* calc: 可以动态计算css的宽高， 运算符左右两侧必须加空格，否则计算会失效 */
+/* 视口单位： vh vw  1vh = 1%的视口高度  1vw = 1%的视口宽度*/
+height: calc(100vh - 152rpx);
+/*height: calc(100vh - 100rpx); 用来测试页面上拉触底*/
+```
+

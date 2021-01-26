@@ -81,6 +81,16 @@ var lang = "java";
 lang = lang + "script"; //'javascript'
 ```
 
+## string数字转数字
+
+```js
+a='3';
+console.log(a*1);
+console.log(a>>>0);//转换为10进制 2就是换成2进制
+```
+
+
+
 ## string内容操作函数 toString()、toLocaleString()、valueOf() 
 
 ```js
