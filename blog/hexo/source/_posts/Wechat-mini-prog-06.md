@@ -85,7 +85,11 @@ categories: WechatMini Program
 
 ![](Wechat-mini-prog-06/image-20210127210808925.png)
 
-### 可以先看看自己安装的时候 有没有加上 `--production`
+### 先执行 npm init  一直回车
+
+ 初始化仓库，可以看到package.json文件
+
+### 然后执行`npm install --production`
 
 ### `project.config.json`添加配置
 
@@ -97,7 +101,7 @@ categories: WechatMini Program
     "packNpmManually": true,
     "packNpmRelationList": [
       {
-        "packageJsonPath": "/package.json",//路径自己设置一下
+        "packageJsonPath": "/package.json",
         "miniprogramNpmDistDir": ""
       }
     ]
@@ -105,7 +109,7 @@ categories: WechatMini Program
 }
 ```
 
-这里的如果还没好，请到自己的node_module/包的位置里面进行npm install- 这样构建应该就是可以成功的
+点击 工具 => 构建npm， 使用npm模块
 
 
 
