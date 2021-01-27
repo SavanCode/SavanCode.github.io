@@ -111,6 +111,35 @@ categories: WechatMini Program
 
 点击 工具 => 构建npm， 使用npm模块
 
+> 但是！！！！ 如果出现了一些奇怪错误 直接导致运行不了 um。。。╮（╯＿╰）╭ 我也遇到了 明明运行成功，但是后面重开项目时候 直接项目挂了
+>
+
+### 小程序 format time
+
+```js
+function nformatTime(number, format) {
+
+  var formateArr = ['Y', 'M', 'D', 'h', 'm', 's'];
+  var returnArr = [];
+
+  var date = new Date(number * 1000);
+  returnArr.push(date.getFullYear());
+  returnArr.push(formatNumber(date.getMonth() + 1));
+  returnArr.push(formatNumber(date.getDate()));
+
+  returnArr.push(formatNumber(date.getHours()));
+  returnArr.push(formatNumber(date.getMinutes()));
+  returnArr.push(formatNumber(date.getSeconds()));
+
+  for (var i in returnArr) {
+    format = format.replace(formateArr[i], returnArr[i]);
+  }
+  return format;
+}
+```
+
+
+
 
 
 ### 其他好用的npm包
