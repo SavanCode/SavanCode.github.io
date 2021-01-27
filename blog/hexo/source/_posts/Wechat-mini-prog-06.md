@@ -65,7 +65,7 @@ categories: WechatMini Program
 
    他的官方写的wxml，我不知道为啥，反正我用了它不显示╮(╯▽╰)╭
 
-## 消息订阅发布
+## 消息订阅发布（页面数据传输）
 
 1. 使用第三方库: pubsub-js
 
@@ -80,6 +80,32 @@ categories: WechatMini Program
    c) 发布消息: PubSub.publish(‘eventName’, data)
 
    d) 取消订阅: PubSub.unsubscribe(‘eventName’)
+
+## 常见错误
+
+![](Wechat-mini-prog-06/image-20210127210808925.png)
+
+### 可以先看看自己安装的时候 有没有加上 `--production`
+
+### `project.config.json`添加配置
+
+```json
+{
+  ...
+  "setting": {
+    ...
+    "packNpmManually": true,
+    "packNpmRelationList": [
+      {
+        "packageJsonPath": "/package.json",//路径自己设置一下
+        "miniprogramNpmDistDir": ""
+      }
+    ]
+  }
+}
+```
+
+这里的如果还没好，请到自己的node_module/包的位置里面进行npm install- 这样构建应该就是可以成功的
 
 
 

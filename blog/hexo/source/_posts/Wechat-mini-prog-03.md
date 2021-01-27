@@ -297,6 +297,10 @@ about.js
   }
 ```
 
+## 传递参数方式总结
+
+https://segmentfault.com/a/1190000008895441
+
 ## 数据提交
 
 ### form 形式
