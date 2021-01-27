@@ -121,3 +121,19 @@ br 自带 clear 属性，clear 属性有 left、right 和 all 三个属性值可
 基本layout demo：
 
 https://1linelayouts.glitch.me/
+
+## 布局易错点
+
+### 页面长度过长 - 有用relative
+
+<img src="Layout-display、position、float详解/image-20210127141058666.png" style="zoom:50%;" />
+
+乍一眼，好像挺正常，但是实际上看具体的
+
+![](Layout-display、position、float详解/image-20210127141159384.png)
+
+Page 是最外面的布局，哎 居然比最外面标签还长，这里出现的话，就是不管你再怎么调整最外面的page 或者 wapper 标签页是不管用的
+
+我这里练习的问题是： 
+
+这个磁盘的img这个外层div 是relative的  & 上面的指针也是relative 这里就会造成布局问题

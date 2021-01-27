@@ -99,6 +99,28 @@ https://cssgradient.io/gradient-backgrounds/
 
 
 
+## 背景虚化
+
+```html
+<image class="bg" src="{{songContent.picUrl}}" />
+```
+
+```css
+.bg{
+  z-index: -100;
+  position: absolute;
+  filter: blur(35px);
+  width: 100%;
+  height: 100%;
+  -webkit-filter:blur(15px);
+  -moz-filter:blur(15px);
+  -o-filter:blur(15px);
+  -ms-filter:blur(15px);
+}
+```
+
+
+
 ## Reference
 
 Image css: https://www.w3schools.com/howto/howto_js_slideshow.asp

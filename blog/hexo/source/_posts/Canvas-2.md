@@ -1,5 +1,5 @@
 ---
-title: Canvas 2
+title: Canvas 2 HTML Graphics
 top: false
 cover: false
 toc: true
@@ -10,8 +10,6 @@ summary:
 tags: css&html
 categories: Front-end
 ---
-
-HTML Graphics - canvas 2
 
 ## 暂存
 
@@ -83,6 +81,9 @@ var ctx = canvas.getContext("2d");
   setTransform()：将当前的变换矩阵设置为默认的单位矩阵，然后在单位矩阵之上运用用户指定的变换。
 
   resetTransform()：重置为单位矩阵
+- tranform origin
+
+  https://juejin.cn/post/6844903780937367565
 
 ## 渐变
 
@@ -315,3 +316,4 @@ W3school <https://www.w3schools.com/tags/ref_canvas.asp>
 
 Canvas Tutorial  http://tutorials.jenkov.com/html5-canvas/index.html 
 
+[transform 解释](https://juejin.cn/post/6844903780937367565)
