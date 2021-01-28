@@ -551,7 +551,16 @@ https://developers.weixin.qq.com/community/develop/doc/0004e229464d78c1d557ed5e3
 
 这里需要 appid 跟 secret
 
-这里没有实际的操作 下一个云函数部分有详细介绍 如何获得openid
+```
+//这种获得的不是唯一标识
+getOpenId(){
+wx.login({
+	success:(res)=>{
+		console.log(res)
+	}
+ })
+}
+```
 
 
 

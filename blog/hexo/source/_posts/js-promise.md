@@ -863,7 +863,7 @@ Promise 在resolve语句后面，再抛出错误，不会被捕获，等于没�
 
 ```js
 // 使用async await 替代 Promise
-const asyncFunction = async (params) => {
+const async Function = async (params) => {
     try {
         const data1 = await get$(params);
         const data2 = await get$(data1);
