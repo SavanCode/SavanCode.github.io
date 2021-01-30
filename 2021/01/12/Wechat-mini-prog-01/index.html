@@ -40,8 +40,6 @@
             <div class="brand-logo">
                 <a href="../../../../index.html" class="waves-effect waves-light">
                     
-                    <img src="../../../../medias/logo.png" class="logo-img" alt="LOGO">
-                    
                     <span class="logo-span">Savannah</span>
                 </a>
             </div>
@@ -116,8 +114,6 @@
 <div id="mobile-nav" class="side-nav sidenav">
 
     <div class="mobile-head bg-color">
-        
-        <img src="../../../../medias/logo.png" class="logo-img circle responsive-img">
         
         <div class="logo-name">Savannah</div>
         <div class="logo-desc">
@@ -461,7 +457,7 @@
 </blockquote>
 <p><strong>Page()的参数也是Object类型。</strong><br><strong>onLoad</strong><br>监听页面加载<br>页面刚开始加载的时候触发。只会调用一次。</p>
 <p><strong>onReady</strong><br>监听页面初次渲染完成<br>类似于html的 onReady。只会调用一次。</p>
-<p><strong>onShow</strong><br>监听页面显示<br>页面显示的时候触发，比如页面切换</p>
+<p><strong>onShow</strong><br>监听页面显示 执行多次<br>页面显示的时候触发，比如页面切换</p>
 <p><strong>onHide</strong><br>监听页面隐藏</p>
 <p><strong>onUnload</strong><br>监听页面卸载<br>在 redirectTo 或 navigateBack 的时候调用</p>
 <p><strong>onPullDownRefresh</strong><br>监听用户下拉动（拉动刷新）</p>
@@ -472,8 +468,14 @@
 <p><strong>Page.prototype.setData()</strong><br>Page的函数 setData() 用于页面初始数据data的修改。如果该数据绑定到了视图层wxml中展示，那么无须刷新，视图层就会反映出修改。</p>
 <p>对于data的修改，只能使用 setData() ，不能直接通过 this.data 进行修改。数据量限制在 1024 kb以内。</p>
 <p><strong>getCurrentPages()</strong><br>,获取当前页面栈的实例，以数组形式按栈的顺序给出，第一个元素为首页，最后一个元素为当前页面</p>
-<p>页面运行 - “ 只有 onLoad onShow onReady”</p>
 <h3 id="生命周期图"><a href="#生命周期图" class="headerlink" title="生命周期图"></a>生命周期图</h3><p><img src="/2021/01/12/Wechat-mini-prog-01/image-20210122211256175.png"></p>
+<p><strong>理解</strong><br>左边显示；右边可看作逻辑部分<br>图片主要展示数据是怎么被请求，被展示，逻辑处理上的函数变化</p>
+<blockquote>
+<p>拓展理解（加入部分的页面跳转理解）：</p>
+<p><em>这里主要是对于跳转页面的数据刷新或者请求会有帮助</em></p>
+<p>当用wx.reLaunch,主页面进入子页面 运行onUnload   子页面返回主页面会运行 onLoad -&gt; onShow -&gt;onReady</p>
+<p>当时用的是 wx.navigateTo,主页面进入子页面 运行onHide  子页面返回主页面运行 onshow</p>
+</blockquote>
 <h2 id="微信小程序项目结构"><a href="#微信小程序项目结构" class="headerlink" title="微信小程序项目结构"></a>微信小程序项目结构</h2><blockquote>
 <p>小程序由配置代码JSON文件、模板代码 WXML 文件、样式代码 WXSS文件以及逻辑代码 JavaScript文件组成.</p>
 </blockquote>
@@ -770,14 +772,37 @@ input:active {
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>flex-view-item<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>c3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
+<p>网页高度设置，注意 page的高度设置，在app.wxss中。</p>
+</blockquote>
+<h2 id="button-样式"><a href="#button-样式" class="headerlink" title="button 样式"></a>button 样式</h2><p>原生的button会处理比较的麻烦</p>
+<h3 id="button大小控制"><a href="#button大小控制" class="headerlink" title="button大小控制"></a>button大小控制</h3><ol>
+<li><p>行内样式写法</p>
+</li>
+<li><p>app.json中的 “style”: “v2” 删除 （尽量不要，隐形炸弹可能会有）</p>
+</li>
+</ol>
+<h3 id="button-的样式设置为图片"><a href="#button-的样式设置为图片" class="headerlink" title="button 的样式设置为图片"></a>button 的样式设置为图片</h3><pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>detailSetting<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>image</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>detailImg<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>{{collected ? <span class="token punctuation">'</span>../../img/Liked.png<span class="token punctuation">'</span> :<span class="token punctuation">'</span>../../img/notLiked.png<span class="token punctuation">'</span>}}<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>image</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">open-type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>share<span class="token punctuation">"</span></span> <span class="token attr-name">catchtap</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>share<span class="token punctuation">"</span></span><span class="token style-attr language-css"><span class="token attr-name"> <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">left</span><span class="token punctuation">:</span>-<span class="token number">28</span>rpx<span class="token punctuation">;</span><span class="token property">width</span><span class="token punctuation">:</span> fit-content<span class="token punctuation">;</span><span class="token property">margin</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span><span class="token property">padding</span><span class="token punctuation">:</span> <span class="token number">0</span> <span class="token important">!important</span><span class="token punctuation">;</span><span class="token property">border</span><span class="token punctuation">:</span>none</span><span class="token punctuation">"</span></span> <span class="token attr-name">plain</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span> <span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>image</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>detailImg<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>../../img/share.png<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>image</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-css"><code class="language-css"><span class="token selector"><span class="token class">.detailImg</span></span><span class="token punctuation">{</span>
+    <span class="token property">width</span><span class="token punctuation">:</span> <span class="token number">80</span>rpx<span class="token punctuation">;</span>
+    <span class="token property">height</span><span class="token punctuation">:</span> <span class="token number">80</span>rpx<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector"><span class="token class">.detailSetting</span></span><span class="token punctuation">{</span>
+    <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
+    <span class="token property">position</span><span class="token punctuation">:</span> fixed<span class="token punctuation">;</span> 
+    <span class="token property">flex-direction</span><span class="token punctuation">:</span> column<span class="token punctuation">;</span> 
+    <span class="token property">top</span><span class="token punctuation">:</span> <span class="token number">60%</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="/2021/01/12/Wechat-mini-prog-01/image-20210124002101467.png"></p>
 <h2 id="使用weui"><a href="#使用weui" class="headerlink" title="使用weui"></a><a target="_blank" rel="noopener" href="https://github.com/Tencent/weui">使用weui</a></h2><p>在app.wxss 中 @import ‘weui.wxss’;</p>
 <p>其他page就可以使用了</p>
 <h2 id="项目配置文件-app-json"><a href="#项目配置文件-app-json" class="headerlink" title="项目配置文件 app.json"></a>项目配置文件 app.json</h2><p>顶层的<code>app.json</code>文件用于整个项目的配置，对于所有页面都有效。</p>
 <p>除了前面提到的必需的<code>pages</code>属性，<code>app.json</code>文件还有一个<a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html#window"><code>window</code>属性</a>，用来设置小程序的窗口。<code>window</code>属性的值是一个对象，其中有三个属性很常用。</p>
 <blockquote>
-<p><code>navigationBarBackgroundColor</code>：导航栏的颜色，默认为<code>#000000</code>（黑色）。</p>
-<p><code>navigationBarTextStyle</code>：导航栏的文字颜色，只支持<code>black</code>（黑色）或<code>white</code>（白色），默认为<code>white</code>。</p>
-<p><code>navigationBarTitleText</code>：导航栏的文字，默认为空。</p>
+<p><code>navigationBarBackgroundColor</code>：导航栏的颜色，默认为<code>#000000</code>（黑色）。<br><code>navigationBarTextStyle</code>：导航栏的文字颜色，只支持<code>black</code>（黑色）或<code>white</code>（白色），默认为<code>white</code>。<br><code>navigationBarTitleText</code>：导航栏的文字，默认为空。</p>
 </blockquote>
 <h2 id="networkTimeout"><a href="#networkTimeout" class="headerlink" title="networkTimeout"></a>networkTimeout</h2><p>用来设置各种网络请求的超时时间。</p>
 <p>如果你不是很清楚这个<code>networkTimeout</code>配置有什么作用，那么忽略就好。这对实际开发并没有什么影响。</p>
