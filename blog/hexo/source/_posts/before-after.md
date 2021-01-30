@@ -6,7 +6,7 @@ toc: true
 mathjax: true
 date: 2020-11-15 23:28:40
 password:
-summary:
+summary: 伪元素
 tags:  css&html
 categories: Front-end
 ---

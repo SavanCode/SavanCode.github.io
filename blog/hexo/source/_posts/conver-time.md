@@ -11,6 +11,9 @@ tags: js
 categories: js
 ---
 
+这个还是看自己写的练习文件，这个太一半了
+
+
 ```
 // miniprogram/pages/song/song.js
 import { request } from "../../utils/util";

@@ -6,7 +6,7 @@ toc: true
 mathjax: true
 date: 2021-01-24 21:14:49
 password:
-summary:
+summary: api_multiRequest 封装请求函数 
 tags: WechatMini Program
 categories: WechatMini Program
 ---
