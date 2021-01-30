@@ -1,312 +1,226 @@
 ---
-title: js animation 动画
+title: js 模块化编程
 top: false
 cover: false
 toc: true
 mathjax: true
-date: 2020-11-30 19:24:01
+date: 2020-11-26 10:20:17
 password:
-summary: 基本元素运动的介绍 css动画属性
+summary:
 tags: JS
 categories: JS
 ---
 
-# js实现动画
+# JS模块写法
 
-## 运动的三要素
-1. 起始点
-> 一个运动的起始点其实就是当前元素的位置，我们通过API获取当前元素的位置，让这个位置作为运动的起始。
-1. 目标
-2. 速度
+## 一般写法
 
-## 基本的元素移动
-```html
-      <script> 
-         var imgObj = null;
-         function init() {
-            imgObj = document.getElementById('myImage');
-            imgObj.style.position= 'relative';
-            imgObj.style.left = '0px';
-         }
-         function moveRight() {
-            imgObj.style.left = parseInt(imgObj.style.left) + 10 + 'px';
-         }
-         window.onload =init; 
-      </script>
-   </head>
-   <body>
-      <form>
-         <img id="myImage" src="/images/html.gif" />
-         <p>Click button below to move the image to right</p>
-         <input type="button" value="Click Me" onclick="moveRight();" />
-      </form>
-   </body>
+```js
+　function m1(){
+　　　　//...
+　　}
+
+　　function m2(){
+　　　　//...
+　　}
 ```
 
-## css transition 过渡动画
-当元素 **从一种样式变换为另一种样式** 时为元素添加效果
-### 语法
-```css
-transition: propertyName duration+s timing-function dealy
-```
-### transition的各项子属性详细值
+缺点："污染"了全局变量，无法保证不与其他模块发生变量名冲突，而且模块成员之间看不出直接关系。
 
+## 对象写法
 
-| name                       | value                                | 是否必须 | 备注                                                         |
-| -------------------------- | ------------------------------------ | -------- | ------------------------------------------------------------ |
-| transition-property        | 需要应用过渡效果的CSS 属性的名字/all | 是       | 填写一个属性名则监听一个，填 **all** 则监听该元素的所有样式变化，当指定的 CSS 属性改变时，过渡效果将开始执行。 |
-| transition-duration        | 过渡时间                             | 是       | 不填写默认为0，不会发生动画渐变效果                          |
-| transition-timing-function | 过渡效果的时间曲线                   | 否       | 贝塞尔曲线，默认ease                                         |
-| transition-delay           | 是否延迟执行过渡                     | 否       | 不填写时默认为0                                              |
-# [css动画总结](https://www.yuque.com/xiexiaoxie-wxtcg/talizw/bfoodp#jCyrj)
-
-
-
-
-## 时间块 - Timer
-`setTimeout("function", interval)`，让指定的函数经过某段时间（interval）之后才开始执行，单位为毫秒。 `variable = setTimeout("function", interval);` 
-取消等待执行的某个函数：`clearTimeout(variable)` 设置5秒后，移动，期间随时可以使用`clearTimeout(movement)`来取消移动。
-```html
-<body>
-<p id="message">where</p>
-<p id="message2">whoa!</p>
-<script>   
-    function positionMessage(){
-        var elem = document.getElementById("message");
-        elem.style.position = "absolute";
-        elem.style.left = "50px";
-        elem.style.top = "100px";
-        moveElement("message",125,25,20);
-        var elem = document.getElementById("message2");
-        elem.style.position = "absolute";
-        elem.style.left = "50px";
-        elem.style.top = "50px";
-        moveElement("message2",125,125,10);
-        //movement = setTimeout("moveMessage()", 5000);
-    }
-    
-     function moveElement(elementID,final_x,final_y,interval){
-       var elem = document.getElementById(elementID);
-       var xpos = parseInt(elem.style.left);
-       var ypos = parseInt(elem.style.top);
-       if(xpos == final_x && ypos == final_y){
-           return true;
-       }
-       if(xpos < final_x){
-           xpos++;
-       }
-       if(xpos > final_x){
-        xpos--;
-       }
-       if(ypos < final_y){
-           ypos++;
-       }
-       if(ypos > final_y){
-        ypos--;
-       }
-    elem.style.left = xpos + "px";
-    elem.style.top = ypos + "px";
-    var repeat = "moveElement('"+elementID+"',"+final_x+","+final_y+","+interval+")";
-    movement = setTimeout(repeat,interval);
-   }
-   
-   // function moveMessage(){
-    //     var elem = document.getElementById("message");
-    //     elem.style.left = "200px";
-    // }
-    positionMessage();
-    // moveMessage();
-</script>
-</body>
+```js
+　　var module1 = new Object({
+　　　　_count : 0,
+　　　　m1 : function (){
+　　　　　　//...
+　　　　},
+　　　　m2 : function (){
+　　　　　　//...
+　　　　}
+　　});
 ```
 
-## css属性 动画注意点
-`overflow`属性处理元素尺寸超过容器的情况。 `overflow`可取属性有四种：visible，hidden，scroll，auto
-- visible：不裁减溢出内容
-- hidden：隐藏溢出内容
-- scroll：隐藏溢出内容，但有一个滚动条
-- auto：发生溢出时才有滚动条，无溢出不滚动
+缺点：写法会暴露所有模块成员，内部状态可以被外部改写（对象私有属性会被改）
 
-## 动画例子
+## 立即执行函数写法-Immediately-Invoked Function Expression，IIFE（不算做严谨闭包）
 
-### 跟着鼠标走的动画
-```html
-    <style>
-        #img{
-            position: absolute;
-        }
-        body{
-            height: 1000px;
-            width: 1000px;
-        }
-    </style>
-</head>
-<body>
-<img id="img" src="这里插入图片地址" alt=""> 
-<script>
-var img=document.getElementById("img");
-document.onmousemove = function(event){
-  //解决兼容问题
-    event = event||window.event;
-    //获取鼠标的坐标
-    //client可见窗口坐标
-    // var X=event.clientX;
-    // var Y=event.clientY;
-    //div的偏移量是相对于整个页面的
-    // var X=event.pageX;//IE8不适用
-    // var Y=event.pageY;
-    var X=event.clientX;
-    var Y=event.clientY;
-    //设置图片坐标
-    img.style.left=X+sl+"px";
-    img.style.top=Y+st+"px";
+达到不暴露私有成员的目的
+
+是为了形成块级作用域，不污染全局。常用的写法有：
+
+- (function(形参){函数体})(实参)
+- (function(形参){函数体}(实参))
+- !function(形参){函数体}(实参)
+
+```js
+var i = function(){ return 10; }();
+true && function(){ /* code */ }();
+0, function(){ /* code */ }();
+```
+
+甚至像下面这样写，也是可以的。
+
+```js
+!function () { /* code */ }();
+~function () { /* code */ }();
+-function () { /* code */ }();
++function () { /* code */ }();
+```
+
+
+
+```js
+　　var module1 = (function(){
+　　　　var _count = 0;
+　　　　var m1 = function(){
+　　　　　　//...
+　　　　};
+　　　　var m2 = function(){
+　　　　　　//...
+　　　　};
+　　　　return {
+　　　　　　m1 : m1,
+　　　　　　m2 : m2
+　　　　};
+　　})();
+
+console.info(module1._count); //undefined
+```
+
+ 
+
+## 放大模式
+
+```js
+　　var module1 = (function (mod){
+　　　　mod.m3 = function () {
+　　　　　　//...
+　　　　};
+　　　　return mod;
+　　})(module1);
+```
+
+## 宽放大模式（Loose augmentation）
+
+```js
+　var module1 = ( function (mod){
+　　　　//...
+　　　　return mod;
+　　})(window.module1 || {});
+```
+
+与"放大模式"相比，＂宽放大模式＂就是"立即执行函数"的参数可以是空对象。
+
+## 输入全局变量
+
+独立性是模块的重要特点，模块内部最好不与程序的其他部分直接交互。
+
+为了在模块内部调用全局变量，必须显式地将其他变量输入模块。
+
+```js
+　　var module1 = (function ($, YAHOO) {
+
+　　　　//...
+
+　　})(jQuery, YAHOO);
+```
+
+
+
+## 实际应用
+
+在定时器、事件监听器、 Ajax 请求、跨窗口通信、Web Workers 或者任何其他的异步(或者同步)任务中，只要使用了回调函
+数，实际上就是在使用闭包!
+定时器闭包案例：
+
+```js
+function wait(message) {
+setTimeout( function timer() {
+console.log( message );
+}, 1000 );
 }
-</script>
-</body>
+wait( "Hello, closure!" );
 ```
 
-### 匀速移动代码
-```html
- <style>
-    * {
-      margin: 0;
-      padding: 0;
-    }
- 
-    div {
-      margin-top: 20px;
-      width: 200px;
-      height: 100px;
-      background-color: green;
-      position: absolute;
-      left: 0;
-      top: 0;
-    }
-  </style> 
-<body>
-<input type="button" value="移动到400px" id="btn1"/>
-<input type="button" value="移动到800px" id="btn2"/>
-<div id="dv">
-  <script src="common.js"></script>
-  <script>
-    //点击按钮移动div
-     my$("btn1").onclick = function () {
-      animate(my$("dv"), 400);
-    };
-    my$("btn2").onclick = function () {
-      animate(my$("dv"), 800);
-    };
- 
-    //匀速动画
-    function animate(element, target) {
-      //清理定时器
-      clearInterval(element.timeId);
-      element.timeId = setInterval(function () {
-        //获取元素的当前位置
-        var current = element.offsetLeft;
-        //移动的步数
-        var step = 10;
-        step = target > current ? step : -step;
-        current += step;
-        if (Math.abs(current - target) > Math.abs(step)) {
-          element.style.left = current + "px";
-        } else {
-          clearInterval(element.timeId);
-          element.style.left = target + "px";
-        }
-      }, 20);
-    }
-       
-    function my$(id) {
-        return document.getElementById(id);
-    }
-  </script>
-</div>
-</body>
-```
-### 变速移动代码
-```html
-<script>
-    //点击按钮移动div
- 
-    my$("btn1").onclick = function () {
-      animate(my$("dv"), 400);
-    };
-    my$("btn2").onclick = function () {
-      animate(my$("dv"), 800);
-    };
- 
-    //变速动画
-    function animate(element, target) {
-      //清理定时器
-      clearInterval(element.timeId);
-      element.timeId = setInterval(function () {
-        //获取元素的当前位置
-        var current = element.offsetLeft;
-        //移动的步数
-        var step = (target-current)/10;
-        step = step>0?Math.ceil(step):Math.floor(step);
-        current += step;
-        element.style.left = current + "px";
-        if(current==target) {
-          //清理定时器
-          clearInterval(element.timeId);
-        }
-       
-      }, 20);
-    }
-    
-    function my$(id) {
-        return document.getElementById(id);
-    }
-  </script>
-```
-## @keyframes制作动画
-以百分比来规定改变发生的时间，或者通过关键词 "from" 和 "to"，等价于 0% 和 100%。
-0% 是动画的开始时间，100% 动画的结束时间。
-为了获得最佳的浏览器支持，您应该始终定义 0% 和 100% 选择器。
-**不同浏览器需要查一下**
-语法：
-```css
-@keyframes animationname {keyframes-selector {css-styles;}}
-```
+事件监听闭包案例：
 
-### 向下移动
-```html
-<style> 
-@keyframes mymove
-{
-from {top:0px;}
-to {top:200px;}
+```js
+function setupBot(name, selector) {
+$(selector).click( function activator() {
+console.log( "Activating: " + name );
+});
 }
-.element{
-	animation-name: mymove;
-    animation-duration: 0.4s}
-</style>
+setupBot( "Closure Bot 1", "#bot_1" );
+setupBot( "Closure Bot 2", "#bot_2" );
 ```
-### 在一个动画中改变多个 CSS 样式
-```css
-@keyframes mymove
-{
-0%   {top:0px; background:red; width:100px;}
-100% {top:200px; background:yellow; width:300px;}
+
+上面的案例中，有个相同的特点：先定义函数，后执行函数时能够调用到函数中的私有变量或者实参。这便是闭包的特点吧
+
+## Currying
+
+```js
+//Un-curried function
+function unCurried(x, y) {
+  return x + y;
+}
+
+//Curried function
+function curried(x) {
+  return function(y) {
+    return x + y;
+  }
+}
+//Alternative using ES6
+const curried = x => y => x + y
+
+curried(1)(2) // Returns 3
+```
+
+```js
+function add(x) {
+  // Only change code below this line
+return function(y) {
+    return function(z) {
+      return x + y + z;
+    };
+  };
+  // Only change code above this line
+}
+add(10)(20)(30);
+```
+
+#  自测
+
+- 下面代码会输出什么？
+
+```js
+for (var i=1; i<=5; i++) {
+ setTimeout( function timer() {
+ console.log( i );
+ }, i*1000 );
 }
 ```
 
-### 带有多个 CSS 样式的多个 keyframe 选择器
-```css
-@keyframes mymove
-{
-0%   {top:0px; left:0px; background:red;}
-25%  {top:0px; left:100px; background:blue;}
-50%  {top:100px; left:100px; background:yellow;}
-75%  {top:100px; left:0px; background:green;}
-100% {top:0px; left:0px; background:red;}
+答案：5个6
+
+- 如何处理能够输出1-5
+
+```js
+// 闭包方式
+for (var i=1; i<=5; i++) {
+ (function(index) {
+ setTimeout( function timer() {
+ console.log( index );
+ }, index*1000 );
+ })(i)
+}
+// ES6 方式
+for (let i=1; i<=5; i++) {
+ setTimeout( function timer() {
+ console.log( i );
+ }, i*1000 );
 }
 ```
 
-
-
-# reference
-
-https://www.yuque.com/xiexiaoxie-wxtcg/talizw/bfoodp#jCyrj
+##  

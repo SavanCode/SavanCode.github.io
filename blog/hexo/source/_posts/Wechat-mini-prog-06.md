@@ -6,7 +6,7 @@ toc: true
 mathjax: true
 date: 2021-01-21 15:52:59
 password:
-summary: npm 但是实际操作还有很多坑 ( ╯□╰ )
+summary:
 tags: WechatMini Program
 categories: WechatMini Program
 ---
