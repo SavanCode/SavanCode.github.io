@@ -40,8 +40,6 @@
             <div class="brand-logo">
                 <a href="../../../../index.html" class="waves-effect waves-light">
                     
-                    <img src="../../../../medias/logo.png" class="logo-img" alt="LOGO">
-                    
                     <span class="logo-span">Savannah</span>
                 </a>
             </div>
@@ -116,8 +114,6 @@
 <div id="mobile-nav" class="side-nav sidenav">
 
     <div class="mobile-head bg-color">
-        
-        <img src="../../../../medias/logo.png" class="logo-img circle responsive-img">
         
         <div class="logo-name">Savannah</div>
         <div class="logo-desc">
@@ -534,14 +530,14 @@
 <td>触摸事件，当前变化的触摸点信息的数组</td>
 </tr>
 </tbody></table>
-<pre><code>&lt;button bindtap=&quot;alert&quot; id=&quot;btn&quot; data-name=&quot;dataNames&quot; data-age=&quot;27&quot;&gt;bindtap&lt;/button&gt;
-///js
-Page(&#123;
-  data: &#123;&#125;,
-  alert: function (event) &#123;
-    console.log(event);
-  &#125;
-&#125;)</code></pre>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token operator">&lt;</span>button bindtap<span class="token operator">=</span><span class="token string">"alert"</span> id<span class="token operator">=</span><span class="token string">"btn"</span> data<span class="token operator">-</span>name<span class="token operator">=</span><span class="token string">"dataNames"</span> data<span class="token operator">-</span>age<span class="token operator">=</span><span class="token string">"27"</span><span class="token operator">></span>bindtap<span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">></span>
+<span class="token comment" spellcheck="true">///js</span>
+<span class="token function">Page</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  data<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  alert<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>event<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="事件分类"><a href="#事件分类" class="headerlink" title="事件分类"></a>事件分类</h2><ol>
 <li><p>冒泡事件<br>a) 定义：冒泡事件：当一个组件上的事件被触发后，该事件会向父节点传递。<br>b) <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/debug/wxadoc/dev/framework/view/wxml/event.html">冒泡事件列表</a></p>
 </li>
@@ -555,22 +551,34 @@ Page(&#123;
 </li>
 </ol>
 <pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name">bindtap</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">'</span>handleTap<span class="token punctuation">'</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">'</span>start_container<span class="token punctuation">'</span></span><span class="token punctuation">></span></span>
-
  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>text</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">'</span>start<span class="token punctuation">'</span></span><span class="token punctuation">></span></span>开启小程序之旅<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>text</span><span class="token punctuation">></span></span>
-
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span> 
 
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name">catchtap</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>handleTap<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">'</span>start_container<span class="token punctuation">'</span></span><span class="token punctuation">></span></span>
-
  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>text</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">'</span>start<span class="token punctuation">'</span></span><span class="token punctuation">></span></span>开启小程序之旅<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>text</span><span class="token punctuation">></span></span>
-
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="向事件对象传参"><a href="#向事件对象传参" class="headerlink" title="向事件对象传参"></a>向事件对象传参</h3><ol>
 <li>语法： data-key=value</li>
 <li>获取: event.target.dataset.key || event.currentTarget.dataset.key</li>
 </ol>
-<h4 id="Event-target-和-event-currentTarget-的区别"><a href="#Event-target-和-event-currentTarget-的区别" class="headerlink" title="Event.target 和 event.currentTarget 的区别"></a>Event.target 和 event.currentTarget 的区别</h4><pre><code>  a) Event.target 是触发事件的对象，但不一样是绑定事件的对象，如： 事件委托，冒泡
-  b) currentTarget 触发时间的对象一定是绑定事件的对象， 没有事件委托</code></pre>
+<h4 id="Event-target-和-event-currentTarget-的区别"><a href="#Event-target-和-event-currentTarget-的区别" class="headerlink" title="Event.target 和 event.currentTarget 的区别"></a>Event.target 和 event.currentTarget 的区别</h4><p>  a) Event.target 是触发事件的对象，但不一样是绑定事件的对象，如： 事件委托，冒泡<br>  b) currentTarget 触发时间的对象一定是绑定事件的对象， 没有事件委托</p>
+<blockquote>
+<p>也就是 ：<br>如果你在父容器上绑定了事件并传参，当你点击父容器时，事件绑定的组件和触发事件的源组件是同一个元素，所以currentTarget 、target 都可以拿到参数，但是当你点击子元素时，target 就不是事件绑定的组件了，所以拿不到参数。<br>由于事件冒泡的机制，父容器上绑定的事件依然可以触发，所以currentTarget 依然可以拿到参数。</p>
+</blockquote>
+<h4 id="传多个参数-vs-传一个参数"><a href="#传多个参数-vs-传一个参数" class="headerlink" title="传多个参数 vs 传一个参数"></a>传多个参数 vs 传一个参数</h4><p>传递的数据比较多，通过<strong>dataset</strong>携带参数信息。如果只有一个参数，可以通过<strong>id</strong>来传递。</p>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">bindtap</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">'</span>clickMe<span class="token punctuation">'</span></span> <span class="token attr-name">data-id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">'</span>1<span class="token punctuation">'</span></span><span class="token punctuation">></span></span>点击<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-js"><code class="language-js">clickMe<span class="token punctuation">:</span><span class="token keyword">function</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">var</span> id <span class="token operator">=</span> e<span class="token punctuation">.</span>currentTarget<span class="token punctuation">.</span>dataset<span class="token punctuation">.</span>id<span class="token comment" spellcheck="true">//这里用target也可以</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">bindtap</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">'</span>clickMe<span class="token punctuation">'</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">'</span>1<span class="token punctuation">'</span></span><span class="token punctuation">></span></span>点击<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-js"><code class="language-js">clickMe<span class="token punctuation">:</span><span class="token keyword">function</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">var</span> id <span class="token operator">=</span> e<span class="token punctuation">.</span>currentTarget<span class="token punctuation">.</span>id<span class="token comment" spellcheck="true">//这里用target也可以</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
+<p>其他传参：网页url直接携带（onload提取），表单提交，app.js全局变量</p>
+</blockquote>
 <h2 id="捕获与冒泡阶段"><a href="#捕获与冒泡阶段" class="headerlink" title="捕获与冒泡阶段"></a>捕获与冒泡阶段</h2><p><code>bind</code>前缀就表示事件在冒泡阶段执行，而如果我们想事件在捕获阶段执行，可以在<code>bind</code>前面加上<code>capture</code>，即<code>capture-bind</code>表示捕获阶段执行</p>
 <p><img src="/2021/01/13/Wechat-mini-prog-02/image-20210113142641993.png"></p>
 <p><strong>bind不会阻止冒泡，添加capture前缀可以响应捕获阶段。</strong></p>
@@ -584,22 +592,22 @@ Page(&#123;
     inner view
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre><code>///js
-Page(&#123;
-  data: &#123;&#125;,
-  tap1: function (event) &#123;
-    console.log(&#39;tap1&#39;);
-  &#125;,
-  tap2: function (event) &#123;
-    console.log(&#39;tap2&#39;);
-  &#125;,
-  tap3: function (event) &#123;
-    console.log(&#39;tap3&#39;);
-  &#125;,
-  tap4: function (event) &#123;
-    console.log(&#39;tap4&#39;);
-  &#125;,
-&#125;)</code></pre>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token comment" spellcheck="true">///js</span>
+<span class="token function">Page</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  data<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  tap1<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>event<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'tap1'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  tap2<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>event<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'tap2'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  tap3<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>event<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'tap3'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  tap4<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>event<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'tap4'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><strong>结果是 2-4-3-1</strong></p>
 <h2 id="阻止冒泡"><a href="#阻止冒泡" class="headerlink" title="阻止冒泡"></a>阻止冒泡</h2><p>将<code>bind</code>替换为<code>catch</code>事件了，<code>catch</code>也支持两种写法<code>catch与catch:</code></p>
 <h3 id="例子-只显示子区域"><a href="#例子-只显示子区域" class="headerlink" title="例子 - 只显示子区域"></a>例子 - 只显示子区域</h3><pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span>
@@ -660,6 +668,8 @@ Page(&#123;
     <span class="token punctuation">}</span><span class="token punctuation">]</span>
   <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><img src="/2021/01/13/Wechat-mini-prog-02/image-20210113220306094.png"></p>
+<h2 id="button的触发事件"><a href="#button的触发事件" class="headerlink" title="button的触发事件"></a>button的触发事件</h2><p>官方有给出非常多的互动事件，多数好用而且不用自己写。（简单的有 loading效果 摁住多少秒；强大的有客服消息回调 打开授权设置页后回调等等…(*￣０￣ *)ノ）<br>可以多多探索 <a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/component/button.html">https://developers.weixin.qq.com/miniprogram/dev/component/button.html</a></p>
+<h3 id="open-type-（重点）"><a href="#open-type-（重点）" class="headerlink" title="open-type （重点）"></a>open-type （重点）</h3><p>getUserInfo    获取用户信息，可以从bindgetuserinfo回调中获取到用户信息</p>
 <h2 id="微信小程序正则"><a href="#微信小程序正则" class="headerlink" title="微信小程序正则"></a>微信小程序正则</h2><pre><code>验证数字：^[0-9]*$ 
 验证n位的数字：^\d&#123;n&#125;$ 
 验证至少n位数字：^\d&#123;n,&#125;$ 
@@ -718,26 +728,113 @@ icon<span class="token punctuation">:</span> <span class="token boolean">true</s
 <li>利用mode</li>
 <li>定好width height</li>
 </ol>
-<h2 id="文字段落的限制显示"><a href="#文字段落的限制显示" class="headerlink" title="文字段落的限制显示"></a>文字段落的限制显示</h2><h3 id="显示三行"><a href="#显示三行" class="headerlink" title="显示三行"></a>显示三行</h3><pre class="line-numbers language-css"><code class="language-css"><span class="token selector"><span class="token class">.note_item</span> text</span><span class="token punctuation">{</span>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token comment" spellcheck="true">&lt;!-- 基本的显示 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>image</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>detailImg<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>../../img/share.png<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>image</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token comment" spellcheck="true">&lt;!-- 选择性显示 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>image</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>{{isPlayMusic?<span class="token punctuation">'</span>1.png<span class="token punctuation">'</span>:<span class="token punctuation">'</span>2.png<span class="token punctuation">'</span>}}<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>image</span> <span class="token attr-name"><span class="token namespace">catch:</span>tap</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>handleClickShow<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">wx:</span>if</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>{{isShow}}<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>sc1.png<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>image</span> <span class="token attr-name"><span class="token namespace">catch:</span>tap</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>handleClickShow<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">wx:</span>else</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>sc2.png<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="轮播图"><a href="#轮播图" class="headerlink" title="轮播图"></a><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/component/swiper.html">轮播图</a></h2><blockquote>
+<p><code>&lt;swiper&gt;</code>以及<code>&lt;scroll-view&gt;</code> 的选择上，<code>&lt;swiper&gt;</code>是滑动是一滑一个，<code>&lt;/scroll-view&gt;</code>会滑动更多</p>
+</blockquote>
+<p>练习</p>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>swiper</span>
+ <span class="token attr-name">indicator-dots</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span>
+ <span class="token attr-name">autoplay</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span>
+ <span class="token attr-name">interval</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>2000<span class="token punctuation">"</span></span>
+<span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>swiper-item</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>image</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>../../images/banner1.png<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>image</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>swiper-item</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>swiper-item</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>image</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>../../images/banner2.jpg<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>image</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>swiper-item</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>swiper-item</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>image</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>../../images/banner3.png<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>image</span><span class="token punctuation">></span></span>t
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>swiper-item</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>swiper</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-css"><code class="language-css"><span class="token selector">swiper </span><span class="token punctuation">{</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> <span class="token number">100%</span><span class="token punctuation">;</span>
+  <span class="token property">height</span><span class="token punctuation">:</span> <span class="token number">500</span>rpx<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">swiper image </span><span class="token punctuation">{</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> <span class="token number">100%</span><span class="token punctuation">;</span>
+  <span class="token property">height</span><span class="token punctuation">:</span> <span class="token number">500</span>rpx<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="微信小程序-scroll-view-滚动视图"><a href="#微信小程序-scroll-view-滚动视图" class="headerlink" title="微信小程序 scroll-view 滚动视图"></a><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/component/scroll-view.html">微信小程序 scroll-view 滚动视图</a></h2><p><img src="/2021/01/13/Wechat-mini-prog-02/image-20210124202130657.png"></p>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token comment" spellcheck="true">&lt;!-- 一定不要忘记enable-flex--></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>scroll-view</span>
+     <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>albumScroll<span class="token punctuation">"</span></span>
+     <span class="token attr-name">enable-flex</span>
+     <span class="token attr-name">scroll-x</span>
+     <span class="token attr-name">bindscroll</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>scroll<span class="token punctuation">"</span></span>
+    <span class="token punctuation">></span></span>
+        <span class="token comment" spellcheck="true">&lt;!--此处重复多个 --></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span>
+         <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>album<span class="token punctuation">"</span></span>
+         <span class="token attr-name">hover-class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>none<span class="token punctuation">"</span></span>
+         <span class="token attr-name">hover-stop-propagation</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>false<span class="token punctuation">"</span></span>
+        <span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>image</span>
+             <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>../../images/icon_head.png<span class="token punctuation">"</span></span>
+             <span class="token attr-name">lazy-load</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>false<span class="token punctuation">"</span></span>
+             <span class="token attr-name">binderror</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span>
+             <span class="token attr-name">bindload</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span>
+            <span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>image</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>text</span> <span class="token attr-name">selectable</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>false<span class="token punctuation">"</span></span> <span class="token attr-name">space</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>false<span class="token punctuation">"</span></span> <span class="token attr-name">decode</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>false<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+                专辑介绍专辑介绍专辑介绍专辑介绍专辑介绍专辑介绍专辑介绍专辑介绍专辑介绍专辑介绍专辑介绍专辑介绍专辑介绍专辑介绍专辑介绍专辑介绍
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>text</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span> 
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>scroll-view</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-css"><code class="language-css"><span class="token selector"><span class="token class">.albumScroll</span></span><span class="token punctuation">{</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
+  <span class="token property">white-space</span><span class="token punctuation">:</span> nowrap<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">/*文字长也不换行*/</span>
+<span class="token punctuation">}</span>
+<span class="token selector"><span class="token class">.album</span></span><span class="token punctuation">{</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> <span class="token number">120</span>rpx<span class="token punctuation">;</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
+  <span class="token property">flex-direction</span><span class="token punctuation">:</span> column<span class="token punctuation">;</span>
+  <span class="token property">margin-right</span><span class="token punctuation">:</span> <span class="token number">30</span>rpx<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector"><span class="token class">.album</span> > image</span><span class="token punctuation">{</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> <span class="token number">120</span>rpx<span class="token punctuation">;</span> 
+  <span class="token property">height</span><span class="token punctuation">:</span> <span class="token number">120</span>rpx<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector"><span class="token class">.album</span> > text</span><span class="token punctuation">{</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> -webkit-box<span class="token punctuation">;</span>
+  <span class="token property">-webkit-box-orient</span><span class="token punctuation">:</span> vertical<span class="token punctuation">;</span>
+  <span class="token property">-webkit-line-clamp</span><span class="token punctuation">:</span><span class="token number">3</span><span class="token punctuation">;</span>
+  <span class="token property">overflow</span><span class="token punctuation">:</span> hidden<span class="token punctuation">;</span>
+  <span class="token property">text-overflow</span><span class="token punctuation">:</span>ellipsis<span class="token punctuation">;</span><span class="token comment" spellcheck="true">/*这行以上必要*/</span>
+  <span class="token property">font-size</span><span class="token punctuation">:</span> x-small<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>如果想用swiper弄出前后都可以一直转动的</p>
+<h2 id="文字省略显示（文字溢出隐藏）"><a href="#文字省略显示（文字溢出隐藏）" class="headerlink" title="文字省略显示（文字溢出隐藏）"></a>文字省略显示（文字溢出隐藏）</h2><h3 id="文字显示三行"><a href="#文字显示三行" class="headerlink" title="文字显示三行"></a>文字显示三行</h3><pre class="line-numbers language-css"><code class="language-css"><span class="token selector"><span class="token class">.note_item</span> text</span><span class="token punctuation">{</span>
     <span class="token property">display</span><span class="token punctuation">:</span> -webkit-box<span class="token punctuation">;</span>
-    <span class="token property">font-size</span><span class="token punctuation">:</span><span class="token number">28</span>rpx<span class="token punctuation">;</span>
-    <span class="token property">color</span><span class="token punctuation">:</span><span class="token hexcode">#000000</span><span class="token punctuation">;</span>
-    <span class="token property">line-height</span><span class="token punctuation">:</span> <span class="token number">40</span>rpx<span class="token punctuation">;</span>
-    <span class="token property">word-break</span><span class="token punctuation">:</span> break-all<span class="token punctuation">;</span>
     <span class="token property">-webkit-box-orient</span><span class="token punctuation">:</span> vertical<span class="token punctuation">;</span>
     <span class="token property">-webkit-line-clamp</span><span class="token punctuation">:</span><span class="token number">3</span><span class="token punctuation">;</span>
     <span class="token property">overflow</span><span class="token punctuation">:</span> hidden<span class="token punctuation">;</span>
-    <span class="token property">text-overflow</span><span class="token punctuation">:</span>ellipsis<span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="显示单行"><a href="#显示单行" class="headerlink" title="显示单行"></a>显示单行</h3><pre class="line-numbers language-css"><code class="language-css"><span class="token selector"><span class="token class">.note2_item</span> text</span><span class="token punctuation">{</span>
-    <span class="token property">display</span><span class="token punctuation">:</span> block<span class="token punctuation">;</span>
+    <span class="token property">text-overflow</span><span class="token punctuation">:</span>ellipsis<span class="token punctuation">;</span><span class="token comment" spellcheck="true">/*这行以上必要*/</span>
+    <span class="token property">font-size</span><span class="token punctuation">:</span><span class="token number">28</span>rpx<span class="token punctuation">;</span>
+    <span class="token property">color</span><span class="token punctuation">:</span><span class="token hexcode">#000000</span><span class="token punctuation">;</span>
+    <span class="token property">line-height</span><span class="token punctuation">:</span> <span class="token number">40</span>rpx<span class="token punctuation">;</span>
+    <span class="token property">word-break</span><span class="token punctuation">:</span> break-all<span class="token punctuation">;</span><span class="token comment" spellcheck="true">/*选择*/</span>
+    <span class="token property">word-wrap</span><span class="token punctuation">:</span> break-word<span class="token punctuation">;</span> 
+    <span class="token property">white-space</span><span class="token punctuation">:</span> normal <span class="token important">!important</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="文字显示单行"><a href="#文字显示单行" class="headerlink" title="文字显示单行"></a>文字显示单行</h3><pre class="line-numbers language-css"><code class="language-css"><span class="token selector"><span class="token class">.note2_item</span> text</span><span class="token punctuation">{</span>
+    <span class="token property">display</span><span class="token punctuation">:</span> block<span class="token punctuation">;</span><span class="token comment" spellcheck="true">/*重要的*/</span>
+    <span class="token property">overflow</span><span class="token punctuation">:</span> hidden<span class="token punctuation">;</span>
+    <span class="token property">white-space</span><span class="token punctuation">:</span> nowrap<span class="token punctuation">;</span><span class="token comment" spellcheck="true">/* 换行不显示*/</span>
+    <span class="token property">text-overflow</span><span class="token punctuation">:</span>ellipsis<span class="token punctuation">;</span><span class="token comment" spellcheck="true">/*这行以上必要*/</span>
     <span class="token property">font-size</span><span class="token punctuation">:</span><span class="token number">28</span>rpx<span class="token punctuation">;</span>
     <span class="token property">color</span><span class="token punctuation">:</span><span class="token hexcode">#000000</span><span class="token punctuation">;</span>
     <span class="token property">line-height</span><span class="token punctuation">:</span> <span class="token number">40</span>rpx<span class="token punctuation">;</span>
     <span class="token property">height</span><span class="token punctuation">:</span> <span class="token number">120</span>rpx<span class="token punctuation">;</span>
-    <span class="token property">overflow</span><span class="token punctuation">:</span> hidden<span class="token punctuation">;</span>
-    <span class="token property">white-space</span><span class="token punctuation">:</span> nowrap<span class="token punctuation">;</span><span class="token comment" spellcheck="true">/* 换行不显示*/</span>
-    <span class="token property">text-overflow</span><span class="token punctuation">:</span>ellipsis<span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>其他例子</p>
 <pre class="line-numbers language-css"><code class="language-css"><span class="token selector">text</span><span class="token punctuation">{</span>
@@ -753,14 +850,23 @@ icon<span class="token punctuation">:</span> <span class="token boolean">true</s
   <span class="token property">-webkit-box-orient</span><span class="token punctuation">:</span> vertical<span class="token punctuation">;</span> 
   <span class="token property">-webkit-line-clamp</span><span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">/*显示的行数*/</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="常用API"><a href="#常用API" class="headerlink" title="常用API"></a>常用API</h2><ol>
-<li><p>界面交互<br>a) 显示消息提示框: wx.showToast()<br>b) 显示消息加载框: wx.showLoading()<br>c) 关闭消息提示框: wx.hideToast()<br>d) 关闭消息加载框: wx.hideLoading()</p>
+<blockquote>
+<p>将height设置为line-height的整数倍，防止超出的文字露出</p>
+</blockquote>
+<h2 id="微信自带常用API"><a href="#微信自带常用API" class="headerlink" title="微信自带常用API"></a>微信自带常用API</h2><ol>
+<li><p>界面交互<br>a) 显示消息提示框: wx.showToast() </p>
+<pre><code> title          ----------------     标题，要显示的提示信息
+ icon         ----------------     图标，只支持&quot;success&quot;、&quot;loading&quot;
+ image     ----------------     自定义图标的本地路径，image的优先级高于icon
+ duration  ----------------     提示的延迟时间，单位毫秒，默认：1500
+ mask       ----------------     是否显示透明蒙层，防止触摸穿透，默认：false</code></pre>
+<p>b) 显示消息加载框: wx.showLoading()<br>c) 关闭消息提示框: wx.hideToast()<br>d) 关闭消息加载框: wx.hideLoading()</p>
 </li>
-<li><p>路由跳转<br>a) wx.navigateTo()<br>b) wx.redirectTo()<br>c) wx.switchTab()</p>
+<li><p>路由跳转<br> a) wx.navigateTo()<br> b) wx.redirectTo()<br> c) wx.switchTab()</p>
 </li>
-<li><p>网络请求<br>a) wx.request()</p>
+<li><p>网络请求<br> a) wx.request()</p>
 </li>
-<li><p>本地存储<br>a) wx.setStorage()<br>b) wx.setStorageSync()<br>c) wx.getStorage()<br>d) wx.getStorageSync()</p>
+<li><p>本地存储<br> a) wx.setStorage()<br> b) wx.setStorageSync()<br> c) wx.getStorage()<br> d) wx.getStorageSync()</p>
 </li>
 <li><p>媒体<br> a) wx.getBackgroundAudioManager()<br> b) wx.playVoice()</p>
 </li>

@@ -40,8 +40,6 @@
             <div class="brand-logo">
                 <a href="../../../../index.html" class="waves-effect waves-light">
                     
-                    <img src="../../../../medias/logo.png" class="logo-img" alt="LOGO">
-                    
                     <span class="logo-span">Savannah</span>
                 </a>
             </div>
@@ -116,8 +114,6 @@
 <div id="mobile-nav" class="side-nav sidenav">
 
     <div class="mobile-head bg-color">
-        
-        <img src="../../../../medias/logo.png" class="logo-img circle responsive-img">
         
         <div class="logo-name">Savannah</div>
         <div class="logo-desc">
@@ -495,6 +491,16 @@
 </tbody></table>
 <p><img src="/2020/11/07/Hexo-Building-Issue/1604935229359.png"></p>
 <p>解决办法：</p>
+<p>hexo/node_modules/hexo-prism-plugin/src/index.js文件中map里未支持大括号，补上以下内容后发现有效，即在map中加上对应字符即可:</p>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">const</span> map <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token string">'&amp;#39;'</span><span class="token punctuation">:</span> <span class="token string">'\''</span><span class="token punctuation">,</span>
+  <span class="token string">'&amp;amp;'</span><span class="token punctuation">:</span> <span class="token string">'&amp;'</span><span class="token punctuation">,</span>
+  <span class="token string">'&amp;gt;'</span><span class="token punctuation">:</span> <span class="token string">'>'</span><span class="token punctuation">,</span>
+  <span class="token string">'&amp;lt;'</span><span class="token punctuation">:</span> <span class="token string">'&lt;'</span><span class="token punctuation">,</span>
+  <span class="token string">'&amp;quot;'</span><span class="token punctuation">:</span> <span class="token string">'"'</span><span class="token punctuation">,</span>
+  <span class="token string">'&amp;#123;'</span><span class="token punctuation">:</span> <span class="token string">'{'</span><span class="token punctuation">,</span>    <span class="token comment" spellcheck="true">//添加的代码</span>
+  <span class="token string">'&amp;#125;'</span><span class="token punctuation">:</span> <span class="token string">'}'</span>        <span class="token comment" spellcheck="true">//添加的代码</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="问题7：-TOC-跳转不成功"><a href="#问题7：-TOC-跳转不成功" class="headerlink" title="问题7： TOC 跳转不成功"></a>问题7： TOC 跳转不成功</h2><p>目录显示的层级正确，但是点击对应的标题，没有办法实现跳转</p>
 <p>solution：</p>
 <p>层级设置不可以跟排列序号同时使用</p>
