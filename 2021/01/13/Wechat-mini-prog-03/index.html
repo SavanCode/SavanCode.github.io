@@ -479,6 +479,7 @@
 
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>详细请看多个api接口请求数据方法 - 封装请求功能函数</p>
 <h2 id="image"><a href="#image" class="headerlink" title="image"></a>image</h2><p> 第一种：加载本地图片，只要是路径没问题就会正常显示</p>
 <pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>image</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>../images/1.jpg<span class="token punctuation">"</span></span> <span class="token attr-name">mode</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>aspectFill<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>   
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>image</span><span class="token punctuation">></span></span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
@@ -503,10 +504,14 @@
 <li>链接失效</li>
 <li><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/community/develop/doc/000ace6189c0c03bc719a781856009">官方承认的问题</a> </li>
 </ol>
-<h2 id="页面跳转"><a href="#页面跳转" class="headerlink" title="页面跳转"></a>页面跳转</h2><p>页面两种跳转方式 navigator 和 wxAPI</p>
-<h3 id="navigator"><a href="#navigator" class="headerlink" title="navigator"></a>navigator</h3><h4 id="redurect"><a href="#redurect" class="headerlink" title="redurect"></a>redurect</h4><pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>navigator</span> <span class="token attr-name">url</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/pages/about/about<span class="token punctuation">"</span></span> <span class="token attr-name">open-type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>redirect<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>跳到关于页面(redirect)<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>navigator</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>关闭当前页面, 跳到关于页面, 不允许跳转到tabbar页面, 不能反回, 安卓手机反回直接退出小程序</p>
-<h4 id="switchTab"><a href="#switchTab" class="headerlink" title="switchTab"></a>switchTab</h4><p>switchTab：跳转到 tabBar 页面，并关闭其他所有非 tabBar 页面。（需要在tabBar中定义的）</p>
+<h2 id="页面跳转"><a href="#页面跳转" class="headerlink" title="页面跳转"></a>页面跳转</h2><blockquote>
+<p>注意：跳转回去tabbar页面 所以只能用switchtabbar 或者relaunch </p>
+<p>这里注意 跳转中relaunch会重新执行了onload 其他就是onshow</p>
+</blockquote>
+<p>页面两种跳转方式 navigator 和 wxAPI</p>
+<h3 id="navigator"><a href="#navigator" class="headerlink" title="navigator"></a>navigator</h3><h4 id="redirect"><a href="#redirect" class="headerlink" title="redirect"></a>redirect</h4><pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>navigator</span> <span class="token attr-name">url</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/pages/about/about<span class="token punctuation">"</span></span> <span class="token attr-name">open-type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>redirect<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>跳到关于页面(redirect)<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>navigator</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>关闭当前页面, 跳到关于页面, <strong>不允许跳转到tabbar页面, 不能反回</strong>, 安卓手机反回直接退出小程序</p>
+<h4 id="switchTab"><a href="#switchTab" class="headerlink" title="switchTab"></a>switchTab</h4><p>switchTab：<strong>跳转到 tabBar 页面，并关闭其他所有非 tabBar 页面</strong>。（需要在tabBar中定义的）</p>
 <pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>navigator</span> <span class="token attr-name">url</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/pages/detail/detail<span class="token punctuation">"</span></span> <span class="token attr-name">open-type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>switchTab<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>跳到详情页面(switchTab)<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>navigator</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>app.json:</p>
 <pre class="line-numbers language-json"><code class="language-json">//读取数据之后 跳转
@@ -516,7 +521,7 @@ wx.switchTab(<span class="token punctuation">{</span>
             console.log(<span class="token string">"called switchtab."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="reLaunch"><a href="#reLaunch" class="headerlink" title="reLaunch"></a>reLaunch</h4><p>关闭所有的页面，打开应用中某个页面。（直接展示某个页面，并且可以跳转到tabBar页面） 效果与redirect类似</p>
+<h4 id="reLaunch"><a href="#reLaunch" class="headerlink" title="reLaunch"></a>reLaunch</h4><p>关闭所有的页面，打开应用中某个页面。（直接展示某个页面，并且<strong>可以跳转到tabBar页面</strong>） 效果与redirect类似</p>
 <h4 id="navigateBack"><a href="#navigateBack" class="headerlink" title="navigateBack"></a>navigateBack</h4><p>关闭当前页面，返回上一页面或多级页面。可通过 <code>getCurrentPages</code> 获取当前的页面栈，决定需要返回几层。 当使用<code>redirect</code>和<code>reLaunch</code>关闭页面时,  <code>getCurrentPages</code>无效</p>
 <p>open-type：navigateBack（表示该navigator组件用于返回）</p>
 <p>delta：返回的层级（指定返回的层级，open-type必须是navigateBack才生效）</p>
@@ -533,14 +538,14 @@ wx.switchTab(<span class="token punctuation">{</span>
 <p>home.wxml</p>
 <pre><code>&lt;button bind:tap=&quot;handlePushAbout&quot;&gt;wxAPI跳转&lt;/button&gt;</code></pre>
 <p>home.js</p>
-<pre><code>handlePushAbout()&#123;
-    wx.navigateTo(&#123;
-      url: &#39;/pages/about/about?key=value&#39;,
-    &#125;)
-  &#125;</code></pre>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token function">handlePushAbout</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    wx<span class="token punctuation">.</span><span class="token function">navigateTo</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      url<span class="token punctuation">:</span> <span class="token string">'/pages/about/about?key=value'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><strong>例子 -  navigateBack</strong></p>
 <p>about.wxml</p>
-<pre><code>&lt;button bind:tap=&quot;backHome&quot;&gt;返回主页&lt;/button&gt;</code></pre>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name"><span class="token namespace">bind:</span>tap</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>backHome<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>返回主页<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>about.js</p>
 <pre><code>backHome()&#123;
     wx.navigateBack(&#123;
@@ -567,9 +572,9 @@ wx.switchTab(<span class="token punctuation">{</span>
 <p>小程序并没有提供直接修改数据的方法.</p>
 <p>可以通过getCurrentPages来获取所有的页面, 然后使用页面对象的setData({})函数来修改</p>
 <p>about页面退出时, home页面message数据会被改变 home.js</p>
-<pre><code>data:&#123;
-    message: &#39;本身内容&#39;
-&#125;</code></pre>
+<pre class="line-numbers language-js"><code class="language-js">data<span class="token punctuation">:</span><span class="token punctuation">{</span>
+    message<span class="token punctuation">:</span> <span class="token string">'本身内容'</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>about.js</p>
 <pre class="line-numbers language-js"><code class="language-js">  <span class="token comment" spellcheck="true">// 页面退出时调用</span>
   onUnload<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
@@ -579,7 +584,101 @@ wx.switchTab(<span class="token punctuation">{</span>
       message<span class="token punctuation">:</span> <span class="token string">'退出内容'</span>
     <span class="token punctuation">}</span><span class="token punctuation">)</span>
   <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="页面刷新-onPullDownRefresh"><a href="#页面刷新-onPullDownRefresh" class="headerlink" title="页面刷新 onPullDownRefresh"></a>页面刷新 onPullDownRefresh</h2><h2 id="地图"><a href="#地图" class="headerlink" title="地图"></a><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/component/map.html">地图</a></h2><p>基本用法</p>
+<h2 id="传递参数方式总结"><a href="#传递参数方式总结" class="headerlink" title="传递参数方式总结"></a>传递参数方式总结</h2><p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000008895441">https://segmentfault.com/a/1190000008895441</a></p>
+<h2 id="数据提交"><a href="#数据提交" class="headerlink" title="数据提交"></a>数据提交</h2><h3 id="form-形式"><a href="#form-形式" class="headerlink" title="form 形式"></a>form 形式</h3><pre class="line-numbers language-html"><code class="language-html">  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">bindsubmit</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>formSubmit<span class="token punctuation">"</span></span> <span class="token attr-name">bindreset</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>formReset<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>   
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>phone<span class="token punctuation">"</span></span> <span class="token attr-name">placeholder</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>手机号<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>  
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>section__title<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>密码<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span>  
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>pwd<span class="token punctuation">"</span></span> <span class="token attr-name">placeholder</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>密码<span class="token punctuation">"</span></span> <span class="token attr-name">password</span><span class="token punctuation">/></span></span>  
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>btn-area<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>  
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">formType</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>提交<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>  
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">formType</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>reset<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>重置<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>  
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span>  
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">></span></span>  
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name"><span class="token namespace">wx:</span>if</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>{{isSubmit}}<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>  
+  {{warn ? warn : "是否公开信息："+isPub+"，手机号："+phone+"，密码："+pwd+"，性别："+sex}}  
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-js"><code class="language-js">  formSubmit<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'form发生了submit事件，携带数据为：'</span><span class="token punctuation">,</span> e<span class="token punctuation">.</span>detail<span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token keyword">let</span> <span class="token punctuation">{</span> phone<span class="token punctuation">,</span> pwd<span class="token punctuation">,</span> isPub<span class="token punctuation">,</span> sex <span class="token punctuation">}</span> <span class="token operator">=</span> e<span class="token punctuation">.</span>detail<span class="token punctuation">.</span>value<span class="token punctuation">;</span>  
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>phone <span class="token operator">||</span> <span class="token operator">!</span>pwd<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setData</span><span class="token punctuation">(</span><span class="token punctuation">{</span>  
+    warn<span class="token punctuation">:</span> <span class="token string">"手机号或密码为空！"</span><span class="token punctuation">,</span>  
+    isSubmit<span class="token punctuation">:</span> <span class="token boolean">true</span>  
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>  
+    <span class="token keyword">return</span><span class="token punctuation">;</span>  
+  <span class="token punctuation">}</span>  
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>  
+  formReset<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'form发生了reset事件'</span><span class="token punctuation">)</span>  
+  <span class="token punctuation">}</span>  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="直接用bindtap事件-传递数据"><a href="#直接用bindtap事件-传递数据" class="headerlink" title="直接用bindtap事件 传递数据"></a>直接用bindtap事件 传递数据</h3><pre class="line-numbers language-html"><code class="language-html">    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>input-section<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>input-item<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>text</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>tit<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>手机号码<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>text</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span>
+             <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span>
+             <span class="token attr-name">placeholder</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>请输入手机号码<span class="token punctuation">"</span></span>
+             <span class="token attr-name">data-test</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>abc<span class="token punctuation">"</span></span>
+             <span class="token attr-name">data-type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>phone<span class="token punctuation">"</span></span>
+             <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>phone<span class="token punctuation">"</span></span>
+             <span class="token attr-name">bindinput</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>handleInput<span class="token punctuation">"</span></span>
+            <span class="token punctuation">/></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>input-item<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>text</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>tit<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>密码<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>text</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span>
+             <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>password<span class="token punctuation">"</span></span>
+             <span class="token attr-name">placeholder</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>请输入密码<span class="token punctuation">"</span></span>
+             <span class="token attr-name">data-test</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>abc<span class="token punctuation">"</span></span>
+             <span class="token attr-name">data-type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>password<span class="token punctuation">"</span></span>
+             <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>password<span class="token punctuation">"</span></span>
+             <span class="token attr-name">bindinput</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>handleInput<span class="token punctuation">"</span></span>
+            <span class="token punctuation">/></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>confirm-btn<span class="token punctuation">"</span></span> <span class="token attr-name">bindtap</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>login<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>登录<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-js"><code class="language-js">  <span class="token function">handleInput</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span><span class="token punctuation">{</span>
+      console<span class="token punctuation">,</span><span class="token function">log</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>currentTarget<span class="token punctuation">)</span><span class="token comment" spellcheck="true">//这里 test type都会的得到</span>
+    <span class="token comment" spellcheck="true">// let type = event.currentTarget.id;// id传值 取值： phone || password 注意这是分别的</span>
+    <span class="token keyword">let</span> type <span class="token operator">=</span> event<span class="token punctuation">.</span>currentTarget<span class="token punctuation">.</span>dataset<span class="token punctuation">.</span>type<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// data-key=value //这个是同时</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setData</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      <span class="token punctuation">[</span>type<span class="token punctuation">]</span><span class="token punctuation">:</span> event<span class="token punctuation">.</span>detail<span class="token punctuation">.</span>value
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="页面刷新"><a href="#页面刷新" class="headerlink" title="页面刷新"></a>页面刷新</h2><h3 id="当前页面刷新"><a href="#当前页面刷新" class="headerlink" title="当前页面刷新"></a>当前页面刷新</h3><h4 id="onRefresh"><a href="#onRefresh" class="headerlink" title="onRefresh"></a>onRefresh</h4><pre class="line-numbers language-js"><code class="language-js"><span class="token comment" spellcheck="true">/**
+ * 刷新页面，页面设置点击刷新事件
+ */</span>
+onRefresh<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">onLoad</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">onReady</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>注意：如果onLoad函数中有其他页面传过来的参数，建议放setData中，以免刷新的时候获取不到值的情况出现，一般不会遗失参数的！</p>
+<h4 id="onPullDownRefresh"><a href="#onPullDownRefresh" class="headerlink" title="onPullDownRefresh"></a>onPullDownRefresh</h4><pre class="line-numbers language-js"><code class="language-js"><span class="token comment" spellcheck="true">/*页面相关事件处理函数--监听用户下拉动作*/</span>
+onPullDownRefresh<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 在此方法中实现数据加载的逻辑</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">//此方法需要在当前页面的json中设置如下参数，开启下拉刷新</span>
+<span class="token punctuation">{</span>
+  <span class="token string">"enablePullDownRefresh"</span><span class="token punctuation">:</span> <span class="token boolean">true</span>
+<span class="token punctuation">}</span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>此种方法刷新，并不会重新加载页面，或者刷新数据，需要手动调用onLoad函数或加载数据函数，重新动态载入数据</p>
+<h3 id="返回上一页刷新"><a href="#返回上一页刷新" class="headerlink" title="返回上一页刷新"></a>返回上一页刷新</h3><p>充分利用页面隐藏和显现的函数</p>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token comment" spellcheck="true">/**
+ * 生命周期函数--监听页面显示
+ */</span>
+onShow<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 当返回当前页面的时候，会自动调用这个参数，则实现自动返回刷新</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">onLoad</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">onReady</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token comment" spellcheck="true">/**
+ * 生命周期函数--监听页面隐藏
+ */</span>
+onHide<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 此函数是当前页面隐藏挑战到其他页面的隐含函数，可以设置全局变量之类</span>
+    app<span class="token punctuation">.</span>globalData<span class="token punctuation">.</span>NetWorkType <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="地图"><a href="#地图" class="headerlink" title="地图"></a><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/component/map.html">地图</a></h2><p>基本用法</p>
 <pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>map</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>map<span class="token punctuation">"</span></span> <span class="token attr-name">longitude</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>113.324520<span class="token punctuation">"</span></span> <span class="token attr-name">latitude</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>23.099994<span class="token punctuation">"</span></span> <span class="token attr-name">scale</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>14<span class="token punctuation">"</span></span> <span class="token attr-name">controls</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>{{controls}}<span class="token punctuation">"</span></span> 
      <span class="token attr-name">bindcontroltap</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>controltap<span class="token punctuation">"</span></span> <span class="token attr-name">markers</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>{{markers}}<span class="token punctuation">"</span></span> 
      <span class="token attr-name">bindmarkertap</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>markertap<span class="token punctuation">"</span></span> <span class="token attr-name">polyline</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>{{polyline}}<span class="token punctuation">"</span></span> <span class="token attr-name">bindregionchange</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>regionchange<span class="token punctuation">"</span></span> 
@@ -612,16 +711,17 @@ wx.switchTab(<span class="token punctuation">{</span>
 
 
 
-<h3 id="授权获取用户信息（头像、昵称）-file-newteo"><a href="#授权获取用户信息（头像、昵称）-file-newteo" class="headerlink" title="授权获取用户信息（头像、昵称）- file: newteo"></a>授权获取用户信息（头像、昵称）- file: newteo</h3><p>demo 是否授权 <a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000023682165">https://segmentfault.com/a/1190000023682165</a></p>
-<h3 id="首次登陆获取"><a href="#首次登陆获取" class="headerlink" title="首次登陆获取"></a><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/component/button.html">首次登陆获取</a></h3><ol>
+<h3 id="授权获取用户信息（头像、昵称）-file-newteo"><a href="#授权获取用户信息（头像、昵称）-file-newteo" class="headerlink" title="授权获取用户信息（头像、昵称）- file: newteo"></a>授权获取用户信息（头像、昵称）- file: newteo</h3><h3 id="首次登陆获取"><a href="#首次登陆获取" class="headerlink" title="首次登陆获取"></a><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/component/button.html">首次登陆获取</a></h3><ol>
 <li>Button 组件设置 open-type 属性为 getUserInfo</li>
 <li><code>&lt;button open-type=&#39;getUserInfo&#39;&gt;&lt;/button&gt;</code></li>
 <li>设置后首次登陆点击 button 可以弹出授权窗口</li>
 <li>注意： 授权的动作只发生一次，除非清除缓存，点击 butotn 授权一次之后再点击失效，不会弹出授权窗口</li>
 </ol>
-<h3 id="授权之后获取基本信息"><a href="#授权之后获取基本信息" class="headerlink" title="授权之后获取基本信息"></a><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/api/open-api/user-info/wx.getUserInfo.html">授权之后获取基本信息</a></h3><p><code>wx.getUserInfo()</code></p>
+<p><img src="/2021/01/13/Wechat-mini-prog-03/image-20210124165949062.png"></p>
+<h3 id="授权之后获取基本信息-再登陆"><a href="#授权之后获取基本信息-再登陆" class="headerlink" title="授权之后获取基本信息 - 再登陆"></a><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/api/open-api/user-info/wx.getUserInfo.html">授权之后获取基本信息 - 再登陆</a></h3><p> 用button事件之后，在onload函数中 <code>wx.getUserInfo()</code>，对于已经授权过的，会直接提供</p>
+<p>所以这里注意在onload中的wx.getUserInfo()中 对于success的，直接要setdata （官方文档有例子）</p>
 <h3 id="利用opendata-获取用户info"><a href="#利用opendata-获取用户info" class="headerlink" title="利用opendata 获取用户info"></a>利用opendata 获取用户info</h3><pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>userinfo<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>  
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>userinfo-avatar<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>userin fo-avatar<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>open-data</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>userAvatarUrl<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>open-data</span><span class="token punctuation">></span></span>
       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span>
        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>open-data</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>userNickName<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>open-data</span><span class="token punctuation">></span></span>
@@ -652,7 +752,14 @@ wx.switchTab(<span class="token punctuation">{</span>
 <p>思维流程：小程序前台请求后台-&gt; 后台请求微信服务器-&gt; 微信服务器返回后台 -&gt; 后台返回小程序前台</p>
 <p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/community/develop/doc/0004e229464d78c1d557ed5e359404">https://developers.weixin.qq.com/community/develop/doc/0004e229464d78c1d557ed5e359404</a></p>
 <p>这里需要 appid 跟 secret</p>
-<p>这里没有实际的操作 下一个云函数部分有详细介绍 如何获得openid</p>
+<pre><code>//这种获得的不是唯一标识
+getOpenId()&#123;
+wx.login(&#123;
+    success:(res)=&gt;&#123;
+        console.log(res)
+    &#125;
+ &#125;)
+&#125;</code></pre>
 <h2 id="推荐仿练习"><a href="#推荐仿练习" class="headerlink" title="推荐仿练习"></a>推荐仿练习</h2><p><a target="_blank" rel="noopener" href="https://github.com/justjavac/awesome-wechat-weapp">https://github.com/justjavac/awesome-wechat-weapp</a></p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903960596185102#heading-13">页面跳转- 小程序</a></p>
 <p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/login.html">小程序登录流程官方解释</a></p>

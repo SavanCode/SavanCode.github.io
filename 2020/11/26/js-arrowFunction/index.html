@@ -454,17 +454,19 @@
   <span class="token keyword">return</span> <span class="token punctuation">{</span> name<span class="token punctuation">:</span> <span class="token string">'a'</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <h2 id="4-箭头函数和普通函数明显的区别"><a href="#4-箭头函数和普通函数明显的区别" class="headerlink" title="4.箭头函数和普通函数明显的区别"></a>4.箭头函数和普通函数明显的区别</h2><p>箭头函数内部的<code>this</code>是词法作用域，由上下文确定。</p>
-<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token comment" spellcheck="true">//普通函数</span>
+<span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span>
     birth<span class="token punctuation">:</span> <span class="token number">1990</span><span class="token punctuation">,</span>
     getAge<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">var</span> b <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>birth<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 1990</span>
         <span class="token keyword">var</span> fn <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getFullYear</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token keyword">this</span><span class="token punctuation">.</span>birth<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// this指向window或undefined</span>
         <span class="token punctuation">}</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token function">fn</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//因为这里call</span>
+        <span class="token keyword">return</span> <span class="token function">fn</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//因为这里call 这可以这么想 返回函数让外面执行</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
+<span class="token comment" spellcheck="true">//箭头函数</span>
 <span class="token keyword">var</span> obj1 <span class="token operator">=</span> <span class="token punctuation">{</span>
     birth<span class="token punctuation">:</span> <span class="token number">1990</span><span class="token punctuation">,</span>
     getAge<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -473,7 +475,7 @@
         <span class="token keyword">return</span> <span class="token function">fn</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
-obj1<span class="token punctuation">.</span><span class="token function">getAge</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 26，箭头函数完全修复了this的指向，this总是指向词法作用域，也就是外层调用者obj1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+obj1<span class="token punctuation">.</span><span class="token function">getAge</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 26，箭头函数完全修复了this的指向，this总是指向词法作用域，也就是外层调用者obj1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
 <p>不能用arguments，但是可以用参数以及参数解构</p>
 </blockquote>
