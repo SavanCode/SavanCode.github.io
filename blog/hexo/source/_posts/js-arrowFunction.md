@@ -77,6 +77,7 @@ var sum = function sum() {
 箭头函数内部的`this`是词法作用域，由上下文确定。
 
 ```js
+//普通函数
 var obj = {
     birth: 1990,
     getAge: function () {
@@ -84,10 +85,11 @@ var obj = {
         var fn = function () {
             return new Date().getFullYear() - this.birth; // this指向window或undefined
         };
-        return fn();//因为这里call
+        return fn();//因为这里call 这可以这么想 返回函数让外面执行
     }
 };
 
+//箭头函数
 var obj1 = {
     birth: 1990,
     getAge: function () {

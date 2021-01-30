@@ -6,7 +6,7 @@ toc: true
 mathjax: true
 date: 2020-11-26 09:49:29
 password:
-summary:
+summary: js闭包 作用域 this指向 es6
 tags: JS
 categories: JS
 ---
