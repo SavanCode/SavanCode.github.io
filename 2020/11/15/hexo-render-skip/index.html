@@ -29,8 +29,7 @@
 
     <script src="../../../../libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -426,7 +425,7 @@
             <div id="articleContent">
                 <h1 id="Hexo博客跳过渲染，创建自定义网页方法"><a href="#Hexo博客跳过渲染，创建自定义网页方法" class="headerlink" title="Hexo博客跳过渲染，创建自定义网页方法"></a>Hexo博客跳过渲染，创建自定义网页方法</h1><h2 id="1-跳过渲染指令"><a href="#1-跳过渲染指令" class="headerlink" title="1.跳过渲染指令"></a>1.跳过渲染指令</h2><p>在html文件中添加跳过渲染指令：</p>
 <p>用编辑器打开 Hexo\source 创建的文件夹中的 index.html 文件，在开头添加如下代码即可</p>
-<pre class="line-numbers language-html"><code class="language-html">---layout: false---<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class=" language-html"><code class="language-html">---layout: false---</code></pre>
 <p>缺点：</p>
 <ol>
 <li>网页引用了 css 或 js ，这些 css 和 js 必须使用外链。</li>
@@ -434,7 +433,7 @@
 </ol>
 <h2 id="2-config中设置"><a href="#2-config中设置" class="headerlink" title="2.config中设置"></a>2.config中设置</h2><p>Hexo 目录下的_config.yml 文件，找到 skip_render</p>
 <p>skip_render 一般有以下四种常用参数：</p>
-<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token comment" spellcheck="true">#跳过source文件夹下的test.html</span>
+<pre class=" language-yaml"><code class="language-yaml"><span class="token comment" spellcheck="true">#跳过source文件夹下的test.html</span>
 <span class="token key atrule">skip_render</span><span class="token punctuation">:</span> test.html
 
 <span class="token comment" spellcheck="true">#忽略source下的test文件夹下所有文件</span>
@@ -449,7 +448,7 @@
 <span class="token comment" spellcheck="true">#忽略多个路径的文件或目录</span>
 <span class="token key atrule">skip_render</span><span class="token punctuation">:</span>
     <span class="token punctuation">-</span> test.html
-    <span class="token punctuation">-</span> test/*<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    <span class="token punctuation">-</span> test/*</code></pre>
 
             </div>
             <hr/>

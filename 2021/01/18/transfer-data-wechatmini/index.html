@@ -29,8 +29,7 @@
 
     <script src="../../../../libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -425,11 +424,11 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h1 id="微信小程序页面间传递数据"><a href="#微信小程序页面间传递数据" class="headerlink" title="微信小程序页面间传递数据"></a>微信小程序页面间传递数据</h1><h2 id="将数据对象转化为json格式"><a href="#将数据对象转化为json格式" class="headerlink" title="将数据对象转化为json格式"></a>将数据对象转化为json格式</h2><p>传输</p>
-<pre class="line-numbers language-js"><code class="language-js">url<span class="token punctuation">:</span> <span class="token string">'../index/index?massIfo='</span><span class="token operator">+</span>JSON<span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>data<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class=" language-js"><code class="language-js">url<span class="token punctuation">:</span> <span class="token string">'../index/index?massIfo='</span><span class="token operator">+</span>JSON<span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>data<span class="token punctuation">)</span></code></pre>
 <p>在接收次数据页面：</p>
-<pre class="line-numbers language-js"><code class="language-js">JSON<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>options<span class="token punctuation">.</span>massIfo<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class=" language-js"><code class="language-js">JSON<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>options<span class="token punctuation">.</span>massIfo<span class="token punctuation">)</span></code></pre>
 <h2 id="传递基本数据类型-直接绑在url上"><a href="#传递基本数据类型-直接绑在url上" class="headerlink" title="传递基本数据类型 - 直接绑在url上"></a><strong>传递基本数据类型</strong> - 直接绑在url上</h2><p> index.js 发送页JS</p>
-<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token function">Page</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token function">Page</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
   data<span class="token punctuation">:</span> <span class="token punctuation">{</span>
     testStr<span class="token punctuation">:</span> <span class="token string">'字符串str'</span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span>
@@ -440,17 +439,17 @@
       url<span class="token punctuation">:</span> <span class="token string">'/pages/test/test?str='</span><span class="token operator">+</span><span class="token keyword">this</span><span class="token punctuation">.</span>data<span class="token punctuation">.</span>testStr<span class="token punctuation">,</span>
     <span class="token punctuation">}</span><span class="token punctuation">)</span>
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
 <p> test.js 接受页JS</p>
-<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token function">Page</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token function">Page</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
   data<span class="token punctuation">:</span><span class="token punctuation">{</span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span>
   onLoad<span class="token punctuation">:</span><span class="token keyword">function</span><span class="token punctuation">(</span>options<span class="token punctuation">)</span><span class="token punctuation">{</span>
     console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"接收到的参数是str="</span><span class="token operator">+</span>options<span class="token punctuation">.</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
 <h2 id="传递对象"><a href="#传递对象" class="headerlink" title="传递对象{}"></a><strong>传递对象{}</strong></h2><p> <strong>index.js 发送页JS</strong></p>
-<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token function">Page</span><span class="token punctuation">(</span><span class="token punctuation">{</span> 
+<pre class=" language-javascript"><code class="language-javascript"><span class="token function">Page</span><span class="token punctuation">(</span><span class="token punctuation">{</span> 
   data<span class="token punctuation">:</span> <span class="token punctuation">{</span>
     testData<span class="token punctuation">:</span><span class="token punctuation">{</span>name<span class="token punctuation">:</span><span class="token string">'我是name'</span><span class="token punctuation">,</span> extra<span class="token punctuation">:</span><span class="token string">'我是extra'</span><span class="token punctuation">}</span> 
   <span class="token punctuation">}</span><span class="token punctuation">,</span>
@@ -461,17 +460,17 @@
       url<span class="token punctuation">:</span> <span class="token string">'/pages/test/test?extra='</span><span class="token operator">+</span>JSON<span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>data<span class="token punctuation">.</span>testData<span class="token punctuation">)</span>
     <span class="token punctuation">}</span><span class="token punctuation">)</span>
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
 <p><strong>test.js 接受页JS</strong></p>
-<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token function">Page</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token function">Page</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
   data<span class="token punctuation">:</span><span class="token punctuation">{</span>
     testData<span class="token punctuation">:</span><span class="token keyword">null</span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span>  onLoad<span class="token punctuation">:</span><span class="token keyword">function</span><span class="token punctuation">(</span>options<span class="token punctuation">)</span><span class="token punctuation">{</span>    
     console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"接收到的参数是obj="</span><span class="token operator">+</span>options<span class="token punctuation">.</span>extra<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//此处打印出来的仅仅是字符串 需要解析，解析如下</span>
     <span class="token keyword">this</span><span class="token punctuation">.</span>dat<span class="token punctuation">.</span>testData <span class="token operator">=</span> JSON<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>options<span class="token punctuation">.</span>extra<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//解析得到对象</span>
-  <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
 <h2 id="传递数组集合"><a href="#传递数组集合" class="headerlink" title="传递数组集合[]"></a><strong>传递数组集合[]</strong></h2><p> <strong>index.js 发送页JS</strong></p>
-<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token function">Page</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token function">Page</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
   data<span class="token punctuation">:</span> <span class="token punctuation">{</span>
     list<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token string">'item-A'</span><span class="token punctuation">,</span><span class="token string">'item-B'</span><span class="token punctuation">]</span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span>
@@ -483,26 +482,26 @@
       url<span class="token punctuation">:</span> <span class="token string">'/pages/test/test?list='</span><span class="token operator">+</span>JSON<span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>data<span class="token punctuation">.</span>list<span class="token punctuation">)</span><span class="token punctuation">,</span>
     <span class="token punctuation">}</span><span class="token punctuation">)</span>
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
 <p> <strong>test.js 接受页JS</strong></p>
-<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token function">Page</span><span class="token punctuation">(</span><span class="token punctuation">{</span> 
+<pre class=" language-javascript"><code class="language-javascript"><span class="token function">Page</span><span class="token punctuation">(</span><span class="token punctuation">{</span> 
   data<span class="token punctuation">:</span><span class="token punctuation">{</span>
     list<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token punctuation">]</span> 
   <span class="token punctuation">}</span><span class="token punctuation">,</span>   
     onLoad<span class="token punctuation">:</span><span class="token keyword">function</span><span class="token punctuation">(</span>options<span class="token punctuation">)</span><span class="token punctuation">{</span>     
     console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"接收到的参数是list="</span><span class="token operator">+</span>options<span class="token punctuation">.</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//此处打印出来的是字符串，解析如下         </span>
      <span class="token keyword">this</span><span class="token punctuation">.</span>data<span class="token punctuation">.</span>list <span class="token operator">=</span> JSON<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>options<span class="token punctuation">.</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//解析得到集合 </span>
- <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="使用全局变量"><a href="#使用全局变量" class="headerlink" title="使用全局变量"></a>使用全局变量</h2><pre class="line-numbers language-js"><code class="language-js"><span class="token comment" spellcheck="true">//app.js</span>
+ <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
+<h2 id="使用全局变量"><a href="#使用全局变量" class="headerlink" title="使用全局变量"></a>使用全局变量</h2><pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">//app.js</span>
 <span class="token function">App</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
     globalData<span class="token punctuation">:</span><span class="token punctuation">{</span>
         foo<span class="token punctuation">:</span><span class="token string">'bar'</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-js"><code class="language-js"><span class="token comment" spellcheck="true">//page.js</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
+<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">//page.js</span>
 <span class="token keyword">var</span> app<span class="token operator">=</span><span class="token function">getApp</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token keyword">var</span> getFoo<span class="token operator">=</span>app<span class="token punctuation">.</span>globalData<span class="token punctuation">.</span>foo
-app<span class="token punctuation">.</span>globalData<span class="token punctuation">.</span>foo<span class="token operator">=</span><span class="token string">'fun'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+app<span class="token punctuation">.</span>globalData<span class="token punctuation">.</span>foo<span class="token operator">=</span><span class="token string">'fun'</span></code></pre>
 <h2 id="通过缓存-wx-setStorage-OBJECT-，wx-setStorageSync-KEY-DATA-来传递数据"><a href="#通过缓存-wx-setStorage-OBJECT-，wx-setStorageSync-KEY-DATA-来传递数据" class="headerlink" title="通过缓存(wx.setStorage(OBJECT)，wx.setStorageSync(KEY,DATA))来传递数据"></a>通过缓存(wx.setStorage(OBJECT)，wx.setStorageSync(KEY,DATA))来传递数据</h2><p>文档 <a target="_blank" rel="noopener" href="https://www.w3cschool.cn/weixinapp/weixinapp-apidate.html">https://www.w3cschool.cn/weixinapp/weixinapp-apidate.html</a></p>
 <p><em>只是保存后需要清除，防止缓存过大的情况.</em></p>
 <ol>
@@ -517,7 +516,7 @@ app<span class="token punctuation">.</span>globalData<span class="token punctuat
 <li>同步清空缓存：wx.clearStorageSync()</li>
 <li>异步清空缓存：wx.clearStorage(Object object)</li>
 </ol>
-<pre class="line-numbers language-js"><code class="language-js"><span class="token function">Page</span><span class="token punctuation">(</span><span class="token punctuation">{</span>  
+<pre class=" language-js"><code class="language-js"><span class="token function">Page</span><span class="token punctuation">(</span><span class="token punctuation">{</span>  
     data<span class="token punctuation">:</span> <span class="token punctuation">{</span>    
         name<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token string">"张三"</span><span class="token punctuation">,</span><span class="token string">"李四"</span><span class="token punctuation">,</span><span class="token string">"王五"</span><span class="token punctuation">,</span><span class="token string">"重八"</span><span class="token punctuation">]</span>  
     <span class="token punctuation">}</span><span class="token punctuation">,</span>  
@@ -528,7 +527,7 @@ app<span class="token punctuation">.</span>globalData<span class="token punctuat
         <span class="token keyword">let</span> data1 <span class="token operator">=</span> wx<span class="token punctuation">.</span><span class="token function">getStorageSync</span><span class="token punctuation">(</span><span class="token string">'name'</span><span class="token punctuation">)</span>    
         console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>data1<span class="token punctuation">)</span>  
     <span class="token punctuation">}</span><span class="token punctuation">,</span> 
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
 <h2 id="个人练习"><a href="#个人练习" class="headerlink" title="个人练习"></a>个人练习</h2><p>newteo</p>
 <p>公开的api</p>
 <p>新闻列表 <a target="_blank" rel="noopener" href="https://unidemo.dcloud.net.cn/api/news">https://unidemo.dcloud.net.cn/api/news</a><br>（单个新闻 url: ‘<a target="_blank" rel="noopener" href="https://unidemo.dcloud.net.cn/api/news/36kr/&#39;+">https://unidemo.dcloud.net.cn/api/news/36kr/&#39;+</a> post_id,）</p>

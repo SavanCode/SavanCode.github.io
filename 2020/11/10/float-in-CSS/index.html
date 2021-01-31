@@ -29,8 +29,7 @@
 
     <script src="../../../../libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -433,7 +432,7 @@
 <p><img src="/2020/11/10/float-in-CSS/1605005179649.png"></p>
 <p><img src="/2020/11/10/float-in-CSS/1605005159222.png"></p>
 <p>但是注意float 在网页中的布局影响，例子如下： </p>
-<pre class="line-numbers language-html"><code class="language-html"><span class="token doctype">&lt;!DOCTYPE html></span>
+<pre class=" language-html"><code class="language-html"><span class="token doctype">&lt;!DOCTYPE html></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
@@ -457,7 +456,7 @@
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>up<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> upupupup<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>down<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> downdowndown<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span></code></pre>
 <p><img src="/2020/11/10/float-in-CSS/1605090591386.png"></p>
 <p><img src="/2020/11/10/float-in-CSS/1605090620892.png"></p>
 <h2 id="Clear-清浮动"><a href="#Clear-清浮动" class="headerlink" title="Clear ( 清浮动 )"></a>Clear ( 清浮动 )</h2><ul>
@@ -469,11 +468,11 @@
 <p><img src="/2020/11/10/float-in-CSS/1605005686175.png"></p>
 </li>
 </ul>
-<h2 id="The-clearfix-Hack（-清浮动-）"><a href="#The-clearfix-Hack（-清浮动-）" class="headerlink" title="The clearfix Hack（ 清浮动 ）"></a>The clearfix Hack（ 清浮动 ）</h2><pre class="line-numbers language-css"><code class="language-css"><span class="token selector"><span class="token class">.clearfix</span><span class="token pseudo-element">::after</span> </span><span class="token punctuation">{</span>
+<h2 id="The-clearfix-Hack（-清浮动-）"><a href="#The-clearfix-Hack（-清浮动-）" class="headerlink" title="The clearfix Hack（ 清浮动 ）"></a>The clearfix Hack（ 清浮动 ）</h2><pre class=" language-css"><code class="language-css"><span class="token selector"><span class="token class">.clearfix</span><span class="token pseudo-element">::after</span> </span><span class="token punctuation">{</span>
   <span class="token property">content</span><span class="token punctuation">:</span> <span class="token string">""</span><span class="token punctuation">;</span>
   <span class="token property">clear</span><span class="token punctuation">:</span> both<span class="token punctuation">;</span>
   <span class="token property">display</span><span class="token punctuation">:</span> table<span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span></code></pre>
 <p><img src="/2020/11/10/float-in-CSS/1605008030674.png"></p>
 <p>Reference:   <a target="_blank" rel="noopener" href="https://www.w3schools.com/css/css_float.asp">https://www.w3schools.com/css/css_float.asp</a></p>
 

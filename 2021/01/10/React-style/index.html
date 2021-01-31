@@ -29,8 +29,7 @@
 
     <script src="../../../../libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -426,8 +425,8 @@
             <div id="articleContent">
                 <p>React Style : Bootstrap , Material-UI</p>
 <p><a target="_blank" rel="noopener" href="https://material-ui.com/zh/getting-started/installation/">Material-UI</a></p>
-<pre class="line-numbers language-sh"><code class="language-sh">// 用npm安装
-npm install @material-ui/core<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class=" language-sh"><code class="language-sh">// 用npm安装
+npm install @material-ui/core</code></pre>
 <p>自己练习 - clock</p>
 <h1 id="Ant-Design-of-React"><a href="#Ant-Design-of-React" class="headerlink" title="Ant Design of React"></a><a target="_blank" rel="noopener" href="https://ant.design/components/overview-cn/">Ant Design of React</a></h1><h1 id="Echart"><a href="#Echart" class="headerlink" title="Echart"></a><a target="_blank" rel="noopener" href="https://echarts.apache.org/zh/index.html">Echart</a></h1><p><a target="_blank" rel="noopener" href="https://github.com/apache/incubator-echarts">github</a></p>
 <p>常见问题：”export ‘default’ (imported as ‘ECharts’) was not found in ‘echarts/lib/echarts.js’</p>
@@ -435,16 +434,16 @@ npm install @material-ui/core<span aria-hidden="true" class="line-numbers-rows">
 <ol>
 <li>引入echarts的地方改为</li>
 </ol>
-<pre class="line-numbers language-jsx"><code class="language-jsx"><span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> echarts <span class="token keyword">from</span> <span class="token string">'echarts'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> echarts <span class="token keyword">from</span> <span class="token string">'echarts'</span></code></pre>
 <ol>
 <li>webpack的DefinePlugin里加入如下字段</li>
 </ol>
-<pre class="line-numbers language-sh"><code class="language-sh">// 此处根据情况自行修改，结果为boolean就行，true的情况下会多一些日志信息
-'__DEV__': process.env.node_env === 'dev' <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class=" language-sh"><code class="language-sh">// 此处根据情况自行修改，结果为boolean就行，true的情况下会多一些日志信息
+'__DEV__': process.env.node_env === 'dev' </code></pre>
 <p>或者</p>
-<pre class="line-numbers language-sh"><code class="language-sh">npm un echarts && npm i -E echarts@3.7.2 zrender@3.6.3<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class=" language-sh"><code class="language-sh">npm un echarts && npm i -E echarts@3.7.2 zrender@3.6.3</code></pre>
 <p>基本的component例子</p>
-<pre class="line-numbers language-jsx"><code class="language-jsx"><span class="token keyword">import</span> echarts <span class="token keyword">from</span> <span class="token string">'echarts'</span><span class="token punctuation">;</span>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">import</span> echarts <span class="token keyword">from</span> <span class="token string">'echarts'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token string">'echarts/map/js/china'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> geoJson <span class="token keyword">from</span> <span class="token string">'echarts/map/json/china.json'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token string">'echarts/lib/chart/bar'</span><span class="token punctuation">;</span>
@@ -478,8 +477,8 @@ npm install @material-ui/core<span aria-hidden="true" class="line-numbers-rows">
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 
-ReactDOM<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>EChartsView</span><span class="token punctuation">/></span></span><span class="token punctuation">,</span>document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'root'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="react-echarts"><a href="#react-echarts" class="headerlink" title="react echarts"></a><a target="_blank" rel="noopener" href="https://github.com/hustcc/echarts-for-react">react echarts</a></h1><pre class="line-numbers language-sh"><code class="language-sh">npm install echarts-for-react echarts<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+ReactDOM<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>EChartsView</span><span class="token punctuation">/></span></span><span class="token punctuation">,</span>document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'root'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h1 id="react-echarts"><a href="#react-echarts" class="headerlink" title="react echarts"></a><a target="_blank" rel="noopener" href="https://github.com/hustcc/echarts-for-react">react echarts</a></h1><pre class=" language-sh"><code class="language-sh">npm install echarts-for-react echarts</code></pre>
 
             </div>
             <hr/>

@@ -29,8 +29,7 @@
 
     <script src="../../../../libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -430,18 +429,18 @@
 <li><p>将对应的wxml以及wxss放进去</p>
 </li>
 <li><p>重点！！ 在使用的页面的index.json中加入components的路径</p>
-<pre class="line-numbers language-js"><code class="language-js"> <span class="token punctuation">{</span>
+<pre class=" language-js"><code class="language-js"> <span class="token punctuation">{</span>
 <span class="token string">"usingComponents"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
  <span class="token string">"NavHeader"</span><span class="token punctuation">:</span><span class="token string">"/components/NavHeader/index"</span>
 <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span></code></pre>
 </li>
 <li><p>引入的页面直接使用组件 例如 <code>&lt;NavHeader&gt;&lt;/NavHeader&gt;</code></p>
 </li>
 </ol>
 <h3 id="参数传入"><a href="#参数传入" class="headerlink" title="参数传入"></a>参数传入</h3><p>这里我们要关于本身自定义组件性能</p>
 <p>例子</p>
-<pre class="line-numbers language-css"><code class="language-css"><span class="token comment" spellcheck="true">/*自定义性质*/</span>
+<pre class=" language-css"><code class="language-css"><span class="token comment" spellcheck="true">/*自定义性质*/</span>
 <span class="token selector">properties: </span><span class="token punctuation">{</span>
     <span class="token selector">title:</span><span class="token punctuation">{</span>
       <span class="token property">type</span><span class="token punctuation">:</span>String,
@@ -455,8 +454,8 @@
       <span class="token property">type</span><span class="token punctuation">:</span>String,
       <span class="token property">value</span><span class="token punctuation">:</span><span class="token string">'默认right'</span>
     <span class="token punctuation">}</span>
-  <span class="token punctuation">}</span>,<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-html"><code class="language-html"><span class="token comment" spellcheck="true">&lt;!-- 自定义 --></span>
+  <span class="token punctuation">}</span>,</code></pre>
+<pre class=" language-html"><code class="language-html"><span class="token comment" spellcheck="true">&lt;!-- 自定义 --></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span>
  <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>recommend<span class="token punctuation">"</span></span>
  <span class="token attr-name">hover-class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>none<span class="token punctuation">"</span></span>
@@ -477,13 +476,13 @@
             {{right}}
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-html"><code class="language-html"><span class="token comment" spellcheck="true">&lt;!-- html --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span></code></pre>
+<pre class=" language-html"><code class="language-html"><span class="token comment" spellcheck="true">&lt;!-- html --></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>NavHeader</span>
  <span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>推荐歌单<span class="token punctuation">"</span></span>
  <span class="token attr-name">left</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>精心为你推荐<span class="token punctuation">"</span></span>
  <span class="token attr-name">right</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>查看更多<span class="token punctuation">"</span></span>
-<span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>NavHeader</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>NavHeader</span><span class="token punctuation">></span></span></code></pre>
 <p><img src="/2021/01/24/Wechat-mini-prog-09/image-20210124233351182.png"></p>
 
             </div>

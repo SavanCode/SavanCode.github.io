@@ -29,8 +29,7 @@
 
     <script src="../../../../libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -425,8 +424,8 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="分享功能"><a href="#分享功能" class="headerlink" title="分享功能"></a>分享功能</h2><h3 id="通过点击按钮触发分享好友功能"><a href="#通过点击按钮触发分享好友功能" class="headerlink" title="通过点击按钮触发分享好友功能"></a>通过点击按钮触发分享好友功能</h3><p>在设置完上面的小程序JS部分后，有时会需要在按钮上触发分享好友功能，这里涉及到微信小程序按钮自带的open-type 的合法值，可参考微信<a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/component/button.html">官方文档</a></p>
-<h3 id="效果1-分享当前缩略图"><a href="#效果1-分享当前缩略图" class="headerlink" title="效果1 - 分享当前缩略图"></a>效果1 - 分享当前缩略图</h3><pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span>  <span class="token attr-name">open-type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>share<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>分享好友<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<pre class="line-numbers language-js"><code class="language-js"><span class="token function">Page</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+<h3 id="效果1-分享当前缩略图"><a href="#效果1-分享当前缩略图" class="headerlink" title="效果1 - 分享当前缩略图"></a>效果1 - 分享当前缩略图</h3><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span>  <span class="token attr-name">open-type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>share<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>分享好友<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span></code></pre>
+<pre class=" language-js"><code class="language-js"><span class="token function">Page</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
 
   <span class="token comment" spellcheck="true">/*页面的初始数据*/</span>
   data<span class="token punctuation">:</span> <span class="token punctuation">{</span>
@@ -447,29 +446,29 @@
       <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
 <p><img src="/2021/01/23/Wechat-mini-prog-08/image-20210123225245278.png"></p>
 <h3 id="效果2-button-amp-onShareAppMessage"><a href="#效果2-button-amp-onShareAppMessage" class="headerlink" title="效果2 - button &amp; onShareAppMessage"></a>效果2 - button &amp; onShareAppMessage</h3><blockquote>
 <p>但是这里一定注意！ 他这里要设置一下catch事件，不然会有冒泡</p>
 </blockquote>
-<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">'</span>share<span class="token punctuation">'</span></span> <span class="token attr-name">open-type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>share<span class="token punctuation">"</span></span> <span class="token attr-name">catchtap</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>share<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<pre class="line-numbers language-js"><code class="language-js">onShareAppMessage<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">'</span>share<span class="token punctuation">'</span></span> <span class="token attr-name">open-type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>share<span class="token punctuation">"</span></span> <span class="token attr-name">catchtap</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>share<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></code></pre>
+<pre class=" language-js"><code class="language-js">onShareAppMessage<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
     <span class="token keyword">return</span> <span class="token punctuation">{</span>
        title<span class="token punctuation">:</span> <span class="token string">'xxxxx'</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">//自定义转发标题</span>
        path<span class="token punctuation">:</span> <span class="token string">'/page/user?id=123'</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">//分享页面路径</span>
        imageUrl<span class="token punctuation">:</span> <span class="token string">'/common/images/xxx.png'</span> <span class="token comment" spellcheck="true">//分享图片 宽高比 5:4</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span></code></pre>
 <p><img src="/2021/01/23/Wechat-mini-prog-08/image-20210123224905125.png"></p>
-<h3 id="效果3-在onload函数中显示"><a href="#效果3-在onload函数中显示" class="headerlink" title="效果3 - 在onload函数中显示"></a>效果3 - 在onload函数中显示</h3><pre class="line-numbers language-js"><code class="language-js">onLoad<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>options<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<h3 id="效果3-在onload函数中显示"><a href="#效果3-在onload函数中显示" class="headerlink" title="效果3 - 在onload函数中显示"></a>效果3 - 在onload函数中显示</h3><pre class=" language-js"><code class="language-js">onLoad<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>options<span class="token punctuation">)</span> <span class="token punctuation">{</span>
      <span class="token comment" spellcheck="true">//开启分享好友功能</span>
     wx<span class="token punctuation">.</span><span class="token function">showShareMenu</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
       withShareTicket<span class="token punctuation">:</span> <span class="token boolean">true</span>
     <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span>
-<span class="token comment" spellcheck="true">//测试群是自动就显示的界面</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment" spellcheck="true">//测试群是自动就显示的界面</span></code></pre>
 <p><img src="/2021/01/23/Wechat-mini-prog-08/image-20210123225624188.png"></p>
-<h3 id="效果4-右上角菜单分享-自定义"><a href="#效果4-右上角菜单分享-自定义" class="headerlink" title="效果4 - 右上角菜单分享 -自定义"></a>效果4 - 右上角菜单分享 -自定义</h3><pre class="line-numbers language-js"><code class="language-js"><span class="token comment" spellcheck="true">//当你有两个分享的时候 </span>
+<h3 id="效果4-右上角菜单分享-自定义"><a href="#效果4-右上角菜单分享-自定义" class="headerlink" title="效果4 - 右上角菜单分享 -自定义"></a>效果4 - 右上角菜单分享 -自定义</h3><pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">//当你有两个分享的时候 </span>
 onShareAppMessage<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token keyword">from</span><span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">from</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">from</span> <span class="token operator">===</span> <span class="token string">'button'</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
@@ -485,7 +484,7 @@ onShareAppMessage<span class="token punctuation">:</span> <span class="token key
         imageUrl<span class="token punctuation">:</span> <span class="token string">'/static/images/nvsheng.jpg'</span>
       <span class="token punctuation">}</span>
     <span class="token punctuation">}</span> 
-  <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  <span class="token punctuation">}</span></code></pre>
 
             </div>
             <hr/>

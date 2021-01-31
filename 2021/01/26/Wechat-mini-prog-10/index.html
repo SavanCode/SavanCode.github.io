@@ -29,8 +29,7 @@
 
     <script src="../../../../libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -424,7 +423,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="video-复用-music小程序"><a href="#video-复用-music小程序" class="headerlink" title="video 复用 - music小程序"></a>video 复用 - music小程序</h2><h2 id="video列表，实现同一时间只能播放一个视频"><a href="#video列表，实现同一时间只能播放一个视频" class="headerlink" title="video列表，实现同一时间只能播放一个视频"></a>video列表，实现同一时间只能播放一个视频</h2><pre class="line-numbers language-js"><code class="language-js"><span class="token comment" spellcheck="true">// video列表，实现同一时间只能播放一个视频</span>
+                <h2 id="video-复用-music小程序"><a href="#video-复用-music小程序" class="headerlink" title="video 复用 - music小程序"></a>video 复用 - music小程序</h2><h2 id="video列表，实现同一时间只能播放一个视频"><a href="#video列表，实现同一时间只能播放一个视频" class="headerlink" title="video列表，实现同一时间只能播放一个视频"></a>video列表，实现同一时间只能播放一个视频</h2><pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// video列表，实现同一时间只能播放一个视频</span>
   <span class="token function">playVideo</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">var</span> curIdx <span class="token operator">=</span> e<span class="token punctuation">.</span>currentTarget<span class="token punctuation">.</span>id<span class="token punctuation">;</span>
     <span class="token comment" spellcheck="true">// 没有播放时播放视频</span>
@@ -447,9 +446,9 @@
         videoContextCurrent<span class="token punctuation">.</span><span class="token function">play</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
       <span class="token punctuation">}</span>
     <span class="token punctuation">}</span> 
-  <span class="token punctuation">}</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span></code></pre>
 <h2 id="poster-属性-先显示第一帧"><a href="#poster-属性-先显示第一帧" class="headerlink" title="poster 属性 先显示第一帧"></a>poster 属性 先显示第一帧</h2><h2 id="性能优化部分"><a href="#性能优化部分" class="headerlink" title="性能优化部分"></a>性能优化部分</h2><p>用img先替代视频，点击img之后切换到video，加载不会显示</p>
-<pre class="line-numbers language-html"><code class="language-html"><span class="token comment" spellcheck="true">&lt;!--自己要用的要改数据(⊙o⊙)
+<pre class=" language-html"><code class="language-html"><span class="token comment" spellcheck="true">&lt;!--自己要用的要改数据(⊙o⊙)
 object-fit="fill" - 黑框边消除
 --></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>video</span>
@@ -472,8 +471,8 @@ object-fit="fill" - 黑框边消除
              <span class="token attr-name">bindtap</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>playVideoImg<span class="token punctuation">"</span></span>
              <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>{{item.data.coverUrl}}<span class="token punctuation">"</span></span>
              <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span>
-            <span class="token punctuation">/></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-js"><code class="language-js"><span class="token comment" spellcheck="true">//灵活应用this，在下一个视频数据没进来之前，他指向的都是前一个视频数据</span>
+            <span class="token punctuation">/></span></span></code></pre>
+<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">//灵活应用this，在下一个视频数据没进来之前，他指向的都是前一个视频数据</span>
  playVideoImg<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">{</span> 
     <span class="token keyword">let</span> vid<span class="token operator">=</span>e<span class="token punctuation">.</span>target<span class="token punctuation">.</span>id
     <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setData</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
@@ -482,15 +481,15 @@ object-fit="fill" - 黑框边消除
         <span class="token comment" spellcheck="true">// 创建控制video标签的实例对象</span>
         <span class="token keyword">this</span><span class="token punctuation">.</span>videoContext <span class="token operator">=</span> wx<span class="token punctuation">.</span><span class="token function">createVideoContext</span><span class="token punctuation">(</span>vid<span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">this</span><span class="token punctuation">.</span>videoContext<span class="token punctuation">.</span><span class="token function">play</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="视频继续自动播放"><a href="#视频继续自动播放" class="headerlink" title="视频继续自动播放"></a>视频继续自动播放</h2><pre class="line-numbers language-html"><code class="language-html">      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>video</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span></code></pre>
+<h2 id="视频继续自动播放"><a href="#视频继续自动播放" class="headerlink" title="视频继续自动播放"></a>视频继续自动播放</h2><pre class=" language-html"><code class="language-html">      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>video</span>
           <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>{{item.data.urlInfo.url}}<span class="token punctuation">"</span></span>
           <span class="token attr-name">bindplay</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>handlePlay<span class="token punctuation">"</span></span>
           <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>{{item.data.vid}}<span class="token punctuation">"</span></span>
           <span class="token attr-name">bindtimeupdate</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>handleTimeUpdate<span class="token punctuation">"</span></span>
           <span class="token attr-name">bindended</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>handleEnded<span class="token punctuation">"</span></span>
-      <span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>video</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-js"><code class="language-js">  data<span class="token punctuation">:</span> <span class="token punctuation">{</span> 
+      <span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>video</span><span class="token punctuation">></span></span></code></pre>
+<pre class=" language-js"><code class="language-js">  data<span class="token punctuation">:</span> <span class="token punctuation">{</span> 
     videoId<span class="token punctuation">:</span> <span class="token string">''</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// 视频id标识</span>
     videoUpdateTime<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// 记录video播放的时长</span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span> 
@@ -538,13 +537,13 @@ object-fit="fill" - 黑框边消除
            <span class="token keyword">this</span><span class="token punctuation">.</span>videoContext<span class="token punctuation">.</span><span class="token function">seek</span><span class="token punctuation">(</span>videoItem<span class="token punctuation">.</span>currentTime<span class="token punctuation">)</span><span class="token punctuation">;</span>
          <span class="token punctuation">}</span>
         <span class="token keyword">this</span><span class="token punctuation">.</span>videoContext<span class="token punctuation">.</span><span class="token function">play</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="scroll-view-下拉刷新"><a href="#scroll-view-下拉刷新" class="headerlink" title="scroll-view 下拉刷新"></a>scroll-view 下拉刷新</h2><pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>scroll-view</span>  
+  <span class="token punctuation">}</span><span class="token punctuation">,</span></code></pre>
+<h2 id="scroll-view-下拉刷新"><a href="#scroll-view-下拉刷新" class="headerlink" title="scroll-view 下拉刷新"></a>scroll-view 下拉刷新</h2><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>scroll-view</span>  
  <span class="token attr-name">bindrefresherrefresh</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>handleRefresher<span class="token punctuation">"</span></span>
  <span class="token attr-name">refresher-triggered</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>{{isRefresh}}<span class="token punctuation">"</span></span> 
 <span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>scroll-view</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-js"><code class="language-js">  handleRefresher<span class="token punctuation">:</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span> 
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>scroll-view</span><span class="token punctuation">></span></span></code></pre>
+<pre class=" language-js"><code class="language-js">  handleRefresher<span class="token punctuation">:</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span> 
       <span class="token comment" spellcheck="true">//console.log('scroll-view 下拉刷新');</span>
       <span class="token comment" spellcheck="true">// 再次发请求，获取最新的视频列表数据</span>
       <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getContentNav</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>data<span class="token punctuation">.</span>choseNav<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -552,12 +551,12 @@ object-fit="fill" - 黑框边消除
       <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setData</span><span class="token punctuation">(</span><span class="token punctuation">{</span> 
         isRefresh<span class="token punctuation">:</span><span class="token boolean">false</span>
       <span class="token punctuation">}</span><span class="token punctuation">)</span>  
-  <span class="token punctuation">}</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="触底刷新数据-scrolltolower"><a href="#触底刷新数据-scrolltolower" class="headerlink" title="触底刷新数据 - scrolltolower"></a>触底刷新数据 - scrolltolower</h2><pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>scroll-view</span>   
+  <span class="token punctuation">}</span><span class="token punctuation">,</span></code></pre>
+<h2 id="触底刷新数据-scrolltolower"><a href="#触底刷新数据-scrolltolower" class="headerlink" title="触底刷新数据 - scrolltolower"></a>触底刷新数据 - scrolltolower</h2><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>scroll-view</span>   
  <span class="token attr-name">bindscrolltolower</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>scrolltolower<span class="token punctuation">"</span></span>
 <span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>scroll-view</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-js"><code class="language-js">scrolltolower<span class="token punctuation">:</span> <span class="token keyword">async</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>scroll-view</span><span class="token punctuation">></span></span></code></pre>
+<pre class=" language-js"><code class="language-js">scrolltolower<span class="token punctuation">:</span> <span class="token keyword">async</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
     <span class="token comment" spellcheck="true">//先用http://localhost:3000/video/group?id=9104</span>
     <span class="token comment" spellcheck="true">//因为网易云api没有分页</span>
     <span class="token keyword">let</span> result<span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token string">'/video/group'</span><span class="token punctuation">,</span><span class="token punctuation">{</span>id<span class="token punctuation">:</span><span class="token number">9104</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -575,9 +574,9 @@ object-fit="fill" - 黑框边消除
         videoList<span class="token punctuation">:</span>videoList
       <span class="token punctuation">}</span><span class="token punctuation">)</span>  
     <span class="token punctuation">}</span> 
-  <span class="token punctuation">}</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="Page本身下拉刷新"><a href="#Page本身下拉刷新" class="headerlink" title="Page本身下拉刷新"></a>Page本身下拉刷新</h2><pre class="line-numbers language-json"><code class="language-json">//页面或者全局
-<span class="token property">"enablePullDownRefresh"</span><span class="token operator">:</span> <span class="token boolean">true</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span></code></pre>
+<h2 id="Page本身下拉刷新"><a href="#Page本身下拉刷新" class="headerlink" title="Page本身下拉刷新"></a>Page本身下拉刷新</h2><pre class=" language-json"><code class="language-json">//页面或者全局
+<span class="token property">"enablePullDownRefresh"</span><span class="token operator">:</span> <span class="token boolean">true</span></code></pre>
 
             </div>
             <hr/>
