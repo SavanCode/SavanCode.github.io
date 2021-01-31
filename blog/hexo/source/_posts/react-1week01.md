@@ -6,12 +6,12 @@ toc: true
 mathjax: true
 date: 2020-12-16 14:29:43
 password:
-summary:
+summary: 基本配置,改变状态,props,组件之间传输数据
 tags: React
 categories: React
 ---
 
-# React 开始
+## React 开始
 
 通过react的脚手架，创建项目进行开发，部署。（推荐）
 
@@ -27,7 +27,7 @@ $ npm install -g create-react-app
 $ create-react-app your-app 注意命名方式
 ```
 
-# React 事件与方法
+## React 事件与方法
 
 通过前面的练习，我们将用class写
 
@@ -156,9 +156,9 @@ const options = ["option 1","option 2"]
 ReactDOM.render(<IndecisionApp />, document.getElementById('root'));
 ```
 
-# 事件绑定
+## 事件绑定
 
-## 原理解释
+### 原理解释
 
 **React事件绑定时需要注意this指向**
 
@@ -184,7 +184,7 @@ react事件绑定时。this并不会指向当前DOM元素。往往使用bind来�
 
 接下来要加上动态事件，这时候跟前面的区别在于这里由于用的是class，属性之间没有办法很好的共享
 
-### function.bind()方式
+#### function.bind()方式
 
 ```jsx
 const obj={
@@ -198,7 +198,7 @@ const getName=obj,getName.bind({name:"joe"});
 console.log(getName());
 ```
 
-### inline arrow function方式
+#### inline arrow function方式
 
 1. 为事件提供的处理函数，必须是如下格式
 
@@ -217,9 +217,9 @@ show = (arg1) => {
 }
 ```
 
-## 回归例子
+### 回归例子
 
-### 方式一 -  bind
+#### 方式一 -  bind
 
 实际上我们尝试用处理removeAll, 先拿到所有的props，两种办法
 
@@ -252,7 +252,7 @@ class Options extends React.Component{
 1. 数量多时极其浪费内存
 2. 如果是子组件的props，则会导致子组件重新渲染
 
-### 方式二 ：通过constructor绑定
+#### 方式二 ：通过constructor绑定
 
 ```jsx
 //方式二 通过constructor绑定
@@ -281,9 +281,9 @@ class Options extends React.Component{
 }
 ```
 
-### 方式三 箭头函数
+#### 方式三 箭头函数
 
-# State
+## State
 
 组件自身的state，**注意！！注意！！ 这是对象**
 
@@ -306,7 +306,7 @@ incrementCount(){
 
 实际上不会，由于是异步，所以第一个设为0并没有完成，但是可能先+1；
 
-## 实际例子
+### 实际例子
 
 改变class内state变量
 
@@ -357,7 +357,7 @@ class Counter extends React.Component{
 ReactDOM.render( <Counter />, document.getElementById('root'));
 ```
 
-## setState 的三种写法
+### setState 的三种写法
 
 **(1)对象**
 
@@ -397,7 +397,7 @@ this.setState({
 })
 ```
 
-## 存在props值的修改state的值 
+### 存在props值的修改state的值 
 
 因为更新的 props 和状态是异步的。这里，我们根据这些 props 更新状态。
 
@@ -412,9 +412,9 @@ this.setState((state, props) => {
 })
 ```
 
-# Props
+## Props
 
-## 默认props & 基本props
+### 默认props & 基本props
 
 ```jsx
 //默认input设置
@@ -444,7 +444,7 @@ class ShoppingCart extends React.Component {
 
 ```
 
-## props 输入限制
+### props 输入限制
 
 ```jsx
 componentName.propTypes = {
@@ -570,15 +570,15 @@ object React.Children.only(object children)
 </body>
 </html>
 ```
-# Props vs State
+## Props vs State
 
 ![](react-1week01/image-20201216190719032.png)
 
 props是单向联动的
 
-# 函数组件-函数名称以大写字母开头
+## 函数组件-函数名称以大写字母开头
 
-## 无状态组件
+### 无状态组件
 
 **无状态组件不支持this！！**
 
@@ -597,7 +597,7 @@ const User=(props)=>{
 ReactDOM.render( <User name="tom" age={28}/>, document.getElementById('root')); 
 ```
 
-### class组件 const组件对比
+#### class组件 const组件对比
 
 ```jsx
 //注意区别 仔细看对比
@@ -622,7 +622,7 @@ const Header=(props)=>{
 }
 ```
 
-### 默认input
+#### 默认input
 
 ```jsx
 const Header=(props)=>{
@@ -671,7 +671,7 @@ ReactDOM.render(<IndecisionApp />, document.getElementById('root'));
 
 
 
-### input双向绑定
+#### input双向绑定
 
 ```jsx
 class ControlledInput extends React.Component {
@@ -703,7 +703,7 @@ handleChange(event){
 
 
 
-### onclick函数
+#### onclick函数
 
 ```jsx
 const Option = (props)=>{
@@ -719,7 +719,7 @@ const Option = (props)=>{
 
 
 
-## 状态组件
+### 状态组件
 
 ```jsx
 class StatefulComponent extends React.Component {
@@ -742,9 +742,9 @@ class StatefulComponent extends React.Component {
 
 
 
-# 父子组件之间的传递以及实例
+## 父子组件之间的传递以及实例
 
-## 单纯的input传输（子组件input给父）
+### 单纯的input传输（子组件input给父）
 
 ```jsx
 class MyApp extends React.Component {
@@ -801,7 +801,7 @@ class RenderInput extends React.Component {
 };
 ```
 
-## 子组件事件 影响父组件state
+### 子组件事件 影响父组件state
 
 父组件 - IndecisionApp
 
@@ -860,7 +860,7 @@ const Options = (props)=>{
 export default Options
 ```
 
-## 子组件向父组件通信
+### 子组件向父组件通信
 
 子组件通过 回调函数 向父组件传递数据。父组件将自己的某个方法传递给子组件，子组件通过this.props接收到父组件的方法后进行调用。
 

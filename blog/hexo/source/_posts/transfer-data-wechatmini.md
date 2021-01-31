@@ -6,12 +6,10 @@ toc: true
 mathjax: true
 date: 2021-01-18 13:20:26
 password:
-summary:
+summary: 微信小程序页面间传递数据
 tags: WechatMini Program
 categories: WechatMini Program
 ---
-
-# 微信小程序页面间传递数据
 
 ## 将数据对象转化为json格式
 

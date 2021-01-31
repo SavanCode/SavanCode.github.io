@@ -6,14 +6,12 @@ toc: true
 mathjax: true
 date: 2020-11-24 19:37:23
 password:
-summary:
+summary: String
 tags: JS
 categories: JS
 ---
 
-# String
-
-![](js-data-types/1606214735012.png)
+![](js-string/1606214735012.png)
 
 ## 引号
 

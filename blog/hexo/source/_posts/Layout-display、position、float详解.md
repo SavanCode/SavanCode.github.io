@@ -6,12 +6,10 @@ toc: true
 mathjax: true
 date: 2020-11-15 15:56:53
 password:
-summary:
+summary: display、position、float详解
 tags:  css&html
 categories: Front-end
 ---
-
-# display、position、float详解
 
 ## display
 

@@ -1,5 +1,5 @@
 ---
-title: react-JSX&React元素
+title: react-JSX & React元素
 top: false
 cover: false
 toc: true
@@ -11,9 +11,9 @@ tags: React
 categories: React
 ---
 
-# [React官方](https://react.docschina.org/)
+## [React官方](https://react.docschina.org/)
 
-# React 特点
+## React 特点
 
 1、声明式的设计
 
@@ -27,7 +27,7 @@ categories: React
 
 6、单向数据流。没有实现数据的双向绑定。数据-》视图-》事件-》数据
 
-# 创建项目
+## 创建项目
 
 1、通过script引入使用，仅用于学习调试使用
 
@@ -111,9 +111,9 @@ We suggest that you begin by typing:
   - 查看版本 yarn --version
   - 设置淘宝源 yarn config set registry https://registry.npm.taobao.org -g
 
-# react 元素渲染方式
+## react 元素渲染方式
 
-## JSX基本方式
+### JSX基本方式
 
 ```jsx
 //实现页面时刻的显示
@@ -132,7 +132,7 @@ clock()
 setInterval(clock,1000)
 ```
 
-# React Jsx 优点
+## React Jsx 优点
 
 优点：
 
@@ -148,9 +148,8 @@ setInterval(clock,1000)
 
 2、正常的普通HTML元素要小写。如果是大写，默认认为是组件。
 
- 
 
-## JSX表达式
+### JSX表达式
 
 1、由HTML元素构成, 一个var 只能由一层div组成
 
@@ -164,7 +163,7 @@ setInterval(clock,1000)
 
 6、class名 只能用className 换行符可以用`<hr />`&`<br />`
 
-### 例子
+#### 例子
 
 ```jsx
 //定义基本
@@ -246,7 +245,7 @@ let element5 = (
 ReactDOM.render(element5,document.getElementById('root'))
 ```
 
-# 编写第一个react应用程序
+## 编写第一个react应用程序
 
 eact开发需要引入多个依赖文件：react.js、react-dom.js，分别又有开发版本和生产版本，create-react-app里已经帮我们把这些东西都安装好了。把通过CRA创建的工程目录下的src目录清空，然后在里面重新创建一个index.js. 写入以下代码:
 ```jsx
@@ -264,9 +263,9 @@ ReactDOM.render(
 )
 ```
 
-## 元素与组件
+### 元素与组件
 
-### 变量元素
+#### 变量元素
 
 如果代码多了之后，不可能一直在render方法里写，所以就需要把里面的代码提出来，定义一个变量，像这样：
 ```jsx
@@ -277,7 +276,7 @@ const app = <h1>欢迎进入React的世界</h1>
 ReactDOM.render( app, document.getElementById('root'))
 ```
 
-### 函数式组件
+#### 函数式组件
 
 ```jsx
 import React from 'react'
@@ -314,12 +313,10 @@ ReactDOM.render( <App name="react" />, document.getElementById('root'))
 ```
 
 运行结果和之前完全一样，因为JS里没有真正的class，这个class只是一个语法糖, 但二者的运行机制底层运行机制不一样。
-
 - 函数式组件是直接调用, 在前面的代码里已经有看到
-
 - `es6 class`组件其实就是一个构造器,每次使用组件都相当于在实例化组件，像这样：
 
-  ```jsx
+```jsx
   import React from 'react'
   import ReactDOM from 'react-dom'
   
@@ -332,9 +329,9 @@ ReactDOM.render( <App name="react" />, document.getElementById('root'))
   const app = new App({ name: 'react' }).render()
   
   ReactDOM.render( app, document.getElementById('root')) 
-  ```
+```
 
-#### super关键字
+##### super关键字
 
 Es6中的super可以用在类的继承中，super关键字，它指代父类的实例（即父类的this对象）。子类必须在constructor方法中调用super方法，否则新建实例时会报错。这是因为子类没有自己的this对象，而是继承父类的this对象，然后对其进行加工。如果不调用super方法，子类就得不到this对象。
 
@@ -355,7 +352,7 @@ class Student extends Person {
 
 
 
-### 组件的组合、嵌套
+#### 组件的组合、嵌套
 
 将一个组件渲染到某一个节点里的时候，会将这个节点里原有内容覆盖.
 
@@ -399,7 +396,7 @@ class App extends Component {
 ReactDOM.render( <App/>, document.getElementById('root'))
 ```
 
-# JSX 原理
+## JSX 原理
 
 要明白JSX的原理，需要先明白如何用 JavaScript 对象来表现一个 DOM 元素的结构?
 
@@ -511,9 +508,9 @@ React.createElement(
 
 > JSX —使用react构造组件，bable进行编译—> JavaScript对象 — `ReactDOM.render()`—>DOM元素 —>插入页面
 
-# JSX_style 样式
+## JSX_style 样式
 
-## 行内style
+### 行内style
 
 react组件jsx，行内style**固定**写法就是**双花括号**：
 
@@ -538,20 +535,18 @@ let backAndTextColor = {backgroundColor:'blue', color:'#ff671b', fontSize:40 };
 ```
 
 (2)JSX的调用
-
 ```jsx
 let element3 = (
 <div style={backAndTextColor}>行内样式测试</div>
  )
 ```
-
 也可以直接写到JSX中,如下:
 
 ```jsx
 <div style={{backgroundColor:'blue',color:'#ff671b',fontSize:40}}>行内样式测试</div>
 ```
 
-## 多个类共存的操作
+#### 多个类共存的操作
 
 ```jsx
 let element2 = (

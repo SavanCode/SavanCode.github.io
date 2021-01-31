@@ -1,20 +1,48 @@
 ---
-title: react3-Form&Array
+title: Relative Path 路径书写
 top: false
 cover: false
 toc: true
 mathjax: true
-date: 2020-12-15 17:40:10
+date: 2020-11-15 20:22:56
 password:
-summary:
-tags: React
-categories: React
+summary: 写相对或者绝对路径的注意点
+tags: css&html
+categories: css&html
 ---
 
-# react 之 表单组件
+## 同一个文件夹
 
-在React中表单组件分为约束组件和无约束组件两种。
+3.2.html和3.html在同一个文件夹下， 如果2.html链接到3.html，可以在2.html中这样写:
+```html
+<a href="3.html">同目录下文件间互相链接</a>
+```
 
-　　- 无约束组件，是指其value值不通过的props或者state来设置，仅由其自身来决定。表单组件的值的变化也不会被记录，只能通过找到DOM节点的方式来获取。
-
-　　- 约束组件，是React中推荐的表单的使用方式。表单组件的值并不是由其自身决定，而是通过父组件传递或者本身的state来控制。其内容的每次变化都会被保存，需要时仅需要通过this.state便能获取。
+## 上级目录文件
+1.html是2.html和3.html的上级目录中的文件，如果2.html或3.html链接到1.html，可以在2.html或3.html中这样写
+```html
+<a href="../1.html">链接到上级目录中的文件</a>
+```
+../ 代表一级上级目录(间隔一个目录)
+　　 ../../代表二级上级目录(间隔两个目录)
+　　 比如4.html链接到1.html，可以在4.html中这样写
+```html
+<a href="../../1.html">链接到上级目录的上级目录中的文件</a>
+```
+## 下级目录文件
+2.html和3.html是1.html的下级目录中的文件，如果在1.html中链接到2.html， 可以在1.html中这样写
+```html
+<a href="first/2.html">链接到下级目录(first)中的文件</a>
+```
+如果在1.html中链接到4.html，可以在1.html中这样写
+```html
+<a href="first/second/4.html">链接到下级目录(first/second/)中的文件</a>
+```
+# 根目录
+使用根目录的方式表示的路径和绝对路径的表示方式相似，去掉前面的域名就可。
+　　比如：
+```html
+<a href="/exe/1.html">链接到1.html</a>1
+<a href="/exe/first/2.html">链接到2.html</a>1
+```
+**../表示源文件所在目录（文件夹）的上一级目录（文件夹），../../表示源文件所在目录的上上级目录，以此类推。**

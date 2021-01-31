@@ -137,3 +137,18 @@ const map = {
 solution：
 
 层级设置不可以跟排列序号同时使用
+
+## 问题8 ： deploy 时候, 远程挂掉问题
+
+```sh
+error: RPC failed; curl 18 transfer closed with outstanding read data remaining
+fatal: The remote end hung up unexpectedly
+```
+
+这种你会尝试反复 deploy，没错你确实要。
+因为这基本是你网络问题 O(∩_∩)O 
+但是可以尝试下面的
+
+```sh
+git config --global http.postBuffer 524288000
+```

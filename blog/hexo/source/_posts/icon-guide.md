@@ -7,8 +7,8 @@ mathjax: true
 date: 2021-01-24 17:15:44
 password:
 summary:
-tags:
-categories:
+tags: icon
+categories: icon
 ---
 
 ## iconfont 字体图标使用 （小程序为例）

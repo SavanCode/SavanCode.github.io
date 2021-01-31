@@ -1,17 +1,15 @@
 ---
-title: Layout-flex
+title: Layout flex
 top: false
 cover: false
 toc: true
 mathjax: true
 date: 2020-11-13 13:23:53
 password:
-summary:
+summary: Layout - Flex 详细的笔记
 tags: css&html
 categories: Front-end
 ---
-
-# **Layout - Flex**
 
 ![](Layout-flex/1605245444171.png)
 

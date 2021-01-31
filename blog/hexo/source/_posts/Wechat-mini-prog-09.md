@@ -6,7 +6,7 @@ toc: true
 mathjax: true
 date: 2021-01-24 23:02:38
 password:
-summary:
+summary: 微信小程序中自定义组件创建
 tags: WechatMini Program
 categories: WechatMini Program
 ---

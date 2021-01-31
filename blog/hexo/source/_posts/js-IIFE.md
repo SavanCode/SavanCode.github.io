@@ -7,7 +7,7 @@ mathjax: true
 date: 2020-11-26 10:05:25
 password:
 summary:
-tags:
+tags: JS
 categories: JS
 ---
 

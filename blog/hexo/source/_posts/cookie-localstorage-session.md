@@ -8,7 +8,7 @@ date: 2020-11-17 15:21:52
 password:
 summary:
 tags: css&html
-categories: Front-end
+categories: [ Front-end , css&html ]
 ---
 
 前端本地存储的方式有三种，分别是cookie，localstorage和sessionStorage 

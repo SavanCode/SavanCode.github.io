@@ -6,12 +6,12 @@ toc: true
 mathjax: true
 date: 2020-12-21 16:10:45
 password:
-summary:
+summary: Redux
 tags: React
 categories: React
 ---
 
-# Redux 必要条件
+## Redux 必要条件
 
 The Redux core library is available as a package on NPM for use with a module bundler or in a Node application:
 
@@ -23,7 +23,7 @@ npm install redux
 yarn add redux
 ```
 
-# redux理解
+## redux理解
 
 什么: redux是专门做状态管理的独立第3方库, 不是react插件
 作用: 对应用中状态进行集中式的管理(写/读)
@@ -52,22 +52,22 @@ yarn add redux
 
   ![](react-1week05/image-20210101012427891.png)
 
-# [为什么要Redux](https://segmentfault.com/a/1190000012142449)
+## [为什么要Redux](https://segmentfault.com/a/1190000012142449)
 
 ![](https://miro.medium.com/max/875/1*f3gS9znOZvX8HfCLg7T--Q.gif)
 
-# Redux核心概念(3个)
+## Redux核心概念(3个)
 
 
-## action
+### action
 默认是对象(同步action), {type: 'xxx', data: value}, 需要通过对应的actionCreator产生, 
 它的值也可以是函数(异步action), 需要引入redux-thunk才可以
 
-## reducer
+### reducer
 根据老的state和指定的action, 返回一个新的state
 不能修改老的state
 
-## store
+### store
 redux最核心的管理对象
 内部管理着: state和reducer
 提供方法: getState(), dispatch(action), subscribe(listener)
@@ -77,9 +77,9 @@ redux最核心的管理对象
 - `store.getState()` 获取store里面所有的数据内容
 - `store.subscribe()` 订阅store的改变，只要store发生改变，`store.subscribe()`中的回调函数就会执行
 
-#  单个redux例子
+##  单个redux例子
 
-## 基础 reducer store action
+### 基础 reducer store action
 
 ```jsx
 import { createStore } from 'redux' 
@@ -124,7 +124,7 @@ store.dispatch({ type: "RESET" })
 console.log(store.getState()); 
 ```
 
-## subscribe以及设置特殊值
+### subscribe以及设置特殊值
 
 ```jsx
  //仓库放所有action 以及state
@@ -212,7 +212,7 @@ store.dispatch({ type: "DECREMENT", decrementBy:3})
 console.log(store.getState())
 ```
 
-## 最终完整单个redux例子
+### 最终完整单个redux例子
 
 最终得到基础的单个redux， 这里注意的重点是，我们用reducer 是为了通过得到一个state以及action 从而返回新的state，并没有改变原本的state，只是给了新的state
 
@@ -277,7 +277,7 @@ store.dispatch({ type: "DECREMENT", decrementBy:3 })
 console.log(store.getState())
 ```
 
-# 多个reducer例子
+## 多个reducer例子
 
 那么接下来看看多个reducer的时候 处理数据怎么做
 
@@ -567,7 +567,7 @@ const unsub=store.subscribe(()=>{
 
 ```
 
-# 高阶组件（Higher-Order Components）
+## 高阶组件（Higher-Order Components）
 
 高阶组件就是一个函数，传给它一个组件，它返回一个新的组件
 
@@ -585,17 +585,15 @@ export default (WrappedComponent) => {
 }
 ```
 
-## 例子
+### 例子
 
  <img src="react-1week05/image-20201229112941453.png" style="zoom: 80%;" />
 
 <img src="react-1week05/image-20201229113015799.png"  />
 
-# React Redux
+## React Redux
 
 > **Redux 跟 React 並沒有關係。你可以用 React、Angular、Ember、jQuery 或甚至原生 JavaScript 來撰寫 Redux 應用程式。**
-
-
 
 <img src="react-1week05/image-20210101012541717.png" style="zoom:67%;" />
 
@@ -605,16 +603,14 @@ export default (WrappedComponent) => {
 
 <img src="react-1week05/image-20210101012827213.png" style="zoom: 67%;" />
 
-## [Installation](https://react-redux.js.org/introduction/quick-start#installation)
+### [Installation](https://react-redux.js.org/introduction/quick-start#installation)
 
 ```js
 npm install react-redux 
 yarn add react-redux
 ```
 
-
-
-## connect方法的完整 API 如下
+### connect方法的完整 API 如下
 
  ```javascript
 import { connect } from 'react-redux'
@@ -627,7 +623,7 @@ const VisibleTodoList = connect(
 
 上面代码中，`connect`方法接受两个参数：`mapStateToProps`和`mapDispatchToProps`。它们定义了 UI 组件的业务逻辑。前者负责输入逻辑，即将`state`映射到 UI 组件的参数（`props`），后者负责输出逻辑，即将用户对 UI 组件的操作映射成 Action。
 
-## mapStateToProps函数
+### mapStateToProps函数
 
 `mapStateToProps`是一个函数。它的作用就是像它的名字那样，建立一个从（外部的）`state`对象到（UI 组件的）`props`对象的映射关系。
 
@@ -653,7 +649,6 @@ const mapStateToProps = (state) => {
   }
 } 
 ```
-
 传入了props的：
 
 ```javascript
@@ -664,7 +659,7 @@ const mapStateToProps = (state, ownProps) => {
 }
 ```
 
-## mapDispatchToProps()
+### mapDispatchToProps()
 
 `mapDispatchToProps`是`connect`函数的第二个参数，用来建立 UI 组件的参数到`store.dispatch`方法的映射。也就是说，它定义了哪些用户的操作应该当作 Action，传给 Store。它可以是一个函数，也可以是一个对象。
 
@@ -697,13 +692,11 @@ function mapDispatchToProps(dispatch){
 //<button onClick={onButtonClick}>click me</button>
  ```
 
-
-
-## Provider
+### Provider
 
 React Redux provides` <Provider />`, which makes the Redux store available to the rest of your app
 
-### 使用provider的例子
+#### 使用provider的例子
 
 ```jsx
 import React from 'react'
@@ -731,12 +724,12 @@ ReactDOM.render(
 )
 ```
 
-## connect()
+### connect()
 React Redux provides a connect function for you to connect your component to the store.
 
 connect 返回的是函数，不是组件
 
-### 使用connect例子1
+#### 使用connect例子1
 
 ```jsx
 import {connect} from 'react-redux'
@@ -759,7 +752,7 @@ const mapStateToProps = (state /*, ownProps*/) => {
 const ConnectExpenseList= connect(mapStateToProps)(ExpenseList); 
 export default ConnectExpenseList
 ```
-## 使用connect例子 - input
+### 使用connect例子 - input
 
 ```jsx
 import React from 'react'
@@ -788,7 +781,6 @@ const mapStateToProps = (state /*, ownProps*/) => {
 //const ConnectExpenseList= connect(mapStateToProps)(ExpenseListFilters);
 export default  connect(mapStateToProps)(ExpenseListFilters) ;
 ```
-
 使用connect - 提交form
 
 ```jsx
@@ -811,8 +803,6 @@ return (
 
 export default connect()(AddExpensePage);
 ```
-
-
 
 ```jsx
 //form本身，重点是要双向绑定 由于提交form 要用类元素 
@@ -909,17 +899,14 @@ render(){
 } 
 ```
 
-
-
-## 完整练习例子： expensifyApp indecisionApp counter
+### 完整练习例子： expensifyApp indecisionApp counter
 
 理解图：
 
 ![](react-1week05/image-20210101012217492.png)
 
 
-
-## 改变obj属性
+### 改变obj属性
 
 ```jsx
 const defaultState = {
@@ -932,11 +919,9 @@ Object.assign({},state,{status:'online'} )
 ```
 
 
-
 # tool 
 
 https://github.com/zalmoxisus/redux-devtools-extension
-
 
 
 # 推荐读物
@@ -945,7 +930,7 @@ https://github.com/zalmoxisus/redux-devtools-extension
 
 [查api&简单解释](https://chentsulin.github.io/redux/docs/introduction/index.html)
 
-## 其他练习
+# 其他练习
 
 [练习1](https://github.com/blueflylin/reactjs101/blob/master/Ch09/react-router-redux-github-finder.md) 
 

@@ -1,19 +1,15 @@
 ---
-title: Less
+title: Less 简介
 top: false
 cover: false
 toc: true
 mathjax: true
 date: 2020-11-14 14:58:49
 password:
-summary:
+summary: less 简介
 tags: css&html
 categories: Front-end
 ---
-
-# less 简介
-
-
 
 1. less是CSS的预编译器，可以扩展CSS语言（当然也兼容CSS），可以定义变量、混合、函数等等，让CSS代码更易维护和扩展
 

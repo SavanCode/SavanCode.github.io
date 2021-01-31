@@ -6,7 +6,7 @@ toc: true
 mathjax: true
 date: 2021-01-12 16:46:57
 password:
-summary:
+summary: 小程序架构分析
 tags: WechatMini Program
 categories: WechatMini Program
 ---

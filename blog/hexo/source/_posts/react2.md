@@ -6,12 +6,10 @@ toc: true
 mathjax: true
 date: 2020-12-15 16:53:32
 password:
-summary:
+summary: 组件的数据挂载方式
 tags: React
 categories: React
 ---
-
-# 组件的数据挂载方式
 
 ## 1、利用ES6进行属性修改
 

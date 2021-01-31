@@ -6,12 +6,12 @@ toc: true
 mathjax: true
 date: 2020-12-17 16:23:19
 password:
-summary:
+summary: React 中 style
 tags: React
 categories: React
 ---
 
-# React 中 style
+## React 中 style
 
 ```jsx
 const styles={
@@ -28,7 +28,7 @@ class Colorful extends React.Component {
 };
 ```
 
-# React 中 condition
+## React 中 condition
 
 三元运算
 
@@ -36,14 +36,14 @@ class Colorful extends React.Component {
 <h1>{ this.props.option ? "You Win!" : "You Lose!"}</h1> //option: Math.random() >= .5 返回的true false
 ```
 
-# 使用PropTypes验证数据
+## 使用PropTypes验证数据
 
 ```jsx
 MyComponent.propTypes = { handleClick: PropTypes.func.isRequired }//function
 Items.propTypes={quantity:PropTypes.number.isRequired};//确保是number 
 ```
 
-# Array.map（）动态渲染元素
+## Array.map（）动态渲染元素
 
 ```jsx
 //toDoList is array
@@ -55,7 +55,7 @@ render() {
 const renderFrameworks = frontEndFrameworks.map(i => <li key={i}>{i}</li>)
 ```
 
-# 使用Array.filter（）动态过滤一个数组
+## 使用Array.filter（）动态过滤一个数组
 
 ```jsx
 render() {
@@ -70,11 +70,11 @@ render() {
 }
 ```
 
-# [react router](https://reactrouter.com/)
+## [react router](https://reactrouter.com/)
 
 客户端路由 ，不通过刷新页面不走服务器
 
-## react-router VS react-router-dom
+### react-router VS react-router-dom
 
 React-router 提供了一些router 的核心，包括Router、Route、Switch等，但是它没有提供dom操作进行跳转的API；而React-router-dom 则是基于react-router 加上浏览器运行环境下的一些功能，例如：Link、BrowserRouter、HashRouter等API。
 
@@ -84,9 +84,7 @@ React-router 提供了一些router 的核心，包括Router、Route、Switch等�
 npm install react-router-dom
 ```
 
-
-
-### HashRouter
+#### HashRouter
 
 hashHistory不需要设置服务器，使用URL的hash （即window.location.hash）来保持UI和URL的同步，适合静态网站。HashRouter的URL形式为`http://example.com/#/some/path`。#后的所有字串都不会发GET请求到server端，像是上方的`example.com/#/some/path`只会送出`example.com`到server端，然后只要server端回传JavaScript载入到客户端，剩下的/some/path就由Router去判断处理。
 
@@ -99,7 +97,7 @@ ReactDOM.render(
 );
 ```
 
-### BrowserRouter(推荐使用)
+#### BrowserRouter(推荐使用)
 
 browserHistory需要设置伺服器，路径是真实的URL，较为推荐。URL的形式为`example.com/some/path`，背后使用的是浏览器的History API((pushState, replaceState和popstate事件))来保持UI和URL的同步。
 
@@ -112,9 +110,9 @@ ReactDOM.render(
 );
 ```
 
-## Route Matchers:`<Route>`和`<Switch>`
+### Route Matchers:`<Route>`和`<Switch>`
 
-### Route
+#### Route
 
 Route 必须放在Router 内，用来控制路由对应显示的元件，常见的属性包括： exact、path、strict、sensitive 以及component。Route 利用path 属性去匹配路径，若符合则渲染component，若不符合则回传null，若没设定path 则永远会渲染。exact path 会进行严格比对path，路径要完全符合才会渲染元件。
 
@@ -152,7 +150,7 @@ Route可以接受三种props来决定路由符合时渲染的元件，通常会�
 (2)location:应用程式过去、现在和未来的位置
 (3)history:可以拿来控制路由的跳转
 
-### Route 嵌套
+#### Route 嵌套
 
 Route组件还可以嵌套。
 
@@ -196,7 +194,7 @@ let routes = <Route path="/" component={App}>
 <Router routes={routes} history={browserHistory}/>
 ```
 
-### Switch
+#### Switch
 
 用来渲染与路径匹配的第一个`<Route>`或`<Redirect>`
 
@@ -213,7 +211,7 @@ import { Switch, Route } from  'react-router' ;
 
 此时若路径为/about ，`<Switch>`开始寻找匹配的`<Route>`。找到了`<Route path="/about" />`便会停止查找并立即呈现`<About>`。
 
-## Path 属性
+### Path 属性
 
 Route组件的path属性指定路由的匹配规则。这个属性是可以省略的，这样的话，不管路径是否匹配，总是会加载指定组件。 请看下面的例子。
 
@@ -247,7 +245,7 @@ Route组件的path属性指定路由的匹配规则。这个属性是可以省�
 </Inbox>
 ```
 
-## 通配符
+### 通配符
 
 path属性可以使用通配符
 
@@ -276,7 +274,6 @@ path属性可以使用通配符
 ```
 
 通配符的规则如下。
-
 > paramName 
 > :paramName匹配URL的一个部分，直到遇到下一个/、?、#为止。这个路径参数可以通过this.props.params.paramName取出。
 >
@@ -284,11 +281,7 @@ path属性可以使用通配符
 > ()表示URL的这个部分是可选的。
 
 *匹配任意字符，直到模式里面的下一个字符为止。匹配方式是非贪婪模式。
-
-> ** 
 > ** 匹配任意字符，直到下一个/、?、#为止。匹配方式是贪婪模式。
-
-------
 
 path属性也可以使用相对路径（不以/开头），匹配时就会相对于父组件的路径，可以参考上一节的例子。嵌套路由如果想摆脱这个规则，可以使用绝对路由。 路由匹配规则是从上到下执行，一旦发现匹配，就不再其余的规则了。
 
@@ -308,7 +301,7 @@ path属性也可以使用相对路径（不以/开头），匹配时就会相对
 
 上面代码中，用户访问/about/me时，不会触发第二个路由规则，因为它会匹配/:userName/:id这个规则。因此，带参数的路径一般要写在路由规则的底部。 此外，URL的查询字符串/foo?bar=baz，可以用this.props.location.query.bar获取。
 
-### 例子
+#### 例子
 
 ```jsx
 const NotFoundPage= ()=>(
@@ -349,11 +342,9 @@ const routes = (
 ReactDOM.render(routes , document.getElementById('root'));    
 ```
 
+### Navigation : `<Link>`、`<NavLink>`、`<Redirect>`
 
-
-## Navigation : `<Link>`、`<NavLink>`、`<Redirect>`
-
-### Link
+#### Link
 
 相当于html的a标签，to可以接受string 或者object
 
@@ -368,7 +359,7 @@ ReactDOM.render(routes , document.getElementById('root'));
 }}/>
 ```
 
-### NavLink
+#### NavLink
 
 相当于active的a标签。
 
@@ -385,7 +376,7 @@ ReactDOM.render(routes , document.getElementById('root'));
 
 > NavLink相比Link多了一些样式调节，作用其实相差不大
 
-### Redirect
+#### Redirect
 
 `<Redirect>`重定向到同等级的其他路由，直接跳转
 
@@ -403,7 +394,7 @@ ReactDOM.render(routes , document.getElementById('root'));
 </Route>
 ```
 
-## 渲染props
+### 渲染props
 
 有三种方式：component， render（）， children，但是我们最常用的还是component，render
 
@@ -426,7 +417,7 @@ const App = () => {
 
 因为如果你不这样做，会引起期望之外的组件的卸载和重载。
 
-# Modal练习
+## Modal练习
 
 ```jsx
 ReactModal.setAppElement('#main');
@@ -474,7 +465,7 @@ ReactDOM.render(<ExampleApp {...props} />, document.getElementById('main'))
 
 
 
-# 完整练习
+## 完整练习
 
 ```jsx
 import React from 'react';
@@ -563,10 +554,8 @@ const routes = (
 # reference
 
 https://ithelp.ithome.com.tw/articles/10204137
-
 https://blog.csdn.net/qq_39055963/article/details/100848845
 
- 
 
 # 额外阅读
 

@@ -6,21 +6,21 @@ toc: true
 mathjax: true
 date: 2020-12-16 22:19:58
 password:
-summary:
+summary: React的生命周期
 tags: React
 categories: React
 ---
 
-# React的生命周期
+## React的生命周期
 
-## 挂载卸载过程基本函数
+### 挂载卸载过程基本函数
 
 - constructor()
 - componentWillMount()
 - componentDidMount()
 - componentWillUnmount ()
 
-## 更新过程基本函数
+### 更新过程基本函数
 
 - componentWillReceiveProps (nextProps) 
 - shouldComponentUpdate(nextProps,nextState) 
@@ -28,7 +28,7 @@ categories: React
 - componentDidUpdate(prevProps,prevState) 
 - render() 
 
-## React新增的生命周期基本函数 
+### React新增的生命周期基本函数 
 
 - getDerivedStateFromProps(nextProps, prevState)
 - getSnapshotBeforeUpdate(prevProps, prevState)
@@ -37,14 +37,14 @@ React的生命周期从广义上分为三个阶段：挂载、渲染、卸载
 
 ![](react-1week02/image-20201216222750092.png)
 
-# 挂载卸载过程
+## 挂载卸载过程
 
-## 1.constructor()
+### 1.constructor()
 
 constructor()中完成了React数据的初始化，它接受两个参数：props和context，当想在函数内部使用这两个参数时，需使用super()传入这两个参数。
  注意：只要使用了constructor()就必须写super(),否则会导致this指向错误。
 
-## 2.componentWillMount()
+### 2.componentWillMount()
 
 componentWillMount()一般用的比较少，它更多的是在服务端渲染时使用。它代表的过程是组件已经经历了constructor()初始化数据后，但是还未渲染DOM时。
 
@@ -66,9 +66,7 @@ class MyComponent extends React.Component {
 //0
 ```
 
-
-
-## 3.componentDidMount()
+### 3.componentDidMount()
 
 组件第一次渲染完成，此时dom节点已经生成，可以在这里调用ajax请求，返回数据setState后组件会重新渲染
 
@@ -97,9 +95,7 @@ class MyComponent extends React.Component {
 }
 ```
 
-
-
-## 4.componentWillUnmount ()
+### 4.componentWillUnmount ()
 
 在此处完成组件的卸载和数据的销毁。
 
@@ -130,9 +126,9 @@ componentWillUnmount() {
 
 其他的：https://www.jianshu.com/p/b331d0e4b398 
 
-# 实际应用
+## 实际应用
 
-## 5、componentDidUpdate(prevProps,prevState) 
+### 5、componentDidUpdate(prevProps,prevState) 
 
 数据发生变化之后才会被保存
 
@@ -148,7 +144,7 @@ componentDidUpdate(prevProps,prevState){
 
 
 
-## 6、componentDidMount()
+### 6、componentDidMount()
 
 渲染的时候，读取数据储存，刷新页面也还是根据localStorage
 
@@ -183,9 +179,7 @@ componentDidMount(){
 }
 ```
 
-
-
-## 7.componentWillReceiveProps - 对子组件的props进行监视
+### 7.componentWillReceiveProps - 对子组件的props进行监视
 
  Timer 练习中
 
@@ -209,15 +203,13 @@ componentDidMount(){
     }
 ```
 
-
-
-## 简单总结
+### 简单总结
 
 - `componentWillMount`：组件挂载开始之前，也就是在组件调用 `render` 方法之前调用。
 - `componentDidMount`：组件挂载完成以后，也就是 DOM 元素已经插入页面后调用。
 - `componentWillUnmount`：组件对应的 DOM 元素从页面中删除之前调用。
 
-# 练习
+## 练习
 
 偶数点击，显示count
 
@@ -286,9 +278,7 @@ componentDidMount(){
 }
 ```
 
-
-
-## 对于localstorage
+### 对于localstorage
 
 基本用法
 
@@ -320,7 +310,7 @@ Person p=new Person();
 
 **从本地获取数据得到的是字符串，要先从字符串转为js对象(数组),同理，最后用完了数据要转成字符串再存入本地**
 
-### 1、存
+#### 1、存
 
 ```json
 localStorage.setItem("phone", "123")
@@ -330,7 +320,7 @@ let obj = {"name":"xiaoming","age":"16"}
 localStorage.setItem("phone",JSON.stringify(obj));
 ```
 
-### 2、取
+#### 2、取
 
 ```json
 localStorage.getItem("phone")
@@ -339,7 +329,7 @@ localStorage.getItem("phone")
 let user = JSON.parse(localStorage.getItem("phone"))
 ```
 
-### 3、删
+#### 3、删
 
 ```json
 //指定删
@@ -349,7 +339,7 @@ localStorage.removeItem('phone');
 localStorage.clear(); 
 ```
 
-### 4、设置localStorageSet 过期时间
+#### 4、设置localStorageSet 过期时间
 
 ```json
 //设置缓存
@@ -362,7 +352,7 @@ const localStorageSet = (name, data) => {
 };
 ```
 
-### 5、读取缓存，且比较时间戳是否过期
+#### 5、读取缓存，且比较时间戳是否过期
 
 ```json
 //读取缓存
@@ -382,7 +372,7 @@ const localStorageGet = name => {
 };
 ```
 
-### 6、使用
+#### 6、使用
 
 ```json
 //存
@@ -392,7 +382,7 @@ localStorageSet('weather', data)
 localStorageGet('weather')
 ```
 
-# 一个完整的例子
+## 一个完整的例子
 
 ```jsx
 import React,{Component} from 'react';
