@@ -60,8 +60,8 @@ prismjs:
 prism_plugin:
   mode: "preprocess" # realtime/preprocess
   theme: "tomorrow"
-  line_number: true # default false
-  custom_css:
+  line_number: false # default false
+  custom_css: ''
 
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
@@ -112,8 +112,7 @@ theme: hexo-theme-matery-master
 deploy:
   type: git
   repo: http://github.com/savancode/savancode.github.io.git 
-  branch: master
-  #master hexo_1
+  branch: master 
 
 
 #add for post list

@@ -116,7 +116,7 @@ prism_plugin:
 
 解决办法：
 
-hexo/node_modules/hexo-prism-plugin/src/index.js文件中map里未支持大括号，补上以下内容后发现有效，即在map中加上对应字符即可:
+node_modules/hexo-prism-plugin/src/index.js文件中map里未支持大括号，补上以下内容后发现有效，即在map中加上对应字符即可:
 
 ```js
 const map = {
