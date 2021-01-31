@@ -7,8 +7,8 @@ mathjax: true
 date: 2021-01-27 23:57:49
 password:
 summary:
-tags: js
-categories: js
+tags: JS
+categories: JS
 ---
 
 这个还是看自己写的练习文件，这个太一半了
