@@ -423,7 +423,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Media-Query-css"><a href="#Media-Query-css" class="headerlink" title="Media Query-css"></a>Media Query-css</h1><p>目的：因为不同的设备，萤幕宽度不同，显示的要求不一样</p>
+                <p>目的：因为不同的设备，萤幕宽度不同，显示的要求不一样</p>
 <p>需要灵活设置</p>
 <pre class=" language-css"><code class="language-css"><span class="token atrule"><span class="token rule">@media</span> <span class="token punctuation">(</span><span class="token property">min-width</span><span class="token punctuation">:</span> 320px<span class="token punctuation">)</span> and <span class="token punctuation">(</span><span class="token property">max-width</span><span class="token punctuation">:</span> 525px<span class="token punctuation">)</span></span><span class="token punctuation">{</span>  <span class="token selector"><span class="token class">.Gool</span></span><span class="token punctuation">{</span>    
     <span class="token comment" spellcheck="true">/*background-color: orange;*/</span>    
@@ -439,15 +439,10 @@
 <span class="token punctuation">}</span></code></pre>
 <p>@media (min-width:320px) and (max-width:525px)<br>表示在萤幕宽度320px~525px之间执行</p>
 <p>@media (min-width:526px) and (max-width:991px)<br>表示在萤幕宽度526px~991px之间执行</p>
-<ul>
-<li>and：代表与的意思,一般用and来连接媒体类型个媒体属性<pre><code>   only：和浏览器兼容性有关。</code></pre>
-</li>
-<li> 老版本的浏览器只支持媒体类型，不支持带媒体属性的查</li>
-<li>@media screen{}<pre><code>   @media only&#123;&#125;
-   （,）：代表或的意思
-   not:取反</code></pre>
-</li>
-</ul>
+<p>and：代表与的意思,一般用and来连接媒体类型个媒体属性<br>only：和浏览器兼容性有关。</p>
+<p>老版本的浏览器只支持媒体类型，不支持带媒体属性的查</p>
+<p>@media screen{}<br>@media only{}</p>
+<p>（,）：代表或的意思<br>not:取反</p>
 
             </div>
             <hr/>

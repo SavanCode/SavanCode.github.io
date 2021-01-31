@@ -423,30 +423,27 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id><a href="#" class="headerlink" title></a></h2><h2 id="模式"><a href="#模式" class="headerlink" title="模式"></a>模式</h2><ul>
-<li><p>g: 表示全局(global)模式，即模式将被应用于所有字符串，而并非在发现第一个匹配项时立即停止</p>
-</li>
-<li><p>i: 表示不区分大小写(case-insensitive)模式，即在确定匹配项时忽略模式与字符串的大小写</p>
-</li>
-<li><p>m: 表示多行(multi-line)模式，即在到达一行文本末尾时还会继续查找下一行中是否存在与模式匹配的项</p>
-</li>
-<li><p>s: dotAll / singleline模式：. 可以匹配换行符</p>
-</li>
-<li><p>u: unicode，unicode模式：匹配unicode字符集</p>
-<pre><code>console.log(/^.$/.test(&quot;\uD842\uDFB7&quot;));
-console.log(/^.$/u.test(&quot;\uD842\uDFB7&quot;)); </code></pre>
-</li>
-<li><p>y: sticky，粘性模式：匹配正则中lastIndex属性指定位置的字符，并且如果没有匹配也不尝试从任何后续的索引中进行匹配</p>
-<h2 id="-1"><a href="#-1" class="headerlink" title></a></h2><h2 id="元字符"><a href="#元字符" class="headerlink" title="元字符"></a>元字符</h2><p><code>. </code>转义符</p>
-</li>
-<li><p>匹配行结束符（\n \r \u2028 或 \u2029）以外的任意单个字符</p>
-</li>
-<li><p>在 <code>字符集合（Character Sets）</code> 中，. 将失去其特殊含义，表示的是原始值<br><code>\ </code>转义符，它有两层含义 </p>
-</li>
-<li><p>表示下一个具有特殊含义的字符为字面值 </p>
-</li>
-<li><p>表示下一个字符具有特殊含义（转义后的结果是元字符内约定的）</p>
-</li>
+                <h2 id="模式"><a href="#模式" class="headerlink" title="模式"></a>模式</h2><ul>
+<li>g: 表示全局(global)模式，即模式将被应用于所有字符串，而并非在发现第一个匹配项时立即停止</li>
+<li>i: 表示不区分大小写(case-insensitive)模式，即在确定匹配项时忽略模式与字符串的大小写</li>
+<li>m: 表示多行(multi-line)模式，即在到达一行文本末尾时还会继续查找下一行中是否存在与模式匹配的项</li>
+<li>s: dotAll / singleline模式：. 可以匹配换行符</li>
+<li>u: unicode，unicode模式：匹配unicode字符集</li>
+</ul>
+<pre class=" language-js"><code class="language-js"> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token regex">/^.$/</span><span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span><span class="token string">"\uD842\uDFB7"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token regex">/^.$/u</span><span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span><span class="token string">"\uD842\uDFB7"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> </code></pre>
+<ul>
+<li>y: sticky，粘性模式：匹配正则中lastIndex属性指定位置的字符，并且如果没有匹配也不尝试从任何后续的索引中进行匹配</li>
+</ul>
+<h2 id="元字符"><a href="#元字符" class="headerlink" title="元字符"></a>元字符</h2><p><code>. </code>转义符</p>
+<ul>
+<li>匹配行结束符（\n \r \u2028 或 \u2029）以外的任意单个字符</li>
+<li>在 <code>字符集合（Character Sets）</code> 中，<code>.</code> 将失去其特殊含义，表示的是原始值</li>
+</ul>
+<p><code>\ </code>转义符，它有两层含义 </p>
+<ul>
+<li>表示下一个具有特殊含义的字符为字面值 </li>
+<li>表示下一个字符具有特殊含义（转义后的结果是元字符内约定的）</li>
 </ul>
 <table>
 <thead>
@@ -471,19 +468,16 @@ console.log(/^.$/u.test(&quot;\uD842\uDFB7&quot;)); </code></pre>
 <td><code>\s</code></td>
 <td>匹配任意一个空白符</td>
 </tr>
+</tbody></table>
+<p><strong><code>\d</code> <code>\w</code> <code>\s</code> 如果把小写变为大写，就是取相反的意思，比如 <code>\D</code> 表示任意一个非数字字符。</strong></p>
+<table>
+<thead>
 <tr>
-<td><strong><code>\d</code> <code>\w</code> <code>\s</code> 如果把小写变为大写，就是取相反的意思，比如 <code>\D</code> 表示任意一个非数字字符。</strong></td>
-<td></td>
+<th>字符</th>
+<th>说明</th>
 </tr>
-<tr>
-<td>字符</td>
-<td>说明</td>
-</tr>
-<tr>
-<td>—-</td>
-<td>——————</td>
-</tr>
-<tr>
+</thead>
+<tbody><tr>
 <td><code>\s</code></td>
 <td>匹配任意一个空白符</td>
 </tr>
@@ -797,9 +791,6 @@ var misc = [1.1,tru
                     <div class="summary block-with-text">
                         
                             String
-引号字符串String是由双引号(“)或单引号(‘)声明的
-反引号 `` - 多行字符串 &amp; 嵌入变量// 普通字符串
-console.log(`In JavaScript '\n' is a line-feed.`)
                         
                     </div>
                     <div class="publish-info">

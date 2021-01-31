@@ -503,6 +503,10 @@
 <h2 id="问题7：-TOC-跳转不成功"><a href="#问题7：-TOC-跳转不成功" class="headerlink" title="问题7： TOC 跳转不成功"></a>问题7： TOC 跳转不成功</h2><p>目录显示的层级正确，但是点击对应的标题，没有办法实现跳转</p>
 <p>solution：</p>
 <p>层级设置不可以跟排列序号同时使用</p>
+<h2 id="问题8-：-deploy-时候-远程挂掉问题"><a href="#问题8-：-deploy-时候-远程挂掉问题" class="headerlink" title="问题8 ： deploy 时候, 远程挂掉问题"></a>问题8 ： deploy 时候, 远程挂掉问题</h2><pre class=" language-sh"><code class="language-sh">error: RPC failed; curl 18 transfer closed with outstanding read data remaining
+fatal: The remote end hung up unexpectedly</code></pre>
+<p>这种你会尝试反复 deploy，没错你确实要。<br>因为这基本是你网络问题 O(∩_∩)O<br>但是可以尝试下面的</p>
+<pre class=" language-sh"><code class="language-sh">git config --global http.postBuffer 524288000</code></pre>
 
             </div>
             <hr/>

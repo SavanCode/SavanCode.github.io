@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="react3-Form&amp;Array, Savannah">
+    <meta name="keywords" content="Relative Path 路径书写, Savannah">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>react3-Form&amp;Array | Savannah</title>
+    <title>Relative Path 路径书写 | Savannah</title>
     <link rel="icon" type="image/png" href="../../../../favicon.png">
 
     <link rel="stylesheet" type="text/css" href="../../../../libs/awesome/css/all.css">
@@ -260,12 +260,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/16.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/17.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">react3-Form&amp;Array</h1>
+                    <h1 class="description center-align post-title">Relative Path 路径书写</h1>
                 </div>
             </div>
         </div>
@@ -382,8 +382,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="../../../../tags/React/">
-                                <span class="chip bg-color">React</span>
+                            <a href="../../../../tags/css-html/">
+                                <span class="chip bg-color">css&amp;html</span>
                             </a>
                         
                     </div>
@@ -394,8 +394,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="../../../../categories/React/" class="post-category">
-                                React
+                            <a href="../../../../categories/css-html/" class="post-category">
+                                css&html
                             </a>
                         
                     </div>
@@ -407,7 +407,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-12-15
+                    2020-11-15
                 </div>
                 
 
@@ -423,9 +423,20 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="react-之-表单组件"><a href="#react-之-表单组件" class="headerlink" title="react 之 表单组件"></a>react 之 表单组件</h1><p>在React中表单组件分为约束组件和无约束组件两种。</p>
-<p>　　- 无约束组件，是指其value值不通过的props或者state来设置，仅由其自身来决定。表单组件的值的变化也不会被记录，只能通过找到DOM节点的方式来获取。</p>
-<p>　　- 约束组件，是React中推荐的表单的使用方式。表单组件的值并不是由其自身决定，而是通过父组件传递或者本身的state来控制。其内容的每次变化都会被保存，需要时仅需要通过this.state便能获取。</p>
+                <h2 id="同一个文件夹"><a href="#同一个文件夹" class="headerlink" title="同一个文件夹"></a>同一个文件夹</h2><p>3.2.html和3.html在同一个文件夹下， 如果2.html链接到3.html，可以在2.html中这样写:</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>3.html<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>同目录下文件间互相链接<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span></code></pre>
+<h2 id="上级目录文件"><a href="#上级目录文件" class="headerlink" title="上级目录文件"></a>上级目录文件</h2><p>1.html是2.html和3.html的上级目录中的文件，如果2.html或3.html链接到1.html，可以在2.html或3.html中这样写</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>../1.html<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>链接到上级目录中的文件<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span></code></pre>
+<p>../ 代表一级上级目录(间隔一个目录)<br>　　 ../../代表二级上级目录(间隔两个目录)<br>　　 比如4.html链接到1.html，可以在4.html中这样写</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>../../1.html<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>链接到上级目录的上级目录中的文件<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span></code></pre>
+<h2 id="下级目录文件"><a href="#下级目录文件" class="headerlink" title="下级目录文件"></a>下级目录文件</h2><p>2.html和3.html是1.html的下级目录中的文件，如果在1.html中链接到2.html， 可以在1.html中这样写</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>first/2.html<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>链接到下级目录(first)中的文件<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span></code></pre>
+<p>如果在1.html中链接到4.html，可以在1.html中这样写</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>first/second/4.html<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>链接到下级目录(first/second/)中的文件<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span></code></pre>
+<h1 id="根目录"><a href="#根目录" class="headerlink" title="根目录"></a>根目录</h1><p>使用根目录的方式表示的路径和绝对路径的表示方式相似，去掉前面的域名就可。<br>　　比如：</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/exe/1.html<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>链接到1.html<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>1
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/exe/first/2.html<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>链接到2.html<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>1</code></pre>
+<p><strong>../表示源文件所在目录（文件夹）的上一级目录（文件夹），../../表示源文件所在目录的上上级目录，以此类推。</strong></p>
 
             </div>
             <hr/>
@@ -489,8 +500,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="../../../../tags/React/">
-                                    <span class="chip bg-color">React</span>
+                                <a href="../../../../tags/css-html/">
+                                    <span class="chip bg-color">css&amp;html</span>
                                 </a>
                             
                         </div>
@@ -533,32 +544,31 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="../react3/">
+                <a href="../before-after/">
                     <div class="card-image">
                         
                         
-                        <img src="../../../../medias/featureimages/16.jpg" class="responsive-img" alt="react3-Form&amp;Array">
+                        <img src="../../../../medias/featureimages/9.jpg" class="responsive-img" alt="区别伪元素before after">
                         
-                        <span class="card-title">react3-Form&amp;Array</span>
+                        <span class="card-title">区别伪元素before after</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            react 之 表单组件在React中表单组件分为约束组件和无约束组件两种。
-　　- 无约束组件，是指其value值不通过的props或者state来设置，仅由其自身来决定。表单组件的值的变化也不会被记录，只能通过找到DOM节点的方式来获取
+                            伪元素
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-12-15
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-11-15
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="../../../../categories/React/" class="post-category">
-                                    React
+                            <a href="../../../../categories/Front-end/" class="post-category">
+                                    Front-end
                                 </a>
                             
                             
@@ -568,8 +578,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="../../../../tags/React/">
-                        <span class="chip bg-color">React</span>
+                    <a href="../../../../tags/css-html/">
+                        <span class="chip bg-color">css&amp;html</span>
                     </a>
                     
                 </div>
@@ -583,35 +593,34 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="../react2/">
+                <a href="../hexo-render-skip/">
                     <div class="card-image">
                         
                         
-                        <img src="../../../../medias/featureimages/12.jpg" class="responsive-img" alt="react2-组件">
+                        <img src="../../../../medias/featureimages/11.jpg" class="responsive-img" alt="hexo render skip">
                         
-                        <span class="card-title">react2-组件</span>
+                        <span class="card-title">hexo render skip</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            组件的数据挂载方式1、利用ES6进行属性修改1.点击button修改属性值import React from 'react'
-import ReactDOM from 'react-dom'
+                            Hexo博客跳过渲染，创建自定义网页方法1.跳过渲染指令在html文件中添加跳过渲染指令：
+用编辑器打开 Hexo\source 创建的文件夹中的 index.html 文件，在开头添加如下代码即可
+---layout: false---
 
-let count=100;
-const ad
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-15
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-15
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="../../../../categories/React/" class="post-category">
-                                    React
+                            <a href="../../../../categories/Hexo/" class="post-category">
+                                    Hexo
                                 </a>
                             
                             
@@ -621,8 +630,8 @@ const ad
                 
                 <div class="card-action article-tags">
                     
-                    <a href="../../../../tags/React/">
-                        <span class="chip bg-color">React</span>
+                    <a href="../../../../tags/hexo/">
+                        <span class="chip bg-color">hexo</span>
                     </a>
                     
                 </div>
