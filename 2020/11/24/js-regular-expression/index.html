@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="js question&amp;solution, Savannah">
+    <meta name="keywords" content="js regular expression JS 正则表达式, Savannah">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>js question&amp;solution | Savannah</title>
+    <title>js regular expression JS 正则表达式 | Savannah</title>
     <link rel="icon" type="image/png" href="../../../../favicon.png">
 
     <link rel="stylesheet" type="text/css" href="../../../../libs/awesome/css/all.css">
@@ -261,12 +261,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/6.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/9.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">js question&amp;solution</h1>
+                    <h1 class="description center-align post-title">js regular expression JS 正则表达式</h1>
                 </div>
             </div>
         </div>
@@ -408,7 +408,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-12-01
+                    2020-11-24
                 </div>
                 
 
@@ -424,13 +424,209 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="1-this-与-event-target的区别"><a href="#1-this-与-event-target的区别" class="headerlink" title="1.this 与 event.target的区别"></a>1.this 与 event.target的区别</h2><p>使用listener的时候， this可以跟踪对应的listener持有者。 event.target是当前的时间互动触发点</p>
-<h2 id="2-作用域"><a href="#2-作用域" class="headerlink" title="2.作用域"></a>2.作用域</h2><pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">loo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-    vargoo<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span><span class="token function">moo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span>
-<span class="token keyword">function</span> <span class="token function">moo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>goo<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span>
-<span class="token function">loo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token comment" spellcheck="true">//UncaughtReferrenceError:goo is not defined</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+                <h2 id><a href="#" class="headerlink" title></a></h2><h2 id="模式"><a href="#模式" class="headerlink" title="模式"></a>模式</h2><ul>
+<li><p>g: 表示全局(global)模式，即模式将被应用于所有字符串，而并非在发现第一个匹配项时立即停止</p>
+</li>
+<li><p>i: 表示不区分大小写(case-insensitive)模式，即在确定匹配项时忽略模式与字符串的大小写</p>
+</li>
+<li><p>m: 表示多行(multi-line)模式，即在到达一行文本末尾时还会继续查找下一行中是否存在与模式匹配的项</p>
+</li>
+<li><p>s: dotAll / singleline模式：. 可以匹配换行符</p>
+</li>
+<li><p>u: unicode，unicode模式：匹配unicode字符集</p>
+<pre><code>console.log(/^.$/.test(&quot;\uD842\uDFB7&quot;));
+console.log(/^.$/u.test(&quot;\uD842\uDFB7&quot;)); </code></pre>
+</li>
+<li><p>y: sticky，粘性模式：匹配正则中lastIndex属性指定位置的字符，并且如果没有匹配也不尝试从任何后续的索引中进行匹配</p>
+<h2 id="-1"><a href="#-1" class="headerlink" title></a></h2><h2 id="元字符"><a href="#元字符" class="headerlink" title="元字符"></a>元字符</h2><p><code>. </code>转义符</p>
+</li>
+<li><p>匹配行结束符（\n \r \u2028 或 \u2029）以外的任意单个字符</p>
+</li>
+<li><p>在 <code>字符集合（Character Sets）</code> 中，. 将失去其特殊含义，表示的是原始值<br><code>\ </code>转义符，它有两层含义 </p>
+</li>
+<li><p>表示下一个具有特殊含义的字符为字面值 </p>
+</li>
+<li><p>表示下一个字符具有特殊含义（转义后的结果是元字符内约定的）</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>字符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>.</code></td>
+<td>匹配除换行符外的任意一个字符</td>
+</tr>
+<tr>
+<td><code>\d</code></td>
+<td>匹配任意一个数字（0-9）</td>
+</tr>
+<tr>
+<td><code>\w</code></td>
+<td>匹配任意一个字母、数字或下划线</td>
+</tr>
+<tr>
+<td><code>\s</code></td>
+<td>匹配任意一个空白符</td>
+</tr>
+<tr>
+<td><strong><code>\d</code> <code>\w</code> <code>\s</code> 如果把小写变为大写，就是取相反的意思，比如 <code>\D</code> 表示任意一个非数字字符。</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>字符</td>
+<td>说明</td>
+</tr>
+<tr>
+<td>—-</td>
+<td>——————</td>
+</tr>
+<tr>
+<td><code>\s</code></td>
+<td>匹配任意一个空白符</td>
+</tr>
+<tr>
+<td><code>\t</code></td>
+<td>匹配一个制表符</td>
+</tr>
+<tr>
+<td><code>\n</code></td>
+<td>匹配一个换行符</td>
+</tr>
+<tr>
+<td><code>\f</code></td>
+<td>匹配一个换页符</td>
+</tr>
+<tr>
+<td><code>\v</code></td>
+<td>匹配一个垂直制表符</td>
+</tr>
+<tr>
+<td><code>\r</code></td>
+<td>匹配一个回车符</td>
+</tr>
+</tbody></table>
+<h2 id="字符集合"><a href="#字符集合" class="headerlink" title="字符集合"></a>字符集合</h2><p><code>[xyz]</code>  一个字符集合。匹配方括号中的任意字符，包括<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Grammar_and_types">转义序列</a>。你可以使用破折号（-）来指定一个字符范围。对于点（.）和星号（*）这样的特殊符号在一个字符集中没有特殊的意义。他们不必进行转义，不过转义也是起作用的。<br>例如，<code>[abcd]</code> 和 <code>[a-d]</code>是一样的。他们都匹配”brisket”中的‘b’,也都匹配“city”中的‘c’。<code>/[a-z.]+/</code> 和<code>/[\w.]+/</code>与字符串“test.i.ng”匹配。</p>
+<h2 id="范围的元字符"><a href="#范围的元字符" class="headerlink" title="范围的元字符"></a>范围的元字符</h2><table>
+<thead>
+<tr>
+<th>字符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>`</td>
+<td>`</td>
+</tr>
+<tr>
+<td><code>[...]</code></td>
+<td>多选一，匹配括号中任意一个元素</td>
+</tr>
+<tr>
+<td><code>[a-z]</code></td>
+<td>匹配 a 到 z 之间任意一个元素（按照 ASCII 表，包含 a,z）</td>
+</tr>
+<tr>
+<td><code>[^...]</code></td>
+<td>取反，匹配不能是括号中的任意一个元素</td>
+</tr>
+</tbody></table>
+<h2 id="量词元字符"><a href="#量词元字符" class="headerlink" title="量词元字符"></a>量词元字符</h2><table>
+<thead>
+<tr>
+<th>字符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>*</code></td>
+<td>出现 0 到多次</td>
+</tr>
+<tr>
+<td><code>+</code></td>
+<td>出现 1 到多次</td>
+</tr>
+<tr>
+<td><code>？</code></td>
+<td>出现 0 或 1 次，如 colou?r</td>
+</tr>
+<tr>
+<td><code>&#123;m&#125;</code></td>
+<td>出现 m 次</td>
+</tr>
+<tr>
+<td><code>&#123;m&#125;</code></td>
+<td>至少出现 m 次</td>
+</tr>
+<tr>
+<td><code>&#123;m,n&#125;</code></td>
+<td>出现 m 到 n 次</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>注意：</p>
+<ol>
+<li>量词的使用要注意其作用范围，其一般只作用于前面的那个字符，如正则 <code>a+</code> 表示匹配字符 <code>a</code> 1 次或多次。如果量词跟在分组 <code>()</code> 后，那么量词的作用范围就是前面 <code>()</code> 内的内容。</li>
+<li>量词默认是贪婪的，即极可能多的去匹配字符。如果要实现把量词变为非贪婪的，那么要在量词后加个 <code>?</code>，这样量词就变为非贪婪了。</li>
+</ol>
+</blockquote>
+<h2 id="断言-定位单词边界、行的开始结束以及环视"><a href="#断言-定位单词边界、行的开始结束以及环视" class="headerlink" title="断言(定位单词边界、行的开始结束以及环视)"></a>断言(定位单词边界、行的开始结束以及环视)</h2><table>
+<thead>
+<tr>
+<th>字符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>\b</code></td>
+<td>匹配单词的边界</td>
+</tr>
+<tr>
+<td><code>^</code></td>
+<td>匹配行的开始，多行模式时，可以匹配任意行开头</td>
+</tr>
+<tr>
+<td><code>$</code></td>
+<td>匹配行的结束，多行模式时，可以匹配任意行结尾</td>
+</tr>
+<tr>
+<td><code>\A</code></td>
+<td>只匹配整个字符串的开始，不支持多行模式</td>
+</tr>
+<tr>
+<td><code>\Z</code></td>
+<td>只匹配整个字符串的结束，不支持多行模式</td>
+</tr>
+<tr>
+<td><code>(?&lt;=Y)X</code></td>
+<td>匹配前面是 Y 的 X</td>
+</tr>
+<tr>
+<td><code>(?&lt;!Y)X</code></td>
+<td>匹配前面不是 Y 的 X</td>
+</tr>
+<tr>
+<td><code>(?=Y)X</code></td>
+<td>匹配后面是 Y 的 X</td>
+</tr>
+<tr>
+<td><code>(?!Y)X</code></td>
+<td>匹配后面不是 Y 的 X</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>注意：</p>
+<ol>
+<li>反向引用里面“断言是没有带过去的”，复用的部分只是匹配到的文本内容，这段很重要，也是自己也开始没有意识到的。</li>
+<li>断言只是匹配位置，准确地说就是只负责定位，不会匹配任何字符！这点很重要。</li>
+<li>环视中 <code>\W</code> 不等于 <code>!\w</code>，</li>
+</ol>
+</blockquote>
+<p><strong>Reference</strong><br>1.<a target="_blank" rel="noopener" href="https://blog.csdn.net/lxcnn/category_538256.html">https://blog.csdn.net/lxcnn/category_538256.html</a><br>2.<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions</a><br>3.<a target="_blank" rel="noopener" href="https://www.cnblogs.com/xiaohuochai/p/5612230.html">https://www.cnblogs.com/xiaohuochai/p/5612230.html</a></p>
+<p><strong>Tool</strong><br><a target="_blank" rel="noopener" href="https://regex101.com/">https://regex101.com/</a><br><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844904182835757064">https://juejin.cn/post/6844904182835757064</a><br><a target="_blank" rel="noopener" href="https://regexper.com/">https://regexper.com/</a></p>
 
             </div>
             <hr/>
@@ -538,26 +734,26 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="../js-question-solution/">
+                <a href="../../25/js-array/">
                     <div class="card-image">
                         
                         
-                        <img src="../../../../medias/featureimages/6.jpg" class="responsive-img" alt="js question&amp;solution">
+                        <img src="../../../../medias/featureimages/18.jpg" class="responsive-img" alt="js array">
                         
-                        <span class="card-title">js question&amp;solution</span>
+                        <span class="card-title">js array</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            1.this 与 event.target的区别使用listener的时候， this可以跟踪对应的listener持有者。 event.target是当前的时间互动触发点
-2.作用域function loo(){
-    vargoo=1
+                            创建array字面量var empty = [];                    //没有元素的数组
+var primes = [2,3,5,7,11];         //有5个数值的数组
+var misc = [1.1,tru
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-12-01
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-11-25
                         </span>
                         <span class="publish-author">
                             
@@ -589,33 +785,34 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="../css-question-solution/">
+                <a href="../js-string/">
                     <div class="card-image">
                         
                         
-                        <img src="../../../../medias/featureimages/4.jpg" class="responsive-img" alt="css question&amp;solution">
+                        <img src="../../../../medias/featureimages/0.jpg" class="responsive-img" alt="js string">
                         
-                        <span class="card-title">css question&amp;solution</span>
+                        <span class="card-title">js string</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            为什么height:100%不生效对于height属性，如果父元素height为auto，只要子元素在文档流中（即position不等于fixed或者absolute），其百分比值完全就被忽略了。
-&lt;style>
-    .box {
+                            String
+引号字符串String是由双引号(“)或单引号(‘)声明的
+反引号 `` - 多行字符串 &amp; 嵌入变量// 普通字符串
+console.log(`In JavaScript '\n' is a line-feed.`)
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-01
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-24
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="../../../../categories/Front-end/" class="post-category">
-                                    Front-end
+                            <a href="../../../../categories/JS/" class="post-category">
+                                    JS
                                 </a>
                             
                             
@@ -625,8 +822,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="../../../../tags/css-html/">
-                        <span class="chip bg-color">css&amp;html</span>
+                    <a href="../../../../tags/JS/">
+                        <span class="chip bg-color">JS</span>
                     </a>
                     
                 </div>
