@@ -500,19 +500,14 @@ console<span class="token punctuation">.</span><span class="token function">log<
       <span class="token punctuation">}</span></code></pre>
 <p>​    结果和使用闭包解决一致。</p>
 <h2 id="const的使用"><a href="#const的使用" class="headerlink" title="const的使用"></a>const的使用</h2><p>​    1.const用来定义常量，赋值知乎不能再赋值，再次赋值会报错。</p>
-<pre class=" language-javascript"><code class="language-javascript">    <span class="token operator">&lt;</span>script<span class="token operator">></span>
-        <span class="token comment" spellcheck="true">//1.定义常量，赋值后不能再赋值，在赋值报错</span>
+<pre class=" language-javascript"><code class="language-javascript">        <span class="token comment" spellcheck="true">//1.定义常量，赋值后不能再赋值，在赋值报错</span>
         <span class="token keyword">const</span> count <span class="token operator">=</span> <span class="token number">1</span>
-        <span class="token comment" spellcheck="true">// count = 2</span>
-    <span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span></code></pre>
+        <span class="token comment" spellcheck="true">// count = 2</span></code></pre>
 <p>​    2.const不能只声明不赋值，会报错。</p>
-<pre class=" language-javascript"><code class="language-javascript">    <span class="token operator">&lt;</span>script<span class="token operator">></span>
-        <span class="token comment" spellcheck="true">//2.只声明不赋值，必须赋值</span>
-        <span class="token comment" spellcheck="true">// const count;</span>
-    <span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span></code></pre>
+<pre class=" language-javascript"><code class="language-javascript">        <span class="token comment" spellcheck="true">//2.只声明不赋值，必须赋值</span>
+        <span class="token comment" spellcheck="true">// const count;</span></code></pre>
 <p>​    3.const常量含义是你不能改变其指向的对象，例如user，都是你可以改变user属性。</p>
-<pre class=" language-js"><code class="language-js">    <span class="token operator">&lt;</span>script<span class="token operator">></span>
-        <span class="token comment" spellcheck="true">//3.常量的含义是你不能改变其指向的对象user，但是你可以改变user属性</span>
+<pre class=" language-js"><code class="language-js">        <span class="token comment" spellcheck="true">//3.常量的含义是你不能改变其指向的对象user，但是你可以改变user属性</span>
         <span class="token keyword">const</span> user <span class="token operator">=</span> <span class="token punctuation">{</span>
             name<span class="token punctuation">:</span><span class="token string">"zzz"</span><span class="token punctuation">,</span>
             age<span class="token punctuation">:</span><span class="token number">24</span><span class="token punctuation">,</span>
@@ -522,8 +517,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
         user<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">"ttt"</span>
         user<span class="token punctuation">.</span>age <span class="token operator">=</span> <span class="token number">22</span>
         user<span class="token punctuation">.</span>height <span class="token operator">=</span> <span class="token number">188</span>
-        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>user<span class="token punctuation">)</span>
-    <span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span></code></pre>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>user<span class="token punctuation">)</span></code></pre>
 <h2 id="ES6对象写法"><a href="#ES6对象写法" class="headerlink" title="ES6对象写法"></a>ES6对象写法</h2><h3 id="ES6的对象属性增强型写法"><a href="#ES6的对象属性增强型写法" class="headerlink" title="ES6的对象属性增强型写法"></a>ES6的对象属性增强型写法</h3><p>​    ES6以前定义一个对象</p>
 <pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">const</span> name <span class="token operator">=</span> <span class="token string">"zzz"</span><span class="token punctuation">;</span>
 <span class="token keyword">const</span> age <span class="token operator">=</span> <span class="token number">18</span><span class="token punctuation">;</span>
@@ -682,8 +676,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <h3 id="综合使用"><a href="#综合使用" class="headerlink" title="综合使用"></a>综合使用</h3><pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">//三个需求综合</span>
 <span class="token keyword">let</span> n <span class="token operator">=</span> nums<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span>num <span class="token operator">=</span><span class="token operator">></span> num <span class="token operator">></span> <span class="token number">50</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>num <span class="token operator">=</span><span class="token operator">></span> num <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span><span class="token punctuation">(</span>preValue<span class="token punctuation">,</span>currentValue<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> preValue <span class="token operator">+</span> currentValue<span class="token punctuation">)</span>
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<p>Reference</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/zhangtianyi0110/VueLearnNotes/blob/master/01-ES6%E8%A1%A5%E5%85%85/01-ES6%E8%A1%A5%E5%85%85.md">https://github.com/zhangtianyi0110/VueLearnNotes/blob/master/01-ES6%E8%A1%A5%E5%85%85/01-ES6%E8%A1%A5%E5%85%85.md</a></p>
+<p>Reference<br>zhangtianyi0110 github</p>
 
             </div>
             <hr/>
@@ -791,56 +784,46 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;Current
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="">
+                <a href="../../../02/01/Vue-day1/">
                     <div class="card-image">
                         
                         
-                        <img src="../../../../medias/featureimages/13.jpg" class="responsive-img" alt="es6 main concept 重点属性讲解">
+                        <img src="../../../../medias/featureimages/17.jpg" class="responsive-img" alt="Vue day1">
                         
-                        <span class="card-title">es6 main concept 重点属性讲解</span>
+                        <span class="card-title">Vue day1</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            es6的 this, 作用域, 高阶函数专门的解释，详细的对应方块笔记也有
+                            vue基础介绍
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-01-30
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-02-01
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="../../../../categories/JS/" class="post-category">
-                                    JS
-                                </a>
-                            
-                            <a href="../../../../categories/JS/es6/" class="post-category">
-                                    es6
+                            <a href="../../../../categories/Vue/" class="post-category">
+                                    Vue
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="../../../../tags/JS/">
-                        <span class="chip bg-color">JS</span>
-                    </a>
-                    
-                    <a href="../../../../tags/es6/">
-                        <span class="chip bg-color">es6</span>
+                    <a href="../../../../tags/Vue/">
+                        <span class="chip bg-color">Vue</span>
                     </a>
                     
                 </div>
