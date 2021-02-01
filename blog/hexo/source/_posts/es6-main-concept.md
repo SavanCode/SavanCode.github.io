@@ -120,26 +120,21 @@ console.log(name);
 ​	1.const用来定义常量，赋值知乎不能再赋值，再次赋值会报错。
 
 ```javascript
-    <script>
         //1.定义常量，赋值后不能再赋值，在赋值报错
         const count = 1
         // count = 2
-    </script>
 ```
 
 ​	2.const不能只声明不赋值，会报错。
 
 ```javascript
-    <script>
         //2.只声明不赋值，必须赋值
         // const count;
-    </script>
 ```
 
 ​	3.const常量含义是你不能改变其指向的对象，例如user，都是你可以改变user属性。
 
 ```js
-    <script>
         //3.常量的含义是你不能改变其指向的对象user，但是你可以改变user属性
         const user = {
             name:"zzz",
@@ -151,7 +146,6 @@ console.log(name);
         user.age = 22
         user.height = 188
         console.log(user)
-    </script>
 ```
 
 ##  ES6对象写法
@@ -399,5 +393,4 @@ console.log(n);
 
 
 Reference
-
-https://github.com/zhangtianyi0110/VueLearnNotes/blob/master/01-ES6%E8%A1%A5%E5%85%85/01-ES6%E8%A1%A5%E5%85%85.md
+zhangtianyi0110 github

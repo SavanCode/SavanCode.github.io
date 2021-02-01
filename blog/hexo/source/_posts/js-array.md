@@ -11,9 +11,9 @@ tags: JS
 categories: JS
 ---
 
-# 创建array
+## 创建array
 
-## 字面量
+### 字面量
 
 ```js
 var empty = [];                    //没有元素的数组
@@ -21,13 +21,13 @@ var primes = [2,3,5,7,11];         //有5个数值的数组
 var misc = [1.1,true, "a"];           //3个不同类型的元素
 ```
 
-## 构建函数
+### 构建函数
 
 ```js
 var a = new Array();
 ```
 
-# Array本质是对象
+## Array本质是对象
 
 ```js
 o={};       //创建一个普通的对象
@@ -39,7 +39,7 @@ arr['0'] // 'a'
 arr[0] // 'a'
 ```
 
-# Array 基本的进出
+## Array 基本的进出
 
 在数组最后增加一个元素,删除数组最后一个元素, 在数组头部增加一个元素,删除数组第一个元素
 
@@ -54,7 +54,7 @@ arr.shift()
 
 
 
-# Array字符串化 - toString()
+## Array字符串化 - toString()
 
 将数组字符串化。用逗号分割。相当于join(“,”);
 
@@ -63,9 +63,9 @@ var num = 15;
 var n = num.toString();
 ```
 
-# 稀疏数组 （不连续索引的数组）
+## 稀疏数组 （不连续索引的数组）
 
-## 使用delete操作符
+### 使用delete操作符
 
 ```js
 var a = [1,2,3,4,5];
@@ -74,7 +74,7 @@ console.log(a[1]);//undefined
 console.log(1 in a);//false
 ```
 
-## 省略元素值
+### 省略元素值
 
 ```js
 var a =[1,,3,4,5];
@@ -82,7 +82,7 @@ console.log(a[1]);//undefined
 console.log(1 in a);//false
 ```
 
-## undefined元素
+### undefined元素
 
 ```js
 var a =[1,,3,4,5];
@@ -94,7 +94,7 @@ console.log(a[1]);//undefined
 console.log(1 in a);//true
 ```
 
-# 数组乱序（shuffle）
+## 数组乱序（shuffle）
 
 sort()方法传入一个函数，此函数随机返回1或-1，达到随机排列数组元素的目的
 
@@ -103,9 +103,7 @@ var array = [1,2,3,4,5];
 console.log(array.sort(function(){return Math.random() - 0.5}));//[2,1,5,4,3]
 ```
 
-
-
-# 数组max min
+## 数组max min
 
 Math.max.apply 来查找数组中的最高值：
 
@@ -115,8 +113,6 @@ function myArrayMax(arr) {
 }
 ```
 
-
-
 Math.min.apply 来查找数组中的最低值
 
 ```js
@@ -125,9 +121,9 @@ function myArrayMin(arr) {
 }
 ```
 
-# 数组排序办法
+## 数组排序办法
 
-## reverse()
+### reverse()
 
 reverse()方法用于反转数组的顺序，返回经过排序之后的数组；而原数组顺序也发生改变
 
@@ -138,9 +134,9 @@ var array = ['str',true,3];
 console.log(array,array.reverse());//[3,true,'str'] [3,true,'str']
 ```
 
-## sort()
+### sort()
 
-### 默认排序
+#### 默认排序
 
 　　默认情况下，sort()方法按字符串升序排列数组项，sort方法会调用每个数组项的toString()方法，然后比较得到的字符串排序，返回经过排序之后的数组，而原数组顺序也发生改变
 
@@ -157,16 +153,16 @@ console.log(array,array.sort());//[1, 10, 5, 50] [1, 10, 5, 50]
 arr.sort((a, b) => a - b)
 ```
 
-　　**如果数组包含undefined元素，它们会被排到数组的尾部**
+**如果数组包含undefined元素，它们会被排到数组的尾部**
 
 ```js
 var array = ['3',3,undefined,2,'2'];
 console.log(array,array.sort());//["2", 2, "3", 3, undefined] ["2", 2, "3", 3, undefined]
 ```
 
-### 自定义排序
+#### 自定义排序
 
-#### 数字
+###### 数字
 
 **Array.sort(function(a,b));**
 
@@ -199,7 +195,7 @@ alert(arr.sort(xmx));
 //输出：87,81,64,27,21
 ```
 
-#### 区分大小写的字母排序
+##### 区分大小写的字母排序
 
 ```js
 var arr = ['Z','e','V','I','n'];
@@ -214,7 +210,7 @@ console.log(arr);
 [ 'e', 'I', 'n', 'V', 'Z' ]
 ```
 
-#### 对象属性条件排序
+##### 对象属性条件排序
 
 当数组元素为多属性的对象时，我们可能需要根据不同的属性来具体排序，比如以下数组中，我们想按照年龄降序排列：
 
@@ -245,9 +241,7 @@ console.log(arr);
 ]
 ```
 
-
-
-#### 自定义根据对象属性
+##### 自定义根据对象属性
 
 封装一个函数sort，接收两个形参：需要排序的数组arr以及排序依据的属性键名property。其中用闭包的写法
 
@@ -271,7 +265,6 @@ function sort(arr,property){
 sort(arr,"grade");
 console.log(arr);
 
-
 ——————OUTPUT——————
 [
   { name: 'code', age: 19, grade: 98 },
@@ -280,7 +273,7 @@ console.log(arr);
 ]
 ```
 
-# 数组拼接concat()- string也有
+## 数组拼接concat()- string也有
 
 先创建当前数组一个副本，然后将接收到的参数添加到这个副本的末尾，最后返回新构建的数组。所以concat()**不影响原数组**
 
@@ -303,7 +296,7 @@ var newArray = Array.prototype.concat.call({ a: 1 }, { b: 2 })
 console.log(newArray);// [{ a: 1 }, { b: 2 }]
 console.log(newArray[0].a);//1 
 ```
-# 数组拼接解构参数
+## 数组拼接解构参数
 
 ```js
 const array1 = ['a', 'b', 'c'];
@@ -321,7 +314,7 @@ console.log(rest); // [30, 40, 50]
 
 https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
 
-# Array 去重
+## Array 去重
 
 array普通内容 https://segmentfault.com/a/1190000016418021
 
@@ -331,7 +324,7 @@ array obj去重 https://stackoverflow.com/questions/2218999/remove-duplicates-fr
 arr.filter((v,i,a)=>a.findIndex(t=>(t.id === v.id))===i)
 ```
 
-# 创建子数组方法slice()- string也有
+## 创建子数组方法slice()- string也有
 
 slice(start,end)方法需要两个参数start和end，返回这个数组中从start位置到(但不包含)end位置的一个子数组；如果end为undefined或不存在，则返回从start位置到数组结尾的所有项，不影响原数组。
 
@@ -374,17 +367,24 @@ console.log(numbers.slice({}));//[1,2,3,4,5]
 console.log(numbers.slice('2',[5]));//[3,4,5]
 ```
 
-# 数组删改特定位置内容方法  splice()
+## 数组删改特定位置内容方法  [splice()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice)
 
 用于删除原数组的一部分成员，并可以在被删除的位置添加入新的数组成员，该方法**会改变原数组**
 
 splice()返回一个由删除元素组成的数组，或者如果没有删除元素就返回一个空数组
+
+### 删除元素
 
 splice(start,end)的第一个参数start指定了插入或删除的起始位置。如果start是负数，则start = max(length + start,0)；如果start是NaN，则相当于start = 0
 
 如果只提供一个元素，相当于将原数组在指定位置拆分成两个数组
 
 ```js
+let myFish = ['angel', 'clown', 'drum', 'mandarin', 'sturgeon']
+let removed = myFish.splice(3, 1)
+// myFish is ["angel", "clown", "drum", "sturgeon"]
+// removed is ["mandarin"]
+
 var a = [1,2,3,4,5,6,7,8];
 console.log(a,a.splice(4));// [1,2,3,4] [5,6,7,8]
 var a = [1,2,3,4,5,6,7,8];
@@ -402,7 +402,7 @@ var a = [1,2,3,4,5,6,7,8];
 console.log(a,a.splice(1,100));// [1] [2,3,4,5,6,7,8]
 ```
 
-## 删除并添加（中间插入）
+### 删除并添加（中间插入）
 
 ```js
 var a = [1,2,3,4,5];
@@ -410,9 +410,25 @@ console.log(a,a.splice(2,0,'a','b'));//[1,2,'a','b',3,4,5] []
 console.log(a,a.splice(2,2,[1,2],3));//[1,2,[1,2],3,3,4,5] ['a','b']
 ```
 
-# 数组位置方法
+### 替换元素
 
-## indexOf()
+splice(1,1)再索引为1的地方删除一个元素,第二个元素不传，直接删除后面所有元素
+
+splice(index,0,'aaa')再索引index后面删除0个元素，加上'aaa'
+
+splice(1,1,'aaa')替换索引为1的后一个元素为'aaa'
+
+```js
+months.splice(4, 1, 'May');
+// replaces 1 element at index 4
+console.log(months);
+// expected output: Array ["Jan", "Feb", "March", "April", "May"]
+```
+
+
+## 数组位置方法
+
+### indexOf()
 
 ndexOf(search,start)，返回search首次出现的位置，如果没有找到则返回-1
 
@@ -446,7 +462,7 @@ alert(morePeople.indexOf(person));//0，因为person和morepeople[0]是同一个
 alert(morePeople.indexOf({name: 'Nicholas'}));//-1,因为不是同一个引用
 ```
 
-## lastIndexOf()
+### lastIndexOf()
 
 lastIndexOf()从右向左查找
 
@@ -474,9 +490,9 @@ console.log(arr.lastIndexOf('b',-1));//max(0,-1+7)=6; 6
 console.log(arr.lastIndexOf('b',-50));//max(0,-50+7)=0; -1
 ```
 
-# 数组归并方法
+## 数组归并方法
 
-## reduce(prev, cur, index, array) --求和 求积 求最大值 去重 obj中乘积求和
+### reduce(prev, cur, index, array) --求和 求积 求最大值 去重 obj中乘积求和
 
  - 初始变量，当前变量，索引，原数组对象
 
@@ -533,7 +549,7 @@ var flatten = matrix.reduce(function (prev, cur) {
 console.log(flatten); // [1, 2, 3, 4, 5, 6]
 ```
 
-## reduceRight()
+### reduceRight()
 
 它按照数组索引从高到低（从右到左）处理数组，而不是从低到高
 
@@ -551,9 +567,9 @@ console.log(sum);
 //15
 ```
 
-# 数组迭代方法
+## 数组迭代方法
 
-## map()
+### map()
 
 对数组的每一项运行给定函数，返回每次函数调用的结果组成的数组。array.map(currentValue, index, arr)
 
@@ -646,9 +662,7 @@ var filteredList = watchList.map(movie => {
 
 ```
 
-
-
-## forEach()
+### forEach()
 
 本质上与for循环迭代数组一样。如果需要有返回值，一般使用map方法
 
@@ -666,12 +680,12 @@ var out = [];
 console.log(out);// [1, 4, 9]
 ```
 
-## forEach（）和map（）区别
+### forEach（）和map（）区别
 
 - forEach：用来遍历数组中的每一项，这个方法执行没有返回值，不影响原数组
 - map：支持return，相当与原数组克隆了一份，把克隆的每项改变了，也不影响原数组
 
-## filter() - 可以用于删除个别obj元素
+### filter() - 可以用于删除个别obj元素
 
 对数组中的每一项运行给定函数，该函数会返回true的项组成的数组。该方法常用于查询符合条件的所有数组项 
 
@@ -703,9 +717,7 @@ function getRating(watchList){
 }
 ```
 
-
-
-## some()
+### some()
 
 对数组中的每一项运行给定函数，如果该函数对任一项返回true，则返回true。并且当且仅当数值中的所有元素调用判定函数都返回false，它才返回false
 
@@ -717,10 +729,9 @@ return a.some(isNaN);//false
 
 const isCheap = arr.some(item => item.price < 15)
 const isExpensive = arr.some(item => item.price > 20)
-
 ```
 
-## every()
+### every()
 
 对数组中的每一项运行给定函数，如果该函数对每一项都返回true，则返回true；只要有一项返回false，则返回false
 
@@ -730,7 +741,7 @@ return a.every(function(elem, index, arr){elem < 10;})//true
 return a.every(function(elem, index, arr){return elem%2 ===0;});//false
 ```
 
-## 遍历array for... in... & for ... of ....
+### 遍历array for... in... & for ... of ....
 
 for....in 是es5标准， 此方法遍历数组效率低，主要是用来循环遍历对象的属性
 
@@ -743,8 +754,6 @@ for(let item in arr){
 ```
 
 ![](js-array/1606722436063.png)
-
-
 
 2)、for.....in 遍历对象
 
@@ -764,13 +773,13 @@ for(let item of arr){
         }
 ```
 
-# 实例总结
+## 实例总结
 
-# 单个array
+## 单个array
 
 > 可以改变原数组的方法总共有7种：包括unshift()、shift()、push()、pop()这4种栈和队列方法，reverse()和sort()这2种数组排列方法，数组删改方法splice()
 
-## 判断数组中是否存在某个元素
+### 判断数组中是否存在某个元素
 
 ```js
 const arr = [1, 2, 3, 4, 5]
@@ -782,9 +791,7 @@ const includeNum7 = arr.includes(7)
 => includeNum4 = true  includeNum7 = false  
 ```
 
-
-
-## 单个array除掉重复的元素
+### 单个array除掉重复的元素
 
 ```js
 Array.prototype.norepeat = function(){
@@ -800,13 +807,13 @@ var arr = ['a','ab','a'];
 console.log(arr.norepeat());//['a','ab']
 ```
 
-## 创造本地copy-arry
+### 创造本地copy-arry
 
 ```js
  var a = arr1.slice() // 创造本身的copy
 ```
 
-## 特定位置后面增加一个元素
+### 特定位置后面增加一个元素
 
 ```js
 var arr = ['kevin', 'jack', 'rose’]
@@ -814,19 +821,19 @@ arr.splice(1(index+1), 0 ,’Lily’) //请注意 参数是 (index+1)
 //当下arr的结果是 ['kevin’, ‘Lily' , 'jack', 'rose']
 ```
 
-##  删除特定位置的元素
+###  删除特定位置的元素
 
 ```js
 arr.splice(1(index), 1) //请注意 参数是 index
 ```
 
-## 替换特定位置的元素
+### 替换特定位置的元素
 
 ```js
 arr.splice(1(index), 1, 'John')
 ```
 
-## array中删除删掉偶数，只保留奇数
+### array中删除删掉偶数，只保留奇数
 
 ```js
 　var arr = [1, 2, 4, 5, 6, 9, 10, 15]; 　　　　　　
@@ -836,14 +843,14 @@ arr.splice(1(index), 1, 'John')
 　console.log(r); // [1, 5, 9, 15]
 ```
 
-## array中删除删掉 null, 0, NaN, undefined, ""
+### array中删除删掉 null, 0, NaN, undefined, ""
 
 ```js
 var array=[false, null, 0, NaN, undefined, ""];
 arr=arr.filter(Boolean);//[]
 ```
 
-## 找到Array中第一个满足条件的元素
+### 找到Array中第一个满足条件的元素
 
 ```js
 const arr = [1,5,3,22,6]
@@ -851,10 +858,7 @@ const bigNum = arr.find(item => item > 6)
 
 => bigNum = 22
 ```
-
-
-
-## array中满足某一条件的index位置
+### array中满足某一条件的index位置
 
 ```js
 dropElements([1, 2, 3, 9, 2], function(n) {return n > 2;});
@@ -864,7 +868,7 @@ function dropElements(arr, func) {
 }
 ```
 
-## 单个array中含有多层array，flatten array
+### 单个array中含有多层array，flatten array
 
 ```js
 function steamrollArray(arr) {
@@ -899,11 +903,9 @@ function arraySum(array) {
 console.log(arraySum([1, [2], [[3]], [[[4]]]]));//10
 ```
 
+## 两个array
 
-
-# 两个array
-
-## 两个数组中的不同元素
+### 两个数组中的不同元素
 
 ```js
 function getArrDifference(arr1, arr2) {
@@ -942,11 +944,7 @@ a.filter(function(v){ return b.indexOf(v) > -1 })
 //return index true/false
 ```
 
-
-
-
-
-## 取出两个数组的相同元素
+### 取出两个数组的相同元素
 
 ```js
 var arr1 = [0,1,2,3,4,5];
@@ -969,9 +967,7 @@ console.log(getArrEqual(arr1, arr2));
 a.filter(function(v){ return !(b.indexOf(v) > -1) }).concat(b.filter(function(v){ return !(a.indexOf(v) > -1)}))
 ```
 
-
-
-## array中找出 array1没有的
+### array中找出 array1没有的
 
 ```js
  var arr1 = [2,3,4,5,6,7,8,9,0];
@@ -980,7 +976,7 @@ a.filter(function(v){ return !(b.indexOf(v) > -1) }).concat(b.filter(function(v)
   });
 ```
 
-## 两个array的遍历（多层array）
+### 两个array的遍历（多层array）
 
 ```js
 function whatIsInAName(collection, source) {
@@ -1007,7 +1003,7 @@ function whatIsInAName(collection, source) {
 whatIsInAName([{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", last: "Capulet" }], { last: "Capulet" });
 ```
 
-##  计算两个数组的交集、差集、并集、补集 （用filter concat）
+###  计算两个数组的交集、差集、并集、补集 （用filter concat）
 
 ```js
 var a = [1,2,3,4,5]
@@ -1053,7 +1049,7 @@ console.log("a与b的补集：", complement);
 console.log("a与b的并集：", unionSet);
 ```
 
-## 数组功能扩展
+### 数组功能扩展
 
 ```js
 //数组功能扩展
