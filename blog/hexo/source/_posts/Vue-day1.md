@@ -1,5 +1,5 @@
 ---
-title: Vue day1
+title: Vue day1 vue基础介绍
 top: false
 cover: false
 toc: true
@@ -11,9 +11,23 @@ tags: Vue
 categories: Vue
 ---
 
+## Vue
+
+vue.js是目前前端web开发最流行的工具库，由尤雨溪在2014年2月发布的。
+
+另外几个常见的工具库：react.js /angular.js/jQuery
+
+官方网站：
+
+ 中文：[https://cn.vuejs.org/](https://link.zhihu.com/?target=https%3A//cn.vuejs.org/)
+
+ 英文：[https://vuejs.org/](https://link.zhihu.com/?target=https%3A//vuejs.org/)
+
+官方文档：[https://cn.vuejs.org/v2/guide/](https://link.zhihu.com/?target=https%3A//cn.vuejs.org/v2/guide/)
+
 ## 使用vue
 
-```js
+```html
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 ```
 
@@ -196,7 +210,7 @@ const app1= new Vue({
 ```
 下面代码是不能执行的 只能理解(官网直接抄的)
 ```js 
-    var watchExampleVM = new Vue({
+0    var watchExampleVM = new Vue({
         el: '#watch-example',
         data: {
             question: '',
@@ -233,10 +247,15 @@ const app1= new Vue({
                 vm.answer = 'Error! Could not reach the API. ' + error
                 })
             }
-        }
+        }0
     }); 
 ```
 
-
+> 这里主要是提到Axios,其实后面会讲 day 7
+> 可参照
+>
+>  [Vue笔记：axios](https://www.cnblogs.com/-wenli/p/13813246.html)
+>
+> [axios教程](https://zhuanlan.zhihu.com/p/149300921)
 
 个人练习code: https://github.com/SavanCode/VUE/tree/main/HelloVue

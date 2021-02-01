@@ -98,9 +98,10 @@ const app = new Vue({
     <!-- 阻止单击事件继续传播 -->
 
     <!-- 官方 -->
+    <!-- stop 阻止冒泡 -->
     <a v-on:click.stop="doThis"></a>
 
-    <!-- 提交事件不再重载页面 -->
+    <!-- 提交事件不再重载页面 prevent阻止默认事件-->
     <form v-on:submit.prevent="onSubmit"></form>
 
     <!-- 修饰符可以串联 -->
@@ -140,3 +141,8 @@ const app2 = new Vue({
 ```
 
 个人练习code: https://github.com/SavanCode/VUE/tree/main/HelloVue
+
+## vue阻止事件冒泡 两种方法
+
+- 使用@click.stop = "show()"
+- 方法里面写e.stopPropagation()
