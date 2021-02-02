@@ -135,10 +135,11 @@ new Vue({
 - modifiers: 一个包含修饰符的对象。 例如： v-my-directive.foo.bar, 修饰符对象 modifiers 的值是 { foo: true, bar: true }。
 - vnode: Vue 编译生成的虚拟节点。
 - oldVnode: 上一个虚拟节点，仅在 update 和 componentUpdated 钩子中可用。
+
+
 ```html
 <div id="app"  v-runoob:hello.a.b="message">
 </div>
- 
 <script>
 Vue.directive('runoob', {
   bind: function (el, binding, vnode) {
@@ -160,7 +161,9 @@ new Vue({
 })
 </script>
 ```
+
 有时候我们不需要其他钩子函数，我们可以简写函数，如下格式：
+
 ```js
 Vue.directive('runoob', function (el, binding) {
   // 设置指令的背景颜色
