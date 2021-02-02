@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Vue day1, Savannah">
+    <meta name="keywords" content="Vue day1 vue基础介绍, Savannah">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Vue day1 | Savannah</title>
+    <title>Vue day1 vue基础介绍 | Savannah</title>
     <link rel="icon" type="image/png" href="../../../../favicon.png">
 
     <link rel="stylesheet" type="text/css" href="../../../../libs/awesome/css/all.css">
@@ -260,12 +260,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/17.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/13.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Vue day1</h1>
+                    <h1 class="description center-align post-title">Vue day1 vue基础介绍</h1>
                 </div>
             </div>
         </div>
@@ -423,7 +423,13 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="使用vue"><a href="#使用vue" class="headerlink" title="使用vue"></a>使用vue</h2><pre class=" language-js"><code class="language-js"><span class="token operator">&lt;</span>script src<span class="token operator">=</span><span class="token string">"https://cdn.jsdelivr.net/npm/vue/dist/vue.js"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span></code></pre>
+                <h2 id="Vue"><a href="#Vue" class="headerlink" title="Vue"></a>Vue</h2><p>vue.js是目前前端web开发最流行的工具库，由尤雨溪在2014年2月发布的。</p>
+<p>另外几个常见的工具库：react.js /angular.js/jQuery</p>
+<p>官方网站：</p>
+<p> 中文：<a href="https://link.zhihu.com/?target=https://cn.vuejs.org/">https://cn.vuejs.org/</a></p>
+<p> 英文：<a href="https://link.zhihu.com/?target=https://vuejs.org/">https://vuejs.org/</a></p>
+<p>官方文档：<a href="https://link.zhihu.com/?target=https://cn.vuejs.org/v2/guide/">https://cn.vuejs.org/v2/guide/</a></p>
+<h2 id="使用vue"><a href="#使用vue" class="headerlink" title="使用vue"></a>使用vue</h2><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>https://cdn.jsdelivr.net/npm/vue/dist/vue.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code></pre>
 <h2 id="简单的暂时Vue"><a href="#简单的暂时Vue" class="headerlink" title="简单的暂时Vue"></a>简单的暂时Vue</h2><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>app<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span><span class="token punctuation">></span></span>{{message}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h2</span><span class="token punctuation">></span></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>{{name}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
@@ -551,7 +557,7 @@
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>{{ answer }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
 <p>下面代码是不能执行的 只能理解(官网直接抄的)</p>
-<pre class=" language-js"><code class="language-js">    <span class="token keyword">var</span> watchExampleVM <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+<pre class=" language-js"><code class="language-js"><span class="token number">0</span>    <span class="token keyword">var</span> watchExampleVM <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
         el<span class="token punctuation">:</span> <span class="token string">'#watch-example'</span><span class="token punctuation">,</span>
         data<span class="token punctuation">:</span> <span class="token punctuation">{</span>
             question<span class="token punctuation">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
@@ -588,8 +594,13 @@
                 vm<span class="token punctuation">.</span>answer <span class="token operator">=</span> <span class="token string">'Error! Could not reach the API. '</span> <span class="token operator">+</span> error
                 <span class="token punctuation">}</span><span class="token punctuation">)</span>
             <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token number">0</span>
     <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> </code></pre>
+<blockquote>
+<p>这里主要是提到Axios,其实后面会讲 day 7<br>可参照</p>
+<p> <a target="_blank" rel="noopener" href="https://www.cnblogs.com/-wenli/p/13813246.html">Vue笔记：axios</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/149300921">axios教程</a></p>
+</blockquote>
 <p>个人练习code: <a target="_blank" rel="noopener" href="https://github.com/SavanCode/VUE/tree/main/HelloVue">https://github.com/SavanCode/VUE/tree/main/HelloVue</a></p>
 
             </div>
