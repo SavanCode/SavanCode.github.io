@@ -50,12 +50,12 @@ const app = new Vue({
 
 ##  事件修饰
 ### v-on 提供了事件修饰符
-    .stop
-    .prevent
-    .capture
-    .self
-    .once
-    .passive
+1. `.stop`：就是js中的event.stopPropagation()的缩写,它是用来阻止冒泡的；
+2. `.prevent`：就是js中event.preventDefault()的缩写,它是用来阻止默认行为的；
+3. `.capture`：捕获事件和冒泡事件(默认)是两种事件流,事件捕获是从document到触发事件的那个元素;冒泡事件是从下向上的触发事件；
+4. `.self`：就是防止父元素（设置了该修饰符）的子元素的事件冒泡到父元素上，只有本身触发时才会执行事件处理程序（函数）；
+5. `.once`：每次页面重载后只会执行一次
+6. `.passive`
 
 >使用修饰符时，顺序很重要；相应的代码会以同样的顺序产生。因此，用 v-on:click.prevent.self 会阻止所有的点击，而 v-on:click.self.prevent 只会阻止对元素自身的点击。
 
@@ -79,6 +79,13 @@ const app = new Vue({
     .alt
     .shift
     .meta
+
+### 注意
+
+- 事件绑定如@click="computed"  computed只会在初始化时执行一次
+- 事件绑定如@click="computed()" 只会通过事件触发执行一次
+- 事件绑定如@click="methods"  初始化不执行，可以通过事件触发
+- 事件绑定如@click="methods()"  同上
 
 ### 例子
 

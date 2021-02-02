@@ -11,11 +11,13 @@ tags: Vue
 categories: Vue
 ---
 
-
-
-
-
-
+## 通过axios实现数据请求
+## json
+## ajax
+## 数据接口
+## ajax的使用
+## 同源策略
+## 跨域解决方法
 
 
 

@@ -11,6 +11,12 @@ tags: Vue
 categories: Vue
 ---
 
+v-model 指令在表单控件元素上创建双向数据绑定
+
+![](Vue-day6/image-20210202185235525.png)
+
+
+
 ## v-model简单双向绑定
 
 ```html
@@ -146,6 +152,10 @@ var select = new Vue({
 
 ## v-model修饰符
 
+1. `lazy`默认情况下是实时更新数据，加上`lazy`，从输入框失去焦点，按下enter都会更新数据。
+2. `number`,默认是string类型，使用`number`复制为number类型。
+3. `trim`用于 自动过滤用户输入的首尾空白字符
+
 ```html
  <div id="app3">
     <h2>v-model修饰符</h2>
@@ -170,7 +180,3 @@ var app3 = new Vue({
   }
 })
 ```
-
-> 1. `lazy`默认情况下是实时更新数据，加上`lazy`，从输入框失去焦点，按下enter都会更新数据。
-> 2. `number`,默认是string类型，使用`number`复制为number类型。
-> 3. `trim`用于 自动过滤用户输入的首尾空白字符
