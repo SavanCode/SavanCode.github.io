@@ -1,12 +1,12 @@
 ---
-title: Vue day5 条件判断 v-if、v-eles、v-else-if & v-for遍历数组
+title: Vue day5 条件判断 v-if、v-eles、v-else-if & v-for遍历数组 & 过滤符
 top: false
 cover: false
 toc: true
 mathjax: true
 date: 2021-02-01 20:12:58
 password:
-summary: 条件判断 v-if、v-eles、v-else-if & v-for遍历数组
+summary: 条件判断 v-if、v-eles、v-else-if & v-for遍历数组 & 过滤符
 tags: Vue
 categories: Vue
 ---
@@ -72,7 +72,7 @@ v-if是新增和删除dom元素
 
 具体解释: https://zhuanlan.zhihu.com/p/38179618
 
-## 遍历循环
+## 遍历循环 v-for
 
 没什么特别,看看例子就好
 ### 基本的循环例子
@@ -133,6 +133,13 @@ v-if是新增和删除dom元素
 >
 >不加key如果要插入f依次替换。
 
+## 数组动态过滤
+
+如果你的for loop 希望实现一个动态的变化，想加入filter函数的联动
+
+```
+v-for="(book, index) in search()"//这里search method 直接返回一个list
+```
 
 ### 数组的响应式方法 
 
@@ -179,11 +186,78 @@ v-if是新增和删除dom元素
     })
 ```
 
+## 过滤符
 
+### 私有过滤器
+
+这里下面有一个| 管道符 就是item.ctime 要先经过dataFormat这个函数之后才可以显示
+
+1. HTML元素：
+
+   ```html
+   <td>{{item.ctime | dataFormat('yyyy-mm-dd')}}</td>
+   ```
+
+2. 私有 `filters` 定义方式：
+
+   ```js
+   filters: { // 私有局部过滤器，只能在 当前 VM 对象所控制的 View 区域进行使用
+    dataFormat(input, pattern = "") { // 在参数列表中 通过 pattern="" 来指定形参默认值，防止报错
+      var dt = new Date(input);
+      // 获取年月日
+      var y = dt.getFullYear();
+      var m = (dt.getMonth() + 1).toString().padStart(2, '0');
+      var d = dt.getDate().toString().padStart(2, '0');
+   
+      // 如果 传递进来的字符串类型，转为小写之后，等于 yyyy-mm-dd，那么就返回 年-月-日
+      // 否则，就返回  年-月-日 时：分：秒
+      if (pattern.toLowerCase() === 'yyyy-mm-dd') {
+        return `${y}-${m}-${d}`;
+      } else {
+        // 获取时分秒
+        var hh = dt.getHours().toString().padStart(2, '0');
+        var mm = dt.getMinutes().toString().padStart(2, '0');
+        var ss = dt.getSeconds().toString().padStart(2, '0');
+   
+        return `${y}-${m}-${d} ${hh}:${mm}:${ss}`;
+      }
+    }
+   }
+   ```
+
+> 使用ES6中的字符串新方法 String.prototype.padStart(maxLength, fillString='') 或 String.prototype.padEnd(maxLength, fillString='')来填充字符串；
+
+### 全局过滤器
+
+```js
+// 定义一个全局过滤器
+Vue.filter('dataFormat', function (input, pattern = '') {
+  var dt = new Date(input);
+  // 获取年月日
+  var y = dt.getFullYear();
+  var m = (dt.getMonth() + 1).toString().padStart(2, '0');
+  var d = dt.getDate().toString().padStart(2, '0');
+
+  // 如果 传递进来的字符串类型，转为小写之后，等于 yyyy-mm-dd，那么就返回 年-月-日
+  // 否则，就返回  年-月-日 时：分：秒
+  if (pattern.toLowerCase() === 'yyyy-mm-dd') {
+    return `${y}-${m}-${d}`;
+  } else {
+    // 获取时分秒
+    var hh = dt.getHours().toString().padStart(2, '0');
+    var mm = dt.getMinutes().toString().padStart(2, '0');
+    var ss = dt.getSeconds().toString().padStart(2, '0');
+
+    return `${y}-${m}-${d} ${hh}:${mm}:${ss}`;
+  }
+});
+```
+
+> 注意：当有局部和全局两个名称相同的过滤器时候，会以就近原则进行调用，即：局部过滤器优先于全局过滤器被调用！
 
 个人练习:
 
-做一个动态的结账页面, 书本list , 然后根据控制界面书本的数量.计算总价,并且可以移除书本
+做一个动态的结账页面, 书本list , 然后根据控制界面书本的数量.计算总价,并且可以移除书本，增加书本
 
 个人练习code: https://github.com/SavanCode/VUE/tree/main/HelloVue
 
@@ -191,3 +265,4 @@ v-if是新增和删除dom元素
 
 https://zhuanlan.zhihu.com/p/38179618 
 
+[黑马程序员 vue.js从入门到应用](https://www.bilibili.com/video/BV1vp4y1179g?p=27)

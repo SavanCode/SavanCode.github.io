@@ -11,22 +11,34 @@ tags: Vue
 categories: Vue
 ---
 
+## v-on 事件监听基本介绍
+1. 使用@事件名来进行事件的绑定
+   语法：
+```html
+   <h1 @click="num++">{{num}}</h1>
+```
+2. 绑定的事件的事件名，全部都是js的事件名：
+   @submit   --->  onsubmit
+   @focus    --->  onfocus
+   @blur     --->  onblur
+   @click    --->  onclick
+
 ##  v-on的基本使用 - 基本的事件传参
 
 事件调用方法传参，有参数传参，不给参数的话，方程还是会执行，参数为空，不写参数不写括号，直接传入原生事件
 
 ```html
 <div id="app"> 
-        <!-- 事件没传参 可以省略()-->
-        <button @click="btnClick">按钮1</button>
-        <button @click="btnClick()">按钮2</button>
-        <!-- 事件调用方法传参，有参数传参，不给参数的话，方程还是会执行，参数为空，不写参数不写括号，直接传入原生事件 -->
-        <button @click="btnClick2(123)">按钮3</button>
-        <button @click="btnClick2()"></button>按钮4</button>
-        <button @click="btnClick2">按钮5</button>
-        <!-- 事件调用时候需要传入本身event还需要传入其他参数 -->
-        <button @click="btnClick3($event,123)">按钮6</button>
-      </div>
+    <!-- 事件没传参 可以省略()-->
+    <button @click="btnClick">按钮1</button>
+    <button @click="btnClick()">按钮2</button>
+    <!-- 事件调用方法传参，有参数传参，不给参数的话，方程还是会执行，参数为空，不写参数不写括号，直接传入原生事件 -->
+    <button @click="btnClick2(123)">按钮3</button>
+    <button @click="btnClick2()"></button>按钮4</button>
+    <button @click="btnClick2">按钮5</button>
+    <!-- 事件调用时候需要传入本身event还需要传入其他参数 -->
+    <button @click="btnClick3($event,123)">按钮6</button>
+  </div>
 ```
 
 ```js
@@ -48,7 +60,75 @@ const app = new Vue({
     app.btnClick()
 ```
 
+### 练习例子 click事件做出tab效果
+
+```html
+  <style>
+        #card{
+            width: 500px;
+            height: 350px;
+        }
+        .title{
+            height:50px;
+        
+        .title span{
+            width: 100px;
+            height: 50px;
+            background-color:#ccc;
+            display: inline-block;
+            line-height: 50px; /* 设置行和当前元素的高度相等,就可以让文本内容上下居中 */
+            text-align:center;
+        }
+        .content .list{
+            width: 500px;
+            height: 300px;
+            background-color: yellow;
+            display: none;
+        }
+        .content .active{
+            display: block;
+        }
+
+        .title .current{
+            background-color: yellow;
+        }
+    </style>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+
+    <div id="card">
+        <div class="title">
+            <span @click="num=0" :class="num==0?'current':''">国内新闻</span>
+            <span @click="num=1" :class="num==1?'current':''">国际新闻</span>
+            <span @click="num=2" :class="num==2?'current':''">银河新闻</span>
+            <!--<span>{{num}}</span>-->
+        </div>
+        <div class="content">
+            <div class="list" :class="num==0?'active':''">国内新闻列表</div>
+            <div class="list" :class="num==1?'active':''">国际新闻列表</div>
+            <div class="list" :class="num==2?'active':''">银河新闻列表</div>
+        </div>
+    </div>
+    <script>
+        // 思路：
+        // 当用户点击标题栏的按钮[span]时，显示对应索引下标的内容块[.list]
+        // 代码实现：
+        var card = new Vue({
+            el:"#card",
+            data:{
+                num:0,
+            },
+        });
+    </script>
+
+</body>
+```
+
+
+
 ##  事件修饰
+
 ### v-on 提供了事件修饰符
 1. `.stop`：就是js中的event.stopPropagation()的缩写,它是用来阻止冒泡的；
 2. `.prevent`：就是js中event.preventDefault()的缩写,它是用来阻止默认行为的；
@@ -87,7 +167,7 @@ const app = new Vue({
 - 事件绑定如@click="methods"  初始化不执行，可以通过事件触发
 - 事件绑定如@click="methods()"  同上
 
-### 例子
+### 事件修饰例子
 
 ```html
 <div id="app2">

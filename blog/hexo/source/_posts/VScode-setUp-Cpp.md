@@ -6,7 +6,7 @@ toc: true
 mathjax: true
 date: 2021-01-15 12:02:34
 password:
-summary:
+summary: vscode编译运行和调试C/C++
 tags: vscode
 categories: vscode
 ---

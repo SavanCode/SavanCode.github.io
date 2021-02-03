@@ -10,6 +10,40 @@ summary: 动态绑定 v-bind
 tags: Vue
 categories: Vue
 ---
+## 灵活理解V-bind的使用
+```html
+<div id="app">  
+     <input type="button" value="摁纽" title="btnTitle">
+</div>
+<script>
+const app=new Vue({
+    el:'#app',
+    data:{
+        btnTitle:"这是自定义的摁纽title"
+    }
+})
+</script>
+```
+![](Vue-day2/image-20210203154237996.png)
+
+```html
+<div id="app">  
+     <input type="button" value="摁纽" v-bind:title="btnTitle">
+</div>
+<script>
+const app=new Vue({
+    el:'#app',
+    data:{
+        btnTitle:"这是按钮自定义title的值"
+    }
+})
+</script>
+```
+![](Vue-day2/image-20210203154327992.png)
+
+这里电脑解析的时候，会将title里面的值理解为变量，然后到app里面的data去找
+**拼接绑定内容：:title="btnTitle + ', 这是追加的内容'"**
+
 
 ## 动态绑定img 属性
 
@@ -170,7 +204,13 @@ categories: Vue
       },
     })
 ```
-## v-for和v-bind结合
+> 这里更加实用的是，利用数组进行结合性的动态 比如下面这个例子
+```
+v-bind:class="['fixStyle',styleNew ? {newStyle:currentIndex===index} : {oldStyle:currentIndex===index}]"
+```
+
+## v-for和v-bind结合练习 
+
 想实现一个动态的绑定列表的触发事件 （￣︶￣）↗　
 但是这个写法真的让我有点难受，感觉vue是另外一套体系似的， 本来是想做hover的但是还没找到hover事件要怎么写 就写了click
 
@@ -219,3 +259,4 @@ categories: Vue
 ```
 
 个人练习code: https://github.com/SavanCode/VUE/tree/main/HelloVue
+

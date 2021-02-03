@@ -25,6 +25,31 @@ vue.js是目前前端web开发最流行的工具库，由尤雨溪在2014年2月
 
 官方文档：[https://cn.vuejs.org/v2/guide/](https://link.zhihu.com/?target=https%3A//cn.vuejs.org/v2/guide/)
 
+## 框架和库的区别
+
+框架：是一套完整的解决方案；对项目的侵入性较大，项目如果需要更换框架，则需要重新架构整个项目。
+
+- node 中的 express；
+
+库（插件）：提供某一个小功能，对项目的侵入性较小，如果某个库无法完成某些需求，可以很容易切换到其它库实现需求。
+
+- 1. 从Jquery 切换到 Zepto
+- 1. 从 EJS 切换到 art-template
+
+## vue.js的M-V-VM思想
+
+MVVM 是Model-View-ViewModel 的缩写，它是一种基于前端开发的架构模式。
+
+`Model` 指代的就是vue对象的data属性里面的数据。这里的数据要显示到页面中。
+
+`View` 指代的就是vue中数据要显示的HTML页面，在vue中，也称之为“视图模板” 。
+
+`ViewModel` 指代的是vue.js中我们编写代码时的vm对象了，它是vue.js的核心，负责连接 View 和 Model，保证视图和数据的一致性，所以前面代码中，data里面的数据被显示中p标签中就是vm对象自动完成的。
+
+![](Vue-day1/image-20210203151605134.png)
+
+![](Vue-day1/image-20210203151837687.png)
+
 ## 使用vue
 
 ```html
@@ -41,7 +66,7 @@ vue.js是目前前端web开发最流行的工具库，由尤雨溪在2014年2月
 ```
 
 ```js 
-const app1= new Vue({
+const app1= new Vue({ // 这里的app1 其实就是vm实例，也就是MVVM中的核心VM，提供了核心双向绑定
     el:"#app",
     data:{
         message:"hello vueJs",
@@ -49,6 +74,75 @@ const app1= new Vue({
     }
 }) 
 ```
+
+## vue对象的生命周期
+
+![](Vue-day1/image-20210203192241276.png)
+
+图片来自于 http://doc.cms.liulongbin.top/md/lifecycle.png
+
+```html
+ <script>
+    window.onload = function(){
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                num:0
+            },
+            beforeCreate:function(){
+                console.log("beforeCreate,vm对象尚未创建,num="+ this.num);  //undefined
+                this.name=10; // 此时没有this对象呢，所以设置的name无效，被在创建对象的时候被覆盖为0
+            },
+            created:function(){
+                console.log("created,vm对象创建完成,设置好了要控制的元素范围,num="+this.num );  // 0
+                this.num = 20;
+            },
+            beforeMount:function(){
+                console.log( this.$el.innerHTML ); // <p>{{num}}</p>
+                console.log("beforeMount,vm对象尚未把data数据显示到页面中,num="+this.num ); // 20
+                this.num = 30;
+            },
+            mounted:function(){
+                console.log( this.$el.innerHTML ); // <p>30</p>
+                console.log("mounted,vm对象已经把data数据显示到页面中,num="+this.num); // 30
+            },
+            beforeUpdate:function(){
+                // this.$el 就是我们上面的el属性了，$el表示当前vue.js所控制的元素#app
+                console.log( this.$el.innerHTML );  // <p>30</p>
+                console.log("beforeUpdate,vm对象尚未把更新后的data数据显示到页面中,num="+this.num); // beforeUpdate----31
+                
+            },
+            updated:function(){
+                console.log( this.$el.innerHTML ); // <p>31</p>
+                console.log("updated,vm对象已经把过呢更新后的data数据显示到页面中,num=" + this.num ); // updated----31
+            },
+        });
+    }
+    </script>
+</head>
+<body>
+    <div id="app">
+        <p>{{num}}</p>
+        <button @click="num++">按钮</button>
+    </div>
+</body> 
+```
+
+文字版总结
+
+- 生命周期钩子 = 生命周期函数 = 生命周期事件
+- 主要的生命周期函数分类：
+  - 创建期间的生命周期函数：
+    - beforeCreate：实例刚在内存中被创建出来，此时，还没有初始化好 data 和 methods 属性
+    - created：实例已经在内存中创建OK，此时 data 和 methods 已经创建OK，此时还没有开始 编译模板
+    - beforeMount：此时已经完成了模板的编译，但是还没有挂载到页面中
+    - mounted：此时，已经将编译好的模板，挂载到了页面指定的容器中显示
+  - 运行期间的生命周期函数：
+    - beforeUpdate：状态更新之前执行此函数， 此时 data 中的状态值是最新的，但是界面上显示的 数据还是旧的，因为此时还没有开始重新渲染DOM节点
+    - updated：实例更新完毕之后调用此函数，此时 data 中的状态值 和 界面上显示的数据，都已经完成了更新，界面已经被重新渲染好了！
+  - 销毁期间的生命周期函数：
+    - beforeDestroy：实例销毁之前调用。在这一步，实例仍然完全可用。
+    - destroyed：Vue 实例销毁后调用。调用后，Vue 实例指示的所有东西都会解绑定，所有的事件监听器会被移除，所有的子实例也会被销毁。
 
 ## for loop
 
@@ -69,7 +163,16 @@ const app1= new Vue({
         }
     })
 ```
+
+> 在vue使用的过程中，如果要初始化操作，把初始化操作的代码放在 mounted 中执行。
+> mounted阶段就是在vm对象已经把data数据实现到页面以后。一般页面初始化使用。
+>    例如，用户访问页面加载成功以后，就要执行的ajax请求。
+> 
+> 另一个就是created，这个阶段就是在 vue对象创建以后，把ajax请求后端数据的代码放进 created
+
+
 ## 实现一个简单的计数器 逻辑
+
 ```html
  <div id="counter"> 
         <p>{{name}}</p> 
@@ -190,6 +293,16 @@ const app1= new Vue({
     }, 1000); 
 ```
 
+### V-text 与 {{}}
+
+- 插值表达式只会插入内容，并不会清楚之前的内容，但是V-text会
+
+- 插值表达式会有闪烁问题，V-text不会
+
+> 闪烁问题：这里指的是在本地运行不会有区别，但实际上在网页版的状态下，{{ }}会在网速慢的情况下，将编译前的显示出来，但是v-text并不会
+>
+> 但是你想用{{ }}的时候下面这个属性就很重要了
+
 ## cloak属性
 
 在vue解析前，div中有一个属性cloak
@@ -259,3 +372,11 @@ const app1= new Vue({
 > [axios教程](https://zhuanlan.zhihu.com/p/149300921)
 
 个人练习code: https://github.com/SavanCode/VUE/tree/main/HelloVue
+
+> 笔记主要写的是2.0 
+>
+> 3.0可以参照 https://24kcs.github.io/vue3_study
+
+# Reference：
+
+http://doc.cms.liulongbin.top/md/lifecycle.png

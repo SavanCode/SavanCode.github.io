@@ -1,15 +1,17 @@
 ---
-title: Vue day9 Vue.js 自定义指令
+title: Vue day9 Vue.js 自定义指令 & 自定义插件
 top: false
 cover: false
 toc: true
 mathjax: true
 date: 2021-02-02 22:34:12
 password:
-summary: Vue.js 自定义指令
+summary: Vue.js 自定义指令 & 自定义插件
 tags: Vue
 categories: Vue
 ---
+
+自定义的指令 官方 https://cn.vuejs.org/v2/guide/custom-directive.html
 
 除了默认设置的核心指令( v-model 和 v-show ), Vue 也允许注册自定义指令。
 
@@ -18,21 +20,23 @@ categories: Vue
 -  通过 Vue.directive() 函数注册一个全局的指令。
 -  通过组件的 directives 属性，对该组件添加一个局部的指令。
 
-创建全局指令：
+### 创建全局指令
 
 需要传入指令名称以及一个包含指令钩子函数的对象，该对象的键即钩子函数的函数名，值即函数体，钩子函数可以有多个。
 
+创造的时候不用加v- ， 之后使用的时候用v-
+
 ```js
 Vue.directive('self_defined_name',{
-  bind:function(el,binding){
-  //do someting
+  bind:function(el,binding){  
+  //do someting 
   },
-  inserted: function(el,binding){
+  inserted: function(el,binding){ 
   //do something
   },
 }
 ```
-创建局部指令：
+### 创建局部指令
 
 直接向创建的 Vue 实例的 directives 字典属性添加键值对，键值对即需要添加的自定义指令及对应钩子函数字典对象。键值对可以有多个，对应多个自定义指令。
 
@@ -78,6 +82,7 @@ Vue.directive('focus', {
   inserted: function (el) {
     // 聚焦元素
     el.focus()
+    //el.style.color='red',DOM会变色
   }
 })
 // 创建根实例
@@ -189,7 +194,65 @@ new Vue({
 </script>
 ```
 
+## 自定义插件
 
+### 说明
+
+1. Vue 插件是一个包含install 方法的对象
+2. 通过install 方法给Vue 或Vue 实例添加方法, 定义全局指令等
+
+### 编码
+```js
+/**
+* 自定义Vue 插件
+*/
+(function () {
+	const MyPlugin = {}
+	MyPlugin.install = function (Vue, options) {
+		// 1. 添加全局方法或属性
+		Vue.myGlobalMethod = function () {
+			alert('Vue 函数对象方法执行')
+		}
+		// 2. 添加全局资源
+		Vue.directive('my-directive', function (el, binding) {
+			el.innerHTML = "MyPlugin my-directive " + binding.value
+		})
+		// 3. 添加实例方法
+		Vue.prototype.$myMethod = function () {
+			alert('vue 实例对象方法执行')
+		}
+	}
+	window.MyPlugin = MyPlugin
+})() 
+```
+页面使用插件
+
+```html
+<div id="demo">
+<!--使用自定义指令-->
+<p v-my-directive="msg"></p>
+</div>
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript" src="vue-myPlugin.js"></script>
+<script type="text/javascript">
+	//使用自定义插件
+	Vue.use(MyPlugin)
+	var vm = new Vue({
+		el: '#demo',
+		data: {
+			msg: 'atguigu'
+		}
+	})
+	//调用自定义的静态方法
+	Vue.myGlobalMethod()
+	//调用自定义的对象方法
+	vm.$myMethod()
+</script> 
+```
+注意：
+1.匿名函数自调用。
+2.实例方法放原型上面，一般函数名前面有个$。
+3.插件库应该在Vuejs下面引入。
 
 # Reference
 

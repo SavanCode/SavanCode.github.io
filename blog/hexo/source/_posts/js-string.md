@@ -81,15 +81,19 @@ lang = lang + "script"; //'javascript'
 
 ## string数字转数字
 
+### 直接转换进制 或者用乘法
+
 ```js
 a='3';
 console.log(a*1);
 console.log(a>>>0);//转换为10进制 2就是换成2进制
 ```
 
+###  Number.parseFloat(x).toFixed(2)
 
+### parseInt()
 
-## string内容操作函数 toString()、toLocaleString()、valueOf() 
+## string内容操 toString()、toLocaleString()、valueOf() 
 
 ```js
 console.log("test".valueOf());//"test"
@@ -287,7 +291,6 @@ console.log(string.lastIndexOf('w',undefined));//12
 console.log(string.lastIndexOf('ld',10));//9
 console.log(string.lastIndexOf('ld',[10]));//9 
 ```
-
 **lastIndexOf()方法常用于获取URL地址中的扩展名** 
 
 ## 正则匹配
@@ -509,10 +512,9 @@ console.log(a,a.unshift('x','y','z')); //['x','y','z','a', 'b', 'c'] 6
 ```
 
 
-
 # 操作方程
 
-## js判断一个字符串是否包含在另一个字符串
+## js 判断是否包含在另一个string - includes
 
 ```js
 'Blue Whale'.includes('blue'); // returns false
@@ -532,6 +534,22 @@ js去掉所有的空格（连续空格）提内容
 
 ```js
 array.trim().split(/\s+/)
+```
+
+## js指定补全或者遮盖string中字符
+
+```js
+const str1 = '5';
+
+console.log(str1.padStart(2, '0'));
+// expected output: "05"
+
+const fullNumber = '2034399002125581';
+const last4Digits = fullNumber.slice(-4);
+const maskedNumber = last4Digits.padStart(fullNumber.length, '*');
+
+console.log(maskedNumber);
+// expected output: "************5581"
 ```
 
 ## js正则去掉不是字母
