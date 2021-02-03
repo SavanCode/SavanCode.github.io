@@ -7,8 +7,8 @@ mathjax: true
 date: 2021-02-01 23:40:04
 password:
 summary: Vue Axios, JSONP
-tags: Vue
-categories: Vue
+tags: [Vue, Nodejs]
+categories: [Vue, Nodejs]
 ---
 
 ## Axios
@@ -892,6 +892,17 @@ axios.get("/user?ID=12345");
 get请求地址： http://www.liulongbin.top:3005/api/getlunbo
 post请求地址：http://www.liulongbin.top:3005/api/post
 jsonp请求地址：http://www.liulongbin.top:3005/api/jsonp
+
+## 品牌管理改造
+
+展示品牌列表
+GET 接口地址 http://www.liulongbin.top:3005/api/getprodlist
+
+添加品牌数据
+POST 接口地址 http://www.liulongbin.top:3005/api/addproduct
+
+删除品牌数据
+GET 接口地址 http://www.liulongbin.top:3005/api/delproduct/:id
 
 # Reference
 
