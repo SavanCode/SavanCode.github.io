@@ -429,18 +429,109 @@
 <p> 中文：<a href="https://link.zhihu.com/?target=https://cn.vuejs.org/">https://cn.vuejs.org/</a></p>
 <p> 英文：<a href="https://link.zhihu.com/?target=https://vuejs.org/">https://vuejs.org/</a></p>
 <p>官方文档：<a href="https://link.zhihu.com/?target=https://cn.vuejs.org/v2/guide/">https://cn.vuejs.org/v2/guide/</a></p>
+<h2 id="框架和库的区别"><a href="#框架和库的区别" class="headerlink" title="框架和库的区别"></a>框架和库的区别</h2><p>框架：是一套完整的解决方案；对项目的侵入性较大，项目如果需要更换框架，则需要重新架构整个项目。</p>
+<ul>
+<li>node 中的 express；</li>
+</ul>
+<p>库（插件）：提供某一个小功能，对项目的侵入性较小，如果某个库无法完成某些需求，可以很容易切换到其它库实现需求。</p>
+<ul>
+<li><ol>
+<li>从Jquery 切换到 Zepto</li>
+</ol>
+</li>
+<li><ol>
+<li>从 EJS 切换到 art-template</li>
+</ol>
+</li>
+</ul>
+<h2 id="vue-js的M-V-VM思想"><a href="#vue-js的M-V-VM思想" class="headerlink" title="vue.js的M-V-VM思想"></a>vue.js的M-V-VM思想</h2><p>MVVM 是Model-View-ViewModel 的缩写，它是一种基于前端开发的架构模式。</p>
+<p><code>Model</code> 指代的就是vue对象的data属性里面的数据。这里的数据要显示到页面中。</p>
+<p><code>View</code> 指代的就是vue中数据要显示的HTML页面，在vue中，也称之为“视图模板” 。</p>
+<p><code>ViewModel</code> 指代的是vue.js中我们编写代码时的vm对象了，它是vue.js的核心，负责连接 View 和 Model，保证视图和数据的一致性，所以前面代码中，data里面的数据被显示中p标签中就是vm对象自动完成的。</p>
+<p><img src="/2021/02/01/Vue-day1/image-20210203151605134.png"></p>
+<p><img src="/2021/02/01/Vue-day1/image-20210203151837687.png"></p>
 <h2 id="使用vue"><a href="#使用vue" class="headerlink" title="使用vue"></a>使用vue</h2><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>https://cdn.jsdelivr.net/npm/vue/dist/vue.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code></pre>
 <h2 id="简单的暂时Vue"><a href="#简单的暂时Vue" class="headerlink" title="简单的暂时Vue"></a>简单的暂时Vue</h2><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>app<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span><span class="token punctuation">></span></span>{{message}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h2</span><span class="token punctuation">></span></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>{{name}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">const</span> app1<span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">const</span> app1<span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// 这里的app1 其实就是vm实例，也就是MVVM中的核心VM，提供了核心双向绑定</span>
     el<span class="token punctuation">:</span><span class="token string">"#app"</span><span class="token punctuation">,</span>
     data<span class="token punctuation">:</span><span class="token punctuation">{</span>
         message<span class="token punctuation">:</span><span class="token string">"hello vueJs"</span><span class="token punctuation">,</span>
         name<span class="token punctuation">:</span><span class="token string">"nameing"</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span> </code></pre>
+<h2 id="vue对象的生命周期"><a href="#vue对象的生命周期" class="headerlink" title="vue对象的生命周期"></a>vue对象的生命周期</h2><p><img src="/2021/02/01/Vue-day1/image-20210203192241276.png"></p>
+<p>图片来自于 <a target="_blank" rel="noopener" href="http://doc.cms.liulongbin.top/md/lifecycle.png">http://doc.cms.liulongbin.top/md/lifecycle.png</a></p>
+<pre class=" language-html"><code class="language-html"> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script language-javascript">
+    window<span class="token punctuation">.</span>onload <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">var</span> vm <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+            el<span class="token punctuation">:</span><span class="token string">"#app"</span><span class="token punctuation">,</span>
+            data<span class="token punctuation">:</span><span class="token punctuation">{</span>
+                num<span class="token punctuation">:</span><span class="token number">0</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            beforeCreate<span class="token punctuation">:</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"beforeCreate,vm对象尚未创建,num="</span><span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//undefined</span>
+                <span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 此时没有this对象呢，所以设置的name无效，被在创建对象的时候被覆盖为0</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            created<span class="token punctuation">:</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"created,vm对象创建完成,设置好了要控制的元素范围,num="</span><span class="token operator">+</span><span class="token keyword">this</span><span class="token punctuation">.</span>num <span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// 0</span>
+                <span class="token keyword">this</span><span class="token punctuation">.</span>num <span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            beforeMount<span class="token punctuation">:</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span> <span class="token keyword">this</span><span class="token punctuation">.</span>$el<span class="token punctuation">.</span>innerHTML <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// &lt;p>{{num}}&lt;/p></span>
+                console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"beforeMount,vm对象尚未把data数据显示到页面中,num="</span><span class="token operator">+</span><span class="token keyword">this</span><span class="token punctuation">.</span>num <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 20</span>
+                <span class="token keyword">this</span><span class="token punctuation">.</span>num <span class="token operator">=</span> <span class="token number">30</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            mounted<span class="token punctuation">:</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span> <span class="token keyword">this</span><span class="token punctuation">.</span>$el<span class="token punctuation">.</span>innerHTML <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// &lt;p>30&lt;/p></span>
+                console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"mounted,vm对象已经把data数据显示到页面中,num="</span><span class="token operator">+</span><span class="token keyword">this</span><span class="token punctuation">.</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 30</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            beforeUpdate<span class="token punctuation">:</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                <span class="token comment" spellcheck="true">// this.$el 就是我们上面的el属性了，$el表示当前vue.js所控制的元素#app</span>
+                console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span> <span class="token keyword">this</span><span class="token punctuation">.</span>$el<span class="token punctuation">.</span>innerHTML <span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// &lt;p>30&lt;/p></span>
+                console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"beforeUpdate,vm对象尚未把更新后的data数据显示到页面中,num="</span><span class="token operator">+</span><span class="token keyword">this</span><span class="token punctuation">.</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// beforeUpdate----31</span>
+
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            updated<span class="token punctuation">:</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span> <span class="token keyword">this</span><span class="token punctuation">.</span>$el<span class="token punctuation">.</span>innerHTML <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// &lt;p>31&lt;/p></span>
+                console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"updated,vm对象已经把过呢更新后的data数据显示到页面中,num="</span> <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>num <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// updated----31</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>app<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>{{num}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">@click</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>num++<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>按钮<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span> </code></pre>
+<p>文字版总结</p>
+<ul>
+<li>生命周期钩子 = 生命周期函数 = 生命周期事件</li>
+<li>主要的生命周期函数分类：<ul>
+<li>创建期间的生命周期函数：<ul>
+<li>beforeCreate：实例刚在内存中被创建出来，此时，还没有初始化好 data 和 methods 属性</li>
+<li>created：实例已经在内存中创建OK，此时 data 和 methods 已经创建OK，此时还没有开始 编译模板</li>
+<li>beforeMount：此时已经完成了模板的编译，但是还没有挂载到页面中</li>
+<li>mounted：此时，已经将编译好的模板，挂载到了页面指定的容器中显示</li>
+</ul>
+</li>
+<li>运行期间的生命周期函数：<ul>
+<li>beforeUpdate：状态更新之前执行此函数， 此时 data 中的状态值是最新的，但是界面上显示的 数据还是旧的，因为此时还没有开始重新渲染DOM节点</li>
+<li>updated：实例更新完毕之后调用此函数，此时 data 中的状态值 和 界面上显示的数据，都已经完成了更新，界面已经被重新渲染好了！</li>
+</ul>
+</li>
+<li>销毁期间的生命周期函数：<ul>
+<li>beforeDestroy：实例销毁之前调用。在这一步，实例仍然完全可用。</li>
+<li>destroyed：Vue 实例销毁后调用。调用后，Vue 实例指示的所有东西都会解绑定，所有的事件监听器会被移除，所有的子实例也会被销毁。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <h2 id="for-loop"><a href="#for-loop" class="headerlink" title="for loop"></a>for loop</h2><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>forLopp<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> 
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>{{name}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span><span class="token punctuation">></span></span>
@@ -454,6 +545,10 @@
             name<span class="token punctuation">:</span><span class="token string">"forLopp"</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
+<blockquote>
+<p>在vue使用的过程中，如果要初始化操作，把初始化操作的代码放在 mounted 中执行。<br>mounted阶段就是在vm对象已经把data数据实现到页面以后。一般页面初始化使用。<br>   例如，用户访问页面加载成功以后，就要执行的ajax请求。</p>
+<p>另一个就是created，这个阶段就是在 vue对象创建以后，把ajax请求后端数据的代码放进 created</p>
+</blockquote>
 <h2 id="实现一个简单的计数器-逻辑"><a href="#实现一个简单的计数器-逻辑" class="headerlink" title="实现一个简单的计数器 逻辑"></a>实现一个简单的计数器 逻辑</h2><pre class=" language-html"><code class="language-html"> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>counter<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> 
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>{{name}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span> 
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>{{count}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
@@ -480,7 +575,7 @@
             <span class="token punctuation">}</span><span class="token punctuation">,</span>
             <span class="token function">minus</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
                 <span class="token keyword">this</span><span class="token punctuation">.</span>count<span class="token operator">--</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
         <span class="token punctuation">}</span><span class="token punctuation">,</span>
     <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <h2 id="computed-methods-以及watch函数-的简单例子"><a href="#computed-methods-以及watch函数-的简单例子" class="headerlink" title="computed methods 以及watch函数 的简单例子"></a>computed methods 以及watch函数 的简单例子</h2><p>这个例子 不小心跟上面的写一起了 懒得改正了<br>直接去看页面效果直观</p>
@@ -544,9 +639,19 @@
         data<span class="token punctuation">:</span><span class="token punctuation">{</span>
             href<span class="token punctuation">:</span><span class="token string">"&lt;a href='http://www.baidu.com'>百度一下&lt;/a>"</span><span class="token punctuation">,</span>
             message<span class="token punctuation">:</span><span class="token string">"你只能看到我"</span>
-        <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
     <span class="token punctuation">}</span><span class="token punctuation">)</span>
     <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span> </code></pre>
+<h3 id="V-text-与-插值表达式"><a href="#V-text-与-插值表达式" class="headerlink" title="V-text 与 插值表达式"></a>V-text 与 插值表达式</h3><ul>
+<li><p>插值表达式只会插入内容，并不会清楚之前的内容，但是V-text会</p>
+</li>
+<li><p>插值表达式会有闪烁问题，V-text不会</p>
+</li>
+</ul>
+<blockquote>
+<p>闪烁问题：这里指的是在本地运行不会有区别，但实际上在网页版的状态下，插值表达式会在网速慢的情况下，将编译前的显示出来，但是v-text并不会</p>
+<p>但是你想用插值表达式的时候下面这个属性就很重要了</p>
+</blockquote>
 <h2 id="cloak属性"><a href="#cloak属性" class="headerlink" title="cloak属性"></a>cloak属性</h2><p>在vue解析前，div中有一个属性cloak<br>在vue解析之后，div中没有一个属性v-cloak</p>
 <p>这里实际上,这个timeout是为了可以清晰看到链接没有加载出来,而会需要用到cloak的场景模拟<br>如果不要display为none，则会清晰地看到 连接百度一下的弹出<br>使用 v-cloak 解決 Vue Instance 完成编译前显示变数的问题。</p>
 <pre class=" language-html"><code class="language-html">  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>watch-example<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
@@ -602,6 +707,11 @@
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/149300921">axios教程</a></p>
 </blockquote>
 <p>个人练习code: <a target="_blank" rel="noopener" href="https://github.com/SavanCode/VUE/tree/main/HelloVue">https://github.com/SavanCode/VUE/tree/main/HelloVue</a></p>
+<blockquote>
+<p>笔记主要写的是2.0 </p>
+<p>3.0可以参照 <a target="_blank" rel="noopener" href="https://24kcs.github.io/vue3_study">https://24kcs.github.io/vue3_study</a></p>
+</blockquote>
+<h1 id="Reference："><a href="#Reference：" class="headerlink" title="Reference："></a>Reference：</h1><p><a target="_blank" rel="noopener" href="http://doc.cms.liulongbin.top/md/lifecycle.png">http://doc.cms.liulongbin.top/md/lifecycle.png</a></p>
 
             </div>
             <hr/>

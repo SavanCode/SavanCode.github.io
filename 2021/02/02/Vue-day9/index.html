@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Vue day9 Vue.js 自定义指令, Savannah">
+    <meta name="keywords" content="Vue day9 Vue.js 自定义指令 &amp; 自定义插件, Savannah">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Vue day9 Vue.js 自定义指令 | Savannah</title>
+    <title>Vue day9 Vue.js 自定义指令 &amp; 自定义插件 | Savannah</title>
     <link rel="icon" type="image/png" href="../../../../favicon.png">
 
     <link rel="stylesheet" type="text/css" href="../../../../libs/awesome/css/all.css">
@@ -260,12 +260,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/16.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/21.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Vue day9 Vue.js 自定义指令</h1>
+                    <h1 class="description center-align post-title">Vue day9 Vue.js 自定义指令 &amp; 自定义插件</h1>
                 </div>
             </div>
         </div>
@@ -423,23 +423,23 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>除了默认设置的核心指令( v-model 和 v-show ), Vue 也允许注册自定义指令。</p>
+                <p>自定义的指令 官方 <a target="_blank" rel="noopener" href="https://cn.vuejs.org/v2/guide/custom-directive.html">https://cn.vuejs.org/v2/guide/custom-directive.html</a></p>
+<p>除了默认设置的核心指令( v-model 和 v-show ), Vue 也允许注册自定义指令。</p>
 <h2 id="自定义指令两种方式"><a href="#自定义指令两种方式" class="headerlink" title="自定义指令两种方式"></a>自定义指令两种方式</h2><ul>
 <li> 通过 Vue.directive() 函数注册一个全局的指令。</li>
 <li> 通过组件的 directives 属性，对该组件添加一个局部的指令。</li>
 </ul>
-<p>创建全局指令：</p>
-<p>需要传入指令名称以及一个包含指令钩子函数的对象，该对象的键即钩子函数的函数名，值即函数体，钩子函数可以有多个。</p>
+<h3 id="创建全局指令"><a href="#创建全局指令" class="headerlink" title="创建全局指令"></a>创建全局指令</h3><p>需要传入指令名称以及一个包含指令钩子函数的对象，该对象的键即钩子函数的函数名，值即函数体，钩子函数可以有多个。</p>
+<p>创造的时候不用加v- ， 之后使用的时候用v-</p>
 <pre class=" language-js"><code class="language-js">Vue<span class="token punctuation">.</span><span class="token function">directive</span><span class="token punctuation">(</span><span class="token string">'self_defined_name'</span><span class="token punctuation">,</span><span class="token punctuation">{</span>
-  bind<span class="token punctuation">:</span><span class="token keyword">function</span><span class="token punctuation">(</span>el<span class="token punctuation">,</span>binding<span class="token punctuation">)</span><span class="token punctuation">{</span>
-  <span class="token comment" spellcheck="true">//do someting</span>
+  bind<span class="token punctuation">:</span><span class="token keyword">function</span><span class="token punctuation">(</span>el<span class="token punctuation">,</span>binding<span class="token punctuation">)</span><span class="token punctuation">{</span>  
+  <span class="token comment" spellcheck="true">//do someting </span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span>
-  inserted<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>el<span class="token punctuation">,</span>binding<span class="token punctuation">)</span><span class="token punctuation">{</span>
+  inserted<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>el<span class="token punctuation">,</span>binding<span class="token punctuation">)</span><span class="token punctuation">{</span> 
   <span class="token comment" spellcheck="true">//do something</span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span>
 <span class="token punctuation">}</span></code></pre>
-<p>创建局部指令：</p>
-<p>直接向创建的 Vue 实例的 directives 字典属性添加键值对，键值对即需要添加的自定义指令及对应钩子函数字典对象。键值对可以有多个，对应多个自定义指令。</p>
+<h3 id="创建局部指令"><a href="#创建局部指令" class="headerlink" title="创建局部指令"></a>创建局部指令</h3><p>直接向创建的 Vue 实例的 directives 字典属性添加键值对，键值对即需要添加的自定义指令及对应钩子函数字典对象。键值对可以有多个，对应多个自定义指令。</p>
 <pre class=" language-js"><code class="language-js"><span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
   el<span class="token punctuation">:</span><span class="token string">'#app'</span><span class="token punctuation">,</span>
   directives<span class="token punctuation">:</span><span class="token punctuation">{</span>
@@ -476,6 +476,7 @@ Vue<span class="token punctuation">.</span><span class="token function">directiv
   inserted<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>el<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token comment" spellcheck="true">// 聚焦元素</span>
     el<span class="token punctuation">.</span><span class="token function">focus</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true">//el.style.color='red',DOM会变色</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span>
 <span class="token comment" spellcheck="true">// 创建根实例</span>
@@ -567,6 +568,53 @@ Vue<span class="token punctuation">.</span><span class="token function">directiv
   el<span class="token punctuation">:</span> <span class="token string">'#app'</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span>
 </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code></pre>
+<h2 id="自定义插件"><a href="#自定义插件" class="headerlink" title="自定义插件"></a>自定义插件</h2><h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><ol>
+<li>Vue 插件是一个包含install 方法的对象</li>
+<li>通过install 方法给Vue 或Vue 实例添加方法, 定义全局指令等</li>
+</ol>
+<h3 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h3><pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">/**
+* 自定义Vue 插件
+*/</span>
+<span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> MyPlugin <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+    MyPlugin<span class="token punctuation">.</span>install <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>Vue<span class="token punctuation">,</span> options<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 1. 添加全局方法或属性</span>
+        Vue<span class="token punctuation">.</span>myGlobalMethod <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">'Vue 函数对象方法执行'</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment" spellcheck="true">// 2. 添加全局资源</span>
+        Vue<span class="token punctuation">.</span><span class="token function">directive</span><span class="token punctuation">(</span><span class="token string">'my-directive'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>el<span class="token punctuation">,</span> binding<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            el<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token string">"MyPlugin my-directive "</span> <span class="token operator">+</span> binding<span class="token punctuation">.</span>value
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true">// 3. 添加实例方法</span>
+        Vue<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>$myMethod <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">'vue 实例对象方法执行'</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    window<span class="token punctuation">.</span>MyPlugin <span class="token operator">=</span> MyPlugin
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span> </code></pre>
+<p>页面使用插件</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>demo<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token comment" spellcheck="true">&lt;!--使用自定义指令--></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">v-my-directive</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>msg<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text/javascript<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>../js/vue.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text/javascript<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>vue-myPlugin.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text/javascript<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script language-javascript">
+    <span class="token comment" spellcheck="true">//使用自定义插件</span>
+    Vue<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>MyPlugin<span class="token punctuation">)</span>
+    <span class="token keyword">var</span> vm <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        el<span class="token punctuation">:</span> <span class="token string">'#demo'</span><span class="token punctuation">,</span>
+        data<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            msg<span class="token punctuation">:</span> <span class="token string">'atguigu'</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true">//调用自定义的静态方法</span>
+    Vue<span class="token punctuation">.</span><span class="token function">myGlobalMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true">//调用自定义的对象方法</span>
+    vm<span class="token punctuation">.</span><span class="token function">$myMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span> </code></pre>
+<p>注意：<br>1.匿名函数自调用。<br>2.实例方法放原型上面，一般函数名前面有个$。<br>3.插件库应该在Vuejs下面引入。</p>
 <h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p><a target="_blank" rel="noopener" href="https://www.runoob.com/vue2/vue-custom-directive.html">https://www.runoob.com/vue2/vue-custom-directive.html</a></p>
 
             </div>
