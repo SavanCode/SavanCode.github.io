@@ -532,6 +532,10 @@
 </ul>
 </li>
 </ul>
+<blockquote>
+<p>这里提醒</p>
+<p>当Vue跟nodejs联动的时候，注意created以及mounted函数的区别<br>created：表示数据data以及methods都可以用了，所以此处可以直接<strong>call 数据的载入</strong><br>mounted：标识内存中的DOM树已经渲染完成，并且挂载到了真是的页面当中了，所以主要是<strong>第三方的插件的初始化</strong></p>
+</blockquote>
 <h2 id="for-loop"><a href="#for-loop" class="headerlink" title="for loop"></a>for loop</h2><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>forLopp<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> 
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>{{name}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span><span class="token punctuation">></span></span>
