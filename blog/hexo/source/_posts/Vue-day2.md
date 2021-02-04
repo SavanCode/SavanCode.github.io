@@ -10,7 +10,10 @@ summary: 动态绑定 v-bind
 tags: Vue
 categories: Vue
 ---
+** v-bind是 不支持使用驼峰标识的，例如`cUser`要改成`c-User`**
+
 ## 灵活理解V-bind的使用
+
 ```html
 <div id="app">  
      <input type="button" value="摁纽" title="btnTitle">

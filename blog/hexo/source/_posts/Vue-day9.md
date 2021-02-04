@@ -1,12 +1,12 @@
 ---
-title: Vue day9 Vue.js 自定义指令 & 自定义插件
+title: Vue day9 Vue.js 自定义指令 & 自定义插件 & slot插槽
 top: false
 cover: false
 toc: true
 mathjax: true
 date: 2021-02-02 22:34:12
 password:
-summary: Vue.js 自定义指令 & 自定义插件
+summary: Vue.js 自定义指令 & 自定义插件 & slot插槽
 tags: Vue
 categories: Vue
 ---
@@ -253,6 +253,46 @@ new Vue({
 1.匿名函数自调用。
 2.实例方法放原型上面，一般函数名前面有个$。
 3.插件库应该在Vuejs下面引入。
+
+## slot插槽
+
+### slot的基本使用
+
+![](Vue-day9/image-20210204235319507.png)
+
+```html
+<body> 
+    <div id="app">
+        <cpn></cpn>
+        <cpn><input type="text"></cpn>
+    </div>
+    <template id="cpn">
+        <div>
+            <h2>我是组件</h2>
+            <p>我是组件，哈哈哈</p>
+            <slot><button>按钮</button></slot>
+        </div>
+    </template>
+    <script>
+
+        const cpn = {
+            template:'#cpn'
+        }
+        var vm = new Vue({
+            el: '#app',
+            data: {},
+            methods: {},
+            components:{
+                cpn
+            }
+        });
+    </script>
+</body>
+```
+
+## 具名插槽
+
+![](Vue-day9/image-20210204235457035.png)
 
 # Reference
 

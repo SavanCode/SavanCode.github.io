@@ -899,10 +899,7 @@ jsonp请求地址：http://www.liulongbin.top:3005/api/jsonp
 GET 接口地址 http://www.liulongbin.top:3005/api/getprodlist
 
 添加品牌数据
-POST 接口地址 http://www.liulongbin.top:3005/api/addproduct
-
-删除品牌数据
-GET 接口地址 http://www.liulongbin.top:3005/api/delproduct/:id
+POST 接口地址 http://www.liulongbin.top:3005/api/addproduct 
 
 # Reference
 

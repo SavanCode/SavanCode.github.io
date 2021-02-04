@@ -20,6 +20,9 @@ categories: Vue
 组件系统让我们可以用独立可复用的小组件来构建大型应用，几乎任意类型的应用的界面都可以抽象为一个组件树
 
 ## 全局组件
+
+### 方式一
+
 ```html
   <div id="app">
         <!-- 这里是不能够 直接用大写的哦 如果命名用了大写 编译要用横杠链接 -->
@@ -27,10 +30,12 @@ categories: Vue
     </div> 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
     <script>
-    // 注册
-    Vue.component('simpleVue', {
-      template: '<h1>自定义组件!</h1>'
-    })
+    //这里可以理解为构造函数
+    const com1 = Vue.extend({
+       template: '<h1>一个全局组件</h1>' // template 属性，表示这个组件的 UI 代码解构
+     })
+    // 向Vue全局注册组件，Vue.component(组建的名字, 组建的构造函数)
+    Vue.component('simpleVue', com1)
     // 创建根实例
     new Vue({
       el: '#app'
@@ -38,7 +43,48 @@ categories: Vue
     </script>
 ```
 
+### 方式二
+
+```js
+const com2Obj = {
+   // 1. template 属性中，不能单独放一段文本，必须用标签包裹起来；
+   // 2. 如果在 template 属性中，想要放多个元素了，那么，在这些元素外，必须有唯一的一个根元素进行包裹；
+   template: '<div><h2>这是直接使用 Vue.component 创建出来的组件</h2><h3>红红火火</h3></div>'
+ }
+
+ // 定义全局的组件
+ // Vue.component 的第二个参数，既接收 一个 组件的构造函数， 同时，也接受 一个对象
+ Vue.component('mycom2', com2Obj)
+```
+
+### 方式三
+
+```html
+<!-- 定义一个 template 标签元素  -->
+<!-- 使用 Vue 提供的 template 标签，可以定义组件的UI模板解构 -->
+<div id="app">
+    <mycom3></mycom3>
+    <!-- 因为上面的call所以下面的template 才会显示-->
+</div>
+<!--注意这里实在下面的vue实例的控制之外的区域，如果放在里面就会多一个 -->
+<template id="tmpl">
+ <div>
+   <h3>哈哈，这是在外界定义的组件UI解构，我不会本身在页面显示</h3>
+   <h3>我是来捣乱的</h3>
+ </div>
+</template> 
+<script>
+ // 这是定义的全局组件
+ Vue.component('mycom3', {
+   template: '#tmpl'
+ })
+</script>
+```
+
+
+
 ## 局部组件
+
 我们也可以在实例选项中注册局部组件，这样组件只能在这个实例中使用
 
 ```html
@@ -62,7 +108,130 @@ new Vue({
 </script>
 ```
 
+### 拓展：组件的data为什么必须要是函数
+
+ 组件的思想是复用，定义组件当然是把通用的公共的东西抽出来复用。
+
+```html
+<div id="app">
+    <h2>data不使用函数</h2>
+    <cpn1></cpn1>
+    <cpn1></cpn1>
+    <hr>
+    <h2>data使用函数</h2>
+    <cpn2></cpn2>
+    <cpn2></cpn2>
+    <hr>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+  <template id="cpn1">
+    <div>
+      <button @click="count--">-</button>
+      当前计数：{{count}}
+      <button @click="count++">+</button>
+    </div>
+  </template>
+  <template id="cpn2">
+    <div>
+      <button @click="count--">-</button>
+      当前计数：{{count}}
+      <button @click="count++">+</button>
+    </div>
+  </template>
+  <script>
+    const obj = {
+      count:0
+    };
+    const app = new Vue({
+      el: "#app",
+      components: { //局部组件创建
+        cpn1: {
+          template: '#cpn1',
+          data() {
+            return obj;
+          }
+        },
+        cpn2: {
+          template: '#cpn2',
+          data() {
+            return {
+              count: 0
+            }
+          }
+        }
+      }
+    })
+  </script>
+```
+
+
+## 组件中展示数据和响应事件
+
+```js
+Vue.component('mycom', {
+      template: '<h3 @click="show">这是自定义的全局组件：{{ msg }}</h3>',
+      data: function () { // 在组件中，可以有自己的私有数据，但是，组件的 data 必须是一个 function，并且内部 return 一个 数据对象，这样才能确保每次渲染的时候拿到的是最新的私有数据
+        return {
+          msg: '哈哈哈'
+        }
+      },
+      methods: { // 尝试定义组件的私有方法
+        show() {
+          console.log('触发了组件的私有show方法！')
+        }
+      }
+    })
+```
+
+## 组件切换
+
+### 利用 if else
+
+下面的例子有点我有点体会到了Vue的遍历，学过angular以及react的可以回想一下对比
+
+```html
+  <div id="app">  
+   <input type="button" value="change mode" @click="flag=!flag"></input>
+   <login v-if="flag"></login>
+   <register v-else="flag"></register> 
+  </div> 
+<script>
+Vue.component('login', {
+  template:'<h3>login</h3>'
+})
+Vue.component('register', {
+  template:'<h3>register</h3>'
+})
+const app = new Vue({
+  el: '#app',
+   data:{
+     flag:false
+  }
+})
+```
+
+### 利用component的 ：is属性
+
+```html
+<div>
+<component :is="'register'"></component>
+</div>
+<script>
+Vue.component('mysimpleVue', componentContent)
+
+Vue.component('login', {
+  template:'<h3>login</h3>'
+})
+Vue.component('register', {
+  template:'<h3>register</h3>'
+})
+</script>
+```
+
+
+
 ## 带有Prop的组件
+
 prop 是子组件用来接受父组件传递过来的数据的一个自定义属性。
 
 父组件的数据需要通过 props 把数据传给子组件，子组件需要显式地用 props 选项声明 "prop"
@@ -86,13 +255,91 @@ new Vue({
 </script>
 ```
 
+### props属性使用
+
+#### 数组写法
+
+```
+props: ['cmovies', 'cmessage']
+```
+
+#### 对象写法
+
+```js
+  props: { 
+          cmessage: {
+          type: String,
+          default: 'zzzzz',
+          required: true //在使用组件必传值
+          }
+  }
+```
+#### props属性的类型限制
+```js
+//1.类型限制(多个类使用数组)
+cmovies:Array,//限制为数组类型
+cmessage:String,//限制为Strin类型
+cmessage:['String','Number']//限制为String或Number类型
+```
+####  props属性的默认值
+
+```js
+// 2.提供一些默认值，以及必传值
+        cmessage: {
+          type: String,
+          default: 'zzzzz',//默认值
+        }
+```
+#### props属性的必传值
+
+```js
+cmessage: {
+          type: String,
+          default: 'zzzzz',
+          required: true //在使用组件必传值
+        }
+```
+#### 类型是Object/Array，默认值必须是一个函数
+
+```js
+//类型是Object/Array，默认值必须是一个函数
+cmovies: {
+	type: Array,
+	default () {
+		return [1, 2, 3, 4]
+	}
+},
+```
+#### 自定义验证函数
+
+```js
+vaildator: function (value) {
+	//这个传递的值必须匹配下列字符串中的一个
+	return ['zzzzz', 'ttttt', 'yyy'].indexOf(value) !== -1
+}
+```
+#### 自定义类型
+
+```js
+    function Person(firstName,lastName) {
+      this.firstName = firstName
+      this.lastName = lastName
+    }
+	cmessage:Person//限定了cmeessage必须是Person类型
+```
+
+## 传值图解
+
+![](Vue-day8/image-20210204234206277.png)
+
 ## 动态 Prop 父->子
 
 类似于用 v-bind 绑定 HTML 特性到一个表达式，也可以用 v-bind 动态绑定 props 的值到父组件的数据中。每当父组件的数据变化时，该变化也会传导给子组件
 
-### 例子1
+### 例子1 - string
 
 ```html
+<!--上下两种写法都可以 这里的父子跟全局没有关系 -->
 <div id="app">
 	<div>
 	  <input v-model="parentMsg">
@@ -103,42 +350,93 @@ new Vue({
 </div>
 
 <script>
-// 注册
-Vue.component('child', {
-  // 声明 props
-  props: ['propsMessage'],
-  // 同样也可以在 vm 实例中像 “this.message” 这样使用
-  template: '<span>{{ propsMessage }}</span>'
-})
 // 创建根实例
 new Vue({
   el: '#app',
   data: {
 	parentMsg: '父组件内容'
+  },
+    methods:{},
+    components:{
+        'child': {
+          // 声明 props
+          props: ['propsMessage'],
+          // 同样也可以在 vm 实例中像 “this.message” 这样使用
+          template: '<span>{{ propsMessage }}</span>'
+        }
+    }
+})
+</script>
+```
+
+![](Vue-day8/image-20210204180857308.png)
+
+### 例子2 - 对象
+
+```html
+  <div id="app2">
+          <!-- 这里变量要换写的方式 -->
+      <child2 v-bind:msgobj="msgObj"></child2>
+  </div>
+<script>
+const app3=new Vue({
+  el: '#app2',
+  data:{
+    msgObj:{
+        number:'1',
+        rank:'1'
+    }
+  },
+    components:{
+      'child2':{
+        // 声明 props
+        props: ['msgobj'],
+        // 同样也可以在 vm 实例中像 "this.message" 这样使用
+        template:'<span>{{ JSON.stringify(msgobj) }}</span>'
+      }
+    }
+})
+</script>
+```
+
+![](Vue-day8/image-20210204180912477.png)
+
+### 例子3 - 方法
+
+```html
+  <div id="app3">
+    <hr>
+    父组件
+    <!-- 父组件向子组件传递方法v-on 传递数据v-bind-->
+     <com1 @func="show"></com1>
+  </div>
+  <script>
+  const app4=new Vue({
+  el:"#app3",
+  data:{},
+  methods: {
+    show(){
+      console.log("父组件的button")
+    }
+  },
+  components:{
+    'com1':{
+      template:'<div><button @click="btnClick">这是子元素</button><button @click="btnClick2">这是子元素</button></div>',
+      methods:{
+        btnClick(){
+          console.log("子组件的button")
+        },
+        btnClick2(){
+          this.$emit('func')
+        }
+      },
+    }
   }
 })
 </script>
 ```
 
-### 例子2
 
-```js
-// 注册
-Vue.component('child', {
-  // 声明 props
-  props: ['message'],
-  // 同样也可以在 vm 实例中像 "this.message" 这样使用
-  template: '<span>{{ message }}</span>'
-})
-// 创建根实例
-new Vue({
-  el: '#app',
-  data:{
-    message:"hello",
-  }
-})
-
-```
 
 ### 更加复杂的 v-ind v-for 以及component一起结合的例子
 
@@ -246,7 +544,7 @@ new Vue({
 
 ## Vue.js 组件 - 自定义事件  传递参数  子->父
 
-父组件是使用 props 传递数据给子组件，但如果子组件要把数据传递回去，就需要使用自定义事件！
+父组件是使用 props 以及函数绑定的方式传递数据以及方法给子组件，但如果子组件要把数据传递回去，就需要使用自定义事件！
 
 我们可以使用 v-on 绑定自定义事件, 每个 Vue 实例都实现了事件接口(Events interface)，即：
 
@@ -263,6 +561,7 @@ new Vue({
 <div id="app">
     <div id="counter-event-example">
       <p>{{ total }}</p>
+        <!--这里传递了increment-->
       <button-counter v-on:increment="incrementTotal"></button-counter><br/>
       <button-counter v-on:increment="incrementTotal"></button-counter>
     </div>
@@ -279,6 +578,8 @@ Vue.component('button-counter', {
     incrementHandler: function (v) {
         if(v==1){
             this.counter -= 1
+            //通过$emit call了父组件传过来的increment
+            //后面的值就传回去incrementTotal的值
               this.$emit('increment',1)
         }else{ 
             this.counter += 1
@@ -399,5 +700,38 @@ new Vue({
 </script>
 ```
 
+
+
+## 获取页面上的DOM ref属性
+
+ref属性，类似于document.getElementById()
+
+```html
+<div id="refSample">
+    <button @click="getInfo" ref="btn">点击获取元素内容</button>
+    <h3 ref="myh3">这是myh3{{msg}}</h3>
+  </div>
+<script>
+const refsample= new Vue({
+  el:'#refSample',
+  data:{
+      msg:"sample"
+  },
+  methods: {
+    getInfo(){
+      console.log(this.$refs)
+      console.log(this.$refs.myh3.innerHTML)
+      this.$refs.myh3.msg="123321"//改变本身的属性也可以直接call DOM的属性
+    }
+  },
+})
+</script>
+```
+
+![](Vue-day8/image-20210204233053793.png)
+
+
+
 # Reference
+
 https://www.runoob.com/vue2/vue-component-custom-event.html

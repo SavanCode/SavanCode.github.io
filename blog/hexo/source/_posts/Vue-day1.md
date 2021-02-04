@@ -144,6 +144,12 @@ const app1= new Vue({ // 这里的app1 其实就是vm实例，也就是MVVM中�
     - beforeDestroy：实例销毁之前调用。在这一步，实例仍然完全可用。
     - destroyed：Vue 实例销毁后调用。调用后，Vue 实例指示的所有东西都会解绑定，所有的事件监听器会被移除，所有的子实例也会被销毁。
 
+> 这里提醒
+>
+> 当Vue跟nodejs联动的时候，注意created以及mounted函数的区别
+>created：表示数据data以及methods都可以用了，所以此处可以直接**call 数据的载入**
+> mounted：标识内存中的DOM树已经渲染完成，并且挂载到了真是的页面当中了，所以主要是**第三方的插件的初始化**
+
 ## for loop
 
 ```html
