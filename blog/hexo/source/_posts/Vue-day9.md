@@ -254,46 +254,9 @@ new Vue({
 2.实例方法放原型上面，一般函数名前面有个$。
 3.插件库应该在Vuejs下面引入。
 
-## slot插槽
-
-### slot的基本使用
-
-![](Vue-day9/image-20210204235319507.png)
-
-```html
-<body> 
-    <div id="app">
-        <cpn></cpn>
-        <cpn><input type="text"></cpn>
-    </div>
-    <template id="cpn">
-        <div>
-            <h2>我是组件</h2>
-            <p>我是组件，哈哈哈</p>
-            <slot><button>按钮</button></slot>
-        </div>
-    </template>
-    <script>
-
-        const cpn = {
-            template:'#cpn'
-        }
-        var vm = new Vue({
-            el: '#app',
-            data: {},
-            methods: {},
-            components:{
-                cpn
-            }
-        });
-    </script>
-</body>
-```
-
-## 具名插槽
-
-![](Vue-day9/image-20210204235457035.png)
 
 # Reference
 
 https://www.runoob.com/vue2/vue-custom-directive.html
+
+https://blog.csdn.net/weixin_43342105/article/details/106153672

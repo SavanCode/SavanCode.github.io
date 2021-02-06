@@ -386,3 +386,5 @@ const app1= new Vue({ // 这里的app1 其实就是vm实例，也就是MVVM中�
 # Reference：
 
 http://doc.cms.liulongbin.top/md/lifecycle.png
+
+https://www.w3cschool.cn/vuejs2/

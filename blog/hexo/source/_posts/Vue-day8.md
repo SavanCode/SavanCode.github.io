@@ -108,7 +108,30 @@ new Vue({
 </script>
 ```
 
-### 拓展：组件的data为什么必须要是函数
+### 拓展1： 调用分离的模板，使用`template`标签
+
+这里的区别其实是在html上用id 表明不同的component，实际上template的内容不写入js
+
+```html
+  <template id="cpn2">
+    <div>
+      <h2>组件模板的分离写法</h2>
+      <p>template标签</p>
+    </div>
+  </template>
+<script>
+     const app = new Vue({
+      el: "#app",
+      components: { //局部组件创建 
+        cpn2: {
+          template: '#cpn2'
+        }
+      }
+    })
+</script>
+```
+
+### 拓展2：组件的data为什么必须要是函数
 
  组件的思想是复用，定义组件当然是把通用的公共的东西抽出来复用。
 
@@ -163,6 +186,7 @@ new Vue({
     })
   </script>
 ```
+
 
 
 ## 组件中展示数据和响应事件
@@ -704,7 +728,9 @@ new Vue({
 
 ## 获取页面上的DOM ref属性
 
-ref属性，类似于document.getElementById()
+ref属性，类似于document.getElementById(); 这里的`$refs`可以看做是`ref`的选择器，这个`$ref`是一个对象，通过key可以获取到其中存放的对象。
+
+当然了，既然是对象，也可以使用方括号运算符去访问，具体是this.$refs[input1]。
 
 ```html
 <div id="refSample">
@@ -732,6 +758,130 @@ const refsample= new Vue({
 
 
 
+## slot插槽
+
+slot要灵活跟template， template是属于相对于不灵活的 但是slot是更加方便更好的在页面显示内容的 图理解：
+
+![](Vue-day8/image-20210206203813280.png)
+
+>template 的区别在于 template是基本同样的内容格式，slot是基本构架类似（个人理解）
+
+### slot插槽的基本使用 - 替换单个位置的slot
+
+![](Vue-day8/image-20210204235319507.png)
+
+```html
+<body> 
+    <div id="app">
+        <!--这里第一个就是组件的展示 -->
+        <cpn></cpn>
+        <cpn><input type="text"></cpn>
+        <!--这里就应用了slot 进行了替换 我用组件 但是slot的地方会用现在给的替换掉-->
+    </div>
+    <template id="cpn">
+        <div>
+            <h2>我是template定义的组件</h2>
+            <p>我是一个组件中的p</p>
+            <slot><button>默认为按钮</button></slot>
+        </div>
+    </template>
+    <script>
+
+        const cpn = {
+            template:'#cpn'
+        }
+        var vm = new Vue({
+            el: '#app',
+            data: {},
+            methods: {},
+            components:{
+                cpn
+            }
+        });
+    </script>
+</body>
+```
+
+![](Vue-day8/image-20210206200825544.png)
+
+### 具名插槽 - 替换多个位置的slot
+
+![](Vue-day8/image-20210204235457035.png)
+
+```html
+<div id="app">
+    <!-- 这里的指定slot替换name为center的 其他的不变-->
+    <cpn><span slot="center">标题</span></cpn>
+</div>
+<template id="cpn">
+    <div>
+        <slot><span>左边</span></slot>
+        <!-- 这里命名了name 目的是更有针对性的替换-->
+        <slot name="center"><span>中间</span></slot>
+        <slot><span>右边</span></slot>
+    </div>
+</template>
+```
+
+### 作用域插槽
+
+这里先要理解一个重点就是 变量作用域，Vue页面的component肯定是先找Vue的实例上面的data
+
+![](Vue-day8/image-20210206213303351.png)
+
+### ![](Vue-day8/image-20210206153052780.png)
+
+```html
+    <div id="app">
+        <cpn></cpn>
+        <cpn> 
+           <!-- 利用template的目的是获取子组件的pLanguage  slot-scope是给slot的整个对象命名  slot.data就是取到自组建的data-->
+          <template slot-scope="slot">
+              <span v-for="item in slot.data">{{item}} - </span>
+              <br>
+            <!-- <span>{{slot.data.join(' - ')}}</span> -->
+          </template>
+        </cpn>
+    </div>
+    <template id="cpn">
+        <div>
+            <!-- data绑定本身template里面的data -->
+           <slot :data="pLanguages"><li v-for="item in pLanguages">{{item}}</li></slot>
+        </div>
+    </template>
+    <script>
+        const cpn = {
+            template:'#cpn',
+            data(){
+                return{
+                   pLanguages: ['javascript','c++','go','java']
+                }
+            }
+        }
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                isShow:false
+            },
+            methods: {},
+            components:{
+                cpn
+            }
+        });
+    </script>
+```
+
+![](Vue-day8/image-20210206221712804.png)
+
+### Slot补充资料
+
+https://segmentfault.com/a/1190000012996217
+
 # Reference
 
 https://www.runoob.com/vue2/vue-component-custom-event.html
+
+https://www.bilibili.com/video/BV15741177Eh?p=72
+
+https://blog.csdn.net/weixin_43342105/article/details/106153672
+

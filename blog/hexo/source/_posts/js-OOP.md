@@ -656,8 +656,6 @@ var c = new C();
 c.constructor.prototype === p // true
 ```
 
-
-
 ## 应用
 
 **类数组转换为真数组**
@@ -667,7 +665,9 @@ Array.prototype.slice.call(类数组);
 //这个方法与[].slice.call(类数组)的区别：后者的[]是重新创建了一个数组从而得到slice方法，但是这是不必要的
 ```
 
+## 拓展阅读 
 
+[javascript最新方法创造对象和经典方式创造对象以及他们的优缺点详细得抠脚的总结](https://blog.csdn.net/weixin_43342105/article/details/105156751)
 
 # Reference
 

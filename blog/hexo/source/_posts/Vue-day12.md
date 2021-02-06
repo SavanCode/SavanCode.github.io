@@ -31,6 +31,12 @@ npm run dev
 "vue init webpack vue_demo"中的"webpack"为固定的，即使使用webpack作为模板，提供六套模板。"vue_demo"为自起的项目名称，不可以包含大写字母。
 官方文档：https://github.com/vuejs/vue-cli/tree/master
 
+### 创建项目的选择
+
+![](Vue-day12/image-20210206222511498.png)
+
+
+
 ### 模板项目的结构
 
 |-- build : webpack 相关的配置文件夹(基本不需要修改)
