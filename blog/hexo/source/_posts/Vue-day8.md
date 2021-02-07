@@ -760,6 +760,29 @@ const refsample= new Vue({
 
 
 
+## 获取页面上的DOM `$parent` `$root` `$root`属性
+
+![](Vue-day8/image-20210207122506755.png)
+
+```js
+components: {
+                ccpn: {
+                    template: "#ccpn",
+                    methods: {
+                        btnClick() {
+                            //1.访问父组件 $parent
+                            console.log(this.$parent);
+
+                            // 2.访问根组件
+                            console.log(this.$root);
+                        }
+                    }
+                }
+            }
+```
+
+个人练习完整例子： https://github.com/SavanCode/VUE/tree/main/HelloVue
+
 ## slot插槽
 
 slot要灵活跟template， template是属于相对于不灵活的 但是slot是更加方便更好的在页面显示内容的 图理解：
@@ -825,11 +848,60 @@ slot要灵活跟template， template是属于相对于不灵活的 但是slot是
 </template>
 ```
 
+### 拓展思考： 如果打乱顺序呢？ 页面渲染是按照template里面的 还是你写在主页面的顺序？
+
+例子：https://github.com/SavanCode/VUE/tree/main/HelloVue
+
+>这里的实际写的时候顺序打乱，但是渲染过程中，还是按照组件内部的布局渲染架构，只是会对内容进行改变
+
 ### 作用域插槽
 
 这里先要理解一个重点就是 变量作用域，Vue页面的component肯定是先找Vue的实例上面的data
 
-![](Vue-day8/image-20210206213303351.png)
+**官方文档写明： 父组件模板的所有东西都在父级作用域内编译；子组件模板内的东西都会在自己作用域内编译**
+
+也就是vue实例管自己的，组件管自己的
+
+```html
+  <!-- 父组件 -->
+  <div id="app">
+    <!-- 使用的vue实例作用域的isShow 这个组件是要显示的-->
+    <cpn v-show="isShow"></cpn>
+  </div>
+  <!-- 子组件 -->
+  <template id="cpn">
+    <div>
+      <h2>我是一个子组件</h2>
+      <p>下面的按钮能显示嘛</p>
+      <!-- 组件作用域，使用的子组件的作用域 所以button是不显示的 -->
+      <button v-show="isShow"></button>
+    </div>
+  </template>
+<script>
+    const cpn = {
+      template: "#cpn",
+      data() {
+        return {
+          isShwo:false
+        }
+      },
+    }
+    const app = new Vue({
+      el: "#app",
+      data() {
+        return {
+          message: "我是父组件消息",
+          isShow:true
+        }
+      },
+      components: {
+        cpn
+      },
+    })
+  </script>
+```
+
+
 
 ### ![](Vue-day8/image-20210206153052780.png)
 
@@ -879,7 +951,11 @@ slot要灵活跟template， template是属于相对于不灵活的 但是slot是
 
 https://segmentfault.com/a/1190000012996217
 
-# Reference
+## 个人练习的完整代码
+
+https://github.com/SavanCode/VUE/tree/main/HelloVue
+
+## Reference
 
 https://www.runoob.com/vue2/vue-component-custom-event.html
 

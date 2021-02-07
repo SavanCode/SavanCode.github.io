@@ -6,7 +6,7 @@ toc: true
 mathjax: true
 date: 2021-02-01 14:31:31
 password:
-summary: vue基础介绍
+summary: vue基础介绍:生命周期、v-for、v-pre、v-cloak、v-once
 tags: Vue
 categories: Vue
 ---
