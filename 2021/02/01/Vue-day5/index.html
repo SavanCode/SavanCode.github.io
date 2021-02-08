@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Vue day5 条件判断 v-if、v-eles、v-else-if &amp; v-for遍历数组 &amp; 过滤符, Savannah">
+    <meta name="keywords" content="Vue day5 条件判断 v-if、v-eles、v-else-if &amp; v-for遍历数组 &amp; 过滤符 &amp; 混合mixins, Savannah">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Vue day5 条件判断 v-if、v-eles、v-else-if &amp; v-for遍历数组 &amp; 过滤符 | Savannah</title>
+    <title>Vue day5 条件判断 v-if、v-eles、v-else-if &amp; v-for遍历数组 &amp; 过滤符 &amp; 混合mixins | Savannah</title>
     <link rel="icon" type="image/png" href="../../../../favicon.png">
 
     <link rel="stylesheet" type="text/css" href="../../../../libs/awesome/css/all.css">
@@ -260,12 +260,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/9.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/20.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Vue day5 条件判断 v-if、v-eles、v-else-if &amp; v-for遍历数组 &amp; 过滤符</h1>
+                    <h1 class="description center-align post-title">Vue day5 条件判断 v-if、v-eles、v-else-if &amp; v-for遍历数组 &amp; 过滤符 &amp; 混合mixins</h1>
                 </div>
             </div>
         </div>
@@ -609,6 +609,45 @@ Vue<span class="token punctuation">.</span><span class="token function">filter</
 <blockquote>
 <p>注意：当有局部和全局两个名称相同的过滤器时候，会以就近原则进行调用，即：局部过滤器优先于全局过滤器被调用！</p>
 </blockquote>
+<h2 id="混合mixins"><a href="#混合mixins" class="headerlink" title="混合mixins"></a><a target="_blank" rel="noopener" href="https://cn.vuejs.org/v2/guide/mixins.html">混合mixins</a></h2><p>混入 (mixin) 提供了一种非常灵活的方式，来分发 Vue 组件中的可复用功能。当组件和混入对象含有同名选项时，这些选项将以恰当的方式进行“合并”。</p>
+<p>也就是当你有多个组件中的某些变量或者方法会出现属性冲突的时候，可能需要的解决办法</p>
+<p>具体还是看最后的git中写的例子</p>
+<p>（这里的tooltip 以及popup 都是有显示以及隐藏的功能的，所以这里就需要base这样的属性，如果你对于这两个component中的某一个需要进行默认属性，直接在data中赋值就好，这个data属性会覆盖mixins的）</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>app<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tooltip</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tooltip</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>popup</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>popup</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script language-javascript">
+    <span class="token keyword">var</span> base<span class="token operator">=</span><span class="token punctuation">{</span>
+    methods<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+       show<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+           <span class="token keyword">this</span><span class="token punctuation">.</span>visible<span class="token operator">=</span><span class="token boolean">true</span><span class="token punctuation">;</span>
+       <span class="token punctuation">}</span> <span class="token punctuation">,</span>
+        hide<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>visible<span class="token operator">=</span><span class="token boolean">false</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        toggle<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>visible<span class="token operator">=</span><span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>visible<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span>
+    data<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token punctuation">{</span>
+            visible<span class="token punctuation">:</span><span class="token boolean">false</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+Vue<span class="token punctuation">.</span><span class="token function">component</span><span class="token punctuation">(</span><span class="token string">'tooltip'</span><span class="token punctuation">,</span><span class="token punctuation">{</span>
+    template<span class="token punctuation">:</span> <span class="token template-string"><span class="token string">`
+    &lt;div>
+        &lt;span @mouseenter="show" @mouseleave="hide">bys&lt;/span>
+        &lt;div v-if="visible">
+            白岩松
+        &lt;/div>
+    &lt;/div>
+    `</span></span><span class="token punctuation">,</span>
+    mixins<span class="token punctuation">:</span> <span class="token punctuation">[</span>base<span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span> 
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code></pre>
 <p>个人练习:</p>
 <p>做一个动态的结账页面, 书本list , 然后根据控制界面书本的数量.计算总价,并且可以移除书本，增加书本</p>
 <p>个人练习code: <a target="_blank" rel="noopener" href="https://github.com/SavanCode/VUE/tree/main/HelloVue">https://github.com/SavanCode/VUE/tree/main/HelloVue</a></p>

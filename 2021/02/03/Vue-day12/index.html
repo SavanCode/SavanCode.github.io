@@ -436,71 +436,7 @@
 <p><img src="/2021/02/03/Vue-day12/image-20210207133744445.png"></p>
 <p><img src="/2021/02/03/Vue-day12/image-20210207133844473.png"></p>
 <p>所以整个结构是很清晰的， 如果还是蒙，那先滚回去把component看明白</p>
-<h2 id="vue-router"><a href="#vue-router" class="headerlink" title="vue-router"></a>vue-router</h2><h3 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h3><p>vue-router是vue官方的路由解决方案，简单易用，中文官方地址如下：<br><a target="_blank" rel="noopener" href="https://router.vuejs.org/zh/">vue-router中文手册</a></p>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>vue-router是一个插件包，需要用npm来进行安装的。如果采用vue-cli构建初始化项目会提示安装，也可以自己使用命令安装：</p>
-<pre class=" language-bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> vue-router --save</code></pre>
-<p>看到json里面的配置，就是安装好了</p>
-<p><img src="/2021/02/03/Vue-day12/image-20210207141928825.png"></p>
-<p>其实你可以在创建项目的时候，自动创建，下面是自己重新写的router</p>
-<h3 id="实现router"><a href="#实现router" class="headerlink" title="实现router"></a>实现router</h3><p>跟react一样 具体就不写了 </p>
-<p>详细过程 <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_21980517/article/details/103124080">https://blog.csdn.net/qq_21980517/article/details/103124080</a> </p>
-<h3 id="router基本属性设置"><a href="#router基本属性设置" class="headerlink" title="router基本属性设置"></a>router基本属性设置</h3><h4 id="router-mode"><a href="#router-mode" class="headerlink" title="router mode"></a>router mode</h4><p>mode有两种，默认的是URL的hash，可以改成history，这样页面的url不会出现#标志，并且具有history属性（在router的index.js）</p>
-<h4 id="JS代码内部跳转"><a href="#JS代码内部跳转" class="headerlink" title="JS代码内部跳转"></a>JS代码内部跳转</h4><p>实际项目中，很多时候都是通过在JS代码内部进行导航的跳转，使用方式如下：</p>
-<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">this</span><span class="token punctuation">.</span>$router<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">'/xxx'</span><span class="token punctuation">)</span></code></pre>
-<p>具体的简单用法：<br>（1）先编写一个按钮，在按钮上绑定goHome( )方法。</p>
-<pre class=" language-javascript"><code class="language-javascript"><span class="token operator">&lt;</span>button @click<span class="token operator">=</span><span class="token string">"goHome"</span><span class="token operator">></span>回到首页<span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">></span></code></pre>
-<p>（2）在<code>&lt;script&gt;</code>模块里加入goHome方法，并用this.$router.push(‘/’)导航到首页</p>
-<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
-    name<span class="token punctuation">:</span> <span class="token string">'app'</span><span class="token punctuation">,</span>
-    methods<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-        <span class="token function">goHome</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token keyword">this</span><span class="token punctuation">.</span>$router<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">'/home'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
-<h4 id="router的js跳转返回以及进一步"><a href="#router的js跳转返回以及进一步" class="headerlink" title="router的js跳转返回以及进一步"></a>router的js跳转返回以及进一步</h4><pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">//  后退一步记录，等同于 history.back()</span>
-<span class="token keyword">this</span><span class="token punctuation">.</span>$router<span class="token punctuation">.</span><span class="token function">go</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true">// 在浏览器记录中前进一步，等同于 history.forward()</span>
-<span class="token keyword">this</span><span class="token punctuation">.</span>$router<span class="token punctuation">.</span><span class="token function">go</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span></code></pre>
-<h4 id="父子页面的router配置"><a href="#父子页面的router配置" class="headerlink" title="父子页面的router配置"></a>父子页面的router配置</h4><pre class=" language-js"><code class="language-js"><span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span>
-<span class="token keyword">import</span> Router <span class="token keyword">from</span> <span class="token string">'vue-router'</span>
-<span class="token keyword">import</span> Home <span class="token keyword">from</span> <span class="token string">'@/components/Home'</span>
-<span class="token keyword">import</span> One <span class="token keyword">from</span> <span class="token string">'@/components/One'</span> 
-<span class="token keyword">import</span> Two <span class="token keyword">from</span> <span class="token string">'@/components/Two'</span>
-
-Vue<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>Router<span class="token punctuation">)</span>
-
-<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">new</span> <span class="token class-name">Router</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-    routes<span class="token punctuation">:</span> <span class="token punctuation">[</span>
-    <span class="token punctuation">{</span>
-        path<span class="token punctuation">:</span> <span class="token string">'/'</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// 默认页面重定向到主页</span>
-        redirect<span class="token punctuation">:</span> <span class="token string">'/home'</span>
-    <span class="token punctuation">}</span><span class="token punctuation">,</span>
-    <span class="token punctuation">{</span>
-        path<span class="token punctuation">:</span> <span class="token string">'/home'</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// 主页路由</span>
-        name<span class="token punctuation">:</span> <span class="token string">'Home'</span><span class="token punctuation">,</span>
-        component<span class="token punctuation">:</span> Home<span class="token punctuation">,</span>
-        children<span class="token punctuation">:</span><span class="token punctuation">[</span> <span class="token comment" spellcheck="true">// 嵌套子路由</span>
-            <span class="token punctuation">{</span>
-                path<span class="token punctuation">:</span><span class="token string">'one'</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// 子页面1</span>
-                component<span class="token punctuation">:</span>One
-            <span class="token punctuation">}</span><span class="token punctuation">,</span>
-            <span class="token punctuation">{</span>
-                path<span class="token punctuation">:</span><span class="token string">'two'</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// 子页面2</span>
-                component<span class="token punctuation">:</span>Two
-            <span class="token punctuation">}</span><span class="token punctuation">,</span>
-        <span class="token punctuation">]</span>
-    <span class="token punctuation">}</span>
-    <span class="token punctuation">]</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
-<h3 id="router传递参数的方式"><a href="#router传递参数的方式" class="headerlink" title="router传递参数的方式"></a>router传递参数的方式</h3><h4 id="通过-lt-router-link-gt-标签中的to传参"><a href="#通过-lt-router-link-gt-标签中的to传参" class="headerlink" title="通过&lt;router-link&gt; 标签中的to传参"></a>通过<code>&lt;router-link&gt;</code> 标签中的to传参</h4><p><strong>基本语法：</strong></p>
-<pre class=" language-javascript"><code class="language-javascript"><span class="token operator">&lt;</span>router<span class="token operator">-</span>link <span class="token punctuation">:</span>to<span class="token operator">=</span><span class="token string">"{name:xxx, params: {key:value}}"</span><span class="token operator">></span>valueString<span class="token operator">&lt;</span><span class="token operator">/</span>router<span class="token operator">-</span>link<span class="token operator">></span></code></pre>
-<p>上面to前边是带冒号，后边跟的是一个对象形势的字符串</p>
-<ul>
-<li>name：在路由配置文件中起的name值。叫做命名路由，下一节会讲到。</li>
-<li>params：要传的参数，它是对象形式，在对象里可以传递多个值。</li>
-</ul>
-<h4 id="url中传递参数"><a href="#url中传递参数" class="headerlink" title="url中传递参数"></a>url中传递参数</h4><h4 id="params传递参数"><a href="#params传递参数" class="headerlink" title="params传递参数"></a>params传递参数</h4><h4 id="query传递参数"><a href="#query传递参数" class="headerlink" title="query传递参数"></a>query传递参数</h4><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p> <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43342105/article/details/106248594">https://blog.csdn.net/weixin_43342105/article/details/106248594</a></p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p> <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43342105/article/details/106248594">https://blog.csdn.net/weixin_43342105/article/details/106248594</a></p>
 
             </div>
             <hr/>

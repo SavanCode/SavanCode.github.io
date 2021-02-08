@@ -424,14 +424,15 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="过渡-amp-动画"><a href="#过渡-amp-动画" class="headerlink" title="过渡&amp;动画"></a>过渡&amp;动画</h2><h3 id="vue-动画的理解"><a href="#vue-动画的理解" class="headerlink" title="vue 动画的理解"></a>vue 动画的理解</h3><ol>
-<li><p>操作css 的trasition 或animation</p>
-</li>
-<li><p>vue 会给目标元素添加/移除特定的class</p>
-</li>
-<li><p>过渡的相关类名<br>xxx-enter-active: 指定显示的transition<br>xxx-leave-active: 指定隐藏的transition<br>xxx-enter/xxx-leave-to: 指定隐藏时的样式</p>
-</li>
+<li>操作css 的trasition 或animation</li>
+<li>vue 会给目标元素添加/移除特定的class</li>
+<li>过渡的相关类名<br>xxx-enter-active: 指定显示的transition；进入过渡的结束状态，元素被插入时就生效，在过渡过程完成后移除<br>xxx-leave-active: 指定隐藏的transition ；离开过渡的结束状态，元素被删除时生效，离开过渡完成后被删除*<br>xxx-enter：进入过渡的开始状态，元素被插入时生效，只应用一帧后立刻删除<br>xxx-leave: 离开过渡的开始状态，元素被删除时触发，只应用一帧后立刻删除</li>
 </ol>
 <p><img src="/2021/02/02/Vue-day11/image-20210203130902220.png" alt="image-20210203130902220"></p>
+<h3 id="过渡模式mode"><a href="#过渡模式mode" class="headerlink" title="过渡模式mode"></a>过渡模式mode</h3><ul>
+<li>in-out：新元素先进入过渡，完成之后当前元素过渡离开，默认模式。</li>
+<li>out-in：当前元素先进行过渡离开，离开完成后新元素过渡进入。</li>
+</ul>
 <h3 id="基本过渡动画的编码"><a href="#基本过渡动画的编码" class="headerlink" title="基本过渡动画的编码"></a>基本过渡动画的编码</h3><ol>
 <li>在目标元素外包裹<code>&lt;transition name=&quot;xxx&quot;&gt;</code></li>
 <li>定义class 样式<br>指定过渡样式: transition<br>指定隐藏时的样式: opacity/其它</li>
