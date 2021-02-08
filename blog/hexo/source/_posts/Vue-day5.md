@@ -1,12 +1,12 @@
 ---
-title: Vue day5 条件判断 v-if、v-eles、v-else-if & v-for遍历数组 & 过滤符
+title: Vue day5 条件判断 v-if、v-eles、v-else-if & v-for遍历数组 & 过滤符 & 混合mixins
 top: false
 cover: false
 toc: true
 mathjax: true
 date: 2021-02-01 20:12:58
 password:
-summary: 条件判断 v-if、v-eles、v-else-if & v-for遍历数组 & 过滤符
+summary: 条件判断 v-if、v-eles、v-else-if & v-for遍历数组 & 过滤符 & 混合mixins
 tags: Vue
 categories: Vue
 ---
@@ -254,6 +254,54 @@ Vue.filter('dataFormat', function (input, pattern = '') {
 ```
 
 > 注意：当有局部和全局两个名称相同的过滤器时候，会以就近原则进行调用，即：局部过滤器优先于全局过滤器被调用！
+
+## [混合mixins](https://cn.vuejs.org/v2/guide/mixins.html)
+
+混入 (mixin) 提供了一种非常灵活的方式，来分发 Vue 组件中的可复用功能。当组件和混入对象含有同名选项时，这些选项将以恰当的方式进行“合并”。
+
+也就是当你有多个组件中的某些变量或者方法会出现属性冲突的时候，可能需要的解决办法
+
+具体还是看最后的git中写的例子
+
+（这里的tooltip 以及popup 都是有显示以及隐藏的功能的，所以这里就需要base这样的属性，如果你对于这两个component中的某一个需要进行默认属性，直接在data中赋值就好，这个data属性会覆盖mixins的）
+
+```html
+<div id="app">
+    <tooltip></tooltip>
+    <popup></popup>
+</div>
+<script>
+    var base={
+    methods: {
+       show: function () {
+           this.visible=true;
+       } ,
+        hide: function () {
+            this.visible=false;
+        },
+        toggle: function () {
+            this.visible=!this.visible;
+        }
+},
+    data: function () {
+        return {
+            visible:false,
+        }
+    }
+};
+Vue.component('tooltip',{
+    template: `
+    <div>
+        <span @mouseenter="show" @mouseleave="hide">bys</span>
+        <div v-if="visible">
+            白岩松
+        </div>
+    </div>
+    `,
+    mixins: [base]
+}) 
+</script>
+```
 
 个人练习:
 

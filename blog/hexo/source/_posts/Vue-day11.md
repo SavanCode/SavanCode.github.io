@@ -16,15 +16,19 @@ categories: Vue
 ### vue 动画的理解
 
 1. 操作css 的trasition 或animation
-
 2. vue 会给目标元素添加/移除特定的class
-
 3. 过渡的相关类名
-   xxx-enter-active: 指定显示的transition
-   xxx-leave-active: 指定隐藏的transition
-   xxx-enter/xxx-leave-to: 指定隐藏时的样式
+   xxx-enter-active: 指定显示的transition；进入过渡的结束状态，元素被插入时就生效，在过渡过程完成后移除
+   xxx-leave-active: 指定隐藏的transition ；离开过渡的结束状态，元素被删除时生效，离开过渡完成后被删除*
+   xxx-enter：进入过渡的开始状态，元素被插入时生效，只应用一帧后立刻删除
+   xxx-leave: 离开过渡的开始状态，元素被删除时触发，只应用一帧后立刻删除
 
 ![image-20210203130902220](Vue-day11/image-20210203130902220.png)
+
+### 过渡模式mode
+
+- in-out：新元素先进入过渡，完成之后当前元素过渡离开，默认模式。
+- out-in：当前元素先进行过渡离开，离开完成后新元素过渡进入。
 
 ### 基本过渡动画的编码
 
