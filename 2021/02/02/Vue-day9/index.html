@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Vue day9 Vue.js 自定义指令 &amp; 自定义插件 &amp; slot插槽, Savannah">
+    <meta name="keywords" content="Vue day9 Vue.js 自定义指令 &amp; 自定义插件, Savannah">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Vue day9 Vue.js 自定义指令 &amp; 自定义插件 &amp; slot插槽 | Savannah</title>
+    <title>Vue day9 Vue.js 自定义指令 &amp; 自定义插件 | Savannah</title>
     <link rel="icon" type="image/png" href="../../../../favicon.png">
 
     <link rel="stylesheet" type="text/css" href="../../../../libs/awesome/css/all.css">
@@ -260,12 +260,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/16.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/21.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Vue day9 Vue.js 自定义指令 &amp; 自定义插件 &amp; slot插槽</h1>
+                    <h1 class="description center-align post-title">Vue day9 Vue.js 自定义指令 &amp; 自定义插件</h1>
                 </div>
             </div>
         </div>
@@ -505,7 +505,7 @@ Vue<span class="token punctuation">.</span><span class="token function">directiv
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span>
 </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code></pre>
-<h2 id="钩子"><a href="#钩子" class="headerlink" title="钩子"></a>钩子</h2><h3 id="钩子函数"><a href="#钩子函数" class="headerlink" title="钩子函数"></a>钩子函数</h3><p>指令定义函数提供了几个钩子函数（可选）：</p>
+<h2 id="自定义指令中的钩子"><a href="#自定义指令中的钩子" class="headerlink" title="自定义指令中的钩子"></a>自定义指令中的钩子</h2><h3 id="钩子函数"><a href="#钩子函数" class="headerlink" title="钩子函数"></a>钩子函数</h3><p>指令定义函数提供了几个钩子函数（可选）：</p>
 <ul>
 <li>bind: 只调用一次，指令第一次绑定到元素时调用，用这个钩子函数可以定义一个在绑定时执行一次的初始化动作。</li>
 <li>inserted: 被绑定元素插入父节点时调用（父节点存在即可调用，不必存在于 document 中）。</li>
@@ -544,7 +544,7 @@ Vue<span class="token punctuation">.</span><span class="token function">directiv
 <span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
   el<span class="token punctuation">:</span> <span class="token string">'#app'</span><span class="token punctuation">,</span>
   data<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-    message<span class="token punctuation">:</span> <span class="token string">'菜鸟教程!'</span>
+    message<span class="token punctuation">:</span> <span class="token string">'来自菜鸟教程的例子!'</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span>
 </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code></pre>
@@ -555,7 +555,7 @@ Vue<span class="token punctuation">.</span><span class="token function">directiv
 <span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
 <p>指令函数可接受所有合法的 JavaScript 表达式，以下实例传入了 JavaScript 对象</p>
 <pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>app<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">v-runoob</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>{ color: <span class="token punctuation">'</span>green<span class="token punctuation">'</span>, text: <span class="token punctuation">'</span>菜鸟教程!<span class="token punctuation">'</span> }<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">v-runoob</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>{ color: <span class="token punctuation">'</span>green<span class="token punctuation">'</span>, text: <span class="token punctuation">'</span>来自菜鸟教程的例子!<span class="token punctuation">'</span> }<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
 
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script language-javascript">
@@ -615,7 +615,7 @@ Vue<span class="token punctuation">.</span><span class="token function">directiv
     vm<span class="token punctuation">.</span><span class="token function">$myMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span> </code></pre>
 <p>注意：<br>1.匿名函数自调用。<br>2.实例方法放原型上面，一般函数名前面有个$。<br>3.插件库应该在Vuejs下面引入。</p>
-<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p><a target="_blank" rel="noopener" href="https://www.runoob.com/vue2/vue-custom-directive.html">https://www.runoob.com/vue2/vue-custom-directive.html</a></p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a target="_blank" rel="noopener" href="https://www.runoob.com/vue2/vue-custom-directive.html">https://www.runoob.com/vue2/vue-custom-directive.html</a></p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43342105/article/details/106153672">https://blog.csdn.net/weixin_43342105/article/details/106153672</a></p>
 
             </div>
@@ -777,15 +777,15 @@ Vue<span class="token punctuation">.</span><span class="token function">directiv
                     <div class="card-image">
                         
                         
-                        <img src="../../../../medias/featureimages/9.jpg" class="responsive-img" alt="Vue day8 Vue.js 组件">
+                        <img src="../../../../medias/featureimages/4.jpg" class="responsive-img" alt="Vue day8 Vue.js 组件 &amp; slot插槽">
                         
-                        <span class="card-title">Vue day8 Vue.js 组件</span>
+                        <span class="card-title">Vue day8 Vue.js 组件 &amp; slot插槽</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Vue.js 组件
+                            Vue.js 组件 & slot插槽
                         
                     </div>
                     <div class="publish-info">

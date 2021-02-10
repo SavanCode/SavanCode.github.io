@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Vue day8 Vue.js 组件, Savannah">
+    <meta name="keywords" content="Vue day8 Vue.js 组件 &amp; slot插槽, Savannah">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Vue day8 Vue.js 组件 | Savannah</title>
+    <title>Vue day8 Vue.js 组件 &amp; slot插槽 | Savannah</title>
     <link rel="icon" type="image/png" href="../../../../favicon.png">
 
     <link rel="stylesheet" type="text/css" href="../../../../libs/awesome/css/all.css">
@@ -260,12 +260,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/9.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/4.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Vue day8 Vue.js 组件</h1>
+                    <h1 class="description center-align post-title">Vue day8 Vue.js 组件 &amp; slot插槽</h1>
                 </div>
             </div>
         </div>
@@ -660,7 +660,7 @@ cmovies<span class="token punctuation">:</span> <span class="token punctuation">
     <span class="token punctuation">}</span>
     cmessage<span class="token punctuation">:</span>Person<span class="token comment" spellcheck="true">//限定了cmeessage必须是Person类型</span></code></pre>
 <h2 id="传值图解"><a href="#传值图解" class="headerlink" title="传值图解"></a>传值图解</h2><p><img src="/2021/02/02/Vue-day8/image-20210204234206277.png"></p>
-<h2 id="动态-Prop-父-gt-子"><a href="#动态-Prop-父-gt-子" class="headerlink" title="动态 Prop 父-&gt;子"></a>动态 Prop 父-&gt;子</h2><p>类似于用 v-bind 绑定 HTML 特性到一个表达式，也可以用 v-bind 动态绑定 props 的值到父组件的数据中。每当父组件的数据变化时，该变化也会传导给子组件</p>
+<h2 id="动态-Prop-父-gt-子-（props-down）"><a href="#动态-Prop-父-gt-子-（props-down）" class="headerlink" title="动态 Prop 父-&gt;子 （props down）"></a>动态 Prop 父-&gt;子 （props down）</h2><p>类似于用 v-bind 绑定 HTML 特性到一个表达式，也可以用 v-bind 动态绑定 props 的值到父组件的数据中。每当父组件的数据变化时，该变化也会传导给子组件</p>
 <h3 id="例子1-string"><a href="#例子1-string" class="headerlink" title="例子1 - string"></a>例子1 - string</h3><pre class=" language-html"><code class="language-html"><span class="token comment" spellcheck="true">&lt;!--上下两种写法都可以 这里的父子跟全局没有关系 --></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>app<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
@@ -838,7 +838,7 @@ Vue<span class="token punctuation">.</span><span class="token function">componen
  el<span class="token punctuation">:</span> <span class="token string">"#app"</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code></pre>
-<h2 id="Vue-js-组件-自定义事件-传递参数-子-gt-父"><a href="#Vue-js-组件-自定义事件-传递参数-子-gt-父" class="headerlink" title="Vue.js 组件 - 自定义事件  传递参数  子-&gt;父"></a>Vue.js 组件 - 自定义事件  传递参数  子-&gt;父</h2><p>父组件是使用 props 以及函数绑定的方式传递数据以及方法给子组件，但如果子组件要把数据传递回去，就需要使用自定义事件！</p>
+<h2 id="Vue-js-组件-自定义事件-传递参数-子-gt-父-event-up"><a href="#Vue-js-组件-自定义事件-传递参数-子-gt-父-event-up" class="headerlink" title="Vue.js 组件 - 自定义事件  传递参数  子-&gt;父 (event up)"></a>Vue.js 组件 - 自定义事件  传递参数  子-&gt;父 (event up)</h2><p>父组件是使用 props 以及函数绑定的方式传递数据以及方法给子组件，但如果子组件要把数据传递回去，就需要使用自定义事件！</p>
 <p>我们可以使用 v-on 绑定自定义事件, 每个 Vue 实例都实现了事件接口(Events interface)，即：</p>
 <ul>
 <li>使用 <code>$on(eventName)</code> 监听事件</li>
@@ -1247,15 +1247,15 @@ Vue<span class="token punctuation">.</span><span class="token function">componen
                     <div class="card-image">
                         
                         
-                        <img src="../../../../medias/featureimages/16.jpg" class="responsive-img" alt="Vue day9 Vue.js 自定义指令 &amp; 自定义插件 &amp; slot插槽">
+                        <img src="../../../../medias/featureimages/21.jpg" class="responsive-img" alt="Vue day9 Vue.js 自定义指令 &amp; 自定义插件">
                         
-                        <span class="card-title">Vue day9 Vue.js 自定义指令 &amp; 自定义插件 &amp; slot插槽</span>
+                        <span class="card-title">Vue day9 Vue.js 自定义指令 &amp; 自定义插件</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Vue.js 自定义指令 & 自定义插件 & slot插槽
+                            Vue.js 自定义指令 & 自定义插件
                         
                     </div>
                     <div class="publish-info">
