@@ -928,6 +928,8 @@ let router=new Router({
 **注意**
 在keep-alive中的组件会有两个生命周期的钩子函数，activated和deactivated，其中activated是在组件第一次渲染时会被调用，而且之后每次缓存组件被激活都会被调用。所以一般使用时需要里面的代码和created函数中的代码一样即可。
 
+### [input缓存例子](https://www.cnblogs.com/sysuhanyf/p/7454530.html)
+
 ## 拓展： 
 
 ### 页面跳转的时候，加动画?怎么加有印象吗？

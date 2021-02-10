@@ -10,3 +10,11 @@ summary: vuex
 tags: Vue
 categories: Vue
 ---
+
+
+
+## Reference
+
+https://blog.csdn.net/weixin_43342105/article/details/105703491
+
+http://doc.liangxinghua.com/vue-family/4.1.html

@@ -1,12 +1,12 @@
 ---
-title: Vue day9 Vue.js 自定义指令 & 自定义插件 & slot插槽
+title: Vue day9 Vue.js 自定义指令 & 自定义插件
 top: false
 cover: false
 toc: true
 mathjax: true
 date: 2021-02-02 22:34:12
 password:
-summary: Vue.js 自定义指令 & 自定义插件 & slot插槽
+summary: Vue.js 自定义指令 & 自定义插件
 tags: Vue
 categories: Vue
 ---
@@ -116,7 +116,7 @@ new Vue({
 </script>
 ```
 
-## 钩子
+## 自定义指令中的钩子
 
 ### 钩子函数
 指令定义函数提供了几个钩子函数（可选）：
@@ -161,7 +161,7 @@ Vue.directive('runoob', {
 new Vue({
   el: '#app',
   data: {
-    message: '菜鸟教程!'
+    message: '来自菜鸟教程的例子!'
   }
 })
 </script>
@@ -179,7 +179,7 @@ Vue.directive('runoob', function (el, binding) {
 
 ```html
 <div id="app">
-    <div v-runoob="{ color: 'green', text: '菜鸟教程!' }"></div>
+    <div v-runoob="{ color: 'green', text: '来自菜鸟教程的例子!' }"></div>
 </div>
  
 <script>
@@ -255,7 +255,7 @@ new Vue({
 3.插件库应该在Vuejs下面引入。
 
 
-# Reference
+## Reference
 
 https://www.runoob.com/vue2/vue-custom-directive.html
 

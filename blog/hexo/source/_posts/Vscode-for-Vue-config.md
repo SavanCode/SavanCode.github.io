@@ -38,7 +38,7 @@ categories: [vscode , Vue]
 		"}",
 		"",
 		"</script>",
-		"<style scoped>",
+		"<style scoped>",// 这里scoped的意思是只对当前对象有效
 		"</style>"
 	],
 	"description": "Log output to console"

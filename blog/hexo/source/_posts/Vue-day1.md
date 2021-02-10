@@ -75,6 +75,12 @@ const app1= new Vue({ // 这里的app1 其实就是vm实例，也就是MVVM中�
 }) 
 ```
 
+> [Vue的书写方式：](https://cn.vuejs.org/v2/style-guide/)
+>
+> 可以参考官网，推荐使用PascalCase，也就是EmployeeTable`，但在模板中使用时，这将转化为`<employee-table>`
+>
+> [Vue文档中](https://vuejs.org/v2/guide/components-custom-events.html#sync-Modifier)建议使用`add:employee`语法（相对于`add-employee`其他语法）真的很奇怪~~~ 但是官方建议哦
+
 ## vue对象的生命周期
 
 ![](Vue-day1/image-20210203192241276.png)

@@ -1,12 +1,12 @@
 ---
-title: Vue day8 Vue.js 组件
+title: Vue day8 Vue.js 组件 & slot插槽
 top: false
 cover: false
 toc: true
 mathjax: true
 date: 2021-02-02 15:18:19
 password:
-summary: Vue.js 组件
+summary: Vue.js 组件 & slot插槽
 tags: Vue
 categories: Vue
 ---
@@ -356,7 +356,7 @@ vaildator: function (value) {
 
 ![](Vue-day8/image-20210204234206277.png)
 
-## 动态 Prop 父->子
+## 动态 Prop 父->子 （props down）
 
 类似于用 v-bind 绑定 HTML 特性到一个表达式，也可以用 v-bind 动态绑定 props 的值到父组件的数据中。每当父组件的数据变化时，该变化也会传导给子组件
 
@@ -566,7 +566,7 @@ new Vue({
 </script>
 ```
 
-## Vue.js 组件 - 自定义事件  传递参数  子->父
+## Vue.js 组件 - 自定义事件  传递参数  子->父 (event up)
 
 父组件是使用 props 以及函数绑定的方式传递数据以及方法给子组件，但如果子组件要把数据传递回去，就需要使用自定义事件！
 
