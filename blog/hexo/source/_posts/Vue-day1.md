@@ -335,7 +335,7 @@ const app1= new Vue({ // 这里的app1 其实就是vm实例，也就是MVVM中�
 ```
 下面代码是不能执行的 只能理解(官网直接抄的)
 ```js 
-0    var watchExampleVM = new Vue({
+var watchExampleVM = new Vue({
         el: '#watch-example',
         data: {
             question: '',
