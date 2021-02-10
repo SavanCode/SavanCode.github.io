@@ -181,3 +181,16 @@ const app3 = new Vue({
 ```
 
 个人练习code: https://github.com/SavanCode/VUE/tree/main/HelloVue
+
+###  [别人的笔记 ： 监听器watch的深入对比](https://blog.csdn.net/weixin_43837268/article/details/92769669?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromBaidu-1.control&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromBaidu-1.control)
+
+### 摘抄他人总结
+
+计算属性适合用在模板渲染中，某个值是依赖了其它的响应式对象甚至是计算属性计算而来；而侦听属性适用于观测某个值的变化去完成一段复杂的业务逻辑。
+
+- computed能做的，watch都能做，反之则不行
+- 能用computed的尽量用computed
+
+## Reference
+
+###  [监听器watch的深入对比](https://blog.csdn.net/weixin_43837268/article/details/92769669?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromBaidu-1.control&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromBaidu-1.control)
