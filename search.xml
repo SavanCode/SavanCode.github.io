@@ -15,7 +15,7 @@
           
           <category> Node.js </category>
           
-          <category> Js </category>
+          <category> JS </category>
           
           <category> Express </category>
           
@@ -26,9 +26,9 @@
       
         <tags>
             
-            <tag> Node.js </tag>
+            <tag> JS </tag>
             
-            <tag> Js </tag>
+            <tag> Node.js </tag>
             
             <tag> Express </tag>
             
@@ -260,16 +260,16 @@
           
           <category> Vue </category>
           
-          <category> Nodejs </category>
+          <category> Node.js </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> Vue </tag>
+            <tag> Node.js </tag>
             
-            <tag> Nodejs </tag>
+            <tag> Vue </tag>
             
         </tags>
       
