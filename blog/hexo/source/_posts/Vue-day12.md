@@ -69,6 +69,14 @@ npm run dev
 
 所以整个结构是很清晰的， 如果还是蒙，那先滚回去把component看明白
 
+**从前面到这里，就可以开始做两到三个基本的练习： 类似todo App 或者带有 删减增的网页**
+
+
+
+## 拓展 
+
+无意中发现的 [vue.js examples](https://vuejsexamples.com/) 
+
 
 
 ## Reference

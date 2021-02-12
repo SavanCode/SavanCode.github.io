@@ -29,7 +29,7 @@ return (
         <Options options={options}/>
         <AddOption />
  )
-and now options comp will have access by using this.props.options
+//and now options comp will have access by using this.props.options
 -----------------------------------------------------
 class Options extends React.Component{
  render(){

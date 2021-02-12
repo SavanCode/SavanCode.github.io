@@ -106,15 +106,15 @@ router-link 默认情况下的路由是模糊匹配，例如当前路径是 /art
 <router-link to="/article" active-class="router-active"></router-link>
 ```
 当用户访问 /article/1 时会被激活为：
-```
+```html
 <a href="#/article" class="router-active" rel="nofollow"></a>
 ```
 而当使用：
-```
+```html
 <router-link to="/article" exact-active-class="router-active"></router-link>
 ```
 当用户访问 /article/1 时，不会激活这个 link 的 class：
-```
+```html
 <a href="#/article" rel="nofollow"></a>
 ```
 ## router-link  相关属性

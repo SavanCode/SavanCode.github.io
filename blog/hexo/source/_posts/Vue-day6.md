@@ -180,3 +180,45 @@ var app3 = new Vue({
   }
 })
 ```
+
+## 在Vue中实现onchange的几种思路
+
+###  lazy modifier
+```js
+<input v-model.lazy="search" placeholder="Search for..." />
+   data: function () {
+        return {
+            search: ''
+        };
+    },
+    watch: {
+        search: function (value) {
+            console.log(value);
+        }
+    }
+```
+
+### @change="someHandler"
+
+### @keydown="handleAdd"
+
+### watch
+```js
+watch {
+    value(value) {
+        this.$emit('onchange', value);
+        // or generate/simulate a native events (not sure how, but its outside Vue's realm I think
+    }
+}
+```
+
+### v-on:change="signalChange" 
+自己在methods中重新写 哈哈哈哈哈
+
+### v-on:input="myChangeFunction(whatever)"
+这个在textArea中也可以
+
+## 拓展：做filter
+
+1.[Make a Filterable Table With Vue.js](https://hibbard.eu/filterable-table-vuejs/)
+2.[filter bar的库 推荐](https://www.youtube.com/watch?v=6i8D8j5Gkk8)： fuse.js
