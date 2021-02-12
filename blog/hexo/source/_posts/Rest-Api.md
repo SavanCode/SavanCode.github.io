@@ -150,8 +150,10 @@ async asynchronousMethod() {
 
 [如何在Node.js中设置Express API服务器](https://code.tutsplus.com/tutorials/code-your-first-api-with-nodejs-and-express-set-up-the-server--cms-31698)
 
-
+## 练习
+[vue结合的员工表单](https://github.com/SavanCode/VUE/tree/main/employeeForm)
 
 ## Reference
 
 [了解REST和RESTful API](https://code.tutsplus.com/tutorials/code-your-first-api-with-nodejs-and-express-understanding-rest-apis--cms-31697)
+
