@@ -7,8 +7,8 @@ mathjax: true
 date: 2021-02-01 23:40:04
 password:
 summary: Vue Axios, JSONP
-tags: [Vue, Nodejs]
-categories: [Vue, Nodejs]
+tags: [Vue, Node.js]
+categories: [Vue, Node.js]
 ---
 
 ## Axios
