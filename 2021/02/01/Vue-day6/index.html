@@ -555,6 +555,26 @@
     name<span class="token punctuation">:</span><span class="token string">"ttt"</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
+<h2 id="在Vue中实现onchange的几种思路"><a href="#在Vue中实现onchange的几种思路" class="headerlink" title="在Vue中实现onchange的几种思路"></a>在Vue中实现onchange的几种思路</h2><h3 id="lazy-modifier"><a href="#lazy-modifier" class="headerlink" title="lazy modifier"></a>lazy modifier</h3><pre class=" language-js"><code class="language-js"><span class="token operator">&lt;</span>input v<span class="token operator">-</span>model<span class="token punctuation">.</span>lazy<span class="token operator">=</span><span class="token string">"search"</span> placeholder<span class="token operator">=</span><span class="token string">"Search for..."</span> <span class="token operator">/</span><span class="token operator">></span>
+   data<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token punctuation">{</span>
+            search<span class="token punctuation">:</span> <span class="token string">''</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    watch<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        search<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span></code></pre>
+<h3 id="change-”someHandler”"><a href="#change-”someHandler”" class="headerlink" title="@change=”someHandler”"></a>@change=”someHandler”</h3><h3 id="keydown-”handleAdd”"><a href="#keydown-”handleAdd”" class="headerlink" title="@keydown=”handleAdd”"></a>@keydown=”handleAdd”</h3><h3 id="watch"><a href="#watch" class="headerlink" title="watch"></a>watch</h3><pre class=" language-js"><code class="language-js">watch <span class="token punctuation">{</span>
+    <span class="token function">value</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">$emit</span><span class="token punctuation">(</span><span class="token string">'onchange'</span><span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// or generate/simulate a native events (not sure how, but its outside Vue's realm I think</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="v-on-change-”signalChange”"><a href="#v-on-change-”signalChange”" class="headerlink" title="v-on:change=”signalChange”"></a>v-on:change=”signalChange”</h3><p>自己在methods中重新写 哈哈哈哈哈</p>
+<h3 id="v-on-input-”myChangeFunction-whatever-”"><a href="#v-on-input-”myChangeFunction-whatever-”" class="headerlink" title="v-on:input=”myChangeFunction(whatever)”"></a>v-on:input=”myChangeFunction(whatever)”</h3><p>这个在textArea中也可以</p>
+<h2 id="拓展：做filter"><a href="#拓展：做filter" class="headerlink" title="拓展：做filter"></a>拓展：做filter</h2><p>1.<a target="_blank" rel="noopener" href="https://hibbard.eu/filterable-table-vuejs/">Make a Filterable Table With Vue.js</a><br>2.<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=6i8D8j5Gkk8">filter bar的库 推荐</a>： fuse.js</p>
 
             </div>
             <hr/>
