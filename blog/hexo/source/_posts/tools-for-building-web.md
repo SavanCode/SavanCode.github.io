@@ -55,6 +55,7 @@ categories: Front-end tool
 4. csslayout https://csslayout.io
 5. css inspiration  https://chokcoco.github.io/CSS-Inspiration
 6. animista https://animista.net
+7. Color Picker https://www.cssportal.com/css3-rgba-generator/
 
 
 
