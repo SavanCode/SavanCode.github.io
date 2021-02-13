@@ -70,6 +70,17 @@ saveCats() {
   localStorage.setItem('cats', parsed);
 }
 ```
+**监听**　　
+
+```javascript
+//Storage 发生变化（增加、更新、删除）时的 触发，同一个页面发生的改变不会触发，只会监听同一域名下其他页面改变
+ Storagewindow.addEventListener('storage', function (e) {　 
+    console.log('key', e.key); 
+    console.log('oldValue', e.oldValue);　　
+    console.log('newValue', e.newValue); 
+    console.log('url', e.url);
+```
+
 ### sessionStorage
 
 ```js
