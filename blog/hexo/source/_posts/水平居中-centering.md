@@ -6,12 +6,11 @@ toc: true
 mathjax: true
 date: 2020-11-11 21:58:10
 password:
-summary:
+summary: 纯CSS七大居中方法
 tags:  css&html
-categories: Front-end
+categories: css&html
 ---
-
-# 纯CSS七大居中方法
+## 纯CSS七大居中方法
 
 ### 1.上下左右定位+margin居中法
 
@@ -22,8 +21,6 @@ categories: Front-end
 //或者
 子元素： margin-left: auto; margin-right: auto; display：block；
 ```
-
-
 
 ### 2.50%定位+margin居中法 （通过子元素设置relative + 负margin）
 
@@ -42,8 +39,6 @@ categories: Front-end
 
 子元素：display: inline-block;
 ```
-
-
 
 ### 4.50%定位+translate居中法（此方法很好用）
 
@@ -86,7 +81,7 @@ categories: Front-end
   display: flex;
   align-items: center;/*Vertical Centering*/
   justify-content: center;
-     /* align-self: center;  want specific flex items to be centered vertically*/
+  /* align-self: center;  want specific flex items to be centered vertically*/
 }
 
 .box div {
@@ -98,8 +93,6 @@ categories: Front-end
 </div>
       
 ```
-
-
 
 ### 9.对于图片以及文字居中  - 对于行元素  
 
@@ -140,11 +133,7 @@ span {
        }
 ```
 
-
-
 ![](水平居中-centering/1607004549132.png)
-
-
 
 #### Center Vertically
 
@@ -210,8 +199,8 @@ position: absolute;
 
 ```html
  .box {
-            display: flex;
-            justify-content: space-between;
+        display: flex;
+        justify-content: space-between;
           }
    <div class="box">
       <div>One</div>
@@ -225,11 +214,9 @@ position: absolute;
 
 ```
 
+## 根据元素选择方式
 
-
-# 根据元素选择方式
-
-## (1)元素为行内元素时 
+### (1)元素为行内元素时 
 
 - 给其父元素(必须是块级元素)设置 text-align: center;
 
@@ -239,12 +226,12 @@ position: absolute;
 
   
 
-## (2)元素为块级元素时
+### (2)元素为块级元素时
 
 - 该块级元素设置如下代码 margin: 0 auto - 上面的2
 - 思路:先将子元素设置为块级表格来显示（类似），再将其设置水平居中.  **display:table和margin**
 
-- ```html
+```html
   <style>
         p{ display: table;
             margin: 0 auto;
@@ -253,12 +240,12 @@ position: absolute;
      <div class="div">
          <p>我是一个段落,想要居中</p>
      </div>
-  ```
+```
 
 - **absolute+transform** - 上面的4
 - **flex+justify-content** 上面的6
 
-## (3)多个块级元素时
+### (3)多个块级元素时
 
 - 多个块级元素时
 - 利用inline-block
@@ -275,7 +262,7 @@ position: absolute;
     </div>
 ```
 
-## (4)浮动元素水平居中 (父absolute/relative)
+### (4)浮动元素水平居中 (父absolute/relative)
 
 - **宽度不固定的浮动元素**
 
@@ -304,9 +291,7 @@ position: absolute;
 
 ![](水平居中-centering/1607005649322.png)
 
-
-
-## (5)绝对定位的元素水平居中对齐
+### (5)绝对定位的元素水平居中对齐
 
 ```html
 <style>
@@ -332,16 +317,7 @@ position: absolute;
 ```
 
 
-
-
-
-
-
-
-
-
-
-# other trick：
+## other trick：
 
 https://www.digitalocean.com/community/tutorials/css-centering-using-flexbox
 
@@ -349,7 +325,7 @@ https://www.w3.org/Style/Examples/007/center.en.html#text
 
 https://www.w3schools.com/css/css_align.asp 
 
-Reference:
+## Reference:
 
 1. https://developer.aliyun.com/article/635759?spm=a2c6h.14164896.0.0.54cf667ajTM2fR
 2. https://developer.aliyun.com/article/591138?spm=a2c6h.14164896.0.0.54cf667ajTM2fR

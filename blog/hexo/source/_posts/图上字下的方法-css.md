@@ -6,20 +6,20 @@ toc: true
 mathjax: true
 date: 2020-11-13 23:21:39
 password:
-summary:
+summary: 图文结合的布局
 tags: css&html
-categories: Front-end
+categories: css&html
 ---
 
-# **图上字下的方法-css**
+## 1.利用flex布局 
 
+使用了background img link
 
+## 2.利用表格
 
-## 1.flex布局 使用了background img link
+## 3.控制div
 
-## 2.表格
-
-## 3.img块与文字块（文本块存放在div中）放在同一个div 中，然后设置他们之间的位置 **或者** img块与文字块（文字块采用span/a标签显示）放在同一个div 
+img块与文字块（文本块存放在div中）放在同一个div 中，然后设置他们之间的位置 **或者** img块与文字块（文字块采用span/a标签显示）放在同一个div 
 
 ```html
 <!DOCTYPE html>

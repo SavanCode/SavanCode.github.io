@@ -6,12 +6,14 @@ toc: true
 mathjax: true
 date: 2021-01-27 23:57:49
 password:
-summary:
+summary: convert time的函数
 tags: JS
 categories: JS
 ---
 
-这个还是看自己写的练习文件，这个太一半了
+这个还是看自己写的练习文件，这个太一半了 
+
+这个是写小程序的时候。npm的天坑 让我怎么都爬不出来。 所以还是决定自己用写moment.js。 time的文件在github
 
 
 ```

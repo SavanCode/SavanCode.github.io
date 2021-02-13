@@ -6,7 +6,7 @@ toc: true
 mathjax: true
 date: 2020-11-08 15:20:47
 tags: css&html
-categories:  Front-end
+categories:  css&html
 ---
 
 **HTML Graphics - canvas** 1

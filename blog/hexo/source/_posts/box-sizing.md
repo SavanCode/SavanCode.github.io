@@ -1,17 +1,17 @@
 ---
-title: box sizing
+title: box sizing布局
 top: false
 cover: false
 toc: true
 mathjax: true
 date: 2020-11-21 19:59:36
 password:
-summary:
+summary: 使用box-sizing布局
 tags: css&html
-categories: Front-end
+categories: css&html
 ---
 
-# 使用box-sizing布局
+**使用box-sizing布局**
 
 ## 基本
 

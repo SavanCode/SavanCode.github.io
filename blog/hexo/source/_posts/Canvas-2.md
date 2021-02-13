@@ -6,9 +6,9 @@ toc: true
 mathjax: true
 date: 2020-11-09 19:46:06
 password:
-summary:
+summary: Canvas 2 HTML Graphics 的零碎知识点
 tags: css&html
-categories: Front-end
+categories: css&html
 ---
 
 ## 暂存

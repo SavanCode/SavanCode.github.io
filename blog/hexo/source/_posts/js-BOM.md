@@ -6,7 +6,7 @@ toc: true
 mathjax: true
 date: 2020-11-27 18:19:41
 password:
-summary:
+summary: BOM 对象
 tags: JS
 categories: JS
 ---

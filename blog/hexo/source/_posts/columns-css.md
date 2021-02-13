@@ -1,19 +1,19 @@
 ---
-title: columns多布局-css
+title: columns纵向布局-css
 top: false
 cover: false
 toc: true
 mathjax: true
 date: 2020-11-14 13:42:02
 password:
-summary:
+summary: columns 布局； 纵向布局
 tags: css&html
-categories:  Front-end
+categories:  css&html
 ---
 
-# columns 布局
+## columns 布局
 
-# multi-columns [布局](https://developer.mozilla.org/en-US/docs/Web/CSS/columns)
+## multi-columns [布局](https://developer.mozilla.org/en-US/docs/Web/CSS/columns)
 
 允许简单地定义多列文本
 
