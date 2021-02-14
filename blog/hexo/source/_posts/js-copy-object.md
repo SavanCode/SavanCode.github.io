@@ -6,14 +6,14 @@ toc: true
 mathjax: true
 date: 2020-11-25 19:13:17
 password:
-summary:
+summary: js copy object
 tags: JS
 categories: JS
 ---
 
-# 浅拷贝
+## 浅拷贝
 
-## 简单拷贝
+### 简单拷贝
 
   新建一个空对象，使用for-in循环，将对象的所有属性复制到新建的空对象中
 
@@ -38,7 +38,7 @@ console.log(obj2.c); //[1,2,3,4]
 console.log(obj1.c); //[1,2,3,4]
 ```
 
-## 使用...
+### 使用...
 
 ```js
 var obj1={a:1,b:2,c:[1,2,3]};
@@ -46,7 +46,7 @@ var obj2={...obj1};//{a:1,b:2,c:[1,2,3]}
 var obj2={...obj1,location:'china',a:200};//添加属性+更新a属性 
 ```
 
-## 使用属性描述符
+### 使用属性描述符
 
   通过对象的原型，建立一个空的实例对象。通过forEach语句，获取到对象的所有属性的属性描述符，将其作为参数，设置到新建的空实例对象中
 
@@ -69,7 +69,7 @@ console.log(obj2.c); //[1,2,3,4]
 console.log(obj1.c); //[1,2,3,4]
 ```
 
-## 使用jquery的extend()方法
+### 使用jquery的extend()方法
 
 ```js
 var obj1={a:1,b:2,c:[1,2,3]};
@@ -81,9 +81,9 @@ console.log(obj2.c); //[1,2,3,4]
 console.log(obj1.c); //[1,2,3,4]
 ```
 
-# 深拷贝
+## 深拷贝
 
-## 遍历复制
+### 遍历复制
 
 复制对象的属性时，对其进行判断，如果是数组或对象，则再次调用拷贝函数；否则，直接复制对象属性
 
@@ -113,7 +113,7 @@ console.log(obj2.c); //[1,2,3,4]
 console.log(obj1.c); //[1,2,3]
 ```
 
-## json
+### json
 
 用JSON全局对象的parse和stringify方法来实现深复制算是一个简单讨巧的方法，它能正确处理的对象只有Number、String、Boolean、Array、扁平对象，即那些能够被json直接表示的数据结构
 
@@ -131,7 +131,7 @@ console.log(obj2.c); //[1,2,3,4]
 console.log(obj1.c); //[1,2,3]
 ```
 
-## 使用jquery的extend()方法
+### 使用jquery的extend()方法
 
 ```js
 var obj1={a:1,b:2,c:[1,2,3]};

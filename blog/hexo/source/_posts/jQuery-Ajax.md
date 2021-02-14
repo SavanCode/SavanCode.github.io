@@ -6,12 +6,10 @@ toc: true
 mathjax: true
 date: 2020-12-13 14:45:36
 password:
-summary:
-tags: jQuery
-categories: jQuery
+summary: AJAX
+tags:[jQuery,JS,AJAX]
+categories: [jQuery,JS,AJAX]
 ---
-
-# AJAX
 
 AJAX = 异步 JavaScript 和 XML（Asynchronous JavaScript and XML）。
 

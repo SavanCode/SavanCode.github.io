@@ -8,7 +8,7 @@ date: 2020-11-13 18:59:40
 password:
 summary: Flex Layout 的一个小总结
 tags:  css&html
-categories: Front-end
+categories: css&html
 ---
 
 ## Flex Layout Reference

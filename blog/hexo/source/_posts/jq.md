@@ -79,7 +79,7 @@ var $div = $(div);    //将DOM对象作为jQuery函数的参数即可将该DOM�
 | 并集选择器 | $(“div,p,li”);     | 使用逗号分隔，只要符合条件之一就可。 |
 | 交集选择器 | $(“div.redClass”); | 获取class为redClass的div元素         |
 
-所有选择器 *
+所有选择器
 
 #### **$()和document是相等的吗**
 
@@ -90,8 +90,6 @@ var $div = $(div);    //将DOM对象作为jQuery函数的参数即可将该DOM�
 alert(document.getElementById("id") == $("#aa"));//返回结果为false
 alert(document.getElementById("id") == $("#aa").get(0));//返回true
 ```
-
-
 
 ### b、层次选择器
 
@@ -112,7 +110,6 @@ alert(document.getElementById("id") == $("#aa").get(0));//返回true
 | :first-child | $("ul li:first-child")             | 选取每个 `<ul> `元素的第一个 `<li>` 元素                    |
 | [href]       | $("[href]")                        | 选取带有 href 属性的元素                                    |
 | :button      | $(":button")                       | 选取所有 type="button" 的 `<input> `元素 和 `<button>` 元素 |
-
 
 
 ## 1.4  jQuery过滤器
@@ -160,16 +157,16 @@ alert(document.getElementById("id") == $("#aa").get(0));//返回true
 #### a.不占据屏幕空间
 
 ```css
-    display:none;    //显示为none
-    <input type="hidden">    //隐藏input标签
+display:none;    //显示为none
+<input type="hidden">    //隐藏input标签
 ```
 #### b.占据屏幕空间
 ```css
-    visibility:hidden;    // 可见度为隐藏
-    opacity:0;    //透明度为0
-    使用：    
-        :visible    选择所有占据屏幕空间的元素
-        :hidden        选择所有不占据屏幕空间的元素
+visibility:hidden;    // 可见度为隐藏
+opacity:0;    //透明度为0
+使用：    
+    :visible    选择所有占据屏幕空间的元素
+    :hidden        选择所有不占据屏幕空间的元素
 ```
 ### 属性过滤器
 
@@ -177,14 +174,15 @@ alert(document.getElementById("id") == $("#aa").get(0));//返回true
 语法：  selector[属性过滤器]
 ```
 - selector[attr]  		获取所有已选择到的元素中具有属性attr的元素
-  selector[attr=Val]   获取所有已选择到的元素中具有属性attr，并且属性值为Val的元素
-  selector[attr^=Val]  获取所有已选择到的元素中具有属性attr，并且属性值为以Val开头的元素
-  selector[attr$=Val]  获取所有已选择到的元素中具有属性attr，并且属性值为以Val结尾的元素
-  selector[attr*=Val]  获取所有已选择到的元素中具有属性attr，并且属性值中包含Val的元素
-  selector[attr!=Val]  获取所有已选择到的元素中具有属性attr，并且属性值不为Val的元素或者没有该属性attr的元素
+- selector[attr=Val]   获取所有已选择到的元素中具有属性attr，并且属性值为Val的元素
+- selector[attr^=Val]  获取所有已选择到的元素中具有属性attr，并且属性值为以Val开头的元素
+- selector[attr$=Val]  获取所有已选择到的元素中具有属性attr，并且属性值为以Val结尾的元素
+- selector[attr*=Val]  获取所有已选择到的元素中具有属性attr，并且属性值中包含Val的元素
+- selector[attr!=Val]  获取所有已选择到的元素中具有属性attr，并且属性值不为Val的元素或者没有该属性attr的元素
 
 ### 后代过滤器
 选择器一定要先选择到后代元素，是对选择到的后代元素的过滤
+
 >**注意：**
 >选择所有符合selector的后代中的相应元素【批处理】
 >空格是表示所有后代      `>`是表示所有子代
@@ -196,30 +194,30 @@ alert(document.getElementById("id") == $("#aa").get(0));//返回true
 *注意与selector :first的区别，获取所有selector元素的所有后代元素中的第一个【只选择到一个元素】*
 
 - selector :last-child     //获取每个selector元素中所有后代且后代中作为别人的最后一个子元素【每个父元素的最后一个子元素】
-  selector :only-child 	// 获取每个selector元素中所有后代且后代中作为别人的作为别人的父元素且只有一个子元素【每个父元素如果只有一个孩子元素，获取该元素】
-  selector :first-of-type  //获取每个selector元素中所有后代且后代中作为别人的每种类型子元素中的第一个
-  Selector :last-of-type   //获取每个selector元素中所有后代且后代中作为别人的每种类型子元素中的最后一个  
+- selector :only-child 	// 获取每个selector元素中所有后代且后代中作为别人的作为别人的父元素且只有一个子元素【每个父元素如果只有一个孩子元素，获取该元素】
+- selector :first-of-type  //获取每个selector元素中所有后代且后代中作为别人的每种类型子元素中的第一个
+- Selector :last-of-type   //获取每个selector元素中所有后代且后代中作为别人的每种类型子元素中的最后一个  
 
 ### 表单过滤器    【对选择的表单元素进行过滤】
 - :enabled   //选取所有可用元素该选择器仅可用于选择支持disabled属性(attribute)的HTML    元素【`<button>, <input>,<optgroup>,<option>,<select>,<textarea>`】
-  :disabled   //选取所有不可用的元素该选择器也是仅可用于支持disabled属性的HTML元素
-  :checked   //选取所有被选中的元素，用于复选框和单选框、下拉框
-  :selected   //选取所有被选中的选项元素，该选择器只适用于<option>
-  :focus    //选择当前获取焦点的元素
-  :input    //选取所有的`<input>,<textarea>,<select>,<button>`元素。
+- :disabled   //选取所有不可用的元素该选择器也是仅可用于支持disabled属性的HTML元素
+- :checked   //选取所有被选中的元素，用于复选框和单选框、下拉框
+- :selected   //选取所有被选中的选项元素，该选择器只适用于`<option>`
+- :focus    //选择当前获取焦点的元素
+- :input    //选取所有的`<input>,<textarea>,<select>,<button>`元素。
 
-*注意：**
-    `$(":input")`是选择可以让用户输入的标签元素; 而`$("input")`是选择名字为input的所有标签*元素
+*注意：*
+`$(":input")`是选择可以让用户输入的标签元素; 而`$("input")`是选择名字为input的所有标签*元素
 
 - :text   //选取所有的单行文本框（`<input type="text">`）
-  :password  //选取所有的密码框
-  :radio  //选取所有的单选框
-  :checkbox   //选取所有的多选框        
-  :submit    //选取所有的提交按钮【有提交功能的按钮】
-  :reset    //选取所有input类型为reset的表单元素     
-  :image    //选取所有input类型为image的表单元素       
-  :button    //选取所有input类型为button的表单元素    
-  :file        //选取所有input类型为file的表单元素
+- :password  //选取所有的密码框
+- :radio  //选取所有的单选框
+- :checkbox   //选取所有的多选框        
+- :submit    //选取所有的提交按钮【有提交功能的按钮】
+- :reset    //选取所有input类型为reset的表单元素     
+- :image    //选取所有input类型为image的表单元素       
+- :button    //选取所有input类型为button的表单元素    
+- :file        //选取所有input类型为file的表单元素
 
 # 2.jq节点操作
 
@@ -283,7 +281,6 @@ before()    将节点插入到自身前面作为自己前面的兄弟元素
 insertBefore() 将自身插入到节点前面作为节点前面的兄弟元素
 
 
-
 ## 2.5 删除节点
 
 remove([selector])  返回被删除的节点对象
@@ -293,16 +290,14 @@ $('div').remove('.one');    //删除类名为one的div
 $('div.one').remove();    //删除类名为one的div
 ```
 
-
-detach([selector])    返回被删除的节点对象
+`detach([selector])`    返回被删除的节点对象
 
 ```js
 $('div:not(".one")').remove(':first');    //删除类名不为one的div中的第一个div
 $('div.one').remove();    //删除类名为one的div
 ```
 
-
-empty()   无参数，移除匹配元素的所有子节点
+`empty()`   无参数，移除匹配元素的所有子节点
 
 ```js
 $('div:contains("one")').empty();    //清空的div内容中包含文本one的div元素内容
@@ -321,14 +316,13 @@ $(selector).clone(false)
 
 ## 2.7 替换节点
 
-replaceWith()    用参数节点替换自身,返回被替换的元素
+`replaceWith()`    用参数节点替换自身,返回被替换的元素
 
 ```js
 $('div').replaceWith('<span>hello<span>');    //使用span节点替换所有div节点【每个div均用span节点替换】
 ```
 
-
-replaeAll()    自身替换参数中的节点
+`replaeAll()`    自身替换参数中的节点
 
 ```js
 $('<span>hello</span>').replaeAll('div')    //使用span节点替换所有div节点【每个div均用span节点替换】
@@ -336,7 +330,7 @@ $('<span>hello</span>').replaeAll('div')    //使用span节点替换所有div节
 
 ## 2.8 包裹节点
 
- ` wrap([wrappingElement])`  在每个匹配的元素外层包上一个html元素。
+` wrap([wrappingElement])`  在每个匹配的元素外层包上一个html元素。
 
 `wrapAll([wrappingElement])` 将所有匹配的元素用一个元素来包裹，可以嵌套多层，但是最内层只能有一个元素; 所有匹配元素将会被当作是一个整体，在这个整体的外部用指定的HTML结构进行包裹。
 
@@ -344,14 +338,14 @@ $('<span>hello</span>').replaeAll('div')    //使用span节点替换所有div节
 
 ## 2.9 [节点遍历](https://www.runoob.com/jquery/jquery-ref-traversing.html)
 
-children([selector])    获取匹配元素的子元素集合
+`children([selector])`    获取匹配元素的子元素集合
 
 ```js
 $(".content").children(".inner");    //获取类名content的所有子元素【有参数则再过滤出类名为inner的子元素】
 $(".content>.inner");    //与上面效果是一样的
 ```
 
-find(selector)　　获取所有匹配元素中符合参数的所有后代元素            
+`find(selector)`　　获取所有匹配元素中符合参数的所有后代元素            
 
 ```js
 $(".content").find(".inner");    //获取类名content的所有后代中类名为inner的元素
@@ -407,35 +401,31 @@ $("button").bind({
 
 #### 3.1.2.2 事件解绑
 
-unbind([eventType],[handler(eventObject)])    
+`unbind([eventType],[handler(eventObject)])`
 a、无参时,.unbind() 将移除指定元素上所有绑定的处理程序
 b、参数为某事件类型时，移除该事件类型上的所有绑定的处理程序
 c、参数为事件类型,事件处理函数时，移除该事件类型上绑定的该处理函数【处理函数在绑定时需单独定义出来赋予函数名】
 
 #### 3.1.2.3 绑定一个或多个事件;(类似事件代理)
 
-on( events,[selector],[data],handler(eventObject))    
+`on( events,[selector],[data],handler(eventObject))`    
 a、有selector参数时,表示只能添加事件到指定元素的selector选择的后代元素上【函数内的事件对象target,currentTarget和this均为selector选中的元素】
 b、无selector参数时,表示给指定元素绑定相应的events事件
 
 #### 3.1.2.4 解除on上面绑定的一个或多个事件
 
-off( events,[selector],[handler])    
-
+`off( events,[selector],[handler])`    
 与上面的unbind()函数类似,用于解除on()方法绑定的事件
 
 #### 3.1.2.5 模拟事件执行,即让事件自动触发执行
 
-trigger( eventType,[extraParams])   
-
+`trigger( eventType,[extraParams]) `  
 根据绑定到匹配元素的给定的事件类型eventType执行该事件处理程序的行为。    extraParams传递给事件处理程序的额外参数,为数组类型。
 eg:
 
 ```js
 $("div").click(function(event,a,b){}).trigger("click", [123, 456]);    //模拟div点击事件自动执行并传递两个额外参数给执行函数
 ```
-
-   
 
 ## 3.2.鼠标事件 &键盘事件
 
@@ -477,8 +467,8 @@ $("#p1").hover(
 ## 键盘事件
 
 - keypress()   按键按下事件
-  keyup()         按键抬起事件
-  keydown()    键按下的过程发生的事件  
+- keyup()         按键抬起事件
+- keydown()    键按下的过程发生的事件  
 
 ## 3.3.表单事件
 
@@ -576,8 +566,6 @@ $("#flip").click(function(){
 
 > .animate() 只支援 "可數字化" 的屬性，如 height, width, left, top, opacity 等。
 
-
-
 ```js
 //基本的
 $("button").click(function(){
@@ -622,8 +610,6 @@ jQuery提供了以下几种方法来操作动画队列。
 3.  queue([queueName,]naeQueue):用newQueue动画函数队列代替当前jQuery对象里所的DOM元素的动画函数队列。
 4.  dequeue():执行动画函数队列头的第一个动画函数，并将该动画函数移出队列。
 5.  clearQueue([queueName]):清空动画函数队列中的所有动画函数。
-
-
 
 ```html
 <style>
@@ -792,8 +778,6 @@ $("#btn1").click(function(){
 $("button").click(function(){  $("#runoob").attr("href","http://www.runoob.com/jquery"); });
 ```
 
-
-
 ### 回调函数
 
 #### text()、html() & val()
@@ -818,8 +802,6 @@ $("button").click(function(){
   });
 });
 ```
-
-
 
 ### 添加元素
 
@@ -879,8 +861,6 @@ function afterText(){
     $("img").after([txt1,txt2,txt3]);          // 在图片后添加文本
 }
 ```
-
-
 
 ### append/prepend vs after/before
 
@@ -947,7 +927,7 @@ $("button").click(function(){
 2. [document](https://jqueryvalidation.org/)
 3. https://xiaohuochai.site/FELib/jq/validate/validation.html
 
-# reference
+## reference
 
 1. https://docs.huihoo.com/jquery/jquery-fundamentals/zh-cn/book.html#N20CE6
 2. https://www.jianshu.com/p/f8e3936b34c9

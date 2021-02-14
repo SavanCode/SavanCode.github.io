@@ -6,12 +6,12 @@ toc: true
 mathjax: true
 date: 2020-11-25 15:08:32
 password:
-summary:
+summary: array复制的方式总结
 tags: JS
 categories: JS
 ---
 
-# PUSH
+## PUSH
 
 ```js
 function copyArray(arr){
@@ -31,7 +31,7 @@ console.log(obj1); //[1,2,3]
 console.log(obj2); //[1,2,3,4]
 ```
 
-# JOIN
+## JOIN
 
 使用该方法的缺点是数组中的项全部变成了字符串形式
 
@@ -51,9 +51,7 @@ console.log(obj1); //[1,2,3]
 console.log(obj2); //['1','2','3',4]
 ```
 
-
-
-# CONCAT
+## CONCAT
 
 ```js
 function copyArray(arr){
@@ -71,7 +69,7 @@ console.log(obj1); //[1,2,3]
 console.log(obj2); //[1,2,3,4]
 ```
 
-# SLICE
+## SLICE
 
 ```js
 function copyArray(arr){
@@ -89,7 +87,7 @@ console.log(obj1); //[1,2,3]
 console.log(obj2); //[1,2,3,4]
 ```
 
-# 深拷贝
+## 深拷贝
 
   以上方法实现的仅是数组的浅拷贝，如果要实现数组的深拷贝，需要使用递归方法
 
@@ -116,7 +114,7 @@ console.log(obj1[2]); //[3,4]
 console.log(obj2[2]); //[3,4,5]
 ```
 
-# ...
+## 数据解构
 
 ```js
 var obj1=[1,2,3];

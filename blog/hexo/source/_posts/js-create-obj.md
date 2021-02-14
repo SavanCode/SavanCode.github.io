@@ -1,19 +1,15 @@
 ---
-title: js create obj
+title: js create obj - JavaScript深入之创建对象的多种方式以及优缺点
 top: false
 cover: false
 toc: true
 mathjax: true
 date: 2020-12-07 21:16:41
 password:
-summary:
+summary: JavaScript深入之创建对象的多种方式以及优缺点
 tags: JS
 categories: JS
 ---
-
-# JavaScript深入之创建对象的多种方式以及优缺点
-
-
 
 ## 1. 工厂模式
 

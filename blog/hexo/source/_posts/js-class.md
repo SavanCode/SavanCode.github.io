@@ -6,12 +6,10 @@ toc: true
 mathjax: true
 date: 2020-11-27 13:30:23
 password:
-summary:
+summary: class基础
 tags: JS
 categories: JS
 ---
-
-# class基础
 
 ## class基本定义
 
@@ -62,7 +60,7 @@ let myCar1 = new Car("Ford", 2014);
 let myCar2 = new Car("Audi", 2019);
 ```
 
-# class继承 - extends
+## class继承 - extends
 
 ```js
 class Car {

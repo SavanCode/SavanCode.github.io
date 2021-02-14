@@ -7,8 +7,8 @@ mathjax: true
 date: 2020-12-10 19:53:09
 password:
 summary:
-tags: JS
-categories: JS
+tags: [JS,AJAX]
+categories: [JS,AJAX]
 ---
 
 # js处理error

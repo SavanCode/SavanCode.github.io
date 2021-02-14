@@ -6,12 +6,12 @@ toc: true
 mathjax: true
 date: 2020-11-24 13:46:55
 password:
-summary:
+summary: js  data types
 tags: JS
 categories: JS
 ---
 
-# JavaScript 数据类型
+## JavaScript 数据类型
 
 包含值的数据类型：
 
@@ -33,11 +33,7 @@ categories: JS
 
 - undefined
 
-  
-
 ![](js-data-types/1607252500863.png)
-
-
 
 ## 原始值( primitive values )
 

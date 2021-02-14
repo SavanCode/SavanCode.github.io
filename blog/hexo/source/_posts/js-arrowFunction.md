@@ -6,7 +6,7 @@ toc: true
 mathjax: true
 date: 2020-11-26 13:05:55
 password:
-summary:
+summary: 箭头函数
 tags: JS
 categories: JS
 ---

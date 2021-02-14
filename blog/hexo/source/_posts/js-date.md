@@ -6,12 +6,10 @@ toc: true
 mathjax: true
 date: 2020-11-25 15:59:47
 password:
-summary:
+summary: js date
 tags: JS
 categories: JS
 ---
-
-# date基本
 
 ## 时区
 
@@ -175,3 +173,10 @@ console.log(new Date('2016-07-12'));//Tue Jul 12 2016 08:00:00 GMT+0800 (中国�
 ###  set[UTC]Milliseconds()
 
 设置毫秒值(0-999)
+
+## 时间转换
+
+### npm-moment
+
+### [自己写时间格式转换](https://github.com/SavanCode/Wechat-Mini-Programs/blob/main/musicMiniPro/miniprogram/utils/time.js)
+
