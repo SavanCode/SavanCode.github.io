@@ -7,8 +7,8 @@ mathjax: true
 date: 2021-01-30 12:11:52
 password:
 summary: es6的 this, 作用域, 高阶函数专门的解释，详细的对应方块笔记也有
-tags: [ JS , es6 ]
-categories: [ JS , es6 ]
+tags: [JS,es6]
+categories: [JS,es6]
 ---
 
 ## 块级作用域

@@ -7,7 +7,7 @@ mathjax: true
 date: 2020-12-13 14:45:36
 password:
 summary: AJAX
-tags:[jQuery,JS,AJAX]
+tags: [jQuery,JS,AJAX]
 categories: [jQuery,JS,AJAX]
 ---
 
