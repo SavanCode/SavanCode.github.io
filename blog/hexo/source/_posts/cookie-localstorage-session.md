@@ -7,8 +7,8 @@ mathjax: true
 date: 2020-11-17 15:21:52
 password:
 summary: 前端本地存储的方式三种
-tags: [css&html,JS]
-categories: [css&html,JS]
+tags: JS
+categories: JS
 ---
 
 前端本地存储的方式有三种，分别是cookie，localstorage和sessionStorage 
