@@ -157,7 +157,7 @@ Vuex 并不限制代码结构。但是，它规定了一些需要遵守的规则
 
 看下面之前，先想想计数器要是使用Vue怎么实现
 
-
+然后看下面的基本语法，实现一个[Vue的计数器](https://github.com/SavanCode/VUE/tree/main/vuex01)
 
 ## 1.state-状态对象的获取方法（组件内）
 
