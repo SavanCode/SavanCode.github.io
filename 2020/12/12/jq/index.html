@@ -497,7 +497,7 @@
 | 并集选择器 | $(“div,p,li”);     | 使用逗号分隔，只要符合条件之一就可。 |
 | 交集选择器 | $(“div.redClass”); | 获取class为redClass的div元素         |
 
-所有选择器 *
+所有选择器
 
 #### **$()和document是相等的吗**
 
@@ -634,16 +634,21 @@ alert(document.getElementById(&quot;id&quot;) == $(&quot;#aa&quot;).get(0));//�
 </ul>
 <h3 id="可见性过滤器"><a href="#可见性过滤器" class="headerlink" title="可见性过滤器"></a>可见性过滤器</h3><pre class=" language-js"><code class="language-js">语法：  selector<span class="token punctuation">:</span>过滤器</code></pre>
 <p>隐藏类型分2种：</p>
-<h4 id="a-不占据屏幕空间"><a href="#a-不占据屏幕空间" class="headerlink" title="a.不占据屏幕空间"></a>a.不占据屏幕空间</h4><pre class=" language-css"><code class="language-css">    <span class="token property">display</span><span class="token punctuation">:</span>none<span class="token punctuation">;</span>    //显示为none
-    &lt;input type=<span class="token string">"hidden"</span>>    //隐藏input标签</code></pre>
-<h4 id="b-占据屏幕空间"><a href="#b-占据屏幕空间" class="headerlink" title="b.占据屏幕空间"></a>b.占据屏幕空间</h4><pre class=" language-css"><code class="language-css">    <span class="token property">visibility</span><span class="token punctuation">:</span>hidden<span class="token punctuation">;</span>    // 可见度为隐藏
-    <span class="token property">opacity</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">;</span>    //透明度为<span class="token number">0</span>
-    使用：    
-        <span class="token punctuation">:</span>visible    选择所有占据屏幕空间的元素
-        <span class="token punctuation">:</span>hidden        选择所有不占据屏幕空间的元素</code></pre>
+<h4 id="a-不占据屏幕空间"><a href="#a-不占据屏幕空间" class="headerlink" title="a.不占据屏幕空间"></a>a.不占据屏幕空间</h4><pre class=" language-css"><code class="language-css"><span class="token property">display</span><span class="token punctuation">:</span>none<span class="token punctuation">;</span>    //显示为none
+&lt;input type=<span class="token string">"hidden"</span>>    //隐藏input标签</code></pre>
+<h4 id="b-占据屏幕空间"><a href="#b-占据屏幕空间" class="headerlink" title="b.占据屏幕空间"></a>b.占据屏幕空间</h4><pre class=" language-css"><code class="language-css"><span class="token property">visibility</span><span class="token punctuation">:</span>hidden<span class="token punctuation">;</span>    // 可见度为隐藏
+<span class="token property">opacity</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">;</span>    //透明度为<span class="token number">0</span>
+使用：    
+    <span class="token punctuation">:</span>visible    选择所有占据屏幕空间的元素
+    <span class="token punctuation">:</span>hidden        选择所有不占据屏幕空间的元素</code></pre>
 <h3 id="属性过滤器"><a href="#属性过滤器" class="headerlink" title="属性过滤器"></a>属性过滤器</h3><pre class=" language-js"><code class="language-js">语法：  selector<span class="token punctuation">[</span>属性过滤器<span class="token punctuation">]</span></code></pre>
 <ul>
-<li>selector[attr]          获取所有已选择到的元素中具有属性attr的元素<br>selector[attr=Val]   获取所有已选择到的元素中具有属性attr，并且属性值为Val的元素<br>selector[attr^=Val]  获取所有已选择到的元素中具有属性attr，并且属性值为以Val开头的元素<br>selector[attr$=Val]  获取所有已选择到的元素中具有属性attr，并且属性值为以Val结尾的元素<br>selector[attr*=Val]  获取所有已选择到的元素中具有属性attr，并且属性值中包含Val的元素<br>selector[attr!=Val]  获取所有已选择到的元素中具有属性attr，并且属性值不为Val的元素或者没有该属性attr的元素</li>
+<li>selector[attr]          获取所有已选择到的元素中具有属性attr的元素</li>
+<li>selector[attr=Val]   获取所有已选择到的元素中具有属性attr，并且属性值为Val的元素</li>
+<li>selector[attr^=Val]  获取所有已选择到的元素中具有属性attr，并且属性值为以Val开头的元素</li>
+<li>selector[attr$=Val]  获取所有已选择到的元素中具有属性attr，并且属性值为以Val结尾的元素</li>
+<li>selector[attr*=Val]  获取所有已选择到的元素中具有属性attr，并且属性值中包含Val的元素</li>
+<li>selector[attr!=Val]  获取所有已选择到的元素中具有属性attr，并且属性值不为Val的元素或者没有该属性attr的元素</li>
 </ul>
 <h3 id="后代过滤器"><a href="#后代过滤器" class="headerlink" title="后代过滤器"></a>后代过滤器</h3><p>选择器一定要先选择到后代元素，是对选择到的后代元素的过滤</p>
 <blockquote>
@@ -654,14 +659,30 @@ alert(document.getElementById(&quot;id&quot;) == $(&quot;#aa&quot;).get(0));//�
 </ul>
 <p><em>注意与selector :first的区别，获取所有selector元素的所有后代元素中的第一个【只选择到一个元素】</em></p>
 <ul>
-<li>selector :last-child     //获取每个selector元素中所有后代且后代中作为别人的最后一个子元素【每个父元素的最后一个子元素】<br>selector :only-child     // 获取每个selector元素中所有后代且后代中作为别人的作为别人的父元素且只有一个子元素【每个父元素如果只有一个孩子元素，获取该元素】<br>selector :first-of-type  //获取每个selector元素中所有后代且后代中作为别人的每种类型子元素中的第一个<br>Selector :last-of-type   //获取每个selector元素中所有后代且后代中作为别人的每种类型子元素中的最后一个  </li>
+<li>selector :last-child     //获取每个selector元素中所有后代且后代中作为别人的最后一个子元素【每个父元素的最后一个子元素】</li>
+<li>selector :only-child     // 获取每个selector元素中所有后代且后代中作为别人的作为别人的父元素且只有一个子元素【每个父元素如果只有一个孩子元素，获取该元素】</li>
+<li>selector :first-of-type  //获取每个selector元素中所有后代且后代中作为别人的每种类型子元素中的第一个</li>
+<li>Selector :last-of-type   //获取每个selector元素中所有后代且后代中作为别人的每种类型子元素中的最后一个  </li>
 </ul>
 <h3 id="表单过滤器-【对选择的表单元素进行过滤】"><a href="#表单过滤器-【对选择的表单元素进行过滤】" class="headerlink" title="表单过滤器    【对选择的表单元素进行过滤】"></a>表单过滤器    【对选择的表单元素进行过滤】</h3><ul>
-<li>:enabled   //选取所有可用元素该选择器仅可用于选择支持disabled属性(attribute)的HTML    元素【<code>&lt;button&gt;, &lt;input&gt;,&lt;optgroup&gt;,&lt;option&gt;,&lt;select&gt;,&lt;textarea&gt;</code>】<br>:disabled   //选取所有不可用的元素该选择器也是仅可用于支持disabled属性的HTML元素<br>:checked   //选取所有被选中的元素，用于复选框和单选框、下拉框<br>:selected   //选取所有被选中的选项元素，该选择器只适用于<option><br>:focus    //选择当前获取焦点的元素<br>:input    //选取所有的<code>&lt;input&gt;,&lt;textarea&gt;,&lt;select&gt;,&lt;button&gt;</code>元素。</option></li>
+<li>:enabled   //选取所有可用元素该选择器仅可用于选择支持disabled属性(attribute)的HTML    元素【<code>&lt;button&gt;, &lt;input&gt;,&lt;optgroup&gt;,&lt;option&gt;,&lt;select&gt;,&lt;textarea&gt;</code>】</li>
+<li>:disabled   //选取所有不可用的元素该选择器也是仅可用于支持disabled属性的HTML元素</li>
+<li>:checked   //选取所有被选中的元素，用于复选框和单选框、下拉框</li>
+<li>:selected   //选取所有被选中的选项元素，该选择器只适用于<code>&lt;option&gt;</code></li>
+<li>:focus    //选择当前获取焦点的元素</li>
+<li>:input    //选取所有的<code>&lt;input&gt;,&lt;textarea&gt;,&lt;select&gt;,&lt;button&gt;</code>元素。</li>
 </ul>
-<p><em>注意：**<br>    <code>$(&quot;:input&quot;)</code>是选择可以让用户输入的标签元素; 而<code>$(&quot;input&quot;)</code>是选择名字为input的所有标签</em>元素</p>
+<p><em>注意：</em><br><code>$(&quot;:input&quot;)</code>是选择可以让用户输入的标签元素; 而<code>$(&quot;input&quot;)</code>是选择名字为input的所有标签*元素</p>
 <ul>
-<li>:text   //选取所有的单行文本框（<code>&lt;input type=&quot;text&quot;&gt;</code>）<br>:password  //选取所有的密码框<br>:radio  //选取所有的单选框<br>:checkbox   //选取所有的多选框<br>:submit    //选取所有的提交按钮【有提交功能的按钮】<br>:reset    //选取所有input类型为reset的表单元素<br>:image    //选取所有input类型为image的表单元素<br>:button    //选取所有input类型为button的表单元素<br>:file        //选取所有input类型为file的表单元素</li>
+<li>:text   //选取所有的单行文本框（<code>&lt;input type=&quot;text&quot;&gt;</code>）</li>
+<li>:password  //选取所有的密码框</li>
+<li>:radio  //选取所有的单选框</li>
+<li>:checkbox   //选取所有的多选框        </li>
+<li>:submit    //选取所有的提交按钮【有提交功能的按钮】</li>
+<li>:reset    //选取所有input类型为reset的表单元素     </li>
+<li>:image    //选取所有input类型为image的表单元素       </li>
+<li>:button    //选取所有input类型为button的表单元素    </li>
+<li>:file        //选取所有input类型为file的表单元素</li>
 </ul>
 <h1 id="2-jq节点操作"><a href="#2-jq节点操作" class="headerlink" title="2.jq节点操作"></a>2.jq节点操作</h1><p><a target="_blank" rel="noopener" href="https://www.runoob.com/jquery/jquery-ref-traversing.html">节点操作reference</a></p>
 <h2 id="2-1-查找结点"><a href="#2-1-查找结点" class="headerlink" title="2.1 查找结点"></a>2.1 查找结点</h2><p><code>$</code>(选择器字符串);    </p>
@@ -684,27 +705,27 @@ alert(document.getElementById(&quot;id&quot;) == $(&quot;#aa&quot;).get(0));//�
 <h2 id="2-5-删除节点"><a href="#2-5-删除节点" class="headerlink" title="2.5 删除节点"></a>2.5 删除节点</h2><p>remove([selector])  返回被删除的节点对象</p>
 <pre class=" language-js"><code class="language-js"><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span><span class="token string">'.one'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//删除类名为one的div</span>
 <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'div.one'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//删除类名为one的div</span></code></pre>
-<p>detach([selector])    返回被删除的节点对象</p>
+<p><code>detach([selector])</code>    返回被删除的节点对象</p>
 <pre class=" language-js"><code class="language-js"><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'div:not(".one")'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span><span class="token string">':first'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//删除类名不为one的div中的第一个div</span>
 <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'div.one'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//删除类名为one的div</span></code></pre>
-<p>empty()   无参数，移除匹配元素的所有子节点</p>
+<p><code>empty()</code>   无参数，移除匹配元素的所有子节点</p>
 <pre class=" language-js"><code class="language-js"><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'div:contains("one")'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//清空的div内容中包含文本one的div元素内容</span></code></pre>
 <h2 id="2-6-复制节点"><a href="#2-6-复制节点" class="headerlink" title="2.6 复制节点"></a>2.6 复制节点</h2><pre class=" language-js"><code class="language-js"><span class="token function">$</span><span class="token punctuation">(</span>selector<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span>   </code></pre>
 <ul>
 <li> 返回克隆的节点对象</li>
 <li>参数：<br>false,浅复制,复制元素但不复制元素中所绑定的事件【默认为false】<br>true,深复制,复制元素且复制元素中所绑定的事件</li>
 </ul>
-<h2 id="2-7-替换节点"><a href="#2-7-替换节点" class="headerlink" title="2.7 替换节点"></a>2.7 替换节点</h2><p>replaceWith()    用参数节点替换自身,返回被替换的元素</p>
+<h2 id="2-7-替换节点"><a href="#2-7-替换节点" class="headerlink" title="2.7 替换节点"></a>2.7 替换节点</h2><p><code>replaceWith()</code>    用参数节点替换自身,返回被替换的元素</p>
 <pre class=" language-js"><code class="language-js"><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">replaceWith</span><span class="token punctuation">(</span><span class="token string">'&lt;span>hello&lt;span>'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//使用span节点替换所有div节点【每个div均用span节点替换】</span></code></pre>
-<p>replaeAll()    自身替换参数中的节点</p>
+<p><code>replaeAll()</code>    自身替换参数中的节点</p>
 <pre class=" language-js"><code class="language-js"><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'&lt;span>hello&lt;/span>'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">replaeAll</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">)</span>    <span class="token comment" spellcheck="true">//使用span节点替换所有div节点【每个div均用span节点替换】</span></code></pre>
-<h2 id="2-8-包裹节点"><a href="#2-8-包裹节点" class="headerlink" title="2.8 包裹节点"></a>2.8 包裹节点</h2><p> <code> wrap([wrappingElement])</code>  在每个匹配的元素外层包上一个html元素。</p>
+<h2 id="2-8-包裹节点"><a href="#2-8-包裹节点" class="headerlink" title="2.8 包裹节点"></a>2.8 包裹节点</h2><p><code> wrap([wrappingElement])</code>  在每个匹配的元素外层包上一个html元素。</p>
 <p><code>wrapAll([wrappingElement])</code> 将所有匹配的元素用一个元素来包裹，可以嵌套多层，但是最内层只能有一个元素; 所有匹配元素将会被当作是一个整体，在这个整体的外部用指定的HTML结构进行包裹。</p>
 <p><code>wrapInner([wrappingElement])</code>  每个匹配元素里面内容(子元素)都会被这种结构包裹【匹配元素里面需要有内容；如果为空则最后一个空元素也会出现包裹html元素】  </p>
-<h2 id="2-9-节点遍历"><a href="#2-9-节点遍历" class="headerlink" title="2.9 节点遍历"></a>2.9 <a target="_blank" rel="noopener" href="https://www.runoob.com/jquery/jquery-ref-traversing.html">节点遍历</a></h2><p>children([selector])    获取匹配元素的子元素集合</p>
+<h2 id="2-9-节点遍历"><a href="#2-9-节点遍历" class="headerlink" title="2.9 节点遍历"></a>2.9 <a target="_blank" rel="noopener" href="https://www.runoob.com/jquery/jquery-ref-traversing.html">节点遍历</a></h2><p><code>children([selector])</code>    获取匹配元素的子元素集合</p>
 <pre class=" language-js"><code class="language-js"><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">".content"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">children</span><span class="token punctuation">(</span><span class="token string">".inner"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//获取类名content的所有子元素【有参数则再过滤出类名为inner的子元素】</span>
 <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">".content>.inner"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//与上面效果是一样的</span></code></pre>
-<p>find(selector)　　获取所有匹配元素中符合参数的所有后代元素            </p>
+<p><code>find(selector)</code>　　获取所有匹配元素中符合参数的所有后代元素            </p>
 <pre class=" language-js"><code class="language-js"><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">".content"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token string">".inner"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//获取类名content的所有后代中类名为inner的元素</span>
 <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">".content .inner"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//与上面效果是一样的</span></code></pre>
 <p>next([selector])        获取下一个兄弟元素</p>
@@ -727,12 +748,10 @@ data：传递给事件处理函数handler的额外数据</code></pre>
      click<span class="token punctuation">:</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"p"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">slideToggle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">,</span>    <span class="token comment" spellcheck="true">//点击按钮对p标签进行滑动显示隐藏</span>
      mouseover<span class="token punctuation">:</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"div"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">css</span><span class="token punctuation">(</span><span class="token string">"background-color"</span><span class="token punctuation">,</span><span class="token string">"red"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span>     <span class="token comment" spellcheck="true">//鼠标移入按钮时设置匹配div的背景颜色为红色</span>
     <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<h4 id="3-1-2-2-事件解绑"><a href="#3-1-2-2-事件解绑" class="headerlink" title="3.1.2.2 事件解绑"></a>3.1.2.2 事件解绑</h4><p>unbind([eventType],[handler(eventObject)])<br>a、无参时,.unbind() 将移除指定元素上所有绑定的处理程序<br>b、参数为某事件类型时，移除该事件类型上的所有绑定的处理程序<br>c、参数为事件类型,事件处理函数时，移除该事件类型上绑定的该处理函数【处理函数在绑定时需单独定义出来赋予函数名】</p>
-<h4 id="3-1-2-3-绑定一个或多个事件-类似事件代理"><a href="#3-1-2-3-绑定一个或多个事件-类似事件代理" class="headerlink" title="3.1.2.3 绑定一个或多个事件;(类似事件代理)"></a>3.1.2.3 绑定一个或多个事件;(类似事件代理)</h4><p>on( events,[selector],[data],handler(eventObject))<br>a、有selector参数时,表示只能添加事件到指定元素的selector选择的后代元素上【函数内的事件对象target,currentTarget和this均为selector选中的元素】<br>b、无selector参数时,表示给指定元素绑定相应的events事件</p>
-<h4 id="3-1-2-4-解除on上面绑定的一个或多个事件"><a href="#3-1-2-4-解除on上面绑定的一个或多个事件" class="headerlink" title="3.1.2.4 解除on上面绑定的一个或多个事件"></a>3.1.2.4 解除on上面绑定的一个或多个事件</h4><p>off( events,[selector],[handler])    </p>
-<p>与上面的unbind()函数类似,用于解除on()方法绑定的事件</p>
-<h4 id="3-1-2-5-模拟事件执行-即让事件自动触发执行"><a href="#3-1-2-5-模拟事件执行-即让事件自动触发执行" class="headerlink" title="3.1.2.5 模拟事件执行,即让事件自动触发执行"></a>3.1.2.5 模拟事件执行,即让事件自动触发执行</h4><p>trigger( eventType,[extraParams])   </p>
-<p>根据绑定到匹配元素的给定的事件类型eventType执行该事件处理程序的行为。    extraParams传递给事件处理程序的额外参数,为数组类型。<br>eg:</p>
+<h4 id="3-1-2-2-事件解绑"><a href="#3-1-2-2-事件解绑" class="headerlink" title="3.1.2.2 事件解绑"></a>3.1.2.2 事件解绑</h4><p><code>unbind([eventType],[handler(eventObject)])</code><br>a、无参时,.unbind() 将移除指定元素上所有绑定的处理程序<br>b、参数为某事件类型时，移除该事件类型上的所有绑定的处理程序<br>c、参数为事件类型,事件处理函数时，移除该事件类型上绑定的该处理函数【处理函数在绑定时需单独定义出来赋予函数名】</p>
+<h4 id="3-1-2-3-绑定一个或多个事件-类似事件代理"><a href="#3-1-2-3-绑定一个或多个事件-类似事件代理" class="headerlink" title="3.1.2.3 绑定一个或多个事件;(类似事件代理)"></a>3.1.2.3 绑定一个或多个事件;(类似事件代理)</h4><p><code>on( events,[selector],[data],handler(eventObject))</code><br>a、有selector参数时,表示只能添加事件到指定元素的selector选择的后代元素上【函数内的事件对象target,currentTarget和this均为selector选中的元素】<br>b、无selector参数时,表示给指定元素绑定相应的events事件</p>
+<h4 id="3-1-2-4-解除on上面绑定的一个或多个事件"><a href="#3-1-2-4-解除on上面绑定的一个或多个事件" class="headerlink" title="3.1.2.4 解除on上面绑定的一个或多个事件"></a>3.1.2.4 解除on上面绑定的一个或多个事件</h4><p><code>off( events,[selector],[handler])</code><br>与上面的unbind()函数类似,用于解除on()方法绑定的事件</p>
+<h4 id="3-1-2-5-模拟事件执行-即让事件自动触发执行"><a href="#3-1-2-5-模拟事件执行-即让事件自动触发执行" class="headerlink" title="3.1.2.5 模拟事件执行,即让事件自动触发执行"></a>3.1.2.5 模拟事件执行,即让事件自动触发执行</h4><p><code>trigger( eventType,[extraParams]) </code><br>根据绑定到匹配元素的给定的事件类型eventType执行该事件处理程序的行为。    extraParams传递给事件处理程序的额外参数,为数组类型。<br>eg:</p>
 <pre class=" language-js"><code class="language-js"><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"div"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">click</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>event<span class="token punctuation">,</span>a<span class="token punctuation">,</span>b<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">trigger</span><span class="token punctuation">(</span><span class="token string">"click"</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">123</span><span class="token punctuation">,</span> <span class="token number">456</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//模拟div点击事件自动执行并传递两个额外参数给执行函数</span></code></pre>
 <h2 id="3-2-鼠标事件-amp-键盘事件"><a href="#3-2-鼠标事件-amp-键盘事件" class="headerlink" title="3.2.鼠标事件 &amp;键盘事件"></a>3.2.鼠标事件 &amp;键盘事件</h2><h2 id="鼠标事件"><a href="#鼠标事件" class="headerlink" title="鼠标事件"></a>鼠标事件</h2><table>
 <thead>
@@ -808,7 +827,9 @@ data：传递给事件处理函数handler的额外数据</code></pre>
     <span class="token punctuation">}</span>
 <span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <h2 id="键盘事件"><a href="#键盘事件" class="headerlink" title="键盘事件"></a>键盘事件</h2><ul>
-<li>keypress()   按键按下事件<br>keyup()         按键抬起事件<br>keydown()    键按下的过程发生的事件  </li>
+<li>keypress()   按键按下事件</li>
+<li>keyup()         按键抬起事件</li>
+<li>keydown()    键按下的过程发生的事件  </li>
 </ul>
 <h2 id="3-3-表单事件"><a href="#3-3-表单事件" class="headerlink" title="3.3.表单事件"></a>3.3.表单事件</h2><ul>
 <li>focus()        聚焦事件</li>
@@ -1132,7 +1153,7 @@ $(selector).slideToggle([speed][,callback]);</code></pre>
 <li><a target="_blank" rel="noopener" href="https://jqueryvalidation.org/">document</a></li>
 <li><a target="_blank" rel="noopener" href="https://xiaohuochai.site/FELib/jq/validate/validation.html">https://xiaohuochai.site/FELib/jq/validate/validation.html</a></li>
 </ol>
-<h1 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h1><ol>
+<h2 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h2><ol>
 <li><p><a target="_blank" rel="noopener" href="https://docs.huihoo.com/jquery/jquery-fundamentals/zh-cn/book.html#N20CE6">https://docs.huihoo.com/jquery/jquery-fundamentals/zh-cn/book.html#N20CE6</a></p>
 </li>
 <li><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/f8e3936b34c9">https://www.jianshu.com/p/f8e3936b34c9</a></p>
@@ -1249,33 +1270,35 @@ $(selector).slideToggle([speed][,callback]);</code></pre>
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="../../13/jQuery-Ajax/">
+                <a href="../../14/react/">
                     <div class="card-image">
                         
                         
-                        <img src="../../../../medias/featureimages/10.jpg" class="responsive-img" alt="jQuery Ajax">
+                        <img src="../../../../medias/featureimages/11.jpg" class="responsive-img" alt="react-JSX &amp; React元素">
                         
-                        <span class="card-title">jQuery Ajax</span>
+                        <span class="card-title">react-JSX &amp; React元素</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            AJAXAJAX = 异步 JavaScript 和 XML（Asynchronous JavaScript and XML）。
-简短地说，在不重载整个网页的情况下，AJAX 通过后台加载数据，并在网页上进行显示。
-1.jQuery中aja
+                            React官方React 特点1、声明式的设计
+2、高效，采用虚拟DOM来实现DOM的渲染，最大限度的减少DOM的操作。
+3、灵活，跟其他库灵活搭配使用。
+4、JSX，俗称JS里面写HTML，JavaScript语法的扩展。
+5、组件化，模
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-12-13
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-12-14
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="../../../../categories/jQuery/" class="post-category">
-                                    jQuery
+                            <a href="../../../../categories/React/" class="post-category">
+                                    React
                                 </a>
                             
                             
@@ -1285,8 +1308,8 @@ $(selector).slideToggle([speed][,callback]);</code></pre>
                 
                 <div class="card-action article-tags">
                     
-                    <a href="../../../../tags/jQuery/">
-                        <span class="chip bg-color">jQuery</span>
+                    <a href="../../../../tags/React/">
+                        <span class="chip bg-color">React</span>
                     </a>
                     
                 </div>
@@ -1336,6 +1359,10 @@ SyntaxError:语
                                     JS
                                 </a>
                             
+                            <a href="../../../../categories/JS/AJAX/" class="post-category">
+                                    AJAX
+                                </a>
+                            
                             
                         </span>
                     </div>
@@ -1345,6 +1372,10 @@ SyntaxError:语
                     
                     <a href="../../../../tags/JS/">
                         <span class="chip bg-color">JS</span>
+                    </a>
+                    
+                    <a href="../../../../tags/AJAX/">
+                        <span class="chip bg-color">AJAX</span>
                     </a>
                     
                 </div>
