@@ -8,7 +8,7 @@ date: 2020-11-21 20:44:49
 password:
 summary: Overlap Element
 tags:  css&html
-categories: Front-end
+categories: css&html
 ---
 
 ## 1. Position Property

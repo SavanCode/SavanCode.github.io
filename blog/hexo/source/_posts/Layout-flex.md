@@ -8,7 +8,7 @@ date: 2020-11-13 13:23:53
 password:
 summary: Layout - Flex 详细的笔记
 tags: css&html
-categories: Front-end
+categories: css&html
 ---
 
 ![](Layout-flex/1605245444171.png)

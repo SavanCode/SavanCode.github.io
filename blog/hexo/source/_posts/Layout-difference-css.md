@@ -8,7 +8,7 @@ date: 2020-11-14 14:00:40
 password:
 summary:
 tags:  css&html
-categories: Front-end
+categories: css&html
 ---
 
 # 各类的布局优缺点：

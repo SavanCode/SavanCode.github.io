@@ -8,7 +8,7 @@ date: 2020-11-14 12:42:27
 password:
 summary: Media Query-css
 tags: css&html
-categories:  Front-end
+categories: css&html
 ---
 
 目的：因为不同的设备，萤幕宽度不同，显示的要求不一样

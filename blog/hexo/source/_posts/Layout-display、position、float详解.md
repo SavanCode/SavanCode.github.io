@@ -8,7 +8,7 @@ date: 2020-11-15 15:56:53
 password:
 summary: display、position、float详解
 tags:  css&html
-categories: Front-end
+categories: css&html
 ---
 
 ## display
