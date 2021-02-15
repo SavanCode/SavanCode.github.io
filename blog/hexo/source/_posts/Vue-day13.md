@@ -556,6 +556,8 @@ const moduleA = {
 }
 ```
 
+这里的练习在[github](https://github.com/SavanCode/VUE/tree/main/Vuex-module)
+
 ## 6.命名空间&测试Mutation
 
 这里我没做练习弄明白 嘿嘿 所以想了解请看[命名空间](https://www.cnblogs.com/xiaohuochai/p/7554127.html)

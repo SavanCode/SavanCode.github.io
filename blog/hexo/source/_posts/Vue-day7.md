@@ -837,7 +837,6 @@ request({
 ## Node.js 环境
 
 在 node.js里, 可以使用 querystring 模块:
-
 ```js
 const querystring = require('querystring');
 axios.post('http://something.com/', querystring.stringify({ foo: 'bar' }));
@@ -848,13 +847,11 @@ axios.post('http://something.com/', querystring.stringify({ foo: 'bar' }));
 ## Promises
 
 axios 依赖原生的 ES6 Promise 实现而[被支持](http://caniuse.com/promises)。
-
 如果你的环境不支持 ES6 Promise，你可以使用 [polyfill](https://github.com/jakearchibald/es6-promise)。
 
 ## TypeScript支持
 
 axios 包含 TypeScript 的定义。
-
 ```
 import axios from "axios";
 axios.get("/user?ID=12345");
@@ -877,23 +874,23 @@ axios.get("/user?ID=12345");
 
 可以通过vscode中安装live sever的插件，从而更好的运行本地服务器
 
-# 练习可用接口
+## 练习可用接口
 
-## axios练习中使用的接口
+### axios练习中使用的接口
 天气接口 ： http://wthrcdn.etouch.cn/weather_mini?city=城市名称 
 音乐接口搜索 ： http://tingapi.ting.baidu.com/v1/restserver/ting?method=baidu.ting.search.catalogSug&query= 歌曲标题 
 音乐信息接口 ： http://tingapi.ting.baidu.com/v1/restserver/ting?method=baidu.ting.song.play&songid= 音乐ID 
 
-## axios练习中使用的接口
+### axios练习中使用的接口
 测试接口1: https://api.github.com/search/repositories?q=v&sort=stars
 测试接口2: https://api.github.com/search/users?q=aa
 
-## JSONP的接口
+### JSONP的接口
 get请求地址： http://www.liulongbin.top:3005/api/getlunbo
 post请求地址：http://www.liulongbin.top:3005/api/post
 jsonp请求地址：http://www.liulongbin.top:3005/api/jsonp
 
-## 品牌管理改造
+### 品牌管理改造
 
 展示品牌列表
 GET 接口地址 http://www.liulongbin.top:3005/api/getprodlist
@@ -901,12 +898,11 @@ GET 接口地址 http://www.liulongbin.top:3005/api/getprodlist
 添加品牌数据
 POST 接口地址 http://www.liulongbin.top:3005/api/addproduct 
 
-# Reference
+[写sample在GitHub](https://github.com/SavanCode/VUE/tree/main/HelloVue)
+
+## Reference
 
 https://zhuanlan.zhihu.com/p/149300921
-
 https://www.npmjs.com/package/axios
-
 https://www.runoob.com/vue2/vuejs-ajax-axios.html
-
 https://aqingya.cn/articl/5dae9880.html
