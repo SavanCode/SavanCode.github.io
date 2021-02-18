@@ -15,9 +15,19 @@ categories: Vue
 
 组件（Component）是 Vue.js 最强大的功能之一。
 
+**组件的本质是产生虚拟** **DOM**
+
+因为vue组件的经历发展：组件配置 => VueComponent实例 => render() => Virtual DOM=> DOM
+
 组件可以扩展 HTML 元素，封装可重用的代码。
 
 组件系统让我们可以用独立可复用的小组件来构建大型应用，几乎任意类型的应用的界面都可以抽象为一个组件树
+
+> 稍微给个大局观（后补）- Vue组件化的理解
+> - 通用组件：实现最基本的功能，具有通用性、复用性，例如按钮组件、输入框组件、布局组件等。
+> - 业务组件：它们完成具体业务，具有一定的复用性，例如登录组件、轮播图组件。
+> - 页面组件：组织应用各部分独立内容，需要时在不同页面组件间切换，例如列表页、详情页组件
+
 
 ## 全局组件
 
@@ -950,6 +960,19 @@ slot要灵活跟template， template是属于相对于不灵活的 但是slot是
 ### Slot补充资料
 
 https://segmentfault.com/a/1190000012996217
+
+## 总结
+
+### 1. 如何使用组件
+**定义**：Vue.component()，components选项，sfc
+**分类**：有状态组件，functional，abstract
+**通信**：props，$emit()/$on()，provide/inject，$children/$parent/$root/$attrs/$listeners
+**内容分发**：`<slot>`，`<template>`，`v-slot`
+**使用及优化**：is，keep-alive，异步组件
+
+
+
+
 
 ## 个人练习的完整代码
 
