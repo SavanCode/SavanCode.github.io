@@ -925,7 +925,8 @@ const Baz = () =&gt; import(/* webpackChunkName: &quot;group-foo&quot; */ &#39;.
 <li>一般常用第二种简写</li>
 <li>第三种中，’group-home’是把组件按组分块打包, 可以将多个组件放入这个组中，在打包的时候Webpack会将相同 chunk 下的所有异步模块打包到一个异步块里面。</li>
 </ul>
-<h2 id="keep-alive"><a href="#keep-alive" class="headerlink" title="keep-alive"></a>keep-alive</h2><h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>keep-alive</span><span class="token punctuation">></span></span>
+<h2 id="keep-alive"><a href="#keep-alive" class="headerlink" title="keep-alive"></a>keep-alive</h2><h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><pre class=" language-html"><code class="language-html"><span class="token comment" spellcheck="true">&lt;!-- 范例：缓存about组件 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>keep-alive</span> <span class="token attr-name">include</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>about<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>router-view</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>router-view</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>keep-alive</span><span class="token punctuation">></span></span></code></pre>
 <h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><p><code>include</code> 和 <code>exclude</code> 属性允许组件有条件地缓存。二者都可以用逗号分隔字符串、正则表达式或一个数组来表示</p>

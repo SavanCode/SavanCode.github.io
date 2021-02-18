@@ -437,6 +437,151 @@
 <p><img src="/2021/02/03/Vue-day12/image-20210207133844473.png"></p>
 <p>所以整个结构是很清晰的， 如果还是蒙，那先滚回去把component看明白</p>
 <p><strong>从前面到这里，就可以开始做两到三个基本的练习： 类似todo App 或者带有 删减增的网页</strong></p>
+<h2 id="补充说明的命令行"><a href="#补充说明的命令行" class="headerlink" title="补充说明的命令行"></a>补充说明的命令行</h2><h3 id="vue-serve"><a href="#vue-serve" class="headerlink" title="vue serve"></a>vue serve</h3><p>启动一个服务并运行原型</p>
+<pre class=" language-sh"><code class="language-sh">vue serve Hello.vue</code></pre>
+<h2 id="处理资源路径"><a href="#处理资源路径" class="headerlink" title="处理资源路径"></a>处理资源路径</h2><p><strong>转换规则</strong></p>
+<p>如果 URL 是一个绝对路径 (例如 /images/foo.png )，它将会被保留不变。</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Vue logo<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/assets/logo.png<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> 
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Vue logo<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://image.xx.com/logo.png<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></code></pre>
+<p>如果 URL 以 . 开头会作为一个相对模块请求被解释并基于文件系统相对路径</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Vue logo<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>./assets/logo.png<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></code></pre>
+<p>如果 URL 以 ~ 开头会作为一个模块请求被解析。这意味着你甚至可以引用 Node 模块中的资源</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>~some-npm-package/foo.png<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></code></pre>
+<p>如果 URL 以 @ 开头会作为一个模块请求被解析。Vue CLI 默认会设置一个指向 src 的别名 @ </p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">import</span> Hello <span class="token keyword">from</span> <span class="token string">'@/components/Hello.vue'</span></code></pre>
+<h2 id="何时使用public-文件夹"><a href="#何时使用public-文件夹" class="headerlink" title="何时使用public 文件夹"></a>何时使用public 文件夹</h2><h3 id="通过-webpack-的处理并获得如下好处"><a href="#通过-webpack-的处理并获得如下好处" class="headerlink" title="通过 webpack 的处理并获得如下好处"></a>通过 webpack 的处理并获得如下好处</h3><p>脚本和样式表会被压缩且打包在一起，从而避免额外的网络请求。</p>
+<p>文件丢失会直接在编译时报错，而不是到了用户端才产生 404 错误。</p>
+<p>最终生成的文件名包含了内容哈希，因此你不必担心浏览器会缓存它们的老版本。</p>
+<h3 id="如下情况考虑使用public文件夹"><a href="#如下情况考虑使用public文件夹" class="headerlink" title="如下情况考虑使用public文件夹"></a>如下情况考虑使用public文件夹</h3><p>你需要在构建输出中指定一个固定的文件名字。</p>
+<p>你有上千个图片，需要动态引用它们的路径。</p>
+<p>有些库可能和 webpack 不兼容，除了将其用一个独立的<code> &lt;script&gt;</code> 标签引入没有别的选择。</p>
+<h3 id="使用public文件夹的注意事项"><a href="#使用public文件夹的注意事项" class="headerlink" title="使用public文件夹的注意事项"></a>使用public文件夹的注意事项</h3><p>如果你的应用没有部署在域名的根部，那么你需要为你的 URL 配置 publicPath 前缀</p>
+<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// vue.config.js </span>
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span> 
+publicPath<span class="token punctuation">:</span> process<span class="token punctuation">.</span>env<span class="token punctuation">.</span>NODE_ENV <span class="token operator">===</span> <span class="token string">'production'</span> <span class="token operator">?</span> <span class="token string">'/cart/'</span> <span class="token punctuation">:</span> <span class="token string">'/'</span> 
+<span class="token punctuation">}</span></code></pre>
+<p>在 public/index.html 等通过 html-webpack-plugin 用作模板的 HTML 文件中，你需要通过<code>&lt;%= BASE_URL %&gt;</code> 设置链接前缀</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>icon<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>&lt;%<span class="token punctuation">=</span> BASE_URL %<span class="token punctuation">></span>favicon.ico<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> </code></pre>
+<p>在模板中，先向组件传入<code>BASE_URL</code></p>
+<pre class=" language-js"><code class="language-js">data <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+    <span class="token keyword">return</span> <span class="token punctuation">{</span> 
+        publicPath<span class="token punctuation">:</span> process<span class="token punctuation">.</span>env<span class="token punctuation">.</span>BASE_URL 
+    <span class="token punctuation">}</span> 
+<span class="token punctuation">}</span></code></pre>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">:src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>`${publicPath}my-image.png`<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></code></pre>
+<h2 id="CSS相关"><a href="#CSS相关" class="headerlink" title="CSS相关"></a>CSS相关</h2><h3 id="使用预处理器"><a href="#使用预处理器" class="headerlink" title="使用预处理器"></a>使用预处理器</h3><p>如果创建项目时没有选择需要的预处理器（Sass/Less/Stylus），则需手动安装相应loader</p>
+<pre class=" language-sh"><code class="language-sh"># Sass 
+npm install -D sass-loader node-sass 
+# Less 
+npm install -D less-loader less 
+# Stylus 
+npm install -D stylus-loader stylus</code></pre>
+<pre class=" language-css"><code class="language-css"><span class="token selector">&lt;style scoped lang="scss"> 
+    $color: <span class="token id">#42b983</span>; 
+    a </span><span class="token punctuation">{</span> 
+    <span class="token property">color</span><span class="token punctuation">:</span> $color<span class="token punctuation">;</span> 
+    <span class="token punctuation">}</span> 
+&lt;/style></code></pre>
+<h3 id="自动化导入样式"><a href="#自动化导入样式" class="headerlink" title="自动化导入样式"></a>自动化导入样式</h3><p>自动化导入样式文件 (用于颜色、变量、mixin等)，可以使用 style-resources-loader</p>
+<pre class=" language-sh"><code class="language-sh">npm i -D style-resources-loader</code></pre>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">const</span> path <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'path'</span><span class="token punctuation">)</span> 
+<span class="token keyword">function</span> <span class="token function">addStyleResource</span><span class="token punctuation">(</span>rule<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+rule<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token string">'style-resource'</span><span class="token punctuation">)</span> 
+    <span class="token punctuation">.</span><span class="token function">loader</span><span class="token punctuation">(</span><span class="token string">'style-resources-loader'</span><span class="token punctuation">)</span> 
+    <span class="token punctuation">.</span><span class="token function">options</span><span class="token punctuation">(</span><span class="token punctuation">{</span> 
+    patterns<span class="token punctuation">:</span> <span class="token punctuation">[</span> 
+        path<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">'./src/styles/imports.scss'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> 
+        <span class="token punctuation">]</span><span class="token punctuation">,</span> 
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span> 
+    chainWebpack<span class="token punctuation">:</span> config <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span> 
+        <span class="token keyword">const</span> types <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'vue-modules'</span><span class="token punctuation">,</span> <span class="token string">'vue'</span><span class="token punctuation">,</span> <span class="token string">'normal-modules'</span><span class="token punctuation">,</span> <span class="token string">'normal'</span><span class="token punctuation">]</span>     
+        types<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>type <span class="token operator">=</span><span class="token operator">></span>     
+                      <span class="token function">addStyleResource</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span>module<span class="token punctuation">.</span><span class="token function">rule</span><span class="token punctuation">(</span><span class="token string">'scss'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">oneOf</span><span class="token punctuation">(</span>type<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>     <span class="token punctuation">}</span><span class="token punctuation">,</span> 
+<span class="token punctuation">}</span></code></pre>
+<h3 id="Scoped-CSS"><a href="#Scoped-CSS" class="headerlink" title="Scoped CSS"></a>Scoped CSS</h3><p>当 <code>&lt;style&gt; </code>标签有 scoped 属性时，它的 CSS 只作用于当前组件中的元素。</p>
+<pre class=" language-css"><code class="language-css"><span class="token selector">&lt;style scoped> 
+<span class="token class">.red</span> </span><span class="token punctuation">{</span> 
+    <span class="token property">color</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span> 
+<span class="token punctuation">}</span>&lt;/style></code></pre>
+<p>其原理是通过使用 PostCSS 来实现以下转换</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span> 
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>red<span class="token punctuation">"</span></span> <span class="token attr-name">data-v-f3f3eg9</span><span class="token punctuation">></span></span>hi<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span> 
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">></span></span> 
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span><span class="token style language-css"> 
+<span class="token selector"><span class="token class">.red</span><span class="token attribute">[data-v-f3f3eg9]</span> </span><span class="token punctuation">{</span> 
+    <span class="token property">color</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span> 
+<span class="token punctuation">}</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span></code></pre>
+<h3 id="混用本地和全局"><a href="#混用本地和全局" class="headerlink" title="混用本地和全局"></a>混用本地和全局</h3><pre class=" language-css"><code class="language-css">&lt;style> 
+<span class="token comment" spellcheck="true">/* 全局样式 */</span> 
+&lt;/style> 
+&lt;style scoped> 
+<span class="token comment" spellcheck="true">/* 本地样式 */</span> 
+&lt;/style></code></pre>
+<h3 id="深度作用选择器"><a href="#深度作用选择器" class="headerlink" title="深度作用选择器"></a>深度作用选择器</h3><p>使用 <code>&gt;&gt;&gt;</code> 操作符可以使 <code>scoped</code> 样式中的一个选择器能够作用得“更深”，例如影响</p>
+<p>子组件</p>
+<pre class=" language-css"><code class="language-css"><span class="token selector">&lt;style scoped> 
+<span class="token id">#app</span> >>> a </span><span class="token punctuation">{</span> <span class="token property">color</span><span class="token punctuation">:</span> red <span class="token punctuation">}</span>
+&lt;/style></code></pre>
+<p>Sass 之类的预处理器无法正确解析 &gt;&gt;&gt; 。这种情况下你可以使用 /deep/ 或 ::v-deep 操作符</p>
+<p>取而代之</p>
+<pre class=" language-css"><code class="language-css"><span class="token selector">&lt;style scoped lang="scss"> 
+<span class="token id">#app</span> </span><span class="token punctuation">{</span> 
+    <span class="token selector">/deep/ a </span><span class="token punctuation">{</span> 
+        <span class="token property">color</span><span class="token punctuation">:</span> <span class="token function">rgb</span><span class="token punctuation">(</span><span class="token number">196</span>, <span class="token number">50</span>, <span class="token number">140</span><span class="token punctuation">)</span> 
+    <span class="token punctuation">}</span>
+    <span class="token selector"><span class="token pseudo-element">::v-deep</span> a </span><span class="token punctuation">{</span> 
+        <span class="token property">color</span><span class="token punctuation">:</span> <span class="token function">rgb</span><span class="token punctuation">(</span><span class="token number">196</span>, <span class="token number">50</span>, <span class="token number">140</span><span class="token punctuation">)</span> 
+    <span class="token punctuation">}</span> 
+<span class="token punctuation">}</span>&lt;/style></code></pre>
+<h3 id="CSS-Module"><a href="#CSS-Module" class="headerlink" title="CSS Module"></a>CSS Module</h3><p>CSS Modules 是一个流行的，用于模块化和组合 CSS 的系统。 vue-loader 提供了与 CSS Modules 的</p>
+<p>一流集成，可以作为模拟 scoped CSS 的替代方案。</p>
+<p>添加module</p>
+<pre class=" language-css"><code class="language-css"><span class="token selector">&lt;style module lang="scss"> 
+<span class="token class">.red</span> </span><span class="token punctuation">{</span> 
+    <span class="token property">color</span><span class="token punctuation">:</span> <span class="token hexcode">#f00</span><span class="token punctuation">;</span> 
+<span class="token punctuation">}</span>
+<span class="token selector"><span class="token class">.bold</span> </span><span class="token punctuation">{</span> 
+    <span class="token property">font-weight</span><span class="token punctuation">:</span> bold<span class="token punctuation">;</span> 
+<span class="token punctuation">}</span>
+&lt;/style></code></pre>
+<p>模板中通过$style.xx访问</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">:class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>$style.red<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>awesome-vue<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span> 
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">:class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>{[$style.red]:isRed}<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>awesome-vue<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span> 
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">:class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>[$style.red, $style.bold]<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>awesome-vue<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span></code></pre>
+<p>JS中访问</p>
+<pre><code>&lt;script&gt; 
+export default &#123; 
+    created () &#123; 
+    // -&gt; &quot;red_1VyoJ-uZ&quot; 
+    // 一个基于文件名和类名生成的标识符 
+    console.log(this.$style.red) 
+        &#125; 
+    &#125;
+&lt;/script&gt;</code></pre>
+<h3 id="数据访问相关"><a href="#数据访问相关" class="headerlink" title="数据访问相关"></a>数据访问相关</h3><h4 id="数据模拟"><a href="#数据模拟" class="headerlink" title="数据模拟"></a>数据模拟</h4><p>使用开发服务器配置before选项，可以编写接口，提供模拟数据。</p>
+<pre><code>devServer:&#123; 
+    before(app) &#123; 
+        app.get(&#39;/api/courses&#39;, (req, res) =&gt; &#123; 
+            res.json([&#123; name: &#39;web全栈&#39;, price: 8999 &#125;, &#123; name: &#39;web高级&#39;, price: 8999 &#125;])
+        &#125;) 
+    &#125; 
+&#125;</code></pre>
+<p>调用</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">import</span> axios <span class="token keyword">from</span> <span class="token string">'axios'</span> 
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">getCourses</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+    <span class="token keyword">return</span> axios<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'/api/courses'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>res <span class="token operator">=</span><span class="token operator">></span> res<span class="token punctuation">.</span>data<span class="token punctuation">)</span> 
+<span class="token punctuation">}</span></code></pre>
+<h4 id="代理"><a href="#代理" class="headerlink" title="代理"></a>代理</h4><p>设置开发服务器代理选项可以有效避免调用接口时出现的跨域问题</p>
+<pre><code>devServer: &#123; proxy: &#39;http://localhost:3000&#39; &#125;</code></pre>
+<p>测试接口</p>
+<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// 需要安装express：npm i express </span>
+<span class="token keyword">const</span> express <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'express'</span><span class="token punctuation">)</span> 
+<span class="token keyword">const</span> app <span class="token operator">=</span> <span class="token function">express</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+app<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'/api/courses'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>req<span class="token punctuation">,</span> res<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span> 
+    res<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">{</span> name<span class="token punctuation">:</span> <span class="token string">'web全栈'</span><span class="token punctuation">,</span> price<span class="token punctuation">:</span> <span class="token number">8999</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> name<span class="token punctuation">:</span> <span class="token string">'web高级'</span><span class="token punctuation">,</span> price<span class="token punctuation">:</span> <span class="token number">8999</span> <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+app<span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span><span class="token number">3000</span><span class="token punctuation">)</span></code></pre>
 <h2 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h2><p>无意中发现的 <a target="_blank" rel="noopener" href="https://vuejsexamples.com/">vue.js examples</a> </p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p> <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43342105/article/details/106248594">https://blog.csdn.net/weixin_43342105/article/details/106248594</a></p>
 

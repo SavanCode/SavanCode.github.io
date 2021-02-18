@@ -424,8 +424,18 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="Vue-js-组件"><a href="#Vue-js-组件" class="headerlink" title="Vue.js 组件"></a>Vue.js 组件</h2><p>组件（Component）是 Vue.js 最强大的功能之一。</p>
+<p><strong>组件的本质是产生虚拟</strong> <strong>DOM</strong></p>
+<p>因为vue组件的经历发展：组件配置 =&gt; VueComponent实例 =&gt; render() =&gt; Virtual DOM=&gt; DOM</p>
 <p>组件可以扩展 HTML 元素，封装可重用的代码。</p>
 <p>组件系统让我们可以用独立可复用的小组件来构建大型应用，几乎任意类型的应用的界面都可以抽象为一个组件树</p>
+<blockquote>
+<p>稍微给个大局观（后补）- Vue组件化的理解</p>
+<ul>
+<li>通用组件：实现最基本的功能，具有通用性、复用性，例如按钮组件、输入框组件、布局组件等。</li>
+<li>业务组件：它们完成具体业务，具有一定的复用性，例如登录组件、轮播图组件。</li>
+<li>页面组件：组织应用各部分独立内容，需要时在不同页面组件间切换，例如列表页、详情页组件</li>
+</ul>
+</blockquote>
 <h2 id="全局组件"><a href="#全局组件" class="headerlink" title="全局组件"></a>全局组件</h2><h3 id="方式一"><a href="#方式一" class="headerlink" title="方式一"></a>方式一</h3><pre class=" language-html"><code class="language-html">  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>app<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
         <span class="token comment" spellcheck="true">&lt;!-- 这里是不能够 直接用大写的哦 如果命名用了大写 编译要用横杠链接 --></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>simple-vue</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>simple-vue</span><span class="token punctuation">></span></span>
@@ -1132,6 +1142,7 @@ Vue<span class="token punctuation">.</span><span class="token function">componen
     </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code></pre>
 <p><img src="/2021/02/02/Vue-day8/image-20210206221712804.png"></p>
 <h3 id="Slot补充资料"><a href="#Slot补充资料" class="headerlink" title="Slot补充资料"></a>Slot补充资料</h3><p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000012996217">https://segmentfault.com/a/1190000012996217</a></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="1-如何使用组件"><a href="#1-如何使用组件" class="headerlink" title="1. 如何使用组件"></a>1. 如何使用组件</h3><p><strong>定义</strong>：Vue.component()，components选项，sfc<br><strong>分类</strong>：有状态组件，functional，abstract<br><strong>通信</strong>：props，$emit()/$on()，provide/inject，$children/$parent/$root/$attrs/$listeners<br><strong>内容分发</strong>：<code>&lt;slot&gt;</code>，<code>&lt;template&gt;</code>，<code>v-slot</code><br><strong>使用及优化</strong>：is，keep-alive，异步组件</p>
 <h2 id="个人练习的完整代码"><a href="#个人练习的完整代码" class="headerlink" title="个人练习的完整代码"></a>个人练习的完整代码</h2><p><a target="_blank" rel="noopener" href="https://github.com/SavanCode/VUE/tree/main/HelloVue">https://github.com/SavanCode/VUE/tree/main/HelloVue</a></p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a target="_blank" rel="noopener" href="https://www.runoob.com/vue2/vue-component-custom-event.html">https://www.runoob.com/vue2/vue-component-custom-event.html</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV15741177Eh?p=72">https://www.bilibili.com/video/BV15741177Eh?p=72</a></p>

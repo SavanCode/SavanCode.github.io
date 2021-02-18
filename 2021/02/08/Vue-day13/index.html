@@ -523,6 +523,7 @@ var vmB = new Vue(&#123;
         ├── cart.js       # 购物车模块
         └── products.js   # 产品模块</code></pre>
 <h2 id="实例操作"><a href="#实例操作" class="headerlink" title="实例操作"></a>实例操作</h2><p>看下面之前，先想想计数器要是使用Vue怎么实现</p>
+<p>然后看下面的基本语法，实现一个<a target="_blank" rel="noopener" href="https://github.com/SavanCode/VUE/tree/main/vuex01">Vue的计数器</a></p>
 <h2 id="1-state-状态对象的获取方法（组件内）"><a href="#1-state-状态对象的获取方法（组件内）" class="headerlink" title="1.state-状态对象的获取方法（组件内）"></a>1.state-状态对象的获取方法（组件内）</h2><h3 id="在组件的template中直接使用"><a href="#在组件的template中直接使用" class="headerlink" title="在组件的template中直接使用"></a>在组件的template中直接使用</h3><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span><span class="token punctuation">></span></span>{{ $store.state.count }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h2</span><span class="token punctuation">></span></span></code></pre>
 <p>由于 Vuex 的状态存储是响应式的，从 store 实例中读取状态最简单的方法就是在<strong>计算属性</strong>中返回某个状态</p>
 <h3 id="1、在计算属性computed中直接赋值"><a href="#1、在计算属性computed中直接赋值" class="headerlink" title="1、在计算属性computed中直接赋值"></a>1、在计算属性computed中直接赋值</h3><pre class=" language-javascript"><code class="language-javascript">computed<span class="token punctuation">:</span> <span class="token punctuation">{</span>
@@ -617,6 +618,8 @@ store<span class="token punctuation">.</span><span class="token function">commit
     <span class="token punctuation">}</span><span class="token punctuation">)</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span></code></pre>
+<h2 id="严格模式"><a href="#严格模式" class="headerlink" title="严格模式"></a>严格模式</h2><p>严格模式下，无论何时发生了状态变更且不是由 mutation 函数引起的，将会抛出错误。这能保证所有</p>
+<p>的状态变更都能被调试工具跟踪到。开启严格模式 strict: true</p>
 <h2 id="4-action"><a href="#4-action" class="headerlink" title="4.action"></a>4.action</h2><h3 id="基本特点"><a href="#基本特点" class="headerlink" title="基本特点"></a>基本特点</h3><p>　　Action类似于mutation，不同之处在于：</p>
 <p>　　1、Action 提交的是 mutation，而不是直接变更状态</p>
 <p>　　2、Action 可以包含任意异步操作</p>
@@ -782,6 +785,7 @@ store<span class="token punctuation">.</span>state<span class="token punctuation
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span></code></pre>
+<p>这里的练习在<a target="_blank" rel="noopener" href="https://github.com/SavanCode/VUE/tree/main/Vuex-module">github</a></p>
 <h2 id="6-命名空间-amp-测试Mutation"><a href="#6-命名空间-amp-测试Mutation" class="headerlink" title="6.命名空间&amp;测试Mutation"></a>6.命名空间&amp;测试Mutation</h2><p>这里我没做练习弄明白 嘿嘿 所以想了解请看<a target="_blank" rel="noopener" href="https://www.cnblogs.com/xiaohuochai/p/7554127.html">命名空间</a></p>
 <h2 id="Vuex的API"><a href="#Vuex的API" class="headerlink" title="Vuex的API"></a>Vuex的API</h2><h3 id="辅助函数"><a href="#辅助函数" class="headerlink" title="辅助函数"></a>辅助函数</h3><h4 id="mapState"><a href="#mapState" class="headerlink" title="mapState"></a>mapState</h4><pre class=" language-js"><code class="language-js"><span class="token function">mapState</span><span class="token punctuation">(</span>namespace<span class="token operator">?</span><span class="token punctuation">:</span> string<span class="token punctuation">,</span> map<span class="token punctuation">:</span> Array<span class="token operator">&lt;</span>string<span class="token operator">></span> <span class="token operator">|</span> Object<span class="token punctuation">)</span><span class="token punctuation">:</span> Object</code></pre>
 <p>　　为组件创建计算属性以返回 Vuex store 中的状态。第一个参数是可选的，可以是一个命名空间字符串</p>
@@ -936,9 +940,7 @@ store<span class="token punctuation">.</span>state<span class="token punctuation
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Referencehttps://www.bilibili.com/video/BV1cx41147tu
-http://doc.cms.liulongbin.top/#/md/day4
-
+                            webpack
                         
                     </div>
                     <div class="publish-info">
