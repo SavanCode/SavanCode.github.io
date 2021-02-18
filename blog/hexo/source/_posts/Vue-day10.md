@@ -842,7 +842,8 @@ const Baz = () => import(/* webpackChunkName: "group-foo" */ './Baz.vue')
 ### 语法
 
 ```html
-<keep-alive>
+<!-- 范例：缓存about组件 -->
+<keep-alive include="about">
     <router-view></router-view>
 </keep-alive>
 ```
