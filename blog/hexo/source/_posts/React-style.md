@@ -1,19 +1,19 @@
 ---
-title: React style
+title: 前端style框架
 top: false
 cover: false
 toc: true
 mathjax: true
 date: 2021-01-10 16:48:07
 password:
-summary: React Style 收集
-tags: React
-categories: React
+summary: 前端Style 收集
+tags: [React,UI,Vue]
+categories: UI
 ---
 
 React Style : Bootstrap , Material-UI
 
-[Material-UI](https://material-ui.com/zh/getting-started/installation/)
+## [Material-UI](https://material-ui.com/zh/getting-started/installation/)
 
 ```sh
 // 用npm安装
@@ -23,11 +23,11 @@ npm install @material-ui/core
 自己练习 - clock
 
 
-# [Ant Design of React](https://ant.design/components/overview-cn/)
+## [Ant Design of React](https://ant.design/components/overview-cn/)
 
+基于 React.js
 
-
-# [Echart](https://echarts.apache.org/zh/index.html)
+## [Echart](https://echarts.apache.org/zh/index.html)
 
 [github](https://github.com/apache/incubator-echarts)
 
@@ -94,10 +94,16 @@ class EChartsView extends Component {
 ReactDOM.render(<EChartsView/>,document.getElementById('root'));
 ```
 
-
-
-# [react echarts](https://github.com/hustcc/echarts-for-react)
+## [react echarts](https://github.com/hustcc/echarts-for-react)
 
 ```sh
 npm install echarts-for-react echarts
 ```
+
+## [Element for Vue](https://element.eleme.cn/#/zh-CN)
+
+基于 Vue.js
+
+## [iview  for Vue](https://www.iviewui.com/)
+
+基于 Vue.js

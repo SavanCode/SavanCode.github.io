@@ -161,7 +161,56 @@ data () {
 <img :src="`${publicPath}my-image.png`">
 ```
 
-## CSS相关
+## Vue CSS相关
+
+### 引入外部CSS文件
+
+#### @import引入外部css
+
+##### 步骤一：在入口js文件main.js中引入
+
+```js
+import Vue from 'vue'
+import App from './App' // 引入App这个组件
+import router from './router' /* 引入路由配置 */
+import axios from 'axios'
+import '../static/css/global.css' /*引入公共样式*/
+```
+
+##### 步骤二：作用域是全局
+
+```css
+<style scoped>
+/*这里仍然全局！！！！*/
+/*如果在app.vue中引入，但是这样引入有一个问题，就是在 index.html的HEADH上会多出一个空的<style></style>*/
+@import "../static/css/user.css";
+@import url("cssLink");
+.user-content{
+  background-color: #3982e5;
+}
+</style>
+```
+
+##### 步骤二：作用域是组件
+
+```css
+/*这里就是局部的了*/
+<style scoped src="../static/css/user.css">
+<style scoped>
+.user-content{
+  background-color: #3982e5;
+}
+</style>
+```
+
+> 在生产环境中不要使用@import引入css，因为在请求到的css中含有@import引入css的话，会发起请求把@import的css引进来，多次请求浪费不必要的资源。
+
+#### 使用link来调用外部的css文件
+
+head放置`<link rel="stylesheet" href="wcss.css" type="text/css" />`来调用外部的wcss.css文件来实现html引用css文件
+
+
+
 
 ### 使用预处理器
 
