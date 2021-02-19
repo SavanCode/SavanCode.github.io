@@ -639,6 +639,17 @@ Vue<span class="token punctuation">.</span><span class="token function">componen
           required<span class="token punctuation">:</span> <span class="token boolean">true</span> <span class="token comment" spellcheck="true">//在使用组件必传值</span>
           <span class="token punctuation">}</span>
   <span class="token punctuation">}</span></code></pre>
+<h4 id="Boolean或者Number写法"><a href="#Boolean或者Number写法" class="headerlink" title="Boolean或者Number写法"></a>Boolean或者Number写法</h4><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script language-javascript">
+props<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    propA<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        type<span class="token punctuation">:</span> Boolean<span class="token punctuation">,</span>
+        <span class="token keyword">default</span><span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+<span class="token comment" spellcheck="true">&lt;!--使用的时候，需要使用 v-bind ，从而让它的值被当作 JavaScript 表达式计算，数字也是一样--></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>comp</span> <span class="token attr-name">:propA</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>comp</span><span class="token punctuation">></span></span>
+<span class="token comment" spellcheck="true">&lt;!--//如果 propA="true" 那么一直传递下去的就是true--></span></code></pre>
 <h4 id="props属性的类型限制"><a href="#props属性的类型限制" class="headerlink" title="props属性的类型限制"></a>props属性的类型限制</h4><pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">//1.类型限制(多个类使用数组)</span>
 cmovies<span class="token punctuation">:</span>Array<span class="token punctuation">,</span><span class="token comment" spellcheck="true">//限制为数组类型</span>
 cmessage<span class="token punctuation">:</span>String<span class="token punctuation">,</span><span class="token comment" spellcheck="true">//限制为Strin类型</span>
@@ -906,6 +917,17 @@ Vue<span class="token punctuation">.</span><span class="token function">componen
 </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code></pre>
 <p>如果你想在某个组件的根元素上监听一个原生事件。可以使用 .native 修饰 v-on 。例如：</p>
 <pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>my-component</span> <span class="token attr-name"><span class="token namespace">v-on:</span>click.native</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>doTheThing<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>my-component</span><span class="token punctuation">></span></span></code></pre>
+<h3 id="vm-on-event-callback"><a href="#vm-on-event-callback" class="headerlink" title="vm.$on(event, callback)"></a>vm.$on(event, callback)</h3><p><strong>参数</strong>：</p>
+<ul>
+<li><code>&#123;string | Array&lt;string&gt;&#125; event</code> (数组只在 2.2.0+ 中支持)</li>
+<li><code>&#123;Function&#125; callback</code></li>
+</ul>
+<p><strong>用法</strong>：<code>$on</code>事件需要两个参数，一个是监听的当前实例上的事件名，一个是事件触发的回调函数，回调函数接受的是在事件出发的时候额外传递的参数。</p>
+<pre class=" language-js"><code class="language-js">vm<span class="token punctuation">.</span><span class="token function">$on</span><span class="token punctuation">(</span><span class="token string">'test'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>msg<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>msg<span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+vm<span class="token punctuation">.</span><span class="token function">$emit</span><span class="token punctuation">(</span><span class="token string">'test'</span><span class="token punctuation">,</span> <span class="token string">'hi'</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">// => "hi"</span></code></pre>
 <h2 id="自定义组件的-v-model"><a href="#自定义组件的-v-model" class="headerlink" title="自定义组件的 v-model"></a>自定义组件的 v-model</h2><p>组件上的 v-model 默认会利用名为 value 的 prop 和名为 input 的事件。</p>
 <pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">v-model</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>parentData<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></code></pre>
 <p>等价于：</p>
@@ -995,6 +1017,21 @@ Vue<span class="token punctuation">.</span><span class="token function">componen
 <span class="token punctuation">}</span><span class="token punctuation">)</span>
 </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code></pre>
 <p><img src="/2021/02/02/Vue-day8/image-20210204233053793.png"></p>
+<h2 id="event-bus"><a href="#event-bus" class="headerlink" title="event bus"></a>event bus</h2><p>通过在Vue原型上添加一个Vue实例作为事件总线，实现组件间相互通信，而且不受组件间关系的影响</p>
+<pre class=" language-js"><code class="language-js">Vue<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>$bus <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>这样做可以在任意组件中使用 this.$bus 访问到该Vue实例</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script language-javascript">
+<span class="token comment" spellcheck="true">// 弹窗组件 </span>
+Vue<span class="token punctuation">.</span><span class="token function">component</span><span class="token punctuation">(</span><span class="token string">'message'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> 
+    <span class="token comment" spellcheck="true">// ... </span>
+    <span class="token comment" spellcheck="true">// 监听关闭事件 </span>
+    mounted <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+        <span class="token keyword">this</span><span class="token punctuation">.</span>$bus<span class="token punctuation">.</span><span class="token function">$on</span><span class="token punctuation">(</span><span class="token string">'message-close'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span> 
+            <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">$emit</span><span class="token punctuation">(</span><span class="token string">'update:show'</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+<span class="token comment" spellcheck="true">&lt;!-- 派发关闭事件 --></span> 
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>toolbar<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">@click</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>$bus.$emit(<span class="token punctuation">'</span>message-close<span class="token punctuation">'</span>)<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>清空提示框<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
 <h2 id="获取页面上的DOM-parent-root-root属性"><a href="#获取页面上的DOM-parent-root-root属性" class="headerlink" title="获取页面上的DOM $parent $root $root属性"></a>获取页面上的DOM <code>$parent</code> <code>$root</code> <code>$root</code>属性</h2><p><img src="/2021/02/02/Vue-day8/image-20210207122506755.png"></p>
 <pre class=" language-js"><code class="language-js">components<span class="token punctuation">:</span> <span class="token punctuation">{</span>
                 ccpn<span class="token punctuation">:</span> <span class="token punctuation">{</span>
@@ -1345,12 +1382,12 @@ Vue<span class="token punctuation">.</span><span class="token function">componen
                 
                 <div class="card-action article-tags">
                     
-                    <a href="../../../../tags/Node-js/">
-                        <span class="chip bg-color">Node.js</span>
-                    </a>
-                    
                     <a href="../../../../tags/Vue/">
                         <span class="chip bg-color">Vue</span>
+                    </a>
+                    
+                    <a href="../../../../tags/Node-js/">
+                        <span class="chip bg-color">Node.js</span>
                     </a>
                     
                     <a href="../../../../tags/Axios/">

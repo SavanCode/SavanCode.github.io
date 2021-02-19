@@ -429,43 +429,43 @@
 <p>如果有代码基础，Vuex也可以理解为java中的一个map，这个map是static（静态资源）的，每次获取map的值，都需要调用java的api，比如map.get(key)获取对应的值，也可以放入数据map.put(data)，而且这个数据是所有类都可以调用的，只需要导入这个map就能使用里面的共享数据。</p>
 </blockquote>
 <p>　当访问数据对象时，一个 Vue 实例只是简单的代理访问。所以，如果有一处需要被多个实例间共享的状态，可以简单地通过维护一份数据来实现共享</p>
-<pre><code>const sourceOfTruth = &#123;&#125;
-const vmA = new Vue(&#123;
-  data: sourceOfTruth
-&#125;)
-const vmB = new Vue(&#123;
-  data: sourceOfTruth
-&#125;)</code></pre>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">const</span> sourceOfTruth <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token keyword">const</span> vmA <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  data<span class="token punctuation">:</span> sourceOfTruth
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> vmB <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  data<span class="token punctuation">:</span> sourceOfTruth
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
 <p>　　现在当 <code>sourceOfTruth</code> 发生变化，<code>vmA</code> 和 <code>vmB</code> 都将自动的更新引用它们的视图。子组件们的每个实例也会通过 <code>this.$root.$data</code> 去访问。现在有了唯一的实际来源，但是，调试将会变为噩梦。任何时间，应用中的任何部分，在任何数据改变后，都不会留下变更过的记录。</p>
 <p>　　为了解决这个问题，采用一个简单的 <strong>store 模式</strong>：</p>
-<pre><code>var store = &#123;
-  debug: true,
-  state: &#123;
-    message: &#39;Hello!&#39;
-  &#125;,
-  setMessageAction (newValue) &#123;
-    if (this.debug) console.log(&#39;setMessageAction triggered with&#39;, newValue)
-    this.state.message = newValue
-  &#125;,
-  clearMessageAction () &#123;
-    if (this.debug) console.log(&#39;clearMessageAction triggered&#39;)
-    this.state.message = &#39;&#39;
-  &#125;
-&#125;</code></pre>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> store <span class="token operator">=</span> <span class="token punctuation">{</span>
+  debug<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  state<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    message<span class="token punctuation">:</span> <span class="token string">'Hello!'</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  setMessageAction <span class="token punctuation">(</span>newValue<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>debug<span class="token punctuation">)</span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'setMessageAction triggered with'</span><span class="token punctuation">,</span> newValue<span class="token punctuation">)</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>message <span class="token operator">=</span> newValue
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  clearMessageAction <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>debug<span class="token punctuation">)</span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'clearMessageAction triggered'</span><span class="token punctuation">)</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>message <span class="token operator">=</span> <span class="token string">''</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
 <p>　　所有 store 中 state 的改变，都放置在 store 自身的 action 中去管理。这种集中式状态管理能够被更容易地理解哪种类型的 mutation 将会发生，以及它们是如何被触发。当错误出现时，现在也会有一个 log 记录 bug 之前发生了什么</p>
 <p>　　此外，每个实例/组件仍然可以拥有和管理自己的私有状态：</p>
-<pre><code>var vmA = new Vue(&#123;
-  data: &#123;
-    privateState: &#123;&#125;,
-    sharedState: store.state
-  &#125;
-&#125;)
-var vmB = new Vue(&#123;
-  data: &#123;
-    privateState: &#123;&#125;,
-    sharedState: store.state
-  &#125;
-&#125;)</code></pre>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> vmA <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  data<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    privateState<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    sharedState<span class="token punctuation">:</span> store<span class="token punctuation">.</span>state
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">var</span> vmB <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  data<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    privateState<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    sharedState<span class="token punctuation">:</span> store<span class="token punctuation">.</span>state
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
 <p><img src="/2021/02/08/Vue-day13/image-20210214125750018.png"></p>
 <blockquote>
 <p>组件不允许直接修改属于 store 实例的 state，而应执行 action 来分发 (dispatch) 事件通知 store 去改变，最终达成了 Flux 架构。这样约定的好处是，能够记录所有 store 中发生的 state 改变，同时实现能做到记录变更 (mutation)、保存状态快照、历史回滚/时光旅行的先进的调试工具</p>
@@ -1023,12 +1023,12 @@ store<span class="token punctuation">.</span>state<span class="token punctuation
                 
                 <div class="card-action article-tags">
                     
-                    <a href="../../../../tags/vscode/">
-                        <span class="chip bg-color">vscode</span>
-                    </a>
-                    
                     <a href="../../../../tags/Vue/">
                         <span class="chip bg-color">Vue</span>
+                    </a>
+                    
+                    <a href="../../../../tags/vscode/">
+                        <span class="chip bg-color">vscode</span>
                     </a>
                     
                 </div>

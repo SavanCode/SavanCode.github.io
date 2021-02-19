@@ -469,7 +469,32 @@ publicPath<span class="token punctuation">:</span> process<span class="token pun
     <span class="token punctuation">}</span> 
 <span class="token punctuation">}</span></code></pre>
 <pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">:src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>`${publicPath}my-image.png`<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></code></pre>
-<h2 id="CSS相关"><a href="#CSS相关" class="headerlink" title="CSS相关"></a>CSS相关</h2><h3 id="使用预处理器"><a href="#使用预处理器" class="headerlink" title="使用预处理器"></a>使用预处理器</h3><p>如果创建项目时没有选择需要的预处理器（Sass/Less/Stylus），则需手动安装相应loader</p>
+<h2 id="Vue-CSS相关"><a href="#Vue-CSS相关" class="headerlink" title="Vue CSS相关"></a>Vue CSS相关</h2><h3 id="引入外部CSS文件"><a href="#引入外部CSS文件" class="headerlink" title="引入外部CSS文件"></a>引入外部CSS文件</h3><h4 id="import引入外部css"><a href="#import引入外部css" class="headerlink" title="@import引入外部css"></a>@import引入外部css</h4><h5 id="步骤一：在入口js文件main-js中引入"><a href="#步骤一：在入口js文件main-js中引入" class="headerlink" title="步骤一：在入口js文件main.js中引入"></a>步骤一：在入口js文件main.js中引入</h5><pre class=" language-js"><code class="language-js"><span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span>
+<span class="token keyword">import</span> App <span class="token keyword">from</span> <span class="token string">'./App'</span> <span class="token comment" spellcheck="true">// 引入App这个组件</span>
+<span class="token keyword">import</span> router <span class="token keyword">from</span> <span class="token string">'./router'</span> <span class="token comment" spellcheck="true">/* 引入路由配置 */</span>
+<span class="token keyword">import</span> axios <span class="token keyword">from</span> <span class="token string">'axios'</span>
+<span class="token keyword">import</span> <span class="token string">'../static/css/global.css'</span> <span class="token comment" spellcheck="true">/*引入公共样式*/</span></code></pre>
+<h5 id="步骤二：作用域是全局"><a href="#步骤二：作用域是全局" class="headerlink" title="步骤二：作用域是全局"></a>步骤二：作用域是全局</h5><pre class=" language-css"><code class="language-css">&lt;style scoped>
+<span class="token comment" spellcheck="true">/*这里仍然全局！！！！*/</span>
+<span class="token comment" spellcheck="true">/*如果在app.vue中引入，但是这样引入有一个问题，就是在 index.html的HEADH上会多出一个空的&lt;style>&lt;/style>*/</span>
+<span class="token atrule"><span class="token rule">@import</span> <span class="token string">"../static/css/user.css"</span><span class="token punctuation">;</span></span>
+<span class="token atrule"><span class="token rule">@import</span> <span class="token url">url("cssLink")</span><span class="token punctuation">;</span></span>
+<span class="token selector"><span class="token class">.user-content</span></span><span class="token punctuation">{</span>
+  <span class="token property">background-color</span><span class="token punctuation">:</span> <span class="token hexcode">#3982e5</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+&lt;/style></code></pre>
+<h5 id="步骤二：作用域是组件"><a href="#步骤二：作用域是组件" class="headerlink" title="步骤二：作用域是组件"></a>步骤二：作用域是组件</h5><pre class=" language-css"><code class="language-css"><span class="token comment" spellcheck="true">/*这里就是局部的了*/</span>
+<span class="token selector">&lt;style scoped src="<span class="token class">..</span>/static/css/user<span class="token class">.css</span>">
+&lt;style scoped>
+<span class="token class">.user-content</span></span><span class="token punctuation">{</span>
+  <span class="token property">background-color</span><span class="token punctuation">:</span> <span class="token hexcode">#3982e5</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+&lt;/style></code></pre>
+<blockquote>
+<p>在生产环境中不要使用@import引入css，因为在请求到的css中含有@import引入css的话，会发起请求把@import的css引进来，多次请求浪费不必要的资源。</p>
+</blockquote>
+<h4 id="使用link来调用外部的css文件"><a href="#使用link来调用外部的css文件" class="headerlink" title="使用link来调用外部的css文件"></a>使用link来调用外部的css文件</h4><p>head放置<code>&lt;link rel=&quot;stylesheet&quot; href=&quot;wcss.css&quot; type=&quot;text/css&quot; /&gt;</code>来调用外部的wcss.css文件来实现html引用css文件</p>
+<h3 id="使用预处理器"><a href="#使用预处理器" class="headerlink" title="使用预处理器"></a>使用预处理器</h3><p>如果创建项目时没有选择需要的预处理器（Sass/Less/Stylus），则需手动安装相应loader</p>
 <pre class=" language-sh"><code class="language-sh"># Sass 
 npm install -D sass-loader node-sass 
 # Less 
@@ -729,12 +754,12 @@ app<span class="token punctuation">.</span><span class="token function">listen</
                 
                 <div class="card-action article-tags">
                     
-                    <a href="../../../../tags/vscode/">
-                        <span class="chip bg-color">vscode</span>
-                    </a>
-                    
                     <a href="../../../../tags/Vue/">
                         <span class="chip bg-color">Vue</span>
+                    </a>
+                    
+                    <a href="../../../../tags/vscode/">
+                        <span class="chip bg-color">vscode</span>
                     </a>
                     
                 </div>

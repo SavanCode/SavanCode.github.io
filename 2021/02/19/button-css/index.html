@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="前端style框架, Savannah">
+    <meta name="keywords" content="button-css, Savannah">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>前端style框架 | Savannah</title>
+    <title>button-css | Savannah</title>
     <link rel="icon" type="image/png" href="../../../../favicon.png">
 
     <link rel="stylesheet" type="text/css" href="../../../../libs/awesome/css/all.css">
@@ -260,12 +260,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/15.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/16.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">前端style框架</h1>
+                    <h1 class="description center-align post-title">button-css</h1>
                 </div>
             </div>
         </div>
@@ -382,16 +382,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="../../../../tags/React/">
-                                <span class="chip bg-color">React</span>
-                            </a>
-                        
-                            <a href="../../../../tags/UI/">
-                                <span class="chip bg-color">UI</span>
-                            </a>
-                        
-                            <a href="../../../../tags/Vue/">
-                                <span class="chip bg-color">Vue</span>
+                            <a href="../../../../tags/css-html/">
+                                <span class="chip bg-color">css&amp;html</span>
                             </a>
                         
                     </div>
@@ -402,8 +394,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="../../../../categories/UI/" class="post-category">
-                                UI
+                            <a href="../../../../categories/css-html/" class="post-category">
+                                css&html
                             </a>
                         
                     </div>
@@ -415,7 +407,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2021-01-10
+                    2021-02-19
                 </div>
                 
 
@@ -431,64 +423,26 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>React Style : Bootstrap , Material-UI</p>
-<h2 id="Material-UI"><a href="#Material-UI" class="headerlink" title="Material-UI"></a><a target="_blank" rel="noopener" href="https://material-ui.com/zh/getting-started/installation/">Material-UI</a></h2><pre class=" language-sh"><code class="language-sh">// 用npm安装
-npm install @material-ui/core</code></pre>
-<p>自己练习 - clock</p>
-<h2 id="Ant-Design-of-React"><a href="#Ant-Design-of-React" class="headerlink" title="Ant Design of React"></a><a target="_blank" rel="noopener" href="https://ant.design/components/overview-cn/">Ant Design of React</a></h2><p>基于 React.js</p>
-<h2 id="Echart"><a href="#Echart" class="headerlink" title="Echart"></a><a target="_blank" rel="noopener" href="https://echarts.apache.org/zh/index.html">Echart</a></h2><p><a target="_blank" rel="noopener" href="https://github.com/apache/incubator-echarts">github</a></p>
-<p>常见问题：”export ‘default’ (imported as ‘ECharts’) was not found in ‘echarts/lib/echarts.js’</p>
-<p>解决办法：</p>
-<ol>
-<li>引入echarts的地方改为</li>
-</ol>
-<pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> echarts <span class="token keyword">from</span> <span class="token string">'echarts'</span></code></pre>
-<ol>
-<li>webpack的DefinePlugin里加入如下字段</li>
-</ol>
-<pre class=" language-sh"><code class="language-sh">// 此处根据情况自行修改，结果为boolean就行，true的情况下会多一些日志信息
-'__DEV__': process.env.node_env === 'dev' </code></pre>
-<p>或者</p>
-<pre class=" language-sh"><code class="language-sh">npm un echarts && npm i -E echarts@3.7.2 zrender@3.6.3</code></pre>
-<p>基本的component例子</p>
-<pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">import</span> echarts <span class="token keyword">from</span> <span class="token string">'echarts'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token string">'echarts/map/js/china'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> geoJson <span class="token keyword">from</span> <span class="token string">'echarts/map/json/china.json'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token string">'echarts/lib/chart/bar'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token string">'echarts/lib/component/tooltip'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token string">'echarts/lib/component/title'</span><span class="token punctuation">;</span>
+                <h2 id="按钮左边是圆角-右边是方角"><a href="#按钮左边是圆角-右边是方角" class="headerlink" title="按钮左边是圆角,右边是方角"></a>按钮左边是圆角,右边是方角</h2><h3 id="左边是圆角-右边是方角"><a href="#左边是圆角-右边是方角" class="headerlink" title="左边是圆角,右边是方角"></a>左边是圆角,右边是方角</h3><pre class=" language-css"><code class="language-css"><span class="token selector"><span class="token class">.left_radius</span></span><span class="token punctuation">{</span>
+<span class="token property">border-top-left-radius</span><span class="token punctuation">:</span> <span class="token number">6</span>px<span class="token punctuation">;</span>
+<span class="token property">border-top-right-radius</span><span class="token punctuation">:</span> <span class="token number">0</span>px<span class="token punctuation">;</span>
+<span class="token property">border-bottom-left-radius</span><span class="token punctuation">:</span> <span class="token number">6</span>px<span class="token punctuation">;</span>
+<span class="token property">border-bottom-right-radius</span><span class="token punctuation">:</span> <span class="token number">0</span>px<span class="token punctuation">;</span>
 
-<span class="token keyword">class</span> <span class="token class-name">EChartsView</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token punctuation">{</span>
-  <span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      <span class="token comment" spellcheck="true">// 基于准备好的dom，初始化echarts实例</span>
-      <span class="token keyword">var</span> myChart <span class="token operator">=</span> echarts<span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span>document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'echart'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-      <span class="token comment" spellcheck="true">// 绘制图表</span>
-      myChart<span class="token punctuation">.</span><span class="token function">setOption</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-          title<span class="token punctuation">:</span> <span class="token punctuation">{</span> text<span class="token punctuation">:</span> <span class="token string">'ECharts 入门示例'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
-          tooltip<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-          xAxis<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-              data<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">"衬衫"</span><span class="token punctuation">,</span><span class="token string">"羊毛衫"</span><span class="token punctuation">,</span><span class="token string">"雪纺衫"</span><span class="token punctuation">,</span><span class="token string">"裤子"</span><span class="token punctuation">,</span><span class="token string">"高跟鞋"</span><span class="token punctuation">,</span><span class="token string">"袜子"</span><span class="token punctuation">]</span>
-          <span class="token punctuation">}</span><span class="token punctuation">,</span>
-          yAxis<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-          series<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
-              name<span class="token punctuation">:</span> <span class="token string">'销量'</span><span class="token punctuation">,</span>
-              type<span class="token punctuation">:</span> <span class="token string">'bar'</span><span class="token punctuation">,</span>
-              data<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">36</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">]</span>
-          <span class="token punctuation">}</span><span class="token punctuation">]</span>
-      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-
-  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      <span class="token keyword">return</span><span class="token punctuation">(</span>
-          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>echart<span class="token punctuation">"</span></span> <span class="token attr-name">style</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span><span class="token punctuation">{</span> width<span class="token punctuation">:</span> <span class="token string">'80vw'</span><span class="token punctuation">,</span> height<span class="token punctuation">:</span> <span class="token string">"80vh"</span> <span class="token punctuation">}</span><span class="token punctuation">}</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
-      <span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-
-ReactDOM<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>EChartsView</span><span class="token punctuation">/></span></span><span class="token punctuation">,</span>document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'root'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<h2 id="react-echarts"><a href="#react-echarts" class="headerlink" title="react echarts"></a><a target="_blank" rel="noopener" href="https://github.com/hustcc/echarts-for-react">react echarts</a></h2><pre class=" language-sh"><code class="language-sh">npm install echarts-for-react echarts</code></pre>
-<h2 id="Element-for-Vue"><a href="#Element-for-Vue" class="headerlink" title="Element for Vue"></a><a target="_blank" rel="noopener" href="https://element.eleme.cn/#/zh-CN">Element for Vue</a></h2><p>基于 Vue.js</p>
-<h2 id="iview-for-Vue"><a href="#iview-for-Vue" class="headerlink" title="iview  for Vue"></a><a target="_blank" rel="noopener" href="https://www.iviewui.com/">iview  for Vue</a></h2><p>基于 Vue.js</p>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="右边是圆角-左边是方角"><a href="#右边是圆角-左边是方角" class="headerlink" title="右边是圆角,左边是方角"></a>右边是圆角,左边是方角</h3><pre class=" language-css"><code class="language-css"><span class="token selector"><span class="token class">.right_radius</span></span><span class="token punctuation">{</span>
+<span class="token property">border-top-left-radius</span><span class="token punctuation">:</span> <span class="token number">0</span>px<span class="token punctuation">;</span>
+<span class="token property">border-top-right-radius</span><span class="token punctuation">:</span> <span class="token number">6</span>px<span class="token punctuation">;</span>
+<span class="token property">border-bottom-left-radius</span><span class="token punctuation">:</span> <span class="token number">0</span>px<span class="token punctuation">;</span>
+<span class="token property">border-bottom-right-radius</span><span class="token punctuation">:</span> <span class="token number">6</span>px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="全是方角"><a href="#全是方角" class="headerlink" title="全是方角"></a>全是方角</h3><pre class=" language-css"><code class="language-css"><span class="token selector"><span class="token class">.no_radius</span></span><span class="token punctuation">{</span>
+<span class="token property">border-radius</span><span class="token punctuation">:</span><span class="token number">0</span>px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h2 id="button-多个对齐"><a href="#button-多个对齐" class="headerlink" title="button 多个对齐"></a>button 多个对齐</h2><pre class=" language-css"><code class="language-css"><span class="token selector"><span class="token class">.btnDiv</span></span><span class="token punctuation">{</span>
+   <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
+   <span class="token property">align-items</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>  
+<span class="token punctuation">}</span>  </code></pre>
 
             </div>
             <hr/>
@@ -552,16 +506,8 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
                     
                         <div class="article-tag">
                             
-                                <a href="../../../../tags/React/">
-                                    <span class="chip bg-color">React</span>
-                                </a>
-                            
-                                <a href="../../../../tags/UI/">
-                                    <span class="chip bg-color">UI</span>
-                                </a>
-                            
-                                <a href="../../../../tags/Vue/">
-                                    <span class="chip bg-color">Vue</span>
+                                <a href="../../../../tags/css-html/">
+                                    <span class="chip bg-color">css&amp;html</span>
                                 </a>
                             
                         </div>
@@ -600,46 +546,48 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
-                <a href="../../12/Wechat-mini-prog-01/">
+                <a href="">
                     <div class="card-image">
                         
                         
-                        <img src="../../../../medias/featureimages/6.jpg" class="responsive-img" alt="Wechat-mini-prog-01 微信小程序基础1">
+                        <img src="../../../../medias/featureimages/16.jpg" class="responsive-img" alt="button-css">
                         
-                        <span class="card-title">Wechat-mini-prog-01 微信小程序基础1</span>
+                        <span class="card-title">button-css</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            小程序架构分析
+                            button的样式实践总结
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-01-12
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-02-19
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="../../../../categories/WechatMini-Program/" class="post-category">
-                                    WechatMini Program
+                            <a href="../../../../categories/css-html/" class="post-category">
+                                    css&html
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="../../../../tags/WechatMini-Program/">
-                        <span class="chip bg-color">WechatMini Program</span>
+                    <a href="../../../../tags/css-html/">
+                        <span class="chip bg-color">css&amp;html</span>
                     </a>
                     
                 </div>
@@ -653,33 +601,31 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="../../08/React-Bootstrap/">
+                <a href="../../18/Vue-day14/">
                     <div class="card-image">
                         
                         
-                        <img src="../../../../medias/featureimages/21.jpg" class="responsive-img" alt="React Bootstrap">
+                        <img src="../../../../medias/featureimages/16.jpg" class="responsive-img" alt="Vue-day14 vue必会API盘点">
                         
-                        <span class="card-title">React Bootstrap</span>
+                        <span class="card-title">Vue-day14 vue必会API盘点</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            应用bootstrap styleReact Bootstrap
-1.Install Bootstrap Commandnpm install react-bootstrap bootstrap
-2.import bootstrap in 
+                            vue必会API盘点
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-01-08
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-02-18
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="../../../../categories/React/" class="post-category">
-                                    React
+                            <a href="../../../../categories/Vue/" class="post-category">
+                                    Vue
                                 </a>
                             
                             
@@ -689,8 +635,8 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
                 
                 <div class="card-action article-tags">
                     
-                    <a href="../../../../tags/React/">
-                        <span class="chip bg-color">React</span>
+                    <a href="../../../../tags/Vue/">
+                        <span class="chip bg-color">Vue</span>
                     </a>
                     
                 </div>
