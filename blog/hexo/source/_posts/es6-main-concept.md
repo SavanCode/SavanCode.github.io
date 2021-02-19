@@ -199,6 +199,8 @@ const obj = {
 
 ##  箭头函数
 
+[额外的专门笔记](https://savancode.github.io/2020/11/26/js-arrowFunction/)
+
 ###  认识箭头函数
 
 > 传统定义函数的方式

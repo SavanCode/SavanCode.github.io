@@ -79,6 +79,7 @@ const app=new Vue({
     <!-- 不加单引号，变量解析 -->
     <h2 :style="{backgroundColor: blue}"> 失败的{{message}}</h2>
     <h2 :style="getStyle()">成功的{{message}}</h2>
+    <span :style="{'display':type ? 'block':'none'}" >搜索</span>
   </div>
 ```
 ```js
@@ -207,9 +208,23 @@ const app=new Vue({
       },
     })
 ```
-> 这里更加实用的是，利用数组进行结合性的动态 比如下面这个例子
-```
+> 这里更加实用的是，利用数组进行结合性的动态 比如下面这个例子，注意这里用的数组！！！ 对于inline style用的还是对象
+```js
 v-bind:class="['fixStyle',styleNew ? {newStyle:currentIndex===index} : {oldStyle:currentIndex===index}]"
+```
+
+对比！！这里！！
+
+**style三元表达式**
+
+```xml
+<p :style="{'color': (checkIndex3==m.txt ? '#3d8cff':'#BBBBBB')}">{{m.txt}}</p>
+```
+
+**class三元表达式**
+
+```jsx
+<i class="iconfont "  :class="[isShow=='password'?'icon-kejian':'icon-bukejian']"></i>
 ```
 
 ## v-for和v-bind结合练习 

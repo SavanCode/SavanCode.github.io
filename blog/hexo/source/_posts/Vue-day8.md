@@ -308,7 +308,24 @@ props: ['cmovies', 'cmessage']
           }
   }
 ```
+#### Boolean或者Number写法
+
+```html
+<script>
+props: {
+    propA: {
+        type: Boolean,
+        default: false,
+    }
+}
+</script>
+<!--使用的时候，需要使用 v-bind ，从而让它的值被当作 JavaScript 表达式计算，数字也是一样-->
+<comp :propA="true"></comp>
+<!--//如果 propA="true" 那么一直传递下去的就是true-->
+```
+
 #### props属性的类型限制
+
 ```js
 //1.类型限制(多个类使用数组)
 cmovies:Array,//限制为数组类型
@@ -648,6 +665,25 @@ new Vue({
 <my-component v-on:click.native="doTheThing"></my-component>
 ```
 
+### vm.$on(event, callback)
+
+**参数**：
+
+- `{string | Array<string>} event` (数组只在 2.2.0+ 中支持)
+- `{Function} callback`
+
+**用法**：`$on`事件需要两个参数，一个是监听的当前实例上的事件名，一个是事件触发的回调函数，回调函数接受的是在事件出发的时候额外传递的参数。
+
+```js
+vm.$on('test', function (msg) {
+  console.log(msg)
+})
+vm.$emit('test', 'hi')
+// => "hi"
+```
+
+
+
 ## 自定义组件的 v-model
 
 组件上的 v-model 默认会利用名为 value 的 prop 和名为 input 的事件。
@@ -767,6 +803,33 @@ const refsample= new Vue({
 ```
 
 ![](Vue-day8/image-20210204233053793.png)
+
+
+
+## event bus
+
+通过在Vue原型上添加一个Vue实例作为事件总线，实现组件间相互通信，而且不受组件间关系的影响
+
+```js
+Vue.prototype.$bus = new Vue();
+```
+
+这样做可以在任意组件中使用 this.$bus 访问到该Vue实例
+
+```html
+<script>
+// 弹窗组件 
+Vue.component('message', { 
+    // ... 
+    // 监听关闭事件 
+    mounted () { 
+        this.$bus.$on('message-close', () => { 
+            this.$emit('update:show', false) }); 
+    }, })
+</script>
+<!-- 派发关闭事件 --> 
+    <div class="toolbar"> <button @click="$bus.$emit('message-close')">清空提示框</button> </div>
+```
 
 
 

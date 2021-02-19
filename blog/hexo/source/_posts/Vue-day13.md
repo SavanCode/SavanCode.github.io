@@ -23,7 +23,7 @@ vuex是一个专为 Vue.js 应用程序开发的状态管理模式。它采用�
 
 　当访问数据对象时，一个 Vue 实例只是简单的代理访问。所以，如果有一处需要被多个实例间共享的状态，可以简单地通过维护一份数据来实现共享
 
-```
+```js
 const sourceOfTruth = {}
 const vmA = new Vue({
   data: sourceOfTruth
@@ -37,7 +37,7 @@ const vmB = new Vue({
 
 　　为了解决这个问题，采用一个简单的 **store 模式**：
 
-```
+```js
 var store = {
   debug: true,
   state: {
@@ -58,7 +58,7 @@ var store = {
 
 　　此外，每个实例/组件仍然可以拥有和管理自己的私有状态：
 
-```
+```js
 var vmA = new Vue({
   data: {
     privateState: {},
