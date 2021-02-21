@@ -11,6 +11,21 @@ tags: git
 categories: git
 ---
 
+## git版本控制 推荐软件
+- gitHub desktop 
+
+- SourceTree
+
+为什么不用commandLine,因为..
+
+  ![gitHub Desktop](git-command/image-20210220133043365.png)
+
+![SourceTree](git-command/image-20210220133305975.png)
+
+Source Tree的好处的,处理这种复杂的(因为当时比这个还多几个分支).不在话下, 一点也不怕晕(((φ(◎ロ◎;)φ)))
+
+![](git-command/image-20210220133351680.png)
+
 ## commit之后，想撤销commit
 
 **git reset --soft HEAD^**
@@ -53,6 +68,13 @@ git commit --amend
 
 https://blog.csdn.net/limengke123/article/details/77850134
 
+
+
+
+
+
+
 ## Reference 
 
 https://blog.csdn.net/w958796636/article/details/53611133
+

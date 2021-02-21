@@ -20,3 +20,6 @@ width: min-content or width: max-content
 width:fit-content
 ```
 
+## 2. 使用 vw/vh 布局实现自适应优于其他
+
+[原因](https://www.jianshu.com/p/6893bd3b1819)

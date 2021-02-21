@@ -383,7 +383,7 @@ vaildator: function (value) {
 
 ![](Vue-day8/image-20210204234206277.png)
 
-## 动态 Prop 父->子 （props down）
+## 方式1.动态 Prop 父->子 （props down）
 
 类似于用 v-bind 绑定 HTML 特性到一个表达式，也可以用 v-bind 动态绑定 props 的值到父组件的数据中。每当父组件的数据变化时，该变化也会传导给子组件
 
@@ -593,7 +593,7 @@ new Vue({
 </script>
 ```
 
-## Vue.js 组件 - 自定义事件  传递参数  子->父 (event up)
+## 方式2.Vue.js 组件 - 自定义事件  传递参数  子->父 (event up)
 
 父组件是使用 props 以及函数绑定的方式传递数据以及方法给子组件，但如果子组件要把数据传递回去，就需要使用自定义事件！
 
@@ -774,7 +774,7 @@ new Vue({
 
 git上
 
-## 获取页面上的DOM ref属性
+## 方式3.获取页面上的DOM ref属性 
 
 ref属性，类似于document.getElementById(); 这里的`$refs`可以看做是`ref`的选择器，这个`$ref`是一个对象，通过key可以获取到其中存放的对象。
 
@@ -806,7 +806,7 @@ const refsample= new Vue({
 
 
 
-## event bus
+## 方式4.event bus
 
 通过在Vue原型上添加一个Vue实例作为事件总线，实现组件间相互通信，而且不受组件间关系的影响
 
@@ -833,7 +833,9 @@ Vue.component('message', {
 
 
 
-## 获取页面上的DOM `$parent` `$root` `$root`属性
+## 方式5.获取页面上的DOM `$parent` `$root` `$root`属性
+
+> 这种方式 实际上可以很快的去或者不会管是什么相对关系的对象的属性(父子或者兄弟或者远房亲戚)!! 但是!! 频繁的取值会导致卡顿!!!! 所以为了优化,最好少用
 
 ![](Vue-day8/image-20210207122506755.png)
 
@@ -854,7 +856,52 @@ components: {
             }
 ```
 
-个人练习完整例子： https://github.com/SavanCode/VUE/tree/main/HelloVue
+练习完整例子： https://github.com/SavanCode/VUE/tree/main/HelloVue
+
+## [方式6. provide & inject](https://vuejs.org/v2/api/#provide-inject)
+
+**注意: 这里不论子组件嵌套有多深, 只要调用了 `inject ` 那么就可以注入 `provide `中的数据，而不局限于只能从当前父组件的props属性中回去数据**
+
+**这里传值改值会针对不同属性允许改动,但是!! 会影响到原来的值,所以官方实际是不建议直接进行改动得**
+
+传出
+
+```html
+<template> 
+</template>
+
+<script>
+export default {
+  name: 'grandfather',
+  provide () {
+    return {
+      passdata: this.passdata
+    }
+   }
+  }
+</script>
+```
+
+传入
+
+```html
+<script>
+export default {
+  name: 'childrenA',
+  inject: ['passdata'], //object string array
+  components: {},
+  data () { 
+    return {
+      fromParentData: this.passdata
+    }
+  }
+}
+</script>
+```
+
+## 传值方式总结
+
+在简单的功能模块，可以通过传递对象实现跨级组件通信，复杂的功能模块不建议使用，因为传递的数据，如果其他的儿子级组件，其他儿子级组件的孙子级组件也在使用的话，会造成数据的混乱，甚至无法理解数据是在哪里变化的，排查故障艰难。跨级组件通信可以定义一个中央事件总线（eventBus），但是更复杂的系统，还是建议使用vuex。
 
 ## slot插槽
 
@@ -1029,11 +1076,9 @@ https://segmentfault.com/a/1190000012996217
 ### 1. 如何使用组件
 **定义**：Vue.component()，components选项，sfc
 **分类**：有状态组件，functional，abstract
-**通信**：props，$emit()/$on()，provide/inject，$children/$parent/$root/$attrs/$listeners
+**通信**：props，`$emit()/$on()`，`provide/inject`，`$children/$parent/$root/$attrs/$listeners`
 **内容分发**：`<slot>`，`<template>`，`v-slot`
 **使用及优化**：is，keep-alive，异步组件
-
-
 
 
 
@@ -1048,4 +1093,6 @@ https://www.runoob.com/vue2/vue-component-custom-event.html
 https://www.bilibili.com/video/BV15741177Eh?p=72
 
 https://blog.csdn.net/weixin_43342105/article/details/106153672
+
+[vue组件通信，祖父级组件向孙子级组件传值，使用provide、inject](https://www.cnblogs.com/pangchunlei/p/12112318.html)
 

@@ -35,7 +35,7 @@ transition的用法很多 只要是变更原先位置的基本都有关
 
  设置元素内文本的大小写.
 
-```
+```css
 text-transform: capitalize(首字母大写)| uppercase(大写)| lowercase(小写) | none(默认效果);
 ```
 
@@ -43,7 +43,7 @@ text-transform: capitalize(首字母大写)| uppercase(大写)| lowercase(小写
 
 设置元素内文本的装饰
 
-```
+```css
 text-decoration: underline(下划线) overline(上划线) line-through(类似删除线)  none(默认效果).
 ```
 
@@ -59,7 +59,7 @@ text-indent 属性规定文本块中首行文本的缩进:
 
   设置或检索对象内文本显示方式。通常我们使用于强制一行显示内容.
 
-```
+```css
 /*默认处理方式*/
 white-space:normal ；
 
@@ -72,7 +72,7 @@ white-space:nowrap ；
 - 设置或检索是否使用一个省略标记（…）**表示对象内文本的溢出.**
 - 首先强制一行内显示，再次和overflow属性 搭配使用.
 
-```
+```css
 /*不显示省略标记（...），而是简单的裁切 */
 text-overflow : clip ；
 
@@ -137,14 +137,16 @@ text{
 
 ### `vertical-align: middle`
 
-```
+```html
 <style>
 .va{vertical-align: middle;}
-div{font-size: 12px;//更改了大小
-margin: 20px auto;border: 1px dashed #000;text-align: center;}
-.inline{display: inline;
-font-size: 36px;//更改了大小
-border: 1px dashed #000;}
+div{
+    font-size: 12px;//更改了大小
+	margin: 20px auto;border: 1px dashed #000;text-align: center;}
+.inline{
+    display: inline;
+	font-size: 36px;//更改了大小
+	border: 1px dashed #000;}
 </style>
 
 <div>         
@@ -157,14 +159,16 @@ border: 1px dashed #000;}
 
 当line-height等于height时，可以实现字体垂直居中
 
-```
+```html
 <style>
 * { margin: 0;padding: 0;}
-div{width: 300px;
-height: 100px;//父类元素高度
-margin: 20px auto;border: 1px dashed #000;text-align: center;}
-.lh{font-size:24px;
-line-height:100px; //目标垂直字体的行高
+div{
+	width: 300px;
+	height: 100px;//父类元素高度
+	margin: 20px auto;border: 1px dashed #000;text-align: center;}
+.lh{
+    font-size:24px;
+	line-height:100px; //目标垂直字体的行高
 }
 </style>
 
@@ -177,14 +181,16 @@ line-height:100px; //目标垂直字体的行高
 
 要求知道div width height大小
 
-```
+```css
 <style>
 * { margin: 0;padding: 0;}
- div{width: 300px;height: 100px;margin: 20px auto;border: 1px dashed #000;text-align: center;}
-.middle{display: inline-block;position:relative;
-font-size:24px;line-height:24px;
-top:50%;margin-top:-12px;
-vertical-align:top; }
+div{
+ 	width: 300px;height: 100px;margin: 20px auto;border: 1px dashed #000;text-align: center;}
+.middle{
+	display: inline-block;position:relative;
+	font-size:24px;line-height:24px;
+	top:50%;margin-top:-12px;
+	vertical-align:top; }
 </style>
 
 <div>         

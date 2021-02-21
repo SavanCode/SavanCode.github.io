@@ -1,12 +1,12 @@
 ---
-title: Media Queries-css
+title: Media Queries-css 自适应
 top: false
 cover: false
 toc: true
 mathjax: true
 date: 2020-11-14 12:42:27
 password:
-summary: Media Query-css
+summary: Media Query-css 自适应
 tags: css&html
 categories: css&html
 ---
@@ -16,14 +16,19 @@ categories: css&html
 需要灵活设置
 
 ```css
-@media (min-width: 320px) and (max-width: 525px){  .Gool{    
+@media (min-width: 320px) and (max-width: 525px){  
+.Gool{    
     /*background-color: orange;*/    
     margin-right: 3%;    
     margin-left: 3%;    
-    margin-bottom: 50px;  }  
-    #copyright{    padding: 0 3%;  }
+    margin-bottom: 50px;  
+  }  
+#copyright{    
+    padding: 0 3%;  
+   }
 }
-@media  (min-width: 526px) and (max-width: 991px){  .Gool{    
+@media  (min-width: 526px) and (max-width: 991px){  
+.Gool{    
     margin-right: 20%;    
     margin-left: 20%;    
     margin-bottom: 50px;  }
