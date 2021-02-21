@@ -681,7 +681,7 @@ cmovies<span class="token punctuation">:</span> <span class="token punctuation">
     <span class="token punctuation">}</span>
     cmessage<span class="token punctuation">:</span>Person<span class="token comment" spellcheck="true">//限定了cmeessage必须是Person类型</span></code></pre>
 <h2 id="传值图解"><a href="#传值图解" class="headerlink" title="传值图解"></a>传值图解</h2><p><img src="/2021/02/02/Vue-day8/image-20210204234206277.png"></p>
-<h2 id="动态-Prop-父-gt-子-（props-down）"><a href="#动态-Prop-父-gt-子-（props-down）" class="headerlink" title="动态 Prop 父-&gt;子 （props down）"></a>动态 Prop 父-&gt;子 （props down）</h2><p>类似于用 v-bind 绑定 HTML 特性到一个表达式，也可以用 v-bind 动态绑定 props 的值到父组件的数据中。每当父组件的数据变化时，该变化也会传导给子组件</p>
+<h2 id="方式1-动态-Prop-父-gt-子-（props-down）"><a href="#方式1-动态-Prop-父-gt-子-（props-down）" class="headerlink" title="方式1.动态 Prop 父-&gt;子 （props down）"></a>方式1.动态 Prop 父-&gt;子 （props down）</h2><p>类似于用 v-bind 绑定 HTML 特性到一个表达式，也可以用 v-bind 动态绑定 props 的值到父组件的数据中。每当父组件的数据变化时，该变化也会传导给子组件</p>
 <h3 id="例子1-string"><a href="#例子1-string" class="headerlink" title="例子1 - string"></a>例子1 - string</h3><pre class=" language-html"><code class="language-html"><span class="token comment" spellcheck="true">&lt;!--上下两种写法都可以 这里的父子跟全局没有关系 --></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>app<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
@@ -859,7 +859,7 @@ Vue<span class="token punctuation">.</span><span class="token function">componen
  el<span class="token punctuation">:</span> <span class="token string">"#app"</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code></pre>
-<h2 id="Vue-js-组件-自定义事件-传递参数-子-gt-父-event-up"><a href="#Vue-js-组件-自定义事件-传递参数-子-gt-父-event-up" class="headerlink" title="Vue.js 组件 - 自定义事件  传递参数  子-&gt;父 (event up)"></a>Vue.js 组件 - 自定义事件  传递参数  子-&gt;父 (event up)</h2><p>父组件是使用 props 以及函数绑定的方式传递数据以及方法给子组件，但如果子组件要把数据传递回去，就需要使用自定义事件！</p>
+<h2 id="方式2-Vue-js-组件-自定义事件-传递参数-子-gt-父-event-up"><a href="#方式2-Vue-js-组件-自定义事件-传递参数-子-gt-父-event-up" class="headerlink" title="方式2.Vue.js 组件 - 自定义事件  传递参数  子-&gt;父 (event up)"></a>方式2.Vue.js 组件 - 自定义事件  传递参数  子-&gt;父 (event up)</h2><p>父组件是使用 props 以及函数绑定的方式传递数据以及方法给子组件，但如果子组件要把数据传递回去，就需要使用自定义事件！</p>
 <p>我们可以使用 v-on 绑定自定义事件, 每个 Vue 实例都实现了事件接口(Events interface)，即：</p>
 <ul>
 <li>使用 <code>$on(eventName)</code> 监听事件</li>
@@ -995,7 +995,7 @@ Vue<span class="token punctuation">.</span><span class="token function">componen
 <span class="token punctuation">}</span><span class="token punctuation">)</span>
 </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code></pre>
 <h3 id="父子通信的例子练习"><a href="#父子通信的例子练习" class="headerlink" title="父子通信的例子练习"></a>父子通信的例子练习</h3><p>git上</p>
-<h2 id="获取页面上的DOM-ref属性"><a href="#获取页面上的DOM-ref属性" class="headerlink" title="获取页面上的DOM ref属性"></a>获取页面上的DOM ref属性</h2><p>ref属性，类似于document.getElementById(); 这里的<code>$refs</code>可以看做是<code>ref</code>的选择器，这个<code>$ref</code>是一个对象，通过key可以获取到其中存放的对象。</p>
+<h2 id="方式3-获取页面上的DOM-ref属性"><a href="#方式3-获取页面上的DOM-ref属性" class="headerlink" title="方式3.获取页面上的DOM ref属性"></a>方式3.获取页面上的DOM ref属性</h2><p>ref属性，类似于document.getElementById(); 这里的<code>$refs</code>可以看做是<code>ref</code>的选择器，这个<code>$ref</code>是一个对象，通过key可以获取到其中存放的对象。</p>
 <p>当然了，既然是对象，也可以使用方括号运算符去访问，具体是this.$refs[input1]。</p>
 <pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>refSample<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">@click</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>getInfo<span class="token punctuation">"</span></span> <span class="token attr-name">ref</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>btn<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>点击获取元素内容<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
@@ -1017,7 +1017,7 @@ Vue<span class="token punctuation">.</span><span class="token function">componen
 <span class="token punctuation">}</span><span class="token punctuation">)</span>
 </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code></pre>
 <p><img src="/2021/02/02/Vue-day8/image-20210204233053793.png"></p>
-<h2 id="event-bus"><a href="#event-bus" class="headerlink" title="event bus"></a>event bus</h2><p>通过在Vue原型上添加一个Vue实例作为事件总线，实现组件间相互通信，而且不受组件间关系的影响</p>
+<h2 id="方式4-event-bus"><a href="#方式4-event-bus" class="headerlink" title="方式4.event bus"></a>方式4.event bus</h2><p>通过在Vue原型上添加一个Vue实例作为事件总线，实现组件间相互通信，而且不受组件间关系的影响</p>
 <pre class=" language-js"><code class="language-js">Vue<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>$bus <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <p>这样做可以在任意组件中使用 this.$bus 访问到该Vue实例</p>
 <pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script language-javascript">
@@ -1032,7 +1032,10 @@ Vue<span class="token punctuation">.</span><span class="token function">componen
 </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
 <span class="token comment" spellcheck="true">&lt;!-- 派发关闭事件 --></span> 
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>toolbar<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">@click</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>$bus.$emit(<span class="token punctuation">'</span>message-close<span class="token punctuation">'</span>)<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>清空提示框<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
-<h2 id="获取页面上的DOM-parent-root-root属性"><a href="#获取页面上的DOM-parent-root-root属性" class="headerlink" title="获取页面上的DOM $parent $root $root属性"></a>获取页面上的DOM <code>$parent</code> <code>$root</code> <code>$root</code>属性</h2><p><img src="/2021/02/02/Vue-day8/image-20210207122506755.png"></p>
+<h2 id="方式5-获取页面上的DOM-parent-root-root属性"><a href="#方式5-获取页面上的DOM-parent-root-root属性" class="headerlink" title="方式5.获取页面上的DOM $parent $root $root属性"></a>方式5.获取页面上的DOM <code>$parent</code> <code>$root</code> <code>$root</code>属性</h2><blockquote>
+<p>这种方式 实际上可以很快的去或者不会管是什么相对关系的对象的属性(父子或者兄弟或者远房亲戚)!! 但是!! 频繁的取值会导致卡顿!!!! 所以为了优化,最好少用</p>
+</blockquote>
+<p><img src="/2021/02/02/Vue-day8/image-20210207122506755.png"></p>
 <pre class=" language-js"><code class="language-js">components<span class="token punctuation">:</span> <span class="token punctuation">{</span>
                 ccpn<span class="token punctuation">:</span> <span class="token punctuation">{</span>
                     template<span class="token punctuation">:</span> <span class="token string">"#ccpn"</span><span class="token punctuation">,</span>
@@ -1047,7 +1050,37 @@ Vue<span class="token punctuation">.</span><span class="token function">componen
                     <span class="token punctuation">}</span>
                 <span class="token punctuation">}</span>
             <span class="token punctuation">}</span></code></pre>
-<p>个人练习完整例子： <a target="_blank" rel="noopener" href="https://github.com/SavanCode/VUE/tree/main/HelloVue">https://github.com/SavanCode/VUE/tree/main/HelloVue</a></p>
+<p>练习完整例子： <a target="_blank" rel="noopener" href="https://github.com/SavanCode/VUE/tree/main/HelloVue">https://github.com/SavanCode/VUE/tree/main/HelloVue</a></p>
+<h2 id="方式6-provide-amp-inject"><a href="#方式6-provide-amp-inject" class="headerlink" title="方式6. provide &amp; inject"></a><a target="_blank" rel="noopener" href="https://vuejs.org/v2/api/#provide-inject">方式6. provide &amp; inject</a></h2><p><strong>注意: 这里不论子组件嵌套有多深, 只要调用了 <code>inject </code> 那么就可以注入 <code>provide </code>中的数据，而不局限于只能从当前父组件的props属性中回去数据</strong></p>
+<p><strong>这里传值改值会针对不同属性允许改动,但是!! 会影响到原来的值,所以官方实际是不建议直接进行改动得</strong></p>
+<p>传出</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span> 
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script language-javascript">
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  name<span class="token punctuation">:</span> <span class="token string">'grandfather'</span><span class="token punctuation">,</span>
+  provide <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+      passdata<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>passdata
+    <span class="token punctuation">}</span>
+   <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code></pre>
+<p>传入</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script language-javascript">
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  name<span class="token punctuation">:</span> <span class="token string">'childrenA'</span><span class="token punctuation">,</span>
+  inject<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'passdata'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">//object string array</span>
+  components<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  data <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+      fromParentData<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>passdata
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code></pre>
+<h2 id="传值方式总结"><a href="#传值方式总结" class="headerlink" title="传值方式总结"></a>传值方式总结</h2><p>在简单的功能模块，可以通过传递对象实现跨级组件通信，复杂的功能模块不建议使用，因为传递的数据，如果其他的儿子级组件，其他儿子级组件的孙子级组件也在使用的话，会造成数据的混乱，甚至无法理解数据是在哪里变化的，排查故障艰难。跨级组件通信可以定义一个中央事件总线（eventBus），但是更复杂的系统，还是建议使用vuex。</p>
 <h2 id="slot插槽"><a href="#slot插槽" class="headerlink" title="slot插槽"></a>slot插槽</h2><p>slot要灵活跟template， template是属于相对于不灵活的 但是slot是更加方便更好的在页面显示内容的 图理解：</p>
 <p><img src="/2021/02/02/Vue-day8/image-20210206203813280.png"></p>
 <blockquote>
@@ -1179,11 +1212,12 @@ Vue<span class="token punctuation">.</span><span class="token function">componen
     </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code></pre>
 <p><img src="/2021/02/02/Vue-day8/image-20210206221712804.png"></p>
 <h3 id="Slot补充资料"><a href="#Slot补充资料" class="headerlink" title="Slot补充资料"></a>Slot补充资料</h3><p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000012996217">https://segmentfault.com/a/1190000012996217</a></p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="1-如何使用组件"><a href="#1-如何使用组件" class="headerlink" title="1. 如何使用组件"></a>1. 如何使用组件</h3><p><strong>定义</strong>：Vue.component()，components选项，sfc<br><strong>分类</strong>：有状态组件，functional，abstract<br><strong>通信</strong>：props，$emit()/$on()，provide/inject，$children/$parent/$root/$attrs/$listeners<br><strong>内容分发</strong>：<code>&lt;slot&gt;</code>，<code>&lt;template&gt;</code>，<code>v-slot</code><br><strong>使用及优化</strong>：is，keep-alive，异步组件</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="1-如何使用组件"><a href="#1-如何使用组件" class="headerlink" title="1. 如何使用组件"></a>1. 如何使用组件</h3><p><strong>定义</strong>：Vue.component()，components选项，sfc<br><strong>分类</strong>：有状态组件，functional，abstract<br><strong>通信</strong>：props，<code>$emit()/$on()</code>，<code>provide/inject</code>，<code>$children/$parent/$root/$attrs/$listeners</code><br><strong>内容分发</strong>：<code>&lt;slot&gt;</code>，<code>&lt;template&gt;</code>，<code>v-slot</code><br><strong>使用及优化</strong>：is，keep-alive，异步组件</p>
 <h2 id="个人练习的完整代码"><a href="#个人练习的完整代码" class="headerlink" title="个人练习的完整代码"></a>个人练习的完整代码</h2><p><a target="_blank" rel="noopener" href="https://github.com/SavanCode/VUE/tree/main/HelloVue">https://github.com/SavanCode/VUE/tree/main/HelloVue</a></p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a target="_blank" rel="noopener" href="https://www.runoob.com/vue2/vue-component-custom-event.html">https://www.runoob.com/vue2/vue-component-custom-event.html</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV15741177Eh?p=72">https://www.bilibili.com/video/BV15741177Eh?p=72</a></p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43342105/article/details/106153672">https://blog.csdn.net/weixin_43342105/article/details/106153672</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/pangchunlei/p/12112318.html">vue组件通信，祖父级组件向孙子级组件传值，使用provide、inject</a></p>
 
             </div>
             <hr/>
