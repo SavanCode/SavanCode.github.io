@@ -549,7 +549,7 @@ computed<span class="token punctuation">:</span> <span class="token function">ma
 computed<span class="token punctuation">:</span> <span class="token function">mapState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
     count<span class="token punctuation">:</span> <span class="token string">'count'</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
-<h2 id="2-store中的Getter函数-store从state取数据"><a href="#2-store中的Getter函数-store从state取数据" class="headerlink" title="2.store中的Getter函数 - store从state取数据"></a>2.store中的Getter函数 - store从state取数据</h2><pre class=" language-js"><code class="language-js"><span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vuex<span class="token punctuation">.</span>Store</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+<h2 id="2-store中的Getter函数-store从state取数据"><a href="#2-store中的Getter函数-store从state取数据" class="headerlink" title="2.store中的Getter函数 - store从state取数据"></a>2.store中的Getter函数 - store从state取数据</h2><h3 id="1-es6中带filter"><a href="#1-es6中带filter" class="headerlink" title="1.es6中带filter"></a>1.es6中带filter</h3><pre class=" language-js"><code class="language-js"><span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vuex<span class="token punctuation">.</span>Store</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
   state<span class="token punctuation">:</span> <span class="token punctuation">{</span>
     todos<span class="token punctuation">:</span> <span class="token punctuation">[</span>
       <span class="token punctuation">{</span> id<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> text<span class="token punctuation">:</span> <span class="token string">'...'</span><span class="token punctuation">,</span> done<span class="token punctuation">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
@@ -562,7 +562,13 @@ computed<span class="token punctuation">:</span> <span class="token function">ma
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
-<h3 id="Getter-也可以接受其他-getter-作为第二个参数"><a href="#Getter-也可以接受其他-getter-作为第二个参数" class="headerlink" title="Getter 也可以接受其他 getter 作为第二个参数"></a><strong>Getter 也可以接受其他 getter 作为第二个参数</strong></h3><pre class=" language-js"><code class="language-js">getters<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+<h3 id="2-直接取值"><a href="#2-直接取值" class="headerlink" title="2. 直接取值"></a>2. 直接取值</h3><pre class=" language-js"><code class="language-js">computed<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+<span class="token operator">...</span><span class="token function">mapGetters</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+  <span class="token string">'window'</span><span class="token punctuation">,</span> 
+  <span class="token string">'fontSize'</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="3-Getter-也可以接受其他-getter-作为第二个参数"><a href="#3-Getter-也可以接受其他-getter-作为第二个参数" class="headerlink" title="3.Getter 也可以接受其他 getter 作为第二个参数"></a>3.<strong>Getter 也可以接受其他 getter 作为第二个参数</strong></h3><pre class=" language-js"><code class="language-js">getters<span class="token punctuation">:</span> <span class="token punctuation">{</span>
   <span class="token comment" spellcheck="true">// ...</span>
   doneTodosCount<span class="token punctuation">:</span> <span class="token punctuation">(</span>state<span class="token punctuation">,</span> getters<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
     <span class="token keyword">return</span> getters<span class="token punctuation">.</span>doneTodos<span class="token punctuation">.</span>length

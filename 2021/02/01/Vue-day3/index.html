@@ -509,10 +509,12 @@
 <blockquote>
 <p>简单地说：<br>methods：即时渲染<br>computed：有缓存渲染</p>
 </blockquote>
-<p>计算属性：computed<br>计算属性范围在Vue实例的fullName内所管理的firstName和lastName,通常监听多个变量</p>
-<p>侦听器：watch<br>监听数据变化，一般只监听一个变量或数组</p>
-<p>使用场景<br>watch(异步场景)，computed(数据联动)</p>
-<pre class=" language-html"><code class="language-html"> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>app3<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<h3 id="computed-vs-watch"><a href="#computed-vs-watch" class="headerlink" title="computed vs watch"></a>computed vs watch</h3><p><strong>计算属性：computed</strong><br>计算属性范围在Vue实例的fullName内所管理的firstName和lastName,通常监听多个变量</p>
+<p><strong>侦听器：watch</strong><br>监听数据变化，一般只监听一个变量或数组</p>
+<h4 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h4><p>watch(异步场景)，computed(数据联动)</p>
+<p>1.如果一个数据依赖于其他数据，那么把这个数据设计为computed的</p>
+<p>2.如果你需要在某个数据变化时做一些事情，使用watch来观察这个数据变化</p>
+<h4 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h4><pre class=" language-html"><code class="language-html"> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>app3<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
     <span class="token comment" spellcheck="true">&lt;!-- methods，即使firstName和lastName没有改变，也需要再次执行 --></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span><span class="token punctuation">></span></span>{{getFullName}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h2</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span><span class="token punctuation">></span></span>{{getFullName}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h2</span><span class="token punctuation">></span></span>

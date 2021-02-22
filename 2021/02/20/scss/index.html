@@ -601,8 +601,8 @@ s
 <h2 id="Vue-scss-踩坑"><a href="#Vue-scss-踩坑" class="headerlink" title="Vue scss 踩坑"></a>Vue scss 踩坑</h2><p> 这里实践写的是 vue+element的admin</p>
 <h3 id="报错1-TypeError"><a href="#报错1-TypeError" class="headerlink" title="报错1 TypeError"></a>报错1 TypeError</h3><pre><code>TypeError [ERR_INVALID_ARG_TYPE]: The &quot;path&quot; argument must be of type string.</code></pre>
 <h3 id="报错2-UnhandledPromiseRejectionWarning"><a href="#报错2-UnhandledPromiseRejectionWarning" class="headerlink" title="报错2   UnhandledPromiseRejectionWarning"></a>报错2   UnhandledPromiseRejectionWarning</h3><pre><code>UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). To terminate the node process on unhandled promise rejection, use the CLI flag `--unhandled-rejections=strict`</code></pre>
-<h3 id="报错-115-x61-x73-115-x2d-108-x6f-x61-x64-x65-x72-x40-x31-x31-x2e-48-x2e-x31-“-has-incorrect-peer-dependency-“webpack-5-0-0”"><a href="#报错-115-x61-x73-115-x2d-108-x6f-x61-x64-x65-x72-x40-x31-x31-x2e-48-x2e-x31-“-has-incorrect-peer-dependency-“webpack-5-0-0”" class="headerlink" title="报错 &#115;&#x61;&#x73;&#115;&#x2d;&#108;&#x6f;&#x61;&#x64;&#x65;&#x72;&#x40;&#x31;&#x31;&#x2e;&#48;&#x2e;&#x31;“ has incorrect peer dependency “webpack@^5.0.0”."></a>报错 <a href="mailto:&#115;&#x61;&#x73;&#115;&#x2d;&#108;&#x6f;&#x61;&#x64;&#x65;&#x72;&#x40;&#x31;&#x31;&#x2e;&#48;&#x2e;&#x31;">&#115;&#x61;&#x73;&#115;&#x2d;&#108;&#x6f;&#x61;&#x64;&#x65;&#x72;&#x40;&#x31;&#x31;&#x2e;&#48;&#x2e;&#x31;</a>“ has incorrect peer dependency “webpack@^5.0.0”.</h3><p>Similar to what @KostDM said, in my case it seems like <a href="mailto:&#x73;&#x61;&#x73;&#115;&#x2d;&#108;&#x6f;&#97;&#100;&#x65;&#114;&#x40;&#x31;&#49;&#46;&#48;&#x2e;&#x30;">&#x73;&#x61;&#x73;&#115;&#x2d;&#108;&#x6f;&#97;&#100;&#x65;&#114;&#x40;&#x31;&#49;&#46;&#48;&#x2e;&#x30;</a> doesn’t work with <a href="mailto:&#x76;&#x75;&#101;&#x40;&#50;&#x2e;&#54;&#46;&#49;&#x32;">&#x76;&#x75;&#101;&#x40;&#50;&#x2e;&#54;&#46;&#49;&#x32;</a>.</p>
-<p>I installed <a href="mailto:&#115;&#x61;&#x73;&#x73;&#45;&#108;&#111;&#x61;&#x64;&#x65;&#114;&#64;&#x31;&#48;&#46;&#x31;&#46;&#x31;">&#115;&#x61;&#x73;&#x73;&#45;&#108;&#111;&#x61;&#x64;&#x65;&#114;&#64;&#x31;&#48;&#46;&#x31;&#46;&#x31;</a> and it worked like a charm again.</p>
+<h3 id="报错-x73-97-115-115-45-108-x6f-97-x64-101-114-x40-x31-49-x2e-48-46-49-“-has-incorrect-peer-dependency-“webpack-5-0-0”"><a href="#报错-x73-97-115-115-45-108-x6f-97-x64-101-114-x40-x31-49-x2e-48-46-49-“-has-incorrect-peer-dependency-“webpack-5-0-0”" class="headerlink" title="报错 &#x73;&#97;&#115;&#115;&#45;&#108;&#x6f;&#97;&#x64;&#101;&#114;&#x40;&#x31;&#49;&#x2e;&#48;&#46;&#49;“ has incorrect peer dependency “webpack@^5.0.0”."></a>报错 <a href="mailto:&#x73;&#97;&#115;&#115;&#45;&#108;&#x6f;&#97;&#x64;&#101;&#114;&#x40;&#x31;&#49;&#x2e;&#48;&#46;&#49;">&#x73;&#97;&#115;&#115;&#45;&#108;&#x6f;&#97;&#x64;&#101;&#114;&#x40;&#x31;&#49;&#x2e;&#48;&#46;&#49;</a>“ has incorrect peer dependency “webpack@^5.0.0”.</h3><p>Similar to what @KostDM said, in my case it seems like <a href="mailto:&#115;&#97;&#115;&#x73;&#x2d;&#108;&#111;&#97;&#x64;&#101;&#x72;&#64;&#49;&#49;&#x2e;&#48;&#x2e;&#48;">&#115;&#97;&#115;&#x73;&#x2d;&#108;&#111;&#97;&#x64;&#101;&#x72;&#64;&#49;&#49;&#x2e;&#48;&#x2e;&#48;</a> doesn’t work with <a href="mailto:&#118;&#117;&#x65;&#64;&#50;&#46;&#54;&#46;&#x31;&#x32;">&#118;&#117;&#x65;&#64;&#50;&#46;&#54;&#46;&#x31;&#x32;</a>.</p>
+<p>I installed <a href="mailto:&#x73;&#x61;&#115;&#x73;&#45;&#108;&#111;&#97;&#x64;&#x65;&#114;&#x40;&#49;&#48;&#x2e;&#x31;&#46;&#49;">&#x73;&#x61;&#115;&#x73;&#45;&#108;&#111;&#97;&#x64;&#x65;&#114;&#x40;&#49;&#48;&#x2e;&#x31;&#46;&#49;</a> and it worked like a charm again.</p>
 <p>解决: yarn add sass-loader@^10.1.1</p>
 <p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/66082397/typeerror-this-getoptions-is-not-a-function">来源</a></p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a target="_blank" rel="noopener" href="https://eddychang.me/blog/others/91-scss-15-mins.html">SCSS 15分鐘入門</a><br><a target="_blank" rel="noopener" href="https://dotblogs.com.tw/leo_codespace/2018/06/25/174235">從 CSS 到 SASS (SCSS) 超入門觀念引導</a><br><a target="_blank" rel="noopener" href="https://dotblogs.com.tw/brooke/2017/12/20/095527">SCSS語法 — @import、@media、@extend</a><br><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10208530?sc=iThelpR">Day23 學習 scss 時的那些大小事</a></p>
@@ -709,48 +709,46 @@ s
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;Current
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="">
+                <a href="../../22/vue-monitor-size/">
                     <div class="card-image">
                         
                         
-                        <img src="../../../../medias/featureimages/18.jpg" class="responsive-img" alt="scss使用以及踩坑">
+                        <img src="../../../../medias/featureimages/8.jpg" class="responsive-img" alt="Vue监视元素大小">
                         
-                        <span class="card-title">scss使用以及踩坑</span>
+                        <span class="card-title">Vue监视元素大小</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            scss
+                            Vue 监视element,window方法
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-02-20
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-02-22
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="../../../../categories/scss/" class="post-category">
-                                    scss
+                            <a href="../../../../categories/Vue/" class="post-category">
+                                    Vue
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="../../../../tags/scss/">
-                        <span class="chip bg-color">scss</span>
+                    <a href="../../../../tags/Vue/">
+                        <span class="chip bg-color">Vue</span>
                     </a>
                     
                 </div>
