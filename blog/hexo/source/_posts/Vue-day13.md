@@ -215,6 +215,8 @@ computed: mapState({
 
 ## 2.store中的Getter函数 - store从state取数据 
 
+### 1.es6中带filter
+
 ```js
 const store = new Vuex.Store({
   state: {
@@ -231,7 +233,18 @@ const store = new Vuex.Store({
 })
 ```
 
-### **Getter 也可以接受其他 getter 作为第二个参数**
+### 2. 直接取值
+
+```js
+computed: {
+...mapGetters([
+  'window', 
+  'fontSize'
+])
+}
+```
+
+### 3.**Getter 也可以接受其他 getter 作为第二个参数**
 
 ```js
 getters: {
