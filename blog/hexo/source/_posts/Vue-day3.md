@@ -125,14 +125,21 @@ computed有缓存，在this.firstName + " " + this.lastName的属性不变的情
 >methods：即时渲染
 >computed：有缓存渲染
 
-计算属性：computed
+### computed vs watch
+**计算属性：computed**
 计算属性范围在Vue实例的fullName内所管理的firstName和lastName,通常监听多个变量
 
-侦听器：watch
+**侦听器：watch**
 监听数据变化，一般只监听一个变量或数组
 
-使用场景 
+#### 使用场景 
 watch(异步场景)，computed(数据联动)
+
+1.如果一个数据依赖于其他数据，那么把这个数据设计为computed的
+
+2.如果你需要在某个数据变化时做一些事情，使用watch来观察这个数据变化
+
+#### 例子
 
 ```html
  <div id="app3">
