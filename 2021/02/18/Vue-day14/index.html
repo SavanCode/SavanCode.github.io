@@ -567,6 +567,13 @@ vm<span class="token punctuation">.</span><span class="token function">$off</spa
 <li>$refs 不是响应式的，不要试图用它在模板中做数据绑定</li>
 <li>当 v-for 用于元素或组件时，引用信息将是包含 DOM 节点或组件实例的数组。</li>
 </ul>
+<h3 id="ref-in-for-loop"><a href="#ref-in-for-loop" class="headerlink" title="ref in for loop"></a>ref in for loop</h3><pre class=" language-js"><code class="language-js"><span class="token operator">&lt;</span>list<span class="token operator">-</span>item
+  v<span class="token operator">-</span><span class="token keyword">for</span><span class="token operator">=</span><span class="token string">"item in items"</span> 
+  <span class="token punctuation">:</span>key<span class="token operator">=</span><span class="token string">"item.id"</span> 
+  <span class="token punctuation">:</span>value<span class="token operator">=</span><span class="token string">"item.text"</span> 
+  ref<span class="token operator">=</span><span class="token string">"items"</span>
+<span class="token operator">/</span><span class="token operator">></span></code></pre>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">this</span><span class="token punctuation">.</span>$refs<span class="token punctuation">.</span>items<span class="token punctuation">[</span>index<span class="token punctuation">]</span></code></pre>
 <h2 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/F22RfaszHewncKKZ-X5umg">Vue3 了解这 20 个响应式 API，写码如有神</a></li>
 </ul>
