@@ -192,11 +192,15 @@ computed: mapState({
          return state.count;
      },
     // es6写法
-    count: state => state.count
+    count: state => state.count,
+    // 想访问局部状态，就必须借助于一个普通函数，函数中使用 `this` 获取局部状态
+    countPlusLocalState (state) {
+      return state.count + this.localCount
+    }
 })
 ```
 
-### 3、通过mapState的数组来赋值- 常用
+#### 通过mapState的数组来赋值- 常用
 
 ```javascript
 import { mapState } from 'vuex'
@@ -204,7 +208,7 @@ import { mapState } from 'vuex'
 computed: mapState(['count'])
 ```
 
-### 4、通过mapState的JSON来赋值- 常用
+#### 通过mapState的JSON来赋值- 常用
 
 ```javascript
 import { mapState } from 'vuex'
@@ -213,9 +217,9 @@ computed: mapState({
 })
 ```
 
-## 2.store中的Getter函数 - store从state取数据 
+### 3.store中的Getter函数 - store从state取数据 
 
-### 1.es6中带filter
+####  设置store中Getter，然后组件中直接取值
 
 ```js
 const store = new Vuex.Store({
@@ -233,18 +237,22 @@ const store = new Vuex.Store({
 })
 ```
 
-### 2. 直接取值
-
 ```js
 computed: {
 ...mapGetters([
-  'window', 
-  'fontSize'
+  'doneTodos'，
+  'other'
 ])
+}
+//或者
+computed: {
+  doneCount() {
+    return this.$store.getters['doneTodosCount']
+  }
 }
 ```
 
-### 3.**Getter 也可以接受其他 getter 作为第二个参数**
+#### 注意！！**Getter 也可以接受其他 store中getter 作为第二个参数**
 
 ```js
 getters: {
@@ -256,7 +264,7 @@ getters: {
 store.getters.doneTodosCount // -> 1
 ```
 
-## 3.mutations-getters-actions异步
+## 2.mutations-getters-actions异步
 
 ### mutations（修改状态）
 
@@ -347,7 +355,7 @@ export default {
 
 
 
-## 4.action
+## 3.action
 
 ### 基本特点
 
@@ -417,7 +425,7 @@ actions: {
 }
 ```
 
-### 在组件中分发Action
+### 在组件中分发Action - mapActions
 
 ```js
 import { mapActions } from 'vuex'
@@ -436,6 +444,19 @@ export default {
     })
   }
 }
+
+//或者
+import { mapActions } from 'vuex'
+export default {
+  methods: {
+    increment(...args) {
+      return this.$store.dispatch.apply(this.$store, ['increment'].concat(args))
+    }
+    add(...args) {
+      return this.$store.dispatch.apply(this.$store, ['increment'].concat(args))
+    }
+  }
+} 
 ```
 
 ### 组合多个Action
@@ -495,6 +516,12 @@ actions: {
 ```
 
 > 一个 `store.dispatch` 在不同模块中可以触发多个 action 函数。在这种情况下，只有当所有触发函数完成后，返回的 Promise 才会执行
+
+## 4.组件中执行命令
+
+```js
+this.$store.dispatch('setWindowWidth', window.innerWidth);
+```
 
 ## 5.module-模块组
 
@@ -690,6 +717,8 @@ hotUpdate(newOptions: Object)
 
 ## Reference
 
-https://blog.csdn.net/weixin_43342105/article/details/105703491
+[vuex官方](https://vuex.vuejs.org/)
 
-http://doc.liangxinghua.com/vue-family/4.1.html
+[vuex核心内容及重点细节总结](https://blog.csdn.net/weixin_43342105/article/details/105703491)
+
+[vuex介绍](http://doc.liangxinghua.com/vue-family/4.1.html)

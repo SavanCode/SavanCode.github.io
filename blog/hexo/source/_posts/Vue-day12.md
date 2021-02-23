@@ -352,7 +352,7 @@ CSS Modules 是一个流行的，用于模块化和组合 CSS 的系统。 vue-l
 
 JS中访问
 
-```
+```html
 <script> 
 export default { 
 	created () { 
@@ -364,15 +364,13 @@ export default {
 </script>
 ```
 
-
-
 ### 数据访问相关 
 
 #### 数据模拟
 
 使用开发服务器配置before选项，可以编写接口，提供模拟数据。
 
-```
+```js
 devServer:{ 
 	before(app) { 
 		app.get('/api/courses', (req, res) => { 

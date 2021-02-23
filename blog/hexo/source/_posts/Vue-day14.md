@@ -235,7 +235,20 @@ mounted(){
 - $refs 不是响应式的，不要试图用它在模板中做数据绑定
 - 当 v-for 用于元素或组件时，引用信息将是包含 DOM 节点或组件实例的数组。
 
+### ref in for loop
 
+```js
+<list-item
+  v-for="item in items" 
+  :key="item.id" 
+  :value="item.text" 
+  ref="items"
+/>
+```
+
+```js
+this.$refs.items[index]
+```
 
 ## 拓展
 
