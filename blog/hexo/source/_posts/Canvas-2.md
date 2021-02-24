@@ -7,7 +7,7 @@ mathjax: true
 date: 2020-11-09 19:46:06
 password:
 summary: Canvas 2 HTML Graphics 的零碎知识点
-tags: css&html
+tags: [css&html,canvas]
 categories: css&html
 ---
 

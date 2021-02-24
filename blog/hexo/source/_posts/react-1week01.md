@@ -202,7 +202,7 @@ console.log(getName());
 
 1. 为事件提供的处理函数，必须是如下格式
 
-```
+```jsx
 onClick= { function } 
 ```
 

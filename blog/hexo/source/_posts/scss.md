@@ -1,5 +1,5 @@
 ---
-title: scss使用以及踩坑
+title: scss基本使用以及踩坑
 top: false
 cover: false
 toc: true
@@ -7,15 +7,15 @@ mathjax: true
 date: 2021-02-20 11:37:25
 password:
 summary: scss
-tags: scss
-categories: scss
+tags: [css&html,scss,sass]
+categories: css&html
 ---
 
 ## 基本了解
 
 SASS是成熟，稳定，强大的 **CSS预处理器** ，而 **SCSS** 是SASS3版本当中引入的新语法特性，完全兼容CSS3的同时继承了CSS强大的动态功能。(官网说了很多..um...总之**SCSS 是 Sass 的其中一种语法规则而已，即 SCSS 是 Sass 的子集**)
 
-之前的笔记也写过另外一个css预处理器 -Less - 看这里 :arrow_forward:
+之前的笔记也写过另外一个css预处理器 -Less - [看这里](https://savancode.github.io/2020/11/14/Less/)
 
 ## 安装
 
@@ -42,6 +42,12 @@ vue-cli生成的项目，已经默认加入了处理sass的loader
 ### 是基于webpack
 
 按照[官网教程](https://sass-lang.com/install)，手动把 `scss` 编译成 `css` 文件，然后自己引入。
+
+## 确认版本
+
+```sh
+$ sass -v
+```
 
 ## 文件生成
 
@@ -114,7 +120,7 @@ aside[role="complementary"] {
 }
 ```
 
-### 条件判断
+### 条件判断 if else
 
 ```scss
 @if lightness($color) > 30% {
@@ -124,12 +130,57 @@ aside[role="complementary"] {
 }
 ```
 
-### 遍历写法
+#### 进阶会变成
+
+```scss
+//SCSS
+@mixin blockOrHidden($boolean:true) {
+  @if $boolean {
+    @debug "$boolean is #{$boolean}";
+    display: block;
+  }
+  @else {
+      @debug "$boolean is #{$boolean}";
+      display: none;
+   }
+}
+.block {
+  @include blockOrHidden;
+}
+.hidden{
+  @include blockOrHidden(false);
+}
+```
+
+```css
+/*编译后*/
+.block {
+  display: block;
+}
+.hidden {
+  display: none;
+}    
+```
+
+## `#{}` 插值
+
+### 遍历写法 for
+
+#### 基本语法
+
+```
+@for $i from <start> through <end>
+@for $i from <start> to <end>
+```
+
+#### 简单例子
+
+##### through
 
 ```scss
 // 生成 .f12 {font-size: 12px} .... .f30 {font-size: 30px}
 @for $i from 12 through 30 {
-  .f#{$i} {
+  .f_#{$i} {
     font-size: #{$i}px;
   }
 }
@@ -148,7 +199,22 @@ $colors: #7FA0FF, #98BDFF, #A1D2B6, #FFDB46, #FFB63E, #F77C7A, #696CC9, #787EF3;
 }
 ```
 
-### 嵌套
+##### to
+
+```scss
+@for $i from 1 to 3 {
+  .item-#{$i} { width: 2em * $i; }
+}
+/*编译后*/
+.item-1 {
+  width: 2em;
+}
+.item-2 {
+  width: 4em;
+}
+```
+
+### 嵌套 `{}`
 
 ```scss
 div {
@@ -168,7 +234,73 @@ a {
 }
 ```
 
-### import  引入-@import
+## @while循环
+
+```scss
+//SCSS
+$types: 4;
+$type-width: 20px;
+@while $types > 0 {
+    .while-#{$types} {
+        width: $type-width + $types;
+    }
+    $types: $types - 1;
+}
+```
+
+```css
+.while-4 {
+  width: 24px;
+}
+.while-3 {
+  width: 23px;
+}
+.while-2 {
+  width: 22px;
+}
+.while-1 {
+  width: 21px;
+}
+```
+
+## @each循环
+
+### 基本语法
+
+```dart
+@each $var in <list>
+```
+
+### 基本例子
+
+```scss
+$list: a b c d e;/*$list 就是一个列表*/
+@mixin author-images {
+    @each $author in $list {
+        .photo-#{$author} {
+            background: url("/images/avatars/#{$author}.png") no-repeat;
+        }
+    }
+}
+.author-bio {
+    @include author-images;
+}
+```
+
+```css
+.author-bio .photo-a {
+  background: url("/images/avatars/a.png") no-repeat; }
+.author-bio .photo-b {
+  background: url("/images/avatars/b.png") no-repeat; }
+.author-bio .photo-c {
+  background: url("/images/avatars/c.png") no-repeat; }
+.author-bio .photo-d {
+  background: url("/images/avatars/d.png") no-repeat; }
+.author-bio .photo-e {
+  background: url("/images/avatars/e.png") no-repeat; }
+```
+
+## import  引入-@import
 
 ```scss
 @import "reset"; // 重設css
@@ -287,7 +419,79 @@ grayscale(#cc3) // #808080
 complement(#cc3) // #33c
 ```
 
-### 内建函数- @function
+### 字符串函数-unquote()函数
+
+- unquote($string)：删除字符串中的引号；
+
+- quote($string)：给字符串添加引号。
+
+**unquote( ) 函数只能删除字符串最前和最后的引号（双引号或单引号），而无法删除字符串中间的引号。如果字符没有带引号，返回的将是字符串本身**
+
+**使用 quote() 函数只能给字符串增加双引号，而且字符串中间有单引号或者空格时，需要用单引号或双引号括起，否则编译的时候将会报错。**
+
+```scss
+.test {
+    content: unquote("'Hello Sass!");
+}
+.test {
+    content: unquote("'Hello Sass!'");
+}
+.test {
+    content: unquote('"Hello Sass!"');
+//编译
+.test {
+    content: unquote('Hello Sass!);
+}
+.test {
+    content: unquote('Hello Sass!');
+}
+.test {
+    content: unquote("Hello Sass!");
+ }
+```
+
+```scss
+.test {
+    content: quote(ImWebDesigner);
+}
+.test {
+    content: quote(' ');
+}
+//编译
+.test {
+    content: quote("ImWebDesigner");
+}
+.test {
+    content: quote(" ");
+}
+```
+
+### 字符串函数-To-upper-case()、To-lower-case()
+
+### 数字函数-percentage()
+
+```scss
+width : percentage(.2) // width : 20%
+```
+
+### 数字函数-round()函数 ceil()函数 floor()函数 abs()函数
+
+```scss
+ width:round(12.3px)// width: 12px;
+ width:ceil(12.3px);//13px
+ width:floor(12.3px);//12px
+ width:abs(-12.3px);//12.3px
+```
+### 数字函数-min()函数、max()函数 random()函数
+**单位注意要一样的！！！！！**
+```scss
+>> min(1,2,1%,3,300%)
+1%
+>> max(1,5)
+5
+```
+
+### 自定义函数- @function
 
 ```scss
 // _variables.scss

@@ -100,9 +100,11 @@ ReactDOM.render(<EChartsView/>,document.getElementById('root'));
 npm install echarts-for-react echarts
 ```
 
-## [Element for Vue](https://element.eleme.cn/#/zh-CN)
+## [Element for Vue](https://element.eleme.cn/#/zh-CN/component/installation)
 
 基于 Vue.js
+
+
 
 ## [iview  for Vue](https://www.iviewui.com/)
 

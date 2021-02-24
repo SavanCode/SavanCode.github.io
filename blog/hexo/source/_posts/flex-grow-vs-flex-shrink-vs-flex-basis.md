@@ -7,7 +7,7 @@ mathjax: true
 date: 2020-11-13 18:59:40
 password:
 summary: Flex Layout 的一个小总结
-tags:  css&html
+tags: [css&html,flex]
 categories: css&html
 ---
 

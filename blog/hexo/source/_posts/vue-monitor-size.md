@@ -7,8 +7,8 @@ mathjax: true
 date: 2021-02-22 11:16:09
 password:
 summary: Vue 监视element,window方法
-tags: Vue
-categories: Vue
+tags: [Vue,JS]
+categories: [Vue,JS]
 ---
 
 ## 页面窗口大小
