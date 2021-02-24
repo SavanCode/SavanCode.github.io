@@ -40,6 +40,8 @@ yarn add axios
 
 ```js
   require('./mock')
+//或者
+import './mock'// 这里不用写 ./mock.js
 ```
 
 - 在mock.js文件中写
@@ -225,14 +227,10 @@ Mock.mock('/api/addgoods', 'post', function(option) {
 
 ## 踩坑
 
+在vue中使用axios做网络请求的时候，会遇到this不指向vue，而为undefined。
 
-
-
+解决 this的指向问题，要么箭头函数，要么直接let that=this
 
 ## Reference
 
  [在vue-cli项目下简单使用mockjs模拟数据](https://segmentfault.com/a/1190000016730919) 
-
-```
-
-```
