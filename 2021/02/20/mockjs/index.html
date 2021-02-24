@@ -386,8 +386,8 @@
                                 <span class="chip bg-color">Vue</span>
                             </a>
                         
-                            <a href="../../../../tags/mockjs/">
-                                <span class="chip bg-color">mockjs</span>
+                            <a href="../../../../tags/mock-js/">
+                                <span class="chip bg-color">mock.js</span>
                             </a>
                         
                     </div>
@@ -398,8 +398,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="../../../../categories/mockjs/" class="post-category">
-                                mockjs
+                            <a href="../../../../categories/mock-js/" class="post-category">
+                                mock.js
                             </a>
                         
                     </div>
@@ -429,7 +429,162 @@
             <div id="articleContent">
                 <h2 id="了解mockjs"><a href="#了解mockjs" class="headerlink" title="了解mockjs"></a>了解mockjs</h2><p>实际开发中，前后端分离，前端需要后端的接口去完成页面的渲染，但是并不能等到后端成员写完接口再开始进行测试。大部分情况下，前后端需要同时进行开发。因此便需要mockjs制造随机数据来进行后端接口模拟。</p>
 <p>(后面的例子会使用到Axios,axios 是一个基于 Promise 用于浏览器和 nodejs 的 HTTP 客户端，我们后续需要用来发送 http 请求)</p>
-<h2 id="踩坑"><a href="#踩坑" class="headerlink" title="踩坑"></a>踩坑</h2><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p> <a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000016730919">在vue-cli项目下简单使用mockjs模拟数据</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/nuysoft/Mock/wiki/Getting-Started">使用文档</a></p>
+<p>官网地址：http:<em>//mockjs.com/</em></p>
+<p>github 地址：https:<em>//github.com/nuysoft/Mock</em></p>
+<h2 id="Vue的引入Mockjs"><a href="#Vue的引入Mockjs" class="headerlink" title="Vue的引入Mockjs"></a>Vue的引入Mockjs</h2><p>完整代码 git: mockjsDemo1</p>
+<pre class=" language-sh"><code class="language-sh">npm install mockjs
+//下面的例子要用axios
+yarn add axios</code></pre>
+<ul>
+<li><p>在src路径下创建mock.js文件</p>
+</li>
+<li><p>在main.js引入mock.js文件</p>
+</li>
+</ul>
+<pre class=" language-js"><code class="language-js">  <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'./mock'</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">//或者</span>
+<span class="token keyword">import</span> <span class="token string">'./mock'</span><span class="token comment" spellcheck="true">// 这里不用写 ./mock.js</span></code></pre>
+<ul>
+<li>在mock.js文件中写</li>
+</ul>
+<pre class=" language-js"><code class="language-js">  <span class="token comment" spellcheck="true">//引入mockjs</span>
+  <span class="token keyword">const</span> Mock <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'mockjs'</span><span class="token punctuation">)</span>
+  <span class="token comment" spellcheck="true">// 获取 mock.Random 对象</span>
+  <span class="token keyword">const</span> Random <span class="token operator">=</span> Mock<span class="token punctuation">.</span>Random<span class="token punctuation">;</span>
+  <span class="token comment" spellcheck="true">//使用mockjs模拟数据</span>
+  Mock<span class="token punctuation">.</span><span class="token function">mock</span><span class="token punctuation">(</span><span class="token string">'/api/data'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>req<span class="token punctuation">,</span> res<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span><span class="token comment" spellcheck="true">//当post或get请求到/api/data路由时Mock会拦截请求并返回上面的数据</span>
+      <span class="token keyword">let</span> list <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+      <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">30</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">let</span> listObject <span class="token operator">=</span> <span class="token punctuation">{</span>
+              title<span class="token punctuation">:</span> Random<span class="token punctuation">.</span><span class="token function">csentence</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">//随机生成一段中文文本。</span>
+              company<span class="token punctuation">:</span> Random<span class="token punctuation">.</span><span class="token function">csentence</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+              attention_degree<span class="token punctuation">:</span> Random<span class="token punctuation">.</span><span class="token function">integer</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">9999</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">//返回一个随机的整数。</span>
+              photo<span class="token punctuation">:</span> Random<span class="token punctuation">.</span><span class="token function">image</span><span class="token punctuation">(</span><span class="token string">'114x83'</span><span class="token punctuation">,</span> <span class="token string">'#00405d'</span><span class="token punctuation">,</span> <span class="token string">'#FFF'</span><span class="token punctuation">,</span> <span class="token string">'Mock.js'</span><span class="token punctuation">)</span>
+          <span class="token punctuation">}</span>
+          list<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>listObject<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">return</span> <span class="token punctuation">{</span>
+          data<span class="token punctuation">:</span> list
+      <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
+<ul>
+<li>在Vue中设置</li>
+</ul>
+<pre class=" language-js"><code class="language-js">      mounted<span class="token punctuation">:</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            axios<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'/api/data'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>res <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span><span class="token comment" spellcheck="true">//get()中的参数要与mock.js文件中的Mock.mock()配置的路由保持一致</span>
+              <span class="token keyword">this</span><span class="token punctuation">.</span>data <span class="token operator">=</span> res<span class="token punctuation">.</span>data<span class="token punctuation">.</span>data<span class="token punctuation">;</span>
+              console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//在console中看到数据</span>
+              <span class="token keyword">this</span><span class="token punctuation">.</span>tableData<span class="token operator">=</span>res<span class="token punctuation">.</span>data<span class="token punctuation">.</span>data
+            <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token keyword">catch</span><span class="token punctuation">(</span>res <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+              <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">'wrong'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span>
+          <span class="token punctuation">}</span><span class="token punctuation">,</span>  </code></pre>
+<p>上面的运行成功了~ 那么就可以开心的用mockjs了 ~~下面的只是更换所需的功能</p>
+<h2 id="Mock函数的解释"><a href="#Mock函数的解释" class="headerlink" title="Mock函数的解释"></a><a target="_blank" rel="noopener" href="https://github.com/nuysoft/Mock/wiki/Mock.mock()">Mock函数的解释</a></h2><p>Mock.mock(rurl? rtype? template|function(options))   生成模拟数据</p>
+<ul>
+<li><p>rurl - 可选<br>  表示需要拦截的 URL，可以是 ‘字符串’ 或 ‘正则’。例如：</p>
+<pre class=" language-js"><code class="language-js"><span class="token string">'www.xxx.com/list.json'</span>
+<span class="token regex">/\/www\.xxx\.com\/list\.json/</span></code></pre>
+</li>
+<li><p>rtype - 可选<br>  表示需要拦截的 Ajax 请求方法。例如： GET、POST、PUT、DELETE 等</p>
+</li>
+<li><p>template - 可选<br>  表示数据模板，可以是 ‘对象’ 或 ‘字符串’。例如：{ ‘data|1-10’: [{}] }     或  ‘@EMAIL’</p>
+</li>
+<li><p>function(options) - 可选<br>  表示用于生成响应数据的函数。<br>  options 指向本次请求的 Ajax 选项集，包含： url type body  3 个属性</p>
+</li>
+</ul>
+<h2 id="mockjs-数据生成语法"><a href="#mockjs-数据生成语法" class="headerlink" title="mockjs 数据生成语法"></a>mockjs 数据生成语法</h2><p>稍微看看吧， 不想看可以直接按照例子走就完事儿</p>
+<h3 id="mock-js-的语法规范包含-2-部分"><a href="#mock-js-的语法规范包含-2-部分" class="headerlink" title="mock.js 的语法规范包含 2 部分"></a>mock.js 的语法规范包含 2 部分</h3><p>  1.数据模板定义规则(Data Template Definition, DTD)<br>  2.数据占位符定义规则(Data Placeholder Definition, DPD)</p>
+<h3 id="DTD-规范"><a href="#DTD-规范" class="headerlink" title="DTD 规范"></a>DTD 规范</h3><p>每个属性由 3 部分组成：属性名、生成规则、属性值。</p>
+<p><strong>‘name|rule’: value</strong></p>
+<ul>
+<li>name - 属性名</li>
+<li>rule - 生成规则</li>
+<li>value - 属性值</li>
+</ul>
+<h4 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h4><p>1.属性名和生成规则，之间有一个 ‘|’<br>2.生成规则是 ‘可选的’<br>3.生成规则有 ‘7’ 种格式：</p>
+<ul>
+<li>1&gt;min-max</li>
+<li>2&gt;count</li>
+<li>3&gt;min-max.dmin-dmax</li>
+<li>4&gt;min-max.dcount</li>
+<li>5&gt;count.dmin-dmax</li>
+<li>6&gt;count.dcount</li>
+<li>7&gt;+step</li>
+</ul>
+<p>4.生成规则的含义，依赖 ‘属性值类型’ 来确定(意思是：生成规则，根据属性值 ‘类型’ 的不同，会生成不同的模拟数据)<br>5.属性值中可以含有 ‘@占位符’<br>6.属性值，指定了最终值的 ‘初始值’ 和 ‘类型’</p>
+<h3 id="DPD-规范"><a href="#DPD-规范" class="headerlink" title="DPD 规范"></a>DPD 规范</h3><p>占位符，只是在 ‘属性值’ 中占个位置，并不会出现在生成的属性值中。</p>
+<ul>
+<li>@占位符</li>
+<li>@占位符(参数[, 参数])</li>
+</ul>
+<h4 id="注意点-1"><a href="#注意点-1" class="headerlink" title="注意点"></a>注意点</h4><ul>
+<li>1.用 ‘@’ 来标识其后的字符串为 ‘占位符’</li>
+<li>2.占位符引用的是 ‘Mock.Random’ 中的方法</li>
+<li>3.通过 Mock.Random.extend() 来 ‘自定义’ 占位符</li>
+<li>4.’占位符’ 也 ‘可以引用’  ‘数据模板’ 的属性</li>
+<li>5.’占位符’ 会 ‘优先’ 引用 ‘数据模板’ 的属性</li>
+<li>6.’占位符’ 支持 ‘相对路径’ 和 ‘绝对路径’</li>
+</ul>
+<h2 id="数据模板生成模板"><a href="#数据模板生成模板" class="headerlink" title="数据模板生成模板"></a>数据模板生成模板</h2><p><a target="_blank" rel="noopener" href="http://mockjs.com/examples.html">http://mockjs.com/examples.html</a></p>
+<h2 id="mockJs-的模拟get请求"><a href="#mockJs-的模拟get请求" class="headerlink" title="mockJs 的模拟get请求"></a>mockJs 的模拟get请求</h2><pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">//vue</span>
+<span class="token operator">&lt;</span>button @click<span class="token operator">=</span><span class="token string">"getGoodsList"</span><span class="token operator">></span>获取商品列表<span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">></span>
+ methods<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token keyword">async</span> <span class="token function">getGoodsList</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">const</span> <span class="token punctuation">{</span> data<span class="token punctuation">:</span> res <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token keyword">this</span><span class="token punctuation">.</span>$http<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'/api/goodslist'</span><span class="token punctuation">)</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+ <span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">//mockjs</span>
+Mock<span class="token punctuation">.</span><span class="token function">mock</span><span class="token punctuation">(</span><span class="token string">'/api/goodslist'</span><span class="token punctuation">,</span> <span class="token string">'get'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  status<span class="token punctuation">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+  message<span class="token punctuation">:</span> <span class="token string">'获取商品列表成功！'</span><span class="token punctuation">,</span>
+  <span class="token string">'data|5-10'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      id<span class="token punctuation">:</span> <span class="token string">'@increment(1)'</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// 自增的Id值</span>
+      <span class="token comment" spellcheck="true">// 'id|+1': 0, // 这也是在模拟一个自增长的 Id 值</span>
+      name<span class="token punctuation">:</span> <span class="token string">'@cword(2, 8)'</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// 随机生成中文字符串</span>
+      price<span class="token punctuation">:</span> <span class="token string">'@natural(2, 10)'</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// 自然数</span>
+      count<span class="token punctuation">:</span> <span class="token string">'@natural(100, 999)'</span><span class="token punctuation">,</span>
+      img<span class="token punctuation">:</span> <span class="token string">'@dataImage(78x78)'</span> <span class="token comment" spellcheck="true">// 指定宽高图片</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
+<h2 id="mockJs-的模拟post请求"><a href="#mockJs-的模拟post请求" class="headerlink" title="mockJs 的模拟post请求"></a>mockJs 的模拟post请求</h2><pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">//vue</span>
+<span class="token operator">&lt;</span>button @click<span class="token operator">=</span><span class="token string">"addGoods"</span><span class="token operator">></span>添加商品<span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">></span>
+  methods<span class="token punctuation">:</span> <span class="token punctuation">{</span> 
+    <span class="token keyword">async</span> <span class="token function">addGoods</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">const</span> <span class="token punctuation">{</span> data<span class="token punctuation">:</span> res <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token keyword">this</span><span class="token punctuation">.</span>$http<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span><span class="token string">'/api/addgoods'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+        name<span class="token punctuation">:</span> <span class="token string">'菠萝'</span><span class="token punctuation">,</span>
+        price<span class="token punctuation">:</span> <span class="token number">8</span><span class="token punctuation">,</span>
+        count<span class="token punctuation">:</span> <span class="token number">550</span><span class="token punctuation">,</span>
+        img<span class="token punctuation">:</span> <span class="token string">''</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span> 
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">//mockjs</span>
+Mock<span class="token punctuation">.</span><span class="token function">mock</span><span class="token punctuation">(</span><span class="token string">'/api/addgoods'</span><span class="token punctuation">,</span> <span class="token string">'post'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>option<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">// 这里的 option 是请求相关的参数</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>option<span class="token punctuation">)</span>
+
+  <span class="token comment" spellcheck="true">//一般的默认的return</span>
+  <span class="token comment" spellcheck="true">// return{</span>
+  <span class="token comment" spellcheck="true">//   status:200,</span>
+  <span class="token comment" spellcheck="true">//   message:'商品添加成功'</span>
+  <span class="token comment" spellcheck="true">// }</span>
+
+  <span class="token comment" spellcheck="true">//这里如果你要使用mock返回信息的话 就需要这样</span>
+  <span class="token keyword">return</span> Mock<span class="token punctuation">.</span><span class="token function">mock</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    status<span class="token punctuation">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+    message<span class="token punctuation">:</span> <span class="token string">'@cword(2,5)'</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
+<p>注意这里的设置会有不同这里的完整代码 github_demo2</p>
+<h2 id="踩坑"><a href="#踩坑" class="headerlink" title="踩坑"></a>踩坑</h2><p>在vue中使用axios做网络请求的时候，会遇到this不指向vue，而为undefined。</p>
+<p>解决 this的指向问题，要么箭头函数，要么直接let that=this</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p> <a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000016730919">在vue-cli项目下简单使用mockjs模拟数据</a> </p>
 
             </div>
             <hr/>
@@ -497,8 +652,8 @@
                                     <span class="chip bg-color">Vue</span>
                                 </a>
                             
-                                <a href="../../../../tags/mockjs/">
-                                    <span class="chip bg-color">mockjs</span>
+                                <a href="../../../../tags/mock-js/">
+                                    <span class="chip bg-color">mock.js</span>
                                 </a>
                             
                         </div>
@@ -614,6 +769,10 @@
                     
                     <a href="../../../../tags/css-html/">
                         <span class="chip bg-color">css&amp;html</span>
+                    </a>
+                    
+                    <a href="../../../../tags/botton/">
+                        <span class="chip bg-color">botton</span>
                     </a>
                     
                 </div>
