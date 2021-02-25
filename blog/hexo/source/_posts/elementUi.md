@@ -6,9 +6,9 @@ toc: true
 mathjax: true
 date: 2021-02-25 23:57:22
 password:
-summary:
-tags: elementUI
-categories: elementUI
+summary: elementUI练习以及问题总结
+tags: [elementUI,Vue,scss]
+categories: [elementUI,Vue]
 ---
 
 记录一下个人练习遇到的问题~ 不是完整的学习笔记
