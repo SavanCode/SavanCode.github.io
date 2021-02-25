@@ -386,6 +386,10 @@
                                 <span class="chip bg-color">Vue</span>
                             </a>
                         
+                            <a href="../../../../tags/router/">
+                                <span class="chip bg-color">router</span>
+                            </a>
+                        
                     </div>
                     
                 </div>
@@ -396,6 +400,10 @@
                         
                             <a href="../../../../categories/Vue/" class="post-category">
                                 Vue
+                            </a>
+                        
+                            <a href="../../../../categories/Vue/router/" class="post-category">
+                                router
                             </a>
                         
                     </div>
@@ -909,6 +917,31 @@ router<span class="token punctuation">.</span><span class="token function">after
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code></pre>
+<h4 id="导航守卫的例子"><a href="#导航守卫的例子" class="headerlink" title="导航守卫的例子"></a>导航守卫的例子</h4><pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">//router的导航守卫的例子 对于login 例子是github中admin-ui</span>
+router<span class="token punctuation">.</span><span class="token function">beforeEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span>to<span class="token punctuation">,</span> <span class="token keyword">from</span><span class="token punctuation">,</span> next<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// to and from are both route objects. must call `next`.</span>
+    <span class="token comment" spellcheck="true">// 登录界面登录成功之后，会把用户信息保存在会话</span>
+    <span class="token comment" spellcheck="true">// 存在时间为会话生命周期，页面关闭即失效。</span>
+    <span class="token keyword">let</span> token <span class="token operator">=</span> Cookies<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'token'</span><span class="token punctuation">)</span>
+    <span class="token keyword">let</span> userName <span class="token operator">=</span> sessionStorage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span><span class="token string">'user'</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>to<span class="token punctuation">.</span>path <span class="token operator">===</span> <span class="token string">'/login'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 如果是访问登录界面，如果用户会话信息存在，代表已登录过，跳转到主页</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>token<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">{</span> path<span class="token punctuation">:</span> <span class="token string">'/'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>token<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 如果访问非登录界面，且户会话信息不存在，代表未登录，则跳转到登录界面</span>
+            <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">{</span> path<span class="token punctuation">:</span> <span class="token string">'/login'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 加载动态菜单和路由</span>
+            <span class="token function">addDynamicMenuAndRoutes</span><span class="token punctuation">(</span>userName<span class="token punctuation">,</span> to<span class="token punctuation">,</span> <span class="token keyword">from</span><span class="token punctuation">)</span>
+            <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
 <h2 id="懒加载"><a href="#懒加载" class="headerlink" title="懒加载"></a>懒加载</h2><p>  当打包构建应用时，JS包会变得非常大，影响页面加载。如果能把不同路由对应的组件分割成不同的代码块，然后当路由被访问的时候才加载对应组件，这样就更加高效了</p>
 <p>  结合 Vue 的 异步组件 和 Webpack 的代码分割功能，轻松实现路由组件的懒加载。</p>
 <p>大项目中，为了提高初始化页面的效率，路由一般使用懒加载模式，一共三种实现方式。</p>
@@ -1067,6 +1100,10 @@ meta<span class="token punctuation">:</span><span class="token punctuation">{</s
                             
                                 <a href="../../../../tags/Vue/">
                                     <span class="chip bg-color">Vue</span>
+                                </a>
+                            
+                                <a href="../../../../tags/router/">
+                                    <span class="chip bg-color">router</span>
                                 </a>
                             
                         </div>

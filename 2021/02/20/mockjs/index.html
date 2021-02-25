@@ -432,7 +432,7 @@
 <p><a target="_blank" rel="noopener" href="https://github.com/nuysoft/Mock/wiki/Getting-Started">使用文档</a></p>
 <p>官网地址：http:<em>//mockjs.com/</em></p>
 <p>github 地址：https:<em>//github.com/nuysoft/Mock</em></p>
-<h2 id="Vue的引入Mockjs"><a href="#Vue的引入Mockjs" class="headerlink" title="Vue的引入Mockjs"></a>Vue的引入Mockjs</h2><p>完整代码 git: mockjsDemo1</p>
+<h2 id="Vue的引入Mockjs-demo1"><a href="#Vue的引入Mockjs-demo1" class="headerlink" title="Vue的引入Mockjs - demo1"></a>Vue的引入Mockjs - demo1</h2><p><strong>完整代码 git: mockjsDemo1</strong></p>
 <pre class=" language-sh"><code class="language-sh">npm install mockjs
 //下面的例子要用axios
 yarn add axios</code></pre>
@@ -527,7 +527,7 @@ yarn add axios</code></pre>
 <li>5.’占位符’ 会 ‘优先’ 引用 ‘数据模板’ 的属性</li>
 <li>6.’占位符’ 支持 ‘相对路径’ 和 ‘绝对路径’</li>
 </ul>
-<h2 id="数据模板生成模板"><a href="#数据模板生成模板" class="headerlink" title="数据模板生成模板"></a>数据模板生成模板</h2><p><a target="_blank" rel="noopener" href="http://mockjs.com/examples.html">http://mockjs.com/examples.html</a></p>
+<h2 id="数据模板生成模板-demo2"><a href="#数据模板生成模板-demo2" class="headerlink" title="数据模板生成模板 - demo2"></a>数据模板生成模板 - demo2</h2><p><a target="_blank" rel="noopener" href="http://mockjs.com/examples.html">http://mockjs.com/examples.html</a></p>
 <h2 id="mockJs-的模拟get请求"><a href="#mockJs-的模拟get请求" class="headerlink" title="mockJs 的模拟get请求"></a>mockJs 的模拟get请求</h2><pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">//vue</span>
 <span class="token operator">&lt;</span>button @click<span class="token operator">=</span><span class="token string">"getGoodsList"</span><span class="token operator">></span>获取商品列表<span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">></span>
  methods<span class="token punctuation">:</span> <span class="token punctuation">{</span>
@@ -581,10 +581,137 @@ Mock<span class="token punctuation">.</span><span class="token function">mock</s
     message<span class="token punctuation">:</span> <span class="token string">'@cword(2,5)'</span>
   <span class="token punctuation">}</span><span class="token punctuation">)</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
-<p>注意这里的设置会有不同这里的完整代码 github_demo2</p>
+<p><strong>注意这里的设置会有不同这里的完整代码 github_demo2</strong></p>
+<p>上面的都属于基本的简单实用 ~~<strong>下面咋们看看封装版本</strong></p>
+<h2 id="封装mock模板-admin-ui"><a href="#封装mock模板-admin-ui" class="headerlink" title="封装mock模板!! - admin-ui"></a>封装mock模板!! - admin-ui</h2><p>(下面的例子 基本完成了mock的基本设置 axios的基本设置 然后还有做axios封装)</p>
+<h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><p>为了统一可以统一管理和集中控制数据模拟接口，我们对 mock 模块进行了封装，可以方便的定制模拟接口的统一开关和个体开关</p>
+<h3 id="文件结构"><a href="#文件结构" class="headerlink" title="文件结构"></a>文件结构</h3><pre><code>|- mock 
+ |--modules
+   |--- index.js：模拟接口模块聚合文件
+   |--- login.js：登录相关的接口模拟
+   |--- user.js：用户相关的接口模拟
+   |--- menu.js：菜单相关的接口模拟</code></pre>
+<p><strong>代码内容都是admin-ui里面的!!!!</strong></p>
+<h4 id="封装之前"><a href="#封装之前" class="headerlink" title="封装之前"></a>封装之前</h4><pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">//简单的搭建沟通</span>
+<span class="token keyword">import</span> Mock <span class="token keyword">from</span> <span class="token string">'mockjs'</span>
+
+<span class="token comment" spellcheck="true">//前面的link可以不写</span>
+Mock<span class="token punctuation">.</span><span class="token function">mock</span><span class="token punctuation">(</span><span class="token string">'http://localhost:8080/login'</span><span class="token punctuation">,</span><span class="token punctuation">{</span>
+    data<span class="token punctuation">:</span><span class="token punctuation">{</span>
+        <span class="token string">'token'</span><span class="token punctuation">:</span><span class="token string">'123159753456789'</span>
+        <span class="token comment" spellcheck="true">//其他数据</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+Mock<span class="token punctuation">.</span><span class="token function">mock</span><span class="token punctuation">(</span><span class="token string">'http://localhost:8080/user'</span><span class="token punctuation">,</span><span class="token punctuation">{</span>
+    <span class="token string">'name'</span><span class="token punctuation">:</span><span class="token string">'@name'</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">//随机生成名字</span>
+    <span class="token string">'email'</span><span class="token punctuation">:</span><span class="token string">'@email'</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">//随机生成</span>
+    <span class="token string">'age|1-10'</span><span class="token punctuation">:</span><span class="token number">5</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+Mock<span class="token punctuation">.</span><span class="token function">mock</span><span class="token punctuation">(</span><span class="token string">'http://localhost:8080/menu'</span><span class="token punctuation">,</span><span class="token punctuation">{</span>
+    <span class="token string">'id'</span><span class="token punctuation">:</span><span class="token string">'@increment'</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">//随机生成名字</span>
+    <span class="token string">'name'</span><span class="token punctuation">:</span><span class="token string">'@menu'</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">//随机生成</span>
+    <span class="token string">'order|10-20'</span><span class="token punctuation">:</span><span class="token number">12</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span> </code></pre>
+<h4 id="封装开始-index-js"><a href="#封装开始-index-js" class="headerlink" title="封装开始!!index.js"></a>封装开始!!index.js</h4><pre class=" language-js"><code class="language-js"><span class="token keyword">import</span> Mock <span class="token keyword">from</span> <span class="token string">'mockjs'</span>
+<span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> login <span class="token keyword">from</span> <span class="token string">'./modules/login'</span>
+<span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> user <span class="token keyword">from</span> <span class="token string">'./modules/user'</span>
+<span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> menu <span class="token keyword">from</span> <span class="token string">'./modules/menu'</span>
+
+<span class="token comment" spellcheck="true">// 1. 开启/关闭[业务模块]拦截, 通过调用fnCreate方法[isOpen参数]设置.</span>
+<span class="token comment" spellcheck="true">// 2. 开启/关闭[业务模块中某个请求]拦截, 通过函数返回对象中的[isOpen属性]设置.</span>
+<span class="token function">fnCreate</span><span class="token punctuation">(</span>login<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">//现在就暂时只有三个部分</span>
+<span class="token function">fnCreate</span><span class="token punctuation">(</span>user<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span>
+<span class="token function">fnCreate</span><span class="token punctuation">(</span>menu<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true">/**
+ * 创建mock模拟数据
+ * @param {*} mod 模块
+ * @param {*} isOpen 是否开启?
+ */</span>
+<span class="token keyword">function</span> fnCreate <span class="token punctuation">(</span>mod<span class="token punctuation">,</span> isOpen <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>isOpen<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> key <span class="token keyword">in</span> mod<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token punctuation">(</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>res<span class="token punctuation">.</span>isOpen <span class="token operator">!==</span> <span class="token boolean">false</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          Mock<span class="token punctuation">.</span><span class="token function">mock</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">RegExp</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>url<span class="token punctuation">)</span><span class="token punctuation">,</span> res<span class="token punctuation">.</span>type<span class="token punctuation">,</span> <span class="token punctuation">(</span>opts<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+            opts<span class="token punctuation">[</span><span class="token string">'data'</span><span class="token punctuation">]</span> <span class="token operator">=</span> opts<span class="token punctuation">.</span>body <span class="token operator">?</span> JSON<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>opts<span class="token punctuation">.</span>body<span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token keyword">null</span>
+            <span class="token keyword">delete</span> opts<span class="token punctuation">.</span>body
+            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'\n'</span><span class="token punctuation">)</span>
+            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'%cmock拦截, 请求: '</span><span class="token punctuation">,</span> <span class="token string">'color:blue'</span><span class="token punctuation">,</span> opts<span class="token punctuation">)</span>
+            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'%cmock拦截, 响应: '</span><span class="token punctuation">,</span> <span class="token string">'color:blue'</span><span class="token punctuation">,</span> res<span class="token punctuation">.</span>data<span class="token punctuation">)</span>
+            <span class="token keyword">return</span> res<span class="token punctuation">.</span>data
+          <span class="token punctuation">}</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span>mod<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h4 id="login-js"><a href="#login-js" class="headerlink" title="login.js"></a>login.js</h4><pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// 登录接口</span>
+<span class="token keyword">export</span> <span class="token keyword">function</span> login <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// isOpen: false,</span>
+    url<span class="token punctuation">:</span> <span class="token string">'http://localhost:8080/login'</span><span class="token punctuation">,</span>
+    type<span class="token punctuation">:</span> <span class="token string">'get'</span><span class="token punctuation">,</span>
+    data<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      <span class="token string">'msg'</span><span class="token punctuation">:</span> <span class="token string">'success'</span><span class="token punctuation">,</span>
+      <span class="token string">'code'</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+      <span class="token string">'data'</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        <span class="token string">'token'</span><span class="token punctuation">:</span> <span class="token string">'4344323121398'</span>
+        <span class="token comment" spellcheck="true">// 其他数据</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h4 id="user-js"><a href="#user-js" class="headerlink" title="user.js"></a>user.js</h4><pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// 获取用户信息</span>
+<span class="token keyword">export</span> <span class="token keyword">function</span> getUser <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// isOpen: false,</span>
+    url<span class="token punctuation">:</span> <span class="token string">'http://localhost:8080/user'</span><span class="token punctuation">,</span>
+    type<span class="token punctuation">:</span> <span class="token string">'get'</span><span class="token punctuation">,</span>
+    data<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      <span class="token string">'msg'</span><span class="token punctuation">:</span> <span class="token string">'success'</span><span class="token punctuation">,</span>
+      <span class="token string">'code'</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+      <span class="token string">'data'</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        <span class="token string">'id'</span><span class="token punctuation">:</span> <span class="token string">'@increment'</span><span class="token punctuation">,</span> 
+        <span class="token string">'name'</span><span class="token punctuation">:</span> <span class="token string">'@name'</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// 随机生成姓名</span>
+        <span class="token string">'email'</span><span class="token punctuation">:</span> <span class="token string">'@email'</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// 随机生成姓名</span>
+        <span class="token string">'age|10-20'</span><span class="token punctuation">:</span> <span class="token number">12</span>
+        <span class="token comment" spellcheck="true">// 其他数据</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h4 id="menu-js"><a href="#menu-js" class="headerlink" title="menu.js"></a>menu.js</h4><pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// 获取菜单信息</span>
+<span class="token keyword">export</span> <span class="token keyword">function</span> getMenu <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// isOpen: false,</span>
+    url<span class="token punctuation">:</span> <span class="token string">'http://localhost:8080/menu'</span><span class="token punctuation">,</span>
+    type<span class="token punctuation">:</span> <span class="token string">'get'</span><span class="token punctuation">,</span>
+    data<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      <span class="token string">'msg'</span><span class="token punctuation">:</span> <span class="token string">'success'</span><span class="token punctuation">,</span>
+      <span class="token string">'code'</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+      <span class="token string">'data'</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        <span class="token string">'id'</span><span class="token punctuation">:</span> <span class="token string">'@increment'</span><span class="token punctuation">,</span> 
+        <span class="token string">'name'</span><span class="token punctuation">:</span> <span class="token string">'menu'</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// 随机生成姓名</span>
+        <span class="token string">'order|10-20'</span><span class="token punctuation">:</span> <span class="token number">12</span>
+        <span class="token comment" spellcheck="true">// 其他数据</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h4 id="修改引入"><a href="#修改引入" class="headerlink" title="修改引入"></a>修改引入</h4><h5 id="组件内"><a href="#组件内" class="headerlink" title="组件内"></a>组件内</h5><pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">//之前是</span>
+<span class="token keyword">import</span> mock <span class="token keyword">from</span> <span class="token string">'@/mock/mock.js'</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//改为</span>
+<span class="token keyword">import</span> mock <span class="token keyword">from</span> <span class="token string">'@/mock/index.js'</span><span class="token punctuation">;</span></code></pre>
+<p>这部封装成功的效果</p>
+<p><img src="/2021/02/20/mockjs/image-20210225155138789.png"></p>
 <h2 id="踩坑"><a href="#踩坑" class="headerlink" title="踩坑"></a>踩坑</h2><p>在vue中使用axios做网络请求的时候，会遇到this不指向vue，而为undefined。</p>
 <p>解决 this的指向问题，要么箭头函数，要么直接let that=this</p>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p> <a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000016730919">在vue-cli项目下简单使用mockjs模拟数据</a> </p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p> <a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000016730919">在vue-cli项目下简单使用mockjs模拟数据</a> (demo1)</p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Tt411T7Cw?p=1">掌握MockJS</a> (demo2)</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/xifengxiaoma/article/details/92839222?spm=1001.2014.3001.5501">Vue + Element UI 实现权限管理系统</a> (admin-ui)</p>
 
             </div>
             <hr/>
