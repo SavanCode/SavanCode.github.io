@@ -7,8 +7,8 @@ mathjax: true
 date: 2021-02-02 22:50:48
 password:
 summary: Vue.js 路由
-tags: Vue
-categories: Vue
+tags: [Vue,router]
+categories: [Vue,router]
 ---
 
 Vue.js 路由允许我们通过不同的 URL 访问不同的内容。
@@ -750,8 +750,6 @@ to.matched.some(function(item){return item.path=='post'})
 
 **回到上个问题 如果不是父子页面跳转怎么办~ 用这个限制咯**
 
-
-
 ### 3、组件内钩子
 
 使用：在路由组件内定义钩子函数：
@@ -792,6 +790,36 @@ export default {
     }
 }
 </script>
+```
+
+#### 导航守卫的例子
+
+```js
+//router的导航守卫的例子 对于login 例子是github中admin-ui
+router.beforeEach((to, from, next) => {
+    // to and from are both route objects. must call `next`.
+    // 登录界面登录成功之后，会把用户信息保存在会话
+    // 存在时间为会话生命周期，页面关闭即失效。
+    let token = Cookies.get('token')
+    let userName = sessionStorage.getItem('user')
+    if (to.path === '/login') {
+        // 如果是访问登录界面，如果用户会话信息存在，代表已登录过，跳转到主页
+        if(token) {
+            next({ path: '/' })
+        } else {
+            next()
+        }
+    } else {
+        if (!token) {
+        // 如果访问非登录界面，且户会话信息不存在，代表未登录，则跳转到登录界面
+            next({ path: '/login' })
+        } else {
+        // 加载动态菜单和路由
+            addDynamicMenuAndRoutes(userName, to, from)
+            next()
+        }
+    }
+})
 ```
 
 ## 懒加载

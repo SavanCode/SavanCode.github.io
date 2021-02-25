@@ -24,9 +24,9 @@ categories: mock.js
 
 github 地址：https:*//github.com/nuysoft/Mock*
 
-## Vue的引入Mockjs
+## Vue的引入Mockjs - demo1
 
-完整代码 git: mockjsDemo1
+**完整代码 git: mockjsDemo1**
 
 ```sh
 npm install mockjs
@@ -154,7 +154,7 @@ Mock.mock(rurl? rtype? template|function(options))   生成模拟数据
 
 
 
-## 数据模板生成模板
+## 数据模板生成模板 - demo2
 
 http://mockjs.com/examples.html
 
@@ -222,8 +222,179 @@ Mock.mock('/api/addgoods', 'post', function(option) {
 })
 ```
 
-注意这里的设置会有不同这里的完整代码 github_demo2
+**注意这里的设置会有不同这里的完整代码 github_demo2**
 
+上面的都属于基本的简单实用 ~~**下面咋们看看封装版本**
+
+## 封装mock模板!! - admin-ui
+
+(下面的例子 基本完成了mock的基本设置 axios的基本设置 然后还有做axios封装)
+
+### 目的
+
+为了统一可以统一管理和集中控制数据模拟接口，我们对 mock 模块进行了封装，可以方便的定制模拟接口的统一开关和个体开关
+
+### 文件结构
+
+```
+|- mock 
+ |--modules
+   |--- index.js：模拟接口模块聚合文件
+   |--- login.js：登录相关的接口模拟
+   |--- user.js：用户相关的接口模拟
+   |--- menu.js：菜单相关的接口模拟
+```
+
+**代码内容都是admin-ui里面的!!!!**
+
+#### 封装之前
+
+```js
+//简单的搭建沟通
+import Mock from 'mockjs'
+
+//前面的link可以不写
+Mock.mock('http://localhost:8080/login',{
+    data:{
+        'token':'123159753456789'
+        //其他数据
+    }
+})
+
+Mock.mock('http://localhost:8080/user',{
+    'name':'@name',//随机生成名字
+    'email':'@email',//随机生成
+    'age|1-10':5
+})
+
+Mock.mock('http://localhost:8080/menu',{
+    'id':'@increment',//随机生成名字
+    'name':'@menu',//随机生成
+    'order|10-20':12
+}) 
+```
+
+#### 封装开始!!index.js
+
+```js
+import Mock from 'mockjs'
+import * as login from './modules/login'
+import * as user from './modules/user'
+import * as menu from './modules/menu'
+
+// 1. 开启/关闭[业务模块]拦截, 通过调用fnCreate方法[isOpen参数]设置.
+// 2. 开启/关闭[业务模块中某个请求]拦截, 通过函数返回对象中的[isOpen属性]设置.
+fnCreate(login, true)//现在就暂时只有三个部分
+fnCreate(user, true)
+fnCreate(menu, true)
+
+/**
+ * 创建mock模拟数据
+ * @param {*} mod 模块
+ * @param {*} isOpen 是否开启?
+ */
+function fnCreate (mod, isOpen = true) {
+  if (isOpen) {
+    for (var key in mod) {
+      ((res) => {
+        if (res.isOpen !== false) {
+          Mock.mock(new RegExp(res.url), res.type, (opts) => {
+            opts['data'] = opts.body ? JSON.parse(opts.body) : null
+            delete opts.body
+            console.log('\n')
+            console.log('%cmock拦截, 请求: ', 'color:blue', opts)
+            console.log('%cmock拦截, 响应: ', 'color:blue', res.data)
+            return res.data
+          })
+        }
+      })(mod[key]() || {})
+    }
+  }
+}
+```
+
+#### login.js
+
+```js
+// 登录接口
+export function login () {
+  return {
+    // isOpen: false,
+    url: 'http://localhost:8080/login',
+    type: 'get',
+    data: {
+      'msg': 'success',
+      'code': 0,
+      'data': {
+        'token': '4344323121398'
+        // 其他数据
+      }
+    }
+  }
+}
+```
+
+#### user.js
+
+```js
+// 获取用户信息
+export function getUser () {
+  return {
+    // isOpen: false,
+    url: 'http://localhost:8080/user',
+    type: 'get',
+    data: {
+      'msg': 'success',
+      'code': 0,
+      'data': {
+        'id': '@increment', 
+        'name': '@name', // 随机生成姓名
+        'email': '@email', // 随机生成姓名
+        'age|10-20': 12
+        // 其他数据
+      }
+    }
+  }
+}
+```
+
+#### menu.js
+
+```js
+// 获取菜单信息
+export function getMenu () {
+  return {
+    // isOpen: false,
+    url: 'http://localhost:8080/menu',
+    type: 'get',
+    data: {
+      'msg': 'success',
+      'code': 0,
+      'data': {
+        'id': '@increment', 
+        'name': 'menu', // 随机生成姓名
+        'order|10-20': 12
+        // 其他数据
+      }
+    }
+  }
+}
+```
+
+#### 修改引入
+
+##### 组件内
+
+````js
+//之前是
+import mock from '@/mock/mock.js';
+//改为
+import mock from '@/mock/index.js';
+````
+
+这部封装成功的效果
+
+![](mockjs/image-20210225155138789.png)
 
 ## 踩坑
 
@@ -233,4 +404,8 @@ Mock.mock('/api/addgoods', 'post', function(option) {
 
 ## Reference
 
- [在vue-cli项目下简单使用mockjs模拟数据](https://segmentfault.com/a/1190000016730919) 
+ [在vue-cli项目下简单使用mockjs模拟数据](https://segmentfault.com/a/1190000016730919) (demo1)
+
+[掌握MockJS](https://www.bilibili.com/video/BV1Tt411T7Cw?p=1) (demo2)
+
+[Vue + Element UI 实现权限管理系统](https://blog.csdn.net/xifengxiaoma/article/details/92839222?spm=1001.2014.3001.5501) (admin-ui)

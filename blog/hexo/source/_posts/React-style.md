@@ -104,6 +104,10 @@ npm install echarts-for-react echarts
 
 基于 Vue.js
 
+步骤: 先布局 -> 然后插入模板 -> 注意下面的值
+
+[基础教程](https://wdd.js.org/vue-vue-router-elementui-stupid-simple-dashboard.html)
+
 
 
 ## [iview  for Vue](https://www.iviewui.com/)
