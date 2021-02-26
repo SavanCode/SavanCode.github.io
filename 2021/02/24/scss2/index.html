@@ -431,7 +431,8 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="利用mixin样式做出模板"><a href="#利用mixin样式做出模板" class="headerlink" title="利用mixin样式做出模板"></a>利用mixin样式做出模板</h2><h3 id="文字"><a href="#文字" class="headerlink" title="文字"></a>文字</h3><pre class=" language-scss"><code class="language-scss"><span class="token comment" spellcheck="true">/*文本格式化，超出范围，显示省略号*/</span>
+                <p>先看<a href="https://savancode.github.io/2021/02/20/scss/">scss基本使用以及踩坑</a></p>
+<h2 id="利用mixin样式做出模板"><a href="#利用mixin样式做出模板" class="headerlink" title="利用mixin样式做出模板"></a>利用mixin样式做出模板</h2><h3 id="文字"><a href="#文字" class="headerlink" title="文字"></a>文字</h3><pre class=" language-scss"><code class="language-scss"><span class="token comment" spellcheck="true">/*文本格式化，超出范围，显示省略号*/</span>
 <span class="token keyword">@mixin</span> <span class="token function">text-overflow</span><span class="token punctuation">(</span><span class="token property"><span class="token variable">$width</span></span><span class="token punctuation">:</span><span class="token number">100%</span>,<span class="token property"><span class="token variable">$line</span></span><span class="token punctuation">:</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token property">white-space</span><span class="token punctuation">:</span> nowrap<span class="token punctuation">;</span>
   <span class="token property">text-overflow</span><span class="token punctuation">:</span> ellipsis<span class="token punctuation">;</span>

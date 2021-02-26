@@ -427,8 +427,9 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="了解mockjs"><a href="#了解mockjs" class="headerlink" title="了解mockjs"></a>了解mockjs</h2><p>实际开发中，前后端分离，前端需要后端的接口去完成页面的渲染，但是并不能等到后端成员写完接口再开始进行测试。大部分情况下，前后端需要同时进行开发。因此便需要mockjs制造随机数据来进行后端接口模拟。</p>
+                <h2 id="了解mockjs"><a href="#了解mockjs" class="headerlink" title="了解mockjs"></a>了解mockjs</h2><p>实际开发中，前后端分离，前端需要后端的接口去完成页面的渲染，但是并不能等到后端成员写完接口再开始进行测试。大部分情况下，前后端需要同时进行开发。因此便需要<strong>mockjs制造随机数据</strong>来进行后端接口模拟。</p>
 <p>(后面的例子会使用到Axios,axios 是一个基于 Promise 用于浏览器和 nodejs 的 HTTP 客户端，我们后续需要用来发送 http 请求)</p>
+<p><img src="/2021/02/20/mockjs/image-20210226005153551.png"></p>
 <p><a target="_blank" rel="noopener" href="https://github.com/nuysoft/Mock/wiki/Getting-Started">使用文档</a></p>
 <p>官网地址：http:<em>//mockjs.com/</em></p>
 <p>github 地址：https:<em>//github.com/nuysoft/Mock</em></p>
@@ -581,7 +582,7 @@ Mock<span class="token punctuation">.</span><span class="token function">mock</s
     message<span class="token punctuation">:</span> <span class="token string">'@cword(2,5)'</span>
   <span class="token punctuation">}</span><span class="token punctuation">)</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
-<p><strong>注意这里的设置会有不同这里的完整代码 github_demo2</strong></p>
+<h2 id="删加增减的功能练习"><a href="#删加增减的功能练习" class="headerlink" title="删加增减的功能练习"></a>删加增减的功能练习</h2><p><strong>注意这里的设置会有不同这里的完整代码 github_demo2</strong></p>
 <p>上面的都属于基本的简单实用 ~~<strong>下面咋们看看封装版本</strong></p>
 <h2 id="封装mock模板-admin-ui"><a href="#封装mock模板-admin-ui" class="headerlink" title="封装mock模板!! - admin-ui"></a>封装mock模板!! - admin-ui</h2><p>(下面的例子 基本完成了mock的基本设置 axios的基本设置 然后还有做axios封装)</p>
 <h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><p>为了统一可以统一管理和集中控制数据模拟接口，我们对 mock 模块进行了封装，可以方便的定制模拟接口的统一开关和个体开关</p>
@@ -709,6 +710,20 @@ Mock<span class="token punctuation">.</span><span class="token function">mock</s
 <p><img src="/2021/02/20/mockjs/image-20210225155138789.png"></p>
 <h2 id="踩坑"><a href="#踩坑" class="headerlink" title="踩坑"></a>踩坑</h2><p>在vue中使用axios做网络请求的时候，会遇到this不指向vue，而为undefined。</p>
 <p>解决 this的指向问题，要么箭头函数，要么直接let that=this</p>
+<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">//mockjsDemo2</span>
+<span class="token function">updateItem</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">var</span> that <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>$http<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span><span class="token string">'/updateItem'</span><span class="token punctuation">,</span><span class="token punctuation">{</span>
+          params<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            updateId<span class="token punctuation">:</span>id
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span><span class="token punctuation">{</span>
+          console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"更新数据"</span><span class="token punctuation">,</span>res<span class="token punctuation">)</span><span class="token punctuation">;</span>
+          that<span class="token punctuation">.</span>list <span class="token operator">=</span> res<span class="token punctuation">.</span>data<span class="token punctuation">.</span>data<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token keyword">catch</span><span class="token punctuation">(</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+          console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span> </code></pre>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p> <a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000016730919">在vue-cli项目下简单使用mockjs模拟数据</a> (demo1)</p>
 <p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Tt411T7Cw?p=1">掌握MockJS</a> (demo2)</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/xifengxiaoma/article/details/92839222?spm=1001.2014.3001.5501">Vue + Element UI 实现权限管理系统</a> (admin-ui)</p>
