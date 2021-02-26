@@ -8,7 +8,7 @@ date: 2020-11-15 20:22:56
 password:
 summary: 写相对或者绝对路径的注意点
 tags: css&html
-categories: css&html
+categories: css&html 
 ---
 
 ## 同一个文件夹

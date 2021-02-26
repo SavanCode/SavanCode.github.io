@@ -13,9 +13,11 @@ categories: mock.js
 
 ## 了解mockjs
 
-实际开发中，前后端分离，前端需要后端的接口去完成页面的渲染，但是并不能等到后端成员写完接口再开始进行测试。大部分情况下，前后端需要同时进行开发。因此便需要mockjs制造随机数据来进行后端接口模拟。
+实际开发中，前后端分离，前端需要后端的接口去完成页面的渲染，但是并不能等到后端成员写完接口再开始进行测试。大部分情况下，前后端需要同时进行开发。因此便需要**mockjs制造随机数据**来进行后端接口模拟。
 
 (后面的例子会使用到Axios,axios 是一个基于 Promise 用于浏览器和 nodejs 的 HTTP 客户端，我们后续需要用来发送 http 请求)
+
+![](mockjs/image-20210226005153551.png)
 
 [使用文档](https://github.com/nuysoft/Mock/wiki/Getting-Started)
 
@@ -222,6 +224,8 @@ Mock.mock('/api/addgoods', 'post', function(option) {
 })
 ```
 
+## 删加增减的功能练习
+
 **注意这里的设置会有不同这里的完整代码 github_demo2**
 
 上面的都属于基本的简单实用 ~~**下面咋们看看封装版本**
@@ -401,6 +405,25 @@ import mock from '@/mock/index.js';
 在vue中使用axios做网络请求的时候，会遇到this不指向vue，而为undefined。
 
 解决 this的指向问题，要么箭头函数，要么直接let that=this
+
+```js
+//mockjsDemo2
+updateItem(id){
+        var that = this;
+        this.$http.post('/updateItem',{
+          params: {
+            updateId:id
+          }
+        }).then(function(res){
+          console.log("更新数据",res);
+          that.list = res.data.data;
+        }).catch((err) => {
+          console.log(err)
+        })
+      } 
+```
+
+
 
 ## Reference
 

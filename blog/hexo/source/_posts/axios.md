@@ -13,6 +13,7 @@ categories: Axios
 
 **下面的都是为了Admin-ui的练习 不是完整的**
 
+[基础部分笔记](https://savancode.github.io/2021/02/01/Vue-day7/)
 
 ### 封装要点
 

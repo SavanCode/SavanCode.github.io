@@ -11,6 +11,8 @@ tags: [css&html,scss,sass]
 categories: css&html
 ---
 
+先看[scss基本使用以及踩坑](https://savancode.github.io/2021/02/20/scss/)
+
 ## 利用mixin样式做出模板
 
 ###  文字
