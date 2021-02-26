@@ -55,6 +55,10 @@ scss: generateLoaders('sass').concat(
 
 4. 记得一定要重新运行文件~~
 
+## 推荐练习
+
+https://github.com/PanJiaChen/vue-admin-template
+
 ## Reference
 
 [vue中引入scss样式变量，并在全局使用](https://blog.csdn.net/m0_46156566/article/details/111387130)

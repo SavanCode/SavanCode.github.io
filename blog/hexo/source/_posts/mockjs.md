@@ -319,6 +319,8 @@ function fnCreate (mod, isOpen = true) {
 
 #### login.js
 
+关于练习里面的login练习，我参照了 [这位仙子](https://blog.csdn.net/hellojoy/article/details/105426536) 以及 [这位仙子的文章](https://www.cnblogs.com/Grewer/p/8440726.html) （其实差不多的''_"）
+
 ```js
 // 登录接口
 export function login () {
