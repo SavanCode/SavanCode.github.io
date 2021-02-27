@@ -71,12 +71,16 @@ categories: Front-end tool
 
 [50个前端框架推荐](https://wangxiaoting.blog.csdn.net/article/details/111602469)
 
-
+## [2020 JavaScript Rising Stars](https://risingstars.js.org/2020/en)
 
 ## 技术博客
 
-- 木之多   https://www.shuzhiduo.com/
-- 大佬  ： https://www.zhangxinxu.com/
-- js重点： http://blog.haoji.me/?cat=javascript
-- js详细讲解： https://wangdoc.com/javascript/index.html
-- 
+- [木之多](https://www.shuzhiduo.com/)
+- [大佬](https://www.zhangxinxu.com/)
+- [js重点]( http://blog.haoji.me/?cat=javascript)
+- [js详细讲解](https://wangdoc.com/javascript/index.html)
+- [花裤衩的手摸手，带你用vue撸后台](https://juejin.cn/post/6844903476661583880)
+
+## 学习网站
+
+[30 seconds of code](https://www.30secondsofcode.org/)
