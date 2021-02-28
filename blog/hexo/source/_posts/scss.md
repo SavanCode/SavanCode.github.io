@@ -600,13 +600,26 @@ vscode 中 [Live Sass Compiler](https://github.com/ritwickdey/vscode-live-sass-c
 
  这里实践写的是 vue+element的admin
 
-### 报错1 TypeError
+### 报错 TypeError
+
+```
+ Syntax Error: TypeError: this.getOptions is not a function
+ 
+ @ ./node_modules/vue-style-loader??ref--8-oneOf-1-0!./node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!./node_modules/vue-loader-v16/dist/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-oneOf-1-2!./node_modules/sass-loader/dist/cjs.js??ref--8-oneOf-1-3!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader-v16/dist??ref--0-1!./src/App.vue?vue&type=style&index=0&id=7ba5bd90&lang=scss 4:14-419 14:3-18:5 15:22-427
+ @ ./src/App.vue?vue&type=style&index=0&id=7ba5bd90&lang=scss
+ @ ./src/App.vue
+ @ ./src/main.js
+```
+
+**yarn add sass-loader@^10.1.1** 
+
+### 报错 TypeError
 
 ```
 TypeError [ERR_INVALID_ARG_TYPE]: The "path" argument must be of type string.
 ```
 
-### 报错2   UnhandledPromiseRejectionWarning
+### 报错   UnhandledPromiseRejectionWarning
 
 ```
 UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). To terminate the node process on unhandled promise rejection, use the CLI flag `--unhandled-rejections=strict`
@@ -630,6 +643,34 @@ I installed sass-loader@10.1.1 and it worked like a charm again.
 解决: yarn add sass-loader@^10.1.1
 
 [来源](https://stackoverflow.com/questions/66082397/typeerror-this-getoptions-is-not-a-function)
+
+### [报错  Node Sass version 5.0.0 is incompatible with ^4.0.0.](https://stackoverflow.com/questions/64625050/error-node-sass-version-5-0-0-is-incompatible-with-4-0-0)
+
+```
+Node Sass version 5.0.0 is incompatible with ^4.0.0.
+```
+
+1. `npm uninstall node-sass`
+2. `npm install node-sass@4.14.1`
+
+Or, if using yarn (default in newer CRA versions)
+
+1. `yarn remove node-sass`
+2. `yarn add node-sass@4.14.1`
+
+### 报错 Cannot find module 'node-sass'
+
+```
+Module build failed: Error: Cannot find module 'node-sass'
+```
+
+**npm install node-sass**
+
+
+
+
+
+
 
 ## Reference
 

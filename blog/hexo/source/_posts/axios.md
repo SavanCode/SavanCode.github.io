@@ -58,6 +58,8 @@ export default {
 
 #### axios.js
 
+这里添加了js -cookie 主要为了登陆页面
+
 ```js
 import axios from 'axios';
 import config from './config';
