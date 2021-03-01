@@ -15,14 +15,16 @@ categories: Axios
 
 [基础部分笔记](https://savancode.github.io/2021/02/01/Vue-day7/)
 
-### 封装要点
+## 封装原因
 
 - 统一 url 配置
-- 统一 api 请求
+- 统一 api 请求 （因为会遇到不同域名 类似 开发域名，测试域名，生产域名）
 - request (请求) 拦截器，例如：带上token等，设置请求头
 - response (响应) 拦截器，例如：统一错误处理，页面重定向等
 - 根据需要，结合 Vuex 做全局的 loading 动画，或者错误处理
 - 将 axios 封装成 Vue 插件使用
+
+![](axios/image-20210301194803937.png)
 
 ## 文件结构
 
@@ -47,7 +49,7 @@ export default {
   },
   // 参数
   data: {},
-  // 设置超时时间
+  // 设置超时时间 1s超时
   timeout: 10000,
   // 携带凭证
   withCredentials: true,
@@ -79,7 +81,8 @@ export default function $axios(options) {
       }]
     })
 
-    // request 拦截器
+    // request 拦截器 
+    //所有的网络请求都会先走这个方法
     instance.interceptors.request.use(
       config => {
         let token = Cookies.get('token')
@@ -131,6 +134,7 @@ export default function $axios(options) {
     )
 
     // response 拦截器
+    // 所有的网络请求返回数据之后会执行这个方法
     instance.interceptors.response.use(
       response => {
         let data;

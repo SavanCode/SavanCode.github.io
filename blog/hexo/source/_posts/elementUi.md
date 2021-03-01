@@ -15,7 +15,34 @@ categories: [elementUI,Vue]
 
 ## 基本的使用
 
-[Element for Vue](https://element.eleme.cn/#/zh-CN/component/installation)
+安装并使用Element UI
+
+```sh
+npm i element-ui -S
+```
+
+修改 /src/main.js 为：
+
+```js
+import Vue from 'vue'
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+
+import App from './App'
+
+Vue.config.productionTip = false
+
+Vue.use(ElementUI)
+
+/* eslint-disable no-new */
+new Vue({
+  el: '#app',
+  template: '<App/>',
+  components: { App }
+})
+```
+
+[Element for Vue 安装文档](https://element.eleme.cn/#/zh-CN/component/installation)
 
 基于 Vue.js
 

@@ -43,9 +43,13 @@ categories: Front-end tool
 
 - Css 库 （w3) ：https://www.w3schools.com/w3css/w3css_animate.asp
 
+- [Normalize.css](http://necolas.github.io/normalize.css/)
+
 - 类型对比： https://dorey.github.io/JavaScript-Equality-Table/
 
 - TIME STAMP 使用 tool      [Airbnb ：react dates](https://github.com/airbnb/react-dates) & [moment js](https://momentjs.com/)
+
+- [Vue-Awesome](https://github.com/Justineo/vue-awesome/blob/master/README.zh_CN.md) 
 
 ## css 参考：
 

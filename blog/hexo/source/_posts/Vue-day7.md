@@ -161,7 +161,7 @@ new Vue({
 >例如，用户访问页面加载成功以后，就要执行的ajax请求。
 >另一个就是created，这个阶段就是在 vue对象创建以后，把ajax请求后端数据的代码放进 created
 
-###  利用Vue.prototype.$http = axios 以及 同异步
+###  利用Vue.prototype.$http = axios 以及 同异步 async/await
 
 ```js
  async anotherGet(){ 

@@ -320,7 +320,7 @@ function fnCreate (mod, isOpen = true) {
 
 #### login.js
 
-关于练习里面的login练习，我参照了 [这位仙子](https://blog.csdn.net/hellojoy/article/details/105426536) 以及 [这位仙子的文章](https://www.cnblogs.com/Grewer/p/8440726.html) （其实差不多的''_"）
+关于练习里面的login练习, 只是利用了session storage，实际上可以利用Vuex。 这里详细在另一篇文章
 
 ```js
 // 登录接口
@@ -399,7 +399,7 @@ import mock from '@/mock/mock.js';
 import mock from '@/mock/index.js';
 ````
 
-这部封装成功的效果
+这是封装成功的效果
 
 ![](mockjs/image-20210225155138789.png)
 
