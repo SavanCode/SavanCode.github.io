@@ -375,10 +375,29 @@ JavaScript 有三种方法，可以确定一个值到底是什么类型。
 
 ![](js-data-types/1607253357351.png)
 
-# JavaScript 对象 实例
+
+
+## 补充关于ES6中对象的数据解构
+
+```js
+let jsonData = {
+  id: 42,
+  status: "OK",
+  data: [867, 5309]
+};
+
+let { id, status, data: number } = jsonData;
+
+console.log(id, status, number);
+// 42, "OK", [867, 5309]
+```
+
+ 
+
+## JavaScript 对象 实例
 
 [例子总结1](https://www.runoob.com/js/js-ex-objects.html)
 
-# reference:
+## reference:
 
 1. https://segmentfault.com/a/1190000014658470

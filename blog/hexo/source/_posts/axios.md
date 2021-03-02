@@ -24,6 +24,8 @@ categories: Axios
 - 根据需要，结合 Vuex 做全局的 loading 动画，或者错误处理
 - 将 axios 封装成 Vue 插件使用
 
+## axios 封装的路线理解
+
 ![](axios/image-20210301194803937.png)
 
 ## 文件结构

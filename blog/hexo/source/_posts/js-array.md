@@ -381,7 +381,7 @@ splice(start,end)的第一个参数start指定了插入或删除的起始位置�
 
 ```js
 let myFish = ['angel', 'clown', 'drum', 'mandarin', 'sturgeon']
-let removed = myFish.splice(3, 1)
+let removed = myFish.splice(3, 1)//删除一个
 // myFish is ["angel", "clown", "drum", "sturgeon"]
 // removed is ["mandarin"]
 

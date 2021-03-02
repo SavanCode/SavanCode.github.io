@@ -184,7 +184,8 @@ Mock.mock('/api/goodslist', 'get', {
       name: '@cword(2, 8)', // 随机生成中文字符串
       price: '@natural(2, 10)', // 自然数
       count: '@natural(100, 999)',
-      img: '@dataImage(78x78)' // 指定宽高图片
+      img: '@dataImage(78x78)', // 指定宽高图片
+      'answer|1': ["是", "否"]
     }
   ]
 })
