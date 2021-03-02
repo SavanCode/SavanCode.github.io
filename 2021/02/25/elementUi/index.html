@@ -436,7 +436,26 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p>记录一下个人练习遇到的问题~ 不是完整的学习笔记</p>
-<h2 id="基本的使用"><a href="#基本的使用" class="headerlink" title="基本的使用"></a>基本的使用</h2><p><a target="_blank" rel="noopener" href="https://element.eleme.cn/#/zh-CN/component/installation">Element for Vue</a></p>
+<h2 id="基本的使用"><a href="#基本的使用" class="headerlink" title="基本的使用"></a>基本的使用</h2><p>安装并使用Element UI</p>
+<pre class=" language-sh"><code class="language-sh">npm i element-ui -S</code></pre>
+<p>修改 /src/main.js 为：</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span>
+<span class="token keyword">import</span> ElementUI <span class="token keyword">from</span> <span class="token string">'element-ui'</span>
+<span class="token keyword">import</span> <span class="token string">'element-ui/lib/theme-chalk/index.css'</span>
+
+<span class="token keyword">import</span> App <span class="token keyword">from</span> <span class="token string">'./App'</span>
+
+Vue<span class="token punctuation">.</span>config<span class="token punctuation">.</span>productionTip <span class="token operator">=</span> <span class="token boolean">false</span>
+
+Vue<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>ElementUI<span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true">/* eslint-disable no-new */</span>
+<span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  el<span class="token punctuation">:</span> <span class="token string">'#app'</span><span class="token punctuation">,</span>
+  template<span class="token punctuation">:</span> <span class="token string">'&lt;App/>'</span><span class="token punctuation">,</span>
+  components<span class="token punctuation">:</span> <span class="token punctuation">{</span> App <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
+<p><a target="_blank" rel="noopener" href="https://element.eleme.cn/#/zh-CN/component/installation">Element for Vue 安装文档</a></p>
 <p>基于 Vue.js</p>
 <p>步骤: 先布局 -&gt; 然后插入模板 -&gt; 注意下面的值</p>
 <p><a target="_blank" rel="noopener" href="https://wdd.js.org/vue-vue-router-elementui-stupid-simple-dashboard.html">基础教程</a></p>
@@ -576,39 +595,36 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;Current
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="">
+                <a href="../../../03/01/Vuex-Login/">
                     <div class="card-image">
                         
                         
-                        <img src="../../../../medias/featureimages/4.jpg" class="responsive-img" alt="elementUi 的踩坑">
+                        <img src="../../../../medias/featureimages/12.jpg" class="responsive-img" alt="Vuex_Login">
                         
-                        <span class="card-title">elementUi 的踩坑</span>
+                        <span class="card-title">Vuex_Login</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            elementUI练习以及问题总结
+                            Referencevue用户登录状态判断
+Vue | 在vue中使用session Storage和vuex保存用户登录状态
+
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-02-25
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-03-01
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="../../../../categories/elementUI/" class="post-category">
-                                    elementUI
-                                </a>
-                            
-                            <a href="../../../../categories/elementUI/Vue/" class="post-category">
+                            <a href="../../../../categories/Vue/" class="post-category">
                                     Vue
                                 </a>
                             
@@ -616,20 +632,11 @@
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
                     <a href="../../../../tags/Vue/">
                         <span class="chip bg-color">Vue</span>
-                    </a>
-                    
-                    <a href="../../../../tags/elementUI/">
-                        <span class="chip bg-color">elementUI</span>
-                    </a>
-                    
-                    <a href="../../../../tags/scss/">
-                        <span class="chip bg-color">scss</span>
                     </a>
                     
                 </div>

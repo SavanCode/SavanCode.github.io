@@ -549,7 +549,8 @@ Mock<span class="token punctuation">.</span><span class="token function">mock</s
       name<span class="token punctuation">:</span> <span class="token string">'@cword(2, 8)'</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// 随机生成中文字符串</span>
       price<span class="token punctuation">:</span> <span class="token string">'@natural(2, 10)'</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// 自然数</span>
       count<span class="token punctuation">:</span> <span class="token string">'@natural(100, 999)'</span><span class="token punctuation">,</span>
-      img<span class="token punctuation">:</span> <span class="token string">'@dataImage(78x78)'</span> <span class="token comment" spellcheck="true">// 指定宽高图片</span>
+      img<span class="token punctuation">:</span> <span class="token string">'@dataImage(78x78)'</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// 指定宽高图片</span>
+      <span class="token string">'answer|1'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">"是"</span><span class="token punctuation">,</span> <span class="token string">"否"</span><span class="token punctuation">]</span>
     <span class="token punctuation">}</span>
   <span class="token punctuation">]</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
@@ -650,7 +651,7 @@ Mock<span class="token punctuation">.</span><span class="token function">mock</s
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span></code></pre>
-<h4 id="login-js"><a href="#login-js" class="headerlink" title="login.js"></a>login.js</h4><p>关于练习里面的login练习，我参照了 <a target="_blank" rel="noopener" href="https://blog.csdn.net/hellojoy/article/details/105426536">这位仙子</a> 以及 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/Grewer/p/8440726.html">这位仙子的文章</a> （其实差不多的’’_”）</p>
+<h4 id="login-js"><a href="#login-js" class="headerlink" title="login.js"></a>login.js</h4><p>关于练习里面的login练习, 只是利用了session storage，实际上可以利用Vuex。 这里详细在另一篇文章</p>
 <pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// 登录接口</span>
 <span class="token keyword">export</span> <span class="token keyword">function</span> login <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token keyword">return</span> <span class="token punctuation">{</span>
@@ -708,7 +709,7 @@ Mock<span class="token punctuation">.</span><span class="token function">mock</s
 <span class="token keyword">import</span> mock <span class="token keyword">from</span> <span class="token string">'@/mock/mock.js'</span><span class="token punctuation">;</span>
 <span class="token comment" spellcheck="true">//改为</span>
 <span class="token keyword">import</span> mock <span class="token keyword">from</span> <span class="token string">'@/mock/index.js'</span><span class="token punctuation">;</span></code></pre>
-<p>这部封装成功的效果</p>
+<p>这是封装成功的效果</p>
 <p><img src="/2021/02/20/mockjs/image-20210225155138789.png"></p>
 <h2 id="踩坑"><a href="#踩坑" class="headerlink" title="踩坑"></a>踩坑</h2><p>在vue中使用axios做网络请求的时候，会遇到this不指向vue，而为undefined。</p>
 <p>解决 this的指向问题，要么箭头函数，要么直接let that=this</p>

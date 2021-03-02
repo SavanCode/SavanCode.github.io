@@ -425,14 +425,15 @@
             <div id="articleContent">
                 <p><strong>下面的都是为了Admin-ui的练习 不是完整的</strong></p>
 <p><a href="https://savancode.github.io/2021/02/01/Vue-day7/">基础部分笔记</a></p>
-<h3 id="封装要点"><a href="#封装要点" class="headerlink" title="封装要点"></a>封装要点</h3><ul>
+<h2 id="封装原因"><a href="#封装原因" class="headerlink" title="封装原因"></a>封装原因</h2><ul>
 <li>统一 url 配置</li>
-<li>统一 api 请求</li>
+<li>统一 api 请求 （因为会遇到不同域名 类似 开发域名，测试域名，生产域名）</li>
 <li>request (请求) 拦截器，例如：带上token等，设置请求头</li>
 <li>response (响应) 拦截器，例如：统一错误处理，页面重定向等</li>
 <li>根据需要，结合 Vuex 做全局的 loading 动画，或者错误处理</li>
 <li>将 axios 封装成 Vue 插件使用</li>
 </ul>
+<h2 id="axios-封装的路线理解"><a href="#axios-封装的路线理解" class="headerlink" title="axios 封装的路线理解"></a>axios 封装的路线理解</h2><p><img src="/2021/02/25/axios/image-20210301194803937.png"></p>
 <h2 id="文件结构"><a href="#文件结构" class="headerlink" title="文件结构"></a>文件结构</h2><pre><code>-http
  -- config.js：axios 默认配置，包含基础路径等信息。
  -- axios.js：二次封装 axios 模块，包含拦截器等信息。
@@ -448,7 +449,7 @@
   <span class="token punctuation">}</span><span class="token punctuation">,</span>
   <span class="token comment" spellcheck="true">// 参数</span>
   data<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-  <span class="token comment" spellcheck="true">// 设置超时时间</span>
+  <span class="token comment" spellcheck="true">// 设置超时时间 1s超时</span>
   timeout<span class="token punctuation">:</span> <span class="token number">10000</span><span class="token punctuation">,</span>
   <span class="token comment" spellcheck="true">// 携带凭证</span>
   withCredentials<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
@@ -474,7 +475,8 @@
       <span class="token punctuation">}</span><span class="token punctuation">]</span>
     <span class="token punctuation">}</span><span class="token punctuation">)</span>
 
-    <span class="token comment" spellcheck="true">// request 拦截器</span>
+    <span class="token comment" spellcheck="true">// request 拦截器 </span>
+    <span class="token comment" spellcheck="true">//所有的网络请求都会先走这个方法</span>
     instance<span class="token punctuation">.</span>interceptors<span class="token punctuation">.</span>request<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>
       config <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
         <span class="token keyword">let</span> token <span class="token operator">=</span> Cookies<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'token'</span><span class="token punctuation">)</span>
@@ -526,6 +528,7 @@
     <span class="token punctuation">)</span>
 
     <span class="token comment" spellcheck="true">// response 拦截器</span>
+    <span class="token comment" spellcheck="true">// 所有的网络请求返回数据之后会执行这个方法</span>
     instance<span class="token punctuation">.</span>interceptors<span class="token punctuation">.</span>response<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>
       response <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
         <span class="token keyword">let</span> data<span class="token punctuation">;</span>

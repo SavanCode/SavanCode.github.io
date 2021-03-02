@@ -956,8 +956,18 @@ Math<span class="token punctuation">.</span>SQRT1_2       <span class="token num
 <li><code>Object.prototype.toString</code>方法</li>
 </ul>
 <p><img src="/2020/11/24/js-data-types/1607253357351.png"></p>
-<h1 id="JavaScript-对象-实例"><a href="#JavaScript-对象-实例" class="headerlink" title="JavaScript 对象 实例"></a>JavaScript 对象 实例</h1><p><a target="_blank" rel="noopener" href="https://www.runoob.com/js/js-ex-objects.html">例子总结1</a></p>
-<h1 id="reference"><a href="#reference" class="headerlink" title="reference:"></a>reference:</h1><ol>
+<h2 id="补充关于ES6中对象的数据解构"><a href="#补充关于ES6中对象的数据解构" class="headerlink" title="补充关于ES6中对象的数据解构"></a>补充关于ES6中对象的数据解构</h2><pre class=" language-js"><code class="language-js"><span class="token keyword">let</span> jsonData <span class="token operator">=</span> <span class="token punctuation">{</span>
+  id<span class="token punctuation">:</span> <span class="token number">42</span><span class="token punctuation">,</span>
+  status<span class="token punctuation">:</span> <span class="token string">"OK"</span><span class="token punctuation">,</span>
+  data<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">867</span><span class="token punctuation">,</span> <span class="token number">5309</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> <span class="token punctuation">{</span> id<span class="token punctuation">,</span> status<span class="token punctuation">,</span> data<span class="token punctuation">:</span> number <span class="token punctuation">}</span> <span class="token operator">=</span> jsonData<span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>id<span class="token punctuation">,</span> status<span class="token punctuation">,</span> number<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 42, "OK", [867, 5309]</span></code></pre>
+<h2 id="JavaScript-对象-实例"><a href="#JavaScript-对象-实例" class="headerlink" title="JavaScript 对象 实例"></a>JavaScript 对象 实例</h2><p><a target="_blank" rel="noopener" href="https://www.runoob.com/js/js-ex-objects.html">例子总结1</a></p>
+<h2 id="reference"><a href="#reference" class="headerlink" title="reference:"></a>reference:</h2><ol>
 <li><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000014658470">https://segmentfault.com/a/1190000014658470</a></li>
 </ol>
 
