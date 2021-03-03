@@ -11,6 +11,8 @@ tags: Npm_Tool
 categories: Npm_Tool
 ---
 
+记录一下遇到的Npm tool, 主要是很容易忘记名字 ( _╯□╰ )_
+
 ## Avue
 
 - avue-data——数据大屏源码
@@ -26,3 +28,16 @@ Avue采用[Element框架](https://element.eleme.cn/#/zh-CN/), 主要提供了入
 
 [官方文档](https://noeldelgado.github.io/gemini-scrollbar/)
 
+## MomentJS
+
+[官方文档](https://momentjs.com/)
+
+```js
+import moment from 'moment'
+```
+```js
+//转为ms 
+Date.parse(item.originTime)
+//format
+moment(startTime).format('YYYY-MM-DD')
+```

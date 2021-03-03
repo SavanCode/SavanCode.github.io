@@ -197,6 +197,27 @@ const obj = {
 }
 ```
 
+### object.assign 改变obj内容
+
+```js
+Object.assign(arr[index], {
+    profileId,
+    name,
+    type,
+    rw,
+    accrue,
+    base,
+    multiple,
+    format,
+    minimum,
+    maximum,
+    unit,
+    description
+  });
+```
+
+
+
 ##  箭头函数
 
 [额外的专门笔记](https://savancode.github.io/2020/11/26/js-arrowFunction/)

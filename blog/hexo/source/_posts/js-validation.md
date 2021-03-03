@@ -11,7 +11,7 @@ tags: JS
 categories: JS
 ---
 
-# js判断是否为整数类型
+## js判断是否为整数类型
 
 ### 方式一、使用取余运算符判断
 
@@ -114,9 +114,9 @@ Number.isInteger([]) // false
 
 
 
-# 数字判断
+## 数字判断
 
-## 验证数字type
+### 验证数字type
 
 ```js
  var checkNum = function(num) {
@@ -126,9 +126,7 @@ Number.isInteger([]) // false
   };
 ```
 
-
-
-## 奇数偶数
+### 奇数偶数
 
 ```js
 function printOdd(num) {
@@ -148,7 +146,7 @@ function printEven(num) {
 }
 ```
 
-## Prime number
+### Prime number
 
 ```js
 function isPrime(number) {
@@ -162,3 +160,31 @@ function isPrime(number) {
     return true;
   }
 ```
+
+## 类型判断
+
+```js
+function isEmpty(v) {
+    switch (typeof v) {
+    case 'undefined':
+        return true;
+    case 'string':
+        if (v.replace(/(^[ \t\n\r]*)|([ \t\n\r]*$)/g, '').length == 0) return true;
+        break;
+    case 'boolean':
+        if (!v) return true;
+        break;
+    case 'number':
+        if (0 === v || isNaN(v)) return true;
+        break;
+    case 'object':
+        if (null === v || v.length === 0) return true;
+        for (var i in v) {
+            return false;
+        }
+        return true;
+    }
+    return false;
+}
+```
+

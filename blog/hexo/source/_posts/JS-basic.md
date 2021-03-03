@@ -338,9 +338,7 @@ const {name :publisherName= "self"}=book.publisher;
 console.log(publisherName)//jenny 如果name不存在，打印self
 ```
 
-
-
-### 不定参数个数 
+### 不定参数个数 - arguments
 
 ```js
 //写法一
@@ -354,6 +352,10 @@ function f2(m,n...x){
     console.log(m,n,x);//单独前两个拿出来
 }
 f2(2,3,5,4);
+
+function filter(array,...info){
+    console.log(array,arguments)
+}
 
 ```
 
