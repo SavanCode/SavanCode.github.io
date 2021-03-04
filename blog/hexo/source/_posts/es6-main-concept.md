@@ -200,23 +200,19 @@ const obj = {
 ### object.assign 改变obj内容
 
 ```js
+//这里直接通过obj的value覆盖
 Object.assign(arr[index], {
     profileId,
     name,
     type,
     rw,
-    accrue,
-    base,
-    multiple,
-    format,
-    minimum,
-    maximum,
-    unit,
-    description
+    accrue
   });
+//方程方式 newObj({*:*,*:*})
+function newObj(...para) {
+    Object.assign(newArticleObject,para[0])
+}
 ```
-
-
 
 ##  箭头函数
 
