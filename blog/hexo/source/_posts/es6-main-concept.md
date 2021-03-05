@@ -197,7 +197,43 @@ const obj = {
 }
 ```
 
-### object.assign 改变obj内容
+### 新操作
+1. Object.preventExtensions(obj)  让一个对象变的不可扩展，也就是永远不能再添加新的属性。 
+2. Object.isExtensible(obj) 判断一个对象是否是可扩展的
+3. Object.seal(obj)让一个对象密封(只能读写 不能新增) 
+4. Object.isSealed(obj)判断一个对象是否密封 
+5. Object.isFrozen(arr)  让一个对象被冻结(只能读) 
+6. Object.isFrozen(obj)：判断一个对象是否被冻结 
+7. Object.keys(obj) 返回一个由给定对象的所有可枚举自身属性的属性名组成的数组 
+8. Object.getOwnPropertyNames(obj)：返回一个由指定对象的所有自身属性的属性名（包括不可枚举属性）组成的数组 Object.is(value1, value2)：判断两个值是否是同一个值。 
+9. Object.create(proto [, propertiesObject ]) 是E5中提出的一种新的对象创建方式，第一个参数是要继承的原型，如果不是一个子函数，可以传一个null，第二个参数是对象的属性描述符，这个参数是可选的。
+10. Object.assign 把任意多个的源对象自身的可枚举属性拷贝给目标对象，然后返回目标对象。 
+11. Object.defineProperty() 定义单个对象属性或方法(可以设置读写可枚举) 
+12. Object.defineProperties() 定义多个对象属性或方法(可以设置读写可枚举)
+
+### object.assign ()
+
+#### obj copy object复制
+
+```js
+var obj = { a: 1 };
+var copy = Object.assign({}, obj);
+console.log(copy); // { a: 1 }
+```
+
+#### 改变obj内容 对象合并
+
+```js
+var o1 = { a: 1 };
+var o2 = { b: 2 };
+var o3 = { c: 3 };
+
+var obj = Object.assign(o1, o2, o3);
+console.log(obj); // { a: 1, b: 2, c: 3 }
+console.log(o1);  // { a: 1, b: 2, c: 3 }, 注意目标对象自身也会改变。 
+//如果不想o1发生变化
+ var obj = Object.assign({},o1, o2, o3);
+```
 
 ```js
 //这里直接通过obj的value覆盖
@@ -212,6 +248,150 @@ Object.assign(arr[index], {
 function newObj(...para) {
     Object.assign(newArticleObject,para[0])
 }
+```
+
+#### 面试经常会遇到的小难题
+
+1.继承属性和不可枚举属性是不能拷贝的
+
+```js
+var obj = Object.create({foo: 1}, { // foo 是个继承属性。
+    bar: {
+        value: 2  // bar 是个不可枚举属性。
+    },
+    baz: {
+        value: 3,
+        enumerable: true  // baz 是个自身可枚举属性。
+    }
+});
+
+var copy = Object.assign({}, obj);
+console.log(copy); // { baz: 3 }复制代码
+```
+
+2、原始类型会被包装为 object
+
+```js
+var v1 = "abc";
+var v2 = true;
+var v3 = 10;
+var v4 = Symbol("foo")
+
+var obj = Object.assign({}, v1, null, v2, undefined, v3, v4); 
+// 原始类型会被包装，null 和 undefined 会被忽略。
+// 注意，只有字符串的包装对象才可能有自身可枚举属性。
+console.log(obj); // { "0": "a", "1": "b", "2": "c" }复制代码
+```
+
+3、异常会打断接下来的拷贝任务
+
+```js
+var target = Object.defineProperty({}, "foo", {
+    value: 1,
+    writable: false
+}); // target 的 foo 属性是个只读属性。
+
+Object.assign(target, {bar: 2}, {foo2: 3, foo: 3, foo3: 3}, {baz: 4});
+// TypeError: "foo" is read-only
+// 注意这个异常是在拷贝第二个源对象的第二个属性时发生的。
+
+console.log(target.bar);  // 2，说明第一个源对象拷贝成功了。
+console.log(target.foo2); // 3，说明第二个源对象的第一个属性也拷贝成功了。
+console.log(target.foo);  // 1，只读属性不能被覆盖，所以第二个源对象的第二个属性拷贝失败了。
+console.log(target.foo3); // undefined，异常之后 assign 方法就退出了，第三个属性是不会被拷贝到的。
+console.log(target.baz);  // undefined，第三个源对象更是不会被拷贝到的。
+```
+
+### [Object.create()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create)
+
+```js
+var roles = { 
+   type: "Admin", // Default value of properties 
+   displayType : function() {  
+      // Method which will display type of role 
+      console.log(this.type); 
+   } 
+}  
+// Create new role type called super_role 
+var super_role = Object.create(roles); 
+super_role.displayType(); // Output:Admin  
+
+// Create new role type called Guest 
+var guest_role = Object.create(roles); 
+guest_role.type = "Guest"; 
+guest_role.displayType(); // Output:Guest
+```
+
+### Object.is()
+
+用来判断两个值是否是同一个值
+
+```js
+Object.is('haorooms', 'haorooms');     // true
+Object.is(window, window);   // true
+
+Object.is('foo', 'bar');     // false
+Object.is([], []);           // false
+
+var test = { a: 1 };
+Object.is(test, test);       // true
+
+Object.is(null, null);       // true
+
+// 特例
+Object.is(0, -0);            // false
+Object.is(-0, -0);           // true
+Object.is(NaN, 0/0);         // true 
+```
+
+### Object.keys()
+
+返回一个由给定对象的自身可枚举属性组成的数组
+
+```js
+/* 类数组对象 */ 
+var obj = { 0 : "a", 1 : "b", 2 : "c"};
+alert(Object.keys(obj)); 
+// 弹出"0,1,2"
+
+/* 具有随机键排序的数组类对象 */
+var an_obj = { 100: 'a', 2: 'b', 7: 'c' };
+console.log(Object.keys(an_obj)); 
+// console: ['2', '7', '100'] 
+```
+
+### 解构obj
+
+```js
+let {name,cgpa} = student
+let {name:new_name,cgpa:new_cgpa}=student
+//复杂的
+let emp = {
+  id:101,
+  address:{
+     city:'Mumbai',
+     pin:1234
+  }
+}
+let {address} = emp;
+console.log(address)//{city: "Mumbai", pin: 1234}
+let {address:{city,pin}} = emp
+console.log(city)//Mumbai
+```
+
+### delete 
+
+删除对象中的某个值
+
+```js
+const Employee = {
+  firstname: 'John',
+  lastname: 'Doe'
+};
+
+console.log(Employee.firstname);// expected output: "John"
+delete Employee.firstname;
+console.log(Employee.firstname);//undefined
 ```
 
 ##  箭头函数
@@ -372,6 +552,8 @@ let newNums = nums.filter(function (num) {
  })
  //可以使用箭头函数简写
 //  let newNums = nums.filter(num => num >50)
+//多条件筛选
+//return el.price <= 1000 && el.sqft >= 500 && el.num_of_beds >=2 && el.num_of_baths >= 2.5;
 ```
 
 ###  map高阶函数
@@ -410,6 +592,5 @@ let n = nums.filter(num => num > 50).map(num => num * 2).reduce((preValue,curren
 console.log(n);
 ```
 
-
-Reference
-zhangtianyi0110 github
+## Reference
+[ES6](https://www.tutorialspoint.com/es6/index.htm)

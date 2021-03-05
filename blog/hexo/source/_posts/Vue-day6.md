@@ -181,6 +181,25 @@ var app3 = new Vue({
 })
 ```
 
+## 动态更改图片的src地址 v-model
+
+```html
+
+<img ref="study" :src="studyDataPic">
+<script>
+data: {
+	return {
+		studyDataPic: require('@/assets/images/school.png')
+	}
+}
+//或者
+this.studyDataPic = require('@/assets/images/load.gif')
+
+</script>
+```
+
+
+
 ## 在Vue中实现onchange的几种思路
 
 ###  lazy modifier

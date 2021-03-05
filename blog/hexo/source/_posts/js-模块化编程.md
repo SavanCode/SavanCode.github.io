@@ -280,7 +280,7 @@ add(10)(20)(30);
 
 CommonJS规范规定，每个模块内部，module变量代表当前模块。这个变量是一个对象，它的exports属性（即module.exports）是对外的接口。**加载某个模块，其实是加载该模块的module.exports属性**
 
-#### 基本语法
+#### 基本语法- `module.exports` `require`
 
 - 暴露模块：`module.exports = value`或`exports.xxx = value`
 - 引入模块：`require(xxx)`,如果是第三方模块，xxx为模块名；如果是自定义模块，xxx为模块文件路径
@@ -327,7 +327,16 @@ incCounter();
 console.log(counter); // 3
 ```
 
-### ES6模块化 - 最香的
+### [ES6模块化 - 最香的 - import export](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/export) 
+
+> **1.在node中使用的是exports，不要混淆了**
+>
+> **2.**这里一定注意一个地方**有效的路径符号**. 完整的非相对路径。这样在将其传给new URL(moduleSpecifier)的时候才不会报错。
+>    **以 / 开头。**
+>    **以 ./ 开头。**
+>    **以 ../ 开头。**
+
+#### 基本定义例子
 
 **ES6 在语言标准的层面上，实现了模块功能，而且实现得相当简单，完全可以取代 CommonJS 和 AMD 规范，成为浏览器和服务器通用的模块解决方案**
 
@@ -349,6 +358,8 @@ function test(ele) {
 } 
 ```
 
+#### 花式自定义export import
+
 如上例所示，使用import命令的时候，用户需要知道所要加载的变量名或函数名，否则无法加载。为了给用户提供方便，让他们不用阅读文档就能加载模块，就要用到export default命令，为模块指定默认输出。
 
 ```js
@@ -356,22 +367,54 @@ function test(ele) {
 export default function () {
   console.log('foo');
 }
+
+//例子：
+export let myVariable = Math.sqrt(2);
+export { name1, name2, …, nameN };
+export { variable1 as name1, variable2 as name2, …, nameN };
+export let name1, name2, …, nameN; // also var
+export let name1 = …, name2 = …, …, nameN; // also var, const
+ 
+export default   function (…) { … } // also class, function*
+export default function name1(…) { … } // also class, function*
+export { name1 as default, … };
+ 
+export * from …;
+export { name1, name2, …, nameN } from …;
+export { import1 as name1, import2 as name2, …, nameN } from …;
 ```
 ```js
 // import-default.js
 import customName from './export-default';
 customName(); // 'foo'
+
+
+//导入整个模块的内容，这将myModule插入当前作用域
+import * as myModule from '/modules/my-module.js';
+//重命名接口
+import {reallyReallyLongModuleExportName as shortName} from '/modules/my-module.js';
+//运行模块中的全局代码, 执行js,但实际上不导入任何值
+import '/modules/my-module.js'; 
+
+//例子：
+import defaultMember from "module-name";
+import * as name from "module-name";
+import { member } from "module-name";
+import { member as alias } from "module-name";
+import { member1 , member2 } from "module-name";
+import { member1 , member2 as alias2 , [...] } from "module-name";
+import defaultMember, { member [ , [...] ] } from "module-name";
+import defaultMember, * as name from "module-name";
+import "module-name";
 ```
 
-
+#### [动态import](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/import#%E5%8A%A8%E6%80%81import)
 
 ### ES6 模块与 CommonJS 模块的差异
 
 **① CommonJS 模块输出的是一个值的拷贝，ES6 模块输出的是值的引用**。
 
 **② CommonJS 模块是运行时加载，ES6 模块是编译时输出接口**。
-
-
 
 > CommonJS规范主要用于服务端编程，加载模块是同步的，这并不适合在浏览器环境，因为同步意味着阻塞加载，浏览器资源是异步加载的，因此有了AMD CMD解决方案。 最后出现的是最香的ES6的。
 >
@@ -415,3 +458,7 @@ for (let i=1; i<=5; i++) {
 ## Reference
 
 [前端模块化详解(完整版)](https://juejin.cn/post/6844903744518389768#heading-7)
+
+[彻底搞清楚javascript中的require、import和export](https://www.cnblogs.com/libin-1/p/7127481.html)
+
+[import export 官方解释](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/import)
