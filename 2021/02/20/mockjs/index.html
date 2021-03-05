@@ -469,7 +469,18 @@ yarn add axios</code></pre>
       <span class="token keyword">return</span> <span class="token punctuation">{</span>
           data<span class="token punctuation">:</span> list
       <span class="token punctuation">}</span>
-  <span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true">//上面也可以写成</span>
+Mock<span class="token punctuation">.</span><span class="token function">mock</span><span class="token punctuation">(</span><span class="token string">'https://xxxxxxxxxx'</span><span class="token punctuation">,</span><span class="token punctuation">{</span>
+    <span class="token string">'list|5-10'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span><span class="token comment" spellcheck="true">// 直接5-10的程度生成</span>
+        <span class="token string">'id|+1'</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+        <span class="token string">'username'</span><span class="token punctuation">:</span><span class="token string">'@cname'</span><span class="token punctuation">,</span>
+        <span class="token string">'email'</span><span class="token punctuation">:</span> <span class="token string">'@email'</span><span class="token punctuation">,</span>
+        <span class="token string">'price'</span><span class="token punctuation">:</span> <span class="token string">'@integer'</span><span class="token punctuation">,</span>
+        <span class="token string">'gender'</span><span class="token punctuation">:</span> <span class="token string">'@boolean'</span>
+    <span class="token punctuation">}</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
 <ul>
 <li>在Vue中设置</li>
 </ul>
@@ -529,7 +540,200 @@ yarn add axios</code></pre>
 <li>5.’占位符’ 会 ‘优先’ 引用 ‘数据模板’ 的属性</li>
 <li>6.’占位符’ 支持 ‘相对路径’ 和 ‘绝对路径’</li>
 </ul>
-<h2 id="数据模板生成模板-demo2"><a href="#数据模板生成模板-demo2" class="headerlink" title="数据模板生成模板 - demo2"></a>数据模板生成模板 - demo2</h2><p><a target="_blank" rel="noopener" href="http://mockjs.com/examples.html">http://mockjs.com/examples.html</a></p>
+<h4 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h4><p>注意下面的参数都是可选的哈</p>
+<pre class=" language-js"><code class="language-js"><span class="token string">"base"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token string">"range"</span><span class="token punctuation">:</span> <span class="token string">"@range(3)"</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">// [1,2,3]</span>
+    <span class="token string">"range"</span><span class="token punctuation">:</span> <span class="token string">"@range(3, 7)"</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">// [3,4,5,6]</span>
+    <span class="token string">"rangeWithGap"</span><span class="token punctuation">:</span> <span class="token string">"@range(1, 10, 3)"</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">//start-1，stop-10，step-3 [1,4,7]</span>
+    <span class="token string">"string"</span><span class="token punctuation">:</span> <span class="token string">"@string(7, 20)"</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">//输出7-20个字符长度的字符串</span>
+     <span class="token string">"string"</span><span class="token punctuation">:</span> <span class="token string">"@string('lower', 5)"</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">//Random.string(pool, length)或者(pool,min,max) pool:'lower/upper/number/symbol'</span>
+    <span class="token string">"character"</span><span class="token punctuation">:</span> <span class="token string">"@character('abcde')"</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">//随机从abcde中选一个字母</span>
+    <span class="token comment" spellcheck="true">//Random.character('lower/upper/number/symbol') </span>
+    <span class="token string">"float"</span><span class="token punctuation">:</span> <span class="token string">"@float(60, 100)"</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">//60 到 100 的浮点数 Random.float(min, max, dmin, dmax) dmin- 小数部分单个位数最小值 dmax 小数部分单个位数最大</span>
+    <span class="token string">"integer"</span><span class="token punctuation">:</span> <span class="token string">"@integer(60, 100)"</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">//60 到 100 的整数</span>
+    <span class="token string">"natural"</span><span class="token punctuation">:</span> <span class="token string">"@natural(60, 100)"</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">//60 到 100 的自然数</span>
+    <span class="token string">"boolean"</span><span class="token punctuation">:</span> <span class="token string">"@boolean"</span> <span class="token comment" spellcheck="true">//boolean 类型 true,false</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>时间类型<span class="token operator">--</span><span class="token operator">></span>
+  <span class="token string">"date"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token string">"date"</span><span class="token punctuation">:</span> <span class="token string">"@date"</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">//1982-07-20</span>
+    <span class="token string">"time"</span><span class="token punctuation">:</span> <span class="token string">"@time"</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">// 11:21:39</span>
+    <span class="token string">"datetime"</span><span class="token punctuation">:</span> <span class="token string">"@datetime"</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">// 1972-12-16 02:04:24</span>
+    <span class="token string">"now"</span><span class="token punctuation">:</span> <span class="token string">"@now"</span> <span class="token comment" spellcheck="true">//当前时间 2018-07-17 18:19:29  Mock.Random.now() Ranndom.now(format)</span>
+      <span class="token comment" spellcheck="true">//Mock.Random.now('month') => Ranndom.now(unit) unit = year、month、week、day、hour、minute、second、week</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>图片<span class="token operator">--</span><span class="token operator">></span>
+  <span class="token string">"image"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token string">"image"</span><span class="token punctuation">:</span> <span class="token string">"@image('200x100', '#50B347', '#FFF', 'EasyMock')"</span> <span class="token comment" spellcheck="true">// https://dummyimage.com/200x100/50B347/FFF&amp;text=EasyMock 尺寸 背景 文字颜色 提示信息</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>颜色系列<span class="token operator">--</span><span class="token operator">></span>
+  <span class="token string">"color"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token string">"color"</span><span class="token punctuation">:</span> <span class="token string">"@color"</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">//16进制颜色值#79e0f2</span>
+    <span class="token string">"hex"</span><span class="token punctuation">:</span> <span class="token string">"@hex"</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// #f2e179</span>
+    <span class="token string">"rgb"</span><span class="token punctuation">:</span> <span class="token string">"@rgb"</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">//rgb(189, 121, 242)</span>
+    <span class="token string">"rgba"</span><span class="token punctuation">:</span> <span class="token string">"@rgba"</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">//rgba(189, 121, 242, .7)</span>
+    <span class="token string">"hsl"</span><span class="token punctuation">:</span> <span class="token string">"@hsl"</span> <span class="token comment" spellcheck="true">//hsl(136, 82, 71)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>文案类<span class="token operator">--</span><span class="token operator">></span>
+  <span class="token string">"text"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token string">"paragraph"</span><span class="token punctuation">:</span> <span class="token string">"@paragraph(1, 3)"</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">// 随机段落</span>
+    <span class="token string">"sentence"</span><span class="token punctuation">:</span> <span class="token string">"@sentence(3, 5)"</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">// 随机句子</span>
+    <span class="token string">"word"</span><span class="token punctuation">:</span> <span class="token string">"@word(3, 5)"</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">// 随机3-5个字母</span>
+    <span class="token string">"title"</span><span class="token punctuation">:</span> <span class="token string">"@title(3, 5)"</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">// 随机3-5个单词的title</span>
+    <span class="token string">"cparagraph"</span><span class="token punctuation">:</span> <span class="token string">"@cparagraph(1, 3)"</span><span class="token punctuation">,</span>
+    <span class="token string">"csentence"</span><span class="token punctuation">:</span> <span class="token string">"@csentence(3, 5)"</span><span class="token punctuation">,</span>
+    <span class="token string">"cword"</span><span class="token punctuation">:</span> <span class="token string">"@cword('零一二三四五六七八九十', 5, 7)"</span><span class="token punctuation">,</span>
+    <span class="token string">"ctitle"</span><span class="token punctuation">:</span> <span class="token string">"@ctitle(3, 5)"</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>姓名<span class="token operator">--</span><span class="token operator">></span>
+  <span class="token string">"name"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token string">"first"</span><span class="token punctuation">:</span> <span class="token string">"@first"</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">//姓</span>
+    <span class="token string">"last"</span><span class="token punctuation">:</span> <span class="token string">"@last"</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">//名</span>
+    <span class="token string">"name"</span><span class="token punctuation">:</span> <span class="token string">"@name"</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">//姓名</span>
+    <span class="token string">"cfirst"</span><span class="token punctuation">:</span> <span class="token string">"@cfirst"</span><span class="token punctuation">,</span>
+    <span class="token string">"clast"</span><span class="token punctuation">:</span> <span class="token string">"@clast"</span><span class="token punctuation">,</span>
+    <span class="token string">"cname"</span><span class="token punctuation">:</span> <span class="token string">"@cname"</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>网站<span class="token operator">--</span><span class="token operator">></span>
+  <span class="token string">"web"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token string">"url"</span><span class="token punctuation">:</span> <span class="token string">"@url"</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">//url地址</span>
+    <span class="token string">"domain"</span><span class="token punctuation">:</span> <span class="token string">"@domain"</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">//域名</span>
+    <span class="token string">"protocol"</span><span class="token punctuation">:</span> <span class="token string">"@protocol"</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">//协议</span>
+    <span class="token string">"tld"</span><span class="token punctuation">:</span> <span class="token string">"@tld"</span><span class="token punctuation">,</span>
+    <span class="token string">"email"</span><span class="token punctuation">:</span> <span class="token string">"@email"</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">//邮箱</span>
+    <span class="token string">"ip"</span><span class="token punctuation">:</span> <span class="token string">"@ip"</span><span class="token comment" spellcheck="true">//ip地址</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>地址<span class="token operator">--</span><span class="token operator">></span>
+  <span class="token string">"address"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token string">"region"</span><span class="token punctuation">:</span> <span class="token string">"@region"</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">//区域</span>
+    <span class="token string">"province"</span><span class="token punctuation">:</span> <span class="token string">"@province"</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">//省</span>
+    <span class="token string">"city"</span><span class="token punctuation">:</span> <span class="token string">"@city(true)"</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">//市</span>
+    <span class="token string">"county"</span><span class="token punctuation">:</span> <span class="token string">"@county(true)"</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">//区 带true则携带上级</span>
+    <span class="token string">"zip"</span><span class="token punctuation">:</span> <span class="token string">"@zip"</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token string">"helper"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token string">"capitalize"</span><span class="token punctuation">:</span> <span class="token string">"@capitalize('hello')"</span><span class="token punctuation">,</span>
+    <span class="token string">"upper"</span><span class="token punctuation">:</span> <span class="token string">"@upper('hello')"</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">//全大写单词</span>
+    <span class="token string">"lower"</span><span class="token punctuation">:</span> <span class="token string">"@lower('HELLO')"</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">//全小写单词</span>
+    <span class="token string">"pick"</span><span class="token punctuation">:</span> <span class="token string">"@pick(['a', 'e', 'i', 'o', 'u'])"</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">//随机选择一个字母</span>
+    <span class="token string">"shuffle"</span><span class="token punctuation">:</span> <span class="token string">"@shuffle(['a', 'e', 'i', 'o', 'u'])"</span> <span class="token comment" spellcheck="true">//打乱数组顺序</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token string">"miscellaneous"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token string">"id"</span><span class="token punctuation">:</span> <span class="token string">"@id"</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">//身份证id</span>
+    <span class="token string">"guid"</span><span class="token punctuation">:</span> <span class="token string">"@guid"</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">//生成32位的随机id</span>
+    <span class="token string">"increment"</span><span class="token punctuation">:</span> <span class="token string">"@increment(1)"</span><span class="token comment" spellcheck="true">//自增数，阶度为1</span>
+  <span class="token punctuation">}</span></code></pre>
+<h4 id="date-format"><a href="#date-format" class="headerlink" title="date format"></a>date format</h4><p>日期的模板 其实这个很多地方也都通用 airbnb那个以及moment js 都是这个</p>
+<table>
+<thead>
+<tr>
+<th>format</th>
+<th>Description</th>
+<th><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>yyyy</td>
+<td>A full numeric representation of a year, 4 digits</td>
+<td>1999 or 2003</td>
+</tr>
+<tr>
+<td>yy</td>
+<td>A two digit representation of a year</td>
+<td>99 or 03</td>
+</tr>
+<tr>
+<td>y</td>
+<td>A two digit representation of a year</td>
+<td>99 or 03</td>
+</tr>
+<tr>
+<td>MM</td>
+<td>Numeric representation of a month, with leading zeros</td>
+<td>01 to 12</td>
+</tr>
+<tr>
+<td>M</td>
+<td>Numeric representation of a month, without leading zeros</td>
+<td>1 to 12</td>
+</tr>
+<tr>
+<td>dd</td>
+<td>Day of the month, 2 digits with leading zeros</td>
+<td>01 to 31</td>
+</tr>
+<tr>
+<td>d</td>
+<td>Day of the month without leading zeros</td>
+<td>1 to 31</td>
+</tr>
+<tr>
+<td>HH</td>
+<td>24-hour format of an hour with leading zeros</td>
+<td>00 to 23</td>
+</tr>
+<tr>
+<td>H</td>
+<td>24-hour format of an hour without leading zeros</td>
+<td>0 to 23</td>
+</tr>
+<tr>
+<td>hh</td>
+<td>12-hour format of an hour without leading zeros</td>
+<td>1 to 12</td>
+</tr>
+<tr>
+<td>h</td>
+<td>12-hour format of an hour with leading zeros</td>
+<td>01 to 12</td>
+</tr>
+<tr>
+<td>mm</td>
+<td>Minutes, with leading zeros</td>
+<td>00 to 59</td>
+</tr>
+<tr>
+<td>m</td>
+<td>Minutes, without leading zeros</td>
+<td>0 to 59</td>
+</tr>
+<tr>
+<td>ss</td>
+<td>Seconds, with leading zeros</td>
+<td>00 to 59</td>
+</tr>
+<tr>
+<td>s</td>
+<td>Seconds, without leading zeros</td>
+<td>0 to 59</td>
+</tr>
+<tr>
+<td>SS</td>
+<td>Milliseconds, with leading zeros</td>
+<td>000 to 999</td>
+</tr>
+<tr>
+<td>S</td>
+<td>Milliseconds, without leading zeros</td>
+<td>0 to 999</td>
+</tr>
+<tr>
+<td>A</td>
+<td>Uppercase Ante meridiem and Post meridiem</td>
+<td>AM or PM</td>
+</tr>
+<tr>
+<td>a</td>
+<td>Lowercase Ante meridiem and Post meridiem</td>
+<td>am or pm</td>
+</tr>
+<tr>
+<td>T</td>
+<td>Milliseconds, since 1970-1-1 00:00:00 UTC</td>
+<td>759883437303</td>
+</tr>
+</tbody></table>
+<h2 id="数据生成助手"><a href="#数据生成助手" class="headerlink" title="数据生成助手"></a><a target="_blank" rel="noopener" href="http://mockjs.com/0.1/editor.html#help">数据生成助手</a></h2><h2 id="数据模板生成模板-demo2"><a href="#数据模板生成模板-demo2" class="headerlink" title="数据模板生成模板 - demo2"></a>数据模板生成模板 - demo2</h2><p><a target="_blank" rel="noopener" href="http://mockjs.com/examples.html">http://mockjs.com/examples.html</a></p>
 <h2 id="mockJs-的模拟get请求"><a href="#mockJs-的模拟get请求" class="headerlink" title="mockJs 的模拟get请求"></a>mockJs 的模拟get请求</h2><pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">//vue</span>
 <span class="token operator">&lt;</span>button @click<span class="token operator">=</span><span class="token string">"getGoodsList"</span><span class="token operator">></span>获取商品列表<span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">></span>
  methods<span class="token punctuation">:</span> <span class="token punctuation">{</span>
@@ -727,6 +931,13 @@ Mock<span class="token punctuation">.</span><span class="token function">mock</s
           console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
         <span class="token punctuation">}</span><span class="token punctuation">)</span>
       <span class="token punctuation">}</span> </code></pre>
+<h2 id="mockjs-与-import-export的大坑！！！！！！！！！！！！"><a href="#mockjs-与-import-export的大坑！！！！！！！！！！！！" class="headerlink" title="mockjs 与 import export的大坑！！！！！！！！！！！！"></a>mockjs 与 import export的大坑！！！！！！！！！！！！</h2><blockquote>
+<p>注意 这里跟定义const let 这些其实没有很大关系 主要是理解三者联系</p>
+<p>一般来说，如果是只是想测试写出比较简单的测试， 实际上直接写json获取 或者说直接写api接口都可以了，不用写复杂的mock文件</p>
+</blockquote>
+<p>需求：写一个mockjs，模拟一个数据库，生成一个固定的数据array，并且统一操作删加减查</p>
+<p>问题： data.js export getter函数给api文件，但是api文件直接使用export的getter函数时候，获取的值是空的</p>
+<p>因为你在做梦啊<del>~</del>  让mockjs 生成一个对于全部所有页面固定数据的表，因为要确保每个页面call的时候都是同一个数据arr。那么我总得存起来，但是由于是用import export的做法。那么我每次页面call的时候，还是要确保数据是新init的 。但是这时候init数据就变化了  所以总结一句<strong>“你在想peach！！”</strong></p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p> <a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000016730919">在vue-cli项目下简单使用mockjs模拟数据</a> (demo1)</p>
 <p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Tt411T7Cw?p=1">掌握MockJS</a> (demo2)</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/xifengxiaoma/article/details/92839222?spm=1001.2014.3001.5501">Vue + Element UI 实现权限管理系统</a> (admin-ui)</p>

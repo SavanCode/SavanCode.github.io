@@ -609,7 +609,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <span class="token punctuation">}</span>
 <span class="token function">add</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <h2 id="最流行的commonjs-AMD-CMD-ES6-规范"><a href="#最流行的commonjs-AMD-CMD-ES6-规范" class="headerlink" title="最流行的commonjs, AMD, CMD , ES6 规范"></a>最流行的commonjs, AMD, CMD , ES6 规范</h2><h3 id="CommonJS的模块化-最早期的"><a href="#CommonJS的模块化-最早期的" class="headerlink" title="CommonJS的模块化 - 最早期的"></a>CommonJS的模块化 - 最早期的</h3><p>CommonJS规范规定，每个模块内部，module变量代表当前模块。这个变量是一个对象，它的exports属性（即module.exports）是对外的接口。<strong>加载某个模块，其实是加载该模块的module.exports属性</strong></p>
-<h4 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h4><ul>
+<h4 id="基本语法-module-exports-require"><a href="#基本语法-module-exports-require" class="headerlink" title="基本语法- module.exports require"></a>基本语法- <code>module.exports</code> <code>require</code></h4><ul>
 <li>暴露模块：<code>module.exports = value</code>或<code>exports.xxx = value</code></li>
 <li>引入模块：<code>require(xxx)</code>,如果是第三方模块，xxx为模块名；如果是自定义模块，xxx为模块文件路径</li>
 </ul>
@@ -639,7 +639,11 @@ module<span class="token punctuation">.</span>exports <span class="token operato
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>counter<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// 3</span>
 <span class="token function">incCounter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>counter<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 3</span></code></pre>
-<h3 id="ES6模块化-最香的"><a href="#ES6模块化-最香的" class="headerlink" title="ES6模块化 - 最香的"></a>ES6模块化 - 最香的</h3><p><strong>ES6 在语言标准的层面上，实现了模块功能，而且实现得相当简单，完全可以取代 CommonJS 和 AMD 规范，成为浏览器和服务器通用的模块解决方案</strong></p>
+<h3 id="ES6模块化-最香的-import-export"><a href="#ES6模块化-最香的-import-export" class="headerlink" title="ES6模块化 - 最香的 - import export"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/export">ES6模块化 - 最香的 - import export</a></h3><blockquote>
+<p><strong>1.在node中使用的是exports，不要混淆了</strong></p>
+<p><strong>2.**这里一定注意一个地方</strong>有效的路径符号**. 完整的非相对路径。这样在将其传给new URL(moduleSpecifier)的时候才不会报错。<br>   <strong>以 / 开头。</strong><br>   <strong>以 ./ 开头。</strong><br>   <strong>以 ../ 开头。</strong></p>
+</blockquote>
+<h4 id="基本定义例子"><a href="#基本定义例子" class="headerlink" title="基本定义例子"></a>基本定义例子</h4><p><strong>ES6 在语言标准的层面上，实现了模块功能，而且实现得相当简单，完全可以取代 CommonJS 和 AMD 规范，成为浏览器和服务器通用的模块解决方案</strong></p>
 <p>export命令用于规定模块的对外接口，import命令用于输入其他模块提供的功能。</p>
 <pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">/** 定义模块 math.js **/</span>
 <span class="token keyword">var</span> basicNum <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
@@ -652,15 +656,49 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <span class="token keyword">function</span> <span class="token function">test</span><span class="token punctuation">(</span>ele<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     ele<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token number">99</span> <span class="token operator">+</span> basicNum<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span> </code></pre>
-<p>如上例所示，使用import命令的时候，用户需要知道所要加载的变量名或函数名，否则无法加载。为了给用户提供方便，让他们不用阅读文档就能加载模块，就要用到export default命令，为模块指定默认输出。</p>
+<h4 id="花式自定义export-import"><a href="#花式自定义export-import" class="headerlink" title="花式自定义export import"></a>花式自定义export import</h4><p>如上例所示，使用import命令的时候，用户需要知道所要加载的变量名或函数名，否则无法加载。为了给用户提供方便，让他们不用阅读文档就能加载模块，就要用到export default命令，为模块指定默认输出。</p>
 <pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// export-default.js</span>
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">//例子：</span>
+<span class="token keyword">export</span> <span class="token keyword">let</span> myVariable <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">sqrt</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">export</span> <span class="token punctuation">{</span> name1<span class="token punctuation">,</span> name2<span class="token punctuation">,</span> …<span class="token punctuation">,</span> nameN <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">export</span> <span class="token punctuation">{</span> variable1 <span class="token keyword">as</span> name1<span class="token punctuation">,</span> variable2 <span class="token keyword">as</span> name2<span class="token punctuation">,</span> …<span class="token punctuation">,</span> nameN <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">export</span> <span class="token keyword">let</span> name1<span class="token punctuation">,</span> name2<span class="token punctuation">,</span> …<span class="token punctuation">,</span> nameN<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// also var</span>
+<span class="token keyword">export</span> <span class="token keyword">let</span> name1 <span class="token operator">=</span> …<span class="token punctuation">,</span> name2 <span class="token operator">=</span> …<span class="token punctuation">,</span> …<span class="token punctuation">,</span> nameN<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// also var, const</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span>   <span class="token keyword">function</span> <span class="token punctuation">(</span>…<span class="token punctuation">)</span> <span class="token punctuation">{</span> … <span class="token punctuation">}</span> <span class="token comment" spellcheck="true">// also class, function*</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">function</span> <span class="token function">name1</span><span class="token punctuation">(</span>…<span class="token punctuation">)</span> <span class="token punctuation">{</span> … <span class="token punctuation">}</span> <span class="token comment" spellcheck="true">// also class, function*</span>
+<span class="token keyword">export</span> <span class="token punctuation">{</span> name1 <span class="token keyword">as</span> <span class="token keyword">default</span><span class="token punctuation">,</span> … <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token operator">*</span> <span class="token keyword">from</span> …<span class="token punctuation">;</span>
+<span class="token keyword">export</span> <span class="token punctuation">{</span> name1<span class="token punctuation">,</span> name2<span class="token punctuation">,</span> …<span class="token punctuation">,</span> nameN <span class="token punctuation">}</span> <span class="token keyword">from</span> …<span class="token punctuation">;</span>
+<span class="token keyword">export</span> <span class="token punctuation">{</span> import1 <span class="token keyword">as</span> name1<span class="token punctuation">,</span> import2 <span class="token keyword">as</span> name2<span class="token punctuation">,</span> …<span class="token punctuation">,</span> nameN <span class="token punctuation">}</span> <span class="token keyword">from</span> …<span class="token punctuation">;</span></code></pre>
 <pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// import-default.js</span>
 <span class="token keyword">import</span> customName <span class="token keyword">from</span> <span class="token string">'./export-default'</span><span class="token punctuation">;</span>
-<span class="token function">customName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 'foo'</span></code></pre>
-<h3 id="ES6-模块与-CommonJS-模块的差异"><a href="#ES6-模块与-CommonJS-模块的差异" class="headerlink" title="ES6 模块与 CommonJS 模块的差异"></a>ES6 模块与 CommonJS 模块的差异</h3><p><strong>① CommonJS 模块输出的是一个值的拷贝，ES6 模块输出的是值的引用</strong>。</p>
+<span class="token function">customName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 'foo'</span>
+
+
+<span class="token comment" spellcheck="true">//导入整个模块的内容，这将myModule插入当前作用域</span>
+<span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> myModule <span class="token keyword">from</span> <span class="token string">'/modules/my-module.js'</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//重命名接口</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span>reallyReallyLongModuleExportName <span class="token keyword">as</span> shortName<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'/modules/my-module.js'</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//运行模块中的全局代码, 执行js,但实际上不导入任何值</span>
+<span class="token keyword">import</span> <span class="token string">'/modules/my-module.js'</span><span class="token punctuation">;</span> 
+
+<span class="token comment" spellcheck="true">//例子：</span>
+<span class="token keyword">import</span> defaultMember <span class="token keyword">from</span> <span class="token string">"module-name"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> name <span class="token keyword">from</span> <span class="token string">"module-name"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> member <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"module-name"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> member <span class="token keyword">as</span> alias <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"module-name"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> member1 <span class="token punctuation">,</span> member2 <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"module-name"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> member1 <span class="token punctuation">,</span> member2 <span class="token keyword">as</span> alias2 <span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token operator">...</span><span class="token punctuation">]</span> <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"module-name"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> defaultMember<span class="token punctuation">,</span> <span class="token punctuation">{</span> member <span class="token punctuation">[</span> <span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token operator">...</span><span class="token punctuation">]</span> <span class="token punctuation">]</span> <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"module-name"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> defaultMember<span class="token punctuation">,</span> <span class="token operator">*</span> <span class="token keyword">as</span> name <span class="token keyword">from</span> <span class="token string">"module-name"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string">"module-name"</span><span class="token punctuation">;</span></code></pre>
+<h4 id="动态import"><a href="#动态import" class="headerlink" title="动态import"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/import#%E5%8A%A8%E6%80%81import">动态import</a></h4><h3 id="ES6-模块与-CommonJS-模块的差异"><a href="#ES6-模块与-CommonJS-模块的差异" class="headerlink" title="ES6 模块与 CommonJS 模块的差异"></a>ES6 模块与 CommonJS 模块的差异</h3><p><strong>① CommonJS 模块输出的是一个值的拷贝，ES6 模块输出的是值的引用</strong>。</p>
 <p><strong>② CommonJS 模块是运行时加载，ES6 模块是编译时输出接口</strong>。</p>
 <blockquote>
 <p>CommonJS规范主要用于服务端编程，加载模块是同步的，这并不适合在浏览器环境，因为同步意味着阻塞加载，浏览器资源是异步加载的，因此有了AMD CMD解决方案。 最后出现的是最香的ES6的。</p>
@@ -693,6 +731,8 @@ console<span class="token punctuation">.</span><span class="token function">log<
  <span class="token punctuation">}</span><span class="token punctuation">,</span> i<span class="token operator">*</span><span class="token number">1000</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903744518389768#heading-7">前端模块化详解(完整版)</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/libin-1/p/7127481.html">彻底搞清楚javascript中的require、import和export</a></p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/import">import export 官方解释</a></p>
 
             </div>
             <hr/>

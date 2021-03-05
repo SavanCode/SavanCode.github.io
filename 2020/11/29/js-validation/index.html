@@ -423,7 +423,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="js判断是否为整数类型"><a href="#js判断是否为整数类型" class="headerlink" title="js判断是否为整数类型"></a>js判断是否为整数类型</h1><h3 id="方式一、使用取余运算符判断"><a href="#方式一、使用取余运算符判断" class="headerlink" title="方式一、使用取余运算符判断"></a>方式一、使用取余运算符判断</h3><p>任何整数都会被1整除，即余数是0。利用这个规则来判断是否是整数。</p>
+                <h2 id="js判断是否为整数类型"><a href="#js判断是否为整数类型" class="headerlink" title="js判断是否为整数类型"></a>js判断是否为整数类型</h2><h3 id="方式一、使用取余运算符判断"><a href="#方式一、使用取余运算符判断" class="headerlink" title="方式一、使用取余运算符判断"></a>方式一、使用取余运算符判断</h3><p>任何整数都会被1整除，即余数是0。利用这个规则来判断是否是整数。</p>
 <pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">isInteger</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span> <span class="token punctuation">{</span>
  <span class="token keyword">return</span> obj<span class="token operator">%</span><span class="token number">1</span> <span class="token operator">===</span> <span class="token number">0</span>
 <span class="token punctuation">}</span>
@@ -489,12 +489,12 @@ Number<span class="token punctuation">.</span><span class="token function">isInt
 Number<span class="token punctuation">.</span><span class="token function">isInteger</span><span class="token punctuation">(</span><span class="token string">'3'</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// false</span>
 Number<span class="token punctuation">.</span><span class="token function">isInteger</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// false</span>
 Number<span class="token punctuation">.</span><span class="token function">isInteger</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// false</span></code></pre>
-<h1 id="数字判断"><a href="#数字判断" class="headerlink" title="数字判断"></a>数字判断</h1><h2 id="验证数字type"><a href="#验证数字type" class="headerlink" title="验证数字type"></a>验证数字type</h2><pre class=" language-js"><code class="language-js"> <span class="token keyword">var</span> checkNum <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<h2 id="数字判断"><a href="#数字判断" class="headerlink" title="数字判断"></a>数字判断</h2><h3 id="验证数字type"><a href="#验证数字type" class="headerlink" title="验证数字type"></a>验证数字type</h3><pre class=" language-js"><code class="language-js"> <span class="token keyword">var</span> checkNum <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> num <span class="token operator">!==</span> <span class="token string">"number"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
       <span class="token keyword">return</span> undefined<span class="token punctuation">;</span>
     <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">return</span> num<span class="token punctuation">;</span>
   <span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
-<h2 id="奇数偶数"><a href="#奇数偶数" class="headerlink" title="奇数偶数"></a>奇数偶数</h2><pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">printOdd</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<h3 id="奇数偶数"><a href="#奇数偶数" class="headerlink" title="奇数偶数"></a>奇数偶数</h3><pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">printOdd</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span>num<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">if</span><span class="token punctuation">(</span>i <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">!==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
       console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -509,7 +509,7 @@ Number<span class="token punctuation">.</span><span class="token function">isInt
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span></code></pre>
-<h2 id="Prime-number"><a href="#Prime-number" class="headerlink" title="Prime number"></a>Prime number</h2><pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">isPrime</span><span class="token punctuation">(</span>number<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<h3 id="Prime-number"><a href="#Prime-number" class="headerlink" title="Prime number"></a>Prime number</h3><pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">isPrime</span><span class="token punctuation">(</span>number<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> number<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
       <span class="token keyword">if</span> <span class="token punctuation">(</span>number <span class="token operator">%</span> i <span class="token operator">===</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> number <span class="token operator">!=</span> i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token comment" spellcheck="true">// return true if it is divisible by any number that is not itself.</span>
@@ -519,6 +519,28 @@ Number<span class="token punctuation">.</span><span class="token function">isInt
     <span class="token comment" spellcheck="true">// if it passes the for loops conditions it is a prime</span>
     <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span></code></pre>
+<h2 id="类型判断"><a href="#类型判断" class="headerlink" title="类型判断"></a>类型判断</h2><pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">isEmpty</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">switch</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> v<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">case</span> <span class="token string">'undefined'</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token string">'string'</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>v<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex">/(^[ \t\n\r]*)|([ \t\n\r]*$)/g</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">.</span>length <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token string">'boolean'</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>v<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token string">'number'</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token number">0</span> <span class="token operator">===</span> v <span class="token operator">||</span> <span class="token function">isNaN</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token string">'object'</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">null</span> <span class="token operator">===</span> v <span class="token operator">||</span> v<span class="token punctuation">.</span>length <span class="token operator">===</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token keyword">in</span> v<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
 
             </div>
             <hr/>

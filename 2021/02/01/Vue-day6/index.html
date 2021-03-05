@@ -555,6 +555,18 @@
     name<span class="token punctuation">:</span><span class="token string">"ttt"</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
+<h2 id="动态更改图片的src地址-v-model"><a href="#动态更改图片的src地址-v-model" class="headerlink" title="动态更改图片的src地址 v-model"></a>动态更改图片的src地址 v-model</h2><pre class=" language-html"><code class="language-html">
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">ref</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>study<span class="token punctuation">"</span></span> <span class="token attr-name">:src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>studyDataPic<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script language-javascript">
+data<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+        studyDataPic<span class="token punctuation">:</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'@/assets/images/school.png'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">//或者</span>
+<span class="token keyword">this</span><span class="token punctuation">.</span>studyDataPic <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'@/assets/images/load.gif'</span><span class="token punctuation">)</span>
+
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code></pre>
 <h2 id="在Vue中实现onchange的几种思路"><a href="#在Vue中实现onchange的几种思路" class="headerlink" title="在Vue中实现onchange的几种思路"></a>在Vue中实现onchange的几种思路</h2><h3 id="lazy-modifier"><a href="#lazy-modifier" class="headerlink" title="lazy modifier"></a>lazy modifier</h3><pre class=" language-js"><code class="language-js"><span class="token operator">&lt;</span>input v<span class="token operator">-</span>model<span class="token punctuation">.</span>lazy<span class="token operator">=</span><span class="token string">"search"</span> placeholder<span class="token operator">=</span><span class="token string">"Search for..."</span> <span class="token operator">/</span><span class="token operator">></span>
    data<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">return</span> <span class="token punctuation">{</span>

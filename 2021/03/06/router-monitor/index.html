@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="npm tool 小总结, Savannah">
+    <meta name="keywords" content="vue-watch-routes 监听网页的URL变化 手动, Savannah">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>npm tool 小总结 | Savannah</title>
+    <title>vue-watch-routes 监听网页的URL变化 手动 | Savannah</title>
     <link rel="icon" type="image/png" href="../../../../favicon.png">
 
     <link rel="stylesheet" type="text/css" href="../../../../libs/awesome/css/all.css">
@@ -260,12 +260,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/4.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">npm tool 小总结</h1>
+                    <h1 class="description center-align post-title">vue-watch-routes 监听网页的URL变化 手动</h1>
                 </div>
             </div>
         </div>
@@ -382,8 +382,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="../../../../tags/Npm-Tool/">
-                                <span class="chip bg-color">Npm_Tool</span>
+                            <a href="../../../../tags/Vue/">
+                                <span class="chip bg-color">Vue</span>
+                            </a>
+                        
+                            <a href="../../../../tags/router/">
+                                <span class="chip bg-color">router</span>
                             </a>
                         
                     </div>
@@ -394,8 +398,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="../../../../categories/Npm-Tool/" class="post-category">
-                                Npm_Tool
+                            <a href="../../../../categories/Vue/" class="post-category">
+                                Vue
                             </a>
                         
                     </div>
@@ -407,7 +411,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2021-03-02
+                    2021-03-06
                 </div>
                 
 
@@ -423,22 +427,24 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>记录一下遇到的Npm tool, 主要是很容易忘记名字 ( <em>╯□╰ )</em></p>
-<h2 id="Avue"><a href="#Avue" class="headerlink" title="Avue"></a>Avue</h2><ul>
-<li>avue-data——数据大屏源码</li>
-<li>avue-doc——官网文档源码</li>
-<li>avue-form——表单设计生成器</li>
-<li>avue-crud——表格设计生成器</li>
-</ul>
-<p>Avue采用<a target="_blank" rel="noopener" href="https://element.eleme.cn/#/zh-CN/">Element框架</a>, 主要提供了入场动画，时间格式化，大数据的图表展示，还有图表组件</p>
-<p><a target="_blank" rel="noopener" href="https://avuejs.com/doc/installation">官方文档</a></p>
-<h2 id="gemini-scrollbar"><a href="#gemini-scrollbar" class="headerlink" title="gemini-scrollbar"></a>gemini-scrollbar</h2><p><a target="_blank" rel="noopener" href="https://noeldelgado.github.io/gemini-scrollbar/">官方文档</a></p>
-<h2 id="MomentJS"><a href="#MomentJS" class="headerlink" title="MomentJS"></a>MomentJS</h2><p><a target="_blank" rel="noopener" href="https://momentjs.com/">官方文档</a></p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">import</span> moment <span class="token keyword">from</span> <span class="token string">'moment'</span></code></pre>
-<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">//转为ms </span>
-Date<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>item<span class="token punctuation">.</span>originTime<span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true">//format</span>
-<span class="token function">moment</span><span class="token punctuation">(</span>startTime<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span><span class="token string">'YYYY-MM-DD'</span><span class="token punctuation">)</span></code></pre>
+                <p>除了Vue的 router 的导航卫士 之外，实际上有一个问题是导航卫视解决不了的 就是关于手动输入url的问题<br>有时候还有需要监听routes来实现实时监听页面跳转路由信息，解决menu按钮样式刷新重定向等问题</p>
+<p>基本方法就是</p>
+<pre class=" language-js"><code class="language-js">watch<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token comment" spellcheck="true">//动态监听路由变化 -以便动态更改导航背景色事件效果等</span>
+            <span class="token string">'$route'</span> <span class="token punctuation">(</span>to<span class="token punctuation">,</span> <span class="token keyword">from</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                  <span class="token comment" spellcheck="true">// 对路由变化作出响应...</span>
+                  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'to.path----'</span><span class="token punctuation">,</span>to<span class="token punctuation">.</span>path<span class="token punctuation">)</span><span class="token comment" spellcheck="true">//跳转后路由</span>
+                  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'from----'</span><span class="token punctuation">,</span><span class="token keyword">from</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">//跳转前路由</span>
+                 <span class="token comment" spellcheck="true">//do something</span>
+                 <span class="token keyword">this</span><span class="token punctuation">.</span>$router<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token string">'/login'</span><span class="token punctuation">)</span>
+            <span class="token punctuation">}</span>
+          <span class="token punctuation">}</span><span class="token punctuation">,</span></code></pre>
+<p>或者</p>
+<pre class=" language-js"><code class="language-js">watch<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 监听路由变化</span>
+        <span class="token string">"$route.path"</span><span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>newVal<span class="token punctuation">,</span> oldVal<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`new_path = </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>newVal<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">, old_path = </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>oldVal<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span> </code></pre>
 
             </div>
             <hr/>
@@ -502,8 +508,12 @@ Date<span class="token punctuation">.</span><span class="token function">parse</
                     
                         <div class="article-tag">
                             
-                                <a href="../../../../tags/Npm-Tool/">
-                                    <span class="chip bg-color">Npm_Tool</span>
+                                <a href="../../../../tags/Vue/">
+                                    <span class="chip bg-color">Vue</span>
+                                </a>
+                            
+                                <a href="../../../../tags/router/">
+                                    <span class="chip bg-color">router</span>
                                 </a>
                             
                         </div>
@@ -542,11 +552,12 @@ Date<span class="token punctuation">.</span><span class="token function">parse</
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
-                <a href="../../06/router-monitor/">
+                <a href="">
                     <div class="card-image">
                         
                         
@@ -564,9 +575,9 @@ watch:
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-03-06
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-03-06
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -579,6 +590,7 @@ watch:
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -601,24 +613,24 @@ watch:
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="../../01/antv-l7-maps/">
+                <a href="../../02/npm-tool/">
                     <div class="card-image">
                         
                         
-                        <img src="../../../../medias/featureimages/2.jpg" class="responsive-img" alt="antv/l7-maps L7 地理空间数据可视分析引擎">
+                        <img src="../../../../medias/featureimages/12.jpg" class="responsive-img" alt="npm tool 小总结">
                         
-                        <span class="card-title">antv/l7-maps L7 地理空间数据可视分析引擎</span>
+                        <span class="card-title">npm tool 小总结</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            L7 地理空间数据可视分析引擎
+                            npm tool 小总结
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-03-01
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-03-02
                             </span>
                         <span class="publish-author">
                             
@@ -626,10 +638,6 @@ watch:
                             
                             <a href="../../../../categories/Npm-Tool/" class="post-category">
                                     Npm_Tool
-                                </a>
-                            
-                            <a href="../../../../categories/Npm-Tool/Map/" class="post-category">
-                                    Map
                                 </a>
                             
                             
@@ -641,10 +649,6 @@ watch:
                     
                     <a href="../../../../tags/Npm-Tool/">
                         <span class="chip bg-color">Npm_Tool</span>
-                    </a>
-                    
-                    <a href="../../../../tags/Map/">
-                        <span class="chip bg-color">Map</span>
                     </a>
                     
                 </div>
