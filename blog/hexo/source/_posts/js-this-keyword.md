@@ -500,10 +500,7 @@ fun("bennet");
 
 
 
-
-
-
-Reference：
+## Reference：
 
 - http://www.ruanyifeng.com/blog/2010/04/using_this_keyword_in_javascript.html
 - https://javascript.ruanyifeng.com/oop/this.html#toc3

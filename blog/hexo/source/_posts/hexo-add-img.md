@@ -1,5 +1,5 @@
 ---
-title: hexo-add-img
+title: hexo image图像显示不出的问题
 top: false
 cover: false
 toc: true
@@ -9,7 +9,7 @@ tags: Hexo
 categories: Hexo
 ---
 
-# Hexo本地图片显示问题
+## Hexo本地图片显示问题
 
 使用`hexo`生成静态资源后,由于`url`的问题会出现图片加载的问题,现在网上的文章及官方的解决方案大概分为三种:
 

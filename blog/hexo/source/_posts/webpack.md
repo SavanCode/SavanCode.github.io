@@ -8,7 +8,7 @@ date: 2021-02-10 14:23:30
 password:
 summary: webpack
 tags: [ Vue , webpack]
-categories: [ Vue , webpack]
+categories: webpack
 ---
 
 别看啦 还没写好呢 偷个懒

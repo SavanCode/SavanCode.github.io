@@ -7,8 +7,8 @@ mathjax: true
 date: 2021-03-01 14:18:19
 password:
 summary: L7 地理空间数据可视分析引擎
-tags: [Npm_Tool,Map]
-categories: [Npm_Tool,Map]
+tags: [Npm Tool,Map]
+categories: Npm Tool
 ---
 
 ## L7 空间数据可视分析

@@ -7,8 +7,8 @@ mathjax: true
 date: 2021-03-02 01:31:47
 password:
 summary: npm tool 小总结
-tags: Npm_Tool
-categories: Npm_Tool
+tags: Npm Tool
+categories: Npm Tool
 ---
 
 记录一下遇到的Npm tool, 主要是很容易忘记名字 ( _╯□╰ )_

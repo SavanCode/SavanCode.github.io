@@ -1,3 +1,4 @@
+---
 title: js regular expression JS 正则表达式
 top: false
 cover: false
@@ -8,7 +9,7 @@ password:
 summary: JS 正则表达式
 tags: JS
 categories: JS
---- 
+---
 
 ## 模式
 - g: 表示全局(global)模式，即模式将被应用于所有字符串，而并非在发现第一个匹配项时立即停止
@@ -99,6 +100,24 @@ categories: JS
 > 1. 反向引用里面“断言是没有带过去的”，复用的部分只是匹配到的文本内容，这段很重要，也是自己也开始没有意识到的。
 > 2. 断言只是匹配位置，准确地说就是只负责定位，不会匹配任何字符！这点很重要。
 > 3. 环视中 `\W` 不等于 `!\w`，
+
+## [正则表达式匹配提取值](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#用正则表达式匹配提取值)
+
+```js
+function parseProtocol(url) {
+  var parsedURL = /^(\w+)\:\/\/([^\/]+)\/(.*)$/.exec(url);
+  if (!parsedURL) {
+    return false;
+  }
+  console.log(parsedURL); // ["https://developer.mozilla.org/en-US/Web/JavaScript", "https", "developer.mozilla.org", "en-US/Web/JavaScript"]
+
+  var [, protocol, fullhost, fullpath] = parsedURL;
+  return protocol;
+}
+
+console.log(parseProtocol('https://developer.mozilla.org/en-US/Web/JavaScript')); // "https"
+```
+
 
 
 **Reference**

@@ -8,7 +8,7 @@ date: 2021-02-02 22:50:48
 password:
 summary: Vue.js 路由
 tags: [Vue,router]
-categories: [Vue,router]
+categories: Vue
 ---
 
 Vue.js 路由允许我们通过不同的 URL 访问不同的内容。

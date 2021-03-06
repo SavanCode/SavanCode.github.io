@@ -1,14 +1,14 @@
 ---
-title: vue-watch-routes 监听网页的URL变化 手动
+title: vue-watch-routes 监听网页的URL变化 手动输入
 top: false
 cover: false
 toc: true
 mathjax: true
 date: 2021-03-06 01:13:56
 password:
-summary:
+summary: vue-watch-routes 监听网页的URL变化 手动输入
 tags: [Vue,router]
-categories: [Vue]
+categories: Vue
 ---
 
 除了Vue的 router 的导航卫士 之外，实际上有一个问题是导航卫视解决不了的 就是关于手动输入url的问题

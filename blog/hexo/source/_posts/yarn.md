@@ -7,8 +7,8 @@ mathjax: true
 date: 2021-02-20 11:20:12
 password:
 summary: Yarn 管理依赖包
-tags:
-categories:
+tags: Npm Tool
+categories: Npm Tool
 ---
 
 本来没想这回写这个,主要是心血来潮写Vue练习的时候,在新电脑安装了 ,然后一直报的错 让我极度的想打人 -.-^

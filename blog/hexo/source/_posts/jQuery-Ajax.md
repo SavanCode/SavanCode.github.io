@@ -8,7 +8,7 @@ date: 2020-12-13 14:45:36
 password:
 summary: AJAX
 tags: [jQuery,JS,AJAX]
-categories: [jQuery,JS,AJAX]
+categories: AJAX
 ---
 
 AJAX = 异步 JavaScript 和 XML（Asynchronous JavaScript and XML）。

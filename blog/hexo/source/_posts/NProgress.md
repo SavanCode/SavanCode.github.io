@@ -7,8 +7,8 @@ mathjax: true
 date: 2021-03-01 12:27:09
 password:
 summary: NProgress显示顶部进度条效果
-tags: Npm_Tool
-categories: Npm_Tool
+tags: Npm Tool
+categories: Npm Tool
 ---
 [NProgress官方地址](http://ricostacruz.com/nprogress/)
 

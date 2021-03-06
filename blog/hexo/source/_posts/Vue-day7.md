@@ -8,7 +8,7 @@ date: 2021-02-01 23:40:04
 password:
 summary: Vue Axios, JSONP
 tags: [Vue,Node.js,Axios]
-categories: [Vue,Node.js,Axios]
+categories: Axios
 ---
 
 ## Axios

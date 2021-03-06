@@ -8,7 +8,7 @@ date: 2021-02-07 14:46:13
 password:
 summary: Vscode 中 Vue的; Vscode快速生成vue组件模板
 tags: [vscode,Vue] 
-categories: [vscode,Vue]
+categories: vscode
 ---
 
 ## Vscode 中 Vue的推荐插件

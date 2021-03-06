@@ -7,13 +7,13 @@ mathjax: true
 date: 2020-12-10 19:53:09
 password:
 summary:
-tags: [JS,AJAX]
-categories: [JS,AJAX]
+tags: [JS,AJAX,Promise]
+categories: JS
 ---
 
-# js处理error
+## js处理error
 
-## 错误的类型
+### 错误的类型
 
 - Error错误：所有错误的父类型
 
@@ -25,7 +25,7 @@ categories: [JS,AJAX]
 
 - SyntaxError:语法错误
 
-  ```js
+```js
   //1.ReferenceError: 引用的变量不存在
   console.log(a);//Uncaught ReferenceError: a is not defined
   
@@ -41,11 +41,11 @@ categories: [JS,AJAX]
   
   //4.SyntaxError:语法错误
   const c = '''' //Uncaught SyntaxError: Unexpected string
-  ```
+```
 
   
 
-## 错误处理
+### 错误处理
 
 - 捕获错误：try … catch …
 - 抛出错误：throw error
@@ -75,13 +75,13 @@ try {
 }
 ```
 
-## 错误对象
+### 错误对象
 
 - message属性：错误相关信息
 - stack属性:函数调用栈记录信息
 
 
-# 回调函数
+## 回调函数
 
 ### 回调函数基本定义
 
@@ -123,9 +123,9 @@ console.log('setTimeout()之后执行');
 ```
 
 
-# JS Promise
+## JS Promise
 
-## Promise基本理解
+### Promise基本理解
 
 - **抽象表达**：promise是js中进行异步编程的新的解决方案。（旧的是纯粹的回调函数）
 
@@ -133,7 +133,7 @@ console.log('setTimeout()之后执行');
 
   ​				  从功能上来说，promise对象用来封装一个异步操作，并可以获取其结果。
 
-## 异步操作的三个阶段
+### 异步操作的三个阶段
 
 **第一阶段**
 
@@ -193,7 +193,7 @@ f1(para).then(value=>{},reject=>{});
 
 promise还是有些繁琐，于是es7又推出了async和await，将同步操作以同步的方式书写出来。
 
-## promise的状态改变
+### promise的状态改变
 
 Promise对象只有三种状态 （PromiseState）
 
@@ -270,11 +270,11 @@ Promise {[[PromiseStatus]]: "rejected", [[PromiseValue]]: 3}
 
 p2、p3刚创建完成时，控制台输出的这两台Promise都处于pending状态，但为什么p1是resolved状态呢？ 这是因为p1 的函数参数中执行的是一段同步代码，Promise刚创建完成，resolve方法就已经被调用了，因而紧跟着的输出显示p1是resolved状态。我们通过两个`setTimeout`函数，延迟1s后再次输出p2、p3的状态，此时p2、p3已经执行完成，状态分别变成resolved和rejected。
 
-## promise 基本流程
+### promise 基本流程
 
 ![](js-promise/1607606379135.png)
 
-## promise 基本使用
+### promise 基本使用
 
 ```js
 // 1.创建一个新的promise对象
@@ -311,9 +311,9 @@ undefined
 成功的回调 成功的数据，time =1607609563332*/
 ```
 
-## 为什么要使用promise
+### 为什么要使用promise
 
-### 1，指定回调函数的方式更加灵活
+#### 1，指定回调函数的方式更加灵活
 
 ```js
 //成功的回调函数
@@ -350,7 +350,7 @@ const promise = createAudioFileAsync(audioSettings)
 promise.then(successCallback,failureCallback)
 ```
 
-### 2，支持链式调用，可以解决回调地狱问题
+#### 2，支持链式调用，可以解决回调地狱问题
 
 **什么是回调地狱？回调函数嵌套调用，外部回调函数异步执行的结果是嵌套的回调函数执行的条件。**
 回调地狱的缺点？不便于阅读、不便于异步处理
@@ -392,16 +392,16 @@ async function request() {
 }
 ```
 
-# promise的API使用
+## promise的API使用
 
-## 1、Promise构造函数：Promise(excutor){}
+### 1、Promise构造函数：Promise(excutor){}
 
 - excutor函数：同步执行 (resolve, reject)=>{}
 - resolve函数：内部定义成功时我们调用的函数 value=>{}
 - reject函数：内部定义失败时我们调用的函数 reason=>{}
   说明：excutor会在Promise内部立即同步回调，异步操作在执行器中执行
 
-## 2、Promise.prototype.then方法：(onResolved, onRejected)=>{}
+### 2、Promise.prototype.then方法：(onResolved, onRejected)=>{}
 
 - onResolved函数：成功的回调函数 (value)=>{}
 
@@ -443,9 +443,7 @@ p.then(function(value){
 "success"*/
 ```
 
-  
-
-## 3、Promise.prototype.catch方法：(onRejected)=>{}
+### 3、Promise.prototype.catch方法：(onRejected)=>{}
 
 - onRejected函数：失败的回调函数 (reason)=>{}
 
@@ -470,7 +468,7 @@ let p = new Promise((resolve, reject)=>{
 )
 ```
 
-## 4、Promise.resolve方法：(value)=>{}
+### 4、Promise.resolve方法：(value)=>{}
 
 - value: 成功的数据或promise对象
   说明：返回一个成功/失败的promise对象
@@ -478,7 +476,7 @@ let p = new Promise((resolve, reject)=>{
 > 如果传入的参数是非promise对象，则返回结果为成功的promise对象
 > 	   如果传入参数为promise对象，则参数的结果决定了resolve的结果就是对应的promise对象 PromiseResult
 
-## 5、Promise.reject方法：(reason)=>{}
+### 5、Promise.reject方法：(reason)=>{}
 
 - reason：失败的原因
   说明：返回一个失败的promise对象
@@ -497,7 +495,7 @@ p2.then(value=>{console.log(value)}) //2
 p3.catch(reason=>{console.log(reason)}) //3
 ```
 
-## 6、Promise.all方法：(promises)=>{}
+### 6、Promise.all方法：(promises)=>{}
 
 - promises：包含n个promise的数组
   说明：返回一个新的promise，只有所有的promise都成功才成功，只要有一个失败了就直接失败
@@ -516,7 +514,7 @@ p.then(([v1, v2, v3]) => {
 })
 ```
 
-## 7、Promise.race方法：(promises)=>{}
+### 7、Promise.race方法：(promises)=>{}
 
 - promises: 包含n个promise数组
   说明：返回一个新的promise，**第一个完成的promise的结果状态就是最终的结果状态**
@@ -540,7 +538,7 @@ p.then((v2) => {
 })
 ```
 
-## 8、对于已经是回调函数，可以直接用util.promisify()转换
+### 8、对于已经是回调函数，可以直接用util.promisify()转换
 
 ```js
 const util = require(‘util’);
@@ -556,11 +554,9 @@ stat(‘.’)
 });
 ```
 
+## promise的关键问题
 
-
-# promise的关键问题
-
-## 如何改变promise 的状态
+### 如何改变promise 的状态
 
 - resolve：如果当前是pendding就会变为resolved
 - reject：如果当前是pendding就会变为rejected
@@ -584,7 +580,7 @@ p.then(
 //两次都可以执行，对异步操作的结果做不同的处理
 ```
 
-## 改变promise状态和指定回调函数谁先谁后？
+### 改变promise状态和指定回调函数谁先谁后？
 
 1. 都有可能，正常情况下是先指定回调再改变状态，但也可以先改变状态再指定回调
 2. 如何先改变状态再指定回调？
@@ -617,7 +613,7 @@ new Promise((resolve , reject) => {
 )
 ```
 
-## promise.then()返回的新的promise的结果状态由什么决定？
+### promise.then()返回的新的promise的结果状态由什么决定？
 
 1. 简单表达式：有then()指定的回调函数执行的结果决定
 2. 详细表达：
@@ -649,7 +645,7 @@ new Promise((resolve , reject) => {
 )
 ```
 
-## promise如何串联多个操作任务？
+### promise如何串联多个操作任务？
 
 1. promise的then返回一个新的promise，看一看成then的链式调用
 2. 使用then的链式调用串联多个同步异步任务
@@ -703,7 +699,7 @@ p.then(value => {
 //这里一定记得 then的实现取决于前面返回的是什么！！
 ```
 
-## promise异常穿透
+### promise异常穿透
 
 1. 当使用promise的then链式调用时，可以在最后指定失败的回调
 2. 前面任何操作出现异常，都会传到最后失败的回调中处理
@@ -740,7 +736,7 @@ new Promise((resolve , reject) => {
 )
 ```
 
-## 中断promise链
+### 中断promise链
 
 1. 当使用promise的链式调用时，在中间中断，不再调用后面的回调函数
 2. 办法：在回调函数中返回一个pendding状态的promise对象（对后面的then函数而言，由于一直是pending状态的，then是不能执行的），通过return false也没有用！！
@@ -772,9 +768,7 @@ new Promise((resolve , reject) => {
 )
 ```
 
-
-
-## 如果 Promise 状态已经变成resolved，再抛出错误是无效的
+### 如果 Promise 状态已经变成resolved，再抛出错误是无效的
 
 ```js
 const promise = new Promise(function(resolve, reject) {
@@ -789,13 +783,13 @@ promise
 
 Promise 在resolve语句后面，再抛出错误，不会被捕获，等于没有抛出。因为 Promise 的状态一旦改变，就永久保持该状态，不会再变了。
 
-# Promise拓展练习
+## Promise拓展练习
 
 1. https://juejin.cn/post/6844903509934997511
 2. https://juejin.cn/post/6844903488695042062#heading-0
 3. https://juejin.cn/post/6844903625769091079
 
-# async和awiat
+## async和awiat
 
 1. async 函数
    - 函数的返回值为promise对象
@@ -821,9 +815,8 @@ Promise 在resolve语句后面，再抛出错误，不会被捕获，等于没�
            let result = main();
            console.log(result);
    ```
-   
-   
-   
+```
+
 2. await表达式
    - await右侧的表达式一般为promise对象，但也可以是其他值
 
@@ -831,32 +824,26 @@ Promise 在resolve语句后面，再抛出错误，不会被捕获，等于没�
 
    - 如果表达式是其他值，直接将此值作为await返回值
 
-     
-
-   ```js
-    async function main(){
-               let p = new Promise((resolve, reject) => {
-                   // resolve('OK');
-                   reject('Error');
-               })
-               //1. 右侧为promise的情况
-               // let res = await p;
-               //2. 右侧为其他类型的数据
-               // let res2 = await 20;
-               //3. 如果promise是失败的状态
-               // let res3 = await p //这样是不行的 再reject的时候
-               try{
-                   let res3 = await p;
-               }catch(e){
-                   console.log(e);
-               }
+​```js
+async function main(){
+           let p = new Promise((resolve, reject) => {
+               // resolve('OK');
+               reject('Error');
+           })
+           //1. 右侧为promise的情况
+           // let res = await p;
+           //2. 右侧为其他类型的数据
+           // let res2 = await 20;
+           //3. 如果promise是失败的状态
+           // let res3 = await p //这样是不行的 再reject的时候
+           try{
+               let res3 = await p;
+           }catch(e){
+               console.log(e);
            }
-   
-           main();
-   ```
-
-   
-
+       }
+main();
+```
 3. 注意
    - await必须写在async函数中，但async函数中可以没有await
    - 如果await的promise失败了，就会抛出异常，需要通过try … catch来捕获处理
@@ -912,15 +899,11 @@ async function main(){
 main();
 ```
 
-
-
-# JS异步之宏队列与微队列
+## JS异步之宏队列与微队列
 
 [详细的解释](https://www.cnblogs.com/sunmarvell/p/9564815.html)
 
 ![](js-promise/1607610096493.png)
-
-
 
 - **宏列队** **macrotask**：用来保存待执行的宏任务（回调），比如：定时器回调、DOM 事件回调、ajax 回调、script(整体代码)、setTimeout、setInterval、setImmediate、I/O、UI交互事件、postMessage、MessageChannel
 
@@ -930,7 +913,7 @@ main();
 
   **优先级**：process.nextTick > Promise > MutationObserver
 
-## 例子
+### 例子
 
 ```js
 //输出下面的出现顺序 
@@ -950,8 +933,6 @@ setTimeout(() => {
  
         console.log(3)
 ```
-
-
 
 ```js
 　　setTimeout(() => { //立即放入宏队列
@@ -1046,7 +1027,7 @@ setTimeout
 
 
 
-# reference
+## reference
 
 1. https://www.bilibili.com/video/BV1GA411x7z1?p=2
 2. https://blog.csdn.net/Miss_liangrm/article/details/103182530?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control
