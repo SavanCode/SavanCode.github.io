@@ -633,3 +633,4 @@ parseFloat(str) // 同上，可以提取小数
 parseFloat(num).toFixed(size);
 ```
 
+## [js常用正则表达式大全--如：数字，字符等](https://www.cnblogs.com/damoblog/p/9596814.html)
