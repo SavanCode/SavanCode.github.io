@@ -27,8 +27,7 @@ ES6的主要学习内容大纲内容
           3.2.2 ES6 数值
           3.2.3 ES6 字符串
           3.2.4 ES6 数组
-4. 
-   4.1 ES6 函数
+4. 4.1 ES6 函数
    4.2 ES6 迭代器
    4.3 ES6 Class 类
    4.4 ES6 模块
@@ -602,8 +601,6 @@ for(let codePointAt of 'hicai'){
   }  
 ```
 
-
-
 ### 包含
 
 ```js
@@ -695,11 +692,27 @@ console.log(innerHtml);
 
 
 
+## 7.函数
 
+### 不定参数
 
+```js
+function f(...values){    
+    console.log(values.length); 
+} 
+f(1,2);      //2 f(1,2,3,4);  //4
+```
 
+### 默认参数
 
-##  7. 箭头函数
+```js
+function f(x,y=x){
+    console.log(x,y);
+}
+f(1);  // 1 1
+```
+
+##  8. 箭头函数
 
 [额外的基础专题笔记](https://savancode.github.io/2020/11/26/js-arrowFunction/)
 
@@ -828,12 +841,12 @@ obj.aaa()
 
 正常函数包裹正常函数，上一层管（？）
 
-## 8. this的额外题目
+## 9. this的额外题目
 
 https://blog.csdn.net/weixin_44766633/article/details/107592044
 https://my.oschina.net/u/4627303/blog/4540593
 
-## 9. 高阶函数
+## 10. 高阶函数
 
 ###  filter过滤函数
 

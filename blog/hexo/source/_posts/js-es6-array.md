@@ -25,9 +25,7 @@ console.log(Array.of(1, '2', true)); // [1, '2', true]
 console.log(Array.of()); // []
 ```
 
-### Array.from()
-
-Array.from(array,function)
+### Array.from(array,function)
 
 将类数组对象或可迭代对象转化为数组。
 ```js
@@ -80,7 +78,7 @@ console.log(array1); // [undefined, undefined]
 ```
 
 ## 转换可迭代对象
-### 转换 map
+###  map =>  array
 ```js
 let map = new Map();
 map.set('key0', 'value0');
@@ -89,14 +87,14 @@ console.log(Array.from(map)); // [['key0', 'value0'],['key1',
 // 'value1']]
 ```
 
-### 转换 set
+### set => array
 ```js
 let arr = [1, 2, 3];
 let set = new Set(arr);
 console.log(Array.from(set)); // [1, 2, 3]
 ```
 
-### 转换字符串
+### string =>  array
 ```js
 let str = 'abc';
 console.log(Array.from(str)); // ["a", "b", "c"]
@@ -126,29 +124,45 @@ console.log(arr.findIndex(item => item = 1)); // 0
 console.log([, 1].findIndex(n => true)); //0
 ```
 ### 填充
-#### fill()
+#### fill(value,startIndex,endIndex)
 
 将一定范围索引的数组元素内容填充为单个指定的值。
 ```js
-let arr = Array.of(1, 2, 3, 4);
-// 参数1：用来填充的值
-// 参数2：被填充的起始索引
-// 参数3(可选)：被填充的结束索引，默认为数组末尾
-console.log(arr.fill(0,1,2)); // [1, 0, 3, 4]
-```
-#### copyWithin()
+//基本用法
+const array1 = [1, 2, 3, 4];
+// fill with 0 from  index 2 until  4
+console.log(array1.fill(0, 2, 4));// [1, 2, 0, 0]
+// fill with 5 from position 1
+console.log(array1.fill(5, 1));// [1, 5, 5, 5]
+console.log(array1.fill(6));//  [6, 6, 6, 6]
 
-将一定范围索引的数组元素修改为此数组另一指定范围索引的元素。
+//小于0
+//start+ length = start
+//end + length = end
+[1, 2, 3].fill(4, -3, -2)        // [4, 2, 3]
+[1, 2, 3].fill(4, NaN, NaN)      // [1, 2, 3]
+[1, 2, 3].fill(4, 3, 5)          // [1, 2, 3]
+Array(3).fill(4)                 // [4, 4, 4]
+[].fill.call({ length: 3 }, 4)   // {0: 4, 1: 4, 2: 4, length: 3}
+
+//obj 操作
+let arr = Array(3).fill({}) // [{}, {}, {}]
+arr[0].hi = "hi"            // [{ hi: "hi" }, { hi: "hi" }, { hi: "hi" }]
+
+```
+#### copyWithin(target, copy_start,copy_ end)
+
+从array的start到end，复制到target_index
 ```js
-// 参数1：被修改的起始索引
-// 参数2：被用来覆盖的数据的起始索引
-// 参数3(可选)：被用来覆盖的数据的结束索引，默认为数组末尾
-console.log([1, 2, 3, 4].copyWithin(0,2,4)); // [3, 4, 3, 4]
+[1, 2, 3, 4].copyWithin(0,2,4); // [3, 4, 3, 4]
 
 // 参数1为负数表示倒数
-console.log([1, 2, 3, 4].copyWithin(-2, 0)); // [1, 2, 1, 2]
+[1, 2, 3, 4].copyWithin(-2, 0); // [1, 2, 1, 2]
+[1, 2, ,4].copyWithin(0, 2, 4); // [, 4, , 4]
 
-console.log([1, 2, ,4].copyWithin(0, 2, 4)); // [, 4, , 4]
+[1, 2, 3, 4, 5].copyWithin(-2)// [1, 2, 3, 1, 2]
+[1, 2, 3, 4, 5].copyWithin(0, 3)// [4, 5, 3, 4, 5]
+[1, 2, 3, 4, 5].copyWithin(-2, -3, -1)// [1, 2, 3, 3, 4]
 ```
 
 ### 遍历
