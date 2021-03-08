@@ -82,6 +82,11 @@ scss: generateLoaders('sass').concat(
 
 4. 记得一定要重新运行文件~~
 
+## element UI icon
+
+[手册](https://www.elementscss.com/css.aspx?css=icons)
+[官方](https://element.eleme.cn/#/zh-CN/component/icon)
+
 ## 推荐练习
 
 https://github.com/PanJiaChen/vue-admin-template

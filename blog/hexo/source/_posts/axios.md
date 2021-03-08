@@ -11,8 +11,6 @@ tags: Axios
 categories: Axios
 ---
 
-**下面的都是为了Admin-ui的练习 不是完整的**
-
 [基础部分笔记](https://savancode.github.io/2021/02/01/Vue-day7/)
 
 ## 封装原因
@@ -37,6 +35,8 @@ categories: Axios
  -- interface.js ：请求接口汇总模块，聚合模块 API。
  -- index.js：将 axios 封装成插件，按插件方式引入。 
 ```
+
+下面的例子是**Admin-ui的练习 不是完整的**
 
 #### config.js
 
