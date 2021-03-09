@@ -24,6 +24,14 @@ categories: Axios
 
 ## axios 封装的路线理解
 
+### 整体思路
+
+![](axios/image-20210309175305540.png)
+
+### 细节走向
+
+这里的细节其实就是将Axios里面的实现给分成了 两个拦截器（response & request）
+
 ![](axios/image-20210301194803937.png)
 
 ## 文件结构

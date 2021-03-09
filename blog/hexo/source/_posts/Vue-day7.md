@@ -19,6 +19,10 @@ categories: Axios
 但是犹豫ajax对于dom操作过于频繁，Vue作者并不建议
 另外有一个叫做早期的 vue-resource,但是2.0之后没有维护了，所以建议就只看axios
 
+### 基本理解图
+
+
+
 ### 安装方式
 
 Vue.js 2.0 版本推荐使用 axios 来完成 ajax 请求。
