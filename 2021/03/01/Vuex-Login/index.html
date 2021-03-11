@@ -436,8 +436,14 @@
 <li><strong>如果前端拿到状态码为401，就清除token信息并跳转到登录页面</strong></li>
 </ol>
 <p>以上都我们需要去实现的</p>
-<h2 id="理解图"><a href="#理解图" class="headerlink" title="理解图"></a>理解图</h2><p>下面图自己画的 如果发现有误，请大家指正</p>
+<h2 id="理解图"><a href="#理解图" class="headerlink" title="理解图"></a>理解图</h2><p>下面这个题是大概的流程</p>
+<p><img src="/2021/03/01/Vuex-Login/image-20210311205941836.png"></p>
+<p>（上面最后漏了一个 服务器要验证token是否通过呀）</p>
+<p>下面图自己画的  实际中的代码操作 如果发现有误，请大家指正</p>
 <p><img src="/2021/03/01/Vuex-Login/image-20210309173907677.png"></p>
+<blockquote>
+<p>通过cookie在客户端记录状态<br>通过sesion在服务器端记录状态<br>通过token维持状态(不允许跨域使用)</p>
+</blockquote>
 <h2 id="文件基本目录"><a href="#文件基本目录" class="headerlink" title="文件基本目录"></a>文件基本目录</h2><p>所以我们先自己做到 搭建项目，路由，axios,js cookie 匹配好login的接口 （不会的话，自行去补基础）</p>
 <p><img src="/2021/03/01/Vuex-Login/image-20210309004645511.png" alt="基本完成的目录"></p>
 <p>axios - http<br>mock - 模拟返回<br>router - 路由设置<br>store - 存贮状态 token user</p>

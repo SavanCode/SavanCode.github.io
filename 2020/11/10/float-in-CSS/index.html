@@ -468,6 +468,14 @@
 <p><img src="/2020/11/10/float-in-CSS/1605005686175.png"></p>
 </li>
 </ul>
+<blockquote>
+<p>这里有一个 子元素撑开父元素 （父元素高度为0）<br>可以通过清除浮动 让父元素的告诉为子元素的高度<br>但是实际上 由于页面很大 最好的做法是直接利用伪元素以及clear</p>
+<pre class=" language-css"><code class="language-css"><span class="token selector"><span class="token class">.clear</span> <span class="token pseudo-element">::after</span></span><span class="token punctuation">{</span>
+<span class="token property">content</span><span class="token punctuation">:</span><span class="token string">""</span><span class="token punctuation">;</span><span class="token property">display</span><span class="token punctuation">:</span>block<span class="token punctuation">;</span><span class="token property">clear</span><span class="token punctuation">:</span>both
+<span class="token punctuation">}</span></code></pre>
+<p>这里拓展一下 解决这个问题 除了这个方法，也可以使用overflow 建立BFC</p>
+<pre class=" language-css"><code class="language-css"><span class="token property">overflow</span><span class="token punctuation">:</span>hiddren</code></pre>
+</blockquote>
 <h2 id="The-clearfix-Hack（-清浮动-）"><a href="#The-clearfix-Hack（-清浮动-）" class="headerlink" title="The clearfix Hack（ 清浮动 ）"></a>The clearfix Hack（ 清浮动 ）</h2><pre class=" language-css"><code class="language-css"><span class="token selector"><span class="token class">.clearfix</span><span class="token pseudo-element">::after</span> </span><span class="token punctuation">{</span>
   <span class="token property">content</span><span class="token punctuation">:</span> <span class="token string">""</span><span class="token punctuation">;</span>
   <span class="token property">clear</span><span class="token punctuation">:</span> both<span class="token punctuation">;</span>
