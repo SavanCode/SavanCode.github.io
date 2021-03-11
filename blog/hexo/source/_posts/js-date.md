@@ -52,7 +52,7 @@ second(秒) = Math.floor(100000%60)=40
 console.log(100000 === 1*86400+ 3*3600+ 46*60+40);//true
 ```
 
-# Date()构造函数
+## Date()构造函数
 
 ```js
 console.log(new Date('7/12/2016'));//Tue Jul 12 2016 00:00:00 GMT+0800 (中国标准时间)
@@ -60,123 +60,123 @@ console.log(new Date('2016-7-12'));//Tue Jul 12 2016 00:00:00 GMT+0800 (中国�
 console.log(new Date('2016-07-12'));//Tue Jul 12 2016 08:00:00 GMT+0800 (中国标准时间)
 ```
 
-# date函数
+## date函数
 
-## to类别
+### to类别
 
-### toString() 
+#### toString() 
 
 　　返回本地时区的日期字符串
 
-### toUTCString()
+#### toUTCString()
 
 　　返回UTC时间的日期字符串
 
-### toISOString()
+#### toISOString()
 
 　　返回Date对象的标准的日期时间字符串格式的字符串
 
-### toDateString()
+#### toDateString()
 
 　　返回Date对象的日期部分的字符串
 
-### toTimeString()
+#### toTimeString()
 
 　　返回Date对象的时间部分的字符串
 
-###  toJSON()
+####  toJSON()
 
 　　返回一个符合JSON格式的日期字符串，与toISOString方法的返回结果完全相同
 
-### toLocaleString()
+#### toLocaleString()
 
 　　toString()方法的本地化转换
 
-### toLocaleTimeString()
+#### toLocaleTimeString()
 
 　　toTimeString()方法的本地化转换
 
-###  toLocaleDateString()
+####  toLocaleDateString()
 
 　　toDateString()方法的本地化转换
 
-## get类
+### get类
 
-###  valueOf()
+####  valueOf()
 
 　　返回距离1970年1月1日0点的毫秒数
 
-###  getTimezoneOffset()
+####  getTimezoneOffset()
 
 　　返回当前时间与UTC的时区差异，以分钟表示(8*60=480分钟)，返回结果考虑到了夏令时因素
 
-###  get[UTC]FullYear()
+####  get[UTC]FullYear()
 
 　　返回年份(4位数)
 
-###  get[UTC]Month()
+####  get[UTC]Month()
 
 　　返回月份(0-11)
 
-###  get[UTC]Date()
+####  get[UTC]Date()
 
 　　返回第几天(1-31)
 
-###  get[UTC]Day()
+####  get[UTC]Day()
 
 　　返回星期几(0-6)
 
-###  get[UTC]Hours()
+####  get[UTC]Hours()
 
 　　返回小时值(0-23)
 
-###  get[UTC]Minutes()
+####  get[UTC]Minutes()
 
 　　返回分钟值(0-59)
 
-###  get[UTC]Seconds()
+####  get[UTC]Seconds()
 
 　　返回秒值(0-59)
 
-###  get[UTC]Milliseconds()
+####  get[UTC]Milliseconds()
 
 　　返回毫秒值(0-999)
 
 　　[注意]通过标准日期时间格式字符串，且有前置0的形式的参数设置，设置的是UTC时间
 
-## set类
+### set类
 
-###  setTime()
+####  setTime()
 
 使用毫秒的格式，设置一个Date对象的值
 
-###  set[UTC]Month()
+####  set[UTC]Month()
 
 设置月份(0-11)，以及可选的日期值
 
-###  set[UTC]Date()
+####  set[UTC]Date()
 
 设置第几天(1-31) 
 
-###  set[UTC]Hours()
+####  set[UTC]Hours()
 
 设置小时值(0-23)，以及可选的分钟值、秒值及毫秒值
 
-###  set[UTC]Minutes()
+####  set[UTC]Minutes()
 
 设置分钟值(0-59)，以及可选的秒值及毫秒值
 
-###  set[UTC]Seconds()
+####  set[UTC]Seconds()
 
 设置秒值(0-59)，以及可选的毫秒值
 
-###  set[UTC]Milliseconds()
+####  set[UTC]Milliseconds()
 
 设置毫秒值(0-999)
 
-## 时间转换
+### 时间转换
 
-### npm-moment
+#### npm-moment
 
-### [自己写时间格式转换](https://github.com/SavanCode/Wechat-Mini-Programs/blob/main/musicMiniPro/miniprogram/utils/time.js)
+#### [自己写时间格式转换](https://github.com/SavanCode/Wechat-Mini-Programs/blob/main/musicMiniPro/miniprogram/utils/time.js)
 

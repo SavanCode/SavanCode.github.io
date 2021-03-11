@@ -105,6 +105,8 @@ margin: 25px 50px 75px;//上 左右 下
 
 ## 网页布局的margin 合并与BFC
 
+BFC的理解： 就是对于该元素独立的渲染（不管这个指定元素怎么设置，不能影响外部）
+
 基本使用场景：：
 
 
@@ -191,6 +193,10 @@ margin: 25px 50px 75px;//上 左右 下
 ![](padding-margin-in-CSS/1605095493973.png)
 
 **此时我们可以为P元素的内容建立一个BFC，让其内容消除对外界浮动元素的影响。根据上文所知，只要给info元素添加`overflow:hidden;`即可为其内容建立新的BFC。**
+
+> 简单地说，就是对于重叠的元素 分别给个parent 盒子，然后对于这个parent给一个overflow：hidden
+>
+> 另外这个也可以达到清除浮动 的效果哦~~~ 
 
 ![](padding-margin-in-CSS/1605081934208.png)
 

@@ -72,6 +72,21 @@ float属性设计的初衷：仅仅是让文字像流水一样环绕浮动元素
 
   ![](float-in-CSS/1605005686175.png)
 
+> 这里有一个 子元素撑开父元素 （父元素高度为0）
+> 可以通过清除浮动 让父元素的告诉为子元素的高度
+> 但是实际上 由于页面很大 最好的做法是直接利用伪元素以及clear
+>
+> ```css
+> .clear ::after{
+> content:"";display:block;clear:both
+> }
+> ```
+>
+> 这里拓展一下 解决这个问题 除了这个方法，也可以使用overflow 建立BFC
+> ```css
+> overflow:hiddren
+>```
+
 ## The clearfix Hack（ 清浮动 ）
 
 ```css

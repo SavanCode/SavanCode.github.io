@@ -11,43 +11,31 @@ tags: css&html
 categories: css&html
 ---
 
-# HTML Video
+## HTML Video
 
-<video width="320" height="240" controls>  <source src="*****" type="video/mp4">  <source src="*8**" type="video/ogg">Your browser does not support the video tag.</video>
-``<video width="320" height="240" controls> ``
+```html
+<video style="width:320px"  poster="img.jpg" controls>
+  <source src="movie.mp4"  type="video/mp4">
+  <source src="movie.ogg"  type="video/ogg">
+  您的浏览器不支持 HTML5 video 标签。
+</video>
 
-`` <source src="*****" type="video/mp4">  `` 
+//attribute: control / autoplay / loop / muted / preload / //auto(default) / metadata / none
 
-``<source src="*8**" type="video/ogg">Your browser does not support the video tag.</video>``
-
-attribute: control / autoplay / loop / muted / preload / auto(default) / metadata / none
-
-size control=> `<video>`
-
-# HTML Audio
+// size control=> `<video>`
+```
+## HTML Audio
 
 
 ```html
-<audio controls>  
-<source src="****" type="audio/ogg">  
-<source src="****" type="audio/mpeg">Your browser does not support the audio element.</audio>
+<audio src="****.mp3" type="audio/mpeg" controls="controls">Your browser does not support the audio element.</audio>
 ```
 
-```jsx
-const BEEP =new Audio("https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3");
-
-BEEP.play();
-BEEP.pause();
-```
-
-```jsx
-//有问题
-this.audio = document.getElementById("beep");
-return(
- <audio id="beep" src={BEEP} />
- )
-this.audio.pause()
-this.audio.play()
+```js
+ var audio = document.querySeletor('audio')
+ //audio 自身有很多属性可以设置
+ //audio.muted audio.play() audio.pause()
+// audio.volum audio.currentTime 属性直接看dom元素哈~
 ```
 
 
