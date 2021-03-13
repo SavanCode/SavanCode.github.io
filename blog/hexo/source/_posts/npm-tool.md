@@ -13,7 +13,7 @@ categories: Npm Tool
 
 记录一下遇到的Npm tool, 主要是很容易忘记名字 ( _╯□╰ )_
 
-## Avue
+## [Avue](https://avuejs.com/)
 
 - avue-data——数据大屏源码
 - avue-doc——官网文档源码

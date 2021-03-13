@@ -226,6 +226,8 @@ a!==a;//false
 
 用Boolean()转型函数，转换成false的值称为假值(falsy value)，这7个值包括undefined、null、+0、-0、NaN、false、""(空字符串)
 
+Boolean 判断 可以通过  boolean !=null
+
 > 空字符串""转换为false，而空白字符串" "转换为true
 
 ## Number

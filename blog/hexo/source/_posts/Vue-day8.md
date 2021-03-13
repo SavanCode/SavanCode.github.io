@@ -289,6 +289,42 @@ new Vue({
 </script>
 ```
 
+如果直接是组件传递
+
+```vue
+<!--parent -->
+<common-header :userName="user.userName"></common-header>
+<script>
+        computed: {
+            //{ "isAdmin": false, "userName": "s11111" }
+            user() {
+            return this.$store.getters.user
+            }
+        }
+</script>
+```
+```vue
+<!--child -->
+<p>Hi,{{userName}}</p>
+<script>
+    export default {
+        data() {
+            return {
+            }
+        },
+        props: { 
+          userName: {
+          type: String,
+          default: 'user',
+          required: true //在使用组件必传值
+          }
+        }, 
+        methods: {
+        }
+    }
+</script>
+```
+
 ### props属性使用
 
 #### 数组写法
