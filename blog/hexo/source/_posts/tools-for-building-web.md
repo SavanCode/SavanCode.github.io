@@ -77,6 +77,8 @@ categories: Front-end tool
 
 ## [2020 JavaScript Rising Stars](https://risingstars.js.org/2020/en)
 
+[微信小程序 Vue](http://mpvue.com/)
+
 ## 技术博客
 
 - [木之多](https://www.shuzhiduo.com/)

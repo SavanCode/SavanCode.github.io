@@ -21,7 +21,7 @@ ES6的主要学习内容大纲内容
      2.3 [ES6 Symbol](https://www.runoob.com/w3cnote/es6-symbol.html)
 3. 3.1
           3.1.1 ES6 Map 与 Set
-          3.1.2 [ES6 Reflect 与 Proxy](https://www.runoob.com/w3cnote/es6-reflect-proxy.html)  
+          3.1.2 [ES6 Reflect 与 Proxy](https://www.runoob.com/w3cnote/es6-reflect-proxy.html)  [更多讲解](https://zhuanlan.zhihu.com/p/60126477)
     3.2
           3.2.1 ES6 对象
           3.2.2 ES6 数值
