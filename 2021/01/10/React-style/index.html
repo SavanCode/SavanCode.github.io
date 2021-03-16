@@ -436,13 +436,21 @@
 npm install @material-ui/core</code></pre>
 <p>自己练习 - clock</p>
 <h2 id="Ant-Design-of-React"><a href="#Ant-Design-of-React" class="headerlink" title="Ant Design of React"></a><a target="_blank" rel="noopener" href="https://ant.design/components/overview-cn/">Ant Design of React</a></h2><p>基于 React.js</p>
-<h2 id="Echart"><a href="#Echart" class="headerlink" title="Echart"></a><a target="_blank" rel="noopener" href="https://echarts.apache.org/zh/index.html">Echart</a></h2><p><a target="_blank" rel="noopener" href="https://github.com/apache/incubator-echarts">github</a></p>
+<h2 id="Echart"><a href="#Echart" class="headerlink" title="Echart"></a><a target="_blank" rel="noopener" href="https://echarts.apache.org/zh/index.html">Echart</a></h2><p><a target="_blank" rel="noopener" href="https://panjiachen.github.io/vue-element-admin-site/zh/guide/advanced/chart.html#demo">推荐教程</a></p>
+<h3 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h3><ol>
+<li><p>直接生成为component图表 js文件</p>
+</li>
+<li><p>init方式 直接引用component</p>
+<p><strong>文字描述不清楚，可以直接看admin library中例子</strong></p>
+</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://github.com/apache/incubator-echarts">github</a></p>
 <p>常见问题：”export ‘default’ (imported as ‘ECharts’) was not found in ‘echarts/lib/echarts.js’</p>
 <p>解决办法：</p>
 <ol>
 <li>引入echarts的地方改为</li>
 </ol>
-<pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> echarts <span class="token keyword">from</span> <span class="token string">'echarts'</span></code></pre>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> echarts <span class="token keyword">from</span> <span class="token string">'echarts'</span> <span class="token comment" spellcheck="true">// 如果不这样会爆出warning</span></code></pre>
 <ol>
 <li>webpack的DefinePlugin里加入如下字段</li>
 </ol>
@@ -450,47 +458,94 @@ npm install @material-ui/core</code></pre>
 '__DEV__': process.env.node_env === 'dev' </code></pre>
 <p>或者</p>
 <pre class=" language-sh"><code class="language-sh">npm un echarts && npm i -E echarts@3.7.2 zrender@3.6.3</code></pre>
-<p>基本的component例子</p>
-<pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">import</span> echarts <span class="token keyword">from</span> <span class="token string">'echarts'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token string">'echarts/map/js/china'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> geoJson <span class="token keyword">from</span> <span class="token string">'echarts/map/json/china.json'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token string">'echarts/lib/chart/bar'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token string">'echarts/lib/component/tooltip'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token string">'echarts/lib/component/title'</span><span class="token punctuation">;</span>
-
-<span class="token keyword">class</span> <span class="token class-name">EChartsView</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token punctuation">{</span>
-  <span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      <span class="token comment" spellcheck="true">// 基于准备好的dom，初始化echarts实例</span>
-      <span class="token keyword">var</span> myChart <span class="token operator">=</span> echarts<span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span>document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'echart'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-      <span class="token comment" spellcheck="true">// 绘制图表</span>
-      myChart<span class="token punctuation">.</span><span class="token function">setOption</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-          title<span class="token punctuation">:</span> <span class="token punctuation">{</span> text<span class="token punctuation">:</span> <span class="token string">'ECharts 入门示例'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
-          tooltip<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-          xAxis<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-              data<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">"衬衫"</span><span class="token punctuation">,</span><span class="token string">"羊毛衫"</span><span class="token punctuation">,</span><span class="token string">"雪纺衫"</span><span class="token punctuation">,</span><span class="token string">"裤子"</span><span class="token punctuation">,</span><span class="token string">"高跟鞋"</span><span class="token punctuation">,</span><span class="token string">"袜子"</span><span class="token punctuation">]</span>
-          <span class="token punctuation">}</span><span class="token punctuation">,</span>
-          yAxis<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-          series<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
-              name<span class="token punctuation">:</span> <span class="token string">'销量'</span><span class="token punctuation">,</span>
-              type<span class="token punctuation">:</span> <span class="token string">'bar'</span><span class="token punctuation">,</span>
-              data<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">36</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">]</span>
-          <span class="token punctuation">}</span><span class="token punctuation">]</span>
-      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-
-  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      <span class="token keyword">return</span><span class="token punctuation">(</span>
-          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>echart<span class="token punctuation">"</span></span> <span class="token attr-name">style</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span><span class="token punctuation">{</span> width<span class="token punctuation">:</span> <span class="token string">'80vw'</span><span class="token punctuation">,</span> height<span class="token punctuation">:</span> <span class="token string">"80vh"</span> <span class="token punctuation">}</span><span class="token punctuation">}</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
-      <span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-
-ReactDOM<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>EChartsView</span><span class="token punctuation">/></span></span><span class="token punctuation">,</span>document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'root'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p>由于实在经常卡住 所以就把例子贴上来了</p>
+<pre class=" language-vue"><code class="language-vue"><template>
+  <!--为echarts准备一个具备大小的容器dom-->
+  <div id="main" style="width: 600px;height: 400px;"></div>
+</template>
+<script>
+  import * as echarts from 'echarts'
+    export default { 
+        data () {
+            return {
+                charts: '',
+                opinion:['直接访问','邮件营销','联盟广告','视频广告','搜索引擎'],
+                opinionData:[
+                  {value:335, name:'直接访问'},
+                  {value:310, name:'邮件营销'},
+                  {value:234, name:'联盟广告'},
+                  {value:135, name:'视频广告'},
+                  {value:1548, name:'搜索引擎'}
+                ]
+            }
+        },
+        methods:{
+            drawPie(id){
+               this.charts = echarts.init(document.getElementById(id))
+               this.charts.setOption({
+                 tooltip: {
+                   trigger: 'item',
+                   formatter: '{a}<br/>{b}:{c} ({d}%)'
+                 },
+                 legend: {
+                   orient: 'vertical',
+                   x: 'left',
+                   data:this.opinion
+                 },
+                 series: [
+                   {
+                     name:'访问来源',
+                     type:'pie',
+                     radius:['50%','70%'],
+                     avoidLabelOverlap: false,
+                     label: {
+                       normal: {
+                         show: false,
+                         position: 'center'
+                       },
+                       emphasis: {
+                         show: true,
+                         textStyle: {
+                           fontSize: '30',
+                           fontWeight: 'blod'
+                         }
+                       }
+                     },
+                     labelLine: {
+                       normal: {
+                         show: false
+                       }
+                     },
+                     data:this.opinionData
+                   }
+                 ]
+               })
+            }
+        },
+      //调用
+        mounted(){
+            this.$nextTick(function() {
+                this.drawPie('main')
+            })
+        }
+    }
+</script>
+<style scoped>
+    * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+</style>
+</code></pre>
+<h2 id="Vue-Echart"><a href="#Vue-Echart" class="headerlink" title="Vue Echart"></a>Vue Echart</h2><p>有人推荐，但是由于文档非常蛋疼 然后我用的时候经常有问题 um<del>~</del></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/ecomfe/vue-echarts/blob/main/README.zh-Hans.md">使用文档</a></p>
 <h2 id="react-echarts"><a href="#react-echarts" class="headerlink" title="react echarts"></a><a target="_blank" rel="noopener" href="https://github.com/hustcc/echarts-for-react">react echarts</a></h2><pre class=" language-sh"><code class="language-sh">npm install echarts-for-react echarts</code></pre>
+<h2 id="Antv"><a href="#Antv" class="headerlink" title="Antv"></a><a target="_blank" rel="noopener" href="https://antv.vision/zh">Antv</a></h2><p>也是很有用的数据可视化</p>
 <h2 id="Element-for-Vue"><a href="#Element-for-Vue" class="headerlink" title="Element for Vue"></a><a target="_blank" rel="noopener" href="https://element.eleme.cn/#/zh-CN/component/installation">Element for Vue</a></h2><p>基于 Vue.js</p>
 <p>步骤: 先布局 -&gt; 然后插入模板 -&gt; 注意下面的值</p>
 <p><a target="_blank" rel="noopener" href="https://wdd.js.org/vue-vue-router-elementui-stupid-simple-dashboard.html">基础教程</a></p>
-<h2 id="iview-for-Vue"><a href="#iview-for-Vue" class="headerlink" title="iview  for Vue"></a><a target="_blank" rel="noopener" href="https://www.iviewui.com/">iview  for Vue</a></h2><p>基于 Vue.js</p>
+<h2 id="iview-for-Vue"><a href="#iview-for-Vue" class="headerlink" title="iview  for Vue"></a><a target="_blank" rel="noopener" href="https://www.iviewui.com/">iview  for Vue</a></h2><p>基于 Vue.js··</p>
 
             </div>
             <hr/>

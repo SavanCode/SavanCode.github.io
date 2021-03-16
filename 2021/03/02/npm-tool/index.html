@@ -424,21 +424,121 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p>记录一下遇到的Npm tool, 主要是很容易忘记名字 ( <em>╯□╰ )</em></p>
-<h2 id="Avue"><a href="#Avue" class="headerlink" title="Avue"></a>Avue</h2><ul>
+<h2 id="Avue"><a href="#Avue" class="headerlink" title="Avue"></a><a target="_blank" rel="noopener" href="https://avuejs.com/">Avue</a></h2><p>Avue.js是基于现有的element-ui库进行的二次封装，简化一些繁琐的操作，核心理念为数据驱动视图,主要的组件库针对table表格和form表单场景，同时衍生出更多企业常用的组件，达到高复用，容易维护和扩展的框架，同时内置了丰富了数据展示组件，让开发变得更加容易。</p>
+<ul>
 <li>avue-data——数据大屏源码</li>
 <li>avue-doc——官网文档源码</li>
-<li>avue-form——表单设计生成器</li>
+<li>avue-form——表单设计生成器 （行内的问题有点小多 尽量弹窗式）</li>
 <li>avue-crud——表格设计生成器</li>
 </ul>
 <p>Avue采用<a target="_blank" rel="noopener" href="https://element.eleme.cn/#/zh-CN/">Element框架</a>, 主要提供了入场动画，时间格式化，大数据的图表展示，还有图表组件</p>
 <p><a target="_blank" rel="noopener" href="https://avuejs.com/doc/installation">官方文档</a></p>
+<h2 id="vue-echarts"><a href="#vue-echarts" class="headerlink" title="vue-echarts"></a><a target="_blank" rel="noopener" href="https://ecomfe.github.io/vue-echarts/">vue-echarts</a></h2><p>暂时还没有成功完成自己的练习 fixing~~</p>
+<pre><code>$ npm install echarts vue-echarts</code></pre>
+<pre class=" language-js"><code class="language-js">用 npm 与 Vue Loader 基于 ES Module 引入（推荐用法）
+<span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span>
+<span class="token keyword">import</span> ECharts <span class="token keyword">from</span> <span class="token string">'vue-echarts'</span> <span class="token comment" spellcheck="true">// 在 webpack 环境下指向 components/ECharts.vue</span>
+
+<span class="token comment" spellcheck="true">// 手动引入 ECharts 各模块来减小打包体积</span>
+<span class="token keyword">import</span> <span class="token string">'echarts/lib/chart/bar'</span>
+<span class="token keyword">import</span> <span class="token string">'echarts/lib/component/tooltip'</span>
+
+<span class="token comment" spellcheck="true">// 如果需要配合 ECharts 扩展使用，只需要直接引入扩展包即可</span>
+<span class="token comment" spellcheck="true">// 以 ECharts-GL 为例：</span>
+<span class="token comment" spellcheck="true">// 需要安装依赖：npm install --save echarts-gl，并添加如下引用</span>
+<span class="token keyword">import</span> <span class="token string">'echarts-gl'</span>
+
+<span class="token comment" spellcheck="true">// 注册组件后即可使用</span>
+Vue<span class="token punctuation">.</span><span class="token function">component</span><span class="token punctuation">(</span><span class="token string">'v-chart'</span><span class="token punctuation">,</span> ECharts<span class="token punctuation">)</span></code></pre>
+<p>⚠️ 注意事项<br>引入源码版本<br>Vue-ECharts 默认在 webpack 环境下会引入未编译的源码版本，如果你正在使用官方的 Vue CLI 来创建项目，可能会遇到默认配置把 node_modules 中的文件排除在 Babel 转译范围以外的问题。请按如下方法修改配置：</p>
+<p>当使用 Vue CLI 3+ 时，需要在 vue.config.js 中的 transpileDependencies 增加 vue-echarts 及 resize-detector，如下：</p>
+<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// vue.config.js</span>
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+  transpileDependencies<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token string">'vue-echarts'</span><span class="token punctuation">,</span>
+    <span class="token string">'resize-detector'</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span></code></pre>
+<p>当使用 Vue CLI 2 的 webpack 模板时，需要按下述的方式修改 build/webpack.base.conf.js：</p>
+<pre class=" language-js"><code class="language-js"><span class="token punctuation">{</span>
+test<span class="token punctuation">:</span> <span class="token regex">/\.js$/</span><span class="token punctuation">,</span>
+loader<span class="token punctuation">:</span> <span class="token string">'babel-loader'</span><span class="token punctuation">,</span>
+<span class="token operator">-</span>       include<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token string">'src'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">resolve</span><span class="token punctuation">(</span><span class="token string">'test'</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+<span class="token operator">+</span>       include<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+<span class="token operator">+</span>         <span class="token function">resolve</span><span class="token punctuation">(</span><span class="token string">'src'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token operator">+</span>         <span class="token function">resolve</span><span class="token punctuation">(</span><span class="token string">'test'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token operator">+</span>         <span class="token function">resolve</span><span class="token punctuation">(</span><span class="token string">'node_modules/vue-echarts'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token operator">+</span>         <span class="token function">resolve</span><span class="token punctuation">(</span><span class="token string">'node_modules/resize-detector'</span><span class="token punctuation">)</span>
+<span class="token operator">+</span>       <span class="token punctuation">]</span>
+<span class="token punctuation">}</span></code></pre>
+<p>如果你正直接配置使用 webpack，那么也请做类似的修改使其能够正常工作。</p>
+<h2 id="echart-多用这个！"><a href="#echart-多用这个！" class="headerlink" title="echart 多用这个！"></a>echart 多用这个！</h2><p><a target="_blank" rel="noopener" href="https://panjiachen.github.io/vue-element-admin-site/zh/guide/advanced/chart.html#demo">教程1</a> <a target="_blank" rel="noopener" href="https://echarts.apache.org/zh/tutorial.html#5%20%E5%88%86%E9%92%9F%E4%B8%8A%E6%89%8B%20ECharts">官方快速上手 </a>  <a target="_blank" rel="noopener" href="https://echarts.apache.org/zh/tutorial.html#ECharts%20%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E6%A6%82%E8%A7%88">ECharts 基础概念概览</a>    <a target="_blank" rel="noopener" href="https://echarts.apache.org/examples/zh/index.html">总体可视化样式</a></p>
+<pre class=" language-sh"><code class="language-sh">yarn add echarts
+npm install echarts</code></pre>
+<ol>
+<li><p>引入 echarts:</p>
+<ul>
+<li><p>全部引入:</p>
+<pre><code>import echarts from &#39;echarts&#39;; // 方便, 但是也同时引入了很多不需要的组件</code></pre>
+</li>
+<li><p>按需引入:</p>
+<pre><code>import echarts from &#39;echarts/lib/echarts&#39;; // 引入基本模板
+import bar from &#39;echarts/lib/chart/bar&#39;;   // 引入柱状图组件</code></pre>
+</li>
+</ul>
+</li>
+<li><p>基于准备好的 DOM，初始化 Echarts 实例</p>
+</li>
+<li><p>设置 Echarts 图表数据</p>
+</li>
+</ol>
 <h2 id="gemini-scrollbar"><a href="#gemini-scrollbar" class="headerlink" title="gemini-scrollbar"></a>gemini-scrollbar</h2><p><a target="_blank" rel="noopener" href="https://noeldelgado.github.io/gemini-scrollbar/">官方文档</a></p>
 <h2 id="MomentJS"><a href="#MomentJS" class="headerlink" title="MomentJS"></a>MomentJS</h2><p><a target="_blank" rel="noopener" href="https://momentjs.com/">官方文档</a></p>
 <pre class=" language-js"><code class="language-js"><span class="token keyword">import</span> moment <span class="token keyword">from</span> <span class="token string">'moment'</span></code></pre>
+<p>常用的就摘抄下来了</p>
 <pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">//转为ms </span>
 Date<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>item<span class="token punctuation">.</span>originTime<span class="token punctuation">)</span>
 <span class="token comment" spellcheck="true">//format</span>
 <span class="token function">moment</span><span class="token punctuation">(</span>startTime<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span><span class="token string">'YYYY-MM-DD'</span><span class="token punctuation">)</span></code></pre>
+<h3 id="当前日期后20天"><a href="#当前日期后20天" class="headerlink" title="当前日期后20天"></a>当前日期后20天</h3><pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">let</span> now <span class="token operator">=</span> <span class="token function">moment</span><span class="token punctuation">(</span><span class="token string">'2018-12-14'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">,</span> <span class="token string">'day'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span><span class="token string">'YYYY-MM-DD'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>now<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 输出 2019-01-03</span></code></pre>
+<h3 id="diff计算两个日期差"><a href="#diff计算两个日期差" class="headerlink" title="diff计算两个日期差"></a>diff计算两个日期差</h3><pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">let</span> diff <span class="token operator">=</span> <span class="token function">moment</span><span class="token punctuation">(</span><span class="token string">'2019-01-03'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">diff</span><span class="token punctuation">(</span><span class="token function">moment</span><span class="token punctuation">(</span><span class="token string">'2018-12-14'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>diff<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 1728000000 单位是毫秒</span></code></pre>
+<h3 id="diff时间差格式化"><a href="#diff时间差格式化" class="headerlink" title="diff时间差格式化"></a>diff时间差格式化</h3><pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">let</span> starttime <span class="token operator">=</span> <span class="token string">'2018-12-14 18:00'</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> endtime <span class="token operator">=</span> <span class="token string">'2018-12-15 10:22'</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> totalMinute <span class="token operator">=</span> <span class="token function">moment</span><span class="token punctuation">(</span>endtime<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">diff</span><span class="token punctuation">(</span>starttime<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token number">1000</span> <span class="token operator">*</span> <span class="token number">60</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  hours <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span>totalMinute <span class="token operator">/</span> <span class="token number">60</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  minute <span class="token operator">=</span> totalMinute <span class="token operator">%</span> <span class="token number">60</span><span class="token punctuation">,</span>
+  result <span class="token operator">=</span> <span class="token string">''</span><span class="token punctuation">;</span>
+
+<span class="token keyword">if</span><span class="token punctuation">(</span>hours <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  result <span class="token operator">=</span> result <span class="token operator">+</span> hours <span class="token operator">+</span> <span class="token string">'小时'</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">if</span><span class="token punctuation">(</span>minute <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  result <span class="token operator">=</span> result <span class="token operator">+</span> minute <span class="token operator">+</span> <span class="token string">'分钟'</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 16小时22分钟</span></code></pre>
+<h3 id="两个日期比较"><a href="#两个日期比较" class="headerlink" title="两个日期比较"></a>两个日期比较</h3><pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// 是否之前</span>
+<span class="token function">moment</span><span class="token punctuation">(</span><span class="token string">'2018-10-20'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">isBefore</span><span class="token punctuation">(</span><span class="token string">'2018-12-31'</span><span class="token punctuation">,</span> <span class="token string">'year'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// false</span>
+<span class="token function">moment</span><span class="token punctuation">(</span><span class="token string">'2018-10-20'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">isBefore</span><span class="token punctuation">(</span><span class="token string">'2019-01-01'</span><span class="token punctuation">,</span> <span class="token string">'year'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// true</span>
+<span class="token function">moment</span><span class="token punctuation">(</span><span class="token string">'2018-10-20'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">isBefore</span><span class="token punctuation">(</span><span class="token string">'2019-01-01'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// true</span>
+
+<span class="token comment" spellcheck="true">// 是否之后</span>
+<span class="token function">moment</span><span class="token punctuation">(</span><span class="token string">'2010-10-20'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">isAfter</span><span class="token punctuation">(</span><span class="token string">'2010-01-01'</span><span class="token punctuation">,</span> <span class="token string">'year'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// false</span>
+<span class="token function">moment</span><span class="token punctuation">(</span><span class="token string">'2010-10-20'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">isAfter</span><span class="token punctuation">(</span><span class="token string">'2009-12-31'</span><span class="token punctuation">,</span> <span class="token string">'year'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// true</span>
+
+<span class="token comment" spellcheck="true">// 是否相同</span>
+<span class="token function">moment</span><span class="token punctuation">(</span><span class="token string">'2010-10-20'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">isSame</span><span class="token punctuation">(</span><span class="token string">'2009-12-31'</span><span class="token punctuation">,</span> <span class="token string">'year'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// false</span>
+<span class="token function">moment</span><span class="token punctuation">(</span><span class="token string">'2010-10-20'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">isSame</span><span class="token punctuation">(</span><span class="token string">'2010-01-01'</span><span class="token punctuation">,</span> <span class="token string">'year'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// true</span>
+<span class="token function">moment</span><span class="token punctuation">(</span><span class="token string">'2018-01-01'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">isSame</span><span class="token punctuation">(</span><span class="token string">'2018-01-01'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// true</span>
+
+<span class="token comment" spellcheck="true">// 是否是闰年</span>
+<span class="token function">moment</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">2000</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">isLeapYear</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// true</span>
+<span class="token function">moment</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">2001</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">isLeapYear</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// false</span></code></pre>
 
             </div>
             <hr/>

@@ -631,6 +631,36 @@ Vue<span class="token punctuation">.</span><span class="token function">componen
   el<span class="token punctuation">:</span> <span class="token string">'#app'</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span>
 </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code></pre>
+<p>如果直接是组件传递</p>
+<pre class=" language-vue"><code class="language-vue"><!--parent -->
+<common-header :userName="user.userName"></common-header>
+<script>
+        computed: {
+            //{ "isAdmin": false, "userName": "s11111" }
+            user() {
+            return this.$store.getters.user
+            }
+        }
+</script></code></pre>
+<pre class=" language-vue"><code class="language-vue"><!--child -->
+<p>Hi,{{userName}}</p>
+<script>
+    export default {
+        data() {
+            return {
+            }
+        },
+        props: { 
+          userName: {
+          type: String,
+          default: 'user',
+          required: true //在使用组件必传值
+          }
+        }, 
+        methods: {
+        }
+    }
+</script></code></pre>
 <h3 id="props属性使用"><a href="#props属性使用" class="headerlink" title="props属性使用"></a>props属性使用</h3><h4 id="数组写法"><a href="#数组写法" class="headerlink" title="数组写法"></a>数组写法</h4><pre><code>props: [&#39;cmovies&#39;, &#39;cmessage&#39;]</code></pre>
 <h4 id="对象写法"><a href="#对象写法" class="headerlink" title="对象写法"></a>对象写法</h4><pre class=" language-js"><code class="language-js">  props<span class="token punctuation">:</span> <span class="token punctuation">{</span> 
           cmessage<span class="token punctuation">:</span> <span class="token punctuation">{</span>
