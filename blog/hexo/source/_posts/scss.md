@@ -666,11 +666,7 @@ Module build failed: Error: Cannot find module 'node-sass'
 
 **npm install node-sass**
 
-
-
-
-
-
+## [vue使用scss，并且全局引入公共scss样式](https://www.cnblogs.com/juewuzhe/p/11840816.html)
 
 ## Reference
 

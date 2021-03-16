@@ -26,6 +26,87 @@ Avue采用[Element框架](https://element.eleme.cn/#/zh-CN/), 主要提供了入
 
 [官方文档](https://avuejs.com/doc/installation)
 
+## [vue-echarts](https://ecomfe.github.io/vue-echarts/)
+
+暂时还没有成功完成自己的练习 fixing~~
+
+```
+$ npm install echarts vue-echarts
+```
+```js
+用 npm 与 Vue Loader 基于 ES Module 引入（推荐用法）
+import Vue from 'vue'
+import ECharts from 'vue-echarts' // 在 webpack 环境下指向 components/ECharts.vue
+
+// 手动引入 ECharts 各模块来减小打包体积
+import 'echarts/lib/chart/bar'
+import 'echarts/lib/component/tooltip'
+
+// 如果需要配合 ECharts 扩展使用，只需要直接引入扩展包即可
+// 以 ECharts-GL 为例：
+// 需要安装依赖：npm install --save echarts-gl，并添加如下引用
+import 'echarts-gl'
+
+// 注册组件后即可使用
+Vue.component('v-chart', ECharts)
+```
+⚠️ 注意事项
+引入源码版本
+Vue-ECharts 默认在 webpack 环境下会引入未编译的源码版本，如果你正在使用官方的 Vue CLI 来创建项目，可能会遇到默认配置把 node_modules 中的文件排除在 Babel 转译范围以外的问题。请按如下方法修改配置：
+
+当使用 Vue CLI 3+ 时，需要在 vue.config.js 中的 transpileDependencies 增加 vue-echarts 及 resize-detector，如下：
+```js
+// vue.config.js
+module.exports = {
+  transpileDependencies: [
+    'vue-echarts',
+    'resize-detector'
+  ]
+}
+```
+当使用 Vue CLI 2 的 webpack 模板时，需要按下述的方式修改 build/webpack.base.conf.js：
+```js
+{
+test: /\.js$/,
+loader: 'babel-loader',
+-       include: [resolve('src'), resolve('test')]
++       include: [
++         resolve('src'),
++         resolve('test'),
++         resolve('node_modules/vue-echarts'),
++         resolve('node_modules/resize-detector')
++       ]
+}
+```
+如果你正直接配置使用 webpack，那么也请做类似的修改使其能够正常工作。
+## echart 多用这个！
+
+[教程1](https://panjiachen.github.io/vue-element-admin-site/zh/guide/advanced/chart.html#demo) [官方快速上手 ](https://echarts.apache.org/zh/tutorial.html#5%20%E5%88%86%E9%92%9F%E4%B8%8A%E6%89%8B%20ECharts)  [ECharts 基础概念概览](https://echarts.apache.org/zh/tutorial.html#ECharts%20%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E6%A6%82%E8%A7%88)    [总体可视化样式](https://echarts.apache.org/examples/zh/index.html)
+
+```sh
+yarn add echarts
+npm install echarts
+```
+
+1. 引入 echarts:
+
+   - 全部引入:
+
+     ```
+     import echarts from 'echarts'; // 方便, 但是也同时引入了很多不需要的组件
+     ```
+
+   - 按需引入:
+
+     ```
+     import echarts from 'echarts/lib/echarts'; // 引入基本模板
+     import bar from 'echarts/lib/chart/bar';   // 引入柱状图组件
+     ```
+
+2. 基于准备好的 DOM，初始化 Echarts 实例
+
+3. 设置 Echarts 图表数据
+
 ## gemini-scrollbar
 
 [官方文档](https://noeldelgado.github.io/gemini-scrollbar/)
