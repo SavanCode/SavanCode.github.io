@@ -290,7 +290,9 @@ server {
   }
 ```
 
-3.  启动nginx，并且reload, 确保运行nginx时候，是按照新的配置运行
+如果你要配置多location，这里要注意哦，router设置会发生变化的哦 [详细看这篇文章吧](https://www.jianshu.com/p/05f889faa74b)
+
+3. 启动nginx，并且reload, 确保运行nginx时候，是按照新的配置运行
 
 这时候 你可以直接访问localhost:8880, 直接可以访问到自己项目的主页
 
@@ -409,3 +411,4 @@ IP地址 —— 一般填写本机的IP地址
 
 [Nginx最新教程通俗易懂](https://www.bilibili.com/video/BV1F5411J7vK?p=7)（稍微捋一下大体的思路）
 
+[尚硅谷Nginx教程由浅入深](https://www.bilibili.com/video/BV1zJ411w7SV?p=1)

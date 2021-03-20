@@ -114,3 +114,7 @@ IMAP全称是Internet Mail Access Protocol，即交互式邮件访问协议，�
     SMTP的全称是“Simple Mail Transfer Protocol”，即简单邮件传输协议（25号端口）。它是一组用于从源地址到目的地址传输邮件的规范，通过它来控制邮件的中转方式。SMTP 协议属于 TCP/IP 协议簇，它帮助每台计算机在发送或中转信件时找到下一个目的地。
 
   SMTP是一个“推”的协议，它不允许根据需要从远程服务器上“拉”来消息。SMTP服务器就是遵循SMTP协议的发送邮件服务器，SMTP认证就是要求必须在提供了账户名和密码之后才可以登录 SMTP 服务器，这就使得那些垃圾邮件的散播者无可乘之机。
+
+## 参考
+
+[推荐脑图](https://besterwin.gitee.io/blogs/knowledge/middle/Nginx.html) 
