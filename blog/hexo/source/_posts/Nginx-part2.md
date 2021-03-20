@@ -1,5 +1,5 @@
 ---
-title: Nginx part2
+title: Nginx part2 windows nginx
 top: false
 cover: false
 toc: true
@@ -13,7 +13,7 @@ categories: Nginx
 
 ## 基本下载以及安装
 
-（这里一开始百思不得其解 ，以为直接在windows安装就行，然后发现基本所有网上的教程都是在Linux上的，所以这里如果你要安装Linux 看这个文章，如果你只是想了解windows基本安装以及基本操作接着往下）
+（这里一开始百思不得其解 ，以为直接在windows安装就行，然后发现基本所有网上的教程都是在Linux上的，所以这里如果你要安装Linux 看这个文章，如果你只是想了解windows基本安装以及基本操作接着往下，Linu会在下面一篇文章，其实windows跟Linux差别不大，只是我有点强迫症哈哈哈）
 
 [Nginx 官方下载](http://nginx.org/en/download.html)
 
@@ -226,11 +226,24 @@ http {
 
 存和应答控制等功能，还有许多第三方模块的配置也在这里进行。
 
+> **下面的实操 关于代理以及更多实际操作看Linux部分 更加完整！~~~**
+
 ## 基础实战1- nginx 代理
 
 **将vue项目打包，并在window电脑实现localhost在指定端口运行**
 
 1. 首先将vue项目打包，`npm run build`，此时会得到dist文件夹
+
+但是这里注意 **修改config/index.js里的assetsPublicPath的字段，初始项目是/，现在改为./**
+
+![](Nginx-part2/image-20210320162114124.png)
+
+![](Nginx-part2/image-20210320162134639.png)
+
+此时尝试运行项目（npm方式), 检查文件路径显示会不会有问题。由于文件的一些文件路径，可能会发生读取问题
+
+**如果有的话，需要修改dist下的index.html资源路径为./  ； 打开dist底下的index.html文件，修改文件路径**
+
 2. 设置nginx.config文件
 
 ```
@@ -253,9 +266,35 @@ server {
             index  index.html index.htm;
         }
 ```
+```
+# 这里其实有另外一种写法 对于vue
+  server {
+        listen       8888;#默认端口是80，如果端口没被占用可以不用修改
+        server_name  localhost;
+
+        #charset koi8-r;
+
+        #access_log  logs/host.access.log  main;
+        root        E:/vue/my_project/dist;#vue项目的打包后的dist
+
+        location / {
+            try_files $uri $uri/ @router;#需要指向下面的@router否则会出现vue的路由在nginx中刷新出现404
+            index  index.html index.htm;
+        }
+        #对应上面的@router，主要原因是路由的路径资源并不是一个真实的路径，所以无法找到具体的文件
+        #因此需要rewrite到index.html中，然后交给路由在处理请求资源
+        location @router {
+            rewrite ^.*$ /index.html last;
+        }
+        #.......其他部分省略
+  }
+```
+
 3.  启动nginx，并且reload, 确保运行nginx时候，是按照新的配置运行
 
 这时候 你可以直接访问localhost:8880, 直接可以访问到自己项目的主页
+
+[如果这里，你有的是前后端分离项目 看这篇文章](https://asing1elife.com/vue/nginx/tomcat/2019/05/31/%E4%BD%BF%E7%94%A8-Nginx-%E9%83%A8%E7%BD%B2-Vue-%E9%A1%B9%E7%9B%AE/)
 
 ## 基础实践2 - 用iis代理（取代nginx）
 
@@ -362,7 +401,9 @@ IP地址 —— 一般填写本机的IP地址
 
 ![](Nginx-part2/image-20210319220145630.png)
 
-然后进行登陆配置
+然后进行登陆配置 就可以拉
+
+
 
 ## 参考
 
