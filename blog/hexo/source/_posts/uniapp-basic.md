@@ -483,7 +483,7 @@ methods: {
 
 - 默认如果没有传递参数，事件函数第一个形参为事件对象
 
-```vue
+```html
 // template
 <button @click="tapHandle">点我啊</button>
 // script
@@ -496,7 +496,7 @@ tapHandle (e) {
 
 - 如果给事件函数传递参数了，则对应的事件函数形参接收的则是传递过来的数据
 
-```vue
+```html
 // template
 <button @click="tapHandle(1)">点我啊</button>
 // script
@@ -509,7 +509,7 @@ tapHandle (num) {
 
 - 如果获取事件对象也想传递参数
 
-```vue
+```html
 // template
 <button @click="tapHandle(1,$event)">点我啊</button>
 // script
@@ -676,7 +676,7 @@ uni.stopPullDownRefresh()
 
 通过onReachBottom监听到触底的行为
 
-```vue
+```html
 <template>
 	<view>
 		<button type="primary" @click="startPull">开启下拉刷新</button>
@@ -715,7 +715,7 @@ uni.stopPullDownRefresh()
 
 **发送get请求**
 
-```vue
+```html
 <template>
 	<view>
 		<button @click="sendGet">发送请求</button>
@@ -749,7 +749,7 @@ uni.stopPullDownRefresh()
 
 代码演示
 
-```vue
+```html
 <template>
 	<view>
 		<button type="primary" @click="setStor">存储数据</button>
@@ -782,7 +782,7 @@ uni.stopPullDownRefresh()
 
 代码演示
 
-```vue
+```html
 <template>
 	<view>
 		<button type="primary" @click="setStor">存储数据</button>
@@ -809,7 +809,7 @@ uni.stopPullDownRefresh()
 
 代码演示
 
-```vue
+```html
 <template>
 	<view>
 		<button type="primary" @click="getStorage">获取数据</button>
@@ -842,7 +842,7 @@ uni.stopPullDownRefresh()
 
 代码演示
 
-```vue
+```html
 <template>
 	<view>
 		<button type="primary" @click="getStorage">获取数据</button>
@@ -866,7 +866,7 @@ uni.stopPullDownRefresh()
 
 代码演示
 
-```vue
+```html
 <template>
 	<view>
 		<button type="primary" @click="removeStorage">删除数据</button>
@@ -894,7 +894,7 @@ uni.stopPullDownRefresh()
 
 代码演示
 
-```vue
+```html
 <template>
 	<view>
 		<button type="primary" @click="removeStorage">删除数据</button>
@@ -919,7 +919,7 @@ uni.chooseImage方法从本地相册选择图片或使用相机拍照。
 
 案例代码
 
-```vue
+```html
 <template>
 	<view>
 		<button @click="chooseImg" type="primary">上传图片</button>
@@ -954,7 +954,7 @@ uni.chooseImage方法从本地相册选择图片或使用相机拍照。
 
 结构
 
-```vue
+```html
 <view>
 	<image v-for="item in imgArr" :src="item" @click="previewImg(item)" :key="item"></image>
 </view>
@@ -1149,7 +1149,7 @@ goAbout () {
 
 接收参数的页面
 
-```vue
+```html
 <script>
 	export default {
 		onLoad (options) {
@@ -1165,7 +1165,7 @@ goAbout () {
 
 + 创建login组件，在component中创建login目录，然后新建login.vue文件
 
-```vue
+```html
 <template>
 <view>
     这是一个自定义组件
@@ -1193,7 +1193,7 @@ components: {test}
 
 + 使用组件
 
-```vue
+```html
 <test></test>
 ```
 
@@ -1216,7 +1216,7 @@ components: {test}
 
 通过props来接受外界传递到组件内部的值
 
-```vue
+```html
 //child
 <template>
 	<view>
@@ -1236,7 +1236,7 @@ components: {test}
 
 其他组件在使用login组件的时候传递值
 
-```vue
+```html
 //parent
 <template>
 	<view>
