@@ -35,7 +35,7 @@ categories: Nginx
 
 [Xftp链接方法](https://blog.csdn.net/Smile_Luckly/article/details/72639387)
 
-## Linux 安装以及运行nginx
+## Linux 安装以及运行nginx  - - - 省时间请直接看选择2
 
 > 如果`yum install gcc-c++`，需要root 管理者身份 使用su - root 切换身份，但是看你有没有设置密码哦，因为要你输入root密码 （有一些需要的话）
 >
@@ -194,7 +194,7 @@ firewall-cmd --reload
 
 这里足足卡了我一整天
 
-作为小白的我很痛心，上面虽然是安装了，但是可以看到你访问的是通过local/sbin  ，也就是说 你这个只是本地的，并没有在Linux全局注册。
+作为小白的我很痛心，上面虽然是安装了，但是可以看到你访问的是通过local/sbin  ，也就是说 你这个只是本地的，并没有在Linux全局注册。当然 如果你用它来直接proxy pass 可能可以。 但是我的前辈告诉我这样是不对的
 
 所以但你尝试将root换成正确的路径的时候，你会发现500错误❌
 
@@ -220,9 +220,17 @@ start() "地址" failed Premission denied ......
 
 这里请各位自己找办法 因为我重新安装了~~~ 没有尝试
 
-## 建议全局安装的正确办法
+##  选择2： 建议全局安装的正确办法
 
-安装都要尽量使用yum
+linux的软件安装大致可以分为下面三种
+
+> 通过yum安装
+> 通过源码安装
+> 通过rpm安装
+
+三种安装方式各有差异，yum形式类似于npm安装，简单快捷，自动安装相关依赖；源码安装需要下载源码然后本机编译，可以实现个性化定制，适用于对linux了解较多的进阶用户使用；rpm安装与yum类似，只不过安装的模块来源不是yum官方镜像，而是本地资源；
+
+**安装都要尽量使用yum**
 
 ```
 sudo yum install epel-release //安装仓库 因为如果没有这个一开始是找不到nginx的 
@@ -239,10 +247,21 @@ sudo systemctl enable nginx //开机自启动
 /usr/sbin/nginx /usr/lib64/nginx /sct/nginx /usr/share/nginx .........(如果你本地的还没删除 你还会看到有一个 /usr/local/nginx)
 ```
 
-运行命令可以变为
+**运行命令**可以变为
 
-```
+```sh
 sudo systemctl （start/stop/reload/restart） nginx
+systemctl reload nginx 
+systemctl status nginx #查看nginx 启动状态
+ss -tnl | grep 80 #（默认端口） 查看是否监听
+LISTEN 0 128 :80:
+LISTEN 0 128 :::80 :::
+
+# 备注：如果不能正常访问，关闭防火墙重试
+systemctl stop firewalld.service #关闭防火墙
+systemctl disable firewalld.service #禁止防火墙开机启动动
+firewall-cmd --state #查看默认防火墙状态（关闭为notrunning，开启为running）
+systemctl start firewalld.service #重新开启防火墙
 ```
 
 ## 正式开始配置路由
@@ -263,6 +282,38 @@ sudo systemctl （start/stop/reload/restart） nginx
 
 我卡了3小时， 因为文件路径 /(ㄒoㄒ)/~~
 
+## 域名配置
+
+本地如何设置域名绑定IP：
+
+1.修改hosts文件（位置在我的电脑`C:\Windows\System32\drivers\etc`），**右键点击属性，关掉只读用编辑器打开之后才能修改**。
+2.在文件末尾添加`<IP><空格><自定义域名>`，保存，IP为Linux的IP。
+**3.改完记得在CMD里面刷新C:\Users\Administrator>`ipconfig /flushdns`，之后才会生效。**
+
+## 常见错误
+
+### Nginx配置中更改root目录出现「403 Forbidden」问题排查
+
+- 修改root目录后权限问题：没有读写权限，或用户组不匹配
+- 修改root目录后非权限问题：SELinux开启状态
+
+#### 解决办法：
+
+1.修改目录的读写权限为755或修改Nginx用户
+命令：`/etc/nginx/nginx.conf`
+修改：`user：root root；`
+
+2.关闭SELinux：
+命令：`vim /etc/sysconfig/selinux`
+添加：`SELINUX=disabled`
+###  404错误
+解决方法一：修改nginx配置文件---location
+解决方法二：在站点目录中创建相应目录或文件数据信息
+
+### 403错误
+解决方法一：不要禁止访问
+解决方法二：因为没有首页文件
+
 ## 路径的正则
 
 location指令说明。
@@ -281,6 +332,10 @@ location [ = | ~ | ~* | ^~] uri {
 
 符串匹配度最高的location后，立即使用此location处理请求，而不再使用location块中的正则uri和请求字符串做匹配
 **注意: 如果uri包含正则表达式，则必须要有~或者~*标识。**
+
+## 总体的实践大局
+
+![](Nginx-part3/image-20210321150637337.png)
 
 ## 例1（反向代理）
 
@@ -383,3 +438,10 @@ http://192.168.77.130/image/
 <img src="Nginx-part3/image-20210321024117198.png" style="zoom:50%;" />
 
 这里点击图片，是可以访问进去的哦~~~ 
+
+## 教程文档
+[NGINX 官方入门指南](https://link.zhihu.com/?target=https%3A//nginx.org/en/docs/)
+[NGINX 官方推荐实例](https://link.zhihu.com/?target=https%3A//www.nginx.com/resources/wiki/start/)
+[CentOS 7下Nginx服务器的安装配置](https://link.zhihu.com/?target=https%3A//www.linuxidc.com/Linux/2017-04/142986.htm)
+
+[Nginx网站部署](https://www.bbsmax.com/A/MAzAmMG1z9/)

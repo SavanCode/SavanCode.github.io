@@ -19,7 +19,7 @@ categories: Nginx
 
 [Nginx官方文档](http://nginx.org/en/docs/beginners_guide.html)
 
-下载后，解压并启动Nginxzhesh
+下载后，解压并启动Nginx
 ```sh
 cd c:\
 unzip nginx-1.18.0.zip
@@ -28,7 +28,8 @@ start nginx
 ```
 查询是否启动Nginx
 ```sh
-tasklist /fi "imagename eq nginx.exe"
+tasklist /fi "imagename eq nginx.exe" #查看Nginx主进程的PID，并关闭所有旧Nginx进程。
+# kill -9 <PID>
 ```
 |映像名称|PID 会话名|会话#|内存使用|
 |---|---|---|----|
@@ -38,7 +39,12 @@ tasklist /fi "imagename eq nginx.exe"
 
 <img src="Nginx-part2/image-20210319002915092.png" style="zoom: 50%;" />
 
+![](Nginx-part2/image-20210321152110955.png)
+
+### Nginx 基本口令
+
 Nginx/Windows 作为一个标准后台应用（非服务）在运行，可以用以下命令行管理已运行Nginx。
+
 ```sh
 nginx -s stop	#fast shutdown
 nginx -s quit	#graceful shutdown

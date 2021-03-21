@@ -233,3 +233,35 @@ progress元素的属性：
 
 ![](Html-form/1604912505000.png)
 
+## 特殊转符 -decode 
+
+```vue
+<view>
+  <!-- 长按文本是否可选 -->
+  <text selectable='true'>来了老弟</text>
+</view>
+
+<view>
+  <!-- 显示连续空格的方式 -->
+  <view>
+    <text space='ensp'>来了  老弟</text>
+  </view>
+  <view>
+    <text space='emsp'>来了  老弟</text>
+  </view>
+  <view>
+    <text space='nbsp'>来了  老弟</text>
+  </view>
+</view>
+
+<view>
+  <text>skyblue</text>
+</view>
+
+<view>
+  <!-- 是否解码 -->
+  <text decode='true'>&nbsp; &lt; &gt; &amp; &apos; &ensp; &emsp;</text>
+</view>
+```
+
+![](Html-form/image-20210321190140498.png)
