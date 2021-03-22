@@ -19,9 +19,7 @@ categories: uniapp
 
 具有vue和微信小程序的开发经验，可快速上手uni-app
 
-为什么要去学习uni-app？
-
-相对开发者来说，减少了学习成本，因为只学会uni-app之后，即可开发出iOS、Android、H5、以及各种小程序的应用，不需要再去学习开发其他应用的框架，相对公司而言，也大大减少了开发成本。
+**如果你学过小程序~~~ 直接练习吧, 因为基本一样,直接查文档就行**
 
 ## 环境搭建
 
@@ -707,7 +705,7 @@ uni.stopPullDownRefresh()
 </style>
 ```
 
-## 网络请求
+## [网络请求 - uni.request](https://uniapp.dcloud.io/api/request/request)
 
 在uni中可以调用uni.request方法进行请求网络请求
 
@@ -917,8 +915,6 @@ uni.stopPullDownRefresh()
 
 uni.chooseImage方法从本地相册选择图片或使用相机拍照。
 
-案例代码
-
 ```html
 <template>
 	<view>
@@ -950,6 +946,12 @@ uni.chooseImage方法从本地相册选择图片或使用相机拍照。
 </script>
 ```
 
+### 样式大小
+
+375*2 是整个横宽
+
+对于icon-font,建议 行内样式 设置大小
+
 ### 预览图片
 
 结构
@@ -970,6 +972,23 @@ previewImg (current) {
   })
 }
 ```
+
+## 轮播图
+
+基本就是使用 swiper item
+
+```html
+<swiper :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000">
+    <swiper-item>
+        <view class="swiper-item"></view>
+    </swiper-item>
+    <swiper-item>
+        <view class="swiper-item"></view>
+    </swiper-item>
+</swiper>
+```
+
+
 
 ## 条件注释实现跨段兼容
 
@@ -1358,3 +1377,8 @@ components: {uniGrid,uniGridItem}
 </uni-grid>
 ```
 
+## [手册](https://uniapp.dcloud.io/api/README)
+
+## 插件按装
+
+![](uniapp-basic/image-20210322165901198.png)
