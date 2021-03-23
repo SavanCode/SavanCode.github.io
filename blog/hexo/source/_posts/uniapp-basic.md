@@ -620,7 +620,7 @@ export default {
       uni.startPullDownRefresh()
     }
   },
-  onPullDownRefresh () {
+  onPullDownRefresh () { //直接使用就行 不用page设置
     console.log('触发下拉刷新了')
   }
 }
