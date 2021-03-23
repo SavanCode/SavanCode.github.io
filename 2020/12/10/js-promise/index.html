@@ -1074,48 +1074,51 @@ promise
 </ul>
 </li>
 </ol>
-<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">//注意输出的result</span>
-<span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token comment" spellcheck="true">//1. 如果返回值是一个非Promise类型的数据</span>
-            <span class="token comment" spellcheck="true">// return 521;</span>
-            <span class="token comment" spellcheck="true">//2. 如果返回的是一个Promise对象</span>
-            <span class="token comment" spellcheck="true">// return new Promise((resolve, reject) => {// 这里返回promise的状态是什么呢？</span>
-            <span class="token comment" spellcheck="true">//     // resolve('OK');</span>
-            <span class="token comment" spellcheck="true">//     reject('Error');</span>
-            <span class="token comment" spellcheck="true">// });</span>
-            <span class="token comment" spellcheck="true">//3. 抛出异常</span>
-            <span class="token keyword">throw</span> <span class="token string">"Oh NO"</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
+<pre class=" language-js"><code class="language-js">   <span class="token comment" spellcheck="true">//注意输出的result</span>
+   <span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+               <span class="token comment" spellcheck="true">//1. 如果返回值是一个非Promise类型的数据</span>
+               <span class="token comment" spellcheck="true">// return 521;</span>
+               <span class="token comment" spellcheck="true">//2. 如果返回的是一个Promise对象</span>
+               <span class="token comment" spellcheck="true">// return new Promise((resolve, reject) => {// 这里返回promise的状态是什么呢？</span>
+               <span class="token comment" spellcheck="true">//     // resolve('OK');</span>
+               <span class="token comment" spellcheck="true">//     reject('Error');</span>
+               <span class="token comment" spellcheck="true">// });</span>
+               <span class="token comment" spellcheck="true">//3. 抛出异常</span>
+               <span class="token keyword">throw</span> <span class="token string">"Oh NO"</span><span class="token punctuation">;</span>
+           <span class="token punctuation">}</span>
 
-        <span class="token keyword">let</span> result <span class="token operator">=</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<pre><code>
-2. await表达式
-   - await右侧的表达式一般为promise对象，但也可以是其他值
-
-   - 如果表达式是promise对象，await返回的都是promise的成功值
-
-   - 如果表达式是其他值，直接将此值作为await返回值
-
-​```js
-async function main()&#123;
-           let p = new Promise((resolve, reject) =&gt; &#123;
-               // resolve(&#39;OK&#39;);
-               reject(&#39;Error&#39;);
-           &#125;)
-           //1. 右侧为promise的情况
-           // let res = await p;
-           //2. 右侧为其他类型的数据
-           // let res2 = await 20;
-           //3. 如果promise是失败的状态
-           // let res3 = await p //这样是不行的 再reject的时候
-           try&#123;
-               let res3 = await p;
-           &#125;catch(e)&#123;
-               console.log(e);
-           &#125;
-       &#125;
-main();</code></pre>
+           <span class="token keyword">let</span> result <span class="token operator">=</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<ol start="2">
+<li><p>await表达式</p>
+<ul>
+<li><p>await右侧的表达式一般为promise对象，但也可以是其他值</p>
+</li>
+<li><p>如果表达式是promise对象，await返回的都是promise的成功值</p>
+</li>
+<li><p>如果表达式是其他值，直接将此值作为await返回值</p>
+</li>
+</ul>
+</li>
+</ol>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+   <span class="token keyword">let</span> p <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span>resolve<span class="token punctuation">,</span> reject<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+       <span class="token comment" spellcheck="true">// resolve('OK');</span>
+       <span class="token function">reject</span><span class="token punctuation">(</span><span class="token string">'Error'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token punctuation">}</span><span class="token punctuation">)</span>
+   <span class="token comment" spellcheck="true">//1. 右侧为promise的情况</span>
+   <span class="token comment" spellcheck="true">// let res = await p;</span>
+   <span class="token comment" spellcheck="true">//2. 右侧为其他类型的数据</span>
+   <span class="token comment" spellcheck="true">// let res2 = await 20;</span>
+   <span class="token comment" spellcheck="true">//3. 如果promise是失败的状态</span>
+   <span class="token comment" spellcheck="true">// let res3 = await p //这样是不行的 再reject的时候</span>
+   <span class="token keyword">try</span><span class="token punctuation">{</span>
+       <span class="token keyword">let</span> res3 <span class="token operator">=</span> <span class="token keyword">await</span> p<span class="token punctuation">;</span>
+   <span class="token punctuation">}</span><span class="token keyword">catch</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">{</span>
+       console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <ol start="3">
 <li>注意<ul>
 <li>await必须写在async函数中，但async函数中可以没有await</li>
@@ -1171,113 +1174,9 @@ main();</code></pre>
 <span class="token punctuation">}</span>
 
 <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<h2 id="JS异步之宏队列与微队列"><a href="#JS异步之宏队列与微队列" class="headerlink" title="JS异步之宏队列与微队列"></a>JS异步之宏队列与微队列</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/sunmarvell/p/9564815.html">详细的解释</a></p>
-<p><img src="/2020/12/10/js-promise/1607610096493.png"></p>
-<ul>
-<li><p><strong>宏列队</strong> <strong>macrotask</strong>：用来保存待执行的宏任务（回调），比如：定时器回调、DOM 事件回调、ajax 回调、script(整体代码)、setTimeout、setInterval、setImmediate、I/O、UI交互事件、postMessage、MessageChannel</p>
-<p><strong>优先级</strong>：主代码块 &gt; setImmediate &gt; MessageChannel &gt; setTimeout / setInterval</p>
-</li>
-<li><p><strong>微列队</strong> <strong>microtask</strong>：用来保存待执行的微任务（回调），比如：Promise回调：Promise.then、Mutation回调：MutationObserver、process.nextTick(Node环境)</p>
-<p><strong>优先级</strong>：process.nextTick &gt; Promise &gt; MutationObserver</p>
-</li>
-</ul>
-<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">//输出下面的出现顺序 </span>
-<span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
-            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span>resolve<span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">{</span>
-            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span><span class="token number">10000</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-                i <span class="token operator">==</span> <span class="token number">9999</span> <span class="token operator">&amp;&amp;</span> <span class="token function">resolve</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
-        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">{</span>
-            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>
-        <span class="token punctuation">}</span><span class="token punctuation">)</span>
-
-        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span></code></pre>
-<pre class=" language-js"><code class="language-js"><span class="token function">　　setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">//立即放入宏队列</span>
-      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'timeout callback1（）'</span><span class="token punctuation">)</span>
-      Promise<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>
-        value <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">//立即放入微队列</span>
-          console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Promise onResolved3()'</span><span class="token punctuation">,</span> value<span class="token punctuation">)</span>
-        <span class="token punctuation">}</span>
-      <span class="token punctuation">)</span>
-    <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
-
-    <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">//立即放入宏队列</span>
-      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'timeout callback2（）'</span><span class="token punctuation">)</span>
-    <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
-
-    Promise<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>
-      value <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">//立即放入微队列</span>
-        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Promise onResolved1()'</span><span class="token punctuation">,</span> value<span class="token punctuation">)</span>
-        <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
-          console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'timeout callback3（）'</span><span class="token punctuation">,</span> value<span class="token punctuation">)</span>
-        <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
-      <span class="token punctuation">}</span>
-    <span class="token punctuation">)</span>
-
-    Promise<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>
-      value <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">//立即放入微队列</span>
-        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Promise onResolved2()'</span><span class="token punctuation">,</span> value<span class="token punctuation">)</span>
-      <span class="token punctuation">}</span>
-    <span class="token punctuation">)</span>
-
-    <span class="token comment" spellcheck="true">// Promise onResolved1() 1</span>
-    <span class="token comment" spellcheck="true">// Promise onResolved2() 2</span>
-    <span class="token comment" spellcheck="true">// timeout callback1（）</span>
-    <span class="token comment" spellcheck="true">// Promise onResolved3() 3</span>
-    <span class="token comment" spellcheck="true">// timeout callback2（）</span>
-    <span class="token comment" spellcheck="true">// timeout callback3（） 1</span></code></pre>
-<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// 先来看下下面这段代码</span>
-<span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">async1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'async1 start'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token keyword">await</span> <span class="token function">async2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'async1 end'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">async2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'async2'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'script start'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'setTimeout'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
-
-<span class="token function">async1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>resolve<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'promise1'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token function">resolve</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'promise2'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'script end'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-
-<span class="token comment" spellcheck="true">/*执行结果
-script start
-async1 start
-async2
-promise1
-script end
-async1 end
-promise2
-setTimeout
-*/</span></code></pre>
-<p>从上往下看，先走同步队列，再走异步队列（包含微观任务队列和宏观任务队列）。</p>
-<p>同步队列：script start → async1 start → async2 → promise1 → script end</p>
-<p>异步队列：包括微观任务和宏观任务。</p>
-<p>微观任务：async1 end → promise2</p>
-<p>宏观任务: setTimeout →</p>
-<p><img src="/2020/12/10/js-promise/1607610913034.png"></p>
+<p>这里推荐看一下这篇文章~ eventLoop 的笔记</p>
 <h2 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h2><ol>
 <li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1GA411x7z1?p=2">https://www.bilibili.com/video/BV1GA411x7z1?p=2</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/Miss_liangrm/article/details/103182530?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control">https://blog.csdn.net/Miss_liangrm/article/details/103182530?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/sunmarvell/p/9564815.html">https://www.cnblogs.com/sunmarvell/p/9564815.html</a></li>
 </ol>
 
             </div>

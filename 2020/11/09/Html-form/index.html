@@ -586,6 +586,33 @@
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>content</span><span class="token punctuation">></span></span>这里<span class="token entity" title="&lt;">&amp;lt;</span>details<span class="token entity" title="&gt;">&amp;gt;</span>标签设置了HTML布尔属性open，因此，默认是展开状态。<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>content</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>details</span><span class="token punctuation">></span></span></code></pre>
 <p><img src="/2020/11/09/Html-form/1604912505000.png"></p>
+<h2 id="特殊转符-decode"><a href="#特殊转符-decode" class="headerlink" title="特殊转符 -decode"></a>特殊转符 -decode</h2><pre class=" language-vue"><code class="language-vue"><view>
+  <!-- 长按文本是否可选 -->
+  <text selectable='true'>来了老弟</text>
+</view>
+
+<view>
+  <!-- 显示连续空格的方式 -->
+  <view>
+    <text space='ensp'>来了  老弟</text>
+  </view>
+  <view>
+    <text space='emsp'>来了  老弟</text>
+  </view>
+  <view>
+    <text space='nbsp'>来了  老弟</text>
+  </view>
+</view>
+
+<view>
+  <text>skyblue</text>
+</view>
+
+<view>
+  <!-- 是否解码 -->
+  <text decode='true'>&nbsp; &lt; &gt; &amp; &apos; &ensp; &emsp;</text>
+</view></code></pre>
+<p><img src="/2020/11/09/Html-form/image-20210321190140498.png"></p>
 
             </div>
             <hr/>

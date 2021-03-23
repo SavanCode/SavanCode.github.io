@@ -434,7 +434,7 @@
 <p><img src="/2021/03/20/Nginx-part3/image-20210320145615068.png"></p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/drf91519/article/details/78607775">xshell链接步骤</a></p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Smile_Luckly/article/details/72639387">Xftp链接方法</a></p>
-<h2 id="Linux-安装以及运行nginx"><a href="#Linux-安装以及运行nginx" class="headerlink" title="Linux 安装以及运行nginx"></a>Linux 安装以及运行nginx</h2><blockquote>
+<h2 id="Linux-安装以及运行nginx-省时间请直接看选择2"><a href="#Linux-安装以及运行nginx-省时间请直接看选择2" class="headerlink" title="Linux 安装以及运行nginx  - - - 省时间请直接看选择2"></a>Linux 安装以及运行nginx  - - - 省时间请直接看选择2</h2><blockquote>
 <p>如果<code>yum install gcc-c++</code>，需要root 管理者身份 使用su - root 切换身份，但是看你有没有设置密码哦，因为要你输入root密码 （有一些需要的话）</p>
 <p>基本最新的系统都帮你安装好了的</p>
 <p><strong>如果作为root，想进入某些文件夹，要在文件路径前面加上/root，因为root用户跟普通用户不一样</strong></p>
@@ -505,7 +505,7 @@ sudo firewall-cmd --add-port=80/tcp --permanent</code></pre>
 <h3 id="5-完成访问ip地址"><a href="#5-完成访问ip地址" class="headerlink" title="5. 完成访问ip地址"></a>5. 完成访问ip地址</h3><p>这时候输入Linux机器的ip地址就可以访问；得到的就是nginx的运行页面</p>
 <p><img src="/2021/03/20/Nginx-part3/image-20210320180908691.png"></p>
 <h2 id="接下来注意了！！！"><a href="#接下来注意了！！！" class="headerlink" title="接下来注意了！！！"></a>接下来注意了！！！</h2><p>这里足足卡了我一整天</p>
-<p>作为小白的我很痛心，上面虽然是安装了，但是可以看到你访问的是通过local/sbin  ，也就是说 你这个只是本地的，并没有在Linux全局注册。</p>
+<p>作为小白的我很痛心，上面虽然是安装了，但是可以看到你访问的是通过local/sbin  ，也就是说 你这个只是本地的，并没有在Linux全局注册。当然 如果你用它来直接proxy pass 可能可以。 但是我的前辈告诉我这样是不对的</p>
 <p>所以但你尝试将root换成正确的路径的时候，你会发现500错误❌</p>
 <p>此时你需要查看error.log</p>
 <h2 id="开启error以及access-log"><a href="#开启error以及access-log" class="headerlink" title="开启error以及access log"></a>开启error以及access log</h2><p>在conf文件夹中，看到config文件，里面</p>
@@ -514,7 +514,12 @@ sudo firewall-cmd --add-port=80/tcp --permanent</code></pre>
 <p><strong>这时候你将会看到 permission deny的错误，无法从定向到指定的root文件</strong></p>
 <pre><code>start() &quot;地址&quot; failed Premission denied ......</code></pre>
 <h2 id="将nginx加入全局注册"><a href="#将nginx加入全局注册" class="headerlink" title="将nginx加入全局注册"></a>将nginx加入全局注册</h2><p>这里请各位自己找办法 因为我重新安装了<del>~</del> 没有尝试</p>
-<h2 id="建议全局安装的正确办法"><a href="#建议全局安装的正确办法" class="headerlink" title="建议全局安装的正确办法"></a>建议全局安装的正确办法</h2><p>安装都要尽量使用yum</p>
+<h2 id="选择2：-建议全局安装的正确办法"><a href="#选择2：-建议全局安装的正确办法" class="headerlink" title="选择2： 建议全局安装的正确办法"></a>选择2： 建议全局安装的正确办法</h2><p>linux的软件安装大致可以分为下面三种</p>
+<blockquote>
+<p>通过yum安装<br>通过源码安装<br>通过rpm安装</p>
+</blockquote>
+<p>三种安装方式各有差异，yum形式类似于npm安装，简单快捷，自动安装相关依赖；源码安装需要下载源码然后本机编译，可以实现个性化定制，适用于对linux了解较多的进阶用户使用；rpm安装与yum类似，只不过安装的模块来源不是yum官方镜像，而是本地资源；</p>
+<p><strong>安装都要尽量使用yum</strong></p>
 <pre><code>sudo yum install epel-release //安装仓库 因为如果没有这个一开始是找不到nginx的 
 sudo yum install nginx //仓库中安装nginx
 sudo systemctl enable nginx //开机自启动</code></pre>
@@ -522,14 +527,35 @@ sudo systemctl enable nginx //开机自启动</code></pre>
 <p>当你查询<code>whereis nginx</code></p>
 <pre><code>你会看到以下目录 （起码）
 /usr/sbin/nginx /usr/lib64/nginx /sct/nginx /usr/share/nginx .........(如果你本地的还没删除 你还会看到有一个 /usr/local/nginx)</code></pre>
-<p>运行命令可以变为</p>
-<pre><code>sudo systemctl （start/stop/reload/restart） nginx</code></pre>
+<p><strong>运行命令</strong>可以变为</p>
+<pre class=" language-sh"><code class="language-sh">sudo systemctl （start/stop/reload/restart） nginx
+systemctl reload nginx 
+systemctl status nginx #查看nginx 启动状态
+ss -tnl | grep 80 #（默认端口） 查看是否监听
+LISTEN 0 128 :80:
+LISTEN 0 128 :::80 :::
+
+# 备注：如果不能正常访问，关闭防火墙重试
+systemctl stop firewalld.service #关闭防火墙
+systemctl disable firewalld.service #禁止防火墙开机启动动
+firewall-cmd --state #查看默认防火墙状态（关闭为notrunning，开启为running）
+systemctl start firewalld.service #重新开启防火墙</code></pre>
 <h2 id="正式开始配置路由"><a href="#正式开始配置路由" class="headerlink" title="正式开始配置路由"></a>正式开始配置路由</h2><p>这里之后你会发现 conf 文件内里面的配置文件有这样一句</p>
 <pre><code> include /etc/nginx/default.d/*.conf;</code></pre>
 <p>所以你可以单独的命名配置文件， 然后他会自动include进来</p>
 <p>这里建议将外部的server内容删除，这样只要看include里的就可以了</p>
 <p>这里后面的就只是root路径修改了 ，跟上一篇文章windows的修改root地址一样的咯，指向自己的打包文件就可以了</p>
 <h2 id="注意文件路径，通过pwd查看，是什么就写什么避免驼峰"><a href="#注意文件路径，通过pwd查看，是什么就写什么避免驼峰" class="headerlink" title="注意文件路径，通过pwd查看，是什么就写什么避免驼峰"></a>注意文件路径，通过pwd查看，是什么就写什么避免驼峰</h2><p>我卡了3小时， 因为文件路径 /(ㄒoㄒ)/~~</p>
+<h2 id="域名配置"><a href="#域名配置" class="headerlink" title="域名配置"></a>域名配置</h2><p>本地如何设置域名绑定IP：</p>
+<p>1.修改hosts文件（位置在我的电脑<code>C:\Windows\System32\drivers\etc</code>），<strong>右键点击属性，关掉只读用编辑器打开之后才能修改</strong>。<br>2.在文件末尾添加<code>&lt;IP&gt;&lt;空格&gt;&lt;自定义域名&gt;</code>，保存，IP为Linux的IP。<br><strong>3.改完记得在CMD里面刷新C:\Users\Administrator&gt;<code>ipconfig /flushdns</code>，之后才会生效。</strong></p>
+<h2 id="常见错误"><a href="#常见错误" class="headerlink" title="常见错误"></a>常见错误</h2><h3 id="Nginx配置中更改root目录出现「403-Forbidden」问题排查"><a href="#Nginx配置中更改root目录出现「403-Forbidden」问题排查" class="headerlink" title="Nginx配置中更改root目录出现「403 Forbidden」问题排查"></a>Nginx配置中更改root目录出现「403 Forbidden」问题排查</h3><ul>
+<li>修改root目录后权限问题：没有读写权限，或用户组不匹配</li>
+<li>修改root目录后非权限问题：SELinux开启状态</li>
+</ul>
+<h4 id="解决办法："><a href="#解决办法：" class="headerlink" title="解决办法："></a>解决办法：</h4><p>1.修改目录的读写权限为755或修改Nginx用户<br>命令：<code>/etc/nginx/nginx.conf</code><br>修改：<code>user：root root；</code></p>
+<p>2.关闭SELinux：<br>命令：<code>vim /etc/sysconfig/selinux</code><br>添加：<code>SELINUX=disabled</code></p>
+<h3 id="404错误"><a href="#404错误" class="headerlink" title="404错误"></a>404错误</h3><p>解决方法一：修改nginx配置文件—location<br>解决方法二：在站点目录中创建相应目录或文件数据信息</p>
+<h3 id="403错误"><a href="#403错误" class="headerlink" title="403错误"></a>403错误</h3><p>解决方法一：不要禁止访问<br>解决方法二：因为没有首页文件</p>
 <h2 id="路径的正则"><a href="#路径的正则" class="headerlink" title="路径的正则"></a>路径的正则</h2><p>location指令说明。<br>该指令用于匹配URL。。<br>语法如下:</p>
 <pre><code>location [ = | ~ | ~* | ^~] uri &#123;
 
@@ -541,6 +567,7 @@ sudo systemctl enable nginx //开机自启动</code></pre>
 <li>4、^~: 用于不含正则表达式的uri前，要求Nginx服务器找到标识uri和请求字</li>
 </ul>
 <p>符串匹配度最高的location后，立即使用此location处理请求，而不再使用location块中的正则uri和请求字符串做匹配<br>*<em>注意: 如果uri包含正则表达式，则必须要有<del>或者</del><em>标识。</em></em></p>
+<h2 id="总体的实践大局"><a href="#总体的实践大局" class="headerlink" title="总体的实践大局"></a>总体的实践大局</h2><p><img src="/2021/03/20/Nginx-part3/image-20210321150637337.png"></p>
 <h2 id="例1（反向代理）"><a href="#例1（反向代理）" class="headerlink" title="例1（反向代理）"></a>例1（反向代理）</h2><p><img src="/2021/03/20/Nginx-part3/image-20210321022414293.png"></p>
 <p><strong>效果</strong> 这里就是像开放对外访问的端口号9001，但是这里实际导向的是8080 或者8081的端口</p>
 <h2 id="例2-负载均衡"><a href="#例2-负载均衡" class="headerlink" title="例2 负载均衡"></a>例2 负载均衡</h2><p><strong>效果</strong> 浏览器地址栏输入地址<a target="_blank" rel="noopener" href="http://192.168.xxx.xxx/edu/index.html">http://192.168.xxx.xxx/edu/index.html</a>, 负载均衡效果，平均到8080<br>和8081端口中，</p>
@@ -601,6 +628,8 @@ location / &#123;
 <img src="/2021/03/20/Nginx-part3/image-20210321024117198.png" style="zoom:50%;">
 
 <p>这里点击图片，是可以访问进去的哦<del>~</del> </p>
+<h2 id="教程文档"><a href="#教程文档" class="headerlink" title="教程文档"></a>教程文档</h2><p><a href="https://link.zhihu.com/?target=https://nginx.org/en/docs/">NGINX 官方入门指南</a><br><a href="https://link.zhihu.com/?target=https://www.nginx.com/resources/wiki/start/">NGINX 官方推荐实例</a><br><a href="https://link.zhihu.com/?target=https://www.linuxidc.com/Linux/2017-04/142986.htm">CentOS 7下Nginx服务器的安装配置</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.bbsmax.com/A/MAzAmMG1z9/">Nginx网站部署</a></p>
 
             </div>
             <hr/>
