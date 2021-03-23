@@ -498,11 +498,20 @@ fun("bennet");
 // hello bennet lucy
 ```
 
+## 图解对比
 
+![](js-this-keyword/this1.jpg)
 
-## Reference：
+## 图解题
 
-- http://www.ruanyifeng.com/blog/2010/04/using_this_keyword_in_javascript.html
-- https://javascript.ruanyifeng.com/oop/this.html#toc3
+![](js-this-keyword/this2.jpg)
+
+![](js-this-keyword/this3.jpg)
+
+## Reference
+
+- [阮一峰的网络日志- this用法 旧版](http://www.ruanyifeng.com/blog/2010/04/using_this_keyword_in_javascript.html)
+- [阮一峰的网络日志- this用法 旧版](https://javascript.ruanyifeng.com/oop/this.html#toc3)
 - https://blog.csdn.net/hellochenlu/article/details/52244276?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.control&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.control
 - https://blog.csdn.net/kindergarten_sir/article/details/109909886?utm_medium=distribute.pc_relevant.none-task-blog-title-3&spm=1001.2101.3001.4242
+- [图解 this](http://laker.me/blog/2020/03/16/20_0325_this/)

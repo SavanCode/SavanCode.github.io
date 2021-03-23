@@ -902,5 +902,8 @@ let n = nums.filter(num => num > 50).map(num => num * 2).reduce((preValue,curren
 console.log(n);
 ```
 
+## [基本到这里 可以看一下总结的JS 脑图~~~~](https://gitee.com/jinsexiaozhima/jiujin/tree/master/Mindmap/%E5%8E%9F%E7%94%9FJS%E7%AF%87)
+
 ## Reference
+
 [ES6](https://www.tutorialspoint.com/es6/index.htm)

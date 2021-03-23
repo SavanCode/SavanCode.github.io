@@ -1093,7 +1093,7 @@ navigator详细文档：[文档地址](https://uniapp.dcloud.io/component/naviga
 
 [导航跳转文档]( [uni.navigateTo](https://uniapp.dcloud.io/api/router?id=navigateto))
 
-**利用navigateTo进行导航跳转**
+#### **利用navigateTo进行导航跳转**
 
 保留当前页面，跳转到应用内的某个页面，使用`uni.navigateBack`可以返回到原页面。
 
@@ -1107,13 +1107,26 @@ navigator详细文档：[文档地址](https://uniapp.dcloud.io/component/naviga
 goAbout () {
   uni.navigateTo({
     url: '/pages/about/about',
+      // url: '/pages/about/about?id=80',
   })
 }
 ```
 
-**通过switchTab跳转到tabbar页面**
+**接收参数的页面 这里获取参数**
 
-**跳转到tabbar页面**
+```html
+<script>
+	export default {
+		onLoad (options) {
+			console.log(options)
+		}
+	}
+</script>
+```
+
+#### **通过[uni.switchTab(OBJECT)](https://uniapp.dcloud.io/api/router?id=switchtab)跳转到tabbar页面**
+
+跳转到 tabBar 页面，并关闭其他所有非 tabBar 页面。
 
 ```html
 <button type="primary" @click="goMessage">跳转到message页面</button>
@@ -1129,7 +1142,7 @@ goMessage () {
 }
 ```
 
-**redirectTo进行跳转** 
+#### **redirectTo进行跳转** 
 
 **关闭当前页面**，跳转到应用内的某个页面。
 
@@ -1151,31 +1164,24 @@ onUnload () {
   console.log('组件卸载了')
 }
 ```
+### [uni.reLaunch(OBJECT)](https://uniapp.dcloud.io/api/router?id=relaunch)
 
-### 导航跳转传递参数
-
-在导航进行跳转到下一个页面的同时，可以给下一个页面传递相应的参数，接收参数的页面可以通过onLoad生命周期进行接收
-
-传递参数的页面
+关闭所有页面，打开到应用内的某个页面。
 
 ```js
-goAbout () {
-  uni.navigateTo({
-    url: '/pages/about/about?id=80',
-  });
-}
+uni.reLaunch({
+    url: 'test?id=1'
+});
 ```
 
-接收参数的页面
+通过option获取url的参数
 
-```html
-<script>
-	export default {
-		onLoad (options) {
-			console.log(options)
-		}
-	}
-</script>
+```js
+export default {
+    onLoad: function (option) {
+        console.log(option.id);
+    }
+}
 ```
 
 ## uni-app中组件的创建
@@ -1377,8 +1383,59 @@ components: {uniGrid,uniGridItem}
 </uni-grid>
 ```
 
+
+
+## 消息提示框
+
+## [uni.showToast(OBJECT)](https://uniapp.dcloud.io/api/ui/prompt?id=showtoast)
+
+显示消息提示框。
+
+```js
+uni.showToast({
+    title: '标题',
+    duration: 2000
+});
+```
+
+### [uni.hideToast()](https://uniapp.dcloud.io/api/ui/prompt?id=hidetoast)
+
+隐藏消息提示框。
+
+```js
+uni.hideToast();
+```
+
+## [uni.showLoading(OBJECT)](https://uniapp.dcloud.io/api/ui/prompt?id=showloading)
+
+显示 loading 提示框, 需主动调用 [uni.hideLoading](https://uniapp.dcloud.io/api/ui/prompt?id=hideloading) 才能关闭提示框。
+
+```js
+uni.showLoading({
+    title: '加载中'
+});
+```
+
+## [uni.showModal(OBJECT)](https://uniapp.dcloud.io/api/ui/prompt?id=showmodal)
+
+显示模态弹窗，类似于标准 html 的消息框：alert、confirm。
+
+```js
+uni.showModal({
+    title: '提示',
+    content: '这是一个模态弹窗',
+    success: function (res) {
+        if (res.confirm) {
+            console.log('用户点击确定');
+        } else if (res.cancel) {
+            console.log('用户点击取消');
+        }
+    }
+});
+```
+
 ## [手册](https://uniapp.dcloud.io/api/README)
 
-## 插件按装
+## 插件安装
 
 ![](uniapp-basic/image-20210322165901198.png)

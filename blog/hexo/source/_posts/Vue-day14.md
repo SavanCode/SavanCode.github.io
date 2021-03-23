@@ -250,6 +250,8 @@ mounted(){
 this.$refs.items[index]
 ```
 
+## [推荐阅读Vue 脑图](https://gitee.com/jinsexiaozhima/jiujin/tree/master/Mindmap/VUE%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E7%AF%87)
+
 ## 拓展
 
 - [Vue3 了解这 20 个响应式 API，写码如有神](https://mp.weixin.qq.com/s/F22RfaszHewncKKZ-X5umg)

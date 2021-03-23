@@ -202,3 +202,135 @@ swiper{
 }
 ```
 
+## Vue.js Uniapp 获取屏幕的高度宽度
+
+## [uni.getSystemInfo(OBJECT)](https://uniapp.dcloud.io/api/system/info?id=getsysteminfo)
+
+获取系统信息：
+
+- screenWidth 屏幕宽度
+- screenHeight 屏幕高度
+- windowWidth 可使用窗口宽度
+- windowHeight 可使用窗口高度
+- windowTop 可使用窗口的顶部位置 App、H5
+- windowBottom 可使用窗口的底部位置 App、H5
+- statusBarHeight 状态栏的高
+
+```js
+uni.getSystemInfo({
+    success: function (res) {
+        console.log(res.model);
+        console.log(res.pixelRatio);
+        console.log(res.windowWidth);
+        console.log(res.windowHeight);
+        console.log(res.language);
+        console.log(res.version);
+        console.log(res.platform);
+    }
+});
+```
+
+## 示例
+
+设置弹框宽度为屏幕的80%
+
+```jsx
+<view class="set-plan-block" :style="{ 'width': setWidth + 'px' }">
+
+export default {
+  data () {
+    return {
+      setWidth: 0
+    }
+  mounted () {
+    this.$refs.setPlan.open()
+
+    // 注意，这里要用个变量存this，不然进到getSystemInfo后this指向会变化，找不到data变量
+    var _this = this
+    uni.getSystemInfo({
+      success: function (res) {
+        _this.setWidth = res.windowWidth * 0.8
+      }
+    })
+  },
+```
+
+> 注意：计算表达式不能用 80%（会报错），要用0.8
+> 错：300 *80%
+> 对： 300* 0.8
+
+## uniapp Popup弹框使用
+
+[uniapp](https://uniapp.dcloud.io/component/README?id=uniui)的官网会把组件地址指向这里https://ext.dcloud.net.cn/plugin?id=329。 但这个文档有问题。
+
+以github为准：https://github.com/dcloudio/uni-ui。但github也会跳转回那个网站，死循环。我记录一下正确过程。
+
+## 安装
+
+```
+npm install @dcloudio/uni-ui  --save
+```
+
+## import
+
+文档写的`import uniPopup from "@/components/uni-popup/uni-popup.vue"` 是错的
+
+在这里找到相应的路径
+
+```
+import uniPopup from '@dcloudio/uni-ui/lib/uni-popup/uni-popup'
+```
+
+简便写法，但是会引入更多东西：
+
+```
+import {uniPopup} from '@dcloudio/uni-ui'
+```
+
+可以配置[Tree shaking](https://en.wikipedia.org/wiki/Tree_shaking)，在打包的时候消除无用代码(dead code)的方式
+[配置Tree Shaking来减少JavaScript的打包体积](https://www.cnblogs.com/fundebug/archive/2018/08/15/reduce_js_payload_with_tree_shaking.html)
+
+## 使用
+
+通过ref来调用弹框显示、隐藏 `this.$refs.popupHi.open()`
+
+```
+<button @click="openHi">打开弹窗</button>
+<uni-popup ref="popupHi" type="bottom">底部弹出 Popup</uni-popup>
+
+   methods:{
+      openHi(){
+         this.$refs.popupHi.open()
+      }
+   }
+```
+
+文档上显示的效果是弹框有白色背景，实际是没有的默认的，要自己写
+
+```
+ <uni-popup class="finish-popup" ref="finish" type="center">
+    <view class="popup-box">
+      <uni-icons type="checkmarkempty" size="60"></uni-icons>
+      <view class="txt">恭喜完成阅读</view>
+    </view>
+  </uni-popup>
+
+.popup-box {
+  text-align: center;
+  background-color: #fff;
+  padding: 30rpx;
+  border-radius: 10rpx;
+  font-size: 28rpx;
+}
+```
+
+默认是点击随意一处后关闭弹框。可以用定时器来自动关闭：
+
+```
+openHi(){
+     setTimeout(() => {
+       this.$refs.finish.close()
+     }, 2000)
+     this.$refs.popupHi.open()
+}
+```
