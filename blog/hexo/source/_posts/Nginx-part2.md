@@ -240,9 +240,7 @@ http {
 
 1. 首先将vue项目打包，`npm run build`，此时会得到dist文件夹
 
-但是这里注意 **修改config/index.js里的assetsPublicPath的字段，初始项目是/，现在改为./**
-
-![](Nginx-part2/image-20210320162114124.png)
+但是这里注意 **修改config/index.js里的
 
 ![](Nginx-part2/image-20210320162134639.png)
 

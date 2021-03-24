@@ -1,14 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <title>WebWork</title>
-</head>
-<body> </body>
-<script>
-    var work = new Worker('./work.js')
-    work.postMessage(1000000000)
-    work.onmessage = function(res){
-        console.log("累加结果 : ",res.data)
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .wrapper {
+      width: 300px;
+      height: 300px;
+      border: 1px solid #ccc;
+
+      text-align: center;
     }
-</script>
-</html> 
+
+    .wrapper::after {
+      content: "";
+      display: inline-block;
+      vertical-align: middle;
+      height: 100%;
+    }
+
+    .wrapper > img {
+      vertical-align: middle;
+    }
+
+
+  </style>
+  <body>
+    <div class="wrapper">
+      <img
+        src="https://t7.baidu.com/it/u=4162611394,4275913936&fm=193&f=GIF"
+        alt=""
+        style="width: 200px; height: 200px"
+      />
+    </div>
+  </body>
+</html>

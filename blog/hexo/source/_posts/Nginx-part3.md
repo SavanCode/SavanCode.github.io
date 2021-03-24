@@ -205,6 +205,9 @@ firewall-cmd --reload
 在conf文件夹中，看到config文件，里面
 
 将comment中的error 以及access log开启
+```
+#error_log  logs/error.log;
+```
 
 建议将error.log的开启 放入server 里面，更加清晰
 
@@ -313,6 +316,14 @@ systemctl start firewalld.service #重新开启防火墙
 ### 403错误
 解决方法一：不要禁止访问
 解决方法二：因为没有首页文件
+
+## 对某文件进行修改 permission denied
+
+有管理员权限，最好为sudo
+
+```bash
+sudo chmod -R 777 某一目录
+```
 
 ## 路径的正则
 
