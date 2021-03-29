@@ -900,6 +900,90 @@ main();
 
 这里推荐看一下这篇文章~ eventLoop 的笔记
 
+###  Async如何捕获异常
+
+建议使用 try catch 或者直接catch()
+
+### `try/catch`
+
+当你第一次使用`async/await`, 你可能尝试使用`try/catch`将每一个 async 操作包围起来。如果你`await`一个被 reject 的 Promise，JavaScript 会抛出一个可以被捕获的错误。
+
+```js
+run();
+
+async function run() {
+    try {
+        await Promise.reject(new Error("Oops!"));
+    } catch (error) {
+        error.message; // "Oops!"
+    }
+}
+```
+
+下面的代码会抛出[unhandled promise rejection](http://thecodebarbarian.com/unhandled-promise-rejections-in-node.js.html). `await`将一个被拒绝的 promise 转换为可捕获的错误，但是 `return` 不行。
+
+```
+run();
+
+async function run() {
+    try {
+        // 注意这里是return,不是await
+        return Promise.reject(new Error("Oops!"));
+    } catch (error) {
+        // 代码不会执行到这里
+    }
+}
+```
+
+也不可能使用 `return await`来绕开。
+
+还有一个缺点就是使用了`try/catch` 之后，就很难用`.`的语法来进行 Promise 链式组合了。
+
+### 在函数调用的时候使用`catch()`
+
+`try/catch` 和 Go 语言风格的异常处理都有各自的使用场景，但是处理所有异常最好的方法是在`run()`函数的后面使用`catch()`，像这样:`run().catch()`。换句话说，用一个`catch()`来处理`run`函数中的所有错误，而不是针对`run`里面的每一种情况都去写代码做相应的处理。
+
+```
+run()
+    .catch(function handleError(err) {
+        err.message; // Oops!
+    })
+    // 在handleError中处理所有的异常
+    // 如果handleError出错，则退出。
+    .catch(err => {
+        process.nextTick(() => {
+            throw err;
+        });
+    });
+
+async function run() {
+    await Promise.reject(new Error("Oops!"));
+}
+```
+
+记住，[async 函数总是返回 promise](http://thecodebarbarian.com/async-functions-in-javascript.html#an-async-function-always-returns-a-promise)。只要函数中有异常，Promise 会 reject。而且，如果一个 async 函数返回的是一个 reject 的 Promise，那么这个 Promise 依然会继续被 reject。
+
+```
+run()
+    .catch(function handleError(err) {
+        err.message; // Oops!
+    })
+    .catch(err => {
+        process.nextTick(() => {
+            throw err;
+        });
+    });
+
+async function run() {
+    // 注意：这里使用了return，而不是await
+    return Promise.reject(new Error("Oops!"));
+}
+```
+
+为什么使用`run().catch()`而不是将整个`run()`函数用`try/catch`包起来呢？我们首先来考虑一个情况：如果`try/catch`的`catch`部分有异常，我们应该如何处理呢？只有一个方法：在`catch`里面接着使用`try/catch`。所以，`run().catch()`的模式使得异常处理变得非常简洁。
+
+
+
 ## reference
 
 1. https://www.bilibili.com/video/BV1GA411x7z1?p=2

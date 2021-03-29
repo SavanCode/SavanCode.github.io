@@ -1,5 +1,5 @@
 ---
-title: js OOP
+title: js OOP prototype
 top: false
 cover: false
 toc: true
@@ -7,11 +7,11 @@ mathjax: true
 date: 2020-11-26 17:03:20
 password:
 summary:
-tags: JS
+tags: [JS,prototype]
 categories: JS
 ---
 
-# 对象基础
+## 对象基础
 
 object ：propert + method
 
@@ -55,6 +55,10 @@ console.log(person1.__proto__ === Person.prototype); //true
 ### 图解
 
 ![](js-OOP/1607331349791.png)
+
+![](js-OOP/image-20210329221605598.png)
+
+> 注意这里的 constructor 是原型的一个属性，Constructor 指的才是真正的构造函数。两者名字不要弄混了😀
 
 ### 代码例子
 
@@ -207,23 +211,24 @@ obj2.play();
 > 对于函数的prototype，在函数定义之前，prototype 就已经创建了
 
 ![](js-OOP/1607323876459.png)
+
 一个最基本的例子 new constrcut()
 
 ```js
 function person(name) {
        this.name = name;
     }
-    var foo = new person("deen");
-    //通过new创建了一个对象
-    //new是一种语法糖，new person等价于
-    var bar = (function(name) {
-        var _newObj = {
-            constructor : person,
-            __proto__ : person.prototype,
-        };
-        _newObj.constructor(name);
-        return _newObj;
-    })();
+var foo = new person("deen");
+//通过new创建了一个对象
+//new是一种语法糖，new person等价于
+var bar = (function(name) {
+    var _newObj = {
+        constructor : person,
+        __proto__ : person.prototype,
+    };
+    _newObj.constructor(name);
+    return _newObj;
+})();
 ```
 
 
@@ -295,7 +300,6 @@ console.log(obj1.__proto__.bcd, obj2.__proto__.bcd);//456  456
 3. Object.getPrototypeOf这个方法返回[[Prototype]]的值,可以获取到一个对象的原型
 
 ```js
-
 person1 instanceof Person // true
 
 Person.prototype.isPrototypeOf(person1) // true
@@ -334,17 +338,21 @@ Object.getPrototypeOf(person1) === Person.prototype // true
 ```js
 person1.__proto__ === Person.prototype;
 Person.prototype.__proto__ === Object.prototype;
-Object.prototype.__proto__ === null;
-//Object.prototype.__proto__ === null，保证原型链能够正常结束。
+Object.prototype.__proto__ === null;//保证原型链能够正常结束。
 
 Person.__proto__ === Function.prototype;
 Object.__proto__ === Function.prototype;
 Function.prototype.__proto__ === Object.prototype;
+//String, Array, Number,Object, Function这些其实都是 function
 ```
 
-所有函数对象的 proto 都指向 Function.prototype，它是一个空函数（Empty function）
+所有函数对象的 --proto-- 都指向 Function.prototype，它是一个空函数（Empty function）
 
-## 原型链的例子
+**`Object.ptototype`是js原型链的最顶端，它的`__proto__`是`null`(有proto属性，但值是 null，因为这是原型链的最顶端)；**
+
+## 原型链底层理解
+
+数组、对象、函数都有一个属性：`__proto`__ 隐式原型; prototype 称作 显式原型。
 
 ```js
 let num = new Number();
@@ -356,7 +364,7 @@ Object.prototype.__proto__ === null;
 
  ![](js-OOP/1607085964568.png)
 
-![](js-OOP/1607093788627.png)
+![](js-OOP/image-20210330031036670.png)
 
 > 特殊点：
 >
@@ -394,8 +402,6 @@ console.log(typeof  Object. prototype) // object
 console.log(typeof  Function. prototype. prototype) //undefined
 ```
 
-
-
 ## 原型链的深层例子
 
 ![](js-OOP/1607098087945.png)
@@ -406,7 +412,13 @@ console.log(typeof  Function. prototype. prototype) //undefined
 
 ![](js-OOP/1607332056648.png)
 
+![](js-OOP/image-20210330030839695.png)
+
 # 原型链的应用
+
+这里在实际操作上,因为有原型链的存在,所以数据的share也就成为了可能,但是当你并不想去深层寻找的时候hasOwnProperty()
+
+> `hasOwnProperty (en-US)` 是 JavaScript 中唯一一个处理属性并且**不会**遍历原型链的方法。（译者注：原文如此。另一种这样的方法：`Object.keys()`）
 
 ## 基础方法
 
@@ -664,6 +676,10 @@ c.constructor.prototype === p // true
 Array.prototype.slice.call(类数组);
 //这个方法与[].slice.call(类数组)的区别：后者的[]是重新创建了一个数组从而得到slice方法，但是这是不必要的
 ```
+
+## [错误实践：扩展原生对象的原型](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Inheritance_and_the_prototype_chain#错误实践：扩展原生对象的原型)
+
+同页面下面有 拓展原型对象原型的办法
 
 ## 拓展阅读 
 
