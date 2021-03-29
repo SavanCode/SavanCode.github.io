@@ -1,5 +1,5 @@
 ---
-title: interview js 面试题
+title: interview js 知识点总结1
 top: false
 cover: false
 toc: true
@@ -108,3 +108,11 @@ setTimeout缺点：
 ## 箭头函数能访问原型嘛?
 
 不能 箭头函数 不能使用new 也没有super 没有原型
+
+## promise 原理解释
+
+
+
+**继续**
+
+https://gitee.com/cpeng1314/laochenqianduan/tree/master/99-%E7%AC%94%E8%AF%95%E5%92%8C%E9%9D%A2%E8%AF%95%E9%A2%98/02-JavaScript
