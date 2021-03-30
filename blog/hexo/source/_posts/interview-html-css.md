@@ -676,3 +676,9 @@ CSS选择器的优先级关系是:
 - 离线DOM Fragment/clone
 - 虚拟DOM
 - 必要的时候 display:none，不可见元素不影响重排、重绘。visibility 影响重排，不影响重绘
+
+## HTML标签上的title 和 alt 两个属性的区别是?
+
+注意：title 属性并不是img标签特有的属性，大部分的标签都有。
+
+title：是大部分标签都有的属性，是鼠标移上去时的提示信息 alt：是img标签的属性，是图片资源加载异常时显示的类容
