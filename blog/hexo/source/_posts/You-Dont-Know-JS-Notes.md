@@ -24,7 +24,7 @@ categories: JS
 
 ```
 a = null;
-typeof a;                // "object" -- weird, bug
+typeof a;           // "object" -- weird, bug
 
 var arr = [
     "hello world",
@@ -105,6 +105,28 @@ plusOne( 41 );      // 42 <-- 1 + 41
 plusTen( 13 );      // 23 <-- 10 + 13
 ```
 
+# [作用域与闭包](https://lucifer.ren/fe-interview/#/topics/js/scope&closures?id=作用域与闭包)
+```
+function foo(a) {  
+	if (typeof a === "number" || a instanceof Number) {    
+		const b = a + 1;    
+		console.log(b);  
+		} 
+	} 
+foo();
+```
+![](You-Dont-Know-JS-Notes/image-20210331225257064.png)
 
+如上图，左边部分是编译器。 右半部分是作用域链。上述代码执行的具体过程大概是：
 
-### 
+- JS 源代码经过语法分析，转化成 tokens
+- tokens 经过语义分析，转化为 AST(抽象语法树)
+- 抽象语法树会被转化为字节码
+- JS 运行时开始运行这段上面生成代码
+- 当代码执行到函数声明的时候，引擎会向 scope chain 询问(一个 RHS)foo 是否已经声明 在这里是没有声明，会在当前 scope(也就是 global scope)创建一个 foo
+
+## Reference
+
+https://hankszhang.gitbooks.io/you-dont-know-js/content/part2/ch1.html
+
+https://lucifer.ren/fe-interview/#/?id=javascript-%f0%9f%97%92%ef%b8%8f

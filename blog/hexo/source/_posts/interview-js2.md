@@ -1,5 +1,5 @@
 ---
-title: interview js 知识点总结1
+title: interview js 知识点总结2
 top: false
 cover: false
 toc: true

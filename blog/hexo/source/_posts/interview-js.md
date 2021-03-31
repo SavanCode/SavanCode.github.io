@@ -13,16 +13,37 @@ categories: interview
 
 [TOC]
 
-## 8大基本数据类型
+## 8大基本数据类型- 基本类型
 
-- 空值（null)
+- 空值（null) 
 - 未定义(undefined)
 - 布尔值（boolean)
 - 数字（number)
 - 字符串（string)
-- 对象 (object) - 包括 function 
+- 对象 (object) - 包括 function  =》 引用类型
 - 符号（symbol, ES6中新增)
 - 大整数（BigInt, ES2020 引入）
+
+Undefined，Null，Boolean，String，Number 这些可以有固定长度，因此是基本类型，并且保存到了栈(stack)上。 Object 由于不可预知长度，并且可以 mutate，因此算引用类型，会被分配到了另一块区域，我们称之为堆（heap）
+
+![](interview-js/image-20210331191442739.png)
+
+## undefined  的理解？ 未定义？
+
+- undefined 不是未定义，两者有区别。尝试去读一个未定义的变量的值其实会直接`Reference Error`
+- typeof 不能区分未定义，还是定义了但是没有值。两者都会都会返回undefined
+- typeof 一个未定义的变量不会触发`Reference Error`
+
+> 尽量不要用undefined, 因为undefined既是一个类型，同时也是一个值，因此这会在某些浏览器被修改（BUG？）。 更稳妥的做法是使用void 0 代替 undefined。
+
+## 基本类型和引用类型的区别是什么？null 和 undefined 区别是什么？
+
+ Object 是引用类型，其他是基本类型。他们的划分方式其实是其是否可以表示为固定长度
+
+null 表示一个值被定义了，定义为“空值”；
+undefined 表示根本不存在定义。
+
+## 作用域的本质是什么？闭包和作用域的关系是什么？
 
 ## for in 和 for of 的区别？
 
