@@ -1175,6 +1175,62 @@ promise
 
 <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <p>这里推荐看一下这篇文章~ eventLoop 的笔记</p>
+<h3 id="Async如何捕获异常"><a href="#Async如何捕获异常" class="headerlink" title="Async如何捕获异常"></a>Async如何捕获异常</h3><p>建议使用 try catch 或者直接catch()</p>
+<h3 id="try-catch"><a href="#try-catch" class="headerlink" title="try/catch"></a><code>try/catch</code></h3><p>当你第一次使用<code>async/await</code>, 你可能尝试使用<code>try/catch</code>将每一个 async 操作包围起来。如果你<code>await</code>一个被 reject 的 Promise，JavaScript 会抛出一个可以被捕获的错误。</p>
+<pre class=" language-js"><code class="language-js"><span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        <span class="token keyword">await</span> Promise<span class="token punctuation">.</span><span class="token function">reject</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token string">"Oops!"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">error</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        error<span class="token punctuation">.</span>message<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// "Oops!"</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>下面的代码会抛出<a target="_blank" rel="noopener" href="http://thecodebarbarian.com/unhandled-promise-rejections-in-node.js.html">unhandled promise rejection</a>. <code>await</code>将一个被拒绝的 promise 转换为可捕获的错误，但是 <code>return</code> 不行。</p>
+<pre><code>run();
+
+async function run() &#123;
+    try &#123;
+        // 注意这里是return,不是await
+        return Promise.reject(new Error(&quot;Oops!&quot;));
+    &#125; catch (error) &#123;
+        // 代码不会执行到这里
+    &#125;
+&#125;</code></pre>
+<p>也不可能使用 <code>return await</code>来绕开。</p>
+<p>还有一个缺点就是使用了<code>try/catch</code> 之后，就很难用<code>.</code>的语法来进行 Promise 链式组合了。</p>
+<h3 id="在函数调用的时候使用catch"><a href="#在函数调用的时候使用catch" class="headerlink" title="在函数调用的时候使用catch()"></a>在函数调用的时候使用<code>catch()</code></h3><p><code>try/catch</code> 和 Go 语言风格的异常处理都有各自的使用场景，但是处理所有异常最好的方法是在<code>run()</code>函数的后面使用<code>catch()</code>，像这样:<code>run().catch()</code>。换句话说，用一个<code>catch()</code>来处理<code>run</code>函数中的所有错误，而不是针对<code>run</code>里面的每一种情况都去写代码做相应的处理。</p>
+<pre><code>run()
+    .catch(function handleError(err) &#123;
+        err.message; // Oops!
+    &#125;)
+    // 在handleError中处理所有的异常
+    // 如果handleError出错，则退出。
+    .catch(err =&gt; &#123;
+        process.nextTick(() =&gt; &#123;
+            throw err;
+        &#125;);
+    &#125;);
+
+async function run() &#123;
+    await Promise.reject(new Error(&quot;Oops!&quot;));
+&#125;</code></pre>
+<p>记住，<a target="_blank" rel="noopener" href="http://thecodebarbarian.com/async-functions-in-javascript.html#an-async-function-always-returns-a-promise">async 函数总是返回 promise</a>。只要函数中有异常，Promise 会 reject。而且，如果一个 async 函数返回的是一个 reject 的 Promise，那么这个 Promise 依然会继续被 reject。</p>
+<pre><code>run()
+    .catch(function handleError(err) &#123;
+        err.message; // Oops!
+    &#125;)
+    .catch(err =&gt; &#123;
+        process.nextTick(() =&gt; &#123;
+            throw err;
+        &#125;);
+    &#125;);
+
+async function run() &#123;
+    // 注意：这里使用了return，而不是await
+    return Promise.reject(new Error(&quot;Oops!&quot;));
+&#125;</code></pre>
+<p>为什么使用<code>run().catch()</code>而不是将整个<code>run()</code>函数用<code>try/catch</code>包起来呢？我们首先来考虑一个情况：如果<code>try/catch</code>的<code>catch</code>部分有异常，我们应该如何处理呢？只有一个方法：在<code>catch</code>里面接着使用<code>try/catch</code>。所以，<code>run().catch()</code>的模式使得异常处理变得非常简洁。</p>
 <h2 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h2><ol>
 <li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1GA411x7z1?p=2">https://www.bilibili.com/video/BV1GA411x7z1?p=2</a></li>
 </ol>

@@ -433,11 +433,11 @@
 <h2 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h2><p>Web Worker 线程是为JavaScript创造多线程环境，作用就是<strong>允许主线程创建Worker线程，将一些任务分配给后者执行</strong>，（尤其是一些比较耗时的任务,eg:计算任务）而主线程主要负者用户UI界面的交互。</p>
 <p>Worker线程一旦创建成功，就会始终运行，不会被主线程上的活动打断（比如用户点击按钮，提交表单等）。</p>
 <h2 id="WebWork-特点"><a href="#WebWork-特点" class="headerlink" title="WebWork 特点"></a>WebWork 特点</h2><ol>
-<li>分配给Worker线程运行的脚本文件，必须与主线程的脚本同源。</li>
-<li>Worker线程<strong>无法使用DOM操作</strong>，无法使用<strong>document、window、parent</strong>这些对象，但是可以使用<strong>navigator、location</strong>对象</li>
-<li>Worker线程和主线程不在同一个上下文环境，它们不同直接通信，<strong>必须通过消息完成（postMessage、onmessage）</strong></li>
-<li>Worker线程<strong>不能执行alert()方法和confirm()方法</strong>，但是可以使用XMLHttpRequest对象发出AJAX请求</li>
-<li>主线程向工作线程发送的消息对象，不会成两者间的共享对象。工作线程会得到对象的副本，工作线程中对副本的修改不会影响到主线程中该对象，工作线程发出的对象也是如此，主线程只能得到该对象的副本</li>
+<li><strong>同源限制</strong>:分配给Worker线程运行的脚本文件，必须与主线程的脚本同源。</li>
+<li><strong>Dom限制</strong>:Worker线程<strong>无法使用DOM操作</strong>，无法使用<strong>document、window、parent</strong>这些对象，但是可以使用<strong>navigator、location</strong>对象</li>
+<li><strong>通信联系</strong>:Worker线程和主线程不在同一个上下文环境，它们不同直接通信，<strong>必须通过消息完成（postMessage、onmessage）</strong></li>
+<li><strong>脚本限制</strong>:Worker线程<strong>不能执行alert()方法和confirm()方法</strong>，但是可以使用XMLHttpRequest对象发出AJAX请求</li>
+<li><strong>文件限制</strong>:主线程向工作线程发送的消息对象，不会成两者间的共享对象。工作线程会得到对象的副本，工作线程中对副本的修改不会影响到主线程中该对象，工作线程发出的对象也是如此，主线程只能得到该对象的副本</li>
 </ol>
 <h2 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h2><h3 id="主线程"><a href="#主线程" class="headerlink" title="主线程"></a>主线程</h3><pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> worker <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Worker</span><span class="token punctuation">(</span>‘worker<span class="token punctuation">.</span>js’<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//创建Worker线程</span>
 <span class="token comment" spellcheck="true">//主线程使用worker.postMessage('...');方法，主线程传给 Worker 的数据</span>

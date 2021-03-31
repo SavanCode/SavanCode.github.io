@@ -510,6 +510,7 @@ sudo firewall-cmd --add-port=80/tcp --permanent</code></pre>
 <p>此时你需要查看error.log</p>
 <h2 id="开启error以及access-log"><a href="#开启error以及access-log" class="headerlink" title="开启error以及access log"></a>开启error以及access log</h2><p>在conf文件夹中，看到config文件，里面</p>
 <p>将comment中的error 以及access log开启</p>
+<pre><code>#error_log  logs/error.log;</code></pre>
 <p>建议将error.log的开启 放入server 里面，更加清晰</p>
 <p><strong>这时候你将会看到 permission deny的错误，无法从定向到指定的root文件</strong></p>
 <pre><code>start() &quot;地址&quot; failed Premission denied ......</code></pre>
@@ -556,6 +557,8 @@ systemctl start firewalld.service #重新开启防火墙</code></pre>
 <p>2.关闭SELinux：<br>命令：<code>vim /etc/sysconfig/selinux</code><br>添加：<code>SELINUX=disabled</code></p>
 <h3 id="404错误"><a href="#404错误" class="headerlink" title="404错误"></a>404错误</h3><p>解决方法一：修改nginx配置文件—location<br>解决方法二：在站点目录中创建相应目录或文件数据信息</p>
 <h3 id="403错误"><a href="#403错误" class="headerlink" title="403错误"></a>403错误</h3><p>解决方法一：不要禁止访问<br>解决方法二：因为没有首页文件</p>
+<h2 id="对某文件进行修改-permission-denied"><a href="#对某文件进行修改-permission-denied" class="headerlink" title="对某文件进行修改 permission denied"></a>对某文件进行修改 permission denied</h2><p>有管理员权限，最好为sudo</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">chmod</span> -R 777 某一目录</code></pre>
 <h2 id="路径的正则"><a href="#路径的正则" class="headerlink" title="路径的正则"></a>路径的正则</h2><p>location指令说明。<br>该指令用于匹配URL。。<br>语法如下:</p>
 <pre><code>location [ = | ~ | ~* | ^~] uri &#123;
 

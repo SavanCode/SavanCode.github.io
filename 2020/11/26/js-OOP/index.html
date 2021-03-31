@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="js OOP, Savannah">
+    <meta name="keywords" content="js OOP prototype, Savannah">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>js OOP | Savannah</title>
+    <title>js OOP prototype | Savannah</title>
     <link rel="icon" type="image/png" href="../../../../favicon.png">
 
     <link rel="stylesheet" type="text/css" href="../../../../libs/awesome/css/all.css">
@@ -260,12 +260,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/23.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/13.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">js OOP</h1>
+                    <h1 class="description center-align post-title">js OOP prototype</h1>
                 </div>
             </div>
         </div>
@@ -386,6 +386,10 @@
                                 <span class="chip bg-color">JS</span>
                             </a>
                         
+                            <a href="../../../../tags/prototype/">
+                                <span class="chip bg-color">prototype</span>
+                            </a>
+                        
                     </div>
                     
                 </div>
@@ -423,7 +427,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="对象基础"><a href="#对象基础" class="headerlink" title="对象基础"></a>对象基础</h1><p>object ：propert + method</p>
+                <h2 id="对象基础"><a href="#对象基础" class="headerlink" title="对象基础"></a>对象基础</h2><p>object ：propert + method</p>
 <p><img src="/2020/11/26/js-OOP/1607080521610.png" alt="关系图"></p>
 <h2 id="构造函数constructor"><a href="#构造函数constructor" class="headerlink" title="构造函数constructor"></a>构造函数constructor</h2><p>特点：</p>
 <ul>
@@ -452,6 +456,10 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <li>开始执行构造函数内部的代码。</li>
 </ol>
 <h3 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h3><p><img src="/2020/11/26/js-OOP/1607331349791.png"></p>
+<p><img src="/2020/11/26/js-OOP/image-20210329221605598.png"></p>
+<blockquote>
+<p>注意这里的 constructor 是原型的一个属性，Constructor 指的才是真正的构造函数。两者名字不要弄混了😀</p>
+</blockquote>
 <h3 id="代码例子"><a href="#代码例子" class="headerlink" title="代码例子"></a>代码例子</h3><pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> fn<span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//外部定义函数，根位置确定</span>
 <span class="token keyword">var</span> Vehicle <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token keyword">this</span><span class="token punctuation">.</span>price <span class="token operator">=</span> <span class="token number">1000</span><span class="token punctuation">;</span>
@@ -566,21 +574,22 @@ obj2<span class="token punctuation">.</span><span class="token function">play</s
 <p>每个函数都有prototype属性，这个属性是一个指针，指向一个对象，记住只有函数才有,并且通过bind()绑定的也没有。</p>
 <p>对于函数的prototype，在函数定义之前，prototype 就已经创建了</p>
 </blockquote>
-<p><img src="/2020/11/26/js-OOP/1607323876459.png"><br>一个最基本的例子 new constrcut()</p>
+<p><img src="/2020/11/26/js-OOP/1607323876459.png"></p>
+<p>一个最基本的例子 new constrcut()</p>
 <pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">person</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
        <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-    <span class="token keyword">var</span> foo <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">person</span><span class="token punctuation">(</span><span class="token string">"deen"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//通过new创建了一个对象</span>
-    <span class="token comment" spellcheck="true">//new是一种语法糖，new person等价于</span>
-    <span class="token keyword">var</span> bar <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">var</span> _newObj <span class="token operator">=</span> <span class="token punctuation">{</span>
-            constructor <span class="token punctuation">:</span> person<span class="token punctuation">,</span>
-            __proto__ <span class="token punctuation">:</span> person<span class="token punctuation">.</span>prototype<span class="token punctuation">,</span>
-        <span class="token punctuation">}</span><span class="token punctuation">;</span>
-        _newObj<span class="token punctuation">.</span><span class="token function">constructor</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> _newObj<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<span class="token keyword">var</span> foo <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">person</span><span class="token punctuation">(</span><span class="token string">"deen"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//通过new创建了一个对象</span>
+<span class="token comment" spellcheck="true">//new是一种语法糖，new person等价于</span>
+<span class="token keyword">var</span> bar <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> _newObj <span class="token operator">=</span> <span class="token punctuation">{</span>
+        constructor <span class="token punctuation">:</span> person<span class="token punctuation">,</span>
+        __proto__ <span class="token punctuation">:</span> person<span class="token punctuation">.</span>prototype<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    _newObj<span class="token punctuation">.</span><span class="token function">constructor</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> _newObj<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <pre class=" language-js"><code class="language-js">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Animal<span class="token punctuation">.</span>prototype<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//已经存在</span>
 <span class="token keyword">function</span> <span class="token function">Animal</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span>
@@ -636,8 +645,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <li>isPrototypeOf，如果[[prototype]]指向调用此方法的对象，那么这个方法就会返回true</li>
 <li>Object.getPrototypeOf这个方法返回[[Prototype]]的值,可以获取到一个对象的原型</li>
 </ol>
-<pre class=" language-js"><code class="language-js">
-person1 <span class="token keyword">instanceof</span> <span class="token class-name">Person</span> <span class="token comment" spellcheck="true">// true</span>
+<pre class=" language-js"><code class="language-js">person1 <span class="token keyword">instanceof</span> <span class="token class-name">Person</span> <span class="token comment" spellcheck="true">// true</span>
 
 Person<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function">isPrototypeOf</span><span class="token punctuation">(</span>person1<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// true</span>
 Person<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function">isPrototypeOf</span><span class="token punctuation">(</span>person2<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// true</span>
@@ -655,20 +663,22 @@ Object<span class="token punctuation">.</span><span class="token function">getPr
 </blockquote>
 <pre class=" language-js"><code class="language-js">person1<span class="token punctuation">.</span>__proto__ <span class="token operator">===</span> Person<span class="token punctuation">.</span>prototype<span class="token punctuation">;</span>
 Person<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>__proto__ <span class="token operator">===</span> Object<span class="token punctuation">.</span>prototype<span class="token punctuation">;</span>
-Object<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>__proto__ <span class="token operator">===</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
-<span class="token comment" spellcheck="true">//Object.prototype.__proto__ === null，保证原型链能够正常结束。</span>
+Object<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>__proto__ <span class="token operator">===</span> <span class="token keyword">null</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//保证原型链能够正常结束。</span>
 
 Person<span class="token punctuation">.</span>__proto__ <span class="token operator">===</span> Function<span class="token punctuation">.</span>prototype<span class="token punctuation">;</span>
 Object<span class="token punctuation">.</span>__proto__ <span class="token operator">===</span> Function<span class="token punctuation">.</span>prototype<span class="token punctuation">;</span>
-Function<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>__proto__ <span class="token operator">===</span> Object<span class="token punctuation">.</span>prototype<span class="token punctuation">;</span></code></pre>
-<p>所有函数对象的 proto 都指向 Function.prototype，它是一个空函数（Empty function）</p>
-<h2 id="原型链的例子"><a href="#原型链的例子" class="headerlink" title="原型链的例子"></a>原型链的例子</h2><pre class=" language-js"><code class="language-js"><span class="token keyword">let</span> num <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Number</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Function<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>__proto__ <span class="token operator">===</span> Object<span class="token punctuation">.</span>prototype<span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//String, Array, Number,Object, Function这些其实都是 function</span></code></pre>
+<p>所有函数对象的 –proto– 都指向 Function.prototype，它是一个空函数（Empty function）</p>
+<p><strong><code>Object.ptototype</code>是js原型链的最顶端，它的<code>__proto__</code>是<code>null</code>(有proto属性，但值是 null，因为这是原型链的最顶端)；</strong></p>
+<h2 id="原型链底层理解"><a href="#原型链底层理解" class="headerlink" title="原型链底层理解"></a>原型链底层理解</h2><p>数组、对象、函数都有一个属性：<code>__proto</code>__ 隐式原型; prototype 称作 显式原型。</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">let</span> num <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Number</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 num<span class="token punctuation">.</span>__proto__ <span class="token operator">===</span> Number<span class="token punctuation">.</span>prototype<span class="token punctuation">;</span>
 Number<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>__proto__ <span class="token operator">===</span> Function<span class="token punctuation">.</span>prototype<span class="token punctuation">;</span>
 Funtion<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>__proto__ <span class="token operator">===</span> Object<span class="token punctuation">.</span>prototype<span class="token punctuation">;</span>
 Object<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>__proto__ <span class="token operator">===</span> <span class="token keyword">null</span><span class="token punctuation">;</span></code></pre>
 <p> <img src="/2020/11/26/js-OOP/1607085964568.png"></p>
-<p><img src="/2020/11/26/js-OOP/1607093788627.png"></p>
+<p><img src="/2020/11/26/js-OOP/image-20210330031036670.png"></p>
 <blockquote>
 <p>特殊点：</p>
 <ol>
@@ -698,7 +708,12 @@ console<span class="token punctuation">.</span><span class="token function">log<
 </blockquote>
 <p>图例：</p>
 <p><img src="/2020/11/26/js-OOP/1607332056648.png"></p>
-<h1 id="原型链的应用"><a href="#原型链的应用" class="headerlink" title="原型链的应用"></a>原型链的应用</h1><h2 id="基础方法"><a href="#基础方法" class="headerlink" title="基础方法"></a>基础方法</h2><p>W3C不推荐直接使用系统成员<strong>proto</strong></p>
+<p><img src="/2020/11/26/js-OOP/image-20210330030839695.png"></p>
+<h1 id="原型链的应用"><a href="#原型链的应用" class="headerlink" title="原型链的应用"></a>原型链的应用</h1><p>这里在实际操作上,因为有原型链的存在,所以数据的share也就成为了可能,但是当你并不想去深层寻找的时候hasOwnProperty()</p>
+<blockquote>
+<p><code>hasOwnProperty (en-US)</code> 是 JavaScript 中唯一一个处理属性并且<strong>不会</strong>遍历原型链的方法。（译者注：原文如此。另一种这样的方法：<code>Object.keys()</code>）</p>
+</blockquote>
+<h2 id="基础方法"><a href="#基础方法" class="headerlink" title="基础方法"></a>基础方法</h2><p>W3C不推荐直接使用系统成员<strong>proto</strong></p>
 <h3 id="Object-getPrototypeOf-对象"><a href="#Object-getPrototypeOf-对象" class="headerlink" title="Object.getPrototypeOf(对象)"></a><strong>Object.getPrototypeOf(对象)</strong></h3><p>​            获取对象的隐式原型</p>
 <p><code>Object.getPrototypeOf</code>方法返回参数对象的原型。这是获取原型对象的标准方法。</p>
 <pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> F <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
@@ -858,6 +873,7 @@ c<span class="token punctuation">.</span>constructor<span class="token punctuati
 <h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><p><strong>类数组转换为真数组</strong></p>
 <pre class=" language-js"><code class="language-js">Array<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>slice<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>类数组<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token comment" spellcheck="true">//这个方法与[].slice.call(类数组)的区别：后者的[]是重新创建了一个数组从而得到slice方法，但是这是不必要的</span></code></pre>
+<h2 id="错误实践：扩展原生对象的原型"><a href="#错误实践：扩展原生对象的原型" class="headerlink" title="错误实践：扩展原生对象的原型"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Inheritance_and_the_prototype_chain#%E9%94%99%E8%AF%AF%E5%AE%9E%E8%B7%B5%EF%BC%9A%E6%89%A9%E5%B1%95%E5%8E%9F%E7%94%9F%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%8E%9F%E5%9E%8B">错误实践：扩展原生对象的原型</a></h2><p>同页面下面有 拓展原型对象原型的办法</p>
 <h2 id="拓展阅读"><a href="#拓展阅读" class="headerlink" title="拓展阅读"></a>拓展阅读</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43342105/article/details/105156751">javascript最新方法创造对象和经典方式创造对象以及他们的优缺点详细得抠脚的总结</a></p>
 <h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ol>
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44197554/article/details/105438252">https://blog.csdn.net/qq_44197554/article/details/105438252</a></li>
@@ -930,6 +946,10 @@ c<span class="token punctuation">.</span>constructor<span class="token punctuati
                             
                                 <a href="../../../../tags/JS/">
                                     <span class="chip bg-color">JS</span>
+                                </a>
+                            
+                                <a href="../../../../tags/prototype/">
+                                    <span class="chip bg-color">prototype</span>
                                 </a>
                             
                         </div>

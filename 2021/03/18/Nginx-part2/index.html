@@ -613,8 +613,7 @@ nginx -h #ngnix命令更多细节 </code></pre>
 <ol>
 <li>首先将vue项目打包，<code>npm run build</code>，此时会得到dist文件夹</li>
 </ol>
-<p>但是这里注意 <strong>修改config/index.js里的assetsPublicPath的字段，初始项目是/，现在改为./</strong></p>
-<p><img src="/2021/03/18/Nginx-part2/image-20210320162114124.png"></p>
+<p>但是这里注意 **修改config/index.js里的</p>
 <p><img src="/2021/03/18/Nginx-part2/image-20210320162134639.png"></p>
 <p>此时尝试运行项目（npm方式), 检查文件路径显示会不会有问题。由于文件的一些文件路径，可能会发生读取问题</p>
 <p><strong>如果有的话，需要修改dist下的index.html资源路径为./  ； 打开dist底下的index.html文件，修改文件路径</strong></p>
