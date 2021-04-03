@@ -90,18 +90,18 @@ npm install echarts
 
 1. 引入 echarts:
 
-   - 全部引入:
+- 全部引入:
 
-     ```
-     import echarts from 'echarts'; // 方便, 但是也同时引入了很多不需要的组件
-     ```
+```
+import echarts from 'echarts'; // 方便, 但是也同时引入了很多不需要的组件
+```
 
-   - 按需引入:
+- 按需引入:
 
-     ```
-     import echarts from 'echarts/lib/echarts'; // 引入基本模板
-     import bar from 'echarts/lib/chart/bar';   // 引入柱状图组件
-     ```
+```
+import echarts from 'echarts/lib/echarts'; // 引入基本模板
+import bar from 'echarts/lib/chart/bar';   // 引入柱状图组件
+```
 
 2. 基于准备好的 DOM，初始化 Echarts 实例
 
@@ -184,4 +184,11 @@ moment('2018-01-01').isSame('2018-01-01');  // true
 // 是否是闰年
 moment([2000]).isLeapYear() // true
 moment([2001]).isLeapYear() // false
+```
+
+## 网页编码转换
+中文的网站乱码
+有些老版网页，会用到 charset="gb2312" 或者"gdk"， 可以使用npm中的 iconv-lite
+```sh
+npm install iconv-lite --save
 ```

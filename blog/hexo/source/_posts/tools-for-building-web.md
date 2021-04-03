@@ -1,5 +1,5 @@
 ---
-title: tools learning
+title: tool learning
 top: false
 cover: false
 toc: true
