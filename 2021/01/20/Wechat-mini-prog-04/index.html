@@ -29,8 +29,7 @@
 
     <script src="../../../../libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -440,18 +439,18 @@
 <li>在打开的云开发控制台中点击设置，新建一个环境ID</li>
 <li><code>app.js</code>中删除所有代码，只保留<code>env</code>即环境ID</li>
 </ol>
-<pre class="line-numbers language-js"><code class="language-js"><span class="token function">App</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+<pre class=" language-js"><code class="language-js"><span class="token function">App</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
   onLaunch<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token comment" spellcheck="true">//云开发环境初始化</span>
     wx<span class="token punctuation">.</span>cloud<span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
       env<span class="token punctuation">:</span><span class="token string">"******"</span><span class="token comment" spellcheck="true">//个人环境名称</span>
     <span class="token punctuation">}</span><span class="token punctuation">)</span>
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-json"><code class="language-json">//project.config.json
-<span class="token property">"cloudfunctionRoot"</span><span class="token operator">:</span> <span class="token string">"cloud/"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
+<pre class=" language-json"><code class="language-json">//project.config.json
+<span class="token property">"cloudfunctionRoot"</span><span class="token operator">:</span> <span class="token string">"cloud/"</span></code></pre>
 <h3 id="云数据库的基本操作-查-增-删"><a href="#云数据库的基本操作-查-增-删" class="headerlink" title="云数据库的基本操作(查 增 删 )"></a>云数据库的基本操作(查 增 删 )</h3><p>本身在创建项目的时候，已经有一些提供的例子，可以操作看看</p>
-<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">placeholder</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>输入名字<span class="token punctuation">"</span></span> <span class="token attr-name">bindinput</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>addName<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>input</span><span class="token punctuation">></span></span>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">placeholder</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>输入名字<span class="token punctuation">"</span></span> <span class="token attr-name">bindinput</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>addName<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>input</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>text</span><span class="token punctuation">></span></span>\n<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>text</span><span class="token punctuation">></span></span> <span class="token comment" spellcheck="true">&lt;!-- 小程序分行 --></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">placeholder</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>输入年龄<span class="token punctuation">"</span></span> <span class="token attr-name">bindinput</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>addAge<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>input</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>text</span><span class="token punctuation">></span></span>\n<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>text</span><span class="token punctuation">></span></span>
@@ -469,8 +468,8 @@
 
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">placeholder</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>输入要更新的数据的ID<span class="token punctuation">"</span></span> <span class="token attr-name">bindinput</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>updateID<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>input</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">placeholder</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>输入更新后的name的值<span class="token punctuation">"</span></span> <span class="token attr-name">bindinput</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>updateValue<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>input</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">bindtap</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>updateData<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>primary<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>修改更新数据<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">const</span> app <span class="token operator">=</span> <span class="token function">getApp</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">bindtap</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>updateData<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>primary<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>修改更新数据<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span></code></pre>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">const</span> app <span class="token operator">=</span> <span class="token function">getApp</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token keyword">const</span> DB <span class="token operator">=</span> wx<span class="token punctuation">.</span>cloud<span class="token punctuation">.</span><span class="token function">database</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">collection</span><span class="token punctuation">(</span><span class="token string">"testlist"</span><span class="token punctuation">)</span>
 <span class="token keyword">let</span> name<span class="token operator">=</span><span class="token string">''</span><span class="token punctuation">;</span>
 <span class="token keyword">let</span> age<span class="token operator">=</span><span class="token string">''</span><span class="token punctuation">;</span>
@@ -603,9 +602,9 @@
       <span class="token punctuation">}</span>
     <span class="token punctuation">}</span><span class="token punctuation">)</span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
 <p>查看某项是否存在</p>
-<pre class="line-numbers language-js"><code class="language-js">  <span class="token comment" spellcheck="true">//查是否有返回内容的数据</span>
+<pre class=" language-js"><code class="language-js">  <span class="token comment" spellcheck="true">//查是否有返回内容的数据</span>
   checkCollected<span class="token punctuation">:</span><span class="token keyword">function</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">{</span>
     <span class="token keyword">var</span> that <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// this 指向性的问题</span>
     DB<span class="token punctuation">.</span><span class="token function">where</span><span class="token punctuation">(</span><span class="token punctuation">{</span> id<span class="token punctuation">:</span>id <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
@@ -617,7 +616,7 @@
         <span class="token punctuation">}</span>   
       <span class="token punctuation">}</span>
     <span class="token punctuation">}</span><span class="token punctuation">)</span>
-  <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  <span class="token punctuation">}</span></code></pre>
 <h2 id="使用云函数操作数据库-不用云服务"><a href="#使用云函数操作数据库-不用云服务" class="headerlink" title="使用云函数操作数据库 - 不用云服务"></a>使用云函数操作数据库 - 不用云服务</h2><p>代码在 miniprogram-1</p>
 <h3 id="创建项目的时候不使用-云服务"><a href="#创建项目的时候不使用-云服务" class="headerlink" title="创建项目的时候不使用 云服务"></a>创建项目的时候不使用 云服务</h3><h3 id="删除些无关文件，进行一个简单的函数布置"><a href="#删除些无关文件，进行一个简单的函数布置" class="headerlink" title="删除些无关文件，进行一个简单的函数布置"></a>删除些无关文件，进行一个简单的函数布置</h3><ul>
 <li> 删除logs以及utils文件夹;</li>
@@ -626,25 +625,25 @@
 <h3 id="配置云函数存储目录"><a href="#配置云函数存储目录" class="headerlink" title="配置云函数存储目录"></a>配置云函数存储目录</h3><ul>
 <li>在<code>project.config.json</code>中新增如下代码</li>
 </ul>
-<pre class="line-numbers language-json"><code class="language-json"><span class="token property">"cloudfunctionRoot"</span><span class="token operator">:</span><span class="token string">"cloud"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class=" language-json"><code class="language-json"><span class="token property">"cloudfunctionRoot"</span><span class="token operator">:</span><span class="token string">"cloud"</span></code></pre>
 <ul>
 <li>在根目录下创建同名文件夹 - 自动的匹配环境</li>
 </ul>
 <h3 id="云开发环境初始化"><a href="#云开发环境初始化" class="headerlink" title="云开发环境初始化"></a>云开发环境初始化</h3><p>在根目录的<code>app.js</code>中，删除所有代码，并新增如下：</p>
-<pre class="line-numbers language-js"><code class="language-js"><span class="token function">App</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+<pre class=" language-js"><code class="language-js"><span class="token function">App</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
   onLaunch<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     wx<span class="token punctuation">.</span>cloud<span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
       env<span class="token punctuation">:</span><span class="token string">"******"</span><span class="token comment" spellcheck="true">//你的环境ID</span>
     <span class="token punctuation">}</span><span class="token punctuation">)</span>
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
 <h3 id="创建并上传一个云函数"><a href="#创建并上传一个云函数" class="headerlink" title="创建并上传一个云函数"></a>创建并上传一个云函数</h3><p>   <img src="/2021/01/20/Wechat-mini-prog-04/image-20210120230239015.png"></p>
 <ul>
 <li> 在cloud文件夹中 新建Node.js云函数</li>
 <li>输入add并且回车 - 自动add文件在cloud下面</li>
 <li>在add文件夹中index.js 更新所有代码</li>
 </ul>
-<pre class="line-numbers language-js"><code class="language-js"><span class="token comment" spellcheck="true">// 云函数入口文件</span>
+<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// 云函数入口文件</span>
 <span class="token keyword">const</span> cloud <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'wx-server-sdk'</span><span class="token punctuation">)</span>
 
 cloud<span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
@@ -654,15 +653,15 @@ exports<span class="token punctuation">.</span>main <span class="token operator"
   <span class="token keyword">let</span> a <span class="token operator">=</span> event<span class="token punctuation">.</span>a<span class="token punctuation">;</span>
   <span class="token keyword">let</span> b <span class="token operator">=</span> event<span class="token punctuation">.</span>b<span class="token punctuation">;</span>
   <span class="token keyword">return</span> a<span class="token operator">+</span>b<span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span></code></pre>
 <p><strong>写完代码,上传部署！！！！ 选择云端安装依赖（不上传node modules）</strong></p>
 <p><img src="/2021/01/20/Wechat-mini-prog-04/image-20210120230104972.png"></p>
 <p>如何确定成功？ 系统提示 上传函数add</p>
 <p><img src="/2021/01/20/Wechat-mini-prog-04/image-20210120230117451.png"></p>
 <h3 id="使用云函数"><a href="#使用云函数" class="headerlink" title="使用云函数"></a>使用云函数</h3><p>   <code>index.wxml</code>中</p>
-<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">bindtap</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>getSum<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>云函数的求和运算<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span> <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">bindtap</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>getSum<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>云函数的求和运算<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span> </code></pre>
 <p>   <code>index.js</code>中</p>
-<pre class="line-numbers language-js"><code class="language-js"><span class="token function">Page</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+<pre class=" language-js"><code class="language-js"><span class="token function">Page</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
   <span class="token function">getSum</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     wx<span class="token punctuation">.</span>cloud<span class="token punctuation">.</span><span class="token function">callFunction</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
       name<span class="token punctuation">:</span><span class="token string">"add"</span><span class="token punctuation">,</span>
@@ -678,14 +677,14 @@ exports<span class="token punctuation">.</span>main <span class="token operator"
       <span class="token punctuation">}</span>
     <span class="token punctuation">}</span><span class="token punctuation">)</span>
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
 <p>可以点击测试，是否成功~~ 操作台会有显示</p>
 <h3 id="进阶代码-自定义add函数"><a href="#进阶代码-自定义add函数" class="headerlink" title="进阶代码 - 自定义add函数"></a>进阶代码 - 自定义add函数</h3><p>   <code>index.wxml</code>中</p>
-<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">bindinput</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>handleInput1<span class="token punctuation">"</span></span> <span class="token attr-name">placeholder</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>数字1<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>input</span><span class="token punctuation">></span></span>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">bindinput</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>handleInput1<span class="token punctuation">"</span></span> <span class="token attr-name">placeholder</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>数字1<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>input</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">bindinput</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>handleInput2<span class="token punctuation">"</span></span> <span class="token attr-name">placeholder</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>数字2<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>input</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">bindtap</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>getSum<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>云函数的求和运算<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">bindtap</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>getSum<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>云函数的求和运算<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span> </code></pre>
 <p>   <code>index.js</code>中</p>
-<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">let</span> a <span class="token operator">=</span> <span class="token number">0</span>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">let</span> a <span class="token operator">=</span> <span class="token number">0</span>
 <span class="token keyword">let</span> b <span class="token operator">=</span> <span class="token number">0</span>
 
 <span class="token function">Page</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
@@ -714,13 +713,13 @@ exports<span class="token punctuation">.</span>main <span class="token operator"
       <span class="token punctuation">}</span>
     <span class="token punctuation">}</span><span class="token punctuation">)</span>
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
 <h2 id="使用云函数获取用户openid"><a href="#使用云函数获取用户openid" class="headerlink" title="使用云函数获取用户openid"></a>使用云函数获取用户openid</h2><h3 id="创建一个新的页面getopenid"><a href="#创建一个新的页面getopenid" class="headerlink" title="创建一个新的页面getopenid"></a>创建一个新的页面<code>getopenid</code></h3><p>记得page的设置</p>
 <h3 id="创建云函数getopenid"><a href="#创建云函数getopenid" class="headerlink" title="创建云函数getopenid"></a>创建云函数<code>getopenid</code></h3><p>这里注意！</p>
 <p>文件夹只有显示这样的时候 才可以新建Node.js云函数</p>
 <p><img src="/2021/01/20/Wechat-mini-prog-04/image-20210121102550477.png"></p>
-<h3 id="getopenid-wxml"><a href="#getopenid-wxml" class="headerlink" title="getopenid.wxml"></a><code>getopenid.wxml</code></h3><pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">bindtap</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>getopenid<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>getopenid<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="getopenid-js"><a href="#getopenid-js" class="headerlink" title="getopenid.js"></a><code>getopenid.js</code></h3><pre class="line-numbers language-js"><code class="language-js"><span class="token function">Page</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+<h3 id="getopenid-wxml"><a href="#getopenid-wxml" class="headerlink" title="getopenid.wxml"></a><code>getopenid.wxml</code></h3><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">bindtap</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>getopenid<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>getopenid<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span></code></pre>
+<h3 id="getopenid-js"><a href="#getopenid-js" class="headerlink" title="getopenid.js"></a><code>getopenid.js</code></h3><pre class=" language-js"><code class="language-js"><span class="token function">Page</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
   <span class="token function">onLoad</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span>
   getopenid<span class="token punctuation">:</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
@@ -738,15 +737,15 @@ exports<span class="token punctuation">.</span>main <span class="token operator"
       <span class="token punctuation">}</span>
     <span class="token punctuation">}</span><span class="token punctuation">)</span>
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
 <h3 id="数据库获取数据注意"><a href="#数据库获取数据注意" class="headerlink" title="数据库获取数据注意"></a>数据库获取数据注意</h3><p>数据库API获取数据的权限是有限制，所以即使数据库有数据，未必都能直接获取全部</p>
 <p><img src="/2021/01/20/Wechat-mini-prog-04/image-20210121110939322.png"></p>
 <p>但是！ 我练习的时候，好像都可以读到 / ( ╯□╰ ) /</p>
 <p>如果函数编写正确或者数据库读取编写正确，但是却读不到数据，可以查看<br>1.云函数是否上传<br>2.数据库权限问题</p>
 <h2 id="云数据库读取数据-vs-云函数获取云数据库数据"><a href="#云数据库读取数据-vs-云函数获取云数据库数据" class="headerlink" title="云数据库读取数据 vs  云函数获取云数据库数据"></a>云数据库读取数据 vs  云函数获取云数据库数据</h2><h3 id="云数据库读取数据"><a href="#云数据库读取数据" class="headerlink" title="云数据库读取数据"></a>云数据库读取数据</h3><h4 id="创建页面cloudfunctionVSdatabaseAPI"><a href="#创建页面cloudfunctionVSdatabaseAPI" class="headerlink" title="创建页面cloudfunctionVSdatabaseAPI"></a>创建页面cloudfunctionVSdatabaseAPI</h4><p><code>cloudfunctionVSdatabaseAPI.wxml</code>中</p>
-<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">bindtap</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>database<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>数据库API获取数据<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span> <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">bindtap</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>database<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>数据库API获取数据<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span> </code></pre>
 <p><code>cloudfunctionVSdatabaseAPI.js</code>中</p>
-<pre class="line-numbers language-js"><code class="language-js"><span class="token function">Page</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+<pre class=" language-js"><code class="language-js"><span class="token function">Page</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
   <span class="token function">shujuku</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
     wx<span class="token punctuation">.</span>cloud<span class="token punctuation">.</span><span class="token function">database</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">collection</span><span class="token punctuation">(</span><span class="token string">"testlist"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
       <span class="token function">success</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -757,9 +756,9 @@ exports<span class="token punctuation">.</span>main <span class="token operator"
       <span class="token punctuation">}</span>
     <span class="token punctuation">}</span><span class="token punctuation">)</span>
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
 <h3 id="云函数获取云数据库数据"><a href="#云函数获取云数据库数据" class="headerlink" title="云函数获取云数据库数据"></a>云函数获取云数据库数据</h3><h4 id="创建云函数-cloudfunctionVSdatabaseAPI"><a href="#创建云函数-cloudfunctionVSdatabaseAPI" class="headerlink" title="创建云函数 cloudfunctionVSdatabaseAPI"></a>创建云函数 cloudfunctionVSdatabaseAPI</h4><p>云函数<code>cloudfunctionVSdatabaseAPI.js</code>中的代码：</p>
-<pre class="line-numbers language-js"><code class="language-js"><span class="token comment" spellcheck="true">// 云函数入口文件</span>
+<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// 云函数入口文件</span>
 <span class="token keyword">const</span> cloud <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'wx-server-sdk'</span><span class="token punctuation">)</span>
 
 cloud<span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
@@ -767,15 +766,15 @@ cloud<span class="token punctuation">.</span><span class="token function">init</
 <span class="token comment" spellcheck="true">// 云函数入口函数</span>
 exports<span class="token punctuation">.</span>main <span class="token operator">=</span> <span class="token keyword">async</span> <span class="token punctuation">(</span>event<span class="token punctuation">,</span> context<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
   <span class="token keyword">return</span> cloud<span class="token punctuation">.</span><span class="token function">database</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">collection</span><span class="token punctuation">(</span><span class="token string">"testlist"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span></code></pre>
 <blockquote>
 <p>记得上传并部署，注意这里没有<code>wx.</code><br>云函数调用：<code>cloud.database().collection(&quot;testlist&quot;).get();</code><br>本地调用：<code>wx.cloud.database().collection(&quot;testlist&quot;).get();</code></p>
 </blockquote>
 <h3 id="创建测试按键"><a href="#创建测试按键" class="headerlink" title="创建测试按键"></a>创建测试按键</h3><p><code>cloudfunctionVSdatabaseAPI.wxml</code>中</p>
-<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">bindtap</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>databse<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>数据库API获取数据<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">bindtap</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>cloudFunction<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>云函数获取数据<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">bindtap</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>databse<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>数据库API获取数据<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">bindtap</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>cloudFunction<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>云函数获取数据<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span></code></pre>
 <p><code>cloudfunctionVSdatabaseAPI.js</code>中</p>
-<pre class="line-numbers language-js"><code class="language-js"><span class="token function">Page</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+<pre class=" language-js"><code class="language-js"><span class="token function">Page</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
   databse<span class="token punctuation">:</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
     wx<span class="token punctuation">.</span>cloud<span class="token punctuation">.</span><span class="token function">database</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">collection</span><span class="token punctuation">(</span><span class="token string">"testlist"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
       <span class="token function">success</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -797,7 +796,7 @@ exports<span class="token punctuation">.</span>main <span class="token operator"
       <span class="token punctuation">}</span>
     <span class="token punctuation">}</span><span class="token punctuation">)</span>
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
 <p><img src="/2021/01/20/Wechat-mini-prog-04/image-20210121123740420.png"></p>
 <h2 id="云函数调用数据库的应用"><a href="#云函数调用数据库的应用" class="headerlink" title="云函数调用数据库的应用"></a>云函数调用数据库的应用</h2><p>短信发送，邮件发送，复杂数据运算</p>
 <h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p>云开发学习视频：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1pE411C7Ca?from=search&amp;seid=14303234966957086491">https://www.bilibili.com/video/BV1pE411C7Ca?from=search&amp;seid=14303234966957086491</a></p>
@@ -920,9 +919,7 @@ exports<span class="token punctuation">.</span>main <span class="token operator"
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            云开发存储开发者可以在小程序端和云函数端通过 API 使用云存储功能。在小程序端可以分别调用 wx.cloud.uploadFile 和 wx.cloud.downloadFile 完成上传和下载云文件操作
-选择并上传图片可以使用的API
-
+                            云开发存储
                         
                     </div>
                     <div class="publish-info">
@@ -971,10 +968,7 @@ exports<span class="token punctuation">.</span>main <span class="token operator"
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            微信小程序页面间传递数据将数据对象转化为json格式传输
-url: '../index/index?massIfo='+JSON.stringify(res.data)
-在接收次数据页面：
-JSON.parse(options.massIf
+                            微信小程序页面间传递数据
                         
                     </div>
                     <div class="publish-info">

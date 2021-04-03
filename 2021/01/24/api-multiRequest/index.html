@@ -29,8 +29,7 @@
 
     <script src="../../../../libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -430,12 +429,12 @@
 <h2 id="封装请求函数"><a href="#封装请求函数" class="headerlink" title="封装请求函数"></a>封装请求函数</h2><p>这里主要是讲面对对于同个接口多个请求的时候，该怎么办</p>
 <p>一般做法<br>一个url 我们就会请求一次数据<br>但是实际上面对一个页面很多内容的时候，这样是非常不利的，所以做法就是要封装请求函数</p>
 <p>小程序为例 （网易云音乐的仿写- musicMiniPro）</p>
-<pre class="line-numbers language-js"><code class="language-js"><span class="token comment" spellcheck="true">//config.js - 服务器的接口</span>
+<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">//config.js - 服务器的接口</span>
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
     <span class="token comment" spellcheck="true">// host:'https://musicapi.leanapp.cn/' //这个接口真的我不想弄那个502的问题所以</span>
     host<span class="token punctuation">:</span><span class="token string">'http://localhost/3000'</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-js"><code class="language-js"><span class="token comment" spellcheck="true">//util.js - 请求的处理函数</span>
+<span class="token punctuation">}</span></code></pre>
+<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">//util.js - 请求的处理函数</span>
 <span class="token keyword">import</span> config <span class="token keyword">from</span> <span class="token string">'./config'</span><span class="token punctuation">;</span>
 <span class="token keyword">const</span> request <span class="token operator">=</span> <span class="token punctuation">(</span>url<span class="token punctuation">,</span> data<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>method<span class="token operator">=</span><span class="token string">'GET'</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span> 
   <span class="token keyword">let</span> _url <span class="token operator">=</span> API_BASE_URL  <span class="token operator">+</span> url<span class="token punctuation">;</span>
@@ -458,8 +457,8 @@
 <span class="token comment" spellcheck="true">//注意这里其实是异步的，所以如果考虑一般的提取数据方式是不行的，还是要用promise</span>
 module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
   request
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-js"><code class="language-js"><span class="token comment" spellcheck="true">//page.js 发出请求函数</span>
+<span class="token punctuation">}</span></code></pre>
+<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">//page.js 发出请求函数</span>
   onLoad<span class="token punctuation">:</span> <span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>options<span class="token punctuation">)</span> <span class="token punctuation">{</span>
       <span class="token keyword">let</span> result<span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token string">'/banner'</span><span class="token punctuation">,</span><span class="token punctuation">{</span>type<span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
       console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"结果"</span><span class="token punctuation">,</span>result<span class="token punctuation">.</span>banners<span class="token punctuation">)</span>
@@ -467,8 +466,8 @@ module<span class="token punctuation">.</span>exports <span class="token operato
         bannerList<span class="token punctuation">:</span>result<span class="token punctuation">.</span>banners
       <span class="token punctuation">}</span><span class="token punctuation">)</span>
   <span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//当考虑封装请求函数，一定就要处理异步的问题，一定就会用到async &amp; await</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-html"><code class="language-html"><span class="token comment" spellcheck="true">&lt;!-- 最后显示 --></span>
+<span class="token comment" spellcheck="true">//当考虑封装请求函数，一定就要处理异步的问题，一定就会用到async &amp; await</span></code></pre>
+<pre class=" language-html"><code class="language-html"><span class="token comment" spellcheck="true">&lt;!-- 最后显示 --></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>swiper</span>
  <span class="token attr-name">indicator-dots</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span>
  <span class="token attr-name">autoplay</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span>
@@ -481,7 +480,7 @@ module<span class="token punctuation">.</span>exports <span class="token operato
     <span class="token punctuation">></span></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>image</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>{{item.pic}}<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>image</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>swiper-item</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>swiper</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>swiper</span><span class="token punctuation">></span></span></code></pre>
 <p><img src="/2021/01/24/api-multiRequest/image-20210124224454356.png"></p>
 <h2 id="网易云的api请求"><a href="#网易云的api请求" class="headerlink" title="网易云的api请求"></a>网易云的api请求</h2><p>官网 ： <a target="_blank" rel="noopener" href="https://binaryify.github.io/NeteaseCloudMusicApi/#/">https://binaryify.github.io/NeteaseCloudMusicApi/#/</a></p>
 <p>git clone —-&gt; npm install —&gt; node app.js的方式运行调试</p>
@@ -493,7 +492,7 @@ module<span class="token punctuation">.</span>exports <span class="token operato
 <p><img src="/2021/01/24/api-multiRequest/image-20210125142130291.png"></p>
 <p>实际上就是网易云本地跑起来 （<a target="_blank" rel="noopener" href="http://localhost:3000/top/list?idx=6%EF%BC%89">http://localhost:3000/top/list?idx=6）</a> 网上接口没法放上来 😵</p>
 <p>请求处</p>
-<pre class="line-numbers language-js"><code class="language-js">      <span class="token comment" spellcheck="true">//musicRankList 这里我们需要请求5次</span>
+<pre class=" language-js"><code class="language-js">      <span class="token comment" spellcheck="true">//musicRankList 这里我们需要请求5次</span>
       <span class="token keyword">let</span> index<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
       <span class="token keyword">let</span> result<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
       <span class="token keyword">while</span><span class="token punctuation">(</span>index<span class="token operator">&lt;</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">{</span> 
@@ -503,13 +502,13 @@ module<span class="token punctuation">.</span>exports <span class="token operato
         <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setData</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
           topList<span class="token punctuation">:</span>result
         <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">}</span>
-        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"result"</span><span class="token punctuation">,</span>result<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"result"</span><span class="token punctuation">,</span>result<span class="token punctuation">)</span></code></pre>
 <p><img src="/2021/01/24/api-multiRequest/image-20210125142521644.png"></p>
 <p>请求结果就出来啦</p>
 <blockquote>
 <p>这里实际上，如果要提升用户体验，就要读取的时候就渲染，不用等到最后完全渠道之后再更新</p>
 </blockquote>
-<h2 id="请求cookie-保存cookie"><a href="#请求cookie-保存cookie" class="headerlink" title="请求cookie 保存cookie"></a>请求cookie 保存cookie</h2><pre class="line-numbers language-js"><code class="language-js"><span class="token comment" spellcheck="true">//request页面的时候</span>
+<h2 id="请求cookie-保存cookie"><a href="#请求cookie-保存cookie" class="headerlink" title="请求cookie 保存cookie"></a>请求cookie 保存cookie</h2><pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">//request页面的时候</span>
 <span class="token keyword">import</span> config <span class="token keyword">from</span> <span class="token string">'./config'</span>
 <span class="token keyword">export</span> <span class="token keyword">default</span>  <span class="token punctuation">(</span>url<span class="token punctuation">,</span> data<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> method<span class="token operator">=</span><span class="token string">'GET'</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
   <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span>resolve<span class="token punctuation">,</span> reject<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
@@ -539,7 +538,7 @@ module<span class="token punctuation">.</span>exports <span class="token operato
     <span class="token punctuation">}</span><span class="token punctuation">)</span>
   <span class="token punctuation">}</span><span class="token punctuation">)</span>
 
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span></code></pre>
 <blockquote>
 <p>这里一定要注意这里的<code>indexOf(&#39;MUSIC_U&#39;)</code>, 只是为了找到有效的标识符</p>
 </blockquote>
@@ -663,12 +662,7 @@ module<span class="token punctuation">.</span>exports <span class="token operato
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            微信小程序中自定义组件创建最基本引用
-在文件夹components中创建一个自己的组件名的文件夹（或者直接选择新创建组件）
-
-将对应的wxml以及wxss放进去
-
-重点！！ 在使用的页面的index.json中加入components的路径
+                            微信小程序中自定义组件创建
                         
                     </div>
                     <div class="publish-info">
@@ -730,11 +724,23 @@ module<span class="token punctuation">.</span>exports <span class="token operato
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            Savannah
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="../../../../categories/icon/" class="post-category">
+                                    icon
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="../../../../tags/icon/">
+                        <span class="chip bg-color">icon</span>
+                    </a>
+                    
                 </div>
                 
             </div>

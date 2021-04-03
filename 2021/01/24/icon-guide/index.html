@@ -29,8 +29,7 @@
 
     <script src="../../../../libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -381,12 +380,25 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">No tag</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="../../../../tags/icon/">
+                                <span class="chip bg-color">icon</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="../../../../categories/icon/" class="post-category">
+                                icon
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -415,7 +427,7 @@
 <p><img src="/2021/01/24/icon-guide/image-20210124175151329.png"></p>
 <p>对于小程序 不可以直接用css，所以将css文件中代码，复制到本地的wxss文件，之后import引用</p>
 <h3 id="练习例子"><a href="#练习例子" class="headerlink" title="练习例子"></a>练习例子</h3><p><img src="/2021/01/24/icon-guide/image-20210124182457473.png"></p>
-<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span>
  <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>navContainer<span class="token punctuation">"</span></span>
  <span class="token attr-name">hover-class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>none<span class="token punctuation">"</span></span>
  <span class="token attr-name">hover-stop-propagation</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>false<span class="token punctuation">"</span></span>
@@ -460,8 +472,8 @@
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>iconfont icon-biaoqiankuozhan_zhibo-342<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>text</span><span class="token punctuation">></span></span>直播<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>text</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-css"><code class="language-css"><span class="token selector"><span class="token class">.navContainer</span></span><span class="token punctuation">{</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span></code></pre>
+<pre class=" language-css"><code class="language-css"><span class="token selector"><span class="token class">.navContainer</span></span><span class="token punctuation">{</span>
  <span class="token property">display</span><span class="token punctuation">:</span> inline-flex<span class="token punctuation">;</span>
  <span class="token property">justify-content</span><span class="token punctuation">:</span> space-around<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
@@ -481,7 +493,18 @@
 <span class="token selector"><span class="token class">.navItem</span> > text</span><span class="token punctuation">{</span>
   <span class="token property">margin-top</span><span class="token punctuation">:</span> <span class="token number">15</span>rpx<span class="token punctuation">;</span>
  <span class="token property">font-size</span><span class="token punctuation">:</span> small<span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="icon的颜色渐变"><a href="#icon的颜色渐变" class="headerlink" title="icon的颜色渐变"></a>icon的颜色渐变</h3><p>这里直接按照下面的例子变形使用- 想知道原理的话 看<a target="_blank" rel="noopener" href="https://www.sohu.com/a/169212424_575744">这里</a></p>
+<h4 id="icon的本身变色"><a href="#icon的本身变色" class="headerlink" title="icon的本身变色"></a>icon的本身变色</h4><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">@click</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>close<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>icon iconfont icon-delete<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">></span></span></code></pre>
+<pre class=" language-css"><code class="language-css"><span class="token selector"><span class="token class">.icon-delete</span></span><span class="token punctuation">{</span>
+    <span class="token property">font-size</span><span class="token punctuation">:</span> <span class="token number">50</span>px<span class="token punctuation">;</span>
+    <span class="token property">background-image</span><span class="token punctuation">:</span> <span class="token function">-webkit-linear-gradient</span><span class="token punctuation">(</span><span class="token number">90</span>deg, <span class="token hexcode">#28bb59</span> <span class="token number">0%</span>, <span class="token hexcode">#ffffff</span> <span class="token number">94%</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token property">-webkit-background-clip</span><span class="token punctuation">:</span> text<span class="token punctuation">;</span>
+    <span class="token property">-webkit-text-fill-color</span><span class="token punctuation">:</span> transparent<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h4 id="icon本身透明，背景渐变"><a href="#icon本身透明，背景渐变" class="headerlink" title="icon本身透明，背景渐变"></a>icon本身透明，背景渐变</h4><pre class=" language-css"><code class="language-css"><span class="token property">color</span><span class="token punctuation">:</span> transparent<span class="token punctuation">;</span>                             <span class="token comment" spellcheck="true">/* 将iconfont的颜色改为透明 */</span>
+<span class="token property">-webkit-background-clip</span><span class="token punctuation">:</span> text<span class="token punctuation">;</span>                  <span class="token comment" spellcheck="true">/* 将背景图的绘画仅作用在文字上 */</span>
+<span class="token property">background-image</span><span class="token punctuation">:</span> <span class="token function">linear-gradient</span><span class="token punctuation">(</span><span class="token number">225</span>deg, <span class="token hexcode">#4158D0</span> <span class="token number">0%</span>, <span class="token hexcode">#C850C0</span> <span class="token number">46%</span>, <span class="token hexcode">#FFCC70</span> <span class="token number">100%</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment" spellcheck="true">/* 你的渐变色 */</span></code></pre>
 
             </div>
             <hr/>
@@ -544,7 +567,11 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">No tag</span>
+                            
+                                <a href="../../../../tags/icon/">
+                                    <span class="chip bg-color">icon</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -646,8 +673,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            分享功能通过点击按钮触发分享好友功能在设置完上面的小程序JS部分后，有时会需要在按钮上触发分享好友功能，这里涉及到微信小程序按钮自带的open-type 的合法值，可参考微信官方文档
-效果1 - 分享当前缩略图&lt;button  ope
+                            分享功能
                         
                     </div>
                     <div class="publish-info">

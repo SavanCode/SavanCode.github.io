@@ -29,8 +29,7 @@
 
     <script src="../../../../libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -437,15 +436,15 @@
 <li><p>记得在界面右侧的项目详情中，本地设置中要选择 使用npm模块</p>
 </li>
 <li><p>在wxml &amp; json 加入代码，测试界面效果</p>
-<pre class="line-numbers language-json"><code class="language-json">//json
+<pre class=" language-json"><code class="language-json">//json
 <span class="token punctuation">{</span>
   <span class="token property">"usingComponents"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
     <span class="token property">"datepicker"</span><span class="token operator">:</span> <span class="token string">"miniprogram-datepicker"</span>
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span></code></pre>
 </li>
 </ol>
-<pre class="line-numbers language-html"><code class="language-html"><span class="token comment" spellcheck="true">&lt;!-- wxml --></span>  
+<pre class=" language-html"><code class="language-html"><span class="token comment" spellcheck="true">&lt;!-- wxml --></span>  
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>datepicker</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>{{solar}}<span class="token punctuation">"</span></span> <span class="token attr-name">bindchange</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>bindSolarChange<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>default<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>公历<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>datepicker</span><span class="token punctuation">></span></span>
@@ -465,7 +464,7 @@
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>block</span><span class="token punctuation">></span></span>
       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>block</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>block</span><span class="token punctuation">></span></span></code></pre>
 <p>   他的官方写的wxml，我不知道为啥，反正我用了它不显示╮(╯▽╰)╭</p>
 <h2 id="消息订阅发布（页面数据传输）"><a href="#消息订阅发布（页面数据传输）" class="headerlink" title="消息订阅发布（页面数据传输）"></a>消息订阅发布（页面数据传输）</h2><ol>
 <li><p>使用第三方库: pubsub-js</p>
@@ -481,7 +480,7 @@
 </ol>
 <h2 id="常见错误"><a href="#常见错误" class="headerlink" title="常见错误"></a>常见错误</h2><p><img src="/2021/01/21/Wechat-mini-prog-06/image-20210127210808925.png"></p>
 <h3 id="先执行-npm-init-一直回车"><a href="#先执行-npm-init-一直回车" class="headerlink" title="先执行 npm init  一直回车"></a>先执行 npm init  一直回车</h3><p> 初始化仓库，可以看到package.json文件</p>
-<h3 id="然后执行npm-install-production"><a href="#然后执行npm-install-production" class="headerlink" title="然后执行npm install --production"></a>然后执行<code>npm install --production</code></h3><h3 id="project-config-json添加配置"><a href="#project-config-json添加配置" class="headerlink" title="project.config.json添加配置"></a><code>project.config.json</code>添加配置</h3><pre class="line-numbers language-json"><code class="language-json"><span class="token punctuation">{</span>
+<h3 id="然后执行npm-install-production"><a href="#然后执行npm-install-production" class="headerlink" title="然后执行npm install --production"></a>然后执行<code>npm install --production</code></h3><h3 id="project-config-json添加配置"><a href="#project-config-json添加配置" class="headerlink" title="project.config.json添加配置"></a><code>project.config.json</code>添加配置</h3><pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
   ...
   <span class="token property">"setting"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
     ...
@@ -493,12 +492,12 @@
       <span class="token punctuation">}</span>
     <span class="token punctuation">]</span>
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span></code></pre>
 <p>点击 工具 =&gt; 构建npm， 使用npm模块</p>
 <blockquote>
 <p>但是！！！！ 如果出现了一些奇怪错误 直接导致运行不了 um。。。╮（╯＿╰）╭ 我也遇到了 明明运行成功，但是后面重开项目时候 直接项目挂了</p>
 </blockquote>
-<h3 id="小程序-format-time"><a href="#小程序-format-time" class="headerlink" title="小程序 format time"></a>小程序 format time</h3><pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">nformatTime</span><span class="token punctuation">(</span>number<span class="token punctuation">,</span> format<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<h3 id="小程序-format-time"><a href="#小程序-format-time" class="headerlink" title="小程序 format time"></a>小程序 format time</h3><pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">nformatTime</span><span class="token punctuation">(</span>number<span class="token punctuation">,</span> format<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 
   <span class="token keyword">var</span> formateArr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'Y'</span><span class="token punctuation">,</span> <span class="token string">'M'</span><span class="token punctuation">,</span> <span class="token string">'D'</span><span class="token punctuation">,</span> <span class="token string">'h'</span><span class="token punctuation">,</span> <span class="token string">'m'</span><span class="token punctuation">,</span> <span class="token string">'s'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
   <span class="token keyword">var</span> returnArr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
@@ -516,7 +515,7 @@
     format <span class="token operator">=</span> format<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span>formateArr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> returnArr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span>
   <span class="token keyword">return</span> format<span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span></code></pre>
 <h3 id="其他好用的npm包"><a href="#其他好用的npm包" class="headerlink" title="其他好用的npm包"></a>其他好用的npm包</h3><p><a target="_blank" rel="noopener" href="https://github.com/jasondu/wxa-plugin-canvas">wxa-plugin-canvas 生成二维码海报的组件</a></p>
 <h4 id="其他的-小程序npm搜索"><a href="#其他的-小程序npm搜索" class="headerlink" title="其他的 小程序npm搜索"></a><a target="_blank" rel="noopener" href="https://www.npmjs.com/search?q=miniprogram">其他的 小程序npm搜索</a></h4><h2 id="框架-wepy"><a href="#框架-wepy" class="headerlink" title="框架- wepy"></a>框架- wepy</h2><h3 id="wepy的优秀笔记"><a href="#wepy的优秀笔记" class="headerlink" title="wepy的优秀笔记"></a><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903774851432456">wepy的优秀笔记</a></h3><h3 id="wepy框架vscode代码高亮"><a href="#wepy框架vscode代码高亮" class="headerlink" title="wepy框架vscode代码高亮"></a>wepy框架vscode代码高亮</h3><p>指南：<a target="_blank" rel="noopener" href="https://blog.csdn.net/UNIONDONG/article/details/105257584">https://blog.csdn.net/UNIONDONG/article/details/105257584</a></p>
 <p>安装Vetur + 设置vetur的setting json</p>
@@ -647,13 +646,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
-这篇笔记主要跟尚硅谷学习的，但是还未实际操作！！！
-
-小程序分包为什么要分包
-小程序要求压缩包体积不能大于 2M，否则无法发布
-实际开发中小程序体积如果大于 2M 就需要使用分包机制进行发布上传
-分包后可解决 2M 限制，并且能分包加载内
+                            小程序分包 小程序转发 云支付
                         
                     </div>
                     <div class="publish-info">
@@ -702,9 +695,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            云开发存储开发者可以在小程序端和云函数端通过 API 使用云存储功能。在小程序端可以分别调用 wx.cloud.uploadFile 和 wx.cloud.downloadFile 完成上传和下载云文件操作
-选择并上传图片可以使用的API
-
+                            云开发存储
                         
                     </div>
                     <div class="publish-info">

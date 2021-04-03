@@ -29,8 +29,7 @@
 
     <script src="../../../../libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -442,16 +441,16 @@
 <p><strong>Solution：</strong></p>
 <p>看清楚config中的toc 等级设置，由于不同主题，设置会不一样！（在config文件中）</p>
 <h2 id="问题7：代码高亮"><a href="#问题7：代码高亮" class="headerlink" title="问题7：代码高亮"></a>问题7：代码高亮</h2><p>代码高亮显示不好看，所以主题中使用到了 <a target="_blank" rel="noopener" href="https://github.com/ele828/hexo-prism-plugin">hexo-prism-plugin</a> 的 Hexo 插件来做代码高亮，安装命令如下：</p>
-<pre class="line-numbers language-haskell"><code class="language-haskell"><span class="token hvariable">npm</span> <span class="token hvariable">i</span> <span class="token operator">-</span><span class="token constant">S</span> <span class="token hvariable">hexo</span><span class="token operator">-</span><span class="token hvariable">prism</span><span class="token operator">-</span><span class="token hvariable">plugin</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class=" language-haskell"><code class="language-haskell"><span class="token hvariable">npm</span> <span class="token hvariable">i</span> <span class="token operator">-</span><span class="token constant">S</span> <span class="token hvariable">hexo</span><span class="token operator">-</span><span class="token hvariable">prism</span><span class="token operator">-</span><span class="token hvariable">plugin</span></code></pre>
 <p>然后，修改 Hexo 根目录下 <code>_config.yml</code> 文件中 <code>highlight.enable</code> 的值为 <code>false</code>，并新增 <code>prism</code> 插件相关的配置，主要配置如下：</p>
-<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">highlight</span><span class="token punctuation">:</span>
+<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">highlight</span><span class="token punctuation">:</span>
   <span class="token key atrule">enable</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
 
 <span class="token key atrule">prism_plugin</span><span class="token punctuation">:</span>
   <span class="token key atrule">mode</span><span class="token punctuation">:</span> <span class="token string">"preprocess"</span> <span class="token comment" spellcheck="true"># realtime/preprocess</span>
   <span class="token key atrule">theme</span><span class="token punctuation">:</span> <span class="token string">"tomorrow"</span>
   <span class="token key atrule">line_number</span><span class="token punctuation">:</span> <span class="token boolean important">false </span><span class="token comment" spellcheck="true"># default false</span>
-  custom_css<span class="token punctuation">:</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  custom_css<span class="token punctuation">:</span></code></pre>
 <h2 id="问题7：大括号的编译问题"><a href="#问题7：大括号的编译问题" class="headerlink" title="问题7：大括号的编译问题"></a>问题7：大括号的编译问题</h2><p>左右花括号（left/right curly brace）都不显示，在typora软件中代码块中显示无碍，但是hexo post中无法正常显示</p>
 <table>
 <thead>
@@ -491,8 +490,8 @@
 </tbody></table>
 <p><img src="/2020/11/07/Hexo-Building-Issue/1604935229359.png"></p>
 <p>解决办法：</p>
-<p>hexo/node_modules/hexo-prism-plugin/src/index.js文件中map里未支持大括号，补上以下内容后发现有效，即在map中加上对应字符即可:</p>
-<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">const</span> map <span class="token operator">=</span> <span class="token punctuation">{</span>
+<p>node_modules/hexo-prism-plugin/src/index.js文件中map里未支持大括号，补上以下内容后发现有效，即在map中加上对应字符即可:</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">const</span> map <span class="token operator">=</span> <span class="token punctuation">{</span>
   <span class="token string">'&amp;#39;'</span><span class="token punctuation">:</span> <span class="token string">'\''</span><span class="token punctuation">,</span>
   <span class="token string">'&amp;amp;'</span><span class="token punctuation">:</span> <span class="token string">'&amp;'</span><span class="token punctuation">,</span>
   <span class="token string">'&amp;gt;'</span><span class="token punctuation">:</span> <span class="token string">'>'</span><span class="token punctuation">,</span>
@@ -500,10 +499,14 @@
   <span class="token string">'&amp;quot;'</span><span class="token punctuation">:</span> <span class="token string">'"'</span><span class="token punctuation">,</span>
   <span class="token string">'&amp;#123;'</span><span class="token punctuation">:</span> <span class="token string">'{'</span><span class="token punctuation">,</span>    <span class="token comment" spellcheck="true">//添加的代码</span>
   <span class="token string">'&amp;#125;'</span><span class="token punctuation">:</span> <span class="token string">'}'</span>        <span class="token comment" spellcheck="true">//添加的代码</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
 <h2 id="问题7：-TOC-跳转不成功"><a href="#问题7：-TOC-跳转不成功" class="headerlink" title="问题7： TOC 跳转不成功"></a>问题7： TOC 跳转不成功</h2><p>目录显示的层级正确，但是点击对应的标题，没有办法实现跳转</p>
 <p>solution：</p>
 <p>层级设置不可以跟排列序号同时使用</p>
+<h2 id="问题8-：-deploy-时候-远程挂掉问题"><a href="#问题8-：-deploy-时候-远程挂掉问题" class="headerlink" title="问题8 ： deploy 时候, 远程挂掉问题"></a>问题8 ： deploy 时候, 远程挂掉问题</h2><pre class=" language-sh"><code class="language-sh">error: RPC failed; curl 18 transfer closed with outstanding read data remaining
+fatal: The remote end hung up unexpectedly</code></pre>
+<p>这种你会尝试反复 deploy，没错你确实要。<br>因为这基本是你网络问题 O(∩_∩)O<br>但是可以尝试下面的</p>
+<pre class=" language-sh"><code class="language-sh">git config --global http.postBuffer 524288000</code></pre>
 
             </div>
             <hr/>
@@ -639,8 +642,8 @@ h3.class{ } /*并
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="../../../../categories/Front-end/" class="post-category">
-                                    Front-end
+                            <a href="../../../../categories/css-html/" class="post-category">
+                                    css&html
                                 </a>
                             
                             

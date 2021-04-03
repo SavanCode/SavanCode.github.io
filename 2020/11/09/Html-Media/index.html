@@ -29,8 +29,7 @@
 
     <script src="../../../../libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -395,8 +394,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="../../../../categories/Front-end/" class="post-category">
-                                Front-end
+                            <a href="../../../../categories/css-html/" class="post-category">
+                                css&html
                             </a>
                         
                     </div>
@@ -424,25 +423,20 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="HTML-Video"><a href="#HTML-Video" class="headerlink" title="HTML Video"></a>HTML Video</h1><p><video width="320" height="240" controls>  <source src="*****" type="video/mp4">  <source src="*8**" type="video/ogg">Your browser does not support the video tag.</video><br><code>&lt;video width=&quot;320&quot; height=&quot;240&quot; controls&gt; </code></p>
-<p><code>&lt;source src=&quot;*****&quot; type=&quot;video/mp4&quot;&gt; </code> </p>
-<p><code>&lt;source src=&quot;*8**&quot; type=&quot;video/ogg&quot;&gt;Your browser does not support the video tag.&lt;/video&gt;</code></p>
-<p>attribute: control / autoplay / loop / muted / preload / auto(default) / metadata / none</p>
-<p>size control=&gt; <code>&lt;video&gt;</code></p>
-<h1 id="HTML-Audio"><a href="#HTML-Audio" class="headerlink" title="HTML Audio"></a>HTML Audio</h1><pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>audio</span> <span class="token attr-name">controls</span><span class="token punctuation">></span></span>  
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>source</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>****<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>audio/ogg<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>  
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>source</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>****<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>audio/mpeg<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Your browser does not support the audio element.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>audio</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-jsx"><code class="language-jsx"><span class="token keyword">const</span> BEEP <span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">Audio</span><span class="token punctuation">(</span><span class="token string">"https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <h2 id="HTML-Video"><a href="#HTML-Video" class="headerlink" title="HTML Video"></a>HTML Video</h2><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>video</span><span class="token style-attr language-css"><span class="token attr-name"> <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">width</span><span class="token punctuation">:</span><span class="token number">320</span>px</span><span class="token punctuation">"</span></span>  <span class="token attr-name">poster</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>img.jpg<span class="token punctuation">"</span></span> <span class="token attr-name">controls</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>source</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>movie.mp4<span class="token punctuation">"</span></span>  <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>video/mp4<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>source</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>movie.ogg<span class="token punctuation">"</span></span>  <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>video/ogg<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  您的浏览器不支持 HTML5 video 标签。
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>video</span><span class="token punctuation">></span></span>
 
-BEEP<span class="token punctuation">.</span><span class="token function">play</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-BEEP<span class="token punctuation">.</span><span class="token function">pause</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-jsx"><code class="language-jsx"><span class="token comment" spellcheck="true">//有问题</span>
-<span class="token keyword">this</span><span class="token punctuation">.</span>audio <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"beep"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">return</span><span class="token punctuation">(</span>
- <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>audio</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>beep<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span>BEEP<span class="token punctuation">}</span></span> <span class="token punctuation">/></span></span>
- <span class="token punctuation">)</span>
-<span class="token keyword">this</span><span class="token punctuation">.</span>audio<span class="token punctuation">.</span><span class="token function">pause</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token keyword">this</span><span class="token punctuation">.</span>audio<span class="token punctuation">.</span><span class="token function">play</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+//attribute: control / autoplay / loop / muted / preload / //auto(default) / metadata / none
+
+// size control=> `<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>video</span><span class="token punctuation">></span></span>`</code></pre>
+<h2 id="HTML-Audio"><a href="#HTML-Audio" class="headerlink" title="HTML Audio"></a>HTML Audio</h2><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>audio</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>****.mp3<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>audio/mpeg<span class="token punctuation">"</span></span> <span class="token attr-name">controls</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>controls<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Your browser does not support the audio element.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>audio</span><span class="token punctuation">></span></span></code></pre>
+<pre class=" language-js"><code class="language-js"> <span class="token keyword">var</span> audio <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySeletor</span><span class="token punctuation">(</span><span class="token string">'audio'</span><span class="token punctuation">)</span>
+ <span class="token comment" spellcheck="true">//audio 自身有很多属性可以设置</span>
+ <span class="token comment" spellcheck="true">//audio.muted audio.play() audio.pause()</span>
+<span class="token comment" spellcheck="true">// audio.volum audio.currentTime 属性直接看dom元素哈~</span></code></pre>
 <p><code>controls</code> attribute adds audio controls, like play, pause, and volume.</p>
 <p>attribute ：controls / autoplay /<br> loop / muted / preload</p>
 
@@ -578,8 +572,8 @@ BEEP<span class="token punctuation">.</span><span class="token function">pause</
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="../../../../categories/Front-end/" class="post-category">
-                                    Front-end
+                            <a href="../../../../categories/css-html/" class="post-category">
+                                    css&html
                                 </a>
                             
                             
@@ -608,9 +602,9 @@ BEEP<span class="token punctuation">.</span><span class="token function">pause</
                     <div class="card-image">
                         
                         
-                        <img src="../../../../medias/featureimages/2.jpg" class="responsive-img" alt="hexo-add-img">
+                        <img src="../../../../medias/featureimages/3.jpg" class="responsive-img" alt="hexo image图像显示不出的问题">
                         
-                        <span class="card-title">hexo-add-img</span>
+                        <span class="card-title">hexo image图像显示不出的问题</span>
                     </div>
                 </a>
                 <div class="card-content article-content">

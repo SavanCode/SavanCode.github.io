@@ -29,8 +29,7 @@
 
     <script src="../../../../libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -424,13 +423,13 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Redux-必要条件"><a href="#Redux-必要条件" class="headerlink" title="Redux 必要条件"></a>Redux 必要条件</h1><p>The Redux core library is available as a package on NPM for use with a module bundler or in a Node application:</p>
+                <h2 id="Redux-必要条件"><a href="#Redux-必要条件" class="headerlink" title="Redux 必要条件"></a>Redux 必要条件</h2><p>The Redux core library is available as a package on NPM for use with a module bundler or in a Node application:</p>
 <pre><code># NPM
 npm install redux
 
 # Yarn
 yarn add redux</code></pre>
-<h1 id="redux理解"><a href="#redux理解" class="headerlink" title="redux理解"></a>redux理解</h1><p>什么: redux是专门做状态管理的独立第3方库, 不是react插件<br>作用: 对应用中状态进行集中式的管理(写/读)<br>开发: 与react-redux, redux-thunk等插件配合使用</p>
+<h2 id="redux理解"><a href="#redux理解" class="headerlink" title="redux理解"></a>redux理解</h2><p>什么: redux是专门做状态管理的独立第3方库, 不是react插件<br>作用: 对应用中状态进行集中式的管理(写/读)<br>开发: 与react-redux, redux-thunk等插件配合使用</p>
 <p><strong>类比图书馆借书流程：</strong></p>
 <ul>
 <li>首先，我们要借一本书，</li>
@@ -452,17 +451,17 @@ yarn add redux</code></pre>
 </li>
 </ul>
 <p>  <img src="/2020/12/21/react-1week05/image-20210101012427891.png"></p>
-<h1 id="为什么要Redux"><a href="#为什么要Redux" class="headerlink" title="为什么要Redux"></a><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000012142449">为什么要Redux</a></h1><p><img src="https://miro.medium.com/max/875/1*f3gS9znOZvX8HfCLg7T--Q.gif"></p>
-<h1 id="Redux核心概念-3个"><a href="#Redux核心概念-3个" class="headerlink" title="Redux核心概念(3个)"></a>Redux核心概念(3个)</h1><h2 id="action"><a href="#action" class="headerlink" title="action"></a>action</h2><p>默认是对象(同步action), {type: ‘xxx’, data: value}, 需要通过对应的actionCreator产生,<br>它的值也可以是函数(异步action), 需要引入redux-thunk才可以</p>
-<h2 id="reducer"><a href="#reducer" class="headerlink" title="reducer"></a>reducer</h2><p>根据老的state和指定的action, 返回一个新的state<br>不能修改老的state</p>
-<h2 id="store"><a href="#store" class="headerlink" title="store"></a>store</h2><p>redux最核心的管理对象<br>内部管理着: state和reducer<br>提供方法: getState(), dispatch(action), subscribe(listener)</p>
+<h2 id="为什么要Redux"><a href="#为什么要Redux" class="headerlink" title="为什么要Redux"></a><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000012142449">为什么要Redux</a></h2><p><img src="https://miro.medium.com/max/875/1*f3gS9znOZvX8HfCLg7T--Q.gif"></p>
+<h2 id="Redux核心概念-3个"><a href="#Redux核心概念-3个" class="headerlink" title="Redux核心概念(3个)"></a>Redux核心概念(3个)</h2><h3 id="action"><a href="#action" class="headerlink" title="action"></a>action</h3><p>默认是对象(同步action), {type: ‘xxx’, data: value}, 需要通过对应的actionCreator产生,<br>它的值也可以是函数(异步action), 需要引入redux-thunk才可以</p>
+<h3 id="reducer"><a href="#reducer" class="headerlink" title="reducer"></a>reducer</h3><p>根据老的state和指定的action, 返回一个新的state<br>不能修改老的state</p>
+<h3 id="store"><a href="#store" class="headerlink" title="store"></a>store</h3><p>redux最核心的管理对象<br>内部管理着: state和reducer<br>提供方法: getState(), dispatch(action), subscribe(listener)</p>
 <ul>
 <li><code>createStore</code> 创建store</li>
 <li><code>store.dispatch</code> 派发action，action传递给store</li>
 <li><code>store.getState()</code> 获取store里面所有的数据内容</li>
 <li><code>store.subscribe()</code> 订阅store的改变，只要store发生改变，<code>store.subscribe()</code>中的回调函数就会执行</li>
 </ul>
-<h1 id="单个redux例子"><a href="#单个redux例子" class="headerlink" title="单个redux例子"></a>单个redux例子</h1><h2 id="基础-reducer-store-action"><a href="#基础-reducer-store-action" class="headerlink" title="基础 reducer store action"></a>基础 reducer store action</h2><pre class="line-numbers language-jsx"><code class="language-jsx"><span class="token keyword">import</span> <span class="token punctuation">{</span> createStore <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'redux'</span> 
+<h2 id="单个redux例子"><a href="#单个redux例子" class="headerlink" title="单个redux例子"></a>单个redux例子</h2><h3 id="基础-reducer-store-action"><a href="#基础-reducer-store-action" class="headerlink" title="基础 reducer store action"></a>基础 reducer store action</h3><pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">import</span> <span class="token punctuation">{</span> createStore <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'redux'</span> 
 <span class="token comment" spellcheck="true">/**
  这是 reducer - a function describing "what happened"
  - reducer =  a current state value + an action object  
@@ -501,8 +500,8 @@ console<span class="token punctuation">.</span><span class="token function">log<
 
 store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token punctuation">{</span> type<span class="token punctuation">:</span> <span class="token string">"RESET"</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
 <span class="token comment" spellcheck="true">//0</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>store<span class="token punctuation">.</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="subscribe以及设置特殊值"><a href="#subscribe以及设置特殊值" class="headerlink" title="subscribe以及设置特殊值"></a>subscribe以及设置特殊值</h2><pre class="line-numbers language-jsx"><code class="language-jsx"> <span class="token comment" spellcheck="true">//仓库放所有action 以及state</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>store<span class="token punctuation">.</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> </code></pre>
+<h3 id="subscribe以及设置特殊值"><a href="#subscribe以及设置特殊值" class="headerlink" title="subscribe以及设置特殊值"></a>subscribe以及设置特殊值</h3><pre class=" language-jsx"><code class="language-jsx"> <span class="token comment" spellcheck="true">//仓库放所有action 以及state</span>
 <span class="token keyword">const</span> initState <span class="token operator">=</span> <span class="token punctuation">{</span>
   count <span class="token punctuation">:</span><span class="token number">0</span> <span class="token punctuation">,</span>
   list<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token string">'任务一'</span><span class="token punctuation">,</span><span class="token string">"任务二"</span><span class="token punctuation">]</span>
@@ -538,9 +537,9 @@ store<span class="token punctuation">.</span><span class="token function">dispat
 <span class="token function">unsub</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token comment" spellcheck="true">//后面执行但是不会跟踪</span>
 store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token punctuation">{</span> type<span class="token punctuation">:</span> <span class="token string">"DECREMENT"</span><span class="token punctuation">,</span> decrementBy<span class="token punctuation">:</span><span class="token number">3</span><span class="token punctuation">}</span><span class="token punctuation">)</span> 
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>store<span class="token punctuation">.</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>store<span class="token punctuation">.</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
 <p>利用解构 以及整理Action</p>
-<pre class="line-numbers language-jsx"><code class="language-jsx"> <span class="token keyword">const</span> initState <span class="token operator">=</span> <span class="token punctuation">{</span>
+<pre class=" language-jsx"><code class="language-jsx"> <span class="token keyword">const</span> initState <span class="token operator">=</span> <span class="token punctuation">{</span>
   count <span class="token punctuation">:</span><span class="token number">0</span> <span class="token punctuation">,</span>
   list<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token string">'任务一'</span><span class="token punctuation">,</span><span class="token string">"任务二"</span><span class="token punctuation">]</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
@@ -580,9 +579,9 @@ store<span class="token punctuation">.</span><span class="token function">dispat
 
 <span class="token comment" spellcheck="true">//后面执行但是不会跟踪</span>
 store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token punctuation">{</span> type<span class="token punctuation">:</span> <span class="token string">"DECREMENT"</span><span class="token punctuation">,</span> decrementBy<span class="token punctuation">:</span><span class="token number">3</span><span class="token punctuation">}</span><span class="token punctuation">)</span> 
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>store<span class="token punctuation">.</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="最终完整单个redux例子"><a href="#最终完整单个redux例子" class="headerlink" title="最终完整单个redux例子"></a>最终完整单个redux例子</h2><p>最终得到基础的单个redux， 这里注意的重点是，我们用reducer 是为了通过得到一个state以及action 从而返回新的state，并没有改变原本的state，只是给了新的state</p>
-<pre class="line-numbers language-jsx"><code class="language-jsx"><span class="token keyword">const</span> initState <span class="token operator">=</span> <span class="token punctuation">{</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>store<span class="token punctuation">.</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<h3 id="最终完整单个redux例子"><a href="#最终完整单个redux例子" class="headerlink" title="最终完整单个redux例子"></a>最终完整单个redux例子</h3><p>最终得到基础的单个redux， 这里注意的重点是，我们用reducer 是为了通过得到一个state以及action 从而返回新的state，并没有改变原本的state，只是给了新的state</p>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">const</span> initState <span class="token operator">=</span> <span class="token punctuation">{</span>
   count <span class="token punctuation">:</span><span class="token number">0</span> <span class="token punctuation">,</span>
   list<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token string">'任务一'</span><span class="token punctuation">,</span><span class="token string">"任务二"</span><span class="token punctuation">]</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
@@ -639,9 +638,9 @@ store<span class="token punctuation">.</span><span class="token function">dispat
 
 <span class="token comment" spellcheck="true">//后面执行但是不会跟踪</span>
 store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token punctuation">{</span> type<span class="token punctuation">:</span> <span class="token string">"DECREMENT"</span><span class="token punctuation">,</span> decrementBy<span class="token punctuation">:</span><span class="token number">3</span> <span class="token punctuation">}</span><span class="token punctuation">)</span> 
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>store<span class="token punctuation">.</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="多个reducer例子"><a href="#多个reducer例子" class="headerlink" title="多个reducer例子"></a>多个reducer例子</h1><p>那么接下来看看多个reducer的时候 处理数据怎么做</p>
-<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">import</span> <span class="token punctuation">{</span>v4 <span class="token keyword">as</span> uuidv4<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'uuid'</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>store<span class="token punctuation">.</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<h2 id="多个reducer例子"><a href="#多个reducer例子" class="headerlink" title="多个reducer例子"></a>多个reducer例子</h2><p>那么接下来看看多个reducer的时候 处理数据怎么做</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">import</span> <span class="token punctuation">{</span>v4 <span class="token keyword">as</span> uuidv4<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'uuid'</span>
 <span class="token comment" spellcheck="true">//两个数据例子</span>
 <span class="token keyword">const</span> demoState<span class="token operator">=</span><span class="token punctuation">{</span>
   expenses<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token punctuation">{</span>
@@ -746,10 +745,10 @@ console<span class="token punctuation">.</span><span class="token function">log<
 
 store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">removeExpense</span><span class="token punctuation">(</span><span class="token punctuation">{</span>id<span class="token punctuation">:</span>expenseOne<span class="token punctuation">.</span>expense<span class="token punctuation">.</span>id<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  
 store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">editExpense</span><span class="token punctuation">(</span>expenseTwo<span class="token punctuation">.</span>expense<span class="token punctuation">.</span>id<span class="token punctuation">,</span><span class="token punctuation">{</span>description<span class="token punctuation">:</span><span class="token string">"RentNew"</span><span class="token punctuation">,</span>amount<span class="token punctuation">:</span><span class="token number">19999</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  
-store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">setTextFilter</span><span class="token punctuation">(</span><span class="token string">"Rent"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">setTextFilter</span><span class="token punctuation">(</span><span class="token string">"Rent"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> </code></pre>
 <p>这里注意 对于箭头函数中，返回时对象，可以直接使用 ( )=&gt;( {对象})</p>
 <p>继续补充例子中的function</p>
-<pre class="line-numbers language-js"><code class="language-js">
+<pre class=" language-js"><code class="language-js">
 <span class="token comment" spellcheck="true">//default state &amp; reducer</span>
 <span class="token keyword">const</span> expensesReducerDefaultState<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 <span class="token keyword">const</span> expensesReducer<span class="token operator">=</span><span class="token punctuation">(</span>state<span class="token operator">=</span>expensesReducerDefaultState<span class="token punctuation">,</span>action<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
@@ -918,9 +917,9 @@ store<span class="token punctuation">.</span><span class="token function">dispat
 <span class="token comment" spellcheck="true">//     endDate:undefined,</span>
 <span class="token comment" spellcheck="true">//   }</span>
 <span class="token comment" spellcheck="true">// }</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="高阶组件（Higher-Order-Components）"><a href="#高阶组件（Higher-Order-Components）" class="headerlink" title="高阶组件（Higher-Order Components）"></a>高阶组件（Higher-Order Components）</h1><p>高阶组件就是一个函数，传给它一个组件，它返回一个新的组件</p>
-<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> Component <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react'</span>
+</code></pre>
+<h2 id="高阶组件（Higher-Order-Components）"><a href="#高阶组件（Higher-Order-Components）" class="headerlink" title="高阶组件（Higher-Order Components）"></a>高阶组件（Higher-Order Components）</h2><p>高阶组件就是一个函数，传给它一个组件，它返回一个新的组件</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> Component <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react'</span>
 
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">(</span>WrappedComponent<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
   <span class="token keyword">class</span> <span class="token class-name">NewComponent</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token punctuation">{</span>
@@ -930,12 +929,12 @@ store<span class="token punctuation">.</span><span class="token function">dispat
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span>
   <span class="token keyword">return</span> NewComponent
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2> <img src="/2020/12/21/react-1week05/image-20201229112941453.png" style="zoom: 80%;">
+<span class="token punctuation">}</span></code></pre>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3> <img src="/2020/12/21/react-1week05/image-20201229112941453.png" style="zoom: 80%;">
 
 <img src="/2020/12/21/react-1week05/image-20201229113015799.png">
 
-<h1 id="React-Redux"><a href="#React-Redux" class="headerlink" title="React Redux"></a>React Redux</h1><blockquote>
+<h2 id="React-Redux"><a href="#React-Redux" class="headerlink" title="React Redux"></a>React Redux</h2><blockquote>
 <p><strong>Redux 跟 React 並沒有關係。你可以用 React、Angular、Ember、jQuery 或甚至原生 JavaScript 來撰寫 Redux 應用程式。</strong></p>
 </blockquote>
 <img src="/2020/12/21/react-1week05/image-20210101012541717.png" style="zoom:67%;">
@@ -944,19 +943,19 @@ store<span class="token punctuation">.</span><span class="token function">dispat
 <p>整合了 <code>react-redux</code> 后，我们的 React App 就可以解决传统跨 Component 之前传递 state 的问题和困难。只要通过 <code>Provider</code> 就可以让每个 React App 中的 <code>Component</code> 取用 store 中的 state，非常方便</p>
 <img src="/2020/12/21/react-1week05/image-20210101012827213.png" style="zoom: 67%;">
 
-<h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a><a target="_blank" rel="noopener" href="https://react-redux.js.org/introduction/quick-start#installation">Installation</a></h2><pre class="line-numbers language-js"><code class="language-js">npm install react<span class="token operator">-</span>redux 
-yarn add react<span class="token operator">-</span>redux<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h2 id="connect方法的完整-API-如下"><a href="#connect方法的完整-API-如下" class="headerlink" title="connect方法的完整 API 如下"></a>connect方法的完整 API 如下</h2><pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> connect <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react-redux'</span>
+<h3 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a><a target="_blank" rel="noopener" href="https://react-redux.js.org/introduction/quick-start#installation">Installation</a></h3><pre class=" language-js"><code class="language-js">npm install react<span class="token operator">-</span>redux 
+yarn add react<span class="token operator">-</span>redux</code></pre>
+<h3 id="connect方法的完整-API-如下"><a href="#connect方法的完整-API-如下" class="headerlink" title="connect方法的完整 API 如下"></a>connect方法的完整 API 如下</h3><pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> connect <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react-redux'</span>
 
 <span class="token keyword">const</span> VisibleTodoList <span class="token operator">=</span> <span class="token function">connect</span><span class="token punctuation">(</span>
    mapStateToProps<span class="token punctuation">,</span>
    mapDispatchToProps
-<span class="token punctuation">)</span><span class="token punctuation">(</span>TodoList<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">)</span><span class="token punctuation">(</span>TodoList<span class="token punctuation">)</span></code></pre>
 <p>上面代码中，<code>connect</code>方法接受两个参数：<code>mapStateToProps</code>和<code>mapDispatchToProps</code>。它们定义了 UI 组件的业务逻辑。前者负责输入逻辑，即将<code>state</code>映射到 UI 组件的参数（<code>props</code>），后者负责输出逻辑，即将用户对 UI 组件的操作映射成 Action。</p>
-<h2 id="mapStateToProps函数"><a href="#mapStateToProps函数" class="headerlink" title="mapStateToProps函数"></a>mapStateToProps函数</h2><p><code>mapStateToProps</code>是一个函数。它的作用就是像它的名字那样，建立一个从（外部的）<code>state</code>对象到（UI 组件的）<code>props</code>对象的映射关系。</p>
+<h3 id="mapStateToProps函数"><a href="#mapStateToProps函数" class="headerlink" title="mapStateToProps函数"></a>mapStateToProps函数</h3><p><code>mapStateToProps</code>是一个函数。它的作用就是像它的名字那样，建立一个从（外部的）<code>state</code>对象到（UI 组件的）<code>props</code>对象的映射关系。</p>
 <p>作为函数，<code>mapStateToProps</code>执行后应该返回一个对象，里面的每一个键值对就是一个映射。请看下面的例子。</p>
 <p>当 props接收到来自父组件一个小小的改动，那么你所使用的 ownProps 参数，mapStateToProps 都会被重新计算）。<br>mapStateToProps可以不传，如果不传，组件不会监听store的变化，也就是说Store的更新不会引起UI的更新<br>example:</p>
-<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">const</span> state <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span> 
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">const</span> state <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span> 
 <span class="token comment" spellcheck="true">// change code below this line</span>
 <span class="token keyword">const</span> mapStateToProps <span class="token operator">=</span> <span class="token punctuation">(</span>state<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">{</span>
   <span class="token keyword">return</span> <span class="token punctuation">{</span>
@@ -969,16 +968,16 @@ yarn add react<span class="token operator">-</span>redux<span aria-hidden="true"
   <span class="token keyword">return</span> <span class="token punctuation">{</span>
     todoList<span class="token punctuation">:</span> state<span class="token punctuation">.</span>todoList
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span> </code></pre>
 <p>传入了props的：</p>
-<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">const</span> mapStateToProps <span class="token operator">=</span> <span class="token punctuation">(</span>state<span class="token punctuation">,</span> ownProps<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">const</span> mapStateToProps <span class="token operator">=</span> <span class="token punctuation">(</span>state<span class="token punctuation">,</span> ownProps<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
   <span class="token keyword">return</span> <span class="token punctuation">{</span>
     active<span class="token punctuation">:</span> ownProps<span class="token punctuation">.</span>filter <span class="token operator">===</span> state<span class="token punctuation">.</span>visibilityFilter
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="mapDispatchToProps"><a href="#mapDispatchToProps" class="headerlink" title="mapDispatchToProps()"></a>mapDispatchToProps()</h2><p><code>mapDispatchToProps</code>是<code>connect</code>函数的第二个参数，用来建立 UI 组件的参数到<code>store.dispatch</code>方法的映射。也就是说，它定义了哪些用户的操作应该当作 Action，传给 Store。它可以是一个函数，也可以是一个对象。</p>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="mapDispatchToProps"><a href="#mapDispatchToProps" class="headerlink" title="mapDispatchToProps()"></a>mapDispatchToProps()</h3><p><code>mapDispatchToProps</code>是<code>connect</code>函数的第二个参数，用来建立 UI 组件的参数到<code>store.dispatch</code>方法的映射。也就是说，它定义了哪些用户的操作应该当作 Action，传给 Store。它可以是一个函数，也可以是一个对象。</p>
 <p>如果<code>mapDispatchToProps</code>是一个函数，会得到<code>dispatch</code>和<code>ownProps</code>（容器组件的<code>props</code>对象）两个参数。</p>
-<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">const</span> mapDispatchToProps <span class="token operator">=</span> <span class="token punctuation">(</span>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">const</span> mapDispatchToProps <span class="token operator">=</span> <span class="token punctuation">(</span>
   dispatch<span class="token punctuation">,</span>
   ownProps
 <span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
@@ -1001,9 +1000,9 @@ yarn add react<span class="token operator">-</span>redux<span aria-hidden="true"
    <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 
-<span class="token comment" spellcheck="true">//&lt;button onClick={onButtonClick}>click me&lt;/button></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="Provider"><a href="#Provider" class="headerlink" title="Provider"></a>Provider</h2><p>React Redux provides<code> &lt;Provider /&gt;</code>, which makes the Redux store available to the rest of your app</p>
-<h3 id="使用provider的例子"><a href="#使用provider的例子" class="headerlink" title="使用provider的例子"></a>使用provider的例子</h3><pre class="line-numbers language-jsx"><code class="language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span>
+<span class="token comment" spellcheck="true">//&lt;button onClick={onButtonClick}>click me&lt;/button></span></code></pre>
+<h3 id="Provider"><a href="#Provider" class="headerlink" title="Provider"></a>Provider</h3><p>React Redux provides<code> &lt;Provider /&gt;</code>, which makes the Redux store available to the rest of your app</p>
+<h4 id="使用provider的例子"><a href="#使用provider的例子" class="headerlink" title="使用provider的例子"></a>使用provider的例子</h4><pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span>
 <span class="token keyword">import</span> ReactDOM <span class="token keyword">from</span> <span class="token string">'react-dom'</span>
 
 <span class="token keyword">import</span> <span class="token punctuation">{</span> Provider <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react-redux'</span>
@@ -1025,10 +1024,10 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>App</span> <span class="token punctuation">/></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Provider</span><span class="token punctuation">></span></span><span class="token punctuation">,</span>
   rootElement
-<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="connect"><a href="#connect" class="headerlink" title="connect()"></a>connect()</h2><p>React Redux provides a connect function for you to connect your component to the store.</p>
+<span class="token punctuation">)</span></code></pre>
+<h3 id="connect"><a href="#connect" class="headerlink" title="connect()"></a>connect()</h3><p>React Redux provides a connect function for you to connect your component to the store.</p>
 <p>connect 返回的是函数，不是组件</p>
-<h3 id="使用connect例子1"><a href="#使用connect例子1" class="headerlink" title="使用connect例子1"></a>使用connect例子1</h3><pre class="line-numbers language-jsx"><code class="language-jsx"><span class="token keyword">import</span> <span class="token punctuation">{</span>connect<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react-redux'</span>
+<h4 id="使用connect例子1"><a href="#使用connect例子1" class="headerlink" title="使用connect例子1"></a>使用connect例子1</h4><pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">import</span> <span class="token punctuation">{</span>connect<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react-redux'</span>
 <span class="token keyword">const</span> ExpenseList <span class="token operator">=</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">(</span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>Expenses<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
@@ -1046,8 +1045,8 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
   <span class="token punctuation">}</span>
 <span class="token comment" spellcheck="true">//connect传递mapStateToProps数据给ExpenseList</span>
 <span class="token keyword">const</span> ConnectExpenseList<span class="token operator">=</span> <span class="token function">connect</span><span class="token punctuation">(</span>mapStateToProps<span class="token punctuation">)</span><span class="token punctuation">(</span>ExpenseList<span class="token punctuation">)</span><span class="token punctuation">;</span> 
-<span class="token keyword">export</span> <span class="token keyword">default</span> ConnectExpenseList<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="使用connect例子-input"><a href="#使用connect例子-input" class="headerlink" title="使用connect例子 - input"></a>使用connect例子 - input</h2><pre class="line-numbers language-jsx"><code class="language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> ConnectExpenseList</code></pre>
+<h3 id="使用connect例子-input"><a href="#使用connect例子-input" class="headerlink" title="使用connect例子 - input"></a>使用connect例子 - input</h3><pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span>connect<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react-redux'</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span>setTextFilter<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'../actions/filters'</span>
 
@@ -1071,9 +1070,9 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
 
 <span class="token comment" spellcheck="true">//不用下面这种</span>
 <span class="token comment" spellcheck="true">//const ConnectExpenseList= connect(mapStateToProps)(ExpenseListFilters);</span>
-<span class="token keyword">export</span> <span class="token keyword">default</span>  <span class="token function">connect</span><span class="token punctuation">(</span>mapStateToProps<span class="token punctuation">)</span><span class="token punctuation">(</span>ExpenseListFilters<span class="token punctuation">)</span> <span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token keyword">export</span> <span class="token keyword">default</span>  <span class="token function">connect</span><span class="token punctuation">(</span>mapStateToProps<span class="token punctuation">)</span><span class="token punctuation">(</span>ExpenseListFilters<span class="token punctuation">)</span> <span class="token punctuation">;</span></code></pre>
 <p>使用connect - 提交form</p>
-<pre class="line-numbers language-jsx"><code class="language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> ExpenseForm <span class="token keyword">from</span> <span class="token string">'./ExpenseForm'</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span>connect<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react-redux'</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span>addExpense<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'../actions/expenses'</span>
@@ -1090,8 +1089,8 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
     <span class="token punctuation">)</span>
 <span class="token punctuation">}</span>
 
-<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token function">connect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">(</span>AddExpensePage<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-jsx"><code class="language-jsx"><span class="token comment" spellcheck="true">//form本身，重点是要双向绑定 由于提交form 要用类元素 </span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token function">connect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">(</span>AddExpensePage<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token comment" spellcheck="true">//form本身，重点是要双向绑定 由于提交form 要用类元素 </span>
 <span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span>
 <span class="token keyword">import</span> moment <span class="token keyword">from</span> <span class="token string">'moment'</span>
 <span class="token keyword">import</span> <span class="token string">"react-dates/initialize"</span><span class="token punctuation">;</span>
@@ -1182,20 +1181,20 @@ console<span class="token punctuation">.</span><span class="token function">log<
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
         <span class="token punctuation">)</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="完整练习例子：-expensifyApp-indecisionApp-counter"><a href="#完整练习例子：-expensifyApp-indecisionApp-counter" class="headerlink" title="完整练习例子： expensifyApp indecisionApp counter"></a>完整练习例子： expensifyApp indecisionApp counter</h2><p>理解图：</p>
+<span class="token punctuation">}</span> </code></pre>
+<h3 id="完整练习例子：-expensifyApp-indecisionApp-counter"><a href="#完整练习例子：-expensifyApp-indecisionApp-counter" class="headerlink" title="完整练习例子： expensifyApp indecisionApp counter"></a>完整练习例子： expensifyApp indecisionApp counter</h3><p>理解图：</p>
 <p><img src="/2020/12/21/react-1week05/image-20210101012217492.png"></p>
-<h2 id="改变obj属性"><a href="#改变obj属性" class="headerlink" title="改变obj属性"></a>改变obj属性</h2><pre class="line-numbers language-jsx"><code class="language-jsx"><span class="token keyword">const</span> defaultState <span class="token operator">=</span> <span class="token punctuation">{</span>
+<h3 id="改变obj属性"><a href="#改变obj属性" class="headerlink" title="改变obj属性"></a>改变obj属性</h3><pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">const</span> defaultState <span class="token operator">=</span> <span class="token punctuation">{</span>
   user<span class="token punctuation">:</span> <span class="token string">'CamperBot'</span><span class="token punctuation">,</span>
   status<span class="token punctuation">:</span> <span class="token string">'offline'</span><span class="token punctuation">,</span>
   friends<span class="token punctuation">:</span> <span class="token string">'732,982'</span><span class="token punctuation">,</span>
   community<span class="token punctuation">:</span> <span class="token string">'freeCodeCamp'</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
-Object<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>state<span class="token punctuation">,</span><span class="token punctuation">{</span>status<span class="token punctuation">:</span><span class="token string">'online'</span><span class="token punctuation">}</span> <span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+Object<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>state<span class="token punctuation">,</span><span class="token punctuation">{</span>status<span class="token punctuation">:</span><span class="token string">'online'</span><span class="token punctuation">}</span> <span class="token punctuation">)</span></code></pre>
 <h1 id="tool"><a href="#tool" class="headerlink" title="tool"></a>tool</h1><p><a target="_blank" rel="noopener" href="https://github.com/zalmoxisus/redux-devtools-extension">https://github.com/zalmoxisus/redux-devtools-extension</a></p>
 <h1 id="推荐读物"><a href="#推荐读物" class="headerlink" title="推荐读物"></a>推荐读物</h1><p><a target="_blank" rel="noopener" href="https://wizardforcel.gitbooks.io/reactjs101/content/">从零开始学 ReactJS详细教学</a></p>
 <p><a target="_blank" rel="noopener" href="https://chentsulin.github.io/redux/docs/introduction/index.html">查api&amp;简单解释</a></p>
-<h2 id="其他练习"><a href="#其他练习" class="headerlink" title="其他练习"></a>其他练习</h2><p><a target="_blank" rel="noopener" href="https://github.com/blueflylin/reactjs101/blob/master/Ch09/react-router-redux-github-finder.md">练习1</a> </p>
+<h1 id="其他练习"><a href="#其他练习" class="headerlink" title="其他练习"></a>其他练习</h1><p><a target="_blank" rel="noopener" href="https://github.com/blueflylin/reactjs101/blob/master/Ch09/react-router-redux-github-finder.md">练习1</a> </p>
 <p><a target="_blank" rel="noopener" href="https://github.com/blueflylin/reactjs101/blob/master/Ch10/react-router-redux-node-isomorphic-javascript-open-cook.md">练习2</a></p>
 <h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_26347769/article/details/109634399">https://blog.csdn.net/qq_26347769/article/details/109634399</a></p>
 <p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903894082928654">https://juejin.cn/post/6844903894082928654</a></p>
@@ -1373,12 +1372,7 @@ const showSomething=()=>{
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            React 中 styleconst styles={
-  color: "purple", 
-  fontSize: 40, 
-  border: "2px solid purple" 
-} 
-class Colorful extends
+                            React 中 style
                         
                     </div>
                     <div class="publish-info">

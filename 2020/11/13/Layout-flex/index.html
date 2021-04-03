@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Layout-flex, Savannah">
+    <meta name="keywords" content="Layout flex, Savannah">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Layout-flex | Savannah</title>
+    <title>Layout flex | Savannah</title>
     <link rel="icon" type="image/png" href="../../../../favicon.png">
 
     <link rel="stylesheet" type="text/css" href="../../../../libs/awesome/css/all.css">
@@ -260,12 +260,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/1.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Layout-flex</h1>
+                    <h1 class="description center-align post-title">Layout flex</h1>
                 </div>
             </div>
         </div>
@@ -386,6 +386,10 @@
                                 <span class="chip bg-color">css&amp;html</span>
                             </a>
                         
+                            <a href="../../../../tags/flex/">
+                                <span class="chip bg-color">flex</span>
+                            </a>
+                        
                     </div>
                     
                 </div>
@@ -394,8 +398,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="../../../../categories/Front-end/" class="post-category">
-                                Front-end
+                            <a href="../../../../categories/css-html/" class="post-category">
+                                css&html
                             </a>
                         
                     </div>
@@ -423,12 +427,12 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Layout-Flex"><a href="#Layout-Flex" class="headerlink" title="Layout - Flex"></a><strong>Layout - Flex</strong></h1><p><img src="/2020/11/13/Layout-flex/1605245444171.png"></p>
+                <p><img src="/2020/11/13/Layout-flex/1605245444171.png"></p>
 <p><strong>盒子模型</strong>   —   依赖 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/CSS/display"><code>display</code></a> 属性 + <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/CSS/position"><code>position</code></a>属性 + <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/CSS/float"><code>float</code></a>属性</p>
 <p><strong>Flex 布局</strong>   —   flex属性是<code>flex-grow</code>, <code>flex-shrink</code> 和 <code>flex-basis</code> 的简写 </p>
 <p><strong>Flex 布局以后，子元素的<code>float</code>、<code>clear</code>和<code>vertical-align</code>属性将失效</strong></p>
 <p><img src="/2020/11/13/Layout-flex/1605247566336.png"></p>
-<pre class=" language-css"><code class="language-css"><span class="token number">.</span>div &amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
+<pre class=" language-css"><code class="language-css"><span class="token selector"><span class="token class">.div</span> </span><span class="token punctuation">{</span>
   <span class="token property">-webkit-box-orient</span><span class="token punctuation">:</span>horizontal | vertical<span class="token punctuation">;</span><span class="token comment" spellcheck="true">/*-webkit-box-orient控制主轴和侧轴分别是哪一根 Safari 6.1 (及更新浏览器) 通过 -webkit-flex 属性支持*/</span>
   <span class="token property">flex-direction</span><span class="token punctuation">:</span> row | row-reverse | column | column-reverse<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">/*主轴的方向*/</span>
   <span class="token property">flex-wrap</span><span class="token punctuation">:</span> nowrap | wrap | wrap-reverse<span class="token punctuation">;</span><span class="token comment" spellcheck="true">/*决定一条轴线排不下，如何换行*/</span>
@@ -438,17 +442,28 @@
    -webkit-box-pack： start  富裕空间在右边 end     富裕空间在左边
                   center  富裕空间在两边 justify 富裕空间在项目之间
   <span class="token property">align-content</span><span class="token punctuation">:</span> flex-start | flex-end | center | space-between | space-around | stretch<span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">/*align-content属性定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。*/</span>
-&amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span></code></pre>
-<p>align-content ：： <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/CSS/align-content">https://developer.mozilla.org/en-US/docs/Web/CSS/align-content</a></p>
-<pre class=" language-css"><code class="language-css"><span class="token number">.</span>item &amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">/*align-content属性定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。
+    align-content  https://developer.mozilla.org/en-US/docs/Web/CSS/align-content  */</span>
+<span class="token punctuation">}</span></code></pre>
+<pre class=" language-css"><code class="language-css">  <span class="token property">justify-content</span><span class="token punctuation">:</span> flex-start | flex-end | center | space-between | space-around<span class="token punctuation">;</span><span class="token comment" spellcheck="true">/*项目在主轴上的对齐方式   左 右 中 两端&amp;间隔对等 每个两侧间隔相等*/</span></code></pre>
+<p><img src="/2020/11/13/Layout-flex/1605776747612.png"></p>
+<pre class=" language-css"><code class="language-css">  <span class="token property">align-items</span><span class="token punctuation">:</span> flex-start | flex-end | center | baseline | stretch<span class="token punctuation">;</span><span class="token comment" spellcheck="true">/*项目对其方式 上下中 第一行文字的基线对齐 拉伸（默认）*/</span></code></pre>
+<p><img src="/2020/11/13/Layout-flex/1605776777298.png"></p>
+<pre class=" language-css"><code class="language-css"><span class="token selector"><span class="token class">.item</span> </span><span class="token punctuation">{</span>
+
   <span class="token property">order</span><span class="token punctuation">:</span> &lt;integer><span class="token punctuation">;</span><span class="token comment" spellcheck="true">/*项目的排列顺序。数值越小，排列越靠前，默认为0。*/</span>
   <span class="token property">flex-grow</span><span class="token punctuation">:</span> number|initial|inherit<span class="token punctuation">;</span><span class="token comment" spellcheck="true">/*弹性盒子的扩展比率*/</span>
   <span class="token property">flex-shrink</span><span class="token punctuation">:</span> &lt;number><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">/* default 1 在所有因子相加之后计算比率来进行空间收缩*/</span>
   flex-basis / <span class="token property">flex-grow</span><span class="token punctuation">:</span> &lt;width> | sizing keywords | content | auto<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">/* default auto */</span>
   <span class="token property">align-self</span><span class="token punctuation">:</span> auto | flex-start | flex-end | center | baseline | stretch<span class="token punctuation">;</span>
   <span class="token comment" spellcheck="true">/*align-self属性允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性*/</span>
-&amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span></code></pre>
+
+<span class="token punctuation">}</span></code></pre>
+<p><code>max-content</code>: 尺寸值会变得尽可能大, 没有自动换行的机会. 如果<code>flex</code>容器<strong>太窄</strong>， 它就会<strong>溢出</strong>其自身的盒子。</p>
+<p><code>min-content</code>: 文本已尽可能抓住机会来自动换行, 变得尽可能小且没有溢出。</p>
+<p><img src="/2020/11/13/Layout-flex/1605774609826.png"></p>
+
 <p>注意：</p>
 <p>当元素的排列方向为<strong>横</strong>向：</p>
 <p>​    元素的总宽度小于容器的宽度，使用flex-grow属性；</p>
@@ -536,6 +551,10 @@
                                     <span class="chip bg-color">css&amp;html</span>
                                 </a>
                             
+                                <a href="../../../../tags/flex/">
+                                    <span class="chip bg-color">flex</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -588,9 +607,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Flex Layout Referenceflex 默认： 1 0 auto；（ flex-grow, flex-shrink and flex-basis）
-控制等分： 1  1  0;
-flex-basis flex-basis  ，主
+                            Flex Layout 的一个小总结
                         
                     </div>
                     <div class="publish-info">
@@ -601,8 +618,8 @@ flex-basis flex-basis  ，主
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="../../../../categories/Front-end/" class="post-category">
-                                    Front-end
+                            <a href="../../../../categories/css-html/" class="post-category">
+                                    css&html
                                 </a>
                             
                             
@@ -614,6 +631,10 @@ flex-basis flex-basis  ，主
                     
                     <a href="../../../../tags/css-html/">
                         <span class="chip bg-color">css&amp;html</span>
+                    </a>
+                    
+                    <a href="../../../../tags/flex/">
+                        <span class="chip bg-color">flex</span>
                     </a>
                     
                 </div>
@@ -639,8 +660,7 @@ flex-basis flex-basis  ，主
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            文字变化文字阴影：text-shadow文字模糊： transition: 1s ; + text-shadowtransition的用法很多 只要是变更原先位置的基本都有关
-文字方向： direction &amp; unicode-bi
+                            Text css
                         
                     </div>
                     <div class="publish-info">
@@ -651,8 +671,8 @@ flex-basis flex-basis  ，主
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="../../../../categories/Front-end/" class="post-category">
-                                    Front-end
+                            <a href="../../../../categories/css-html/" class="post-category">
+                                    css&html
                                 </a>
                             
                             
