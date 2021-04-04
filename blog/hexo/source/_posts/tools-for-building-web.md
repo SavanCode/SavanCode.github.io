@@ -59,12 +59,13 @@ codepen
 ## css 参考：
 
 1. css reference https://cssreference.io/
-2. codepen  https://codepen.io
-3. awwwards https://www.awwwards.com
-4. csslayout https://csslayout.io
-5. css inspiration  https://chokcoco.github.io/CSS-Inspiration
-6. animista https://animista.net
-7. Color Picker https://www.cssportal.com/css3-rgba-generator/
+2. css 灵感 https://chokcoco.github.io/CSS-Inspiration/#/
+3. codepen  https://codepen.io
+4. awwwards https://www.awwwards.com
+5. csslayout https://csslayout.io
+6. css inspiration  https://chokcoco.github.io/CSS-Inspiration
+7. animista https://animista.net
+8. Color Picker https://www.cssportal.com/css3-rgba-generator/
 
 
 
@@ -95,3 +96,6 @@ codepen
 ## 学习网站
 
 [30 seconds of code](https://www.30secondsofcode.org/)
+
+## 面试手册
+https://yangshun.github.io/tech-interview-handbook
