@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="hexo-add-img, Savannah">
+    <meta name="keywords" content="hexo image图像显示不出的问题, Savannah">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>hexo-add-img | Savannah</title>
+    <title>hexo image图像显示不出的问题 | Savannah</title>
     <link rel="icon" type="image/png" href="../../../../favicon.png">
 
     <link rel="stylesheet" type="text/css" href="../../../../libs/awesome/css/all.css">
@@ -29,8 +29,7 @@
 
     <script src="../../../../libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -261,12 +260,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/2.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/3.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">hexo-add-img</h1>
+                    <h1 class="description center-align post-title">hexo image图像显示不出的问题</h1>
                 </div>
             </div>
         </div>
@@ -424,17 +423,17 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Hexo本地图片显示问题"><a href="#Hexo本地图片显示问题" class="headerlink" title="Hexo本地图片显示问题"></a>Hexo本地图片显示问题</h1><p>使用<code>hexo</code>生成静态资源后,由于<code>url</code>的问题会出现图片加载的问题,现在网上的文章及官方的解决方案大概分为三种:</p>
+                <h2 id="Hexo本地图片显示问题"><a href="#Hexo本地图片显示问题" class="headerlink" title="Hexo本地图片显示问题"></a>Hexo本地图片显示问题</h2><p>使用<code>hexo</code>生成静态资源后,由于<code>url</code>的问题会出现图片加载的问题,现在网上的文章及官方的解决方案大概分为三种:</p>
 <ol>
 <li>将图片放入<code>source/images</code>目录下,每次<code>generate</code>都会生成图片,在使用相对或绝对路径进行引用</li>
 <li> 配置<code>hexo</code>的<code>_config.yml</code>文件, 将 <code>post_asset_folder</code> 设置为<code>true</code>, 这样每次new 生成一个文章时都会同步生成一个同名的文件夹,然后设置相对或绝对路径.  </li>
 <li> 使用<code>hexo</code>官方的解决方案,使用模版变量, <code>&#123;% asset_img slug [title] %&#125; </code>  </li>
 </ol>
 <p>解决方法:</p>
-<pre class="line-numbers language-html"><code class="language-html">设置post_asset_folder  为 true, 安装插件 asset-image
+<pre class=" language-html"><code class="language-html">设置post_asset_folder  为 true, 安装插件 asset-image
 npm install https://github.com/CodeFalling/hexo-asset-image
 设置图片为相对路径(详细步骤在下面图片)
-hexo clean &amp;&amp; hexo generate &amp;&amp; hexo s 运行查看<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+hexo clean &amp;&amp; hexo generate &amp;&amp; hexo s 运行查看</code></pre>
 <p>打开Typora的 <code>文件 &gt; 偏好设置</code>，进行配置<code>typora</code>的相对路径</p>
 <p><img src="/2020/11/08/hexo-add-img/setupImg.png"></p>
 <p>注意：一定要先设置了图片根目录后再插入图片，否则图片路径会不正确</p>
@@ -557,7 +556,7 @@ hexo clean &amp;&amp; hexo generate &amp;&amp; hexo s 运行查看<span aria-hid
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            HTML Video    Your browser does not support the video tag.&lt;video width=&quot;320&quot; height=&quot;240&quot; control
+                            Html Media
                         
                     </div>
                     <div class="publish-info">
@@ -568,8 +567,8 @@ hexo clean &amp;&amp; hexo generate &amp;&amp; hexo s 运行查看<span aria-hid
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="../../../../categories/Front-end/" class="post-category">
-                                    Front-end
+                            <a href="../../../../categories/css-html/" class="post-category">
+                                    css&html
                                 </a>
                             
                             
@@ -625,8 +624,8 @@ c
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="../../../../categories/Front-end/" class="post-category">
-                                    Front-end
+                            <a href="../../../../categories/css-html/" class="post-category">
+                                    css&html
                                 </a>
                             
                             
@@ -638,6 +637,10 @@ c
                     
                     <a href="../../../../tags/css-html/">
                         <span class="chip bg-color">css&amp;html</span>
+                    </a>
+                    
+                    <a href="../../../../tags/canvas/">
+                        <span class="chip bg-color">canvas</span>
                     </a>
                     
                 </div>

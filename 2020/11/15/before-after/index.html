@@ -29,8 +29,7 @@
 
     <script src="../../../../libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -395,8 +394,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="../../../../categories/Front-end/" class="post-category">
-                                Front-end
+                            <a href="../../../../categories/css-html/" class="post-category">
+                                css&html
                             </a>
                         
                     </div>
@@ -424,13 +423,13 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="伪元素"><a href="#伪元素" class="headerlink" title="伪元素"></a>伪元素</h1><h2 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h2><pre class="line-numbers language-css"><code class="language-css"><span class="token selector">element<span class="token pseudo-element">:after</span>  </span><span class="token punctuation">{</span> style properties <span class="token punctuation">}</span>  <span class="token comment" spellcheck="true">/* CSS2 语法 */</span>
-<span class="token selector">element<span class="token pseudo-element">::after</span> </span><span class="token punctuation">{</span> style properties <span class="token punctuation">}</span>  <span class="token comment" spellcheck="true">/* CSS3 语法 */</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+                <h2 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h2><pre class=" language-css"><code class="language-css"><span class="token selector">element<span class="token pseudo-element">:after</span>  </span><span class="token punctuation">{</span> style properties <span class="token punctuation">}</span>  <span class="token comment" spellcheck="true">/* CSS2 语法 */</span>
+<span class="token selector">element<span class="token pseudo-element">::after</span> </span><span class="token punctuation">{</span> style properties <span class="token punctuation">}</span>  <span class="token comment" spellcheck="true">/* CSS3 语法 */</span></code></pre>
 <h2 id="同异"><a href="#同异" class="headerlink" title="同异"></a>同异</h2><blockquote>
 <p>同：<br>                ::before和::after都是某标签的兄弟节点</p>
 <p>异：<br>                ::before 是某标签前的兄弟元素<br>                ::after 是某标签后的兄弟元素</p>
 </blockquote>
-<h2 id="demo"><a href="#demo" class="headerlink" title="demo"></a>demo</h2><pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span><span class="token style language-css"> 
+<h2 id="demo"><a href="#demo" class="headerlink" title="demo"></a>demo</h2><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span><span class="token style language-css"> 
 <span class="token selector">p<span class="token pseudo-element">::before</span> </span><span class="token punctuation">{</span>
   <span class="token property">content</span><span class="token punctuation">:</span> <span class="token string">'我是在p标签前的兄弟元素'</span>
 <span class="token punctuation">}</span>
@@ -440,7 +439,7 @@
 </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>--我是p标签--<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span></code></pre>
 <p><img src="/2020/11/15/before-after/1605604037887.png"></p>
 <h2 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h2><p>1）<strong>伪元素即伪类，它是一个元素的子元素</strong>，<em>其意思就是说，我们无法用JS获取到这些伪元素，</em>我们<em>无法通过JS对其进行增、删、改，所以这也是它们的优点，因为它们不会增加JS查询DOM的负担，即对于JS来说伪元素是透明的。然后因为它们也不是实际的HTML标签，所以可以加快浏览器加载HTML文件，对SEO也有帮助</em>（SEO  搜索引擎优化）。</p>
 <p>2）<strong>如果我们把伪类的样式有absolute定位的话会把伪类强制变成块级元素</strong>，<em>伪类本身是行内元素的。</em></p>
@@ -564,10 +563,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            前端本地存储的方式有三种，分别是cookie，localstorage和sessionStorage 
-使用方式cookie//保存cookie的值 
-var dataCookie='110';
-    document.cookie = 
+                            前端本地存储的方式三种
                         
                     </div>
                     <div class="publish-info">
@@ -578,8 +574,8 @@ var dataCookie='110';
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="../../../../categories/Front-end/" class="post-category">
-                                    Front-end
+                            <a href="../../../../categories/JS/" class="post-category">
+                                    JS
                                 </a>
                             
                             
@@ -589,8 +585,8 @@ var dataCookie='110';
                 
                 <div class="card-action article-tags">
                     
-                    <a href="../../../../tags/css-html/">
-                        <span class="chip bg-color">css&amp;html</span>
+                    <a href="../../../../tags/JS/">
+                        <span class="chip bg-color">JS</span>
                     </a>
                     
                 </div>
@@ -604,22 +600,19 @@ var dataCookie='110';
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="../hexo-render-skip/">
+                <a href="../relative-Path/">
                     <div class="card-image">
                         
                         
-                        <img src="../../../../medias/featureimages/11.jpg" class="responsive-img" alt="hexo render skip">
+                        <img src="../../../../medias/featureimages/17.jpg" class="responsive-img" alt="Relative Path 路径书写">
                         
-                        <span class="card-title">hexo render skip</span>
+                        <span class="card-title">Relative Path 路径书写</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Hexo博客跳过渲染，创建自定义网页方法1.跳过渲染指令在html文件中添加跳过渲染指令：
-用编辑器打开 Hexo\source 创建的文件夹中的 index.html 文件，在开头添加如下代码即可
----layout: false---
-
+                            写相对或者绝对路径的注意点
                         
                     </div>
                     <div class="publish-info">
@@ -630,8 +623,8 @@ var dataCookie='110';
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="../../../../categories/Hexo/" class="post-category">
-                                    Hexo
+                            <a href="../../../../categories/css-html/" class="post-category">
+                                    css&html
                                 </a>
                             
                             
@@ -641,8 +634,8 @@ var dataCookie='110';
                 
                 <div class="card-action article-tags">
                     
-                    <a href="../../../../tags/hexo/">
-                        <span class="chip bg-color">hexo</span>
+                    <a href="../../../../tags/css-html/">
+                        <span class="chip bg-color">css&amp;html</span>
                     </a>
                     
                 </div>

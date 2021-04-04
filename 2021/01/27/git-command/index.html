@@ -29,8 +29,7 @@
 
     <script src="../../../../libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -424,7 +423,35 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="commit之后，想撤销commit"><a href="#commit之后，想撤销commit" class="headerlink" title="commit之后，想撤销commit"></a>commit之后，想撤销commit</h2><p><strong>git reset –soft HEAD^</strong></p>
+                <h2 id="git版本控制-推荐软件"><a href="#git版本控制-推荐软件" class="headerlink" title="git版本控制 推荐软件"></a>git版本控制 推荐软件</h2><ul>
+<li><p>gitHub desktop </p>
+</li>
+<li><p>SourceTree</p>
+</li>
+</ul>
+<p>为什么不用commandLine,因为..</p>
+<p>  <img src="/2021/01/27/git-command/image-20210220133043365.png" alt="gitHub Desktop"></p>
+<p><img src="/2021/01/27/git-command/image-20210220133305975.png" alt="SourceTree"></p>
+<p>Source Tree的好处的,处理这种复杂的(因为当时比这个还多几个分支).不在话下, 一点也不怕晕(((φ(◎ロ◎;)φ)))</p>
+<p><img src="/2021/01/27/git-command/image-20210220133351680.png"></p>
+<h2 id="Vim"><a href="#Vim" class="headerlink" title="Vim"></a>Vim</h2><p>这个真的让我避之不及~ 就是感受不到他的好 /(ㄒoㄒ)/~~</p>
+<ul>
+<li><p>创建文件的语句   touch README.md</p>
+</li>
+<li><p>进入文件  vim README.md</p>
+</li>
+<li><p>对文件进行编辑   点击i 可以进入编辑状态（或者common v）</p>
+</li>
+<li><p>保存编辑文件<br>:x  进行保存<br>“:x”和”:wq”的真正区别，如下：<br>:wq   强制性写入文件并退出。即使文件没有被修改也强制写入，并更新文件的修改时间。<br>:x   写入文件并退出。仅当文件被修改时才写入，并更新文件修改时间，否则不会更新文件修改时间。</p>
+</li>
+<li><p>退出编辑状态  esc</p>
+</li>
+</ul>
+<h2 id="基本几个command"><a href="#基本几个command" class="headerlink" title="基本几个command"></a>基本几个command</h2><pre><code>git add -A 添加全部变更
+git pull origin master 拉源文件
+git commit -m “xxxxx”进行提交项目文件备注
+git log 获取版本记录状态</code></pre>
+<h2 id="进入vim进行编辑保存-x退出就可以了"><a href="#进入vim进行编辑保存-x退出就可以了" class="headerlink" title="进入vim进行编辑保存:x退出就可以了"></a>进入vim进行编辑保存:x退出就可以了</h2><h2 id="commit之后，想撤销commit"><a href="#commit之后，想撤销commit" class="headerlink" title="commit之后，想撤销commit"></a>commit之后，想撤销commit</h2><p><strong>git reset –soft HEAD^</strong></p>
 <p>这样就成功的撤销了你的cmmit</p>
 <p>注意，仅仅是撤回commit操作，您写的代码仍然保留。</p>
 <p>HEAD^的意思是上一个版本，也可以写成HEAD~1</p>
@@ -436,6 +463,22 @@
 <p>注意完成这个操作后，就恢复到了上一次的commit状态。</p>
 <h3 id="如果commit注释写错了，只是想改一下注释，只需要："><a href="#如果commit注释写错了，只是想改一下注释，只需要：" class="headerlink" title="如果commit注释写错了，只是想改一下注释，只需要："></a>如果commit注释写错了，只是想改一下注释，只需要：</h3><p>git commit –amend</p>
 <p>此时会进入默认vim编辑器，修改注释完毕后保存就好了。</p>
+<h2 id="解决git中upstream丢失问题Your-branch-is-based-on-‘origin-xxxx’-but-the-upstream-is-gone"><a href="#解决git中upstream丢失问题Your-branch-is-based-on-‘origin-xxxx’-but-the-upstream-is-gone" class="headerlink" title="解决git中upstream丢失问题Your branch is based on ‘origin/xxxx’, but the upstream is gone."></a>解决git中upstream丢失问题Your branch is based on ‘origin/xxxx’, but the upstream is gone.</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/limengke123/article/details/77850134">https://blog.csdn.net/limengke123/article/details/77850134</a></p>
+<h2 id="git-push-之后的回撤"><a href="#git-push-之后的回撤" class="headerlink" title="git push 之后的回撤"></a>git push 之后的回撤</h2><p>通过git log 获取提交的版本号<br>git revert 版本号xxxx<br>然后:x保存退出就可以了撤回到指定的版本了</p>
+<h2 id="取消更改-未push的状态撤回"><a href="#取消更改-未push的状态撤回" class="headerlink" title="取消更改 - 未push的状态撤回"></a>取消更改 - 未push的状态撤回</h2><p>  首先需要知道工作区（working diretory）和暂存区（Stage）这两个概念。工作区的该概念不仅包含你实际操作、更改的文件还应当包括当前修改但未add存入暂存区的文件变化信息，暂存区的作用则是临时存储文件的变化信息，在git add file操作之后，暂存区中将记录file文件上的修改信息。暂存区的存在更细化了时间节点，要知道commit的往往是有重大改变的版本或者是在一次修改工作整体完成之后才使用commit。而在这之间需要保存的修改，自然需要一个缓存区暂时存放。</p>
+<h3 id="“撤销修改”-命令"><a href="#“撤销修改”-命令" class="headerlink" title="“撤销修改” 命令"></a>“撤销修改” 命令</h3><ul>
+<li><p>1.git checkout</p>
+</li>
+<li><p>2.git reset</p>
+</li>
+<li><p>git checkout – file；撤销对工作区修改，这个命令是以最新的存储时间节点（add和commit）为参照，覆盖工作区对应文件file；这个命令改变的是工作区</p>
+</li>
+<li><p>git reset HEAD – file；清空add命令向暂存区提交的关于file文件的修改（Ustage）</p>
+</li>
+</ul>
+<h3 id="总结一下"><a href="#总结一下" class="headerlink" title="总结一下"></a>总结一下</h3><p><strong>有过add提交的使用git reset 文件</strong></p>
+<p><strong>一直未提交的就是用 git checkout 文件</strong> </p>
+<p>也就是如果我们文件已经提交到本地的缓存区，也就是通过add 这一步了，那么我们撤销的时候需要reset形式撤销，reset撤销只是撤出暂存区，并不是直接取消了而是在工作区还是有的，这个时候我们可以继续进行checkout撤销，这样就彻底取消掉修改的文件了。</p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/w958796636/article/details/53611133">https://blog.csdn.net/w958796636/article/details/53611133</a></p>
 
             </div>
@@ -556,10 +599,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            这个还是看自己写的练习文件，这个太一半了
-// miniprogram/pages/song/song.js
-import &#123; request &#125; from &quot;../../utils/util&quot;;
-i
+                            convert time的函数
                         
                     </div>
                     <div class="publish-info">
@@ -570,8 +610,8 @@ i
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="../../../../categories/js/" class="post-category">
-                                    js
+                            <a href="../../../../categories/JS/" class="post-category">
+                                    JS
                                 </a>
                             
                             
@@ -581,8 +621,8 @@ i
                 
                 <div class="card-action article-tags">
                     
-                    <a href="../../../../tags/js/">
-                        <span class="chip bg-color">js</span>
+                    <a href="../../../../tags/JS/">
+                        <span class="chip bg-color">JS</span>
                     </a>
                     
                 </div>
@@ -608,9 +648,7 @@ i
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            video 复用 - music小程序video列表，实现同一时间只能播放一个视频// video列表，实现同一时间只能播放一个视频
-  playVideo(e) {
-    var curIdx = e.currentTarget.id;
+                            视频播放列表
                         
                     </div>
                     <div class="publish-info">

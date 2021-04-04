@@ -29,8 +29,7 @@
 
     <script src="../../../../libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -424,8 +423,8 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="javascript的代码优化"><a href="#javascript的代码优化" class="headerlink" title="javascript的代码优化"></a>javascript的代码优化</h1><h2 id="js从css抽离出来"><a href="#js从css抽离出来" class="headerlink" title="js从css抽离出来"></a>js从css抽离出来</h2><h2 id="css-从js中抽离出来"><a href="#css-从js中抽离出来" class="headerlink" title="css 从js中抽离出来"></a>css 从js中抽离出来</h2><h2 id="减少全局变量"><a href="#减少全局变量" class="headerlink" title="减少全局变量"></a>减少全局变量</h2><h2 id="事件处理"><a href="#事件处理" class="headerlink" title="事件处理"></a>事件处理</h2><h3 id="隔离应用逻辑"><a href="#隔离应用逻辑" class="headerlink" title="隔离应用逻辑"></a>隔离应用逻辑</h3><p>将应用逻辑从所有事件处理程序中抽离出来是一种最佳实践</p>
-<pre class="line-numbers language-js"><code class="language-js"><span class="token comment" spellcheck="true">//不好的做法</span>
+                <h2 id="js从css抽离出来"><a href="#js从css抽离出来" class="headerlink" title="js从css抽离出来"></a>js从css抽离出来</h2><h2 id="css-从js中抽离出来"><a href="#css-从js中抽离出来" class="headerlink" title="css 从js中抽离出来"></a>css 从js中抽离出来</h2><h2 id="减少全局变量"><a href="#减少全局变量" class="headerlink" title="减少全局变量"></a>减少全局变量</h2><h2 id="事件处理"><a href="#事件处理" class="headerlink" title="事件处理"></a>事件处理</h2><h3 id="隔离应用逻辑"><a href="#隔离应用逻辑" class="headerlink" title="隔离应用逻辑"></a>隔离应用逻辑</h3><p>将应用逻辑从所有事件处理程序中抽离出来是一种最佳实践</p>
+<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">//不好的做法</span>
 <span class="token keyword">function</span> <span class="token function">handleClick</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span><span class="token punctuation">{</span>
   <span class="token keyword">var</span> popup <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'popup'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   popup<span class="token punctuation">.</span>style<span class="token punctuation">.</span>left <span class="token operator">=</span> event<span class="token punctuation">.</span>clientX <span class="token operator">+</span> <span class="token string">'px'</span><span class="token punctuation">;</span>
@@ -448,9 +447,9 @@
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 <span class="token function">addListener</span><span class="token punctuation">(</span>element<span class="token punctuation">,</span><span class="token string">'click'</span><span class="token punctuation">,</span><span class="token keyword">function</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span><span class="token punctuation">{</span>
   MyApplication<span class="token punctuation">.</span><span class="token function">handleClick</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <h3 id="不要分发事件对象"><a href="#不要分发事件对象" class="headerlink" title="不要分发事件对象"></a>不要分发事件对象</h3><p>让事件处理程序使用event对象来处理事件，然后拿到所有需要的数据传给应用逻辑</p>
-<pre class="line-numbers language-js"><code class="language-js"><span class="token comment" spellcheck="true">//改进的做法</span>
+<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">//改进的做法</span>
 <span class="token keyword">var</span> MyApplication <span class="token operator">=</span> <span class="token punctuation">{</span>
   handleClick<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span><span class="token punctuation">{</span>
     <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">showPopup</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>clientX<span class="token punctuation">,</span>event<span class="token punctuation">.</span>clientY<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -464,9 +463,9 @@
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 <span class="token function">addListener</span><span class="token punctuation">(</span>element<span class="token punctuation">,</span><span class="token string">'click'</span><span class="token punctuation">,</span><span class="token keyword">function</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span><span class="token punctuation">{</span>
   MyApplication<span class="token punctuation">.</span><span class="token function">handleClick</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <p>当处理事件时，最好让事件程序成为接触到event对象的唯一的函数。</p>
-<pre class="line-numbers language-js"><code class="language-js"><span class="token comment" spellcheck="true">//改进的做法</span>
+<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">//改进的做法</span>
 <span class="token keyword">var</span> MyApplication <span class="token operator">=</span> <span class="token punctuation">{</span>
   handleClick<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span><span class="token punctuation">{</span>
     event<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -482,7 +481,7 @@
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 <span class="token function">addListener</span><span class="token punctuation">(</span>element<span class="token punctuation">,</span><span class="token string">'click'</span><span class="token punctuation">,</span><span class="token keyword">function</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span><span class="token punctuation">{</span>
   MyApplication<span class="token punctuation">.</span><span class="token function">handleClick</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <h2 id="配置数据"><a href="#配置数据" class="headerlink" title="配置数据"></a>配置数据</h2><p>关键数据从代码抽离</p>
 <ol>
 <li>URL</li>
@@ -492,7 +491,7 @@
 <li>任何可能发生变更的值</li>
 </ol>
 <p>将配置数据保存在了config对象中，config对象的每个属性都保存了一个数据片段，每个属性名都有前缀，用以表明数据的类型(MSG表示展现给用户的信息，URL表示网络地址，CSS表示这是一个className)。当然，也可以将整个config对象放到单独的文件中，这样对配置数据的修改可以完全和使用这个数据的代码隔离开来</p>
-<pre class="line-numbers language-js"><code class="language-js"><span class="token comment" spellcheck="true">//好的做法</span>
+<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">//好的做法</span>
 <span class="token keyword">var</span> config <span class="token operator">=</span> <span class="token punctuation">{</span>
   MSG_INVALID_VALUE<span class="token punctuation">:</span> <span class="token string">'Invalid value'</span><span class="token punctuation">,</span>
   URL_INVALID<span class="token punctuation">:</span><span class="token string">'/errors/invalid.php'</span><span class="token punctuation">,</span>
@@ -510,8 +509,8 @@
   <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
     <span class="token function">addClass</span><span class="token punctuation">(</span>element<span class="token punctuation">,</span>config<span class="token punctuation">.</span>CSS_SELECTED<span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="选择器优化"><a href="#选择器优化" class="headerlink" title="选择器优化"></a>选择器优化</h2><pre class="line-numbers language-js"><code class="language-js"><span class="token comment" spellcheck="true">//好的做法app.Eles = {</span>
+<span class="token punctuation">}</span></code></pre>
+<h2 id="选择器优化"><a href="#选择器优化" class="headerlink" title="选择器优化"></a>选择器优化</h2><pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">//好的做法app.Eles = {</span>
     widgetDiv<span class="token punctuation">:</span> <span class="token string">".left-widget div"</span><span class="token punctuation">,</span>
     inputResize<span class="token punctuation">:</span> <span class="token string">'.input-resize'</span><span class="token punctuation">,</span>
     hr<span class="token punctuation">:</span> <span class="token string">'.hr'</span><span class="token punctuation">,</span>
@@ -521,12 +520,12 @@
     mainCon<span class="token punctuation">:</span> <span class="token string">'#mainCon'</span><span class="token punctuation">,</span>
     rulerX<span class="token punctuation">:</span> <span class="token string">'.ruler-x'</span><span class="token punctuation">,</span>
     rulerY<span class="token punctuation">:</span> <span class="token string">'.ruler-y'</span><span class="token punctuation">,</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
 <h2 id="函数优化"><a href="#函数优化" class="headerlink" title="函数优化"></a>函数优化</h2><p>　1、避免出现超大函数</p>
 <p>　2、独立出来的函数有助于代码复用</p>
 <p>　3、独立出来的函数更容易被覆写</p>
 <p>　4、独立出来的函数如果拥有一个良好的命名，它本身就起到了注释的作用</p>
-<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">var</span> getUserInfo <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> getUserInfo <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
     <span class="token function">ajax</span><span class="token punctuation">(</span> <span class="token string">'http:// xxx.com/userInfo'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span> data <span class="token punctuation">)</span><span class="token punctuation">{</span>
         console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span> <span class="token string">'userId: '</span> <span class="token operator">+</span> data<span class="token punctuation">.</span>userId <span class="token punctuation">)</span><span class="token punctuation">;</span>
         console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span> <span class="token string">'userName: '</span> <span class="token operator">+</span> data<span class="token punctuation">.</span>userName <span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -543,7 +542,7 @@
     console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span> <span class="token string">'userId: '</span> <span class="token operator">+</span> data<span class="token punctuation">.</span>userId <span class="token punctuation">)</span><span class="token punctuation">;</span>
     console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span> <span class="token string">'userName: '</span> <span class="token operator">+</span> data<span class="token punctuation">.</span>userName <span class="token punctuation">)</span><span class="token punctuation">;</span>
     console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span> <span class="token string">'nickName: '</span> <span class="token operator">+</span> data<span class="token punctuation">.</span>nickName <span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
 <p>另外注意</p>
 <ul>
 <li>减少参数量（同一对象信息，就用对象传送）</li>
@@ -556,15 +555,6 @@
 <h2 id="循环优化"><a href="#循环优化" class="headerlink" title="循环优化"></a>循环优化</h2><ul>
 <li>合理使用循环 ， 避免多重循环</li>
 </ul>
-<h2 id="函数防抖与节流-（input-优化）"><a href="#函数防抖与节流-（input-优化）" class="headerlink" title="函数防抖与节流 （input 优化）"></a>函数防抖与节流 （input 优化）</h2><p>函数防抖和节流区别在于</p>
-<ul>
-<li>函数防抖的情况下，函数将一直推迟执行，造成不会被执行的效果；</li>
-<li>函数节流的情况下，函数将每隔 n 秒执行一次</li>
-</ul>
-<blockquote>
-<p>节流防抖就好比乘电梯，比如delay(等待)是10秒，那么防抖就是电梯每进来一个人就要等10秒再运行，而节流就是电梯保证每10秒可以运行一次<br>它和防抖动最大的区别就是，节流函数不管事件触发有多频繁，都会保证在规定时间内一定会执行一次真正的事件处理函数。</p>
-</blockquote>
-<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844904176359587854#heading-18">https://juejin.cn/post/6844904176359587854#heading-18</a></p>
 
             </div>
             <hr/>
@@ -684,19 +674,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            JavaScript 数据类型包含值的数据类型：
-
-字符串（string）
-数字（number）
-布尔（boolean）
-对象（object）
-函数（function）
-
-有三种对象类型：
-
-对象（Object）
-日期（Date）
-数组（A
+                            js  data types
                         
                     </div>
                     <div class="publish-info">
@@ -745,20 +723,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            定义变量let/const 一起和 var 的区别
-
-
-var
-let/const
-
-
-
-会进行预解析
-不会进行预解析, 必须先定义后使用
-
-
-声明重复变量名
-不能声明重复的变量名, 不能重新赋值（不同作用域可以重新定义，但不可以重新赋值）
+                            JS basic
                         
                     </div>
                     <div class="publish-info">

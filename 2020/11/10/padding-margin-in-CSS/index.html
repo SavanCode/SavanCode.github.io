@@ -29,8 +29,7 @@
 
     <script src="../../../../libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -395,8 +394,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="../../../../categories/Front-end/" class="post-category">
-                                Front-end
+                            <a href="../../../../categories/css-html/" class="post-category">
+                                css&html
                             </a>
                         
                     </div>
@@ -427,8 +426,8 @@
                 <h2 id="Padding-amp-Margin-基础"><a href="#Padding-amp-Margin-基础" class="headerlink" title="Padding &amp; Margin 基础"></a>Padding &amp; Margin 基础</h2><p>Padding-bottom &amp; Margin-bottom 可以控制伪等高</p>
 <p><strong>不要对float元素指定margin和padding属性(能够在float元素内部嵌套一个div来设置margin和padding)。</strong></p>
 <p>padding / margin : 上，右，下，左</p>
-<pre class="line-numbers language-css"><code class="language-css"><span class="token property">padding</span><span class="token punctuation">:</span> <span class="token number">100%</span> <span class="token number">0</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token property">margin</span><span class="token punctuation">:</span> <span class="token number">25</span>px <span class="token number">50</span>px <span class="token number">75</span>px<span class="token punctuation">;</span>//上 左右 下<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class=" language-css"><code class="language-css"><span class="token property">padding</span><span class="token punctuation">:</span> <span class="token number">100%</span> <span class="token number">0</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token property">margin</span><span class="token punctuation">:</span> <span class="token number">25</span>px <span class="token number">50</span>px <span class="token number">75</span>px<span class="token punctuation">;</span>//上 左右 下</code></pre>
 <p><img src="/2020/11/10/padding-margin-in-CSS/1605082360115.png"></p>
 <h2 id="padding-的百分比值"><a href="#padding-的百分比值" class="headerlink" title="padding 的百分比值"></a>padding 的百分比值</h2><ul>
 <li>和 margin 属性不同， padding 属性是不支持负值的；</li>
@@ -441,10 +440,10 @@
 <ul>
 <li>使用视区宽度单位<code>vw</code> ( Relative to 1% of the width of the viewport* ) ，如下：</li>
 </ul>
-<pre class="line-numbers language-css"><code class="language-css"><span class="token selector"><span class="token class">.banner</span> </span><span class="token punctuation">{</span>
+<pre class=" language-css"><code class="language-css"><span class="token selector"><span class="token class">.banner</span> </span><span class="token punctuation">{</span>
     <span class="token property">height</span><span class="token punctuation">:</span> <span class="token number">15.15</span>vw<span class="token punctuation">;</span>
     <span class="token property">background-size</span><span class="token punctuation">:</span> cover<span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span></code></pre>
 <p>如果对兼容性要求不是很高，使用<code>vw</code>也是一个不错的做法，至少理解起来要更轻松一点。</p>
 <ul>
 <li>但是，如果我们的图片不是通栏，而是需要离左右各<code>1rem</code>的距离，此时，我们的CSS代码就要啰嗦点了，想要保持完美比例，就使用借助CSS3 <code>calc()</code>计算：</li>
@@ -456,17 +455,17 @@
 <ul>
 <li> 使用百分比<code>padding</code>，如下：</li>
 </ul>
-<pre class="line-numbers language-css"><code class="language-css"><span class="token selector"><span class="token class">.banner</span> </span><span class="token punctuation">{</span>
+<pre class=" language-css"><code class="language-css"><span class="token selector"><span class="token class">.banner</span> </span><span class="token punctuation">{</span>
     <span class="token property">padding</span><span class="token punctuation">:</span> <span class="token number">15.15%</span> <span class="token number">0</span> <span class="token number">0</span><span class="token punctuation">;</span>
     <span class="token property">background-size</span><span class="token punctuation">:</span> cover<span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span></code></pre>
 <p>此时无论图片的外部元素怎么变动，比例都是恒定不变的。</p>
 <h2 id="百分比padding与宽度自适应图片布局"><a href="#百分比padding与宽度自适应图片布局" class="headerlink" title="百分比padding与宽度自适应图片布局"></a>百分比padding与宽度自适应图片布局</h2><p>但是有时候我们的图片是不方便作为背景图呈现的，而是内联的<code>&lt;img&gt;</code>，百分比<code>padding</code>也是可以轻松应对的，求套路是比较固定的，图片元素外面需要一个固定比例的容器元素，例如下面的HTML结构：</p>
-<pre class="line-numbers language-css"><code class="language-css">&lt;div class=<span class="token string">"banner"</span>>
+<pre class=" language-css"><code class="language-css">&lt;div class=<span class="token string">"banner"</span>>
   &lt;img src=<span class="token string">"banner.jpg"</span>>
-&lt;/div><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+&lt;/div></code></pre>
 <p><code>.banner</code>元素同样负责控制比例，然后图片填充<code>.banner</code>元素即可，CSS代码如下：</p>
-<pre class="line-numbers language-css"><code class="language-css"><span class="token selector"><span class="token class">.banner</span> </span><span class="token punctuation">{</span>
+<pre class=" language-css"><code class="language-css"><span class="token selector"><span class="token class">.banner</span> </span><span class="token punctuation">{</span>
     <span class="token property">padding</span><span class="token punctuation">:</span> <span class="token number">15.15%</span> <span class="token number">0</span> <span class="token number">0</span><span class="token punctuation">;</span>
     <span class="token property">position</span><span class="token punctuation">:</span> relative<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
@@ -474,19 +473,20 @@
     <span class="token property">position</span><span class="token punctuation">:</span> absolute<span class="token punctuation">;</span>
     <span class="token property">width</span><span class="token punctuation">:</span> <span class="token number">100%</span><span class="token punctuation">;</span> <span class="token property">height</span><span class="token punctuation">:</span> <span class="token number">100%</span><span class="token punctuation">;</span>
     <span class="token property">left</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token property">top</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span></code></pre>
 <p>例子1：<a target="_blank" rel="noopener" href="https://www.zhangxinxu.com/study/201708/percent-padding-auto-layout.html">https://www.zhangxinxu.com/study/201708/percent-padding-auto-layout.html</a></p>
 <p>例子2：<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000004231995">https://segmentfault.com/a/1190000004231995</a></p>
-<h2 id="网页布局的margin-合并与BFC"><a href="#网页布局的margin-合并与BFC" class="headerlink" title="网页布局的margin 合并与BFC"></a>网页布局的margin 合并与BFC</h2><p>基本使用场景：：</p>
-<pre class="line-numbers language-html"><code class="language-html">.box {width:210px;border: 1px solid #000;float: left;}
+<h2 id="网页布局的margin-合并与BFC"><a href="#网页布局的margin-合并与BFC" class="headerlink" title="网页布局的margin 合并与BFC"></a>网页布局的margin 合并与BFC</h2><p>BFC的理解： 就是对于该元素独立的渲染（不管这个指定元素怎么设置，不能影响外部）</p>
+<p>基本使用场景：：</p>
+<pre class=" language-html"><code class="language-html">.box {width:210px;border: 1px solid #000;float: left;}
 .img {width: 100px;height: 100px;background: #696;float: left;}
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>box<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>img<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>image<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>info<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>信息信息信息信息信息信息信息信息信息信息信息信<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
 <p><img src="/2020/11/10/padding-margin-in-CSS/1605081607514.png"></p>
 <p>做伪等高布局</p>
-<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text/css<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token style language-css">
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text/css<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token style language-css">
             <span class="token selector">*</span><span class="token punctuation">{</span>
                 <span class="token property">margin</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
                 <span class="token property">padding</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
@@ -549,9 +549,13 @@
                 right<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span> <span class="token punctuation">/></span></span>
                 right<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span> <span class="token punctuation">/></span></span>
             <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
 <p><img src="/2020/11/10/padding-margin-in-CSS/1605095493973.png"></p>
 <p><strong>此时我们可以为P元素的内容建立一个BFC，让其内容消除对外界浮动元素的影响。根据上文所知，只要给info元素添加<code>overflow:hidden;</code>即可为其内容建立新的BFC。</strong></p>
+<blockquote>
+<p>简单地说，就是对于重叠的元素 分别给个parent 盒子，然后对于这个parent给一个overflow：hidden</p>
+<p>另外这个也可以达到清除浮动 的效果哦<del>~</del> </p>
+</blockquote>
 <p><img src="/2020/11/10/padding-margin-in-CSS/1605081934208.png"></p>
 <p><img src="/2020/11/10/padding-margin-in-CSS/1605084216319.png"></p>
 <ol>
@@ -698,11 +702,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Floatfloat属性设计的初衷：仅仅是让文字像流水一样环绕浮动元素
-
-float:  left, right, none, inherit
-將原本上下排列的元素改成左右排列,使元素向左或向右移动，只能左右,不能上下
-要用margin保持
+                            float小总结
                         
                     </div>
                     <div class="publish-info">
@@ -713,8 +713,8 @@ float:  left, right, none, inherit
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="../../../../categories/Front-end/" class="post-category">
-                                    Front-end
+                            <a href="../../../../categories/css-html/" class="post-category">
+                                    css&html
                                 </a>
                             
                             
@@ -751,10 +751,7 @@ float:  left, right, none, inherit
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            暂存save() &amp; restore()：save 和 restore 方法是用来保存和恢复 canvas 状态的
-&lt;script type="text/javascript">
-    //得到画布标签
-var canvas
+                            Canvas 2 HTML Graphics 的零碎知识点
                         
                     </div>
                     <div class="publish-info">
@@ -765,8 +762,8 @@ var canvas
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="../../../../categories/Front-end/" class="post-category">
-                                    Front-end
+                            <a href="../../../../categories/css-html/" class="post-category">
+                                    css&html
                                 </a>
                             
                             
@@ -778,6 +775,10 @@ var canvas
                     
                     <a href="../../../../tags/css-html/">
                         <span class="chip bg-color">css&amp;html</span>
+                    </a>
+                    
+                    <a href="../../../../tags/canvas/">
+                        <span class="chip bg-color">canvas</span>
                     </a>
                     
                 </div>

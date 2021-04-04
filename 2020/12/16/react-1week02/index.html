@@ -29,8 +29,7 @@
 
     <script src="../../../../libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -424,28 +423,28 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="React的生命周期"><a href="#React的生命周期" class="headerlink" title="React的生命周期"></a>React的生命周期</h1><h2 id="挂载卸载过程基本函数"><a href="#挂载卸载过程基本函数" class="headerlink" title="挂载卸载过程基本函数"></a>挂载卸载过程基本函数</h2><ul>
+                <h2 id="React的生命周期"><a href="#React的生命周期" class="headerlink" title="React的生命周期"></a>React的生命周期</h2><h3 id="挂载卸载过程基本函数"><a href="#挂载卸载过程基本函数" class="headerlink" title="挂载卸载过程基本函数"></a>挂载卸载过程基本函数</h3><ul>
 <li>constructor()</li>
 <li>componentWillMount()</li>
 <li>componentDidMount()</li>
 <li>componentWillUnmount ()</li>
 </ul>
-<h2 id="更新过程基本函数"><a href="#更新过程基本函数" class="headerlink" title="更新过程基本函数"></a>更新过程基本函数</h2><ul>
+<h3 id="更新过程基本函数"><a href="#更新过程基本函数" class="headerlink" title="更新过程基本函数"></a>更新过程基本函数</h3><ul>
 <li>componentWillReceiveProps (nextProps) </li>
 <li>shouldComponentUpdate(nextProps,nextState) </li>
 <li>componentWillUpdate (nextProps,nextState) </li>
 <li>componentDidUpdate(prevProps,prevState) </li>
 <li>render() </li>
 </ul>
-<h2 id="React新增的生命周期基本函数"><a href="#React新增的生命周期基本函数" class="headerlink" title="React新增的生命周期基本函数"></a>React新增的生命周期基本函数</h2><ul>
+<h3 id="React新增的生命周期基本函数"><a href="#React新增的生命周期基本函数" class="headerlink" title="React新增的生命周期基本函数"></a>React新增的生命周期基本函数</h3><ul>
 <li>getDerivedStateFromProps(nextProps, prevState)</li>
 <li>getSnapshotBeforeUpdate(prevProps, prevState)</li>
 </ul>
 <p>React的生命周期从广义上分为三个阶段：挂载、渲染、卸载</p>
 <p><img src="/2020/12/16/react-1week02/image-20201216222750092.png"></p>
-<h1 id="挂载卸载过程"><a href="#挂载卸载过程" class="headerlink" title="挂载卸载过程"></a>挂载卸载过程</h1><h2 id="1-constructor"><a href="#1-constructor" class="headerlink" title="1.constructor()"></a>1.constructor()</h2><p>constructor()中完成了React数据的初始化，它接受两个参数：props和context，当想在函数内部使用这两个参数时，需使用super()传入这两个参数。<br> 注意：只要使用了constructor()就必须写super(),否则会导致this指向错误。</p>
-<h2 id="2-componentWillMount"><a href="#2-componentWillMount" class="headerlink" title="2.componentWillMount()"></a>2.componentWillMount()</h2><p>componentWillMount()一般用的比较少，它更多的是在服务端渲染时使用。它代表的过程是组件已经经历了constructor()初始化数据后，但是还未渲染DOM时。</p>
-<pre class="line-numbers language-jsx"><code class="language-jsx"><span class="token keyword">class</span> <span class="token class-name">MyComponent</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
+<h2 id="挂载卸载过程"><a href="#挂载卸载过程" class="headerlink" title="挂载卸载过程"></a>挂载卸载过程</h2><h3 id="1-constructor"><a href="#1-constructor" class="headerlink" title="1.constructor()"></a>1.constructor()</h3><p>constructor()中完成了React数据的初始化，它接受两个参数：props和context，当想在函数内部使用这两个参数时，需使用super()传入这两个参数。<br> 注意：只要使用了constructor()就必须写super(),否则会导致this指向错误。</p>
+<h3 id="2-componentWillMount"><a href="#2-componentWillMount" class="headerlink" title="2.componentWillMount()"></a>2.componentWillMount()</h3><p>componentWillMount()一般用的比较少，它更多的是在服务端渲染时使用。它代表的过程是组件已经经历了constructor()初始化数据后，但是还未渲染DOM时。</p>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">class</span> <span class="token class-name">MyComponent</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
   <span class="token function">constructor</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">super</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span>
@@ -459,9 +458,9 @@
 <span class="token comment" spellcheck="true">//结果：执行多次哦</span>
 <span class="token comment" spellcheck="true">//0</span>
 <span class="token comment" spellcheck="true">//0</span>
-<span class="token comment" spellcheck="true">//0</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="3-componentDidMount"><a href="#3-componentDidMount" class="headerlink" title="3.componentDidMount()"></a>3.componentDidMount()</h2><p>组件第一次渲染完成，此时dom节点已经生成，可以在这里调用ajax请求，返回数据setState后组件会重新渲染</p>
-<pre class="line-numbers language-jsx"><code class="language-jsx"><span class="token keyword">class</span> <span class="token class-name">MyComponent</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
+<span class="token comment" spellcheck="true">//0</span></code></pre>
+<h3 id="3-componentDidMount"><a href="#3-componentDidMount" class="headerlink" title="3.componentDidMount()"></a>3.componentDidMount()</h3><p>组件第一次渲染完成，此时dom节点已经生成，可以在这里调用ajax请求，返回数据setState后组件会重新渲染</p>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">class</span> <span class="token class-name">MyComponent</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
   <span class="token function">constructor</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">super</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">this</span><span class="token punctuation">.</span>state <span class="token operator">=</span> <span class="token punctuation">{</span>
@@ -482,16 +481,16 @@
       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
     <span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="4-componentWillUnmount"><a href="#4-componentWillUnmount" class="headerlink" title="4.componentWillUnmount ()"></a>4.componentWillUnmount ()</h2><p>在此处完成组件的卸载和数据的销毁。</p>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="4-componentWillUnmount"><a href="#4-componentWillUnmount" class="headerlink" title="4.componentWillUnmount ()"></a>4.componentWillUnmount ()</h3><p>在此处完成组件的卸载和数据的销毁。</p>
 <ol>
 <li>clear你在组建中所有的setTimeout,setInterval</li>
 <li>移除所有组建中的监听 removeEventListener</li>
 <li>有时候我们会碰到这个warning:</li>
 </ol>
-<pre class="line-numbers language-csharp"><code class="language-csharp">Can only update a mounted or mounting component<span class="token punctuation">.</span> This usually means you called <span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">)</span> on an unmounted component<span class="token punctuation">.</span> This <span class="token keyword">is</span> a   no<span class="token operator">-</span>op<span class="token punctuation">.</span> Please check the code <span class="token keyword">for</span> the undefined component<span class="token punctuation">.</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class=" language-csharp"><code class="language-csharp">Can only update a mounted or mounting component<span class="token punctuation">.</span> This usually means you called <span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">)</span> on an unmounted component<span class="token punctuation">.</span> This <span class="token keyword">is</span> a   no<span class="token operator">-</span>op<span class="token punctuation">.</span> Please check the code <span class="token keyword">for</span> the undefined component<span class="token punctuation">.</span></code></pre>
 <p>原因：因为你在组件中的ajax请求（异步函数）返回setState,而你组件销毁的时候，请求还未完成，因此会报warning<br> 解决方法：</p>
-<pre class="line-numbers language-kotlin"><code class="language-kotlin"><span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<pre class=" language-kotlin"><code class="language-kotlin"><span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">this</span><span class="token punctuation">.</span>isMount <span class="token operator">===</span> <span class="token boolean">true</span>
     axios<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
     <span class="token keyword">this</span><span class="token punctuation">.</span>isMount <span class="token operator">&amp;&amp;</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>   <span class="token comment" spellcheck="true">// 增加条件ismount为true时</span>
@@ -501,18 +500,18 @@
 <span class="token punctuation">}</span>
 <span class="token function">componentWillUnmount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">this</span><span class="token punctuation">.</span>isMount <span class="token operator">===</span> <span class="token boolean">false</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span></code></pre>
 <p>其他的：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/b331d0e4b398">https://www.jianshu.com/p/b331d0e4b398</a> </p>
-<h1 id="实际应用"><a href="#实际应用" class="headerlink" title="实际应用"></a>实际应用</h1><h2 id="5、componentDidUpdate-prevProps-prevState"><a href="#5、componentDidUpdate-prevProps-prevState" class="headerlink" title="5、componentDidUpdate(prevProps,prevState)"></a>5、componentDidUpdate(prevProps,prevState)</h2><p>数据发生变化之后才会被保存</p>
-<pre class="line-numbers language-jsx"><code class="language-jsx"><span class="token function">componentDidUpdate</span><span class="token punctuation">(</span>prevProps<span class="token punctuation">,</span>prevState<span class="token punctuation">)</span><span class="token punctuation">{</span>
+<h2 id="实际应用"><a href="#实际应用" class="headerlink" title="实际应用"></a>实际应用</h2><h3 id="5、componentDidUpdate-prevProps-prevState"><a href="#5、componentDidUpdate-prevProps-prevState" class="headerlink" title="5、componentDidUpdate(prevProps,prevState)"></a>5、componentDidUpdate(prevProps,prevState)</h3><p>数据发生变化之后才会被保存</p>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token function">componentDidUpdate</span><span class="token punctuation">(</span>prevProps<span class="token punctuation">,</span>prevState<span class="token punctuation">)</span><span class="token punctuation">{</span>
     <span class="token keyword">if</span><span class="token punctuation">(</span>prevState<span class="token punctuation">.</span>options<span class="token punctuation">.</span>length <span class="token operator">!==</span> <span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>options<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">{</span>
             console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"options changed"</span><span class="token punctuation">)</span>
             <span class="token keyword">const</span> json <span class="token operator">=</span>JSON<span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>options<span class="token punctuation">)</span><span class="token punctuation">;</span>
             localStorage<span class="token punctuation">.</span><span class="token function">setItem</span><span class="token punctuation">(</span><span class="token string">'option'</span><span class="token punctuation">,</span>json<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="6、componentDidMount"><a href="#6、componentDidMount" class="headerlink" title="6、componentDidMount()"></a>6、componentDidMount()</h2><p>渲染的时候，读取数据储存，刷新页面也还是根据localStorage</p>
-<pre class="line-numbers language-jsx"><code class="language-jsx"><span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>  
+<span class="token punctuation">}</span></code></pre>
+<h3 id="6、componentDidMount"><a href="#6、componentDidMount" class="headerlink" title="6、componentDidMount()"></a>6、componentDidMount()</h3><p>渲染的时候，读取数据储存，刷新页面也还是根据localStorage</p>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>  
         <span class="token keyword">const</span> json<span class="token operator">=</span>localStorage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span><span class="token string">'option'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">const</span> options<span class="token operator">=</span>JSON<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>json<span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">if</span><span class="token punctuation">(</span>options<span class="token punctuation">)</span><span class="token punctuation">{</span>
@@ -520,9 +519,9 @@
                             options<span class="token punctuation">,</span>
             <span class="token punctuation">}</span><span class="token punctuation">)</span>
         <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span></code></pre>
 <p>但是这里其实加多判断看有没有option这个数据，另外要注意页面error（JSON.parse()这个很容易有error，导致页面崩塌）</p>
-<pre class="line-numbers language-jsx"><code class="language-jsx"><span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span> 
+<pre class=" language-jsx"><code class="language-jsx"><span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span> 
     <span class="token keyword">try</span><span class="token punctuation">{</span>
         <span class="token keyword">const</span> json<span class="token operator">=</span>localStorage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span><span class="token string">'option'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">const</span> options<span class="token operator">=</span>JSON<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>json<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -535,9 +534,9 @@
     <span class="token punctuation">}</span><span class="token keyword">catch</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">{</span>
 
     <span class="token punctuation">}</span> 
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="7-componentWillReceiveProps-对子组件的props进行监视"><a href="#7-componentWillReceiveProps-对子组件的props进行监视" class="headerlink" title="7.componentWillReceiveProps - 对子组件的props进行监视"></a>7.componentWillReceiveProps - 对子组件的props进行监视</h2><p> Timer 练习中</p>
-<pre class="line-numbers language-jsx"><code class="language-jsx"><span class="token comment" spellcheck="true">//但是并不安全</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="7-componentWillReceiveProps-对子组件的props进行监视"><a href="#7-componentWillReceiveProps-对子组件的props进行监视" class="headerlink" title="7.componentWillReceiveProps - 对子组件的props进行监视"></a>7.componentWillReceiveProps - 对子组件的props进行监视</h3><p> Timer 练习中</p>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token comment" spellcheck="true">//但是并不安全</span>
     <span class="token function">componentWillReceiveProps</span><span class="token punctuation">(</span>nextProps<span class="token punctuation">)</span><span class="token punctuation">{</span>
       console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"nextProps"</span><span class="token punctuation">,</span>nextProps<span class="token punctuation">)</span>
       <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
@@ -553,14 +552,14 @@
           leftTime<span class="token punctuation">:</span> nextProps<span class="token punctuation">.</span>breakLength<span class="token operator">*</span><span class="token number">60</span><span class="token operator">*</span><span class="token number">1000</span>
         <span class="token punctuation">}</span><span class="token punctuation">)</span>
       <span class="token punctuation">}</span> 
-    <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="简单总结"><a href="#简单总结" class="headerlink" title="简单总结"></a>简单总结</h2><ul>
+    <span class="token punctuation">}</span></code></pre>
+<h3 id="简单总结"><a href="#简单总结" class="headerlink" title="简单总结"></a>简单总结</h3><ul>
 <li><code>componentWillMount</code>：组件挂载开始之前，也就是在组件调用 <code>render</code> 方法之前调用。</li>
 <li><code>componentDidMount</code>：组件挂载完成以后，也就是 DOM 元素已经插入页面后调用。</li>
 <li><code>componentWillUnmount</code>：组件对应的 DOM 元素从页面中删除之前调用。</li>
 </ul>
-<h1 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h1><p>偶数点击，显示count</p>
-<pre class="line-numbers language-jsx"><code class="language-jsx"><span class="token keyword">class</span> <span class="token class-name">OnlyEvens</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
+<h2 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h2><p>偶数点击，显示count</p>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">class</span> <span class="token class-name">OnlyEvens</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
   <span class="token function">constructor</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">super</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span>
@@ -599,9 +598,9 @@
       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
     <span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span></code></pre>
 <p>暂存option （indecision app）</p>
-<pre class="line-numbers language-jsx"><code class="language-jsx"><span class="token function">componentDidUpdate</span><span class="token punctuation">(</span>prevProps<span class="token punctuation">,</span>prevState<span class="token punctuation">)</span><span class="token punctuation">{</span>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token function">componentDidUpdate</span><span class="token punctuation">(</span>prevProps<span class="token punctuation">,</span>prevState<span class="token punctuation">)</span><span class="token punctuation">{</span>
     <span class="token keyword">if</span><span class="token punctuation">(</span>prevState<span class="token punctuation">.</span>options<span class="token punctuation">.</span>length <span class="token operator">!==</span> <span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>options<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">{</span>
             console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"options changed"</span><span class="token punctuation">)</span>
             <span class="token keyword">const</span> json <span class="token operator">=</span>JSON<span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>options<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -617,8 +616,8 @@
         <span class="token punctuation">}</span><span class="token punctuation">)</span>
     <span class="token punctuation">}</span><span class="token keyword">catch</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">{</span>
         <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="对于localstorage"><a href="#对于localstorage" class="headerlink" title="对于localstorage"></a>对于localstorage</h2><p>基本用法</p>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="对于localstorage"><a href="#对于localstorage" class="headerlink" title="对于localstorage"></a>对于localstorage</h3><p>基本用法</p>
 <table>
 <thead>
 <tr>
@@ -658,35 +657,35 @@
 <li>3.js和字符串的转换<br>js对象—-&gt;字符串:var str=JSON.stringfy(js对象)<br>字符串—–&gt;js对象：var obj=JSON.parse(字符串);</li>
 </ul>
 <p>例如字符串和对象</p>
-<pre class="line-numbers language-jsx"><code class="language-jsx"><span class="token keyword">class</span> <span class="token class-name">Person</span> <span class="token keyword">extends</span> <span class="token class-name">Object</span><span class="token punctuation">{</span>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">class</span> <span class="token class-name">Person</span> <span class="token keyword">extends</span> <span class="token class-name">Object</span><span class="token punctuation">{</span>
 String name<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 Person p<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token comment" spellcheck="true">//这是一个对象,转为字符串,用tostring方法</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment" spellcheck="true">//这是一个对象,转为字符串,用tostring方法</span></code></pre>
 <p><strong>从本地获取数据得到的是字符串，要先从字符串转为js对象(数组),同理，最后用完了数据要转成字符串再存入本地</strong></p>
-<h3 id="1、存"><a href="#1、存" class="headerlink" title="1、存"></a>1、存</h3><pre class="line-numbers language-json"><code class="language-json">localStorage.setItem(<span class="token string">"phone"</span><span class="token punctuation">,</span> <span class="token string">"123"</span><span class="token punctuation">)</span>
+<h4 id="1、存"><a href="#1、存" class="headerlink" title="1、存"></a>1、存</h4><pre class=" language-json"><code class="language-json">localStorage.setItem(<span class="token string">"phone"</span><span class="token punctuation">,</span> <span class="token string">"123"</span><span class="token punctuation">)</span>
 
 //对象
 let obj = <span class="token punctuation">{</span><span class="token property">"name"</span><span class="token operator">:</span><span class="token string">"xiaoming"</span><span class="token punctuation">,</span><span class="token property">"age"</span><span class="token operator">:</span><span class="token string">"16"</span><span class="token punctuation">}</span>
-localStorage.setItem(<span class="token string">"phone"</span><span class="token punctuation">,</span>JSON.stringify(obj<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="2、取"><a href="#2、取" class="headerlink" title="2、取"></a>2、取</h3><pre class="line-numbers language-json"><code class="language-json">localStorage.getItem(<span class="token string">"phone"</span><span class="token punctuation">)</span>
+localStorage.setItem(<span class="token string">"phone"</span><span class="token punctuation">,</span>JSON.stringify(obj<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h4 id="2、取"><a href="#2、取" class="headerlink" title="2、取"></a>2、取</h4><pre class=" language-json"><code class="language-json">localStorage.getItem(<span class="token string">"phone"</span><span class="token punctuation">)</span>
 
 //对象
-let user = JSON.parse(localStorage.getItem(<span class="token string">"phone"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="3、删"><a href="#3、删" class="headerlink" title="3、删"></a>3、删</h3><pre class="line-numbers language-json"><code class="language-json">//指定删
+let user = JSON.parse(localStorage.getItem(<span class="token string">"phone"</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<h4 id="3、删"><a href="#3、删" class="headerlink" title="3、删"></a>3、删</h4><pre class=" language-json"><code class="language-json">//指定删
 localStorage.removeItem('phone'<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 //全删
-localStorage.clear(<span class="token punctuation">)</span><span class="token punctuation">;</span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="4、设置localStorageSet-过期时间"><a href="#4、设置localStorageSet-过期时间" class="headerlink" title="4、设置localStorageSet 过期时间"></a>4、设置localStorageSet 过期时间</h3><pre class="line-numbers language-json"><code class="language-json">//设置缓存
+localStorage.clear(<span class="token punctuation">)</span><span class="token punctuation">;</span> </code></pre>
+<h4 id="4、设置localStorageSet-过期时间"><a href="#4、设置localStorageSet-过期时间" class="headerlink" title="4、设置localStorageSet 过期时间"></a>4、设置localStorageSet 过期时间</h4><pre class=" language-json"><code class="language-json">//设置缓存
 const localStorageSet = (name<span class="token punctuation">,</span> data<span class="token punctuation">)</span> => <span class="token punctuation">{</span>
     const obj = <span class="token punctuation">{</span>
         data<span class="token punctuation">,</span>
         expire<span class="token operator">:</span> new Date(<span class="token punctuation">)</span>.getTime(<span class="token punctuation">)</span> + <span class="token number">1000</span> * <span class="token number">60</span> * <span class="token number">30</span>
     <span class="token punctuation">}</span><span class="token punctuation">;</span>
     localStorage.setItem(name<span class="token punctuation">,</span> JSON.stringify(obj<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="5、读取缓存，且比较时间戳是否过期"><a href="#5、读取缓存，且比较时间戳是否过期" class="headerlink" title="5、读取缓存，且比较时间戳是否过期"></a>5、读取缓存，且比较时间戳是否过期</h3><pre class="line-numbers language-json"><code class="language-json">//读取缓存
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<h4 id="5、读取缓存，且比较时间戳是否过期"><a href="#5、读取缓存，且比较时间戳是否过期" class="headerlink" title="5、读取缓存，且比较时间戳是否过期"></a>5、读取缓存，且比较时间戳是否过期</h4><pre class=" language-json"><code class="language-json">//读取缓存
 const localStorageGet = name => <span class="token punctuation">{</span>
     const storage = localStorage.getItem(name<span class="token punctuation">)</span><span class="token punctuation">;</span>
     const time = new Date(<span class="token punctuation">)</span>.getTime(<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -700,13 +699,13 @@ const localStorageGet = name => <span class="token punctuation">{</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
     return result<span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="6、使用"><a href="#6、使用" class="headerlink" title="6、使用"></a>6、使用</h3><pre class="line-numbers language-json"><code class="language-json">//存
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<h4 id="6、使用"><a href="#6、使用" class="headerlink" title="6、使用"></a>6、使用</h4><pre class=" language-json"><code class="language-json">//存
 localStorageSet('weather'<span class="token punctuation">,</span> data<span class="token punctuation">)</span>
 
 //取（返回<span class="token null">null</span>则过期）
-localStorageGet('weather'<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="一个完整的例子"><a href="#一个完整的例子" class="headerlink" title="一个完整的例子"></a>一个完整的例子</h1><pre class="line-numbers language-jsx"><code class="language-jsx"><span class="token keyword">import</span> React<span class="token punctuation">,</span><span class="token punctuation">{</span>Component<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+localStorageGet('weather'<span class="token punctuation">)</span></code></pre>
+<h2 id="一个完整的例子"><a href="#一个完整的例子" class="headerlink" title="一个完整的例子"></a>一个完整的例子</h2><pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">import</span> React<span class="token punctuation">,</span><span class="token punctuation">{</span>Component<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span>render<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react-dom'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token string">'./index.css'</span><span class="token punctuation">;</span>
 
@@ -899,7 +898,7 @@ localStorageGet('weather'<span class="token punctuation">)</span><span aria-hidd
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 
-<span class="token function">render</span><span class="token punctuation">(</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Index</span><span class="token punctuation">/></span></span><span class="token punctuation">,</span>document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'root'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token function">render</span><span class="token punctuation">(</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Index</span><span class="token punctuation">/></span></span><span class="token punctuation">,</span>document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'root'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <h1 id="reference"><a href="#reference" class="headerlink" title="reference:"></a>reference:</h1><ul>
 <li><p>CodeCamp 练习题</p>
 </li>
@@ -1028,11 +1027,7 @@ localStorageGet('weather'<span class="token punctuation">)</span><span aria-hidd
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            export 和 import 基本语法几种import和export的基本语法第一种导出lib.js
-let bar = "stringBar";
-let foo = "stringFoo";
-let sum = 1;
-let fn0 =
+                            export 和 import 基本语法
                         
                     </div>
                     <div class="publish-info">
@@ -1081,11 +1076,7 @@ let fn0 =
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            React 开始通过react的脚手架，创建项目进行开发，部署。（推荐）
-全局安装create-react-app
-$ npm install -g create-react-app
-创建一个项目
-$ create-react-app yo
+                            基本配置,改变状态,props,组件之间传输数据
                         
                     </div>
                     <div class="publish-info">

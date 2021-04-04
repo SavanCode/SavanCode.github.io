@@ -1,0 +1,1108 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="interview js 知识点总结1, Savannah">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>interview js 知识点总结1 | Savannah</title>
+    <link rel="icon" type="image/png" href="../../../../favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="../../../../libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="../../../../libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../../libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="../../../../libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../../libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../../css/matery.css">
+    <link rel="stylesheet" type="text/css" href="../../../../css/my.css">
+
+    <script src="../../../../libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="../../../../index.html" class="waves-effect waves-light">
+                    
+                    <span class="logo-span">Savannah</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="../../../../index.html" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Index</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="../../../../tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>Tags</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="../../../../categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>Categories</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="../../../../archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>Archives</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="../../../../about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>About</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <div class="logo-name">Savannah</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="../../../../index.html" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Index
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="../../../../tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			Tags
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="../../../../categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			Categories
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="../../../../archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			Archives
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="../../../../about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			About
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/9.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">interview js 知识点总结1</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="../../../../libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="../../../../tags/interview/">
+                                <span class="chip bg-color">interview</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="../../../../categories/interview/" class="post-category">
+                                interview
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2021-03-24
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>[TOC]</p>
+<h2 id="8大基本数据类型-基本类型"><a href="#8大基本数据类型-基本类型" class="headerlink" title="8大基本数据类型- 基本类型"></a>8大基本数据类型- 基本类型</h2><ul>
+<li>空值（null) </li>
+<li>未定义(undefined)</li>
+<li>布尔值（boolean)</li>
+<li>数字（number)</li>
+<li>字符串（string)</li>
+<li>对象 (object) - 包括 function  =》 引用类型</li>
+<li>符号（symbol, ES6中新增)</li>
+<li>大整数（BigInt, ES2020 引入）</li>
+</ul>
+<p>Undefined，Null，Boolean，String，Number 这些可以有固定长度，因此是基本类型，并且保存到了栈(stack)上。 Object 由于不可预知长度，并且可以 mutate，因此算引用类型，会被分配到了另一块区域，我们称之为堆（heap）</p>
+<p><img src="/2021/03/24/interview-js/image-20210331191442739.png"></p>
+<h2 id="undefined-的理解？-未定义？"><a href="#undefined-的理解？-未定义？" class="headerlink" title="undefined  的理解？ 未定义？"></a>undefined  的理解？ 未定义？</h2><ul>
+<li>undefined 不是未定义，两者有区别。尝试去读一个未定义的变量的值其实会直接<code>Reference Error</code></li>
+<li>typeof 不能区分未定义，还是定义了但是没有值。两者都会都会返回undefined</li>
+<li>typeof 一个未定义的变量不会触发<code>Reference Error</code></li>
+</ul>
+<blockquote>
+<p>尽量不要用undefined, 因为undefined既是一个类型，同时也是一个值，因此这会在某些浏览器被修改（BUG？）。 更稳妥的做法是使用void 0 代替 undefined。</p>
+</blockquote>
+<h2 id="基本类型和引用类型的区别是什么？null-和-undefined-区别是什么？"><a href="#基本类型和引用类型的区别是什么？null-和-undefined-区别是什么？" class="headerlink" title="基本类型和引用类型的区别是什么？null 和 undefined 区别是什么？"></a>基本类型和引用类型的区别是什么？null 和 undefined 区别是什么？</h2><p> Object 是引用类型，其他是基本类型。他们的划分方式其实是其是否可以表示为固定长度</p>
+<p>null 表示一个值被定义了，定义为“空值”；<br>undefined 表示根本不存在定义。</p>
+<h2 id="作用域的本质是什么？闭包和作用域的关系是什么？"><a href="#作用域的本质是什么？闭包和作用域的关系是什么？" class="headerlink" title="作用域的本质是什么？闭包和作用域的关系是什么？"></a>作用域的本质是什么？闭包和作用域的关系是什么？</h2><h2 id="for-in-和-for-of-的区别？"><a href="#for-in-和-for-of-的区别？" class="headerlink" title="for in 和 for of 的区别？"></a>for in 和 for of 的区别？</h2><ol>
+<li>推荐在循环对象属性的时候，使用<code>for...in</code>,for…of 循环可以用来遍历数组、类数组对象，字符串、Set、Map 以及 Generator 对象。</li>
+<li><code>for...in</code>循环出的是key，<code>for...of</code>循环出的是value</li>
+<li>注意，<code>for...of</code>是ES6新引入的特性。修复了ES5引入的<code>for...in</code>的不足</li>
+</ol>
+<h2 id="如何防止重复发送ajax请求？"><a href="#如何防止重复发送ajax请求？" class="headerlink" title="如何防止重复发送ajax请求？"></a>如何防止重复发送ajax请求？</h2><p>参考，不用都答出来，一般答出防抖节流即可：</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/xgangzai/article/details/108413909">https://blog.csdn.net/xgangzai/article/details/108413909</a></p>
+<h2 id="axios拦截器是什么？有什么用？"><a href="#axios拦截器是什么？有什么用？" class="headerlink" title="axios拦截器是什么？有什么用？"></a>axios拦截器是什么？有什么用？</h2><p>在vue项目中，我们通常使用axios与后台进行数据交互，axios是一款基于promise封装的库，可以运行在浏览器端和node环境中。它有很多优秀的特性，例如拦截请求和响应、取消请求、转换json、客户端防御XSRF等。所以vue官方开发组放弃了对其官方库vue-resource的维护，直接推荐我们使用axios库。</p>
+<p>页面发送http请求，很多情况我们要对请求和其响应进行特定的处理；例如每个请求都附带后端返回的token，拿到response之前loading动画的展示等。如果请求数非常多，这样处理起来会非常的麻烦，程序的优雅性也会大打折扣。在这种情况下，axios为开发者提供了这样一个API：拦截器。拦截器分为 请求（request）拦截器和 响应（response）拦截器。</p>
+<h2 id="localStorage和sessionStorage的区别？"><a href="#localStorage和sessionStorage的区别？" class="headerlink" title="localStorage和sessionStorage的区别？"></a>localStorage和sessionStorage的区别？</h2><p>HTML5的WebStorage提供了两种API：localStorage（本地存储）和sessionStorage（会话存储）。</p>
+<p>1、生命周期：localStorage:localStorage的生命周期是永久的，关闭页面或浏览器之后localStorage中的数据也不会消失。localStorage除非主动删除数据，否则数据永远不会消失。</p>
+<p>​        sessionStorage的生命周期是在仅在当前会话下有效。sessionStorage引入了一个“浏览器窗口”的概念，sessionStorage是在同源的窗口中始终存在的数据。只要这个浏览器窗口没有关闭，即使刷新页面或者进入同源另一个页面，数据依然存在。但是sessionStorage在关闭了浏览器窗口后就会被销毁。同时独立的打开同一个窗口同一个页面，sessionStorage也是不一样的。</p>
+<p>2、存储大小：localStorage和sessionStorage的存储数据大小一般都是：5MB</p>
+<p>3、存储位置：localStorage和sessionStorage都保存在客户端，不与服务器进行交互通信。</p>
+<p>4、存储内容类型：localStorage和sessionStorage只能存储字符串类型，对于复杂的对象可以使用ECMAScript提供的JSON对象的stringify和parse来处理</p>
+<p>5、获取方式：localStorage：window.localStorage;；sessionStorage：window.sessionStorage;。</p>
+<p>6、应用场景：localStoragese：常用于长期登录（+判断用户是否已登录），适合长期保存在本地的数据。sessionStorage：敏感账号一次性登录；</p>
+<h2 id="写一个方法把分钟转化为时分，例如：150-gt-02-30？"><a href="#写一个方法把分钟转化为时分，例如：150-gt-02-30？" class="headerlink" title="写一个方法把分钟转化为时分，例如：150-&gt;02:30？"></a>写一个方法把分钟转化为时分，例如：150-&gt;02:30？</h2><pre><code>let minuteConversion= (minutes)=&gt;&#123;
+   let hours = parseInt(minutes/60)
+    let minute = minutes%60
+   console.log(minutes+&#39;分钟转换成时分是&#39;+hours+&#39;：&#39;+minute)
+&#125;</code></pre>
+<h2 id="什么是-CDN，为什么它能提高速度？"><a href="#什么是-CDN，为什么它能提高速度？" class="headerlink" title="什么是 CDN，为什么它能提高速度？"></a>什么是 CDN，为什么它能提高速度？</h2><p>DN的全称是Content Delivery Network，即<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%86%85%E5%AE%B9%E5%88%86%E5%8F%91%E7%BD%91%E7%BB%9C/4034265">内容分发网络</a>。CDN是构建在现有网络基础之上的智能虚拟网络，依靠部署在各地的边缘服务器，通过中心平台的负载均衡、内容分发、调度等功能模块，使用户就近获取所需内容，降低网络拥塞，提高用户访问响应速度和命中率。CDN的关键技术主要有内容存储和分发技术。</p>
+<h2 id="requestAnimationFrame"><a href="#requestAnimationFrame" class="headerlink" title="requestAnimationFrame"></a>requestAnimationFrame</h2><p><code>requestAnimationFrame</code>，<strong>「request - 请求」</strong>，<strong>「Animation - 动画」</strong>， <strong>「Frame - 帧率;框架」</strong></p>
+<blockquote>
+<p>window.requestAnimationFrame() 告诉浏览器——你希望执行一个动画，并且要求浏览器在下次重绘之前调用指定的回调函数更新动画。该方法需要传入一个回调函数作为参数，该回调函数会在浏览器下一次重绘之前执行</p>
+</blockquote>
+<p>request 会把每一帧中的所有DOM操作集中起来，在一次重绘或回流中就完成（这点很像虚拟DOM不是~），并且重绘或回流的时间间隔紧紧跟随浏览器的刷新频率,这样就不会出现过度渲染的问题，保证了流畅的需求以及浏览器的完美渲染。</p>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a><a target="_blank" rel="noopener" href="https://css-tricks.com/using-requestanimationframe/">例子</a></h3><h3 id="为什么不使用settimeout，setinterval？"><a href="#为什么不使用settimeout，setinterval？" class="headerlink" title="为什么不使用settimeout，setinterval？"></a>为什么不使用settimeout，setinterval？</h3><p>setTimeout通过设定一个时间间隔来不断的更新屏幕图像，从而完成动图。 它的优点是可控性高，可以进行编码式的动画效果实现。</p>
+<p>setTimeout缺点：</p>
+<ol>
+<li><strong>「造成无用的函数运行开销：」</strong></li>
+</ol>
+<p>也就是过度绘制，同时因为更新图像的频率和屏幕的刷新重绘制步调不一致，会产生丢帧，在低性能的显示器动画看起来就会卡顿。</p>
+<ol>
+<li><strong>「当网页标签或浏览器置于后台不可见时，仍然会执行，造成资源浪费」</strong></li>
+<li><strong>「API本身达不到毫秒级的精确：」</strong></li>
+</ol>
+<p>如果使用 setTimeout或者setInterval 那么需要我们制定时间 假设给予 （1000/60）理论上就可以完成60帧速率的动画。所以事实是浏览器可以“强制规定时间间隔的下限（clamping th timeout interval）”,一般浏览器所允许的时间再5-10毫秒，也就是说即使你给了某个小于10的数，可能也要等待10毫秒。</p>
+<ol>
+<li><strong>「浏览器不能完美执行：」</strong></li>
+</ol>
+<p>当动画使用10ms的settimeout绘制动画时，您将看到一个时序不匹配，如下所示。</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c186eeb339b240dd96053c2ccaf2a49e~tplv-k3u1fbpfcp-zoom-1.image" alt="img"></p>
+<p>我们的显示屏一般是<strong>「16.7ms（即60FPS）的显示频率」</strong>，上图的第一行代表大多数监视器上显示的<strong>「16.7ms显示频率」</strong>，上图的第二行代表<strong>「10ms的典型setTimeout」</strong>。由于在显示刷新间隔之前发生了另一个绘制请求，因此无法绘制每次的第三个绘制（红色箭头指示）。这种透支会导致动画断断续续，<strong>「因为每三帧都会丢失」</strong>。计时器分辨率的降低也会对电池寿命产生负面影响，并降低其他应用程序的性能。</p>
+<blockquote>
+<p>如果使用requestAnimationFrame可以解决setTimeout的丢帧问题，因为它使应用程序时通知（且仅当）的浏览器需要更新页面显示，渲染时间由系统处理。因此，应用程序与浏览器绘画间隔完全一致，并且仅使用适当数量的资源。</p>
+</blockquote>
+<h3 id="requestAnimationFrame的好处"><a href="#requestAnimationFrame的好处" class="headerlink" title="requestAnimationFrame的好处"></a>requestAnimationFrame的好处</h3><p>相比于<code>setTimeout</code>的在固定时间后执行对应的动画函数，<code>requestAnimationFrame</code>用于指示浏览器在下一次重新绘制屏幕图像时, 执行其提供的回调函数。</p>
+<ul>
+<li><strong>「使浏览器画面的重绘和回流与显示器的刷新频率同步」</strong>它能够保证我们的动画函数的每一次调用都对应着一次屏幕重绘，从而避免<code>setTimeout</code>通过时间定义动画频率，与屏幕刷新频率不一致导致的丢帧。</li>
+<li><strong>「节省系统资源，提高性能和视觉效果」</strong>在页面被置于后台或隐藏时，会自动的停止，不进行函数的执行，当页面激活时，会重新从上次停止的状态开始执行，因此在性能开销上也会相比<code>setTimeout</code>小很多。</li>
+</ul>
+<h2 id="箭头函数能访问原型嘛"><a href="#箭头函数能访问原型嘛" class="headerlink" title="箭头函数能访问原型嘛?"></a>箭头函数能访问原型嘛?</h2><p>不能 箭头函数 不能使用new 也没有super 没有原型</p>
+<h2 id="promise-原理解释"><a href="#promise-原理解释" class="headerlink" title="promise 原理解释"></a><a target="_blank" rel="noopener" href="https://gitee.com/cpeng1314/laochenqianduan/blob/master/99-%E7%AC%94%E8%AF%95%E5%92%8C%E9%9D%A2%E8%AF%95%E9%A2%98/02-JavaScript/04-%E8%AF%A6%E8%A7%A3Promise.md">promise 原理解释</a></h2><h2 id="Promise和AsyncAwait区别"><a href="#Promise和AsyncAwait区别" class="headerlink" title="Promise和AsyncAwait区别"></a>Promise和AsyncAwait区别</h2><p>async/await相比较Promise来说，是优化了堆栈处理的，也就是说，在这一点上，Async/await是比Promise性能好的<br>与直接使用Promise相比，使用Async/Await不仅可以提高代码的可读性，同时也可以优化JavaScript引擎的执行方式</p>
+<h3 id="为什么是优化"><a href="#为什么是优化" class="headerlink" title="为什么是优化"></a>为什么是优化</h3><p>Async/Await与Promise最大区别在于：await b()会暂停所在的async函数的执行；而Promise.then(b)将b函数加入回调链中之后，会继续执行当前函数。对于堆栈来说，这个不同点非常关键。</p>
+<p>当一个Promise链抛出一个未处理的错误时，无论我们使用await b()还是Promise.then(b)，JavaScript引擎都需要打印错误信息及其堆栈。对于JavaScript引擎来说，两者获取堆栈的方式是不同的。</p>
+<h4 id="Promise-then"><a href="#Promise-then" class="headerlink" title="Promise.then()"></a>Promise.then()</h4><p>观察下面代码, 假设b()返回一个promise</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token function">b</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">c</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre>
+<p>当调用a()函数时，这些事情同步发生，b()函数产生一个promise对象，调用then方法，Promise会在将来的某个时刻resolve，也就是把then里的回调函数添加到回调链。(如果这一块不太明白，可以仔细学习promise，或者读一读promise源码并尝试写一写，相信你更通透)，这样，a()函数就执行完了，在这个过程中，a()函数并不会暂停，因此在异步函数resolve的时候，a()的作用域已经不存在了，那要如何生成包含a()的堆栈信息呢？ 为了解决这个问题，JavaScripts引擎要做一些额外的工作；它会及时记录并保存堆栈信息。对于V8引擎来说，这些堆栈信息随着Promise在Promise链中传递，这样c()函数在需要的时候也能获取堆栈信息。但是这无疑造成了额外的开销，会降低性能；保存堆栈信息会占用额外的内存。</p>
+<h4 id="Await"><a href="#Await" class="headerlink" title="Await"></a>Await</h4><p>我们可以用Async/await来实现一下</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">await</span> <span class="token function">b</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token function">c</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre>
+<p>使用await的时候，无需存储堆栈信息，因为存储b()到a()的指针的足够了。当b()函数执行的时候，a()函数被暂停了，因此a()函数的作用域还在内存可以访问。如果b()抛出一个错误，堆栈通过指针迅速生成。如果c()函数抛出一个错误，堆栈信息也可以像同步函数一样生成，因为c()是在a()中执行的。不论是b()还是c()，我们都不需要去存储堆栈信息，因为堆栈信息可以在需要的时候立即生成。而存储指针，显然比存储堆栈更加节省内存</p>
+<h2 id="Async如何捕获异常"><a href="#Async如何捕获异常" class="headerlink" title="Async如何捕获异常?"></a>Async如何捕获异常?</h2><h2 id="防抖节流"><a href="#防抖节流" class="headerlink" title="防抖节流"></a>防抖节流</h2><h2 id="宏任务和微任务"><a href="#宏任务和微任务" class="headerlink" title="宏任务和微任务"></a>宏任务和微任务</h2><ul>
+<li>什么是 宏任务和微任务? 分别有哪些?</li>
+<li>如何判断顺序</li>
+</ul>
+<h2 id="JS-EventLoop"><a href="#JS-EventLoop" class="headerlink" title="JS EventLoop"></a>JS EventLoop</h2><h3 id="进程和线程是什么"><a href="#进程和线程是什么" class="headerlink" title="进程和线程是什么?"></a>进程和线程是什么?</h3><blockquote>
+<p>进程和线程的主要差别在于它们是不同的操作系统资源管理方式。进程有独立的地址空间，一个进程崩溃后，在保护模式下不会对其它进程产生影响，而线程只是一个进程中的不同执行路径。</p>
+</blockquote>
+<p>一个程序运行，至少有一个进程，一个进程至少有一个线程，打个比方，进程好比一个工厂，线程就是里面的工人，工厂内有多个工人</p>
+<h3 id="浏览器渲染进程的理解"><a href="#浏览器渲染进程的理解" class="headerlink" title="浏览器渲染进程的理解"></a>浏览器渲染进程的理解</h3><p><strong>浏览器渲染进程是多线程的</strong>，它包括下面几个线程：</p>
+<ul>
+<li>GUI 渲染线程</li>
+<li>JS 引擎线程 (这里是重点!! 他是单线程的!!!)</li>
+<li>事件触发线程</li>
+<li>定时触发器线程</li>
+<li>异步 http 请求线程</li>
+</ul>
+<h3 id="webwork-是什么-以及它的特点"><a href="#webwork-是什么-以及它的特点" class="headerlink" title="webwork 是什么? 以及它的特点"></a>webwork 是什么? 以及它的特点</h3><h3 id="浏览器渲染页面的过程"><a href="#浏览器渲染页面的过程" class="headerlink" title="浏览器渲染页面的过程"></a>浏览器渲染页面的过程</h3><ul>
+<li>用户输入 url ，DNS 解析成请求 IP 地址</li>
+<li>浏览器与服务器建立连接（tcp 协议、三次握手），服务端处理返回html代码块</li>
+<li>浏览器接受处理，解析 html 成 dom 树、解析 css 成 cssobj</li>
+<li>dom 树、cssobj 结合成 render 树</li>
+<li>JS 根据 render 树进行计算、布局、重绘</li>
+<li>GPU 合成，输出到屏幕</li>
+</ul>
+<h3 id="同步异步任务执行的-事件循环"><a href="#同步异步任务执行的-事件循环" class="headerlink" title="同步异步任务执行的 事件循环"></a>同步异步任务执行的 事件循环</h3><img src="/2021/03/24/interview-js/image-20210330004220465.png" style="zoom: 67%;">
+
+<h3 id="宏任务和微任务执行流程"><a href="#宏任务和微任务执行流程" class="headerlink" title="宏任务和微任务执行流程"></a>宏任务和微任务执行流程</h3><p><img src="/2021/03/24/interview-js/image-20210330004541548.png"></p>
+<h2 id="clone的相关知识"><a href="#clone的相关知识" class="headerlink" title="clone的相关知识"></a>clone的相关知识</h2><ul>
+<li>深浅拷贝与赋值的区别</li>
+<li>深浅拷贝分别有什么方式可以实现</li>
+</ul>
+<h2 id="js-原型链"><a href="#js-原型链" class="headerlink" title="js 原型链"></a>js 原型链</h2><ul>
+<li><p>原型链的练习</p>
+</li>
+<li><p><code>typeof null</code> 为什么是 <code>”object“</code></p>
+<p>typeof null 为”object”, 原因是因为 不同的对象在底层都表示为二进制. <code>typeof</code>原理： <strong>不同的对象在底层都表示为二进制，在Javascript中二进制前（低）三位存储其类型信息</strong></p>
+<pre><code>- 000: 对象
+- 010: 浮点数
+- 100：字符串
+- 110： 布尔
+- 1： 整数</code></pre>
+</li>
+<li><p>什么是<code>原型</code>，哪里是 <code>[[prototype]]</code>的 ”尽头“，为什么要这么设计</p>
+<p>**所有普通的 [[prototype]]链最终都会执行内置的 <code>Object.prototype</code>**这样设计主要的就是节省内存，如果属性和方法定义在原型上，那么所有的实例对象就能共享。</p>
+</li>
+<li><p><code>JavaScript</code>原型链的核心是什么</p>
+</li>
+<li><p><code>instanceof</code>的原理是什么</p>
+<p><code>instanceof</code>原理： 检测 <code>constructor.prototype</code>是否存在于参数 object的 原型链上。<code>instanceof</code> 查找的过程中会遍历<code>object</code>的原型链，直到找到 <code>constructor</code> 的 <code>prototype</code> ,如果查找失败，则会返回<code>false</code>，告诉我们，<code>object</code> 并非是 <code>constructor</code> 的实例。 </p>
+</li>
+</ul>
+<h2 id="href和src的区别"><a href="#href和src的区别" class="headerlink" title="href和src的区别"></a>href和src的区别</h2><ul>
+<li><p>请求资源类型不同<br>（1）href 指向网络资源所在位置，建立和当前元素（锚点）或当前文档（链接）之间的联系。<br>（2）在请求 src 资源时会将其指向的资源下载并应用到文档中，比如 JavaScript 脚本，img 图片；</p>
+</li>
+<li><p>作用结果不同<br>（1）href 用于在当前文档和引用资源之间确立联系；<br>（2）src 用于替换当前内容；</p>
+</li>
+<li><p>浏览器解析方式不同<br>（1）若在文档中添加 ，浏览器会识别该文档为 CSS 文件，就会<strong>并行下载资源并且不会停止对当前文档的处理。</strong>这也是为什么建议使用 link 方式加载 CSS，而不是使用 @import 方式。<br>（2）当浏览器解析到 ，会<strong>暂停其他资源的下载和处理，</strong>直到将该资源加载、编译、执行完毕，图片和框架等也如此，类似于将所指向资源应用到当前内容。这也是为什么建议把 js 脚本放在底部而不是头部的原因。</p>
+</li>
+</ul>
+<h2 id="link和-import的区别"><a href="#link和-import的区别" class="headerlink" title="link和@import的区别"></a>link和@import的区别</h2><p>两者都是外部引用 CSS 的方式，但是存在一定的区别：</p>
+<p>（1）link是XHTML标签，除了能够加载CSS，还可以定义RSS等其他事务；而@import属于CSS范畴，只可以加载CSS。</p>
+<p>（2）link引用CSS时，在页面载入时同时加载；@import需要页面完全载入以后再加载。</p>
+<p>（3）link是XHTML标签，无兼容问题；@import则是在CSS2.1提出的，低版本的浏览器不支持。</p>
+<p>（4）link支持使用Javascript控制DOM改变样式；而@import不支持。</p>
+<h2 id="Ajax-Axios-Fetch区别与优缺点"><a href="#Ajax-Axios-Fetch区别与优缺点" class="headerlink" title="Ajax_Axios_Fetch区别与优缺点"></a><a target="_blank" rel="noopener" href="https://gitee.com/cpeng1314/laochenqianduan/blob/master/99-%E7%AC%94%E8%AF%95%E5%92%8C%E9%9D%A2%E8%AF%95%E9%A2%98/02-JavaScript/23-Ajax_Axios_Fetch%E5%8C%BA%E5%88%AB%E4%B8%8E%E4%BC%98%E7%BC%BA%E7%82%B9.md">Ajax_Axios_Fetch区别与优缺点</a></h2><p><a target="_blank" rel="noopener" href="https://gitee.com/cpeng1314/laochenqianduan/tree/master/99-%E7%AC%94%E8%AF%95%E5%92%8C%E9%9D%A2%E8%AF%95%E9%A2%98/02-JavaScript">https://gitee.com/cpeng1314/laochenqianduan/tree/master/99-%E7%AC%94%E8%AF%95%E5%92%8C%E9%9D%A2%E8%AF%95%E9%A2%98/02-JavaScript</a></p>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="../../../../about" rel="external nofollow noreferrer">Savannah</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://savancode.github.io">http://savancode.github.io</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint polocy. If reproduced, please indicate source
+                    <a href="../../../../about" target="_blank">Savannah</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="../../../../tags/interview/">
+                                    <span class="chip bg-color">interview</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="../../../../libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="../interview-question-part1/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="../../../../medias/featureimages/13.jpg" class="responsive-img" alt="面经总结 part1">
+                        
+                        <span class="card-title">面经总结 part1</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            面经总结
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-03-24
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="../../../../categories/interview/" class="post-category">
+                                    interview
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="../../../../tags/interview/">
+                        <span class="chip bg-color">interview</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="../html5-css3/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="../../../../medias/featureimages/12.jpg" class="responsive-img" alt="CSS3 和 HTML5 新特性一览">
+                        
+                        <span class="card-title">CSS3 和 HTML5 新特性一览</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            CSS3 和 HTML5 新特性一览
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-03-24
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="../../../../categories/interview/" class="post-category">
+                                    interview
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="../../../../tags/interview/">
+                        <span class="chip bg-color">interview</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="../../../../libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="../../../../libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="../../../../libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="../../../../libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="../../../../libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4, h5, h6, h7, h8, h9, h10'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4, h5, h6, h7, h8, h9, h10').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="../../../../libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="../../../../libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2019</span>
+            <a href="../../../../about" target="_blank">Savannah</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/SavanCode/SavanCode.github.io" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1181062873@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="../../../../js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("../../../../search.xml", 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="../../../../libs/materialize/materialize.min.js"></script>
+    <script src="../../../../libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="../../../../libs/aos/aos.js"></script>
+    <script src="../../../../libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="../../../../libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="../../../../js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="../../../../libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="../../../../libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <script type="text/javascript" src="../../../../libs/background/ribbon-dynamic.js" async="async"></script>
+    
+
+    
+    <script src="../../../../libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
