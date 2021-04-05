@@ -503,12 +503,6 @@ http://www.brandhuang.com/article/1577319529234
 
 
 
-
-
-
-
-
-
 ## Reference
 
 https://hankszhang.gitbooks.io/you-dont-know-js/content/part2/ch1.html
