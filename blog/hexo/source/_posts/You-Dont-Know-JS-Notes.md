@@ -7,7 +7,7 @@ mathjax: true
 date: 2021-03-28 15:58:49
 password:
 summary: 你不知道的 javascript 读书笔记
-tags: JS
+tags: [JS,book]
 categories: JS
 ---
 
@@ -15,10 +15,10 @@ categories: JS
 
 ### JavaScript的类型
 
+- `null` 和 `undefined`
 - `string`
 - `number`
 - `boolean`
-- `null` 和 `undefined`
 - `object`
 - `symbol` (ES6中新引入)
 
@@ -200,6 +200,26 @@ var c = foo(2);
 
 
 ### [函数 VS 块级作用域](https://hankszhang.gitbooks.io/you-dont-know-js/content/part2/ch3.html)
+
+### let vs Var 区别
+
+1. let 声明的范围是块作用域，而var 声明的范围是函数作用域。
+
+2. let 声明的变量不会在作用域中被提升。
+
+   ````js
+   // name 会被提升
+   console.log(name); // undefined
+   var name = 'Matt';
+   // age 不会被提升
+   console.log(age); // ReferenceError：age 没有定义
+   let age = 26;
+   //在let 声明之前的执行瞬间被称为“暂时性死区”（temporal dead zone），在此阶段引用任何后面才声明的变量都会抛出ReferenceError。
+   ````
+
+### const
+
+const声明变量时必须同时初始化变量，且尝试修改const 声明的变量会导致运行时错误。如果const 变量引用的是一个对象，那么修改这个对象内部的属性并不违反const 的限制
 
 ### 变量提升
 
@@ -477,7 +497,9 @@ bar.call( obj2 ); // 2, 不是 3 ！
 
 ## 第四部分 对象
 
+可以稍微看看~~
 
+http://www.brandhuang.com/article/1577319529234
 
 
 
