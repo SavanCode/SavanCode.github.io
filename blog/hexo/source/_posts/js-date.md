@@ -1,12 +1,12 @@
 ---
-title: js date
+title: js date 日期 时间
 top: false
 cover: false
 toc: true
 mathjax: true
 date: 2020-11-25 15:59:47
 password:
-summary: js date
+summary: js date 日期 时间
 tags: JS
 categories: JS
 ---

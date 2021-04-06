@@ -146,6 +146,9 @@ let num3 = parseInt("0xA"); // 10，解释为十六进制整数
 let num4 = parseInt(22.5); // 22
 let num5 = parseInt("70"); // 70，解释为十进制值
 let num6 = parseInt("0xf"); // 15，解释为十六进制整数
+
+//判断是否为整数
+parseInt(x, 10) === x ? ture: false;
 ```
 
 parseFloat()
@@ -162,8 +165,18 @@ let num6 = parseFloat("3.125e7"); // 31250000
 ### "string"表示值为字符串；
 
 1. 字符串可以使用双引号（"）、单引号（'）或反引号（`）标示
-2. 转换为字符串 toString()
-   null 和undefined 值没有toString()方法,其他都有
+
+2. 转换为字符串 toString()、null 和undefined 值没有toString()方法,其他都有
+   
+   > **String 对象自带方法**
+   >
+   > - 字符操作：charAt，charCodeAt，fromCharCode
+   > - 字符串提取：substr，substring ，slice
+   > - 位置索引：indexOf ，lastIndexOf
+   > - 大小写转换：toLowerCase，toUpperCase
+   > - 模式匹配：match，search，replace，split
+   > - 其他操作：concat，trim，localeCompare
+   
 3. toString()通过传入参数，可以得到数值的二进制、八进制、十六进制，或者其他任何有效基
    数的字符串表示，比如：
 ```js
@@ -198,8 +211,6 @@ let num6 = parseFloat("3.125e7"); // 31250000
    append(); // abcabc
    append(); // abcabcabc
 ```
-
-   
 
 6. 模板字面量标签函数 tag function - 书例子
 
@@ -255,9 +266,27 @@ toString()：返回对象的字符串表示。
 valueOf()：返回对象对应的字符串、数值或布尔值表示。通常与toString()的返回值相同。
 ```
 
+> **Object 新增 API**
+>
+> ECMA-262 第 5 版对 Object 对象进行了增强，包括 defineProperty 在内，共定义了 9 个新的 API：
+>
+> - create(prototype[,descriptors])：用于原型链继承。创建一个对象，并把其 prototype 属性赋值为第一个参数，同时可以设置多个 descriptors 。
+> - defineProperty(O,Prop,descriptor) ：用于定义对象属性的特性。
+> - defineProperties(O,descriptors) ：用于同时定义多个属性的特性。
+> - getOwnPropertyDescriptor(O,property)：获取 defineProperty 方法设置的 property 特性。
+> - getOwnPropertyNames：获取所有的属性名，不包括 prototy 中的属性，返回一个数组。
+> - keys()：和 getOwnPropertyNames 方法类似，但是获取所有的可枚举的属性，返回一个数组。
+> - preventExtensions(O) ：用于锁住对象属性，使其不能够拓展，也就是不能增加新的属性，但是属性的值仍然可以更改，也可以把属性删除。
+> - Object.seal(O) ：把对象密封，也就是让对象既不可以拓展也不可以删除属性（把每个属性的 configurable 设为 false），单数属性值仍然可以修改。
+> - Object.freeze(O) ：完全冻结对象，在 seal 的基础上，属性值也不可以修改（每个属性的 wirtable 也被设为 false）。
+
 ### "function"表示值为函数； typeof 的返回值 但不属于类型
 
-## 章节重点 ：  js 类型 ，js基本类型，如何判断以及方法比较
+![来自https://segmentfault.com/a/1190000014569212](js-professional-book1/mindmap.png)
+
+## 拓展 [详解数据类型](https://www.cnblogs.com/onepixel/p/5140944.html)
+
+## 章节重点总结：  js 类型 ，js基本类型，如何判断以及方法比较
 
 ### js类数据类型
 
@@ -266,6 +295,12 @@ Undefined  Null Boolean Number String Symbol Object
 ### js基本类型
 
 ![](js-professional-book1/image-20210405183125215.png)
+
+### “一切皆对象”怎么理解？ number 也是对象么？字符串也是对象么？
+
+1. 并非JavaScript中的所有内容都是对象，应该说所有内容都可以充当对象。
+2. 所有不是原始类型的值都是一个对象。
+3. 字符串，布尔值和数字可以表示为基本类型，但作为包装器类型时也可以表示为对象（new string()....）。由于名为autoboxing的JavaScript特性，某些原始类型（字符串，数字，布尔值）似乎表现得有点像对象。
 
 ### 判断类型
 
@@ -282,6 +317,8 @@ typeof是检测数据类型的运算符，输出的字符串就是对应的类�
 而对于引用类型返回的基本上都是object, 其实返回object也没有错，因为所有对象的原型链最终都指向了Object,Object是所有对象的`祖宗`。 但当我们需要知道某个对象的具体类型时，typeof 就显得有些力不从心了。 
 
 #### 2.instanceOf
+
+**问题： 同一条原型链上判断不准确 （找例子！！！！） 结合constructor 找例子**
 
 检查某个实例是否属于某个类
 
@@ -301,15 +338,15 @@ alert( arr instanceof Aaa);//false
 
 ```js
 var str = 'hello';
-alert(str instanceof String);//false
+alert(str instanceof String);//false!
 var bool = true;
-alert(bool instanceof Boolean);//false
+alert(bool instanceof Boolean);//false!
 var num = 123;
-alert(num instanceof Number);//false
+alert(num instanceof Number);//false!
 var nul = null;
-alert(nul instanceof Object);//false
+alert(nul instanceof Object);//false!
 var und = undefined;
-alert(und instanceof Object);//false
+alert(und instanceof Object);//false!
 var oDate = new Date();
 alert(oDate instanceof Date);//true
 var json = {};
@@ -378,9 +415,9 @@ alert(fun.constructor ==Function);//true
 var error = new Error();
 alert(error.constructor == Error);//true
 ```
-从上面的测试中我们可以看到，undefined和null是不能够判断出类型的，并且会报错。因为null和undefined是无效的对象，因此是不会有constructor存在的
+从上面的测试中我们可以看到，**undefined和null是不能够判断出类型的**，并且会报错。因为null和undefined是无效的对象，因此是不会有constructor存在的
 
-同时我们也需要注意到的是：函数的 constructor 是不稳定的，这个主要体现在自定义对象上，当开发者重写 prototype 后，原有的 constructor 引用会丢失，constructor 会默认为 Object
+同时我们也需要注意到的是：**函数的 constructor 是不稳定的**，这个主要体现在自定义对象上，当开发者重写 prototype 后，原有的 constructor 引用会丢失，constructor 会默认为 Object
 
 ```js
 function Aaa(){
@@ -465,7 +502,91 @@ alert( Object.prototype.toString.call(arr) == '[object Array]' );  //true
 
 其实面试官也经常喜欢让说一种最简单的判断是数组的方法，记住喽是object.prototype.toString.call()哦！
 
+### 手写判断函数
+
+```js
+function getType(obj){
+    let res = Object.prototype.toString.call(obj).split(" ")[1]
+	console.log(res.slice(0,res.length-1))
+    return res.slice(0,res.length-1)
+}
+```
+
+
+
 ## 拓展 stack vs heap
+
+## 拓展 IF运算符 - 判断假值
+
+- 在IF条件运算中undefined、null、NaN、false、0、""、false都是相对等于（`==`）false的，{}和[]是true；
+- 其中 "undefined`==`null" 和 "0`==`false"、" ' '`==`false" 的关系运算结果都是true
+
+```js
+//判断undefined
+let a;
+console.log(typeof(a));  //typeof(undefined) 为 undefined
+
+//判断null
+//方法一
+var exp =null; 
+if (!exp && typeof(exp)!="undefined" && exp!=0) //代表逻辑false，非undefined类型，非false、""
+{ 
+    alert("is null"); 
+}　
+ 
+//方法二
+if (exp===null) //绝对相等
+{ 
+    alert("is null 2"); 
+} 
+
+//检验空对象或者空数组：	
+JSON.stringify(obj) === '{}';
+JSON.stringify(obj) === '[]'
+```
+
+## 拓展 判断数字 - NaN 
+
+#### 提取string字符串中数字
+
+```js
+Number('123abc');// NaN
+parseInt('123abc');// 123
+parseInt('123abc45');// 123
+parseFloat('123.45abc');// 123.45
+
+//简单用一元加操作符
++'12abc';// NaN
++'123';// 123
++'123.78';// 123.78
++'abc';// NaN
+```
+
+#### 判断是否为纯数字
+
+```js
+'abc'- 3  // NaN
+parseInt('abc') // NaN
+parseFloat('abc')// NaN
+Number('abc')   // NaN
+```
+
+#### 判断是否NaN
+
+```js
+//不能直接用isNaN()
+//isNaN() 是一个全局方法，它的作用是检查一个值是否能被 Number() 成功转换
+isNaN(NaN)   // true 不能转换
+isNaN('123')  // false 能转换
+isNaN('abc')   // true 不能转换
+isNaN('123ab')  // true 不能转换
+isNaN('123.45abc')// true 不能转换
+
+//要用Number.isNaN()
+Number.isNaN('123');// false 本身不是NaN
+Number.isNaN('abc');// false 本身不是NaN
+Number.isNaN(NaN);// true　本身是NaN
+```
 
 
 

@@ -607,7 +607,6 @@ const Func = function(name) {
 };
 // 换成
 const Func = name => "I Love " + name;
-
 ```
 
 ##### 一次性函数
