@@ -386,6 +386,10 @@
                                 <span class="chip bg-color">JS</span>
                             </a>
                         
+                            <a href="../../../../tags/book/">
+                                <span class="chip bg-color">book</span>
+                            </a>
+                        
                     </div>
                     
                 </div>
@@ -424,10 +428,10 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="第一部分-新手入门"><a href="#第一部分-新手入门" class="headerlink" title="第一部分 新手入门"></a>第一部分 新手入门</h2><h3 id="JavaScript的类型"><a href="#JavaScript的类型" class="headerlink" title="JavaScript的类型"></a>JavaScript的类型</h3><ul>
+<li><code>null</code> 和 <code>undefined</code></li>
 <li><code>string</code></li>
 <li><code>number</code></li>
 <li><code>boolean</code></li>
-<li><code>null</code> 和 <code>undefined</code></li>
 <li><code>object</code></li>
 <li><code>symbol</code> (ES6中新引入)</li>
 </ul>
@@ -559,7 +563,21 @@ foo();</code></pre>
 <h3 id="词法作用域"><a href="#词法作用域" class="headerlink" title="词法作用域"></a><a target="_blank" rel="noopener" href="https://hankszhang.gitbooks.io/you-dont-know-js/content/part2/ch2.html">词法作用域</a></h3><blockquote>
 <p>如果使用了eval或with语句，引擎做得这些优化就没有意义了，所以它干脆不做任何优化。因此不管在你的代码的任何位置出现了eval或with语句，你的整个代码都会运行的更慢。</p>
 </blockquote>
-<h3 id="函数-VS-块级作用域"><a href="#函数-VS-块级作用域" class="headerlink" title="函数 VS 块级作用域"></a><a target="_blank" rel="noopener" href="https://hankszhang.gitbooks.io/you-dont-know-js/content/part2/ch3.html">函数 VS 块级作用域</a></h3><h3 id="变量提升"><a href="#变量提升" class="headerlink" title="变量提升"></a>变量提升</h3><h4 id="基本变量提升-（函数声明）"><a href="#基本变量提升-（函数声明）" class="headerlink" title="基本变量提升 （函数声明）"></a>基本变量提升 （函数声明）</h4><pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">//普通版</span>
+<h3 id="函数-VS-块级作用域"><a href="#函数-VS-块级作用域" class="headerlink" title="函数 VS 块级作用域"></a><a target="_blank" rel="noopener" href="https://hankszhang.gitbooks.io/you-dont-know-js/content/part2/ch3.html">函数 VS 块级作用域</a></h3><h3 id="let-vs-Var-区别"><a href="#let-vs-Var-区别" class="headerlink" title="let vs Var 区别"></a>let vs Var 区别</h3><ol>
+<li><p>let 声明的范围是块作用域，而var 声明的范围是函数作用域。</p>
+</li>
+<li><p>let 声明的变量不会在作用域中被提升。</p>
+<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// name 会被提升</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// undefined</span>
+<span class="token keyword">var</span> name <span class="token operator">=</span> <span class="token string">'Matt'</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// age 不会被提升</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>age<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// ReferenceError：age 没有定义</span>
+<span class="token keyword">let</span> age <span class="token operator">=</span> <span class="token number">26</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//在let 声明之前的执行瞬间被称为“暂时性死区”（temporal dead zone），在此阶段引用任何后面才声明的变量都会抛出ReferenceError。</span></code></pre>
+</li>
+</ol>
+<h3 id="const"><a href="#const" class="headerlink" title="const"></a>const</h3><p>const声明变量时必须同时初始化变量，且尝试修改const 声明的变量会导致运行时错误。如果const 变量引用的是一个对象，那么修改这个对象内部的属性并不违反const 的限制</p>
+<h3 id="变量提升"><a href="#变量提升" class="headerlink" title="变量提升"></a>变量提升</h3><h4 id="基本变量提升-（函数声明）"><a href="#基本变量提升-（函数声明）" class="headerlink" title="基本变量提升 （函数声明）"></a>基本变量提升 （函数声明）</h4><pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">//普通版</span>
 <span class="token keyword">function</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">var</span> a<span class="token punctuation">;</span>
     console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span> a <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// undefined</span>
@@ -738,7 +756,9 @@ foo<span class="token punctuation">.</span><span class="token function">apply</s
 <span class="token keyword">var</span> bar <span class="token operator">=</span> foo<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span> obj1 <span class="token punctuation">)</span><span class="token punctuation">;</span> 
 bar<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span> obj2 <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 2, 不是 3 ！</span></code></pre>
 <p><strong>foo() 内部创建的箭头函数会捕获调用时 foo() 的 this。由于 foo() 的 this 绑定到 obj,bar（引用箭头函数）的 this 也会绑定到 obj1，箭头函数的绑定无法被修改。（new 也不行！）</strong> </p>
-<h2 id="第四部分-对象"><a href="#第四部分-对象" class="headerlink" title="第四部分 对象"></a>第四部分 对象</h2><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a target="_blank" rel="noopener" href="https://hankszhang.gitbooks.io/you-dont-know-js/content/part2/ch1.html">https://hankszhang.gitbooks.io/you-dont-know-js/content/part2/ch1.html</a></p>
+<h2 id="第四部分-对象"><a href="#第四部分-对象" class="headerlink" title="第四部分 对象"></a>第四部分 对象</h2><p>可以稍微看看~~</p>
+<p><a target="_blank" rel="noopener" href="http://www.brandhuang.com/article/1577319529234">http://www.brandhuang.com/article/1577319529234</a></p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a target="_blank" rel="noopener" href="https://hankszhang.gitbooks.io/you-dont-know-js/content/part2/ch1.html">https://hankszhang.gitbooks.io/you-dont-know-js/content/part2/ch1.html</a></p>
 <p><a target="_blank" rel="noopener" href="https://lucifer.ren/fe-interview/#/?id=javascript-%f0%9f%97%92%ef%b8%8f">https://lucifer.ren/fe-interview/#/?id=javascript-%f0%9f%97%92%ef%b8%8f</a></p>
 
             </div>
@@ -805,6 +825,10 @@ bar<span class="token punctuation">.</span><span class="token function">call</sp
                             
                                 <a href="../../../../tags/JS/">
                                     <span class="chip bg-color">JS</span>
+                                </a>
+                            
+                                <a href="../../../../tags/book/">
+                                    <span class="chip bg-color">book</span>
                                 </a>
                             
                         </div>
