@@ -316,23 +316,30 @@ typeof是检测数据类型的运算符，输出的字符串就是对应的类�
 
 而对于引用类型返回的基本上都是object, 其实返回object也没有错，因为所有对象的原型链最终都指向了Object,Object是所有对象的`祖宗`。 但当我们需要知道某个对象的具体类型时，typeof 就显得有些力不从心了。 
 
+```js
+typeof item === "object"// 注意小写
+```
+
+
+
 #### 2.instanceOf
 
-**问题： 同一条原型链上判断不准确 （找例子！！！！） 结合constructor 找例子**
-
-检查某个实例是否属于某个类
+```js
+//用法
+object instanceof constructor
+Object.getPrototypeOf(o) === C.prototype （yes or no）
+o instanceof C 
+```
 
 判断对象和构造函数在原型链上是否有关系，如果有关系，返回真，否则返回假
 ```js
-function Aaa(){
-}
+function Aaa(){ }
 var a1 = new Aaa();
 
 //alert( a1 instanceof Aaa);  //true判断a1和Aaa是否在同一个原型链上，是的话返回真，否则返回假
 
 var arr = [];
-
-alert( arr instanceof Aaa);//false
+alert( arr instanceof Aaa);//false if Array true 
 ```
 我们来看一下
 
@@ -372,9 +379,9 @@ var boolean = new Boolean(true);
 constructor 在其对应对象的原型下面，是自动生成的。当我们写一个构造函数的时候，程序会自动添加：构造函数名.prototype.constructor = 构造函数名
 
 ```js 
-function Aaa(){
-}
+function Aaa(){}
 //Aaa.prototype.constructor = Aaa;  //每一个函数都会有的，都是自动生成的
+//注意返回的是函数 ，所以是函数 == 函数 ！！ 不是""string
 ```
 
 判断数据类型的方法
@@ -390,11 +397,9 @@ var num = 123;
 alert(num.constructor ==Number);//true
 
 // var nul = null;
-
 // alert(nul.constructor == Object);//报错
 
 //var und = undefined;
-
 //alert(und.constructor == Object);//报错
 
 var oDate = new Date();
@@ -415,21 +420,19 @@ alert(fun.constructor ==Function);//true
 var error = new Error();
 alert(error.constructor == Error);//true
 ```
-从上面的测试中我们可以看到，**undefined和null是不能够判断出类型的**，并且会报错。因为null和undefined是无效的对象，因此是不会有constructor存在的
-
-同时我们也需要注意到的是：**函数的 constructor 是不稳定的**，这个主要体现在自定义对象上，当开发者重写 prototype 后，原有的 constructor 引用会丢失，constructor 会默认为 Object
+> 从上面的测试中我们可以看到，**undefined和null是不能够判断出类型的**，并且会报错。因为null和undefined是无效的对象，因此是不会有constructor存在的
+>
+> 同时我们也需要注意到的是：**函数的 constructor 是不稳定的**，这个主要体现在自定义对象上，当开发者重写 prototype 后，原有的 constructor 引用会丢失，constructor 会默认为 Object
+>
 
 ```js
-function Aaa(){
-}
-
+function Aaa(){ }
 Aaa.prototype.constructor = Aaa;//程序可以自动添加，当我们写个构造函数的时候，程序会自动添加这句代码
-
+Aaa.prototype.constructor === Object // false
 function BBB(){}
-
 Aaa.prototype.constructor = BBB;//此时我们就修改了Aaa构造函数的指向问题
-
-alert(Aaa.construtor==Aaa);//false
+//Aaa.prototype =BBB; 相当于
+alert(Aa.construtor==Aaa);//false
 ```
 可以看出，constructor并没有正确检测出正确的构造函数
 
@@ -437,10 +440,11 @@ alert(Aaa.construtor==Aaa);//false
 
 toString是Object原型对象上的一个方法，该方法默认返回其调用者的具体类型，更严格的讲，是 toString运行时this指向的对象类型, 返回的类型格式为[object xxx],xxx是具体的数据类型，其中包括String,Number,Boolean,Undefined,Null,Function,Date,Array,RegExp,Error,HTMLDocument,... 基本上所有对象的类型都可以通过这个方法获取到。 
 
-> 可以通过 toString() 来获取每个对象的类型。
-> 为了每个对象都能通过 Object.prototype.toString() 来检测，
-> 需要以 Function.prototype.call() 或者 Function.prototype.apply() 的形式来调用，
-> 传递要检查的对象作为第一个参数，称为 thisArg。
+> Object.prototype.toString = function(){
+>      在函数里this正常指向的就是调用这个函数的对象， js中call()方法是改变this的指向， a.call(b),  b替换了a
+> }
+>
+> Object.prototype.toString.call([ ]),  [ ]替换了Object.prototype;
 
 
 ```js
@@ -479,9 +483,71 @@ console.log(Object.prototype.toString.call(error));//[object Error]
 ```
 从这个结果也可以看出，不管是什么类型的，Object.prototype.toString.call();都可以判断出其具体的类型。
 
+#### 5. 使用`Object.getPrototypeOf()`方法 对象原型判断
+
+如果修改了构造函数的原型对象，之前创建的对象无法通过这种方式来确定类型
+
+```js
+function Person(){ }
+
+var p1 = new Person()
+Object.getPrototypeOf(p1) === Person.prototype // true
+Object.getPrototypeOf(p1) === Object.prototype // false
+
+Person.prototype = {
+    name: 'aaa',
+    age: '20'
+}
+// p1是修改构造函数原型对象之前创建的对象
+// p1的__proto__仍然指向原来的原型对象
+Object.getPrototypeOf(p1) === Person.prototype // false
+
+// p2是修改构造函数原型对象之后创建的对象
+var p2 = new Person()
+Object.getPrototypeOf(p2) === Person.prototype // true
+```
+
+#### 6.使用`isPrototypeOf()`方法 判断一个对象是否存在于另一个对象的原型链上
+
+```js
+如果修改了构造函数的原型对象，之前创建的对象无法通过这种方式来确定类型
+
+function Person(){
+}
+var p1 = new Person()
+Person.prototype.isPrototypeOf(p1) // true
+Object.prototype.isPrototypeOf(p1) //true
+
+Person.prototype = {
+}
+Person.prototype.isPrototypeOf(p1) // false
+Object.prototype.isPrototypeOf(p1) //true
+
+var p2 = new Person()
+Person.prototype.isPrototypeOf(p2) // true
+Object.prototype.isPrototypeOf(p2) //true
+```
+
+
+
 ### 分析一下四种方法各自的优缺点
 
 ![](js-professional-book1/image-20210405183716735.png)
+
+|                                                              | 优点                                                         | 缺点                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| typeof                                                       | 1. js内置的一个操作符，基本类型可以判断 <br />2. undefined可以判断，function 类型可以判断<br />3.对于引用类型，只能判断为Obj | 1.typeof主要为了区分对象类型和原生类型，所以只能用于判断一个变量是不是对象或者是不是字符串等.<br />2. 但是不能很好的检测obj 是哪一个构造函数的实例<br /> |
+| instanceof<br />原型链判断 ：<br />`isPrototypeOf`           | 1. 可以判断引用类型<br />                                    | 1. 基本类型的判断不出来<br />2. 基本类型- new可以判断<br />3.null 与 undefined 不能判断<br />4. 对于原型链上深层的多个原型，判断并不能唯一，对于每一个原型链上的类型都会返回true<br />5. 不能跨iframe |
+| constructor                                                  | 1. 全部的类型都可以检测到（除了null undefined）<br />2.引用类型具体的可以检查到 | 1. 能被改动，不可靠<br />2. 不能跨iframe                     |
+| Object.prototype.toString.call()<br />原型判断<br />`Object.getPrototypeOf()` - 多数引用不好用 | 可以检测所有的类型-内置对象的class属性                       | 对于对象，只能返回object，并不能获取到自定义构造函数的具体的类型 |
+
+> 如果只是想要判断某一个对象是不是某一个构造函数的实例，使用instanceof
+>
+> 如果希望区分内置对象和自定义对象，可以使用Object.prototype.toString.call（ 所有内置对象的[[Class]]属性的值是由本规范定义的.所有宿主对象的[[Class]]属性的值可以是除了"Arguments", "Array", "Boolean", "Date", "Error", "Function", "JSON", "Math", "Number", "Object", "RegExp", "String"之外的的任何字符串）
+>
+> 如果希望判断是不是基础类型的或者对象，或者是函数，可以使用typeof
+>
+> 如果希望得到自定义对象的具体的类型的字符串，可以使用constructor
 
 从上表中我们看到了，instanceof和constructor不能跨iframe,上面没有细说，所以下面我们直接上例子喽
 
