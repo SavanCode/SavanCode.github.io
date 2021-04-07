@@ -566,7 +566,8 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <li>函数的参数没有传入</li>
 <li>void(expression)</li>
 </ul>
-<h2 id="null"><a href="#null" class="headerlink" title="null"></a>null</h2><p>它表示一个特殊值，常用来描述”空值”</p>
+<h2 id="null"><a href="#null" class="headerlink" title="null"></a>null</h2><p>它表示一个特殊值，常用来描述”空值”，语义是，希望<strong>表示 一个对象被人为的重置为空对象，而非一个变量最原始的状态 。</strong> 在内存里的表示就是，栈中的变量没有指向堆中的内存对象，即：</p>
+<p><img src="/2020/11/24/js-data-types/image-20210406162233888.png"></p>
 <p>null是空对象指针，而[]是空数组，{}是空对象，三者不相同</p>
 <blockquote>
 <p>null表示”空值”，undefined表示”未定义”。两者往往可以互换。判断相等运算符==认为两者是相等的</p>
@@ -620,7 +621,7 @@ a<span class="token operator">!==</span>a<span class="token punctuation">;</span
 <p>toExponential()方法返回数值四舍五入后的指数表示法(e表示法)的字符串表示，参数表示转换后的小数位数</p>
 </blockquote>
 <p>Number.toFixed(n) // 保留n位小数，为0则只保留整数<br>        Number.round() // 返回最接近的整数（相当于四舍五入）<br>        Number.floor() // 向小取整</p>
-<h2 id="Math"><a href="#Math" class="headerlink" title="Math"></a>Math</h2><h3 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h3><pre class=" language-js"><code class="language-js">Math<span class="token punctuation">.</span>E             <span class="token function">自然对数的底数，即常量e的值</span><span class="token punctuation">(</span>约等于<span class="token number">2.71828</span><span class="token punctuation">)</span>
+<h3 id="Math"><a href="#Math" class="headerlink" title="Math"></a>Math</h3><h4 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h4><pre class=" language-js"><code class="language-js">Math<span class="token punctuation">.</span>E             <span class="token function">自然对数的底数，即常量e的值</span><span class="token punctuation">(</span>约等于<span class="token number">2.71828</span><span class="token punctuation">)</span>
 Math<span class="token punctuation">.</span>LN2           <span class="token number">2</span><span class="token function">的自然对数</span><span class="token punctuation">(</span>约等于<span class="token number">0.693</span><span class="token punctuation">)</span>
 Math<span class="token punctuation">.</span>LN10          <span class="token number">10</span><span class="token function">的自然对数</span><span class="token punctuation">(</span>约等于<span class="token number">2.303</span><span class="token punctuation">)</span>
 Math<span class="token punctuation">.</span>LOG2E         <span class="token function">以2为底e的对数</span><span class="token punctuation">(</span>约等于<span class="token number">1.443</span><span class="token punctuation">)</span>
@@ -628,7 +629,7 @@ Math<span class="token punctuation">.</span>LOG10E        <span class="token fun
 Math<span class="token punctuation">.</span>PI            <span class="token function">派的值</span><span class="token punctuation">(</span>约等于<span class="token number">3.14</span><span class="token punctuation">)</span>
 Math<span class="token punctuation">.</span>SQRT2         <span class="token number">2</span><span class="token function">的平方根</span><span class="token punctuation">(</span>约等于<span class="token number">1.414</span><span class="token punctuation">)</span>
 Math<span class="token punctuation">.</span>SQRT1_2       <span class="token number">1</span><span class="token operator">/</span><span class="token number">2</span><span class="token function">的平方根，即2的平方根的倒数</span><span class="token punctuation">(</span>约等于<span class="token number">0.707</span><span class="token punctuation">)</span></code></pre>
-<h3 id="数学函数"><a href="#数学函数" class="headerlink" title="数学函数"></a>数学函数</h3><table>
+<h4 id="数学函数"><a href="#数学函数" class="headerlink" title="数学函数"></a>数学函数</h4><table>
 <thead>
 <tr>
 <th align="left">方法</th>
@@ -798,8 +799,8 @@ Math<span class="token punctuation">.</span>SQRT1_2       <span class="token num
 </tr>
 </tbody></table>
 <blockquote>
-<p>Javascript有两组相等运算符，一组是==和!=，另一组是===和!==。前者只比较值的相等，后者除了值以外，还比较类型是否相同。</p>
-<p>请尽量不要使用前一组，永远只使用===和!==。因为==默认会进行类型转换，规则十分难记。如果你不相信的话，请回答下面五个判断式的值是true还是false：</p>
+<p>Javascript有两组相等运算符，一组是<code>==</code>和<code>!=</code>，另一组是<code>===</code>和<code>!==</code>。前者只比较值的相等，后者除了值以外，还比较类型是否相同。</p>
+<p>请尽量不要使用前一组，永远只使用<code>===</code>和<code>!==</code>。因为<code>==</code>默认会进行类型转换，规则十分难记。如果你不相信的话，请回答下面五个判断式的值是true还是false：</p>
 <p>　　false == ‘false’</p>
 <p>　　false == undefined</p>
 <p>　　false == null</p>
@@ -957,18 +958,8 @@ Math<span class="token punctuation">.</span>SQRT1_2       <span class="token num
 <li><code>Object.prototype.toString</code>方法</li>
 </ul>
 <p><img src="/2020/11/24/js-data-types/1607253357351.png"></p>
-<h2 id="补充关于ES6中对象的数据解构"><a href="#补充关于ES6中对象的数据解构" class="headerlink" title="补充关于ES6中对象的数据解构"></a>补充关于ES6中对象的数据解构</h2><pre class=" language-js"><code class="language-js"><span class="token keyword">let</span> jsonData <span class="token operator">=</span> <span class="token punctuation">{</span>
-  id<span class="token punctuation">:</span> <span class="token number">42</span><span class="token punctuation">,</span>
-  status<span class="token punctuation">:</span> <span class="token string">"OK"</span><span class="token punctuation">,</span>
-  data<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">867</span><span class="token punctuation">,</span> <span class="token number">5309</span><span class="token punctuation">]</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
-
-<span class="token keyword">let</span> <span class="token punctuation">{</span> id<span class="token punctuation">,</span> status<span class="token punctuation">,</span> data<span class="token punctuation">:</span> number <span class="token punctuation">}</span> <span class="token operator">=</span> jsonData<span class="token punctuation">;</span>
-
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>id<span class="token punctuation">,</span> status<span class="token punctuation">,</span> number<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token comment" spellcheck="true">// 42, "OK", [867, 5309]</span></code></pre>
-<h2 id="JavaScript-对象-实例"><a href="#JavaScript-对象-实例" class="headerlink" title="JavaScript 对象 实例"></a>JavaScript 对象 实例</h2><p><a target="_blank" rel="noopener" href="https://www.runoob.com/js/js-ex-objects.html">例子总结1</a></p>
-<h2 id="reference"><a href="#reference" class="headerlink" title="reference:"></a>reference:</h2><ol>
+<p>详细的笔记在  JS 高级程序设计 重点摘抄以及解读1</p>
+<h2 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h2><ol>
 <li><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000014658470">https://segmentfault.com/a/1190000014658470</a></li>
 </ol>
 
