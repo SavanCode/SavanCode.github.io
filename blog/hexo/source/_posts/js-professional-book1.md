@@ -578,8 +578,6 @@ function getType(obj){
 }
 ```
 
-
-
 ## 拓展 stack vs heap
 
 ## 拓展 IF运算符 - 判断假值
@@ -654,7 +652,9 @@ Number.isNaN('abc');// false 本身不是NaN
 Number.isNaN(NaN);// true　本身是NaN
 ```
 
+> 个人的思维记录再note 软件中
 
+## 拓展 [JavaScript 运算符规则与隐式类型转换详解](https://zhuanlan.zhihu.com/p/29064256)
 
 ## 参考
 
