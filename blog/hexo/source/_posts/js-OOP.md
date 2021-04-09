@@ -1,13 +1,13 @@
 ---
-title: js OOP prototype
+title: js object prototype 原型链
 top: false
 cover: false
 toc: true
 mathjax: true
 date: 2020-11-26 17:03:20
 password:
-summary:
-tags: [JS,prototype]
+summary: js原型链
+tags: [JS,prototype,JS object,book]
 categories: JS
 ---
 

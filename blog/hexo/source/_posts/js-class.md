@@ -7,145 +7,321 @@ mathjax: true
 date: 2020-11-27 13:30:23
 password:
 summary: class基础
-tags: JS
+tags: [JS,book]
 categories: JS
 ---
 
-## class基本定义
+## Class
 
-### 语法
+###  class 定义基础
 
 ```js
-class ClassName {
-  constructor() { ... }//这里全部放属性
-  method_1() { ... }//方法之间不放逗号
-  method_2() { ... }
-  method_3() { ... }
-  }
+// class declaration 
+class Person {}
+// class expression 
+const Animal = class {};
+```
+
+- function声明挂起，class 声明不会
+
+```js
+console.log(FunctionExpression); // undefined 
+var FunctionExpression = function() {};
+console.log(FunctionExpression); // function() {}
+
+console.log(FunctionDeclaration); // FunctionDeclaration() {}
+function FunctionDeclaration() {} console.log(FunctionDeclaration); // FunctionDeclaration() {}
+
+console.log(ClassExpression); 		// undefined
+var ClassExpression = class {}; 
+console.log(ClassExpression);			// class {}
+
+console.log(ClassDeclaration); 		// ReferenceError: ClassDeclaration is not defined
+class ClassDeclaration {} 
+console.log(ClassDeclaration);		// class ClassDeclaration {}
+```
+
+#### class构成
+```js
+// Valid empty class definition 
+class Foo {}
+
+// Valid class definition with constructor 
+class Bar {
+  constructor() {} 
+}
+
+// Valid class definition with getter 
+class Baz {
+  get myBaz() {}
+}
+
+// Valid class definition with static method 
+class Qux {
+  static myQux() {} 
 }
 ```
 
-### 例子
+### class 构造函数
 
+#### Instantiation
+
+1. a new object 创建在内存
+2. [[Prototype]]指针被分配到构造函数原型
+3. 构造函数的this被分配到new object
+4. 构造函数执行
+5. 如果构造函数返回object，就返回object；否则被生成的new object返回
 ```js
- class Car {
-      constructor(name, year) {
-        this.name = name;
-        this.year = year;
-      }
-      age() {
-        let date = new Date();
-        return date.getFullYear() - this.year;
-      }
-     static coding(){ console.log("静态方法，不用实例化直接可以调用")}
+class Animal {}
+class Person { 
+  constructor() {
+  console.log('person ctor'); }
 }
-
-Car.coding();
-
-let myCar = new Car("Ford", 2014);
-document.getElementById("demo").innerHTML =
-"My car is " + myCar.age() + " years old.";;
+class Vegetable { 
+  constructor() {
+    this.color = 'orange'; 
   }
 }
+
+let a = new Animal();
+let p = new Person(); // person ctor
+
+let v = new Vegetable(); 
+console.log(v.color); // orange
 ```
 
-> A JavaScript class is **not** an object.
->
-> It is a **template** for JavaScript objects.
-
-## class创建对象
+#### 将class看作特殊函数
 
 ```js
-let myCar1 = new Car("Ford", 2014);
-let myCar2 = new Car("Audi", 2019);
+class Person {}
+console.log(Person); // class Person {} 
+console.log(typeof Person); // function
 ```
 
-## class继承 - extends
+- class标识符拥有prototype属性，属性拥有constructor属性又引用class本身
 
 ```js
-class Car {
-  constructor(brand) {
-    this.carname = brand;
+class Person{}
+console.log(Person.prototype); // { constructor: f() } 
+console.log(Person === Person.prototype.constructor); // true
+```
+
+- 构造函数与class的关系
+```js
+class Person {}
+let p1 = new Person();
+console.log(p1.constructor === Person); // true 
+console.log(p1 instanceof Person); // true 
+console.log(p1 instanceof Person.constructor); // false
+
+let p2 = new Person.constructor(); 
+console.log(p2.constructor === Person); // false
+console.log(p2 instanceof Person); // false 
+console.log(p2 instanceof Person.constructor); // true
+```
+
+### 实例，原型与class 成员
+
+#### 示例成员(Instance Members)
+
+```js
+class Person { 
+  constructor() {
+// For this example, define a string with object wrapper 
+// as to check object equality between instances below 
+    this.name = new String('Jack');
+    this.sayName = () => console.log(this.name);
+    this.nicknames = ['Jake', 'J-Dog'] }
+}
+let p1 = new Person(), 
+    p2 = new Person();
+
+p1.sayName(); // Jack 
+p2.sayName(); // Jack
+
+console.log(p1.name === p2.name); 
+console.log(p1.sayName === p2.sayName); 
+console.log(p1.nicknames === p2.nicknames); // false
+
+p1.name = p1.nicknames[0]; 
+p2.name = p2.nicknames[1];
+
+p1.sayName(); // Jake 
+p2.sayName(); // J-Dog
+```
+
+#### 原型与访问器
+
+- primitives and objects 不可以直接加入到class内的原型
+
+```js
+class Person { 
+  name: 'Jake'
+}
+// Uncaught SyntaxError: Unexpected token :
+```
+
+- get set
+```js
+class Person {
+  set name(newName) { 
+    this.name_ = newName;
   }
-  present() {
-    return 'I have a ' + this.carname;
+  get name() {
+    return this.name_;
+  }
+}
+let p = new Person();
+p.name = 'Jake'; 
+console.log(p.name); // Jake
+```
+
+#### 静态class方法与访问器
+```js
+class Person { 
+  constructor() {
+// Everything added to 'this' will exist on each individual instance
+    this.locate = () => console.log('instance', this); }
+// Defined on the class prototype object locate() {
+  console.log('prototype', this); }
+// Defined on the class
+  static locate() { 
+    console.log('class', this);
   }
 }
 
-class Model extends Car {
-  constructor(brand, mod) {
-    super(brand);//引用parent的constructor - 没有不行
-    this.model = mod;
-  }
-  show() {
-    return this.present() + ', it is a ' + this.model;
-  }
-    present() {
-        //super.present() 这样会调用父类方法
-    	console.log("我会覆盖父类方法");
-  }
-}
+let p = new Person();
 
-let myCar = new Model("Ford", "Mustang");
-document.getElementById("demo").innerHTML = myCar.show();
+p.locate(); // instance, Person {} 
+Person.prototype.locate(); // prototype, {constructor: ... } 
+Person.locate(); // class, class Person {}
 ```
 
-## Getters and Setters
+#### 无函数原型与class成员
 
 ```js
-class Car {
-  constructor(brand) {
-    this.carname = brand;
-  }
-  get cnam() {
-    return this.carname;
-  }
-  set cnam(x) {
-    this.carname = x;
+class Person { 
+  sayName() {
+    console.log('${Person.greeting} ${this.name}'); 
   }
 }
+// Define data member on class 
+Person.greeting = 'My name is';
 
-let myCar = new Car("Ford");
+// Define data member on prototype 
+Person.prototype.name = 'Jake';
 
-document.getElementById("demo").innerHTML = myCar.cnam;
+let p = new Person(); 
+p.sayName(); // My name is Jake
 ```
 
-## static function
-
-You cannot call a `static` method on an object, only on an object class.
+#### 迭代与生成
 
 ```js
-class Car {
-  constructor(name) {
-    this.name = name;
+class Person { 
+  constructor() {
+    this.nicknames = ['Jack', 'Jake', 'J-Dog']; 
   }
-  static hello() {
-    return "Hello!!";
+    *[Symbol.iterator]() {
+      yield *this.nicknames.entries();
   }
 }
-
-let myCar = new Car("Ford");
-
-// You can calll 'hello()' on the Car Class:
-document.getElementById("demo").innerHTML = Car.hello();
-
-// But NOT on a Car Object:
-// document.getElementById("demo").innerHTML = myCar.hello();
-// this will raise an error.
+let p = new Person();
+for (let [idx, nickname] of p) {console.log(nickname); }
+// Jack // Jake // J-Dog
 ```
 
-改为：
+###  继承
+
+#### 继承基础
 
 ```js
-class Car {
-  constructor(name) {
-    this.name = name;
-  }
-  static hello(x) {
-    return "Hello " + x.name;
-  }
-}
-let myCar = new Car("Ford");
-document.getElementById("demo").innerHTML = Car.hello(myCar);
+class Vehicle {}
+
+// Inherit from class
+class Bus extends Vehicle {}
+
+let b = new Bus();
+console.log(b instanceof Bus); // true 
+console.log(b instanceof Vehicle); // true
+
+function Person() {}
+
+// Inherit from function constructor 
+class Engineer extends Person {}
+
+let e = new Engineer();
+console.log(e instanceof Engineer); // true 
+console.log(e instanceof Person); // true
 ```
 
+#### 构造函数、Homeobjects 与 super()
+
+- super()用于子类的构造函数中或者静态方法中
+
+```js
+class Vehicle { 
+  constructor() {
+    this.hasEngine = true; }
+}
+
+class Bus extends Vehicle { 
+  constructor() {
+// Cannot reference 'this' before super(), will throw ReferenceError 
+    super(); // same as super.constructor()
+    console.log(this instanceof Vehicle); // true
+    console.log(this); // Bus { hasEngine: true } 
+  }
+}
+
+new Bus();
+```
+
+#### 抽象基类(Abstract Base Classes)
+
+```js
+// Abstract base class 
+class Vehicle {
+  constructor() { 
+    console.log(new.target);
+  	if (new.target === Vehicle) {
+    	throw new Error('Vehicle cannot be directly instantiated'); 
+    }
+	} 
+}
+
+// Derived class
+class Bus extends Vehicle {}
+
+new Bus(); // class Bus {}
+new Vehicle(); // class Vehicle {}
+// Error: Vehicle cannot be directly instantiated
+```
+
+#### 由已经建类型继承(Inheriting from Built-in Types)
+
+```js
+class SuperArray extends Array { 
+  shuffle() {
+// Fisher-Yates shuffle
+    for (let i = this.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [this[i], this[j]] = [this[j], this[i]]; }
+  } 
+}
+
+let a= new SuperArray(1, 2, 3, 4, 5);
+
+console.log(a instanceof Array); // true 
+console.log(a instanceof SuperArray); // true
+
+console.log(a); // [1, 2, 3, 4, 5] 
+a.shuffle();
+console.log(a); // [3, 1, 4, 5, 2]
+```
+
+#### 类掺合(Class Mixins)
+
+## Reference
+
+js高级程序设计

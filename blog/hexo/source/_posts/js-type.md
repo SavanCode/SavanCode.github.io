@@ -11,14 +11,14 @@ tags: JS
 categories: JS
 ---
 
-# typeof
+## typeof
 
 ```js
 console.log(typeof 'a');//'string'
 console.log(typeof ('a'));//'string'
 ```
 
-# instanceof
+## instanceof
 
 操作数是一个对象，右操作数是一个构造函数。如果左侧的对象是右侧构造函数的实例对象，则表达式返回true；否则返回false。
 
@@ -39,7 +39,7 @@ console.log(null instanceof Null);//报错
 console.log({name: "jerry"} instanceof Object);//true
 ```
 
-# constructor
+## constructor
 
 - 可以识别标准类型、内置对象类型及自定义类型
 
@@ -55,7 +55,7 @@ console.log((null).constructor);//报错
 console.log(({name: "jerry"}).constructor);//function Object(){[native code]}
 ```
 
-# Object.prototype.toString()
+## Object.prototype.toString()
 
 ```js
 console.log(Object.prototype.toString.call("jerry"));//[object String]

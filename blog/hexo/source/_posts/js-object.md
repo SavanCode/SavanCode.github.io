@@ -7,91 +7,13 @@ mathjax: true
 date: 2020-11-26 13:45:33
 password:
 summary:
-tags: JS
+tags: [JS,JS object]
 categories: JS
 ---
 
 # 对象基本操作
 
-## 生成
-
-### 基本生成办法（直接生成obj）
-
-```js
-var obj = {
-  foo: 'Hello',
-  'h w': 'Hello World',
-  'p+q': 'Hello World'，
-  m: function () { ... },
-};
-```
-
-```js
-var obj = {
-  1: 'a',
-  3.2: 'b',
-  1e2: true,
-  1e-2: true,
-  .234: true,
-  0xFF: true
-};
-// Object {
-//   1: "a",
-//   3.2: "b",
-//   100: true,
-//   0.01: true,
-//   0.234: true,
-//   255: true
-// }
-obj['100'] // true
-```
-
-```js
-var age=30;
-var name="dfghjkl";
-var sex="male";
-var obj={ age, name, sex}
-console.log(obj);
-```
-
-### constructor（用构造函数+new生成对象）
-
-```js
-//构造函数
-function Person(first, last, age, eye) {
-  this.firstName = first;
-  this.lastName = last;
-  this.age = age;
-  this.eyeColor = eye;
-  this.name = function() {return this.firstName + " " + this.lastName;};
-    this.changeName = function (name) {this.lastName = name;};
-}
-//实例化
-var myFather = new Person("John", "Doe", 50, "blue");
-var myMother = new Person("Sally", "Rally", 48, "green");
-
-```
-
-```js
-function Dog(name) {
-  this.name = name;
-}
-
-// Only change code below this line
-Dog.prototype = {
-
-  numLegs: 4,
-  eat: function() {
-    console.log("nom nom nom");
-  },
-  describe: function() {
-    console.log("My name is " + this.name);
-  }
-};
-
-```
-
-
+## 创建
 
 ## 读取
 
@@ -126,6 +48,86 @@ var obj = {};
 
 obj.foo = 'Hello';
 obj['bar'] = 'World';
+```
+
+## object解构
+
+- 简单结构
+
+```js
+// Without object destructuring 
+let person = {
+  name: 'Matt',
+  age: 27 };
+let personName = person.name, personAge = person.age;
+console.log(personName);; // Matt
+console.log(personAge); // 27
+
+
+// With object destructuring 
+let person = {
+  name: 'Matt',
+  age: 27 };
+let { name: personName, age: personAge } = person;
+console.log(personName); // Matt 
+console.log(personAge); // 27
+```
+
+-  嵌套解构
+
+```js
+let person = { 
+  name: 'Matt', age: 27,
+  job: {
+    title: 'Software engineer' }
+};
+let personCopy = {};
+({name: personCopy.name, age: personCopy.age, job: personCopy.job
+} = person);
+
+// Because an object reference was assigned into personCopy, changing a property 
+// inside the person.job object will be propagated to personCopy: 
+person.job.title = 'Hacker'
+
+console.log(person);
+// { name: 'Matt', age: 27, job: { title: 'Hacker' } }
+```
+
+- 不完全解构
+
+```js
+let person = { 
+  name: 'Matt', age: 27
+};
+let personName, personBar, personAge;
+try {
+// person.foo is undefined, so this will throw an error
+({name: personName, foo: { bar: personBar }, age: personAge} = person);
+} catch(e) {}
+
+console.log(personName, personBar, personAge);
+// Matt, undefined, undefined
+```
+
+- 参数上下文匹配
+
+```js
+let person = { name: 'Matt', age: 27};
+
+function printPerson(foo, {name, age}, bar) {
+  console.log(arguments);
+  console.log(name, age);
+}
+function printPerson2(foo, {name: personName, age: personAge}, bar) { 
+  console.log(arguments);
+  console.log(personName, personAge);
+}
+
+printPerson('1st', person, '2nd');
+// ['1st', { name: 'Matt', age: 27 }, '2nd'] // 'Matt', 27
+
+printPerson2('1st', person, '2nd');
+// ['1st', { name: 'Matt', age: 27 }, '2nd'] // 'Matt', 27
 ```
 
 ## 查看obj内属性，验证obj是否有某属性
@@ -293,11 +295,13 @@ if ('toString' in obj) {
 }
 ```
 
-## 属性的遍历：for...in 循环
+## 属性的遍历
+
+### for...in 循环 - 顺序不确定
 
 - 它遍历的是对象所有可遍历（enumerable）的属性，会跳过不可遍历的属性。
 - 它不仅遍历对象自身的属性，还遍历继承的属性。
-- **注意： 不能用 for ... of**
+- **注意： 不能同样方用 for ... of**
 
 ```js
 var obj = {a: 1, b: 2, c: 3};
@@ -306,12 +310,35 @@ for (var i in obj) {
   console.log('键名：', i);
   console.log('键值：', obj[i]);
 }
-// 键名： a
-// 键值： 1
-// 键名： b
-// 键值： 2
-// 键名： c
-// 键值： 3
+```
+
+### Object.keys() - 顺序不确定
+
+### Object.getOwnPropertyNames()
+
+### Object.getOwnPropertySymbols()
+
+### Object.assign()
+
+### 对于对象属性与值转化为 array
+
+```js
+//Object.entries(obj) && Object.values(obj)
+const object1 = {
+  a: 'somestring',
+  b: 42,
+  c: false
+};
+
+console.log(Object.values(object1));
+//Array ["somestring", 42, false]
+
+console.log(Object.entries(object1));
+//Array [Array ["a", "somestring"], Array ["b", 42], Array ["c", false]]
+
+for (const [key, value] of Object.entries(object1)) {
+  console.log(`${key}: ${value}`);
+}
 ```
 
 ## with 语句

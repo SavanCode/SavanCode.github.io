@@ -172,6 +172,8 @@ SyntaxError: Identifier 'x' has already been declared
 >
 > 代码执行流每进入一个新的上下文，会创建作用域链，用于搜索变量与函数
 
+闭包 - 用完就销毁
+
 ### 函数声明 与 函数表达式
 
 函数的定义通过函数声明或者函数表达式，function构造函数，创建具名或者匿名函数以及立即执行函数
@@ -295,7 +297,6 @@ new new Foo().getName();//3  new ((new Foo()).getName)();
      window.b // undefined
      ```
   
-     
 - **const命令两个注意点:**
 
   1. const 声明之后必须马上赋值，否则会报错
@@ -313,3 +314,150 @@ new new Foo().getName();//3  new ((new Foo()).getName)();
 > 为了减少运行时错误，防止在变量声明前就使用这个变量，从而导致意料之外的行为。
 > 不允许重复声明变量
 
+### 3. 代码理解
+
+```js
+for (var i = 0; i < 3; i++) {
+  setTimeout(() => console.log(i), 1);
+}
+```
+
+这里的点是 块级作用域+全局作用域 & eventLoop（异步 - settimeout 函数）
+
+### 4. 函数没有返回值时，返回什么？
+
+```js
+function Person(firstName, lastName) {
+  this.firstName = firstName;
+  this.lastName = lastName;
+}
+
+const lydia = new Person("Lydia", "Hallie");
+const sarah = Person("Sarah", "Smith");
+
+console.log(lydia);
+console.log(sarah);
+
+A: Person {firstName: "Lydia", lastName: "Hallie"} and undefined
+B: Person {firstName: "Lydia", lastName: "Hallie"} and Person {firstName: "Sarah", lastName: "Smith"}
+C: Person {firstName: "Lydia", lastName: "Hallie"} and {}
+D:Person {firstName: "Lydia", lastName: "Hallie"} and ReferenceError
+```
+
+函数没有return的时候 return的就是undefined
+
+**这里一定注意 const不可能没有值！！！**
+
+### this在箭头函数中的指向问题
+
+[推荐阅读1](https://github.com/anirudh-modi/JS-essentials/blob/master/ES2015/Functions/Arrow%20functions.md#how-this-is-different-for-arrow-functions)
+
+> ```js
+> function foo() {
+>  setTimeout(()=>{
+>          console.log(this.a);        // func
+>      },100);
+> }
+> foo.a = 'func';
+> var a = 'global';
+> foo.call(foo);
+> ```
+>
+>
+> You must be wondering how did the above code worked, and we didn't even hard binded `this` for the arrow function to `this` of `foo` function!!!! 👺
+>
+> Well *this* is because the arrow functions do not have their own `this`, so how come it printed `func` 😱, *this* is because of the fact that, for arrow functions `this` is used using lexical scope lookup, which means that, when a reference to `this` is made within any arrow function, the engine, will start looking up the scope of arrow function to find a `this` binding, default being the `global scope` `this`, so, when the above code is executed, during the callback, the engine, will first look for `this` within the scope of arrow function, which it fails to find, then it traverses up the scope of the arrow function, which is the scope of the function `foo`, and since it finds a `this` in the scope of the `foo`, that same `this` is used as future reference within the arrow function, and since `this` of `foo` is hard binded to itself, we get the value of `this.a` as `func`.
+>
+> 文章解释很全，总的说，跟红宝书讲的一样，箭头函数本身没有this，全部都是继承而来，但是这里的继承是要往上找出this
+
+加深理解的例子（这里的例子[来源网络](https://www.jianshu.com/p/fed4c7ae2c33)，单个人理解与原作者的理解有出入 ）
+
+```js
+console.log('全局环境的this', this)
+    
+    function test (){
+        console.log('方法中的 this', this)
+
+        function child(){
+            console.log('方法中的方法的 this', this)
+        }
+        child()
+    }
+    test()
+
+    var obj =  {
+        name: "object",
+        doSth: function() {
+            var oName = "obj function name"
+            console.log('对象中的 this', this)
+        },
+        childObj: {
+            name: "childObj",
+            doSth: function() {
+                var arrow = () => {
+                    console.log("对象中箭头函数的this", this)
+                }
+                arrow()
+                console.log('对象的对象中的 this', this)
+            }
+        },
+        doBibao: function() {
+            var count = 500
+            console.log('闭包构造方法的 this', this)
+            return function() {
+                console.log('闭包返回结果的 this', this)
+            }
+        }
+    }
+    obj.doSth()
+    obj.childObj.doSth()
+    var mbb = obj.doBibao()
+    mbb()
+
+    setTimeout(obj.doSth, 1800)
+    setTimeout(obj.doSth.bind(obj), 2000)
+
+    var fun = function() {
+        console.log('匿名函数中的 this', this)
+    }
+    fun()
+
+    class Vue {
+        constructor(options){
+            this.name = "vue"
+            this.type = "object"
+            this.options = options
+            console.log('构造函数的 this', this)
+
+            options.log()
+        }
+    }
+
+    var vm = new Vue({
+        log: function () {
+            console.log('构造函数找那个传递方法的 this', this)
+        }
+    })
+
+    function bibao (){
+        var count = 101
+        console.log('闭包外的 this', this)
+        return function() {
+            count++
+            console.log('闭包中的 this', this)
+            return count;
+        }
+    }
+    var bi = bibao()
+    console.log(bi())
+
+    var mArrow = () => {
+        console.log('箭头函数中的 this', this)
+    }
+    mArrow()
+    console.log('以下内容为异步执行')
+
+    setTimeout(() => {
+        console.log('延时箭头函数中的 this', this)
+    }, 1000)
+```

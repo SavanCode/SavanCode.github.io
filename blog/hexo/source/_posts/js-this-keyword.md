@@ -7,7 +7,7 @@ mathjax: true
 date: 2020-11-25 20:07:12
 password:
 summary: JavaScript this 关键字 的基本介绍
-tags: JS
+tags: [JS,this]
 categories: JS
 ---
 

@@ -1,12 +1,12 @@
 ---
-title: js  data types
+title: js  data types 数据类型详解
 top: false
 cover: false
 toc: true
 mathjax: true
 date: 2020-11-24 13:46:55
 password:
-summary: js  data types
+summary: js  data types 数据类型详解
 tags: JS
 categories: JS
 ---
@@ -20,12 +20,14 @@ categories: JS
 - 布尔（boolean）
 - 对象（object）
 - 函数（function）
+- Symbol
 
 有三种对象类型：
 
 - 对象（Object）
 - 日期（Date）
 - 数组（Array）
+- 正则 （RegExp）
 
 同时有两种不能包含值的数据类型：
 
@@ -336,6 +338,14 @@ Math.SQRT1_2       1/2的平方根，即2的平方根的倒数(约等于0.707)
 
 ## String
 
+三种表示方式(")(')(`)
+
+```js
+let firstName = "John";
+let lastName = 'Jacob';
+let lastName = `Jingleheimerschmidt`
+```
+
 ![](js-data-types/1606214735012.png)
 
 
@@ -365,9 +375,14 @@ Math.SQRT1_2       1/2的平方根，即2的平方根的倒数(约等于0.707)
 | null             | **0**      | "null"            | false      |
 | undefined        | NaN        | "undefined"       | false      |
 
+## Symbol
 
+Symbol类型创建一个独一无二的值。目的是为了保护独特的描述符，防止propperty冲突
 
-## 确定对象类型
+- 无法与new联用
+- Symbol.for()检查是否存在相同Symbol
+
+## 确定对象类型最基本办法
 
 JavaScript 有三种方法，可以确定一个值到底是什么类型。
 

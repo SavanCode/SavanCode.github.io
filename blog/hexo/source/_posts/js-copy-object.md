@@ -7,7 +7,7 @@ mathjax: true
 date: 2020-11-25 19:13:17
 password:
 summary: js copy object
-tags: JS
+tags: [JS,JS object]
 categories: JS
 ---
 

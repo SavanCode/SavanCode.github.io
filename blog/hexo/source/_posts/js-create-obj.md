@@ -7,7 +7,7 @@ mathjax: true
 date: 2020-12-07 21:16:41
 password:
 summary: JavaScript深入之创建对象的多种方式以及优缺点
-tags: JS
+tags: [JS,JS object]
 categories: JS
 ---
 
@@ -26,33 +26,43 @@ function createPerson(name) {
 var person1 = createPerson('kevin');
 ```
 
+优点：可以创建多个类似对象
+
 缺点：对象无法识别，因为所有的实例都指向一个原型
 
 ## 2. 构造函数模式
 
 ```js
-function Person(name) {
+function Person(name) {// let Person = function(name)... 一样
     this.name = name;
-    this.getName = function () {
-        console.log(this.name);
-    };
+    this.getName = function() {
+     	 console.log(this.name);
+	}
 }
-
-var person1 = new Person('kevin');
 ```
+
+> 跟工厂模式的区别：
+>
+> - 没有显式创建对象
+> - 属性方法 直接给了this
+> - 没有return
+>
+> 这里new的实际内部操作
+>
+> 创建新对象 - 新对象prototype直接指向函数的原型 - this指向对象 - 执行构造函数 - 返回非空对象
 
 优点：实例可以识别为一个特定的类型
 
 缺点：每次创建实例时，每个方法都要被创建一次
 
-## 2.1 构造函数模式优化
+### 2.1 构造函数模式优化
 
 ```js
-function Person(name) {
+function Person(name) {// let Person = function(name)... 一样
     this.name = name;
     this.getName = getName;
 }
-
+//这样写节省空间（红宝石书中有解释）
 function getName() {
     console.log(this.name);
 }
@@ -67,7 +77,7 @@ var person1 = new Person('kevin');
 ## 3. 原型模式
 
 ```js
-function Person(name) {}
+function Person() {}
 
 Person.prototype.name = 'keivn';
 Person.prototype.getName = function () {
@@ -75,13 +85,16 @@ Person.prototype.getName = function () {
 };
 
 var person1 = new Person();
+let person2 = new Person();
+
+console.log(person1.getName == person2.getName); // true
 ```
 
 优点：方法不会重新创建
 
-缺点：1. 所有的属性和方法都共享 2. 不能初始化参数
+缺点：1. 所有的属性和方法都共享 2.弱化了构造函数，没有初始化参数
 
-## 3.1 原型模式优化
+### 3.1 原型模式优化
 
 ```js
 function Person(name) {}
@@ -100,13 +113,13 @@ var person1 = new Person();
 
 缺点：重写了原型，丢失了constructor属性
 
-## 3.2 原型模式优化
+### 3.2 原型模式优化
 
 ```js
 function Person(name) {}
 
 Person.prototype = {
-    constructor: Person,
+    constructor: Person,//这里的好处与问题 下面讲解
     name: 'kevin',
     getName: function () {
         console.log(this.name);
@@ -123,6 +136,8 @@ var person1 = new Person();
 ## 4. 组合模式 (推荐)
 
 构造函数模式与原型模式双剑合璧。
+
+> 由于原型模式， constructor 不声明，那么就会丢失。如果constructor 的值很重要，则可以像下面这样在重写原型对象时专门设置一下它的值
 
 ```js
 function Person(name) {
@@ -143,7 +158,7 @@ var person1 = new Person();
 
 缺点：有的人就是希望全部都写在一起，即更好的封装性
 
-## 4.1 动态原型模式
+### 4.1 动态原型模式
 
 ```js
 function Person(name) {
@@ -219,7 +234,9 @@ person1.getName(); // kevin
 person2.getName();  // daisy
 ```
 
-## 5.1 寄生构造函数模式
+## 5. 优化函数模式
+
+### 5.1 寄生构造函数模式
 
 ```js
 function Person(name) {
@@ -287,7 +304,7 @@ for (var i = 0, len = arguments.length; i < len; i++) {
 values.push.apply(values, arguments);
 ```
 
-## 5.2 稳妥构造函数模式
+### 5.2 稳妥构造函数模式
 
 ```js
 function person(name){

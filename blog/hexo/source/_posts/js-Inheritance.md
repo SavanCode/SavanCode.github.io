@@ -1,17 +1,15 @@
 ---
-title: js Inheritance
+title: js Inheritance JavaScript六种对象继承方式对比
 top: false
 cover: false
 toc: true
 mathjax: true
 date: 2020-12-07 17:19:52
 password:
-summary:
-tags: JS
+summary: JavaScript六种对象继承方式
+tags: [JS,JS object]
 categories: JS
 ---
-
-# JavaScript六种继承方式
 
 ![](js-Inheritance/1607335652503.png)
 
@@ -23,7 +21,7 @@ categories: JS
 >
 > 优点：父类方法可以继承使用
 >
-> 缺点：子类new出来的实例不能向父类传递参数，父类的**引用属性**没有隔离，会相互影响；不能多继承
+> 缺点：子类new出来的实例不能向父类构造函数传递参数；父类的**引用属性**没有隔离，会相互影响；不能多继承
 
 ### 语法
 
@@ -112,17 +110,18 @@ console.log(stu2.hobbies) // music,reading,basketball
 >
 > 优点：  和原型链继承完全反过来 ; 父类的引用属性不会被共享 ; 子类构建实例时可以向父类传递参数，可以多继承（call 多个父类）
 >
-> 缺点：子类只是接用父类的构造函数，别的都没干，原型上的东西子类都没有
+> 缺点：1.子类只是接用父类的构造函数，别的都没干，原型上的东西子类都没有 2. 必须在构造函数中定义方法，函数不能重用（构造函数模式的缺点）
 
 ### 语法
 
 ```js
+// 父类
+function Parent() {}
+//子类
 function Child(){
 	Parent.call(this);//重新执行一遍parent函数
 }
 ```
-
-
 
 ### 例子
 
@@ -162,15 +161,13 @@ console.log(stu1.say === stu2.say) // false 子类没有办法共享父类的函
 
 ```js
 //父类
-function Parent(){}
+function Parent(name){ this.name=name}
 //子类
-function Child(){ Parent.call(this)};
+function Child(name){ Parent.call(this,name)};
 // 继承
 Child.prototype = new Parent();
-Child.prototype.constructor = Child;
+//???Child.prototype.constructor = Child; 红宝书上没有写 待考证
 ```
-
-
 
 ### 例子
 
@@ -189,7 +186,7 @@ function Student(name,age){
 }
 // 继承
 Student.prototype = new Person() // 原型链继承(继承方法) - 调用了一次父类构造函数
-Student.prototype.constructor = Student;
+//????Student.prototype.constructor = Student; 红宝书上没有写 待考证
 
 //子类函数
 Student.prototype.sayAge = function(){  alert(this.age); }
@@ -289,9 +286,9 @@ console.log(s1)
 
 > 核心：原型式继承的object方法本质上是对参数对象的一个浅复制。
 >
-> 优点：父类方法可以复用
+> 优点：1. 不需要单独创建构造函数，但仍有对象之间的共享信息；2. 每一个新增对象有自己的属性
 >
-> 缺点：父类的引用属性会被所有子类实例共享 ；子类构建实例时不能向父类传递参数
+> 缺点： 对象的引用属性会被共享（跟原型模式一样）
 
 ### 图解与语法
 
@@ -301,8 +298,9 @@ function object(o){
     F.prototype = o; 
     return new F();
 }
-var Child = object(Parent);
-//var Child = Object.create(Parent) 与上面的意思一样
+let parent = {name="name"}
+var Child = object(parent);
+//var Child = Object.create(parent) 同效果
 ```
 
 ![](js-Inheritance/1607343408122.png)
@@ -312,11 +310,8 @@ var Child = object(Parent);
 ```js
 /*clone 内部首先是创建了一个空的构造函数F,然后把F的prototype指向参数proto,最后返回一个F的实例对象,完成继承. 最好看图 */
 //本质上讲，就是对传入的对象执行了一次浅复制
-function object(o){
-function F(){}
-F.prototype = o;
-return new F();
-}
+
+
 var person = { 
     name:"Nicholas", 
     friends:["Shelby","Court","Van"]
@@ -343,9 +338,11 @@ var anotherPerson = Object.create(person)
 console.log(anotherPerson.friends)  // [‘Shelby’, ‘Court’]
 ```
 
-
-
 ## 5. 寄生式继承
+
+原理：创建一个仅用于封装继承过程的函数，该函数在内部以某种形式来做增强对象，最后返回对象
+
+缺点：跟借用构造函数模式一样，每次创建对象都会创建一遍方法。
 
 ```js
 function createAnother(original){
@@ -368,9 +365,13 @@ anotherPerson.sayHi();   //"hi"
 
 ## 6. 寄生组合式继承(推荐)
 
+> 优点：这种方式的高效率体现它只调用了一次 Parent 构造函数，并且因此避免了在 Parent.prototype 上面创建不必要的、多余的属性。与此同时，原型链还能保持不变；因此，还能够正常使用 instanceof 和 isPrototypeOf。开发人员普遍认为寄生组合式继承是引用类型最理想的继承范式。
+>
+> 缺点：本来会出现至少两次调用parent 构造函数（一次是设置子类型实例的原型的时候；一次在创建子类型实例的时候；）；但是封装inheritPrototype()之后就不会有
+
 ```js
 function inheritPrototype(Child, Parent) {
-  var prototype = Object.create(Parent.prototype);// 创建了父类原型的浅复制
+  var prototype = Object.create(Parent.prototype);// 创建了父类原型的浅复制；或者之前的object（）方法
   prototype.constructor = Child;// 修正原型的构造函数
   Child.prototype = prototype;// 将子类的原型替换为这个原型
 }
@@ -398,9 +399,16 @@ instance.sayName()
 
 ## 7. ES6 Class extends
 
-> 核心： ES6继承的结果和寄生组合继承相似，本质上，ES6继承是一种语法糖。但是，寄生组合继承是先创建子类实例this对象，然后
-> 再对其增强；而ES6先将父类实例对象的属性和方法，加到this上面（所以必须先调用super方法），然后再用子类的构造函数修改
-> this。
+> 核心： ES6继承的结果和寄生组合继承相似，本质上，ES6继承是一种语法糖。但是，寄生组合继承是先创建子类实例this对象，然后再对其增强；而ES6先将父类实例对象的属性和方法，加到this上面（所以必须先调用super方法），然后再用子类的构造函数修改this。
+
+### 定义
+
+```js
+// class declaration 
+class Person {}
+// class expression 
+const Animal = class {};
+```
 
 ### 语法
 
