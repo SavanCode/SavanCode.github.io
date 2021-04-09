@@ -26,9 +26,12 @@ function createPerson(name) {
 var person1 = createPerson('kevin');
 ```
 
-优点：可以创建多个类似对象
-
-缺点：对象无法识别，因为所有的实例都指向一个原型
+> 核心：返回新对象
+>
+> 优点：可以创建多个类似对象
+>
+> 缺点：对象无法识别，因为所有的实例都指向一个原型
+>
 
 ## 2. 构造函数模式
 
@@ -39,6 +42,7 @@ function Person(name) {// let Person = function(name)... 一样
      	 console.log(this.name);
 	}
 }
+var person1 = new Person('kevin');
 ```
 
 > 跟工厂模式的区别：
@@ -47,13 +51,15 @@ function Person(name) {// let Person = function(name)... 一样
 > - 属性方法 直接给了this
 > - 没有return
 >
-> 这里new的实际内部操作
->
+> 这里new的实际内部操作：
 > 创建新对象 - 新对象prototype直接指向函数的原型 - this指向对象 - 执行构造函数 - 返回非空对象
 
-优点：实例可以识别为一个特定的类型
-
-缺点：每次创建实例时，每个方法都要被创建一次
+> 核心：直接使用new操作符
+>
+> 优点：实例可以识别为一个特定的类型
+>
+> 缺点：每次创建实例时，每个方法都要被创建一次
+>
 
 ### 2.1 构造函数模式优化
 
@@ -90,9 +96,10 @@ let person2 = new Person();
 console.log(person1.getName == person2.getName); // true
 ```
 
-优点：方法不会重新创建
-
-缺点：1. 所有的属性和方法都共享 2.弱化了构造函数，没有初始化参数
+> 优点：方法不会重新创建
+>
+> 缺点：1. 所有的属性和方法都共享 2.弱化了构造函数，没有初始化参数
+>
 
 ### 3.1 原型模式优化
 
@@ -111,7 +118,7 @@ var person1 = new Person();
 
 优点：封装性好了一点
 
-缺点：重写了原型，丢失了constructor属性
+缺点：重写了原型，丢失了constructor属性；即切断现有原型与之前存在的对象实例之间的联系）
 
 ### 3.2 原型模式优化
 
@@ -137,6 +144,12 @@ var person1 = new Person();
 
 构造函数模式与原型模式双剑合璧。
 
+> 核心：用构造函数定义实例属性，用原型定义方法和共享属性
+>
+> 优点：该共享的共享，该私有的私有，使用最广泛的方式
+>
+> 缺点：有的人就是希望全部都写在一起，即更好的封装性
+
 > 由于原型模式， constructor 不声明，那么就会丢失。如果constructor 的值很重要，则可以像下面这样在重写原型对象时专门设置一下它的值
 
 ```js
@@ -154,11 +167,9 @@ Person.prototype = {
 var person1 = new Person();
 ```
 
-优点：该共享的共享，该私有的私有，使用最广泛的方式
-
-缺点：有的人就是希望全部都写在一起，即更好的封装性
-
 ### 4.1 动态原型模式
+
+> 核心：通过检查某个应该存在的方法是否存在，来决定需要初始化原型
 
 ```js
 function Person(name) {
@@ -207,7 +218,7 @@ person2.getName();
 
 1. 首先新建一个对象
 2. 然后将对象的原型指向 Person.prototype
-3. 然后 Person.apply(obj)
+3. 然后 Person.apply(obj)，执行函数
 4. 返回这个对象
 
 注意这个时候，回顾下 apply 的实现步骤，会执行 obj.Person 方法，这个时候就会执行 if 语句里的内容，注意构造函数的 prototype 属性指向了实例的原型，使用字面量方式直接覆盖 Person.prototype，并不会更改实例的原型的值，person1 依然是指向了以前的原型，而不是 Person.prototype。而之前的原型是没有 getName 方法的，所以就报错了！
@@ -312,6 +323,7 @@ function person(name){
     o.sayName = function(){
         console.log(name);
     };
+    //o.sayName = () => name
     return o;
 }
 
