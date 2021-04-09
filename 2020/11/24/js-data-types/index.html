@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="js  data types, Savannah">
+    <meta name="keywords" content="js  data types 数据类型详解, Savannah">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>js  data types | Savannah</title>
+    <title>js  data types 数据类型详解 | Savannah</title>
     <link rel="icon" type="image/png" href="../../../../favicon.png">
 
     <link rel="stylesheet" type="text/css" href="../../../../libs/awesome/css/all.css">
@@ -260,12 +260,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/4.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/17.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">js  data types</h1>
+                    <h1 class="description center-align post-title">js  data types 数据类型详解</h1>
                 </div>
             </div>
         </div>
@@ -430,12 +430,14 @@
 <li>布尔（boolean）</li>
 <li>对象（object）</li>
 <li>函数（function）</li>
+<li>Symbol</li>
 </ul>
 <p>有三种对象类型：</p>
 <ul>
 <li>对象（Object）</li>
 <li>日期（Date）</li>
 <li>数组（Array）</li>
+<li>正则 （RegExp）</li>
 </ul>
 <p>同时有两种不能包含值的数据类型：</p>
 <ul>
@@ -808,7 +810,11 @@ Math<span class="token punctuation">.</span>SQRT1_2       <span class="token num
 <p>　　0 == ‘’</p>
 <p>前三个是false，后两个是true。</p>
 </blockquote>
-<h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><p><img src="/2020/11/24/js-data-types/1606214735012.png"></p>
+<h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><p>三种表示方式(“)(‘)(`)</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">let</span> firstName <span class="token operator">=</span> <span class="token string">"John"</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> lastName <span class="token operator">=</span> <span class="token string">'Jacob'</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> lastName <span class="token operator">=</span> <span class="token template-string"><span class="token string">`Jingleheimerschmidt`</span></span></code></pre>
+<p><img src="/2020/11/24/js-data-types/1606214735012.png"></p>
 <table>
 <thead>
 <tr>
@@ -951,7 +957,12 @@ Math<span class="token punctuation">.</span>SQRT1_2       <span class="token num
 <td align="left">false</td>
 </tr>
 </tbody></table>
-<h2 id="确定对象类型"><a href="#确定对象类型" class="headerlink" title="确定对象类型"></a>确定对象类型</h2><p>JavaScript 有三种方法，可以确定一个值到底是什么类型。</p>
+<h2 id="Symbol"><a href="#Symbol" class="headerlink" title="Symbol"></a>Symbol</h2><p>Symbol类型创建一个独一无二的值。目的是为了保护独特的描述符，防止propperty冲突</p>
+<ul>
+<li>无法与new联用</li>
+<li>Symbol.for()检查是否存在相同Symbol</li>
+</ul>
+<h2 id="确定对象类型最基本办法"><a href="#确定对象类型最基本办法" class="headerlink" title="确定对象类型最基本办法"></a>确定对象类型最基本办法</h2><p>JavaScript 有三种方法，可以确定一个值到底是什么类型。</p>
 <ul>
 <li><code>typeof</code>运算符</li>
 <li><code>instanceof</code>运算符</li>

@@ -660,18 +660,19 @@ valueOf()：返回对象对应的字符串、数值或布尔值表示。通常�
 <p>1）typeOf(null)输出的是object，但 null 是基本数据类型</p>
 <p>2）无法区分对象具体是什么类型，比如typeof([1])和typeof({1})输出的都是object</p>
 <p>而对于引用类型返回的基本上都是object, 其实返回object也没有错，因为所有对象的原型链最终都指向了Object,Object是所有对象的<code>祖宗</code>。 但当我们需要知道某个对象的具体类型时，typeof 就显得有些力不从心了。 </p>
-<h4 id="2-instanceOf"><a href="#2-instanceOf" class="headerlink" title="2.instanceOf"></a>2.instanceOf</h4><p><strong>问题： 同一条原型链上判断不准确 （找例子！！！！） 结合constructor 找例子</strong></p>
-<p>检查某个实例是否属于某个类</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">typeof</span> item <span class="token operator">===</span> <span class="token string">"object"</span><span class="token comment" spellcheck="true">// 注意小写</span></code></pre>
+<h4 id="2-instanceOf"><a href="#2-instanceOf" class="headerlink" title="2.instanceOf"></a>2.instanceOf</h4><pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">//用法</span>
+object <span class="token keyword">instanceof</span> <span class="token class-name">constructor</span>
+Object<span class="token punctuation">.</span><span class="token function">getPrototypeOf</span><span class="token punctuation">(</span>o<span class="token punctuation">)</span> <span class="token operator">===</span> C<span class="token punctuation">.</span>prototype （yes or no）
+o <span class="token keyword">instanceof</span> <span class="token class-name">C</span> </code></pre>
 <p>判断对象和构造函数在原型链上是否有关系，如果有关系，返回真，否则返回假</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">Aaa</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-<span class="token punctuation">}</span>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">Aaa</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token punctuation">}</span>
 <span class="token keyword">var</span> a1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Aaa</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 <span class="token comment" spellcheck="true">//alert( a1 instanceof Aaa);  //true判断a1和Aaa是否在同一个原型链上，是的话返回真，否则返回假</span>
 
 <span class="token keyword">var</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-
-<span class="token function">alert</span><span class="token punctuation">(</span> arr <span class="token keyword">instanceof</span> <span class="token class-name">Aaa</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//false</span></code></pre>
+<span class="token function">alert</span><span class="token punctuation">(</span> arr <span class="token keyword">instanceof</span> <span class="token class-name">Aaa</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//false if Array true </span></code></pre>
 <p>我们来看一下</p>
 <pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> str <span class="token operator">=</span> <span class="token string">'hello'</span><span class="token punctuation">;</span>
 <span class="token function">alert</span><span class="token punctuation">(</span>str <span class="token keyword">instanceof</span> <span class="token class-name">String</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//false!</span>
@@ -700,9 +701,9 @@ valueOf()：返回对象对应的字符串、数值或布尔值表示。通常�
 <span class="token keyword">var</span> str <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">(</span><span class="token string">'abcdef'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">var</span> boolean <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Boolean</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span> </code></pre>
 <h4 id="3-constructor"><a href="#3-constructor" class="headerlink" title="3.constructor"></a>3.constructor</h4><p>constructor 在其对应对象的原型下面，是自动生成的。当我们写一个构造函数的时候，程序会自动添加：构造函数名.prototype.constructor = 构造函数名</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">Aaa</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//Aaa.prototype.constructor = Aaa;  //每一个函数都会有的，都是自动生成的</span></code></pre>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">Aaa</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">//Aaa.prototype.constructor = Aaa;  //每一个函数都会有的，都是自动生成的</span>
+<span class="token comment" spellcheck="true">//注意返回的是函数 ，所以是函数 == 函数 ！！ 不是""string</span></code></pre>
 <p>判断数据类型的方法</p>
 <pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> str <span class="token operator">=</span> <span class="token string">'hello'</span><span class="token punctuation">;</span>
 <span class="token function">alert</span><span class="token punctuation">(</span>str<span class="token punctuation">.</span>constructor <span class="token operator">==</span> String<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//true</span>
@@ -714,11 +715,9 @@ valueOf()：返回对象对应的字符串、数值或布尔值表示。通常�
 <span class="token function">alert</span><span class="token punctuation">(</span>num<span class="token punctuation">.</span>constructor <span class="token operator">==</span>Number<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//true</span>
 
 <span class="token comment" spellcheck="true">// var nul = null;</span>
-
 <span class="token comment" spellcheck="true">// alert(nul.constructor == Object);//报错</span>
 
 <span class="token comment" spellcheck="true">//var und = undefined;</span>
-
 <span class="token comment" spellcheck="true">//alert(und.constructor == Object);//报错</span>
 
 <span class="token keyword">var</span> oDate <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -738,22 +737,22 @@ valueOf()：返回对象对应的字符串、数值或布尔值表示。通常�
 
 <span class="token keyword">var</span> error <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token function">alert</span><span class="token punctuation">(</span>error<span class="token punctuation">.</span>constructor <span class="token operator">==</span> Error<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//true</span></code></pre>
+<blockquote>
 <p>从上面的测试中我们可以看到，<strong>undefined和null是不能够判断出类型的</strong>，并且会报错。因为null和undefined是无效的对象，因此是不会有constructor存在的</p>
 <p>同时我们也需要注意到的是：<strong>函数的 constructor 是不稳定的</strong>，这个主要体现在自定义对象上，当开发者重写 prototype 后，原有的 constructor 引用会丢失，constructor 会默认为 Object</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">Aaa</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-<span class="token punctuation">}</span>
-
+</blockquote>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">Aaa</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token punctuation">}</span>
 Aaa<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>constructor <span class="token operator">=</span> Aaa<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//程序可以自动添加，当我们写个构造函数的时候，程序会自动添加这句代码</span>
-
+Aaa<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>constructor <span class="token operator">===</span> Object <span class="token comment" spellcheck="true">// false</span>
 <span class="token keyword">function</span> <span class="token function">BBB</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
-
 Aaa<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>constructor <span class="token operator">=</span> BBB<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//此时我们就修改了Aaa构造函数的指向问题</span>
-
-<span class="token function">alert</span><span class="token punctuation">(</span>Aaa<span class="token punctuation">.</span>construtor<span class="token operator">==</span>Aaa<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//false</span></code></pre>
+<span class="token comment" spellcheck="true">//Aaa.prototype =BBB; 相当于</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>Aa<span class="token punctuation">.</span>construtor<span class="token operator">==</span>Aaa<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//false</span></code></pre>
 <p>可以看出，constructor并没有正确检测出正确的构造函数</p>
 <h4 id="4-Object-prototype-toString-call"><a href="#4-Object-prototype-toString-call" class="headerlink" title="4.Object.prototype.toString.call"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/toString">4.Object.prototype.toString.call</a></h4><p>toString是Object原型对象上的一个方法，该方法默认返回其调用者的具体类型，更严格的讲，是 toString运行时this指向的对象类型, 返回的类型格式为[object xxx],xxx是具体的数据类型，其中包括String,Number,Boolean,Undefined,Null,Function,Date,Array,RegExp,Error,HTMLDocument,… 基本上所有对象的类型都可以通过这个方法获取到。 </p>
 <blockquote>
-<p>可以通过 toString() 来获取每个对象的类型。<br>为了每个对象都能通过 Object.prototype.toString() 来检测，<br>需要以 Function.prototype.call() 或者 Function.prototype.apply() 的形式来调用，<br>传递要检查的对象作为第一个参数，称为 thisArg。</p>
+<p>Object.prototype.toString = function(){<br>     在函数里this正常指向的就是调用这个函数的对象， js中call()方法是改变this的指向， a.call(b),  b替换了a<br>}</p>
+<p>Object.prototype.toString.call([ ]),  [ ]替换了Object.prototype;</p>
 </blockquote>
 <pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> str <span class="token operator">=</span> <span class="token string">'hello'</span><span class="token punctuation">;</span>
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Object<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>toString<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//[object String]</span>
@@ -788,7 +787,76 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <span class="token keyword">var</span> error <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Object<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>toString<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//[object Error]</span></code></pre>
 <p>从这个结果也可以看出，不管是什么类型的，Object.prototype.toString.call();都可以判断出其具体的类型。</p>
+<h4 id="5-使用Object-getPrototypeOf-方法-对象原型判断"><a href="#5-使用Object-getPrototypeOf-方法-对象原型判断" class="headerlink" title="5. 使用Object.getPrototypeOf()方法 对象原型判断"></a>5. 使用<code>Object.getPrototypeOf()</code>方法 对象原型判断</h4><p>如果修改了构造函数的原型对象，之前创建的对象无法通过这种方式来确定类型</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token punctuation">}</span>
+
+<span class="token keyword">var</span> p1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+Object<span class="token punctuation">.</span><span class="token function">getPrototypeOf</span><span class="token punctuation">(</span>p1<span class="token punctuation">)</span> <span class="token operator">===</span> Person<span class="token punctuation">.</span>prototype <span class="token comment" spellcheck="true">// true</span>
+Object<span class="token punctuation">.</span><span class="token function">getPrototypeOf</span><span class="token punctuation">(</span>p1<span class="token punctuation">)</span> <span class="token operator">===</span> Object<span class="token punctuation">.</span>prototype <span class="token comment" spellcheck="true">// false</span>
+
+Person<span class="token punctuation">.</span>prototype <span class="token operator">=</span> <span class="token punctuation">{</span>
+    name<span class="token punctuation">:</span> <span class="token string">'aaa'</span><span class="token punctuation">,</span>
+    age<span class="token punctuation">:</span> <span class="token string">'20'</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">// p1是修改构造函数原型对象之前创建的对象</span>
+<span class="token comment" spellcheck="true">// p1的__proto__仍然指向原来的原型对象</span>
+Object<span class="token punctuation">.</span><span class="token function">getPrototypeOf</span><span class="token punctuation">(</span>p1<span class="token punctuation">)</span> <span class="token operator">===</span> Person<span class="token punctuation">.</span>prototype <span class="token comment" spellcheck="true">// false</span>
+
+<span class="token comment" spellcheck="true">// p2是修改构造函数原型对象之后创建的对象</span>
+<span class="token keyword">var</span> p2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+Object<span class="token punctuation">.</span><span class="token function">getPrototypeOf</span><span class="token punctuation">(</span>p2<span class="token punctuation">)</span> <span class="token operator">===</span> Person<span class="token punctuation">.</span>prototype <span class="token comment" spellcheck="true">// true</span></code></pre>
+<h4 id="6-使用isPrototypeOf-方法-判断一个对象是否存在于另一个对象的原型链上"><a href="#6-使用isPrototypeOf-方法-判断一个对象是否存在于另一个对象的原型链上" class="headerlink" title="6.使用isPrototypeOf()方法 判断一个对象是否存在于另一个对象的原型链上"></a>6.使用<code>isPrototypeOf()</code>方法 判断一个对象是否存在于另一个对象的原型链上</h4><pre class=" language-js"><code class="language-js">如果修改了构造函数的原型对象，之前创建的对象无法通过这种方式来确定类型
+
+<span class="token keyword">function</span> <span class="token function">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">var</span> p1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+Person<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function">isPrototypeOf</span><span class="token punctuation">(</span>p1<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// true</span>
+Object<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function">isPrototypeOf</span><span class="token punctuation">(</span>p1<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//true</span>
+
+Person<span class="token punctuation">.</span>prototype <span class="token operator">=</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+Person<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function">isPrototypeOf</span><span class="token punctuation">(</span>p1<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// false</span>
+Object<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function">isPrototypeOf</span><span class="token punctuation">(</span>p1<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//true</span>
+
+<span class="token keyword">var</span> p2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+Person<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function">isPrototypeOf</span><span class="token punctuation">(</span>p2<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// true</span>
+Object<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function">isPrototypeOf</span><span class="token punctuation">(</span>p2<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//true</span></code></pre>
 <h3 id="分析一下四种方法各自的优缺点"><a href="#分析一下四种方法各自的优缺点" class="headerlink" title="分析一下四种方法各自的优缺点"></a>分析一下四种方法各自的优缺点</h3><p><img src="/2021/04/05/js-professional-book1/image-20210405183716735.png"></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>typeof</td>
+<td>1. js内置的一个操作符，基本类型可以判断 <br>2. undefined可以判断，function 类型可以判断<br>3.对于引用类型，只能判断为Obj</td>
+<td>1.typeof主要为了区分对象类型和原生类型，所以只能用于判断一个变量是不是对象或者是不是字符串等.<br>2. 但是不能很好的检测obj 是哪一个构造函数的实例<br></td>
+</tr>
+<tr>
+<td>instanceof<br>原型链判断 ：<br><code>isPrototypeOf</code></td>
+<td>1. 可以判断引用类型<br></td>
+<td>1. 基本类型的判断不出来<br>2. 基本类型- new可以判断<br>3.null 与 undefined 不能判断<br>4. 对于原型链上深层的多个原型，判断并不能唯一，对于每一个原型链上的类型都会返回true<br>5. 不能跨iframe</td>
+</tr>
+<tr>
+<td>constructor</td>
+<td>1. 全部的类型都可以检测到（除了null undefined）<br>2.引用类型具体的可以检查到</td>
+<td>1. 能被改动，不可靠<br>2. 不能跨iframe</td>
+</tr>
+<tr>
+<td>Object.prototype.toString.call()<br>原型判断<br><code>Object.getPrototypeOf()</code> - 多数引用不好用</td>
+<td>可以检测所有的类型-内置对象的class属性</td>
+<td>对于对象，只能返回object，并不能获取到自定义构造函数的具体的类型</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>如果只是想要判断某一个对象是不是某一个构造函数的实例，使用instanceof</p>
+<p>如果希望区分内置对象和自定义对象，可以使用Object.prototype.toString.call（ 所有内置对象的[[Class]]属性的值是由本规范定义的.所有宿主对象的[[Class]]属性的值可以是除了”Arguments”, “Array”, “Boolean”, “Date”, “Error”, “Function”, “JSON”, “Math”, “Number”, “Object”, “RegExp”, “String”之外的的任何字符串）</p>
+<p>如果希望判断是不是基础类型的或者对象，或者是函数，可以使用typeof</p>
+<p>如果希望得到自定义对象的具体的类型的字符串，可以使用constructor</p>
+</blockquote>
 <p>从上表中我们看到了，instanceof和constructor不能跨iframe,上面没有细说，所以下面我们直接上例子喽</p>
 <p>例：跨页面判断是否是数组</p>
 <pre class=" language-js"><code class="language-js">window<span class="token punctuation">.</span>onload <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span> 
@@ -859,7 +927,10 @@ JSON<span class="token punctuation">.</span><span class="token function">stringi
 Number<span class="token punctuation">.</span><span class="token function">isNaN</span><span class="token punctuation">(</span><span class="token string">'123'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">// false 本身不是NaN</span>
 Number<span class="token punctuation">.</span><span class="token function">isNaN</span><span class="token punctuation">(</span><span class="token string">'abc'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">// false 本身不是NaN</span>
 Number<span class="token punctuation">.</span><span class="token function">isNaN</span><span class="token punctuation">(</span><span class="token number">NaN</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">// true　本身是NaN</span></code></pre>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>js程序高级设计</p>
+<blockquote>
+<p>个人的思维记录再note 软件中</p>
+</blockquote>
+<h2 id="拓展-JavaScript-运算符规则与隐式类型转换详解"><a href="#拓展-JavaScript-运算符规则与隐式类型转换详解" class="headerlink" title="拓展 JavaScript 运算符规则与隐式类型转换详解"></a>拓展 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/29064256">JavaScript 运算符规则与隐式类型转换详解</a></h2><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>js程序高级设计</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/lhjuejiang/article/details/79623973">https://blog.csdn.net/lhjuejiang/article/details/79623973</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/onepixel/p/5126046.html">https://www.cnblogs.com/onepixel/p/5126046.html</a></p>
 
