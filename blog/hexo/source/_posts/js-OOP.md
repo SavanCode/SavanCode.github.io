@@ -11,7 +11,7 @@ tags: [JS,prototype,JS object,book]
 categories: JS
 ---
 
-## 对象基础
+# 对象基础
 
 object ：propert + method
 
@@ -149,66 +149,13 @@ var person = function () {
 
 # 对象继承(详细另外一篇)
 
-## 基本继承
-
-```js
-function Cat (name, color) {
-  this.name = name;
-  this.color = color;
-}
-
-var cat1 = new Cat('大毛', '白色');
-
-cat1.name // '大毛'
-cat1.color // '白色'
-```
-
-同一个构造函数的多个实例之间，无法共享属性，从而造成对系统资源的浪费。
-
-## 多个继承
-
-```js
-//parent
-function Person(){
-
-}
-Person.prototype.say= function(){
-    console.log("I am saying ....");
-}
-Person.prototype.walk=function(){
-    console.log("I am walking...");
-}
-
-//child
-function Female(){  }
-
-Female.prototype =new Person();
-Female.prototype.sing=function(){
-    console.log("I am singing...");
-}
-
-var  obj= new Female();
-obj.say();
-obj.walk();
-obj.sing();
-
-function male(){ }
-male.prototype=new Person();
-male.prototype,play=function(){
-    console.log("I am playing...");
-}
-
-var obj2=new Female();
-obj2.say();
-obj2.walk();
-obj2.play();
-```
-
 # prototype 属性- 函数的原型对象
 
 > 每个函数都有prototype属性，这个属性是一个指针，指向一个对象，记住只有函数才有,并且通过bind()绑定的也没有。
 >
 > 对于函数的prototype，在函数定义之前，prototype 就已经创建了
+>
+> **JavaScript 中所有对象都是 Object 的实例，并继承自`Object.prototype`的属性和方法。 `每个 JavaScript 对象都拥有一个原型对象，对象以其原型为模板，从原型继承方法和属性`，这些属性和方法定义在对象的构造器函数的 prototype 属性上，而非对象实例本身。**
 
 ![](js-OOP/1607323876459.png)
 
@@ -291,7 +238,7 @@ console.log(obj1.abc, obj2.abc); //123 undefined
 console.log(obj1.__proto__.bcd, obj2.__proto__.bcd);//456  456
 ```
 
-> __proto__不建议使用，可以用Object.getPrototypeOf()和Object.setPrototypeOf()代替；
+> `__`proto`__`不建议使用，可以用Object.getPrototypeOf()和Object.setPrototypeOf()代替；
 
 ## 确定对象之间是否存在原型关系
 
@@ -322,7 +269,17 @@ Object.getPrototypeOf(person1) === Person.prototype // true
 
 ![](js-OOP/1607350277074.png)
 
+### prototype、[[Prototype]]和__proto__的区别？
+
+> 1、原型`prototype`是构造函数的属性，`__proto__`是 new 生成的对象的属性，`[[Prototype]]`是对象的内部属性。
+>
+> 2、构造函数的原型 `prototype` 和其对象的 `__proto__`指向同一个对象
+>
+> 3、`[[Prototype]]`指向它的构造函数的原型`prototype`，外部无法直接访问，可以通过`__proto__`来访问内部属性`[[Prototype]]`，
+
 # 原型链 
+
+
 
 ## 图解
 

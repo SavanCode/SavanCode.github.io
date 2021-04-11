@@ -426,6 +426,28 @@ Reference:
 1. https://wangdoc.com/javascript/types/object.html#%E7%94%9F%E6%88%90%E6%96%B9%E6%B3%95
 2. https://wangdoc.com/javascript/stdlib/object.html#object-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0
 
+# 构造函数 constructor
+
+> 构造函数本身就是一个函数，与普通函数的区别在于，`用 new 创建实例的函数就是构造函数`，直接调用的就是普通函数。为了规范，构造函数的首字母一般大写。
+
+## Symbol 是不是构造函数？
+
+`Symbol`不支持使用new调用，所以不是构造函数，属于基本数据类型。
+
+```js
+var sym = Symbol();
+console.log(sym.constructor); // ƒ Symbol() { [native code] }
+console.log(sym.constructor === Symbol.prototype.constructor); // true
+```
+
+[Symbol](https://www.runoob.com/w3cnote/es6-symbol.html)虽然是基本数据类型，但是可以通过`Symbol()`来生成实例，且我们会发现实例`sym`有`constructor`属性值，值为`ƒ Symbol() { [native code] }`。这里的`constructor`属性值哪里来的呢？其实是Symbol原型`Symbol.prototype.constructor`上的，默认是`Symbol()`函数
+
+## constructor 属性是否只读？
+
+- 1、引用类型的`constructor`属性是可以修改的
+- 2、基本数据类型`number`、`string`、`bool`、`Symbol`等有constructor属性的，`constructor`属性是只读的
+- 3、基本数据类型`null`、`undefined`是没有constructor属性的
+
 # 练习例子
 
 ## 从超类型继承行为
