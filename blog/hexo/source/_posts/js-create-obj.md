@@ -11,7 +11,24 @@ tags: [JS,JS object]
 categories: JS
 ---
 
-## 1. 工厂模式
+## 1.对象字面量式
+```js
+//通过new 关键字创建对象
+var person = new Ojbect();
+person.name = '';
+person.age = 30;
+person.job = 'web developer';
+
+//通过对象字面量创建对象
+var person = {};
+person.name = '';
+person.age = 30;
+person.job = 'web developer';
+```
+
+缺点；大量的代码
+
+## 2. 工厂模式
 
 ```js
 function createPerson(name) {
@@ -33,7 +50,7 @@ var person1 = createPerson('kevin');
 > 缺点：对象无法识别，因为所有的实例都指向一个原型 Object
 >
 
-## 2. 构造函数模式
+## 3. 构造函数模式
 
 ```js
 function Person(name) {// let Person = function(name)... 一样
@@ -61,7 +78,7 @@ var person1 = new Person('kevin');
 > 缺点：每次创建实例时，每个方法都要被创建一次
 >
 
-### 2.1 构造函数模式优化
+### 3.1 构造函数模式优化
 
 ```js
 function Person(name) {// let Person = function(name)... 一样
@@ -98,10 +115,19 @@ console.log(person1.getName == person2.getName); // true
 
 > 优点：方法不会重新创建
 >
-> 缺点：1. 所有的属性和方法都共享 2.弱化了构造函数，没有初始化参数
+> 缺点：
 >
+> 1. 所有的属性和方法都共享 
+> 2. 弱化了构造函数，没有初始化参数
 
-### 3.1 原型模式优化
+```js
+//判断属性是否存在原型中
+function hasPrototypeProperty(object,name){
+    return object.hasOwnProperty(name) && (name in object);
+}
+```
+
+### 4.1 原型模式优化
 
 ```js
 function Person(name) {}
@@ -120,7 +146,7 @@ var person1 = new Person();
 
 缺点：重写了原型，丢失了constructor属性；即切断现有原型与之前存在的对象实例之间的联系）
 
-### 3.2 原型模式优化
+### 4.2 原型模式优化
 
 ```js
 function Person(name) {}
@@ -133,14 +159,14 @@ Person.prototype = {
     }
 };
 
-var person1 = new Person();
+var person1 = new Person('jack');
 ```
 
 优点：实例可以通过constructor属性找到所属构造函数
 
 缺点：原型模式该有的缺点还是有
 
-## 4. 组合模式 (推荐)
+## 5. 组合模式 (推荐)
 
 构造函数模式与原型模式双剑合璧。
 
@@ -153,8 +179,11 @@ var person1 = new Person();
 > 由于原型模式， constructor 不声明，那么就会丢失。如果constructor 的值很重要，则可以像下面这样在重写原型对象时专门设置一下它的值
 
 ```js
-function Person(name) {
+function Person(name, age, job){
     this.name = name;
+    this.age = age;
+    this.job = job;
+    this.friends = ["Shelby", "Court"];
 }
 
 Person.prototype = {
@@ -164,10 +193,17 @@ Person.prototype = {
     }
 };
 
-var person1 = new Person();
+var person1 = new Person("Nicholas", 29, "Software Engineer");
+var person2 = new Person("Greg", 27, "Doctor");
+
+person1.friends.push("Van");
+console.log(person1.friends);    //"Shelby,Count,Van"
+console.log(person2.friends);    //"Shelby,Count"
+console.log(person1.friends === person2.friends); //false
+console.log(person1.getName === person2.getName); //true
 ```
 
-### 4.1 动态原型模式
+### 5.1 动态原型模式
 
 > 核心：通过检查某个应该存在的方法是否存在，来决定需要初始化原型
 
@@ -245,9 +281,15 @@ person1.getName(); // kevin
 person2.getName();  // daisy
 ```
 
-## 5. 优化函数模式
+## 6. 优化函数模式
 
-### 5.1 寄生构造函数模式
+> - **【定义】**: 基本思想是创建一个函数，该函数的作用仅仅是**封装创建对象的代码，然后再返回新创建的对象**。
+> - **【特点】**：
+>   1. 返回的对象与构造函数或者与构造函数的原型属性之间没有关系；
+>   2. 寄生构造函数返回的对象与在寄生构造函数外部创建的对象没有什么不同；
+>   3. 不能依赖`instanceof`操作符来确定对象类型；
+
+### 6.1 寄生构造函数模式
 
 ```js
 function Person(name) {
@@ -259,63 +301,15 @@ function Person(name) {
     return o;
 }
 
-var person1 = new Person('kevin');
-console.log(person1 instanceof Person) // false
-console.log(person1 instanceof Object)  // true
+var p1 = new Person('Tom', 25);
+var p2 = new Person('Greg',30);
+console.log(p1 instanceof Object); // true
+console.log(p1 instanceof Person); // false
+console.log(p1.getName == p2.getName); // false
+console.log(p1.constructor == Object); //true
 ```
 
-寄生构造函数模式，我个人认为应该这样读：
-
-寄生-构造函数-模式，也就是说寄生在构造函数的一种方法。
-
-也就是说打着构造函数的幌子挂羊头卖狗肉，你看创建的实例使用 instanceof 都无法指向构造函数！
-
-这样方法可以在特殊情况下使用。比如我们想创建一个具有额外方法的特殊数组，但是又不想直接修改Array构造函数，我们可以这样写：
-
-```js
-function SpecialArray() {
-    var values = new Array();
-    for (var i = 0, len = arguments.length; i < len; i++) {
-        values.push(arguments[i]);
-    }
-    values.toPipedString = function () {
-        return this.join("|");
-    };
-    return values;
-}
-
-var colors = new SpecialArray('red', 'blue', 'green');
-var colors2 = SpecialArray('red2', 'blue2', 'green2');
-
-
-console.log(colors);
-console.log(colors.toPipedString()); // red|blue|green
-
-console.log(colors2);
-console.log(colors2.toPipedString()); // red2|blue2|green2
-```
-
-你会发现，其实所谓的寄生构造函数模式就是比工厂模式在创建对象的时候，多使用了一个new，实际上两者的结果是一样的。
-
-但是作者可能是希望能像使用普通 Array 一样使用 SpecialArray，虽然把 SpecialArray 当成函数也一样能用，但是这并不是作者的本意，也变得不优雅。
-
-在可以使用其他模式的情况下，不要使用这种模式。
-
-但是值得一提的是，上面例子中的循环：
-
-```js
-for (var i = 0, len = arguments.length; i < len; i++) {
-    values.push(arguments[i]);
-}
-```
-
-可以替换成：
-
-```js
-values.push.apply(values, arguments);
-```
-
-### 5.2 稳妥构造函数模式
+### 6.2 稳妥构造函数模式
 
 ```js
 function person(name){
@@ -336,10 +330,10 @@ console.log(person1.name); // daisy
 
 所谓稳妥对象，指的是没有公共属性，而且其方法也不引用 this 的对象。
 
-与寄生构造函数模式有两点不同：
+**与寄生构造函数模式有两点不同：**
 
-1. 新创建的实例方法不引用 this
-2. 不使用 new 操作符调用构造函数
+1. **新创建的实例方法不引用 this**
+2. **不使用 new 操作符调用构造函数**
 
 稳妥对象最适合在一些安全的环境中。
 
@@ -348,3 +342,7 @@ console.log(person1.name); // daisy
 # Reference
 
 1. https://segmentfault.com/a/1190000016708006
+
+2. [推荐阅读](https://tsejx.github.io/javascript-guidebook/object-oriented-programming/object-creation/the-factory-pattern)
+
+   

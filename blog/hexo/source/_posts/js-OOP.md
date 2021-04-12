@@ -19,6 +19,10 @@ object ：propert + method
 
 ## 构造函数constructor
 
+**定义**： 属性 `constructor` 也是**对象**才拥有的，它是从**一个对象指向一个函数**，含义就是**指向该对象的构造函数**，每个对象都有构造函数（本身拥有或继承而来，继承而来的要结合 `__proto__` 属性查看会更清楚点）
+
+>  **Function** 这个对象比较特殊，它的构造函数就是它自己（因为 Function 可以看成是一个函数，也可以是一个对象），所有函数和对象最终都是由 Function 构造函数得来，所以 `constructor` 属性的终点就是 **Function** 这个函数。（不理解的 可以先看下去，在最后解释深层原型链就可以搭配图理解）
+
 特点：
 
 - 函数体内部使用了`this`关键字，代表了所要生成的对象实例。
@@ -155,7 +159,7 @@ var person = function () {
 >
 > 对于函数的prototype，在函数定义之前，prototype 就已经创建了
 >
-> **JavaScript 中所有对象都是 Object 的实例，并继承自`Object.prototype`的属性和方法。 `每个 JavaScript 对象都拥有一个原型对象，对象以其原型为模板，从原型继承方法和属性`，这些属性和方法定义在对象的构造器函数的 prototype 属性上，而非对象实例本身。**
+> **`prototype` 属性作用**：包含可以由特定类型的所有实例共享的属性和方法，也就是让该函数的实例化对象们都可以找到公用的属性和方法。
 
 ![](js-OOP/1607323876459.png)
 
@@ -261,9 +265,14 @@ Object.getPrototypeOf(person1) === Person.prototype // true
 
 #  **proto** 属性 与 prototype 属性 的区别
 
+| 显式原型对象                        | 隐式原型对象                                                 |
+| ----------------------------------- | ------------------------------------------------------------ |
+| 属性 `prototype`                    | 属性 `__proto__`                                             |
+| 函数独有                            | 对象独有（函数也是对象，因此函数也有该属性）                 |
+| 定义函数时被自动赋值，值默认为 `{}` | 在创建实例对象时被自动添加，并赋值为构造函数的 `prototype` 值 |
+| 用于实现基于原型的继承与属性的共享  | 构成原型链，同样用于实现基于原型的继承                       |
+
 ![](js-OOP/1607083961666.png)
-
-
 
 例子中
 
@@ -279,7 +288,7 @@ Object.getPrototypeOf(person1) === Person.prototype // true
 
 # 原型链 
 
-
+> **定义**：从当前对象出发沿着原型对象（`__proto__`）构成的链条查找相关属性和方法直到结束，这些相互关联的对象组成的链条就是**原型链**
 
 ## 图解
 
@@ -321,14 +330,12 @@ Object.prototype.__proto__ === null;
 
  ![](js-OOP/1607085964568.png)
 
-![](js-OOP/image-20210330031036670.png)
+![](js-OOP/image-20210412224204328.png)
 
 > 特殊点：
 >
 > 1. Function的__proto__指向自身的prototype
 > 2. Object的prototype的__proto__指向null
-
-
 
 ## 原型链中实例属性（obj）和原型属性(constructor)
 
@@ -369,8 +376,6 @@ console.log(typeof  Function. prototype. prototype) //undefined
 
 ![](js-OOP/1607332056648.png)
 
-![](js-OOP/image-20210330030839695.png)
-
 # 原型链的应用
 
 这里在实际操作上,因为有原型链的存在,所以数据的share也就成为了可能,但是当你并不想去深层寻找的时候hasOwnProperty()
@@ -383,7 +388,7 @@ W3C不推荐直接使用系统成员__proto__
 
 ### **Object.getPrototypeOf(对象)**
 
-​			获取对象的隐式原型
+获取对象的隐式原型
 
 `Object.getPrototypeOf`方法返回参数对象的原型。这是获取原型对象的标准方法。
 
