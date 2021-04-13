@@ -654,6 +654,37 @@ Number.isNaN(NaN);// true　本身是NaN
 
 > 个人的思维记录再note 软件中
 
+## 面试题目
+
+### instanceof 的实现
+
+```js
+function myInstanceof(left, right) {
+    //基本数据类型直接返回false
+    if(typeof left !== 'object' || left === null) return false;
+    //getProtypeOf是Object对象自带的一个方法，能够拿到参数的原型对象
+    let proto = Object.getPrototypeOf(left);
+    while(true) {
+        //查找到尽头，还没找到
+        if(proto == null) return false;
+        //找到相同的原型对象
+        if(proto == right.prototype) return true;
+        proto = Object.getPrototypeof(proto);
+    }
+}
+```
+
+```js
+console.log(myInstanceof("111", String)); //false
+console.log(myInstanceof(new String("111"), String));//true
+```
+
+### Object.is和===的区别？
+
+Object在严格等于的基础上修复了一些特殊情况下的失误，具体来说就是+0和-0，NaN和NaN。
+
+可以尝试自己实现object.is()
+
 ## 拓展 [JavaScript 运算符规则与隐式类型转换详解](https://zhuanlan.zhihu.com/p/29064256)
 
 ## 参考

@@ -471,6 +471,53 @@ o1.isPrototypeOf(o3) // true
 
 判断函数的原型是否在对象的原型链上
 
+```js
+// 假设 instanceof 操作符左边是 L 右边是 R
+L instanceof R
+
+// instanceof 运算时 通过判断 L 的原型链是否存在 R.prototype
+L.__proto__.__proto__... === R.prototype
+```
+
+构造器 Function 的构造器是它自身：
+
+```js
+Function.constructor === Function; // true
+```
+
+构造器 Object 的构造器是 Function（因此可得所有构造器的 constructor 都指向 Function）
+
+```js
+Object.constructor === Function; // true
+```
+
+构造器 Function 的 `[[Prototype]]` 是一个特殊的匿名函数
+
+```js
+console.log(Function.__proto__); // function(){}
+```
+
+这个特殊的匿名函数的 `[[Prototype]]` 指向 Object 的 prototype 原型。
+
+```js
+Function.__proto__.__proto__ === Object.prototype; // true
+```
+
+Object 的 `[[Prototype]]` 指向 Function 的 prototype 也就是上述的特殊的匿名函数
+
+```js
+Object.__proto__ === Function.prototype; // true
+
+Function.prototype === Function.__proto__; // true
+```
+
+内置对象 Function 和 Object 的关系：
+
+```js
+Function instanceof Object; // true
+Object instanceof Function; // true
+```
+
 ### **Object.create(对象)**
 
 生成实例对象的常用方法是，使用`new`命令让构造函数返回一个实例。但是很多时候，只能拿到一个实例对象，它可能根本不是由构建函数生成的，那么能不能从一个实例对象，生成另一个实例对象呢？
@@ -630,6 +677,14 @@ var c = new C();
 c.constructor.prototype === p // true
 ```
 
+
+
+### 原型链中查找属性方法为空和访问原型链中的原型对象为空的区别
+
+在原型链中查找属性或方法，如果没有查找到相关属性或方法，返回的是 undefined，表示原型链中没有该属性或方法。
+
+而通过访问原型链中的原型对象，到达原型链终点，即 Object.prototype 的值为 null。
+
 ## 应用
 
 **类数组转换为真数组**
@@ -653,3 +708,5 @@ Array.prototype.slice.call(类数组);
 2. Dr. Axel Rauschmayer, [JavaScript properties: inheritance and enumerability](http://www.2ality.com/2011/07/js-properties.html)
 3. https://wangdoc.com/javascript/oop/prototype.html#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%9A%84%E7%BC%BA%E7%82%B9
 4. https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg%3D%3D&chksm=80d66757b7a1ee41cd8bc2154baf7e8a15304d25bd289dda29061ebe1678eebaad4232557ec3&idx=1&mid=2665520916&scene=21&sn=76f110bb713ac67d0a678af0b088501e#wechat_redirect
+5. [ 帮你彻底搞懂 JavaScript 中的 prototype、proto 与 constructor（图解）](https://juejin.im/post/5caefd575188251b2822c17e)
+

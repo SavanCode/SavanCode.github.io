@@ -86,5 +86,3 @@ console.log(person); // { name_0: 'Matt', age_1: 27, job_2: 'Software engineer' 
 
 ### 对象解构 - 简单& 嵌套解构
 
-### 对象创建的3个办法以及优化
-

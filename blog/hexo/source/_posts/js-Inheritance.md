@@ -15,6 +15,32 @@ categories: JS
 
 **如果使用了直接对象字面量方式，会破坏继承以及原型链**
 
+> **这里我们提前讲一下 new 与 object.create()** [来源](https://stackoverflow.com/questions/4166616/understanding-the-difference-between-object-create-and-new-somefunction)
+>
+>  `new X` is `Object.create(X.prototype)` with additionally running the `constructor` function. (And giving the `constructor` the chance to `return` the actual object that should be the result of the expression instead of `this`.)
+>
+> `new Test()`:
+>
+> 1. create `new Object()` obj
+> 2. set `obj.__proto__` to `Test.prototype`
+> 3. `return Test.call(obj) || obj; // normally obj is returned but constructors in JS can return a value`
+>
+> ------
+>
+> ```js
+> Object.create( Test.prototype )
+> ```
+>
+> 1. create `new Object()` obj
+> 2. set `obj.__proto__` to `Test.prototype`
+> 3. `return obj;`
+>
+> ------
+>
+> So basically `Object.create` doesn't execute the constructor.
+
+**对于继承！ 核心是 原型链**
+
 ## 1.原型链继承
 
 > 原理：将子类的原型挂载到父类上；
@@ -31,7 +57,7 @@ categories: JS
 
 ```js
 // 父类
-function Parent() {}
+function Parent(){}
 // 子类
 function Child(){}
 // 继承
@@ -44,7 +70,7 @@ Child.prototype = new Parent();
 ### 例子
 
 ```js
- function parent(){
+function parent(){
     this.flag = true
 }
 parent.prototype.getParentValue = function(){
@@ -158,10 +184,11 @@ console.log(stu1.say === stu2.say) // false 子类没有办法共享父类的函
 //父类
 function Parent(name){ this.name=name}
 //子类
-function Child(name){ Parent.call(this,name)};
+function Child(name){ Parent.call(this,name)}
 // 继承
 Child.prototype = new Parent();
 //Child.prototype.constructor === Child() //falase 是Parent
+//Child.prototype.constructor = Child//这个本身没有 但是使用上基本优化还是要有 下面的图是没有的状况（这里是按照红宝石的书本）
 ```
 
 ![](js-Inheritance/image-20210412010045867.png)
@@ -241,7 +268,7 @@ console.log(s1)
 
 ### 组合继承优化2 (推荐使用) - Object.create?
 
-> 原理：借助原型可以基于已有的对象来创建对象，var B = Object.create(A)以A对象为原型，生成了B对象。B继承了A的所有属性和方法。
+> 原理：借助原型可以基于已有的对象来创建对象，**var B = Object.create(A)以A对象为原型，生成了B对象**。B继承了A的所有属性和方法。
 
 #### 语法
 ```js
@@ -253,6 +280,8 @@ function Child(){ Parent.call(this)};
 Child.prototype = Object.create(Parent.prototype)//核心代码
 Child.prototype.constructor = Child//核心代码
 ```
+![](js-Inheritance/image-20210413004530825.png)
+
 #### 例子
 
 ```js
@@ -280,7 +309,7 @@ console.log(s1)
 
 ## 4.原型式继承 
 
-> 核心：原型式继承的object方法本质上是对参数对象的一个浅复制。本方法的出发点是即使不自定义类型也可以通过原型实现对象之间的信息共享
+> 核心：原型式继承的object方法本质上是对参数对象的一个浅复制。本方法的出发点是**即使不自定义类型也可以通过原型实现对象之间的信息共享**
 >
 > 优点：1. 不需要单独创建构造函数，但仍有对象之间的共享信息；2. 每一个新增对象有自己的属性
 >
@@ -294,12 +323,12 @@ function object(o){ //一个临时构造函数
     F.prototype = o; 
     return new F();
 }
-let parent = {name:"name"}
+let parent = {name:"name",func1:function(){console.log("this is ")}}
 var Child = object(parent);
 //var Child = Object.create(parent) 同效果
 ```
 
-![](js-Inheritance/image-20210412005851191.png)
+![](js-Inheritance/image-20210413003056068.png)
 
 ### 例子
 
@@ -341,6 +370,8 @@ console.log(anotherPerson.name)//"Lily"
 
 ## 5. 寄生式继承- parasitic inheritance
 
+> 核心：主要考虑对象而 **不是自定义类型和构造函数的情况下**
+>
 > 原理：类似寄生构造函数与工厂模式，创建一个仅用于封装继承过程的函数，该函数在内部以某种形式来做增强对象，最后返回对象
 >
 > 优点： 不在乎类型与构造函数
@@ -393,7 +424,6 @@ SuperType.prototype.sayName = function(){
 function SubType(name, age){  
     // 继承属性
     SuperType.call(this, name); // 第二次调用SuperType（）
-
     this.age = age;
 }
 
@@ -428,7 +458,7 @@ function Child() {}
 //避免使用 child.prototype = new parent()来继承整个parent实例
 inheritPrototype(Child, Parent);//继承
 
-var instance = new Child()
+var instance = new Child()00
 instance.sayName()
 ```
 

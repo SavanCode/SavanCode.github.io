@@ -10,8 +10,13 @@ summary: JavaScript深入之创建对象的多种方式以及优缺点
 tags: [JS,JS object]
 categories: JS
 ---
+> 这里的内容其实比较书本化的总结。 我的建议是 主要的记住是 从字面量式 到用constructor 到利用原型链 以及组合模式即可
+>
+> 后面的寄生/稳妥构造模式
+
 
 ## 1.对象字面量式
+
 ```js
 //通过new 关键字创建对象
 var person = new Ojbect();
@@ -97,7 +102,7 @@ var person1 = new Person('kevin');
 
 缺点：这叫啥封装……
 
-## 3. 原型模式
+## 4. 原型模式
 
 ```js
 function Person() {}
@@ -338,6 +343,33 @@ console.log(person1.name); // daisy
 稳妥对象最适合在一些安全的环境中。
 
 稳妥构造函数模式也跟工厂模式一样，无法识别对象所属类型。
+
+## 细节问题
+
+### **new 与 object.create()** 
+[来源](https://stackoverflow.com/questions/4166616/understanding-the-difference-between-object-create-and-new-somefunction)
+
+`new X` is `Object.create(X.prototype)` with additionally running the `constructor` function. (And giving the `constructor` the chance to `return` the actual object that should be the result of the expression instead of `this`.)
+
+`new Test()`:
+
+1. create `new Object()` obj
+2. set `obj.__proto__` to `Test.prototype`
+3. `return Test.call(obj) || obj; // normally obj is returned but constructors in JS can return a value`
+
+------
+
+```js
+Object.create( Test.prototype )
+```
+
+1. create `new Object()` obj
+2. set `obj.__proto__` to `Test.prototype`
+3. `return obj;`
+
+------
+
+So basically `Object.create` doesn't execute the constructor.
 
 # Reference
 
