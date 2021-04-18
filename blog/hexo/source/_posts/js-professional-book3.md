@@ -1,5 +1,5 @@
 ---
-title: JS 高级程序设计 重点摘抄以及解读2
+title: JS 高级程序设计 重点摘抄以及解读3
 top: false
 cover: false
 toc: true
