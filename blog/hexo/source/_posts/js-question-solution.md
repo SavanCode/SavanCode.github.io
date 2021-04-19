@@ -295,3 +295,108 @@ console.log('srcipt end')
 ```
 
 这里需要注意的是在`async1`中`await`后面的Promise是没有返回值的，也就是它的状态始终是`pending`状态，所以在`await`之后的内容是不会执行的，也包括`async1`后面的 `.then`。
+
+## async下面代码的执行结果
+
+```js
+async function async1 () {
+  console.log('async1 start');
+  await new Promise(resolve => {
+    console.log('promise1')
+    resolve('promise1 resolve')
+  }).then(res => console.log(res))
+  console.log('async1 success');
+  return 'async1 end'
+}
+console.log('srcipt start')
+async1().then(res => console.log(res))
+console.log('srcipt end')
+```
+
+
+
+## async下面代码的执行结果
+
+```js
+async function async1() {
+  console.log("async1 start");
+  await async2();
+  console.log("async1 end");
+}
+
+async function async2() {
+  console.log("async2");
+}
+
+console.log("script start");
+
+setTimeout(function() {
+  console.log("setTimeout");
+}, 0);
+
+async1();
+
+new Promise(function(resolve) {
+  console.log("promise1");
+  resolve();
+}).then(function() {
+  console.log("promise2");
+});
+console.log('script end')
+```
+
+## async下面代码的执行结果
+
+```js
+async function async1() {
+  console.log("async1 start");
+  await async2();
+  console.log("async1 end");
+}
+
+async function async2() {
+  console.log("async2");
+}
+
+console.log("script start");
+
+setTimeout(function() {
+  console.log("setTimeout");
+}, 0);
+
+async1();
+
+new Promise(function(resolve) {
+  console.log("promise1");
+  resolve();
+}).then(function() {
+  console.log("promise2");
+});
+console.log('script end')
+```
+
+## 综合promise
+
+```js
+const first = () => (new Promise((resolve, reject) => {
+    console.log(3);
+    let p = new Promise((resolve, reject) => {
+        console.log(7);
+        setTimeout(() => {
+            console.log(5);
+            resolve(6);
+            console.log(p)
+        }, 0)
+        resolve(1);
+    });
+    resolve(2);
+    p.then((arg) => {
+        console.log(arg);
+    });
+}));
+first().then((arg) => {
+    console.log(arg);
+});
+console.log(4);
+```
+
