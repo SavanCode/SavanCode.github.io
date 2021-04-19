@@ -23,15 +23,39 @@ categories: JS
 
 ### 2. 事件循环的理解
 
-
+[JavaScript事件循环机制解析](https://www.jianshu.com/p/23fad3814398)
 
 ### 3. Promise 的原理
 
+![](js-professional-book4/image-20210419143315106.png)
 
+```js
+var promise = new Promise(function(resolve, reject) {
+  if (/* 异步操作成功 */){
+    resolve(value);
+  } else {
+    reject(error);
+  }
+});
+promise.then(function(value) {
+  // 如果调用了resolve方法，执行此函数
+}, function(value) {
+  // 如果调用了reject方法，执行此函数
+});
+```
+
+果我们的后续任务是异步任务的话，必须return 一个 新的 promise 对象。
+如果后续任务是同步任务，只需 return 一个结果即可
 
 ### 4. Generator 怎么用
 
-### 5. Async 的用法和原理
+处理异步,外部传参,处理错误,
+
+### 5. Async 的用法和原理 (额外补充)
+
+async/await 是参照 Generator 封装的一套异步处理方案，可以理解为 Generator 的语法糖.async 函数返回的是一个 Promise 对象
+
+
 
 ## 重点概念的概括
 
@@ -50,8 +74,8 @@ categories: JS
 
 ### 并行和并发的概念
 
-- **并行（Parallelism）**：指程序的运行状态，在同一时间内有几件事情并行在处理。由于一个线程在同一时间只能处理一件事情，所以并行需要多个线程在同一时间执行多件事情。
-- **并发（Concurrency）**：指程序的设计结构，在同一时间内多件事情能被交替地处理。重点是，在某个时间内只有一件事情在执行。比如单核 CPU 能实现多任务运行的过程就是并发。
+- **并发（Concurrency）**：我分别有任务 A 和任务 B，在一段时间内通过任务间的切换完成了这两个任务，这种情况就可以称之为并发
+- **并行（Parallelism）**：指程序的设计结构，在同一时间内多件事情能被交替地处理。重点是，在某个时间内只有一件事情在执行。比如单核 CPU 能实现多任务运行的过程就是并发。
 
 ### 阻塞和非阻塞的概念
 
@@ -74,7 +98,15 @@ categories: JS
 
 ### promise
 
-Promise 是一种封装和组合未来值的易于复用的机制。解决了只用回调的代码而备受困扰的控制反转问题
+Promise 是一种封装和组合未来值的易于复用的机制。解决了只用回调的代码的控制反转问题
+
+> 所谓Promise，简单说是一个容器，里面保存着某个未来才会结束的事件的结果。从语法上说，Promise 是一个对象，从它可以获取异步操作的消息。Promise 提供统一的 API，各种异步操作都可以用同样的方法进行处理，让开发者不用再关注于时序和底层的结果。Promise的状态具有不受外界影响和不可逆两个特点。
+
+### generator
+
+> `iterator` 也是一种对象，它有`next` 方法，该方法返回一个包含 `value` 和 `done` 两个属性的对象 。前者是迭代的值，后者是表明迭代是否完成的标志 -- 布尔值. 最后的最后,没有值直接undefined
+
+`generator` 就是一个返回值为 `iterator` 的函数, *` 标明这是个 `generators`， `yield` 用来在调用 `next`时返回 `value
 
 ## 知识细节摘抄和理解
 
@@ -111,11 +143,15 @@ Promise 是一种封装和组合未来值的易于复用的机制。解决了只
 
 ![](js-professional-book4/image-20210418210702769.png)
 
-这里的检查 实际上就是利用事件循环机制,检测微任务
+综合整体理解 [图来源](https://www.jianshu.com/p/23fad3814398)
+
+![](js-professional-book4/gif2.gif)
+
+> 执行宏任务，然后执行该宏任务产生的微任务，若微任务在执行过程中产生了新的微任务，则继续执行微任务，微任务执行完毕后，再回到宏任务中进行下一轮循环。
 
 ### 回调
 
-#### 回调信任问题
+#### 回调5大信任问题
 
 - 调用回调过早（在追踪之前）；
 - 调用回调过晚（或没有调用）；
@@ -136,18 +172,184 @@ Promise 是一种封装和组合未来值的易于复用的机制。解决了只
 
 - 顺序错误处理
 一个promise链只是连接到一起的成员，并不是一个整体；即会有外部方法能够观察可能发生的错误。
-
 - 单一值
 promise只能有一个完成值或者一个拒绝理由
-
 - 单决议
 promise只能决议一次
-
 - 惯性
 在一个充满回调函数的代码块中，现存的代码不识别promise，那么还是保存原来的样子要好
-
 - 无法取消的promise
 一旦创建一个promise并注册完成或拒绝处理函数，这时如果某种情况发生导致这个任务得不到处理，实际上是没有办法从外部停止这个进程的
+
+#### [promise的具体函数API](https://es6.ruanyifeng.com/#docs/promise)
+
+#### Promise.all()和Promise.race()的区别
+
+all会将传入的数组中的所有promise全部决议以后，将决议值以数组的形式传入到观察回调中，任何一个promise决议为拒绝，那么就会调用拒绝回调。
+
+race会将传入的数组中的所有promise中第一个决议的决议值传递给观察回调，即使决议结果是拒绝。
+
+#### 如果向Promise.all()和Promise.race()传递空数组，运行结果会有什么不同？
+
+all会立即决议，决议结果是fullfilled，值是undefined
+
+race会永远都不决议，程序卡死……
+
+### generator
+
+#### 为什么会有generator
+
+Generator 函数可以暂停执行和恢复执行，这是它能封装异步任务的根本原因。除此之外，它还有两个特性，使它可以作为异步编程的完整解决方案：函数体内外的数据交换和错误处理机制。
+
+#### 理解generator 以及 yield(同时理解return与yield的区别)
+
+```js
+function *foo(x) {
+  let y = 2 * (yield (x + 1))
+  let z = yield (y / 3)
+  return (x + y + z)
+}
+let it = foo(5)
+console.log(it.next())   // => {value: 6, done: false}
+console.log(it.next(12)) // => {value: 8, done: false}
+console.log(it.next(13)) // => {value: 42, done: true}
+```
+
+- 首先 `Generator` 函数调用和普通函数不同，它会返回一个迭代器
+- 当执行第一次 `next` 时，传参会被忽略，并且函数暂停在 `yield (x + 1)` 处，所以返回 `5 + 1 = 6`
+- 当执行第二次 `next` 时，传入的参数等于上一个 `yield` 的返回值，如果你不传参，`yield` 永远返回 `undefined`。此时 `let y = 2 * 12`，所以第二个 `yield` 等于 `2 * 12 / 3 = 8`
+- 当执行第三次 `next` 时，传入的参数会传递给 `z`，所以 `z = 13, x = 5, y = 24`，相加等于 `42`
+
+#### Symbol.iterator
+
+```js
+let collection = {
+  items: [],
+  *[Symbol.iterator]() {
+    for (let item of this.items) {
+      yield item;
+    }
+  }
+};
+//注意和for of 对比
+```
+
+#### generator 运行理解
+
+- 第一步，协程`A`开始执行。
+- 第二步，协程`A`执行到一半，进入暂停，执行权转移到协程`B`。
+- 第三步，（一段时间后）协程`B`交还执行权。
+- 第四步，协程`A`恢复执行。
+
+实际例子
+
+```js
+function getDataAsync (url) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            var res = {
+                url: url,
+                data: Math.random()
+            }
+            resolve(res)
+        }, 1000)
+    })
+}
+//使用 Generator 函数可以这样写
+function * getData () {
+    var res1 = yield getDataAsync('/page/1?param=123')
+    console.log(res1)
+    var res2 = yield getDataAsync(`/page/2?param=${res1.data}`)
+    console.log(res2)
+    var res3 = yield getDataAsync(`/page/2?param=${res2.data}`)
+    console.log(res3))
+}
+//然后我们这样逐步执行
+var g = getData()
+g.next().value.then(res1 => {
+    g.next(res1).value.then(res2 => {
+        g.next(res2).value.then(() => {
+            g.next()
+        })
+    })
+})
+```
+
+### async关键字
+
+#### await 表达式的运算结果
+
+await 表达式的运算结果取决于它等的是什么
+
+- 如果它等到的不是一个 Promise 对象，那 await 表达式的运算结果就是它等到的东西。
+- 如果它等到的是一个 Promise 对象，await 就忙起来了，它会阻塞后面的代码，等着 Promise 对象 resolve，然后得到 resolve 的值，作为 await 表达式的运算结果。
+
+```javascript
+function testAsy(x){
+   return new Promise(resolve=>{setTimeout(() => {
+       resolve(x);
+     }, 3000)
+    }
+   )
+}
+async function testAwt(){    
+  let result =  await testAsy('hello world');
+  console.log(result);    // 3秒钟之后出现hello world
+  console.log('cuger')   // 3秒钟之后出现cug
+}
+testAwt();
+console.log('cug')  //立即输出cug
+```
+
+这就是 await 必须用在 async 函数中的原因。async 函数调用不会造成阻塞，它内部所有的阻塞都被封装在一个 Promise 对象中异步执行。await暂停当前async的执行，所以’cug”最先输出，hello world’和‘cuger’是3秒钟后同时出现的。
+
+#### 使用 async/await 重写 promise 代码
+
+```js
+fetch('coffee.jpg')
+.then(response => response.blob())
+.then(myBlob => {
+  let objectURL = URL.createObjectURL(myBlob);
+  let image = document.createElement('img');
+  image.src = objectURL;
+  document.body.appendChild(image);
+})
+.catch(e => {
+  console.log('There has been a problem with your fetch operation: ' + e.message);
+});
+```
+
+```js
+async function myFetch() {
+  let response = await fetch('coffee.jpg');
+  let myBlob = await response.blob();
+
+  let objectURL = URL.createObjectURL(myBlob);
+  let image = document.createElement('img');
+  image.src = objectURL;
+  document.body.appendChild(image);
+}
+
+myFetch()
+.catch(e => {
+  console.log('There has been a problem with your fetch operation: ' + e.message);
+});
+```
+
+#### async/await对比Promise的优势
+
+- 代码读起来更加同步，Promise虽然摆脱了回调地狱，但是then的链式调⽤也会带来额外的阅读负担
+- Promise传递中间值⾮常麻烦，⽽async/await⼏乎是同步的写法，⾮常优雅
+- 错误处理友好，async/await可以⽤成熟的try/catch，Promise的错误捕获⾮常冗余
+- 调试友好，Promise的调试很差，由于没有代码块，你不能在⼀个返回表达式的箭头函数中设置断点，如果你在⼀个.then代码块中使⽤调试器的步进(step-over)功能，调试器并不会进⼊后续的.then代码块，因为调试器只能跟踪同步代码的每⼀步。
+
+### 练习题目推荐
+
+[Promise面试题](https://juejin.cn/post/6844903591518404622#heading-9)
+
+[Promise组合面试题](https://www.cnblogs.com/everlose/p/12950564.html)
+
+[Promise面试题](https://my.oschina.net/u/3991187/blog/4779209)
 
 ## 参考
 
@@ -155,3 +357,6 @@ promise只能决议一次
 
 [JS guidebook](https://tsejx.github.io/javascript-guidebook/core-modules/executable-code-and-execution-contexts/concurrency-model/timers-mechanism)
 
+## 推荐阅读
+
+[JavaScript事件循环机制解析](https://www.jianshu.com/p/23fad3814398)

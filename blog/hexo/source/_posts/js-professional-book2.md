@@ -314,6 +314,28 @@ new new Foo().getName();//3  new ((new Foo()).getName)();
 > 为了减少运行时错误，防止在变量声明前就使用这个变量，从而导致意料之外的行为。
 > 不允许重复声明变量
 
+```js
+var f = true;
+if (f === true) {
+  var a = 10;
+}
+
+function fn() {
+  var b = 20;
+  c = 30;
+}
+
+fn();
+console.log(a);
+console.log(b);
+console.log(c);
+
+// 10 报错 30
+//这是个我犯了很久的错误，很长一段时间我都以为{...}内的新声明的变量是局部变量，后来我才发现function内的新声明的变量才是局部变量，而没有用var声明的变量在哪里都是全局变量。再次提醒切记只有function(){}内新声明的才能是局部变量，while{...}、if{...}、for(..) 之内的都是全局变量（除非本身包含在function内）。
+```
+
+
+
 ### 3. 代码理解
 
 ```js
@@ -461,3 +483,43 @@ console.log('全局环境的this', this)
         console.log('延时箭头函数中的 this', this)
     }, 1000)
 ```
+
+### this 测试题
+
+```js
+var length = 10;
+function fn() {
+ console.log(this.length);
+}
+
+var obj = {
+ length: 5,
+ method: function(fn) {
+   fn();
+   arguments[0]();
+ }
+};
+
+obj.method(fn, 1);
+//window
+//arguments
+//obj
+```
+
+### 变量提升
+
+```js
+function fn(a) {
+  console.log(a); 
+  var a = 2;
+  function a() {}
+  console.log(a); 
+}
+
+fn(100);
+
+//function a() {}
+//2
+//函数与var都能提升,函数先.
+```
+
