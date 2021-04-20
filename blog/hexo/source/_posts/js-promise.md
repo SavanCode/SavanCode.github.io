@@ -7,7 +7,7 @@ mathjax: true
 date: 2020-12-10 19:53:09
 password:
 summary:
-tags: [JS,AJAX,Promise]
+tags: [JS,JS Async]
 categories: JS
 ---
 
@@ -43,7 +43,7 @@ categories: JS
   const c = '''' //Uncaught SyntaxError: Unexpected string
 ```
 
-  
+ 
 
 ### 错误处理
 
@@ -795,8 +795,6 @@ Promise 在resolve语句后面，再抛出错误，不会被捕获，等于没�
    - 函数的返回值为promise对象
    
    - promise对象的结果由async函数执行的返回值决定
-   
-     
    
 ```js
    //注意输出的result

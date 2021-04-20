@@ -7,19 +7,19 @@ mathjax: true
 date: 2021-04-18 09:45:21
 password:
 summary: 你不知道的JS 中卷 中 异步和性能
-tags: [JS,book,JS object]
+tags: [JS,book,JS Async]
 categories: JS
 ---
 
 > 这里是阅读完 你不知道的JS 中卷 中的异步 做出的总结
 >
-> （其实之前的总结 也是有结合“你不知道的JS” 只是会把主要的书名放在名字）
+> （其实之前的总结 也是有结合“你不知道的JS” 只是会把主要的书名字放在标题）
 
 ## 重点部分摘抄
 
 ### 1. 都有哪些异步
 
-用户交互，IO，定时器
+用户交互，IO(*Input/Output*)，定时器
 
 ### 2. 事件循环的理解
 
@@ -55,7 +55,7 @@ promise.then(function(value) {
 
 async/await 是参照 Generator 封装的一套异步处理方案，可以理解为 Generator 的语法糖.async 函数返回的是一个 Promise 对象
 
-
+[关于 generator hunk 这部分真的不是很能弄明白，请看这个](https://zhuanlan.zhihu.com/p/23845404)
 
 ## 重点概念的概括
 
@@ -108,11 +108,16 @@ Promise 是一种封装和组合未来值的易于复用的机制。解决了只
 
 `generator` 就是一个返回值为 `iterator` 的函数, *` 标明这是个 `generators`， `yield` 用来在调用 `next`时返回 `value
 
+
 ## 知识细节摘抄和理解
 
 ### 整体知识结构图
 
+![](js-professional-book4\image-20210420102853105.png)
 
+[图片来源](https://www.cnblogs.com/wenruo/p/9379179.html)
+
+[**每个部分的指示图 推荐看 国内掘金也有搬运的**](https://codertw.com/%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80/731509/#outline__10)
 
 ### 异步
 
@@ -220,6 +225,10 @@ console.log(it.next(13)) // => {value: 42, done: true}
 - 当执行第二次 `next` 时，传入的参数等于上一个 `yield` 的返回值，如果你不传参，`yield` 永远返回 `undefined`。此时 `let y = 2 * 12`，所以第二个 `yield` 等于 `2 * 12 / 3 = 8`
 - 当执行第三次 `next` 时，传入的参数会传递给 `z`，所以 `z = 13, x = 5, y = 24`，相加等于 `42`
 
+#### generator 和异步控制
+
+利用 `Generator` 函数的暂停执行的效果，可以把异步操作写在 `yield` 语句里面，等到调用 `next` 方法时再往后执行。这实际上等同于不需要写回调函数了，因为异步操作的后续操作可以放在 `yield` 语句下面，反正要等到调用 `next` 方法时再执行。所以，`Generator` 函数 的一个重要实际意义就是**用来处理异步操作，改写回调函数**。
+
 #### Symbol.iterator
 
 ```js
@@ -284,6 +293,12 @@ await 表达式的运算结果取决于它等的是什么
 - 如果它等到的不是一个 Promise 对象，那 await 表达式的运算结果就是它等到的东西。
 - 如果它等到的是一个 Promise 对象，await 就忙起来了，它会阻塞后面的代码，等着 Promise 对象 resolve，然后得到 resolve 的值，作为 await 表达式的运算结果。
 
+```js
+async function test() {
+  return "1"
+}
+console.log(test()) // -> Promise {<resolved>: "1"}
+```
 ```javascript
 function testAsy(x){
    return new Promise(resolve=>{setTimeout(() => {
@@ -339,9 +354,135 @@ myFetch()
 #### async/await对比Promise的优势
 
 - 代码读起来更加同步，Promise虽然摆脱了回调地狱，但是then的链式调⽤也会带来额外的阅读负担
+
 - Promise传递中间值⾮常麻烦，⽽async/await⼏乎是同步的写法，⾮常优雅
+
 - 错误处理友好，async/await可以⽤成熟的try/catch，Promise的错误捕获⾮常冗余
+
 - 调试友好，Promise的调试很差，由于没有代码块，你不能在⼀个返回表达式的箭头函数中设置断点，如果你在⼀个.then代码块中使⽤调试器的步进(step-over)功能，调试器并不会进⼊后续的.then代码块，因为调试器只能跟踪同步代码的每⼀步。
+
+### 但是对于提速 实际上，async结合promise会很好
+
+![](js-professional-book4/image-20210420191929427.png)
+
+  ![](js-professional-book4/image-20210420192027473.png)
+
+### 重点自测
+
+```js
+console.log('1');
+
+setTimeout(function() {
+    console.log('2');
+    process.nextTick(function() {
+        console.log('3');
+    })
+    new Promise(function(resolve) {
+        console.log('4');
+        resolve();
+    }).then(function() {
+        console.log('5')
+    })
+})
+process.nextTick(function() {
+    console.log('6');
+})
+new Promise(function(resolve) {
+    console.log('7');
+    resolve();
+}).then(function() {
+    console.log('8')
+})
+
+setTimeout(function() {
+    console.log('9');
+    process.nextTick(function() {
+        console.log('10');
+    })
+    new Promise(function(resolve) {
+        console.log('11');
+        resolve();
+    }).then(function() {
+        console.log('12')
+    })
+})
+```
+
+**（1）第一轮事件循环流程分析如下：**
+
+- 整体script作为第一个宏任务进入主线程，遇到`console.log`，输出1。
+- 遇到`setTimeout`，其回调函数被分发到宏任务Event Queue中。暂且记为`setTimeout1`。
+- 遇到`process.nextTick()`，其回调函数被分发到微任务Event Queue中。记为`process1`。
+- 遇到`Promise`，`new Promise`直接执行，输出7。`then`被分发到微任务Event Queue中。记为`then1`。
+- 又遇到了`setTimeout`，其回调函数被分发到宏任务Event Queue中，记为`setTimeout2`。
+
+| 宏任务Event Queue | 微任务Event Queue |
+| :---------------: | :---------------: |
+|    setTimeout1    |     process1      |
+|    setTimeout2    |       then1       |
+
+上表是第一轮事件循环宏任务结束时各Event Queue的情况，此时已经输出了1和7。发现了`process1`和`then1`两个微任务：
+
+- 执行`process1`，输出6。
+- 执行`then1`，输出8。
+
+好了，第一轮事件循环正式结束，这一轮的结果是输出1，7，6，8。
+
+**（2）第二轮时间循环从`setTimeout1`宏任务开始：**
+
+- 首先输出2。接下来遇到了`process.nextTick()`，同样将其分发到微任务Event Queue中，记为`process2`。
+- `new Promise`立即执行输出4，`then`也分发到微任务Event Queue中，记为`then2`。
+
+| 宏任务Event Queue | 微任务Event Queue |
+| :---------------: | :---------------: |
+|    setTimeout2    |     process2      |
+|                   |       then2       |
+
+第二轮事件循环宏任务结束，发现有`process2`和`then2`两个微任务可以执行：
+
+- 输出3。
+- 输出5。
+
+第二轮事件循环结束，第二轮输出2，4，3，5。
+
+**（3）第三轮事件循环开始，此时只剩setTimeout2了，执行。**
+
+- 直接输出9。
+- 将`process.nextTick()`分发到微任务Event Queue中。记为`process3`。
+- 直接执行`new Promise`，输出11。
+- 将`then`分发到微任务Event Queue中，记为`then3`。
+
+| 宏任务Event Queue | 微任务Event Queue |
+| :---------------: | :---------------: |
+|                   |     process3      |
+|                   |       then3       |
+
+第三轮事件循环宏任务执行结束，执行两个微任务`process3`和`then3`：
+
+- 输出10。
+- 输出12。
+
+第三轮事件循环结束，第三轮输出9，11，10，12。
+
+整段代码，共进行了三次事件循环，完整的输出为1，7，6，8，2，4，3，5，9，11，10，12。
+
+```js
+var a = 0
+var b = async () => {
+  a = a + await 10
+  console.log('2', a) // -> ？
+}
+b()
+a++
+console.log('1', a) // -> ？
+复制代码
+```
+
+这道题目大部分读者肯定会想到 `await` 左边是异步代码，因此会先把同步代码执行完，此时 `a` 已经变成 1，所以答案应该是 11。
+
+其实 `a` 为 0 是因为加法运算法，先算左边再算右边，所以会把 0 固定下来。如果我们把题目改成 `await 10 + a` 的话，答案就是 11 了。 
+
+
 
 ### 练习题目推荐
 
@@ -356,6 +497,8 @@ myFetch()
 你不知道的js
 
 [JS guidebook](https://tsejx.github.io/javascript-guidebook/core-modules/executable-code-and-execution-contexts/concurrency-model/timers-mechanism)
+
+[The Async Await Episode I Promised](https://www.youtube.com/watch?v=vn3tm0quoqE)
 
 ## 推荐阅读
 

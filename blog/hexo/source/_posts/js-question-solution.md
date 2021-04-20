@@ -8,7 +8,7 @@ date: 2020-12-01 19:42:39
 password:
 summary: js 小问题收集
 tags: JS
-categories: JS
+categories: [JS,interview]
 ---
 
 ## 1.this 与 event.target的区别
