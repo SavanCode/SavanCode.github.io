@@ -243,3 +243,5 @@ generator(light(),light)
   })()
 ```
 
+## [promise 错误抓取](https://zh.javascript.info/promise-error-handling)
+
