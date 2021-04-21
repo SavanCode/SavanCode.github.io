@@ -23,6 +23,8 @@ categories: JS
 
 ### 2. 事件循环的理解
 
+**首先推荐一个[Event Loop可视化执行](http://latentflip.com/loupe)的网站。**
+
 [JavaScript事件循环机制解析](https://www.jianshu.com/p/23fad3814398)
 
 ### 3. Promise 的原理
@@ -37,6 +39,7 @@ var promise = new Promise(function(resolve, reject) {
     reject(error);
   }
 });
+//then 直接跟这两个参数哦
 promise.then(function(value) {
   // 如果调用了resolve方法，执行此函数
 }, function(value) {
@@ -141,8 +144,22 @@ Promise 是一种封装和组合未来值的易于复用的机制。解决了只
 
 #### 异步任务分两种
 
-- **宏任务**（MacroTask）：main script、setTimeout、setInterval、setImmediate（Node.js）、I/O（Mouse Events、Keyboard Events、Network Events）、UI Rendering（HTML Parsing）、MessageChannel、
-- **微任务**（MicroTask）：Promise.then（非 new Promise）、process.nextTick（Node.js）、MutationObserver回调函数
+MacroTask：
+
+- `setTimeout`
+- `setInterval`
+- `MessageChannel`
+- I/0（文件，网络）相关API
+- DOM事件监听：浏览器环境
+- `setImmediate`：Node环境，IE好像也支持（见caniuse数据）
+
+Microtasks:
+
+- `requestAnimationFrame`：浏览器环境
+- `MutationObserver`：浏览器环境
+- `Promise.prototype.then`, `Promise.prototype.catch`, `Promise.prototype.finally`
+- `process.nextTick`：Node环境
+- `queueMicrotask`
 
 运行机制理解 如下
 
@@ -199,6 +216,12 @@ race会将传入的数组中的所有promise中第一个决议的决议值传递
 all会立即决议，决议结果是fullfilled，值是undefined
 
 race会永远都不决议，程序卡死……
+
+#### 补充：面试考点
+
+#### promise 并发
+
+#### promise 串行
 
 ### generator
 
@@ -286,6 +309,32 @@ g.next().value.then(res1 => {
 
 ### async关键字
 
+#### async & promise
+
+```js
+function f() {
+  return Promise.resolve('TEST');
+}
+
+// asyncF相当于f！
+async function asyncF() {
+  return 'TEST';
+}
+```
+
+类似地
+
+```js
+function f() {
+  return Promise.reject('Error');
+}
+
+// asyncF相当于f！
+async function asyncF() {
+  throw 'Error';
+}
+```
+
 #### await 表达式的运算结果
 
 await 表达式的运算结果取决于它等的是什么
@@ -368,6 +417,8 @@ myFetch()
   ![](js-professional-book4/image-20210420192027473.png)
 
 ### 重点自测
+
+[如果看不懂 题目做错 看这个图解是eventloop的](https://zhuanlan.zhihu.com/p/131337054)
 
 ```js
 console.log('1');

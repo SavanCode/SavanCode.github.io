@@ -234,6 +234,32 @@ function factorial(num) {
 
 详细的[JS引擎工作原理](https://www.cnblogs.com/onepixel/p/5090799.html)
 
+### 绑定this失效
+
+this在箭头函数中被绑定，4种绑定中的无论哪种都无法改变其绑定
+
+```js
+var a = 0;
+function foo(){
+    var test = () => {
+        console.log(this.a);
+    }
+    return test;
+};
+var obj1 = {
+    a : 1,
+    foo:foo
+}
+var obj2 = {
+    a : 2,
+    foo:foo    
+}
+obj1.foo()();//1
+var bar = foo.call(obj1);
+//由于上一条语句已经把this绑定到obj1上，且无法修改。所以本条语句call(obj2)无效，返回的值是obj1.a的值1
+bar.call(obj2);//1
+```
+
 ## 重点理解的题
 
 ### 1. 混合知识点的题

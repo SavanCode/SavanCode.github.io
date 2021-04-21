@@ -7,8 +7,8 @@ mathjax: true
 date: 2020-12-10 19:53:09
 password:
 summary:
-tags: [JS,JS Async]
-categories: JS
+tags: JS
+categories: [JS,JS Async]
 ---
 
 ## js处理error
@@ -507,9 +507,11 @@ let Promise2 = new Promise(function(resolve, reject){ resolve(v2); reject(r2); }
 let Promise3 = new Promise(function(resolve, reject){ resolve(v3); reject(r3); })
  
 let p = Promise.all([Promise1, Promise2, Promise3])
-p.then(([v1, v2, v3]) => {
+p.then((result) => {
+    console.log(result)//[v1, v2, v3]
   // 三个都成功则成功, 参数为三个Promise成功值构成的数组
-}, (r2) => {
+}, (error) => {
+    console.log(error)
   // 只要有失败，则失败， 假设Promise2失败
 })
 ```
@@ -537,6 +539,41 @@ p.then((v2) => {
   // 返回第一个reject的reason
 })
 ```
+
+```js
+//例子: 请求图片
+//请求某个图片资源
+function requestImg(){
+    var p = new Promise(function(resolve, reject){
+        var img = new Image();
+        img.onload = function(){
+            resolve(img);
+        }
+        img.src = 'xxxxxx';
+    });
+    return p;
+}
+
+//延时函数，用于给请求计时
+function timeout(){
+    var p = new Promise(function(resolve, reject){
+        setTimeout(function(){
+            reject('图片请求超时');
+        }, 5000);
+    });
+    return p;
+}
+
+Promise.race([requestImg(), timeout()])
+.then(function(results){
+    console.log(results);
+})
+.catch(function(reason){
+    console.log(reason);
+});
+```
+
+
 
 ### 8、对于已经是回调函数，可以直接用util.promisify()转换
 
@@ -788,6 +825,31 @@ Promise 在resolve语句后面，再抛出错误，不会被捕获，等于没�
 1. https://juejin.cn/post/6844903509934997511
 2. https://juejin.cn/post/6844903488695042062#heading-0
 3. https://juejin.cn/post/6844903625769091079
+
+#### 挑战难度
+
+```js
+Promise.resolve().then(() => {
+    console.log(0);
+    return Promise.resolve(4);
+}).then((res) => {
+    console.log(res)
+})
+
+Promise.resolve().then(() => {
+    console.log(1);
+}).then(() => {
+    console.log(2);
+}).then(() => {
+    console.log(3);
+}).then(() => {
+    console.log(5);
+}).then(() =>{
+    console.log(6);
+})
+```
+
+[来源](https://juejin.cn/post/6937076967283884040#heading-17)
 
 ## async和awiat
 
