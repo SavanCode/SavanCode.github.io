@@ -36,13 +36,51 @@ categories: JS
 
 https://juejin.cn/post/6844904176359587854#heading-18
 
+## 面试简写
 
+```js
+
+function throttle(func,delay=500){
+     let timer = null; 
+     return function(){
+        let that = this;
+         if(!timer){
+            clearTimeout(timer);
+            setTimeout(function(){
+                func.apply(that,arguments)
+            },delay)
+         }
+     }
+}
+function debounce(func,wait=500){
+    let timer = null;
+    return function(){
+        var that = this;
+        if(timer){
+            clearTimeout(timer)
+            timer= null;
+        }
+        setTimeout(() => {
+            func.apply(that,arguments)
+        }, wait);
+    }
+}
+
+function func(){
+    console.log("1111")
+}
+
+setInterval(throttle(fn,1000),10)
+setInterval(debounce(fn,500),10)
+```
 
 ##  防抖(debounce)： 最后一个人说了算
 
 **我会等你到底**。在某段时间内，不管你触发了多少次回调，我都只认最后一次。
 
 ### 应用场景
+
+[可视化](http://demo.nimius.net/debounce_throttle/)
 
 - scroll 事件滚动触发
 
@@ -211,6 +249,8 @@ cancelBtnDom.onclick = function () {
 ## 节流(throttle) ： 第一个人说了算
 
 **初见最重要**。throttle 的中心思想在于：在某段时间内，不管你触发了多少次回调，我都只认第一次，并在计时结束时给予响应。
+
+[可视化](http://demo.nimius.net/debounce_throttle/)
 
 ### 应用场景
 

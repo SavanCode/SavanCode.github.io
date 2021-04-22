@@ -221,14 +221,15 @@ yield tic(green)
 yield tic(yellow)
 }
 function generator(iterator,gen){
-var result= iterator.next();
-if(result.done){//true
-    generator(iterator,gen)
-}else{//false
-    result.value.then(function(){
-            generator(iterator,gen)
-        })
-	}
+//var result= iterator.next();
+//这种判断可以 但是没必要的哦    
+//if(result.done){//true
+//    generator(iterator,gen)
+//}else{//false
+//    
+//	}
+    iterator.next()
+    generator(iterator)
 }
 
 generator(light(),light)

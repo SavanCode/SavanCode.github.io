@@ -58,6 +58,51 @@ promise.then(function(value) {
 
 async/await 是参照 Generator 封装的一套异步处理方案，可以理解为 Generator 的语法糖.async 函数返回的是一个 Promise 对象
 
+### 6.错误处理中的链式流
+
+错误方式一共有：return new Error () / throw new Error ()/ return Promise.reject(new Error())
+
+```js
+.then(() => {
+    return new Error('error!!!')
+  })
+  .then((res) => {
+    console.log('then: ', res)
+  })
+  .catch((err) => {
+    console.log('catch: ', err)
+  })
+//then:  Error: error!!!
+
+Promise.resolve()
+  .then(() => {
+    return Promise.reject(new Error('error!!!'))
+  })
+  .then((res) => {
+    console.log('then: ', res)
+  })
+  .catch((err) => {
+    console.log('catch: ', err)
+  })
+
+//catch:  Error: error!!!
+
+Promise.resolve()
+  .then(() => {
+    throw new Error('error!!!')
+
+  })
+  .then((res) => {
+    console.log('then: ', res)
+  })
+  .catch((err) => {
+    console.log('catch: ', err)
+  })
+//catch:  Error: error!!!
+```
+
+
+
 [关于 generator hunk 这部分真的不是很能弄明白，请看这个](https://zhuanlan.zhihu.com/p/23845404)
 
 ## 重点概念的概括
@@ -203,6 +248,26 @@ promise只能决议一次
 - 无法取消的promise
 一旦创建一个promise并注册完成或拒绝处理函数，这时如果某种情况发生导致这个任务得不到处理，实际上是没有办法从外部停止这个进程的
 
+对于单一决议容易考的点
+
+```js
+const promise = new Promise((resolve, reject) => {
+  resolve('success1')
+  reject('error')
+  resolve('success2')
+})
+
+promise
+  .then((res) => {
+    console.log('then: ', res)
+  })
+  .catch((err) => {
+    console.log('catch: ', err)
+  })
+```
+
+
+
 #### [promise的具体函数API](https://es6.ruanyifeng.com/#docs/promise)
 
 #### Promise.all()和Promise.race()的区别
@@ -222,6 +287,23 @@ race会永远都不决议，程序卡死……
 #### promise 并发
 
 #### promise 串行
+
+#### 值穿透
+
+```js
+Promise.resolve(1)
+  .then(2)
+  .then(Promise.resolve(3))
+  .then(console.log)
+```
+
+运行结果：
+
+```
+1
+```
+
+解释：`.then` 或者 `.catch` 的参数期望是函数，传入非函数则会发生值穿透。
 
 ### generator
 
