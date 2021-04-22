@@ -416,7 +416,7 @@ D:Person {firstName: "Lydia", lastName: "Hallie"} and ReferenceError
 >
 > Well *this* is because the arrow functions do not have their own `this`, so how come it printed `func` 😱, *this* is because of the fact that, for arrow functions `this` is used using lexical scope lookup, which means that, when a reference to `this` is made within any arrow function, the engine, will start looking up the scope of arrow function to find a `this` binding, default being the `global scope` `this`, so, when the above code is executed, during the callback, the engine, will first look for `this` within the scope of arrow function, which it fails to find, then it traverses up the scope of the arrow function, which is the scope of the function `foo`, and since it finds a `this` in the scope of the `foo`, that same `this` is used as future reference within the arrow function, and since `this` of `foo` is hard binded to itself, we get the value of `this.a` as `func`.
 >
-> 文章解释很全，总的说，跟红宝书讲的一样，箭头函数本身没有this，全部都是继承而来，但是这里的继承是要往上找出this
+> 文章解释很全，总的说，跟红宝书讲的一样，**箭头函数本身没有this，ES6新增的箭头函数在被调用时不会绑定`this`，所以它需要去 箭头函数没有this绑定，往外层词法环境寻找**。这里往外层 也就是书中说的继承
 
 加深理解的例子（这里的例子[来源网络](https://www.jianshu.com/p/fed4c7ae2c33)，单个人理解与原作者的理解有出入 ）
 
@@ -509,6 +509,8 @@ console.log('全局环境的this', this)
         console.log('延时箭头函数中的 this', this)
     }, 1000)
 ```
+
+这里是又遇到一个挺好的文章推荐
 
 ### this 测试题
 

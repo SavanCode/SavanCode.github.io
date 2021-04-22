@@ -1042,7 +1042,7 @@ async function run() {
 
 为什么使用`run().catch()`而不是将整个`run()`函数用`try/catch`包起来呢？我们首先来考虑一个情况：如果`try/catch`的`catch`部分有异常，我们应该如何处理呢？只有一个方法：在`catch`里面接着使用`try/catch`。所以，`run().catch()`的模式使得异常处理变得非常简洁。
 
-
+## [看源码提升的推荐文章](http://47.98.159.95/my_blog/blogs/javascript/js-async/001.html#%E4%BB%80%E4%B9%88%E6%98%AFi-o)
 
 ## reference
 

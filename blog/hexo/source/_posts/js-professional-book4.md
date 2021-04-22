@@ -282,6 +282,34 @@ all会立即决议，决议结果是fullfilled，值是undefined
 
 race会永远都不决议，程序卡死……
 
+#### 如果向Promise.all()和Promise.race()中随便一个reject，其他都是，运行结果会有什么不同？
+
+all会立即决议，决议结果是rejected,（这里不考虑catch）
+
+race输出是最快的 ，但是有错误 ，所以还是会有引发错误（这里就算有catch 中途会断，最后打印的还是最早的成功的结果）
+
+```js
+let p1 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve('success')
+  },100)
+})
+
+let p2 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    reject('failed')
+  }, 500)
+})
+
+Promise.race([p1, p2]).then((result) => {
+  console.log(result)
+}).catch((error) => {
+  console.log(error)
+})
+```
+
+
+
 #### 补充：面试考点
 
 #### promise 并发
