@@ -724,6 +724,19 @@ p1 <span class="token comment" spellcheck="true">// 4</span></code></pre>
 <li><a target="_blank" rel="noopener" href="https://wangdoc.com/javascript/types/object.html#%E7%94%9F%E6%88%90%E6%96%B9%E6%B3%95">https://wangdoc.com/javascript/types/object.html#%E7%94%9F%E6%88%90%E6%96%B9%E6%B3%95</a></li>
 <li><a target="_blank" rel="noopener" href="https://wangdoc.com/javascript/stdlib/object.html#object-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0">https://wangdoc.com/javascript/stdlib/object.html#object-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0</a></li>
 </ol>
+<h1 id="构造函数-constructor"><a href="#构造函数-constructor" class="headerlink" title="构造函数 constructor"></a>构造函数 constructor</h1><blockquote>
+<p>构造函数本身就是一个函数，与普通函数的区别在于，<code>用 new 创建实例的函数就是构造函数</code>，直接调用的就是普通函数。为了规范，构造函数的首字母一般大写。</p>
+</blockquote>
+<h2 id="Symbol-是不是构造函数？"><a href="#Symbol-是不是构造函数？" class="headerlink" title="Symbol 是不是构造函数？"></a>Symbol 是不是构造函数？</h2><p><code>Symbol</code>不支持使用new调用，所以不是构造函数，属于基本数据类型。</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> sym <span class="token operator">=</span> <span class="token function">Symbol</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>sym<span class="token punctuation">.</span>constructor<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// ƒ Symbol() { [native code] }</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>sym<span class="token punctuation">.</span>constructor <span class="token operator">===</span> Symbol<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>constructor<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// true</span></code></pre>
+<p><a target="_blank" rel="noopener" href="https://www.runoob.com/w3cnote/es6-symbol.html">Symbol</a>虽然是基本数据类型，但是可以通过<code>Symbol()</code>来生成实例，且我们会发现实例<code>sym</code>有<code>constructor</code>属性值，值为<code>ƒ Symbol() &#123; [native code] &#125;</code>。这里的<code>constructor</code>属性值哪里来的呢？其实是Symbol原型<code>Symbol.prototype.constructor</code>上的，默认是<code>Symbol()</code>函数</p>
+<h2 id="constructor-属性是否只读？"><a href="#constructor-属性是否只读？" class="headerlink" title="constructor 属性是否只读？"></a>constructor 属性是否只读？</h2><ul>
+<li>1、引用类型的<code>constructor</code>属性是可以修改的</li>
+<li>2、基本数据类型<code>number</code>、<code>string</code>、<code>bool</code>、<code>Symbol</code>等有constructor属性的，<code>constructor</code>属性是只读的</li>
+<li>3、基本数据类型<code>null</code>、<code>undefined</code>是没有constructor属性的</li>
+</ul>
 <h1 id="练习例子"><a href="#练习例子" class="headerlink" title="练习例子"></a>练习例子</h1><h2 id="从超类型继承行为"><a href="#从超类型继承行为" class="headerlink" title="从超类型继承行为"></a>从超类型继承行为</h2><pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">Animal</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
 Animal<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>eat <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"nom nom nom"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>

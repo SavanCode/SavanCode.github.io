@@ -572,6 +572,26 @@ SyntaxError<span class="token punctuation">:</span> Identifier <span class="toke
 <span class="token punctuation">}</span></code></pre>
 <h3 id="函数尾部用优化"><a href="#函数尾部用优化" class="headerlink" title="函数尾部用优化"></a>函数尾部用优化</h3><p>理解就是 最好用函数返回后不需要执行额外的逻辑，以及引用其他的值 或者 进行其他的转型运算</p>
 <p>详细的<a target="_blank" rel="noopener" href="https://www.cnblogs.com/onepixel/p/5090799.html">JS引擎工作原理</a></p>
+<h3 id="绑定this失效"><a href="#绑定this失效" class="headerlink" title="绑定this失效"></a>绑定this失效</h3><p>this在箭头函数中被绑定，4种绑定中的无论哪种都无法改变其绑定</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">var</span> test <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> test<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> obj1 <span class="token operator">=</span> <span class="token punctuation">{</span>
+    a <span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+    foo<span class="token punctuation">:</span>foo
+<span class="token punctuation">}</span>
+<span class="token keyword">var</span> obj2 <span class="token operator">=</span> <span class="token punctuation">{</span>
+    a <span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+    foo<span class="token punctuation">:</span>foo    
+<span class="token punctuation">}</span>
+obj1<span class="token punctuation">.</span><span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//1</span>
+<span class="token keyword">var</span> bar <span class="token operator">=</span> foo<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>obj1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//由于上一条语句已经把this绑定到obj1上，且无法修改。所以本条语句call(obj2)无效，返回的值是obj1.a的值1</span>
+bar<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>obj2<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//1</span></code></pre>
 <h2 id="重点理解的题"><a href="#重点理解的题" class="headerlink" title="重点理解的题"></a>重点理解的题</h2><h3 id="1-混合知识点的题"><a href="#1-混合知识点的题" class="headerlink" title="1. 混合知识点的题"></a>1. 混合知识点的题</h3><pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">Foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     getName <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> alert <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
     <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
@@ -642,6 +662,23 @@ window<span class="token punctuation">.</span>b <span class="token comment" spel
 <p><strong>在块级作用域声明函数，最好使用匿名函数的形式</strong>。</p>
 <p><strong>暂时性死区和不能变量提升的意义在于:</strong><br>为了减少运行时错误，防止在变量声明前就使用这个变量，从而导致意料之外的行为。<br>不允许重复声明变量</p>
 </blockquote>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> f <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>f <span class="token operator">===</span> <span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">fn</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> b <span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>
+  c <span class="token operator">=</span> <span class="token number">30</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">fn</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// 10 报错 30</span>
+<span class="token comment" spellcheck="true">//这是个我犯了很久的错误，很长一段时间我都以为{...}内的新声明的变量是局部变量，后来我才发现function内的新声明的变量才是局部变量，而没有用var声明的变量在哪里都是全局变量。再次提醒切记只有function(){}内新声明的才能是局部变量，while{...}、if{...}、for(..) 之内的都是全局变量（除非本身包含在function内）。</span></code></pre>
 <h3 id="3-代码理解"><a href="#3-代码理解" class="headerlink" title="3. 代码理解"></a>3. 代码理解</h3><pre class=" language-js"><code class="language-js"><span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">3</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
@@ -675,7 +712,7 @@ foo<span class="token punctuation">.</span>a <span class="token operator">=</spa
 foo<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>foo<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <p>You must be wondering how did the above code worked, and we didn’t even hard binded <code>this</code> for the arrow function to <code>this</code> of <code>foo</code> function!!!! 👺</p>
 <p>Well <em>this</em> is because the arrow functions do not have their own <code>this</code>, so how come it printed <code>func</code> 😱, <em>this</em> is because of the fact that, for arrow functions <code>this</code> is used using lexical scope lookup, which means that, when a reference to <code>this</code> is made within any arrow function, the engine, will start looking up the scope of arrow function to find a <code>this</code> binding, default being the <code>global scope</code> <code>this</code>, so, when the above code is executed, during the callback, the engine, will first look for <code>this</code> within the scope of arrow function, which it fails to find, then it traverses up the scope of the arrow function, which is the scope of the function <code>foo</code>, and since it finds a <code>this</code> in the scope of the <code>foo</code>, that same <code>this</code> is used as future reference within the arrow function, and since <code>this</code> of <code>foo</code> is hard binded to itself, we get the value of <code>this.a</code> as <code>func</code>.</p>
-<p>文章解释很全，总的说，跟红宝书讲的一样，箭头函数本身没有this，全部都是继承而来，但是这里的继承是要往上找出this</p>
+<p>文章解释很全，总的说，跟红宝书讲的一样，<strong>箭头函数本身没有this，ES6新增的箭头函数在被调用时不会绑定<code>this</code>，所以它需要去 箭头函数没有this绑定，往外层词法环境寻找</strong>。这里往外层 也就是书中说的继承</p>
 </blockquote>
 <p>加深理解的例子（这里的例子<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/fed4c7ae2c33">来源网络</a>，单个人理解与原作者的理解有出入 ）</p>
 <pre class=" language-js"><code class="language-js">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'全局环境的this'</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">)</span>
@@ -765,6 +802,36 @@ foo<span class="token punctuation">.</span><span class="token function">call</sp
     <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
         console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'延时箭头函数中的 this'</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">)</span>
     <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span></code></pre>
+<p>这里是又遇到一个挺好的文章推荐</p>
+<h3 id="this-测试题"><a href="#this-测试题" class="headerlink" title="this 测试题"></a>this 测试题</h3><pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> length <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">fn</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+ console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span>
+ length<span class="token punctuation">:</span> <span class="token number">5</span><span class="token punctuation">,</span>
+ method<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>fn<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   <span class="token function">fn</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   arguments<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+obj<span class="token punctuation">.</span><span class="token function">method</span><span class="token punctuation">(</span>fn<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//window</span>
+<span class="token comment" spellcheck="true">//arguments</span>
+<span class="token comment" spellcheck="true">//obj</span></code></pre>
+<h3 id="变量提升"><a href="#变量提升" class="headerlink" title="变量提升"></a>变量提升</h3><pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">fn</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+  <span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+  <span class="token keyword">function</span> <span class="token function">a</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+<span class="token punctuation">}</span>
+
+<span class="token function">fn</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//function a() {}</span>
+<span class="token comment" spellcheck="true">//2</span>
+<span class="token comment" spellcheck="true">//函数与var都能提升,函数先.</span></code></pre>
 
             </div>
             <hr/>
@@ -884,9 +951,9 @@ foo<span class="token punctuation">.</span><span class="token function">call</sp
                     <div class="card-image">
                         
                         
-                        <img src="../../../../medias/featureimages/10.jpg" class="responsive-img" alt="JS 高级程序设计 重点摘抄以及解读2">
+                        <img src="../../../../medias/featureimages/11.jpg" class="responsive-img" alt="JS 高级程序设计 重点摘抄以及解读3">
                         
-                        <span class="card-title">JS 高级程序设计 重点摘抄以及解读2</span>
+                        <span class="card-title">JS 高级程序设计 重点摘抄以及解读3</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
