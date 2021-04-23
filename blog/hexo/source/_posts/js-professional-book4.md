@@ -643,6 +643,30 @@ console.log('1', a) // -> ？
 
 其实 `a` 为 0 是因为加法运算法，先算左边再算右边，所以会把 0 固定下来。如果我们把题目改成 `await 10 + a` 的话，答案就是 11 了。 
 
+### 重点自测2
+
+```js
+async function async1() {
+  console.log("async1 start");
+  await async2();
+  console.log("async1 end");
+  setTimeout(() => {
+    console.log('timer1')
+  }, 0)
+}
+async function async2() {
+  setTimeout(() => {
+    console.log('timer2')
+  }, 0)
+  console.log("async2");
+}
+async1();
+setTimeout(() => {
+  console.log('timer3')
+}, 0)
+console.log("start")
+```
+
 
 
 ### 练习题目推荐

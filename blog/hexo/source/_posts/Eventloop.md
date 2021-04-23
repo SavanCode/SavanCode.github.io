@@ -7,7 +7,7 @@ mathjax: true
 date: 2021-03-23 20:54:31
 password:
 summary: 事件循环Eventloop 宏任务macrotask 微任务microtask
-tags: [Eventloop,JS]
+tags: [JS Async,JS]
 categories: JS
 ---
 
