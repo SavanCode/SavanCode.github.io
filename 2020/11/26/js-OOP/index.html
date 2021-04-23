@@ -435,9 +435,13 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="对象基础"><a href="#对象基础" class="headerlink" title="对象基础"></a>对象基础</h2><p>object ：propert + method</p>
+                <h1 id="对象基础"><a href="#对象基础" class="headerlink" title="对象基础"></a>对象基础</h1><p>object ：propert + method</p>
 <p><img src="/2020/11/26/js-OOP/1607080521610.png" alt="关系图"></p>
-<h2 id="构造函数constructor"><a href="#构造函数constructor" class="headerlink" title="构造函数constructor"></a>构造函数constructor</h2><p>特点：</p>
+<h2 id="构造函数constructor"><a href="#构造函数constructor" class="headerlink" title="构造函数constructor"></a>构造函数constructor</h2><p><strong>定义</strong>： 属性 <code>constructor</code> 也是<strong>对象</strong>才拥有的，它是从<strong>一个对象指向一个函数</strong>，含义就是<strong>指向该对象的构造函数</strong>，每个对象都有构造函数（本身拥有或继承而来，继承而来的要结合 <code>__proto__</code> 属性查看会更清楚点）</p>
+<blockquote>
+<p> <strong>Function</strong> 这个对象比较特殊，它的构造函数就是它自己（因为 Function 可以看成是一个函数，也可以是一个对象），所有函数和对象最终都是由 Function 构造函数得来，所以 <code>constructor</code> 属性的终点就是 <strong>Function</strong> 这个函数。（不理解的 可以先看下去，在最后解释深层原型链就可以搭配图理解）</p>
+</blockquote>
+<p>特点：</p>
 <ul>
 <li>函数体内部使用了<code>this</code>关键字，代表了所要生成的对象实例。</li>
 <li>生成对象的时候，必须使用<code>new</code>命令</li>
@@ -534,53 +538,10 @@ v<span class="token punctuation">.</span>price <span class="token comment" spell
   <span class="token keyword">this</span><span class="token punctuation">.</span>price <span class="token operator">=</span> <span class="token number">1000</span><span class="token punctuation">;</span>
   <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token keyword">function</span><span class="token operator">=</span>obj2<span class="token punctuation">.</span>fn<span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
-<h1 id="对象继承-详细另外一篇"><a href="#对象继承-详细另外一篇" class="headerlink" title="对象继承(详细另外一篇)"></a>对象继承(详细另外一篇)</h1><h2 id="基本继承"><a href="#基本继承" class="headerlink" title="基本继承"></a>基本继承</h2><pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> Cat <span class="token punctuation">(</span>name<span class="token punctuation">,</span> color<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span>
-  <span class="token keyword">this</span><span class="token punctuation">.</span>color <span class="token operator">=</span> color<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-<span class="token keyword">var</span> cat1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Cat</span><span class="token punctuation">(</span><span class="token string">'大毛'</span><span class="token punctuation">,</span> <span class="token string">'白色'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-cat1<span class="token punctuation">.</span>name <span class="token comment" spellcheck="true">// '大毛'</span>
-cat1<span class="token punctuation">.</span>color <span class="token comment" spellcheck="true">// '白色'</span></code></pre>
-<p>同一个构造函数的多个实例之间，无法共享属性，从而造成对系统资源的浪费。</p>
-<h2 id="多个继承"><a href="#多个继承" class="headerlink" title="多个继承"></a>多个继承</h2><pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">//parent</span>
-<span class="token keyword">function</span> <span class="token function">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-
-<span class="token punctuation">}</span>
-Person<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>say<span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"I am saying ...."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-Person<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>walk<span class="token operator">=</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"I am walking..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-<span class="token comment" spellcheck="true">//child</span>
-<span class="token keyword">function</span> <span class="token function">Female</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>  <span class="token punctuation">}</span>
-
-Female<span class="token punctuation">.</span>prototype <span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-Female<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>sing<span class="token operator">=</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"I am singing..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-<span class="token keyword">var</span>  obj<span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Female</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-obj<span class="token punctuation">.</span><span class="token function">say</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-obj<span class="token punctuation">.</span><span class="token function">walk</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-obj<span class="token punctuation">.</span><span class="token function">sing</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token keyword">function</span> <span class="token function">male</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token punctuation">}</span>
-male<span class="token punctuation">.</span>prototype<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-male<span class="token punctuation">.</span>prototype<span class="token punctuation">,</span>play<span class="token operator">=</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"I am playing..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-<span class="token keyword">var</span> obj2<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">Female</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-obj2<span class="token punctuation">.</span><span class="token function">say</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-obj2<span class="token punctuation">.</span><span class="token function">walk</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-obj2<span class="token punctuation">.</span><span class="token function">play</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<h1 id="prototype-属性-函数的原型对象"><a href="#prototype-属性-函数的原型对象" class="headerlink" title="prototype 属性- 函数的原型对象"></a>prototype 属性- 函数的原型对象</h1><blockquote>
+<h1 id="对象继承-详细另外一篇"><a href="#对象继承-详细另外一篇" class="headerlink" title="对象继承(详细另外一篇)"></a>对象继承(详细另外一篇)</h1><h1 id="prototype-属性-函数的原型对象"><a href="#prototype-属性-函数的原型对象" class="headerlink" title="prototype 属性- 函数的原型对象"></a>prototype 属性- 函数的原型对象</h1><blockquote>
 <p>每个函数都有prototype属性，这个属性是一个指针，指向一个对象，记住只有函数才有,并且通过bind()绑定的也没有。</p>
 <p>对于函数的prototype，在函数定义之前，prototype 就已经创建了</p>
+<p><strong><code>prototype</code> 属性作用</strong>：包含可以由特定类型的所有实例共享的属性和方法，也就是让该函数的实例化对象们都可以找到公用的属性和方法。</p>
 </blockquote>
 <p><img src="/2020/11/26/js-OOP/1607323876459.png"></p>
 <p>一个最基本的例子 new constrcut()</p>
@@ -646,7 +607,7 @@ obj2<span class="token punctuation">.</span>__proto__<span class="token punctuat
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>obj1<span class="token punctuation">.</span>abc<span class="token punctuation">,</span> obj2<span class="token punctuation">.</span>abc<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//123 undefined</span>
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>obj1<span class="token punctuation">.</span>__proto__<span class="token punctuation">.</span>bcd<span class="token punctuation">,</span> obj2<span class="token punctuation">.</span>__proto__<span class="token punctuation">.</span>bcd<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//456  456</span></code></pre>
 <blockquote>
-<p>__proto__不建议使用，可以用Object.getPrototypeOf()和Object.setPrototypeOf()代替；</p>
+<p><code>__</code>proto<code>__</code>不建议使用，可以用Object.getPrototypeOf()和Object.setPrototypeOf()代替；</p>
 </blockquote>
 <h2 id="确定对象之间是否存在原型关系"><a href="#确定对象之间是否存在原型关系" class="headerlink" title="确定对象之间是否存在原型关系"></a>确定对象之间是否存在原型关系</h2><ol>
 <li>instanceof,这个操作符只能处理对象(person1)和函数(带.prototype引用的Person)之间的关系</li>
@@ -660,10 +621,42 @@ Person<span class="token punctuation">.</span>prototype<span class="token punctu
 
 Object<span class="token punctuation">.</span><span class="token function">getPrototypeOf</span><span class="token punctuation">(</span>person1<span class="token punctuation">)</span> <span class="token operator">===</span> Person<span class="token punctuation">.</span>prototype <span class="token comment" spellcheck="true">// true</span></code></pre>
 <h2 id="proto-的指向"><a href="#proto-的指向" class="headerlink" title="__proto__ 的指向"></a><code>__</code>proto<code>__</code> 的指向</h2><p><img src="/2020/11/26/js-OOP/1607330943411.png"></p>
-<h1 id="proto-属性-与-prototype-属性-的区别"><a href="#proto-属性-与-prototype-属性-的区别" class="headerlink" title="proto 属性 与 prototype 属性 的区别"></a><strong>proto</strong> 属性 与 prototype 属性 的区别</h1><p><img src="/2020/11/26/js-OOP/1607083961666.png"></p>
+<h1 id="proto-属性-与-prototype-属性-的区别"><a href="#proto-属性-与-prototype-属性-的区别" class="headerlink" title="proto 属性 与 prototype 属性 的区别"></a><strong>proto</strong> 属性 与 prototype 属性 的区别</h1><table>
+<thead>
+<tr>
+<th>显式原型对象</th>
+<th>隐式原型对象</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>属性 <code>prototype</code></td>
+<td>属性 <code>__proto__</code></td>
+</tr>
+<tr>
+<td>函数独有</td>
+<td>对象独有（函数也是对象，因此函数也有该属性）</td>
+</tr>
+<tr>
+<td>定义函数时被自动赋值，值默认为 <code>&#123;&#125;</code></td>
+<td>在创建实例对象时被自动添加，并赋值为构造函数的 <code>prototype</code> 值</td>
+</tr>
+<tr>
+<td>用于实现基于原型的继承与属性的共享</td>
+<td>构成原型链，同样用于实现基于原型的继承</td>
+</tr>
+</tbody></table>
+<p><img src="/2020/11/26/js-OOP/1607083961666.png"></p>
 <p>例子中</p>
 <p><img src="/2020/11/26/js-OOP/1607350277074.png"></p>
-<h1 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h1><h2 id="图解-1"><a href="#图解-1" class="headerlink" title="图解"></a>图解</h2><p><img src="/2020/11/26/js-OOP/1607093427072.png"></p>
+<h3 id="prototype、-Prototype-和-proto-的区别？"><a href="#prototype、-Prototype-和-proto-的区别？" class="headerlink" title="prototype、[[Prototype]]和__proto__的区别？"></a>prototype、[[Prototype]]和__proto__的区别？</h3><blockquote>
+<p>1、原型<code>prototype</code>是构造函数的属性，<code>__proto__</code>是 new 生成的对象的属性，<code>[[Prototype]]</code>是对象的内部属性。</p>
+<p>2、构造函数的原型 <code>prototype</code> 和其对象的 <code>__proto__</code>指向同一个对象</p>
+<p>3、<code>[[Prototype]]</code>指向它的构造函数的原型<code>prototype</code>，外部无法直接访问，可以通过<code>__proto__</code>来访问内部属性<code>[[Prototype]]</code>，</p>
+</blockquote>
+<h1 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h1><blockquote>
+<p><strong>定义</strong>：从当前对象出发沿着原型对象（<code>__proto__</code>）构成的链条查找相关属性和方法直到结束，这些相互关联的对象组成的链条就是<strong>原型链</strong></p>
+</blockquote>
+<h2 id="图解-1"><a href="#图解-1" class="headerlink" title="图解"></a>图解</h2><p><img src="/2020/11/26/js-OOP/1607093427072.png"></p>
 <p><img src="/2020/11/26/js-OOP/1607093455510.png"></p>
 <blockquote>
 <p>原型链的形成是真正是靠<strong>proto</strong> 而非 prototype。</p>
@@ -686,7 +679,7 @@ Number<span class="token punctuation">.</span>prototype<span class="token punctu
 Funtion<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>__proto__ <span class="token operator">===</span> Object<span class="token punctuation">.</span>prototype<span class="token punctuation">;</span>
 Object<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>__proto__ <span class="token operator">===</span> <span class="token keyword">null</span><span class="token punctuation">;</span></code></pre>
 <p> <img src="/2020/11/26/js-OOP/1607085964568.png"></p>
-<p><img src="/2020/11/26/js-OOP/image-20210330031036670.png"></p>
+<p><img src="/2020/11/26/js-OOP/image-20210412224204328.png"></p>
 <blockquote>
 <p>特殊点：</p>
 <ol>
@@ -716,13 +709,12 @@ console<span class="token punctuation">.</span><span class="token function">log<
 </blockquote>
 <p>图例：</p>
 <p><img src="/2020/11/26/js-OOP/1607332056648.png"></p>
-<p><img src="/2020/11/26/js-OOP/image-20210330030839695.png"></p>
 <h1 id="原型链的应用"><a href="#原型链的应用" class="headerlink" title="原型链的应用"></a>原型链的应用</h1><p>这里在实际操作上,因为有原型链的存在,所以数据的share也就成为了可能,但是当你并不想去深层寻找的时候hasOwnProperty()</p>
 <blockquote>
 <p><code>hasOwnProperty (en-US)</code> 是 JavaScript 中唯一一个处理属性并且<strong>不会</strong>遍历原型链的方法。（译者注：原文如此。另一种这样的方法：<code>Object.keys()</code>）</p>
 </blockquote>
 <h2 id="基础方法"><a href="#基础方法" class="headerlink" title="基础方法"></a>基础方法</h2><p>W3C不推荐直接使用系统成员<strong>proto</strong></p>
-<h3 id="Object-getPrototypeOf-对象"><a href="#Object-getPrototypeOf-对象" class="headerlink" title="Object.getPrototypeOf(对象)"></a><strong>Object.getPrototypeOf(对象)</strong></h3><p>​            获取对象的隐式原型</p>
+<h3 id="Object-getPrototypeOf-对象"><a href="#Object-getPrototypeOf-对象" class="headerlink" title="Object.getPrototypeOf(对象)"></a><strong>Object.getPrototypeOf(对象)</strong></h3><p>获取对象的隐式原型</p>
 <p><code>Object.getPrototypeOf</code>方法返回参数对象的原型。这是获取原型对象的标准方法。</p>
 <pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> F <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
 <span class="token keyword">var</span> f <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">F</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -773,6 +765,26 @@ o2<span class="token punctuation">.</span><span class="token function">isPrototy
 o1<span class="token punctuation">.</span><span class="token function">isPrototypeOf</span><span class="token punctuation">(</span>o3<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// true</span></code></pre>
 <p>因此o的隐式原型是Object.<strong>proto</strong>,正好它也在obj的原型链上，所以是true,具体可以看上图</p>
 <h3 id="对象-instanceof-函数"><a href="#对象-instanceof-函数" class="headerlink" title="对象 instanceof 函数"></a><strong>对象 instanceof 函数</strong></h3><p>判断函数的原型是否在对象的原型链上</p>
+<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// 假设 instanceof 操作符左边是 L 右边是 R</span>
+L <span class="token keyword">instanceof</span> <span class="token class-name">R</span>
+
+<span class="token comment" spellcheck="true">// instanceof 运算时 通过判断 L 的原型链是否存在 R.prototype</span>
+L<span class="token punctuation">.</span>__proto__<span class="token punctuation">.</span>__proto__<span class="token operator">...</span> <span class="token operator">===</span> R<span class="token punctuation">.</span>prototype</code></pre>
+<p>构造器 Function 的构造器是它自身：</p>
+<pre class=" language-js"><code class="language-js">Function<span class="token punctuation">.</span>constructor <span class="token operator">===</span> Function<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// true</span></code></pre>
+<p>构造器 Object 的构造器是 Function（因此可得所有构造器的 constructor 都指向 Function）</p>
+<pre class=" language-js"><code class="language-js">Object<span class="token punctuation">.</span>constructor <span class="token operator">===</span> Function<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// true</span></code></pre>
+<p>构造器 Function 的 <code>[[Prototype]]</code> 是一个特殊的匿名函数</p>
+<pre class=" language-js"><code class="language-js">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Function<span class="token punctuation">.</span>__proto__<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// function(){}</span></code></pre>
+<p>这个特殊的匿名函数的 <code>[[Prototype]]</code> 指向 Object 的 prototype 原型。</p>
+<pre class=" language-js"><code class="language-js">Function<span class="token punctuation">.</span>__proto__<span class="token punctuation">.</span>__proto__ <span class="token operator">===</span> Object<span class="token punctuation">.</span>prototype<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// true</span></code></pre>
+<p>Object 的 <code>[[Prototype]]</code> 指向 Function 的 prototype 也就是上述的特殊的匿名函数</p>
+<pre class=" language-js"><code class="language-js">Object<span class="token punctuation">.</span>__proto__ <span class="token operator">===</span> Function<span class="token punctuation">.</span>prototype<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// true</span>
+
+Function<span class="token punctuation">.</span>prototype <span class="token operator">===</span> Function<span class="token punctuation">.</span>__proto__<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// true</span></code></pre>
+<p>内置对象 Function 和 Object 的关系：</p>
+<pre class=" language-js"><code class="language-js">Function <span class="token keyword">instanceof</span> <span class="token class-name">Object</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// true</span>
+Object <span class="token keyword">instanceof</span> <span class="token class-name">Function</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// true</span></code></pre>
 <h3 id="Object-create-对象"><a href="#Object-create-对象" class="headerlink" title="Object.create(对象)"></a><strong>Object.create(对象)</strong></h3><p>生成实例对象的常用方法是，使用<code>new</code>命令让构造函数返回一个实例。但是很多时候，只能拿到一个实例对象，它可能根本不是由构建函数生成的，那么能不能从一个实例对象，生成另一个实例对象呢？</p>
 <p>JavaScript 提供了<code>Object.create()</code>方法，用来满足这种需求。该方法接受一个对象作为参数，然后以它为原型，返回一个实例对象。该实例完全继承原型对象的属性。</p>
 <pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// 原型对象</span>
@@ -878,6 +890,8 @@ C<span class="token punctuation">.</span>prototype<span class="token punctuation
 
 <span class="token keyword">var</span> c <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">C</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 c<span class="token punctuation">.</span>constructor<span class="token punctuation">.</span>prototype <span class="token operator">===</span> p <span class="token comment" spellcheck="true">// true</span></code></pre>
+<h3 id="原型链中查找属性方法为空和访问原型链中的原型对象为空的区别"><a href="#原型链中查找属性方法为空和访问原型链中的原型对象为空的区别" class="headerlink" title="原型链中查找属性方法为空和访问原型链中的原型对象为空的区别"></a>原型链中查找属性方法为空和访问原型链中的原型对象为空的区别</h3><p>在原型链中查找属性或方法，如果没有查找到相关属性或方法，返回的是 undefined，表示原型链中没有该属性或方法。</p>
+<p>而通过访问原型链中的原型对象，到达原型链终点，即 Object.prototype 的值为 null。</p>
 <h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><p><strong>类数组转换为真数组</strong></p>
 <pre class=" language-js"><code class="language-js">Array<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>slice<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>类数组<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token comment" spellcheck="true">//这个方法与[].slice.call(类数组)的区别：后者的[]是重新创建了一个数组从而得到slice方法，但是这是不必要的</span></code></pre>
@@ -888,6 +902,7 @@ c<span class="token punctuation">.</span>constructor<span class="token punctuati
 <li>Dr. Axel Rauschmayer, <a target="_blank" rel="noopener" href="http://www.2ality.com/2011/07/js-properties.html">JavaScript properties: inheritance and enumerability</a></li>
 <li><a target="_blank" rel="noopener" href="https://wangdoc.com/javascript/oop/prototype.html#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%9A%84%E7%BC%BA%E7%82%B9">https://wangdoc.com/javascript/oop/prototype.html#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%9A%84%E7%BC%BA%E7%82%B9</a></li>
 <li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;chksm=80d66757b7a1ee41cd8bc2154baf7e8a15304d25bd289dda29061ebe1678eebaad4232557ec3&amp;idx=1&amp;mid=2665520916&amp;scene=21&amp;sn=76f110bb713ac67d0a678af0b088501e#wechat_redirect">https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg%3D%3D&amp;chksm=80d66757b7a1ee41cd8bc2154baf7e8a15304d25bd289dda29061ebe1678eebaad4232557ec3&amp;idx=1&amp;mid=2665520916&amp;scene=21&amp;sn=76f110bb713ac67d0a678af0b088501e#wechat_redirect</a></li>
+<li><a target="_blank" rel="noopener" href="https://juejin.im/post/5caefd575188251b2822c17e"> 帮你彻底搞懂 JavaScript 中的 prototype、proto 与 constructor（图解）</a></li>
 </ol>
 
             </div>

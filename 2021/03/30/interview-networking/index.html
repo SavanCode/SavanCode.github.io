@@ -442,16 +442,17 @@
 </ul>
 <p>常用状态码：</p>
 <ul>
-<li>101 切换请求协议，从 HTTP 切换到 WebSocket</li>
-<li>200 请求成功，有响应体</li>
-<li>301 永久重定向：会缓存</li>
-<li>302 临时重定向：不会缓存</li>
-<li>304 协商缓存命中</li>
-<li>403 服务器禁止访问</li>
-<li>404 资源未找到</li>
-<li>400 请求错误</li>
-<li>500 服务器端错误</li>
-<li>503 服务器繁忙</li>
+<li><p>1(信息类)：表示接收到请求并且继续处理<br>100 Continue 继续，一般在发送post请求时，已发送了http header之后服务端将返回此信息，表示确认，之后发送具体参数信息</p>
+</li>
+<li><p>2(响应成功)：表示动作被成功接收、理解和接受<br>200 OK 正常返回信息<br>201 Created 请求成功并且服务器创建了新的资源<br>202 Accepted 服务器已接受请求，但尚未处理</p>
+</li>
+<li><p>3**(重定向类)：为了完成指定的动作，必须接受进一步处理<br>301 Moved Permanently 请求的网页已永久移动到新位置。<br>302 Found 临时性重定向。<br>303 See Other 临时性重定向，且总是使用 GET 请求新的 URI。<br>304 Not Modified 自从上次请求后，请求的网页未修改过。</p>
+</li>
+<li><p>4**(客户端错误类)：请求包含错误语法或不能正确执行</p>
+<p>400 Bad Request  客户端请求的语法错误，服务器无法理解<br>401 Unauthorized 请求未授权验证。<br>402 Payment Required 保留以后使用<br>403 Forbidden 禁止访问。<br>404 Not Found 找不到如何与 URI 相匹配的资源。</p>
+</li>
+<li><p>5**(服务端错误类)：服务器不能正确执行一个正确的请求<br>500 Internal Server Error 服务器遇到错误，最常见的服务器端错误。<br>503 Service Unavailable 服务器端暂时无法处理请求（可能是过载或维护）。<br>504 Gateway Time-out 未及时从远端服务器获取请求<br>505 HTTP Version not supported  服务器不支持请求的 HTTP 协议的版本，无法完成处理</p>
+</li>
 </ul>
 <h2 id="你知道-302-状态码是什么嘛？你平时浏览网页的过程中遇到过哪些-302-的场景？"><a href="#你知道-302-状态码是什么嘛？你平时浏览网页的过程中遇到过哪些-302-的场景？" class="headerlink" title="你知道 302 状态码是什么嘛？你平时浏览网页的过程中遇到过哪些 302 的场景？"></a>你知道 302 状态码是什么嘛？你平时浏览网页的过程中遇到过哪些 302 的场景？</h2><p>而 302 表示临时重定向，这个资源只是暂时不能被访问了，但是之后过一段时间还是可以继续访问，一般是访问某个网站的资源需要权限时，会需要用户去登录，跳转到登录页面之后登录之后，还可以继续访问。</p>
 <p>301 类似，都会跳转到一个新的网站，但是 301 代表访问的地址的资源被永久移除了，以后都不应该访问这个地址，搜索引擎抓取的时候也会用新的地址替换这个老的。可以在返回的响应的 location 首部去获取到返回的地址。301 的场景如下：</p>
@@ -459,7 +460,7 @@
 <li>比如从 <a target="_blank" rel="noopener" href="http://baidu.com/">baidu.com</a>，跳转到 <a target="_blank" rel="noopener" href="https://baidu.com/">baidu.com</a></li>
 <li>域名换了</li>
 </ul>
-<h2 id="（2）问：HTTP-常用的请求方式，区别和用途？"><a href="#（2）问：HTTP-常用的请求方式，区别和用途？" class="headerlink" title="（2）问：HTTP 常用的请求方式，区别和用途？"></a>（2）问：HTTP 常用的请求方式，区别和用途？</h2><p>http/1.1 规定如下请求方法：</p>
+<h2 id="（2）问：HTTP-常用的请求方式，区别和用途？"><a href="#（2）问：HTTP-常用的请求方式，区别和用途？" class="headerlink" title="（2）问：HTTP 常用的请求方式，区别和用途？"></a>（2）问：HTTP 常用的请求方式，区别和用途？</h2><p>http/1.1 规定如下请求方法：GHPP DCOT</p>
 <ul>
 <li>GET：通用获取数据</li>
 <li>HEAD：获取资源的元信息</li>
@@ -473,8 +474,17 @@
 <h2 id="问：你对计算机网络的认识怎么样"><a href="#问：你对计算机网络的认识怎么样" class="headerlink" title="问：你对计算机网络的认识怎么样"></a>问：你对计算机网络的认识怎么样</h2><blockquote>
 <p>物理层、 应用层、传输层、表示层、会话层、网络层、数据链路层、</p>
 </blockquote>
-<h2 id="（3）问：HTTPS-是什么？具体流程"><a href="#（3）问：HTTPS-是什么？具体流程" class="headerlink" title="（3）问：HTTPS 是什么？具体流程"></a>（3）问：HTTPS 是什么？具体流程</h2><p>HTTPS 是在 HTTP 和 TCP 之间建立了一个安全层，HTTP 与 TCP 通信的时候，必须先进过一个安全层，对数据包进行加密，然后将加密后的数据包传送给 TCP，相应的 TCP 必须将数据包解密，才能传给上面的 HTTP。</p>
+<h2 id="（3）问：HTTPS-是什么？具体流程"><a href="#（3）问：HTTPS-是什么？具体流程" class="headerlink" title="（3）问：HTTPS 是什么？具体流程"></a>（3）问：HTTPS 是什么？具体流程</h2><blockquote>
+<p>HTTPS 是在 HTTP 和 TCP 之间建立了一个安全层，HTTP 与 TCP 通信的时候，必须先进过一个安全层，对数据包进行加密，然后将加密后的数据包传送给 TCP，相应的 TCP 必须将数据包解密，才能传给上面的 HTTP。</p>
 <p>浏览器传输一个 client_random 和加密方法列表，服务器收到后，传给浏览器一个 server_random、加密方法列表和数字证书（包含了公钥），然后浏览器对数字证书进行合法验证，如果验证通过，则生成一个 pre_random，然后用公钥加密传给服务器，服务器用 client_random、server_random 和 pre_random ，使用公钥加密生成 secret，然后之后的传输使用这个 secret 作为秘钥来进行数据的加解密。</p>
+</blockquote>
+<p>这里我觉得回答http vs https 就好</p>
+<ul>
+<li>而对于https，他是以安全为目标的http通道，是http的安全版，在http中加入了ssl层，https的安全基础是ssl。</li>
+<li>https协议是由http和ssl协议构建的可进行加密传输和身份认证的网络协议，比http协议的安全性更高</li>
+<li>http协议的端口是80 &amp; 明文传输，而https的端口为443 &amp; 加密传输协议</li>
+<li>web服务器通过自己的私钥解密出会话密钥，通过会话密钥加密与客户端之间的通信</li>
+</ul>
 <h2 id="（4）问：三次握手和四次挥手"><a href="#（4）问：三次握手和四次挥手" class="headerlink" title="（4）问：三次握手和四次挥手"></a>（4）问：三次握手和四次挥手</h2><p>为什么要进行三次握手：为了确认对方的发送和接收能力。</p>
 <h3 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h3><p>三次握手主要流程：</p>
 <ul>
