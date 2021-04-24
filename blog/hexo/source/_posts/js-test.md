@@ -7,8 +7,8 @@ mathjax: true
 date: 2021-04-19 19:52:10
 password:
 summary: JS 题目收集
-tags: JS
-categories: [JS,interview]
+tags: [JS,interview]
+categories: JS
 ---
 
 https://juejin.cn/post/6947860760840110088#heading-42

@@ -178,14 +178,16 @@ function throttle(func,delay){
 }
 function debounce(func,wait){
     let timer = null;
-    if(timer){//timer existed
-        clearTimeout(timer)
-        timer = null;
-        let that= this;
-    }else{//without timer
-        setTimeout(() => {
-            func.apply(that,arguments)
-        }, wait);
+    return function(){
+      if(timer){//timer existed
+          clearTimeout(timer)
+          timer = null;
+          let that= this;
+      }else{//without timer
+          setTimeout(() => {
+              func.apply(that,arguments)
+          }, wait);
+      }
     }
 }
 
@@ -202,7 +204,7 @@ Function,prototype.call = function(context,arguments){
 function newObj(){
     let obj = object.create();
     obj.__proto__ = constructor.prototype
-    let result = constructor.call(obj,arguments)
+    let result = constructor.call(obj,...arguments)
     return typeof result === "object" ? result : obj;
 }
 
@@ -220,4 +222,37 @@ while(true){
     prototype = right.prototype;
     myinstanceof(objProto,prototype)
 }
+}
+ 
+let array = [promise1,promise2,promise3]
+
+//串行
+async function promiseByQueue(array){
+  let result = []
+  let errorFlag= false;
+  for(let promise of array){
+    try{
+      result.push(await promise())
+    }catch(error){
+      result.push(error)    
+      errorFlag=true; 
+    }
+
+  }
+  if(errorFlag){throw new Error()}
+}
+
+function promiseQueue(array){
+  array.reduce((prevP,nextP)=>{prevP.then(()=>nextP)},Promise.resolve())
+}
+
+//并行
+function parallel(array){
+  let result = [];
+  let count;
+  array.array.forEach((element,index) => {
+    Promise.resolve(element).then(
+      result=>{ res[index]=result;count++}
+    )
+  });
 }

@@ -11,6 +11,7 @@ tags: [JS,book]
 categories: JS
 ---
 
+**关于js基本类型的详细笔记**
 # JS 类型（以下均为书本内容摘选）
 
 ECMAScript 有6 种简单数据类型（也称为原始类型）：Undefined、Null、Boolean、Number、String 和Symbol。还有一种复杂数据类型叫Object（对象）。Object 是一种无序名值对的集合

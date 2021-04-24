@@ -6,9 +6,9 @@ toc: true
 mathjax: true
 date: 2020-12-10 19:53:09
 password:
-summary:
-tags: JS
-categories: [JS,JS Async]
+summary: JS Async 详细笔记
+tags: [JS,JS Async]
+categories: JS
 ---
 
 ## js处理error

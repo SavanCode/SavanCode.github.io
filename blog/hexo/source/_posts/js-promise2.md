@@ -7,8 +7,8 @@ mathjax: true
 date: 2021-04-21 08:40:55
 password:
 summary: promise2 拓展 针对细节面试题
-tags: JS
-categories: [JS,JS Async]
+tags: [JS,JS Async]
+categories: JS
 ---
 
 ## Promise 异步请求串行&并行执行实现
@@ -245,4 +245,137 @@ generator(light(),light)
 ```
 
 ## [promise 错误抓取](https://zh.javascript.info/promise-error-handling)
+
+简单总结就是
+
+如果是 return new Error() 这个会被then抓取
+
+如果是 throw error 或者是 reject 就一定会通过catch
+
+[Promise面试题](https://juejin.cn/post/6844903591518404622#heading-9)
+
+[Promise组合面试题](https://www.cnblogs.com/everlose/p/12950564.html)
+
+[Promise面试题](https://my.oschina.net/u/3991187/blog/4779209)
+
+## 重点理解promise的源码
+
+> 先说 这个题,如果不看源码 真的是一头雾水, 因为这个涉及到了源码里面then的实现问题. 所以如果你并没有打算看源码,可以虎烈这个题 ,这个考题有点偏
+
+我们先看这个题
+
+```js
+Promise.resolve().then(()=>{console.log(1)}).then(()=>{console.log(2)}).then(()=>{console.log(3)})
+Promise.resolve().then(()=>{console.log('a')}).then(()=>{console.log('b')}).then(()=>{console.log('c')})
+```
+
+这里的答案是什么呢?
+
+```js
+1 a 2 b 3 c
+```
+
+这里一定要注意顺序,当1在执行,a才进去,... 这里的循环要弄清楚哈
+
+然后这个没问题,那我们就看下面这个难题
+
+[题目来源字节面试题](https://juejin.cn/post/6937076967283884040#heading-17)
+
+```js
+Promise.resolve().then(() => {
+    console.log(0);
+    return Promise.resolve(4);
+}).then((res) => {
+    console.log(res)
+})
+
+Promise.resolve().then(() => {
+    console.log(1);
+}).then(() => {
+    console.log(2);
+}).then(() => {
+    console.log(3);
+}).then(() => {
+    console.log(5);
+}).then(() =>{
+    console.log(6);
+})
+```
+
+这个题曾让我怀疑自己 (→_→)
+
+好的 这个答案是 1 2 3 4 5 6 
+
+对的 你没看错 那么我们来看看哈  then部分的具体源码 看这个
+
+具体讲源码 会开新的文章
+
+```js
+
+/* 
+用来指定成功/失败回调函数的方法
+    1). 如果当前promise是resolved, 异步执行成功的回调函数onResolved
+    2). 如果当前promise是rejected, 异步执行成功的回调函数onRejected
+    3). 如果当前promise是pending, 保存回调函数
+返回一个新的promise对象
+    它的结果状态由onResolved或者onRejected执行的结果决定
+    2.1). 抛出error ==> 变为rejected, 结果值为error
+    2.2). 返回值不是promise   ==> 变为resolved, 结果值为返回值
+    2.3). 返回值是promise    ===> 由这个promise的决定新的promise的结果(成功/失败)
+*/
+Promise.prototype.then = function (onResolved, onRejected) {
+  const self = this
+
+  onResolved = typeof onResolved === 'function' ? onResolved : value => value // 将value向下传递
+  onRejected = typeof onRejected === 'function' ? onRejected : reason => {
+    throw reason
+  } // 将reason向下传递
+
+  return new Promise((resolve, reject) => { // 什么时候改变它的状态
+    /* 
+    1. 调用指定的回调函数
+    2. 根据回调执行结果来更新返回promise的状态
+    */
+    function handle(callback) {
+      try {
+        const result = callback(self.data)
+        if (!(result instanceof Promise)) { //  2.2). 返回值不是promise   ==> 变为resolved, 结果值为返回值
+          resolve(result)
+        } else { // 2.3). 返回值是promise    ===> 由这个promise的决定新的promise的结果(成功/失败)
+          result.then(
+            value => resolve(value),
+            reason => reject(reason)
+          )
+          // result.then(resolve, reject)
+        }
+      } catch (error) { // 2.1). 抛出error ==> 变为rejected, 结果值为error
+        reject(error)
+      }
+    }
+
+    if (self.status === RESOLVED) {
+      setTimeout(() => {
+        handle(onResolved)
+      })
+    } else if (self.status === REJECTED) {
+      setTimeout(() => {
+        handle(onRejected)
+      })
+    } else { // PENDING
+      self.callbacks.push({
+        onResolved(value) {
+          handle(onResolved)
+        },
+        onRejected(reason) {
+          handle(onRejected)
+        }
+      })
+    }   
+  })
+}
+```
+
+这里的重点是要理解到 这里有两次的判断的 
+
+也就是对于Promise.resolve(4) 这里会走两个循环
 

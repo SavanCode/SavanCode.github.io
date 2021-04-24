@@ -170,7 +170,24 @@ for (const [key,value] of objectEntries(jane)) {
 
 
 
+### generator的this 
 
+**Generator 函数总是返回一个遍历器，ES6 规定这个遍历器是 Generator 函数的实例，也继承了 Generator 函数的`prototype`对象上的方法。**
+
+```javascript
+function* g() {}
+
+g.prototype.hello = function () {
+  return 'hi!';
+};
+
+let obj = g();
+
+obj instanceof g // true
+obj.hello() // 'hi!'
+```
+
+> 上面代码表明，**Generator 函数`g`返回的遍历器`obj`，是`g`的实例**，而且继承了`g.prototype`。但是，如果把`g`当作普通的构造函数，并不会生效，因为**`g`返回的总是遍历器对象，而不是`this`对象。**
 
 休息休息 看不下去了
 

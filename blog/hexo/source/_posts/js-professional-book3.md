@@ -11,14 +11,16 @@ tags: [JS,book,JS object]
 categories: JS
 ---
 >  这里是阅读完 js高级程序设计中的第8章 做出的总结
+>
+>  [自己写的关于JS Object的所有总结](https://savancode.github.io/tags/JS-object/)
 
-## 重点部分的摘抄
+## 重点部分的摘抄（详细在连接文章中）
 
-### 1. 描述对象，构造函数，原型三者的关系
+### [1. 描述对象，构造函数，原型三者的关系](https://savancode.github.io/2020/11/26/js-OOP/)
 
 ### 2. 描述原型链 -原型继承多个引用类型的属性和方法
 
-### 3. 实现继承的方法
+### [3. 实现继承的方法](https://savancode.github.io/2020/12/07/js-Inheritance/)
 
 ## 知识细节摘抄以及理解
 

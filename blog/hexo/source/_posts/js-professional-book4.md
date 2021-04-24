@@ -14,6 +14,10 @@ categories: JS
 > 这里是阅读完 你不知道的JS 中卷 中的异步 做出的总结
 >
 > （其实之前的总结 也是有结合“你不知道的JS” 只是会把主要的书名字放在标题）
+>
+> 之前写的关于异步的笔记
+>
+> [eventLoop](https://savancode.github.io/2021/03/23/Eventloop/)  [js异步基础笔记](https://savancode.github.io/2020/12/10/js-promise/) js promise详细笔记
 
 ## 重点部分摘抄
 
@@ -669,13 +673,9 @@ console.log("start")
 
 
 
-### 练习题目推荐
+### [针对面试题目写的集合](https://savancode.github.io/2021/04/21/js-promise2/)
 
-[Promise面试题](https://juejin.cn/post/6844903591518404622#heading-9)
 
-[Promise组合面试题](https://www.cnblogs.com/everlose/p/12950564.html)
-
-[Promise面试题](https://my.oschina.net/u/3991187/blog/4779209)
 
 ## 参考
 
