@@ -44,18 +44,16 @@ const parallel = function (promises) {
         promises.forEach((promise, index) => {
         	// 这里其实需要判断一下, 当前遍历的promise是否是Promise类型, 但是, 这里没有判断, 想想是因为什么原因. 
             //依照 promises 规范，一旦一个 promise 被创建，它就被执行了
-            Promise.resolve(promise).then(data => {
-            	// 注意点1: index用来保证按序存储
-                res[index]  = data
-                count++
-                // 注意点2: count用来保证获取到了想要的所有数据
+            Promise.resolve(promise).then(
+                data => {
+                    // 注意点1: index用来保证按序存储
+                    res[index]  = data
+                    count++
+                    // 注意点2: count用来保证获取到了想要的所有数据
                 if(count === promises.length) {
-                    resolve(res)
-                }
-            }, err => {
-            }).catch(err => {
-                return reject(err)
-            })
+                    resolve(res)}
+            }, err => reject(err)
+            )
         })
     })
 }
@@ -77,7 +75,6 @@ Task D |                         ------>|
 ```js
 async function execute(tasks) {
   let result = [];
-
   for (const task of tasks) {
     try {
       result.push(await task());
@@ -308,7 +305,7 @@ Promise.resolve().then(() => {
 
 对的 你没看错 那么我们来看看哈  then部分的具体源码 看这个
 
-具体讲源码 会开新的文章
+具体讲源码 写在这个文章
 
 ```js
 
@@ -341,7 +338,7 @@ Promise.prototype.then = function (onResolved, onRejected) {
         const result = callback(self.data)
         if (!(result instanceof Promise)) { //  2.2). 返回值不是promise   ==> 变为resolved, 结果值为返回值
           resolve(result)
-        } else { // 2.3). 返回值是promise    ===> 由这个promise的决定新的promise的结果(成功/失败)
+        } else { // 2.3). 返回值是promise  ===> 由这个promise的决定新的promise的结果(成功/失败)
           result.then(
             value => resolve(value),
             reason => reject(reason)
@@ -378,4 +375,55 @@ Promise.prototype.then = function (onResolved, onRejected) {
 这里的重点是要理解到 这里有两次的判断的 
 
 也就是对于Promise.resolve(4) 这里会走两个循环
+
+不理解没关系 我们先这样看~~~ 如果我们直接return 4 是我们想要的结果
+
+![](js-promise2/image-20210424232051259.png)
+
+所以这样的运行结果,也就是告诉我们这里多了两个微任务,那么我们试一下?
+
+![](js-promise2/image-20210424232437671.png)
+
+哎 找到了 这里就是多了两个then的微任务,为啥呢?
+
+这里就可以看看源码的2.3部分 
+
+```js
+// 2.3). 返回值是promise  ===> 由这个promise的决定新的promise的结果(成功/失败)
+  result.then(
+    value => resolve(value),
+    reason => reject(reason)
+  )
+```
+
+所以他会一直看你是不是promise,是的会给你增加微任务,为什么呢? 为的就是拿到你的最内层的值~~
+
+比如这里就是,我拿到了promise.resolve(4) 好的,我创建一个then(), 这时候我就拿到了一个4, 然后我还要判断这个4是不是一个promise,这时候我再次创建一个promise, 然后哎 他已经不是了 欧克 ~~~ 我就不用再判断了
+
+所以这里是两层哦~~~
+
+> 对于现在很多面试会说面试官会要直接手撕promise. 但是实际上,都只是要了解整个大概~ 就是它的运行原理和基本的框架,你是要心中有数的. 所以想进大厂对于底层原理还是要保证理解上要足够好,光光挂题和肯定不够的哦~~~
+
+## 手写promise API
+
+#### promise.all 
+
+就是前面并行
+
+#### promise.race
+
+```js
+/* 
+返回一个promise, 由第一个完成promise决定
+*/
+Promise.race = function (promises) {
+  return new Promise((resolve, reject) => {
+    // 遍历所有promise, 取其对应的结果
+    promises.forEach(p => {
+      // 返回的promise由第一个完成p来决定其结果
+      p.then(resolve, reject)
+    })
+  })
+}
+```
 

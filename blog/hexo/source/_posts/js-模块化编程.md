@@ -7,11 +7,26 @@ mathjax: true
 date: 2020-11-26 10:20:17
 password:
 summary: JS 模块写法
-tags: JS
+tags: [JS,module]
 categories: JS
 ---
 
 ![](js-模块化编程/167b650e8d1fcc23.png)
+
+整体的理解
+
+- 服务器端
+  	CommonJS  同步加载 NodeJS
+
+- 浏览器(客户端)
+  	异步加载
+  	AMD(异步模块定义) -> require.js
+  	CMD(通用模块定义) -> seajs
+
+- 服务器端+客户端
+  	UMD
+
+原生模块定义(ES6) -> Babel(ES5)
 
 ## 模块化的基本了解
 
@@ -119,6 +134,10 @@ true && function(){ /* code */ }();
 ![](js-模块化编程/image-20210214110153534.png)
 
 
+> 优点: 模块外部没有办法修改module的变量函数
+>
+> 缺点：功能相对较弱，封装过程增加了工作量、仍会导致命名空间污染可能、闭包是有成本的。
+>
 > 问题: 如果当前这个模块依赖另一个模块怎么办?
 
 ### IIFE模式增强 : 引入依赖 - 现代模块实现的基石
@@ -157,41 +176,25 @@ true && function(){ /* code */ }();
 
 上例子通过jquery方法将页面的背景颜色改成红色，所以必须先引入jQuery库，就把这个库当作参数传入。
 
-> **这样做除了保证模块的独立性，还使得模块之间的依赖关系变得明显**。
+> 这样做除了保证模块的独立性，还使得模块之间的依赖关系变得明显.
+>
+> **优点：**
+>
+> 相比于使用一个js文件，这种多个js文件实现最简单的模块化的思想是进步的。　
+>
+> **缺点：**
+>
+> 污染全局作用域。 因为每一个模块都是暴露在全局的，简单的使用，会导致全局变量命名冲突，当然，我们也可以使用命名空间的方式来解决。
+>
+> 对于大型项目，各种js很多，开发人员必须手动解决模块和代码库的依赖关系，后期维护成本较高。
+>
+> 依赖关系不明显，不利于维护。 比如main.js需要使用jquery，但是，从上面的文件中，我们是看不出来的，如果jquery忘记了，那么就会报错。
 
 ### 放大模式
 
-```js
-var module1 = (function (mod){
-　　mod.m3 = function () {
-　　　　//...
-　　};
-　　return mod;
-})(module1);
-```
-
 ### 宽放大模式（Loose augmentation）
 
-```js
-var module1 = ( function (mod){
-　　　//...
-　　　return mod;
-})(window.module1 || {});
-```
-
 与"放大模式"相比，＂宽放大模式＂就是"立即执行函数"的参数可以是空对象。
-
-## 输入全局变量
-
-独立性是模块的重要特点，模块内部最好不与程序的其他部分直接交互。
-
-为了在模块内部调用全局变量，必须显式地将其他变量输入模块。
-
-```js
-var module1 = (function ($, YAHOO) {
-　　　　//...
-　　})(jQuery, YAHOO);
-```
 
 ##  模块化的好处
 
@@ -201,6 +204,8 @@ var module1 = (function ($, YAHOO) {
 - 高可维护性
 
 ## 引入多个`<script>`后出现出现问题
+
+因为现在也免得导入都是通过多个script请求
 
 - 请求过多
 
@@ -212,71 +217,27 @@ var module1 = (function ($, YAHOO) {
 
 - 难以维护
 
-## 实际应用 (跳过)
-
-在定时器、事件监听器、 Ajax 请求、跨窗口通信、Web Workers 或者任何其他的异步(或者同步)任务中，只要使用了回调函数，实际上就是在使用闭包!
-
-### 定时器闭包案例：
-
-```js
-function wait(message) {
-setTimeout( function timer() {
-console.log( message );
-}, 1000 );
-}
-wait( "Hello, closure!" );
-```
-
-### 事件监听闭包案例：
-
-```js
-function setupBot(name, selector) {
-$(selector).click( function activator() {
-console.log( "Activating: " + name );
-});
-}
-setupBot( "Closure Bot 1", "#bot_1" );
-setupBot( "Closure Bot 2", "#bot_2" );
-```
-
-上面的案例中，有个相同的特点：先定义函数，后执行函数时能够调用到函数中的私有变量或者实参。这便是闭包的特点吧
-
-### Currying
-
-```js
-//Un-curried function
-function unCurried(x, y) {
-  return x + y;
-}
-
-//Curried function
-function curried(x) {
-  return function(y) {
-    return x + y;
-  }
-}
-//Alternative using ES6
-const curried = x => y => x + y
-
-curried(1)(2) // Returns 3
-```
-
-```js
-function add(x) {
-  // Only change code below this line
-return function(y) {
-    return function(z) {
-      return x + y + z;
-    };
-  };
-  // Only change code above this line
-}
-add(10)(20)(30);
-```
-
 ## 最流行的commonjs, AMD, CMD , ES6 规范
 
-###  CommonJS的模块化 - 最早期的
+###  1. CommonJS的模块化 
+
+##### CommonJS exports 本质是什么? 
+
+是exports的对象~ 所以 module.exports =function(){} 或者 ={} 会被直接覆盖~~~~
+
+![commonJS](js-模块化编程/image-20210425140236806.png)
+
+#### 特点
+
+> 1. 主要用于服务器端，不适合前端；
+> 2. 在服务器端,模块的加载是运行时同步加载的；
+> 3. 在浏览器端，无法直接运行在浏览器端上，需要通过工具转换成标准的 ES5 ；
+> 4. 所有代码都运行在模块作用域，不会污染全局作用域。(一个文件一个模块)
+> 5. 模块可以多次加载，但是只会在第一次加载时运行一次，然后运行结果就被缓存了，以后再加载，就直接读取缓存结果。要想让模块再次运行，必须清除缓存。
+>
+> 6. 模块加载的顺序，按照其在代码中出现的顺序
+
+服务器端模块化的规范,Node.js 采用了这个规范
 
 CommonJS规范规定，每个模块内部，module变量代表当前模块。这个变量是一个对象，它的exports属性（即module.exports）是对外的接口。**加载某个模块，其实是加载该模块的module.exports属性**
 
@@ -293,14 +254,16 @@ var x = 5;
 var addX = function (value) {
   return value + x;
 };
-module.exports.x = x;
-module.exports.addX = addX;
+exports.x = x;//module.exports.x=x;
+exports.addX = addX;
+module.exports.add=(m,n)=>console.log(m+n);
 ```
 
 ```js
 var example = require('./example.js'); 
 console.log(example.x); // 5
 console.log(example.addX(1)); // 6
+example.add(1,5); // 6
 ```
 
 #### 引入变量
@@ -327,14 +290,120 @@ incCounter();
 console.log(counter); // 3
 ```
 
-### [ES6模块化 - 最香的 - import export](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/export) 
+CommonJS 加载模块是同步的，所以只有加载完成才能执行后面的操作。像Node.js主要用于服务器的编程，加载的模块文件一般都已经存在本地硬盘，所以加载起来比较快，不用考虑异步加载的方式，所以CommonJS规范比较适用。但如果是浏览器环境，要从服务器加载模块，这是就必须采用异步模式。所以就有了 AMD CMD 解决方案。
 
-> **1.在node中使用的是exports，不要混淆了**
+#### 小总结
+
+> Browserify工具可以把nodejs的模块编译成浏览器可用的模块
 >
-> **2.**这里一定注意一个地方**有效的路径符号**. 完整的非相对路径。这样在将其传给new URL(moduleSpecifier)的时候才不会报错。
->    **以 / 开头。**
->    **以 ./ 开头。**
->    **以 ../ 开头。**
+> **优点：**
+>
+> CommonJS规范在服务器端率先完成了JavaScript的模块化，解决了依赖、全局变量污染的问题，这也是js运行在服务器端的必要条件。
+>
+> **缺点：**
+>
+> CommonJS 是同步加载模块的，在服务器端，文件都是保存在硬盘上，所以同步加载没有问题，
+>
+>  但是对于浏览器端，需要将文件从服务器端请求过来，那么同步加载就不适用了，所以，CommonJS是不太适用于浏览器端。
+
+### 2. AMD(Asynchromous Module Definition) 异步模块定义
+
+![AMD](js-模块化编程/amd)
+
+#### why RequireJS 
+
+AMD 是 RequireJS 在推广过程中对模块定义的规范化产出
+
+> requireJS主要解决两个问题：
+>
+> 1 多个js文件可能有依赖关系，被依赖的文件需要早于依赖它的文件加载到浏览器。
+>
+> 2 js加载的时候浏览器会停止页面渲染，加载文件愈多，页面失去响应的时间愈长。
+
+AMD异步加载模块。它的模块支持对象 函数 构造器 字符串 JSON等各种类型的模块。
+
+#### 特点
+
+> - 专门用于浏览器端；
+> - 模块的加载是异步的， 模块的加载不影响它后面语句的运行。所有依赖这个模块的语句，都定义在一个回调函数中，等到加载完成之后，这个回调函数才会运行；
+> - 依赖前置。
+
+#### AMD定义两个API
+
+**定义暴露模块**:
+
+```js
+//定义没有依赖的模块
+define(function(){
+   return //模块
+})
+//定义有依赖的模块
+define(['module1', 'module2'], function(m1, m2){
+   return //模块
+})
+```
+
+**引入使用模块**:
+
+```js
+require(['module1', 'module2'], function(m1, m2){
+   //使用m1/m2
+})
+```
+
+下面是例子
+
+```js
+//定义alter模块
+define(function () {
+    var alertName = function (str) {
+        alert("I am " + str);
+    }
+    var alertAge = function (num) {
+        alert("I am " + num + " years old");
+    }
+    return {
+        alertName: alertName,
+        alertAge: alertAge
+    };
+});
+```
+
+```js
+//引入模块
+require(['alert'], function (alert) {
+    alert.alertName('zhangsan');
+    alert.alertAge(21);
+});
+```
+
+#### 小总结
+
+> **优点：**
+>
+> - 可以在不赚嘛情况下直接在浏览器运行
+> - 可以异步加载模块。可以并行加载多个模块。
+> - 可以运行在浏览器或者Node.js
+>
+> **缺点：**
+>
+> - JS 运行环境没有原生支持 AMD，需要先导入实现了 AMD 的库后才能正常使用。
+> - 开发成本高，代码的阅读和书写比较困难，模块定义方式的语义不顺畅
+
+### 3. CMD （Common Module Definition）通用模块定义(这里暂时跳过)
+
+### 4. [ES6模块化 - 最香的 - import export](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/export) 
+
+![es6](js-模块化编程/image-20210425162704469.png)
+
+> 1. 在node中使用的是exports，不要混淆了
+>
+> 2. 这里一定注意一个地方**有效的路径符号**. 完整的非相对路径。这样在将其传给new URL(moduleSpecifier)的时候才不会报错。
+> **以 / 开头。**
+> **以 ./ 开头。**
+> **以 ../ 开头。**
+>
+> 3. 在文件中的任何位置引入 import 模块都会被提前到文件顶部
 
 #### 基本定义例子
 
@@ -410,50 +479,204 @@ import "module-name";
 
 #### [动态import](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/import#%E5%8A%A8%E6%80%81import)
 
-### ES6 模块与 CommonJS 模块的差异
+关键字import可以像调用函数一样来动态的导入模块。以这种方式调用，将返回一个 `promise`。
+
+```js
+import('/modules/my-module.js')
+  .then((module) => {
+    // Do something with the module.
+  });
+```
+
+这种使用方式也支持 `await` 关键字。
+
+```js
+let module = await import('/modules/my-module.js');
+```
+
+### ES6 模块与 CommonJS 模块的对比
 
 **① CommonJS 模块输出的是一个值的拷贝，ES6 模块输出的是值的引用**。
 
 **② CommonJS 模块是运行时加载，ES6 模块是编译时输出接口**。
 
-> CommonJS规范主要用于服务端编程，加载模块是同步的，这并不适合在浏览器环境，因为同步意味着阻塞加载，浏览器资源是异步加载的，因此有了AMD CMD解决方案。 最后出现的是最香的ES6的。
->
-> 剩下部分关于AMD CMD 请到博客原文看哦~ 毕竟我没有看这两块
+## 总结
 
+- CommonJS规范主要用于服务端编程，加载模块是同步的，这并不适合在浏览器环境，因为同步意味着阻塞加载，浏览器资源是异步加载的，因此有了AMD CMD解决方案。
+- AMD规范在浏览器环境中异步加载模块，而且可以并行加载多个模块。不过，AMD规范开发成本高，代码的阅读和书写比较困难，模块定义方式的语义不顺畅。
+- CMD规范与AMD规范很相似，都用于浏览器编程，依赖就近，延迟执行，可以很容易在Node.js中运行。不过，依赖SPM 打包，模块的加载逻辑偏重
+- **ES6 在语言标准的层面上，实现了模块功能，而且实现得相当简单，完全可以取代 CommonJS 和 AMD 规范，成为浏览器和服务器通用的模块解决方案**。
 
+## 重点易错点
 
-##  自测
+###  ES6 模块和 CommonJS 模块的不同点
 
-- 下面代码会输出什么？
-
-```js
-for (var i=1; i<=5; i++) {
- setTimeout( function timer() {
- console.log( i );
- }, i*1000 );
-}
-```
-
-答案：5个6
-
-- 如何处理能够输出1-5
+#### 模块中的值变化(Commonjs vs ES6)
 
 ```js
-// 闭包方式
-for (var i=1; i<=5; i++) {
- (function(index) {
- setTimeout( function timer() {
- console.log( index );
- }, index*1000 );
- })(i)
-}
-// ES6 方式
-for (let i=1; i<=5; i++) {
- setTimeout( function timer() {
- console.log( i );
- }, i*1000 );
-}
+// a.js
+var b = require('./b');
+console.log(b.foo);
+setTimeout(() => {
+  console.log(b.foo);
+  console.log(require('./b').foo);
+}, 1000);
+
+// b.js
+let foo = 1;
+setTimeout(() => {
+  foo = 2;
+}, 500);
+module.exports = {
+  foo: foo,
+};
+// 执行：node a.js
+// 执行结果：
+// 1
+// 1
+// 1
 ```
+
+```js
+  console.log(b.foo());
+  console.log(require('./b').foo());
+}, 1000);
+
+// b.js
+let foo = 1;
+setTimeout(() => {
+  foo = 2;
+}, 500);
+module.exports = {
+  foo: () => {
+    return foo;
+  },
+};
+// 执行：node a.js
+// 执行结果：
+// 1
+// 2
+// 2
+```
+
+或者 更新数据的时候每次都要去更新 module.exports 上的值
+
+```js
+// a.js
+var b = require('./b');
+console.log(b.foo);
+setTimeout(() => {
+  console.log(b.foo);
+  console.log(require('./b').foo);
+}, 1000);
+
+// b.js
+module.exports.foo = 1;   // 同 exports.foo = 1 
+setTimeout(() => {
+  module.exports.foo = 2;
+}, 500);
+
+// 执行：node a.js
+// 执行结果：
+// 1
+// 2
+// 2
+```
+
+所以对于CommonJS 
+
+- CommonJS 模块输出的是值的拷贝(原始值的拷贝)，也就是说，一旦输出一个值，模块内部的变化就影响不到这个值。
+- CommonJS 模块重复引入的模块并不会重复执行，再次获取模块直接获得暴露的 module.exports 对象
+- 如果你要处处获取到模块内的最新值的话，也可以你每次更新数据的时候每次都要去更新 module.exports 上的值; 如果你暴露的 module.exports 的属性是个对象，那就不存在这个问题了
+
+但是对于ES6 不再是生成输出对象的拷贝，而是动态关联模块中的值.所以不会有这个问题
+
+#### 编译区别
+
+对于es6
+
+export 命令会有变量声明提前的效果。
+import 优先执行:
+
+```js
+// a.js
+console.log('a.js')
+import { foo } from './b';
+
+// b.js
+export let foo = 1;
+console.log('b.js 先执行');
+
+// 执行结果:
+// b.js 先执行
+// a.js
+```
+
+```js
+// a.js
+import { foo } from './b';
+console.log('a.js');
+export const bar = 1;
+export const bar2 = () => {
+  console.log('bar2');
+}
+export function bar3() {
+  console.log('bar3');
+}
+
+// b.js
+export let foo = 1;
+import * as a from './a';
+console.log(a);
+
+// 执行结果:
+// { bar: undefined, bar2: undefined, bar3: [Function: bar3] }
+// a.js
+```
+
+
+
+###  ES6 模块和 CommonJS 模块的相同点
+
+#### 1. 模块不会重复执行
+
+CommonJS 模块循环依赖
+
+```js
+//这里是commonjs
+// a.js
+console.log('a starting');
+exports.done = false;
+const b = require('./b');
+console.log('in a, b.done =', b.done);
+exports.done = true;
+console.log('a done');
+
+// b.js
+console.log('b starting');
+exports.done = false;
+const a = require('./a');
+console.log('in b, a.done =', a.done);
+exports.done = true;
+console.log('b done');
+
+// node a.js
+// 执行结果：
+// a starting
+// b starting
+// in b, a.done = false
+// b done
+// in a, b.done = true
+// a done
+```
+
+结合之前讲的特性很好理解，当你从 b 中想引入 a 模块的时候，因为 node 之前已经加载过 a 模块了，所以它不会再去重复执行 a 模块，而是直接去生成当前 a 模块吐出的 module.exports 对象，因为 a 模块引入 b 模块先于给 done 重新赋值，所以当前 a 模块中输出的 module.exports 中 done 的值仍为 false。而当 a 模块中输出 b 模块的 done 值的时候 b 模块已经执行完毕，所以 b 模块中的 done 值为 true。
+
+
+
+
+
+
 
 ## Reference
 
@@ -462,3 +685,5 @@ for (let i=1; i<=5; i++) {
 [彻底搞清楚javascript中的require、import和export](https://www.cnblogs.com/libin-1/p/7127481.html)
 
 [import export 官方解释](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/import)
+
+尚硅谷模块化讲解

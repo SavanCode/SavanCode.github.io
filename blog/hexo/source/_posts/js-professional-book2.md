@@ -12,6 +12,8 @@ categories: JS
 ---
 
 >  这里是阅读完 js高级程序设计中的第10章以及第4章 做出的总结
+>
+>  基础的笔记  [闭包](https://savancode.github.io/2020/11/26/js-closure/) [this指向](https://savancode.github.io/2020/11/25/js-this-keyword/)
 
 ## 重点部分的摘抄
 

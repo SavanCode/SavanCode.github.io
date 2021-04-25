@@ -1,4 +1,4 @@
-const { result } = require("underscore");
+const { result, reject, object } = require("underscore");
 
 onmessage = function (e) {
   let sum = 0,
@@ -248,11 +248,47 @@ function promiseQueue(array){
 
 //并行
 function parallel(array){
-  let result = [];
+  let resultArray = new Array(array.length);
   let count;
-  array.array.forEach((element,index) => {
+  array.forEach((element,index) => {
     Promise.resolve(element).then(
-      result=>{ res[index]=result;count++}
+      result=>{ 
+        resultArray[index]=result;
+        count++;
+        if(count === array.length){
+          resolve(resultArray)
+        }
+      },
+      reason =>reject(reason)
     )
+  });
+}
+
+
+async function chuanxing(promises){
+  let result=[]
+  for(let promise of promises){
+    try {
+      result.push(await promise) 
+    } catch (error) {
+      return reject(error)
+    }
+  }
+
+}
+
+//promises.reduce((prevp,nextp)=>{prevp.then(()=>nextp)},Promise.resolve())
+
+function bingxing(promises){
+  let resultArray= new Array(promises.length);
+  let count=0;
+  promises.array.forEach(promise => {
+    promise.then(value=>{
+      resultArray.push(value); 
+      count++;
+      if(count === promises.length){
+        return resolve(resolveArray)
+      }
+    },error=>{return reject(error)})
   });
 }

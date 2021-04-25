@@ -168,7 +168,7 @@ for (const [key,value] of objectEntries(jane)) {
 
 ### 执行异步任务
 
-
+## 额外知识点
 
 ### generator的this 
 
@@ -189,7 +189,11 @@ obj.hello() // 'hi!'
 
 > 上面代码表明，**Generator 函数`g`返回的遍历器`obj`，是`g`的实例**，而且继承了`g.prototype`。但是，如果把`g`当作普通的构造函数，并不会生效，因为**`g`返回的总是遍历器对象，而不是`this`对象。**
 
-休息休息 看不下去了
+### generator 与上下文
+
+> 这里先估计大家理解context 上下文 以及 执行栈 call stack的运行机制
+
+Generator 函数与普通的call stack函数运行是不一样的，它执行产生的上下文环境，一旦遇到`yield`命令，就会暂时退出堆栈，但是并不消失，里面的所有变量和对象会冻结在当前状态。等到对它执行`next`命令时，这个上下文环境又会重新加入调用栈，冻结的变量和对象恢复执行。
 
 ## Reference 
 

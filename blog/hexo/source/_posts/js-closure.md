@@ -365,6 +365,68 @@ for(var i=0;i<10;i++){
 }
 ```
 
+## 实际应用 (跳过)
+
+在定时器、事件监听器、 Ajax 请求、跨窗口通信、Web Workers 或者任何其他的异步(或者同步)任务中，只要使用了回调函数，实际上就是在使用闭包!
+
+### 定时器闭包案例：
+
+```js
+function wait(message) {
+setTimeout( function timer() {
+console.log( message );
+}, 1000 );
+}
+wait( "Hello, closure!" );
+```
+
+### 事件监听闭包案例：
+
+```js
+function setupBot(name, selector) {
+$(selector).click( function activator() {
+console.log( "Activating: " + name );
+});
+}
+setupBot( "Closure Bot 1", "#bot_1" );
+setupBot( "Closure Bot 2", "#bot_2" );
+```
+
+上面的案例中，有个相同的特点：先定义函数，后执行函数时能够调用到函数中的私有变量或者实参。这便是闭包的特点吧
+
+### Currying
+
+```js
+//Un-curried function
+function unCurried(x, y) {
+  return x + y;
+}
+
+//Curried function
+function curried(x) {
+  return function(y) {
+    return x + y;
+  }
+}
+//Alternative using ES6
+const curried = x => y => x + y
+
+curried(1)(2) // Returns 3
+```
+
+```js
+function add(x) {
+  // Only change code below this line
+return function(y) {
+    return function(z) {
+      return x + y + z;
+    };
+  };
+  // Only change code above this line
+}
+add(10)(20)(30);
+```
+
 ### 实际应用中经典例子
 
 ```js
