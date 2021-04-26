@@ -219,11 +219,17 @@ true && function(){ /* code */ }();
 
 ## 最流行的commonjs, AMD, CMD , ES6 规范
 
+这里下面每一个都有实际的代码练习 [github连接](https://github.com/SavanCode/blog-code)
+
 ###  1. CommonJS的模块化 
 
-##### CommonJS exports 本质是什么? 
+##### CommonJS exports 本质是什么?   面试题
 
 是exports的对象~ 所以 module.exports =function(){} 或者 ={} 会被直接覆盖~~~~
+
+#### **描述过程** 面试题
+
+通过require第一次加载该脚本，就会执行整个脚本，然后在内存生成一个对象。以后需要用到这个模块的时候，就会到`exports`属性上面取值。即使再次执行`require`命令，也不会再次执行该模块，而是到缓存之中取值。
 
 ![commonJS](js-模块化编程/image-20210425140236806.png)
 
@@ -241,7 +247,11 @@ true && function(){ /* code */ }();
 
 CommonJS规范规定，每个模块内部，module变量代表当前模块。这个变量是一个对象，它的exports属性（即module.exports）是对外的接口。**加载某个模块，其实是加载该模块的module.exports属性**
 
-#### 基本语法- `module.exports` `require`
+#### CommonJS 有三个 API 定义模块
+
+1. require 导入
+2. exports 导出
+3. module 模块本身
 
 - 暴露模块：`module.exports = value`或`exports.xxx = value`
 - 引入模块：`require(xxx)`,如果是第三方模块，xxx为模块名；如果是自定义模块，xxx为模块文件路径
@@ -308,7 +318,17 @@ CommonJS 加载模块是同步的，所以只有加载完成才能执行后面�
 
 ### 2. AMD(Asynchromous Module Definition) 异步模块定义
 
-![AMD](js-模块化编程/amd)
+#### 描述流程
+
+1. 根据加载器规则寻找模块，并通过插入script标签异步加载；
+2. 在模块代码中通过词法分析找出依赖模块并加载，递归此过程直到依赖树末端；
+3. 绑定 `load` 事件，当依赖模块都加载完成时执行回调函数；
+
+因为是为了浏览器端,所以在不用browserify的条件下其实是IIFE 与 requireJS 结合
+
+> `RequireJS` 基本思想为，通过一个函数来将所有所需的或者所依赖的模块装载进来，然后返回一个新的函数（模块）。后续所有的关于新模块的业务代码都在这个函数内部操作。
+
+![AMD](js-模块化编程/amd.png)
 
 #### why RequireJS 
 
@@ -328,9 +348,29 @@ AMD异步加载模块。它的模块支持对象 函数 构造器 字符串 JSON
 > - 模块的加载是异步的， 模块的加载不影响它后面语句的运行。所有依赖这个模块的语句，都定义在一个回调函数中，等到加载完成之后，这个回调函数才会运行；
 > - 依赖前置。
 
-#### AMD定义两个API
+#### AMD定义两个API 依赖声明
 
-**定义暴露模块**:
+```js
+define(id?: String, dependencies?: String[], factory: Function|Object);
+//定义一个名为 myModule 的模块，它依赖 jQuery 模块：
+define('myModule', ['jquery'], function($) {
+    // $ 是 jquery 模块的输出
+    $('body').text('hello world');
+});
+// 使用
+```
+
+`id` 是模块的名字，它是可选的参数。
+
+`dependencies` 指定了所要依赖的模块列表，它是一个数组，也是可选的参数，每个依赖的模块的输出将作为参数一次传入 `factory` 中。如果没有指定 `dependencies`，那么它的默认值是 `["require", "exports", "module"]`。
+
+```js
+define(function(require, exports, module) {}）
+```
+
+`factory` 是最后一个参数，它包裹了模块的具体实现，它是一个函数或者对象。如果是函数，那么它的返回值就是模块的输出接口或值。
+
+1. **在 dependencies 声明依赖**
 
 ```js
 //定义没有依赖的模块
@@ -343,12 +383,25 @@ define(['module1', 'module2'], function(m1, m2){
 })
 ```
 
-**引入使用模块**:
+2. **在 factory 中 require 依赖**
+
+   这种情况下 factory 的参数默认为 require, exports, modules 。但是真正用到的只有 require，所以其他的可以不用写啦。
 
 ```js
-require(['module1', 'module2'], function(m1, m2){
-   //使用m1/m2
-})
+//这里是使用时候 github练习例子中是main.js文件中
+(function(){
+    requirejs.config({
+      baseUrl: 'js/', //基本路径 出发点在根目录下
+      paths: {
+        //映射: 模块标识名: 路径
+        module1: './modules/module1', //此处不能写成alerter.js,会报错
+        //module2....
+      }
+    })
+    require(['module1', 'module2'], function(m1, m2){
+    	//使用m1/m2
+    })
+})()
 ```
 
 下面是例子
@@ -381,7 +434,7 @@ require(['alert'], function (alert) {
 
 > **优点：**
 >
-> - 可以在不赚嘛情况下直接在浏览器运行
+> - 可以在不转码情况下直接在浏览器运行
 > - 可以异步加载模块。可以并行加载多个模块。
 > - 可以运行在浏览器或者Node.js
 >
@@ -392,18 +445,27 @@ require(['alert'], function (alert) {
 
 ### 3. CMD （Common Module Definition）通用模块定义(这里暂时跳过)
 
+CMD规范专门用于浏览器端，模块的加载是异步的，模块使用时才会加载执行。CMD规范整合了CommonJS和AMD规范的特点。在 Sea.js 中，所有 JavaScript 模块都遵循 CMD模块定义规范。
+
+#### 用法
+
+- 通过 `exports` 暴露接口。这意味着不需要命名空间了，更不需要全局变量。这是一种彻底的命名冲突解决方案。
+- 通过 `require` 引入依赖。这可以让依赖内置，开发者只需关心当前模块的依赖，其他事情 `Sea.js` 都会自动处理好。对模块开发者来说，这是一种很好的 关注度分离，能让程序员更多地享受编码的乐趣。
+- 通过 `define` 定义模块，更多详情参考[SeasJS | 极客学院](https://link..im/?target=http%3A%2F%2Fwiki.jikexueyuan.com%2Fproject%2Fhello-seajs%2Fusage-guide.html)。
+
 ### 4. [ES6模块化 - 最香的 - import export](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/export) 
 
 ![es6](js-模块化编程/image-20210425162704469.png)
 
 > 1. 在node中使用的是exports，不要混淆了
->
 > 2. 这里一定注意一个地方**有效的路径符号**. 完整的非相对路径。这样在将其传给new URL(moduleSpecifier)的时候才不会报错。
 > **以 / 开头。**
 > **以 ./ 开头。**
 > **以 ../ 开头。**
->
 > 3. 在文件中的任何位置引入 import 模块都会被提前到文件顶部
+> 4. 同一模块只会加载一次
+> 5. 加载之后执行
+> 6. this是undefined,var变量不会声明到windows
 
 #### 基本定义例子
 
@@ -494,11 +556,41 @@ import('/modules/my-module.js')
 let module = await import('/modules/my-module.js');
 ```
 
+#### 引入type module
+
+```html
+<script type="module" src="...."></script>
+//会立即下载 但是延迟到文档解析完成之后执行 按照上到下的顺序
+```
+
+#### 细节
+
+##### 模块中默认为严格模式，this指向undefined
+
+##### 静态化编译 ： import 优先执行 export变量提升
+
 ### ES6 模块与 CommonJS 模块的对比
 
 **① CommonJS 模块输出的是一个值的拷贝，ES6 模块输出的是值的引用**。
 
+> 这里um。。。我战士没有找到很好的例子，基本大佬们解释的判断是从webpack中看怎么打包使用的。 因为从原理上，主要是
+
 **② CommonJS 模块是运行时加载，ES6 模块是编译时输出接口**。
+
+### CommonJS
+
+1. 对于基本数据类型，属于复制。即会被模块缓存。同时，在另一个模块可以对该模块输出的变量重新赋值。
+2. 对于复杂数据类型，属于浅拷贝。由于两个模块引用的对象指向同一个内存空间，因此对该模块的值做修改时会影响另一个模块。
+3. 当使用require命令加载某个模块时，就会运行整个模块的代码。
+4. 当使用require命令加载同一个模块时，不会再执行该模块，而是取到缓存之中的值。也就是说，CommonJS模块无论加载多少次，都只会在第一次加载时运行一次，以后再加载，就返回第一次运行的结果，除非手动清除系统缓存。
+5. 循环加载时，属于加载时执行。即脚本代码在require的时候，就会全部执行。一旦出现某个模块被"循环加载"，就只输出已经执行的部分，还未执行的部分不会输出。
+
+### ES6模块
+
+1. ES6模块中的值属于【动态只读引用】。
+2. 对于只读来说，即不允许修改引入变量的值，import的变量是只读的，不论是基本数据类型还是复杂数据类型。当模块遇到import命令时，就会生成一个只读引用。等到脚本真正执行时，再根据这个只读引用，到被加载的那个模块里面去取值。
+3. 对于动态来说，原始值发生变化，import加载的值也会发生变化。不论是基本数据类型还是复杂数据类型。
+4. 循环加载时，ES6模块是动态引用。只要两个模块之间存在某个引用，代码就能够执行。
 
 ## 总结
 
@@ -538,6 +630,10 @@ module.exports = {
 ```
 
 ```js
+// a.js
+var b = require('./b');
+console.log(b.foo);
+setTimeout(() => {  
   console.log(b.foo());
   console.log(require('./b').foo());
 }, 1000);
@@ -607,6 +703,7 @@ import { foo } from './b';
 export let foo = 1;
 console.log('b.js 先执行');
 
+//执行a.js
 // 执行结果:
 // b.js 先执行
 // a.js
@@ -634,13 +731,11 @@ console.log(a);
 // a.js
 ```
 
-
-
 ###  ES6 模块和 CommonJS 模块的相同点
 
 #### 1. 模块不会重复执行
 
-CommonJS 模块循环依赖
+##### CommonJS 模块循环依赖
 
 ```js
 //这里是commonjs
@@ -672,11 +767,276 @@ console.log('b done');
 
 结合之前讲的特性很好理解，当你从 b 中想引入 a 模块的时候，因为 node 之前已经加载过 a 模块了，所以它不会再去重复执行 a 模块，而是直接去生成当前 a 模块吐出的 module.exports 对象，因为 a 模块引入 b 模块先于给 done 重新赋值，所以当前 a 模块中输出的 module.exports 中 done 的值仍为 false。而当 a 模块中输出 b 模块的 done 值的时候 b 模块已经执行完毕，所以 b 模块中的 done 值为 true。
 
+解决办法 推荐写法
+
+```js
+// a.js
+exports.done = true;
+let b = require('./b');
+console.log(b.done)
+
+// b.js
+exports.done = true;
+let a = require('./a');
+console.log(a.done)
+```
+
+##### AMD 循环依赖
+
+###### 简单清晰例子1
+
+```js
+// a.js
+define(function(require){
+	var b = require("b")
+	return {
+		sayHi: "hi",
+		doSomething: function(){}
+	}
+})
+// b.js
+define(function(require){
+	var a = require("a")
+	a.sayHi();
+})
+```
+
+![](js-模块化编程/image-20210427015639209.png)
+
+循环引用也是有解。上述的代码只需简单调整下，就能正常运行。
+
+```js
+define(function(require){
+	return {
+		j: function(){
+			require("a").sayHi()
+		}
+	}
+})
+```
+再说明原理的时候，首先要弄清楚两个概念，**装载时依赖** 和 **运行时依赖**
+
+- **装载时依赖**- 模块在初始化过程就需要用到的依赖模块，我们认为这种依赖是装载时依赖
+- **运行时依赖**- 模块在初始化过程不需要用到，但是在后续的运行过程中需要用到的依赖模块，我们认为这种依赖是运行时依赖
+  对于这个环，只要双方都是运行时依赖，这个环就是活的，就能跑下去。如果有一边是装载时依赖，并且在另一个模块还没加载完成就开始调用它的方法，显然是会出错的。
+  上述例子中的模块 b，最开始 a 相对于 b 来说是装载时依赖，这时 a 还没加载完全，所以报错了。然后把 a 调整为运行时依赖，就可以运行了。
+
+###### 稍微复杂例子 待测试
+
+```html
+<!-- index.html  -->
+<html>
+  <body>
+    <script data-main="./app.js" src="./require.js"></script>
+  </body>
+</html>
+```
+
+```js
+// app.js
+define(['./a', './b'], function(a, b) {
+  console.log('app starting');
+  console.log('in app', a, b);
+});
+```
+
+```js
+// a.js
+define(['./b', 'exports'], function(b, exports) {
+  console.log('a starting');
+  exports.done = false;
+  console.log('in a, b.done =', b.done);
+  console.log('a done');
+  exports.done = true;
+});
+```
+
+```js
+// b.js
+define(['./a', 'exports'], function(a, exports) {
+  console.log('b starting');
+  exports.done = false;
+  console.log('in b, a.done =', a.done);
+  console.log('b done');
+  exports.done = true;
+});
+```
+
+启动 http-server：
+
+```sh
+# npm install -g http-server
+$ http-server
+```
+
+打开 chrome，查看 console 控制台输出：
+
+```console
+b starting
+b.js:4 in b, a.done = undefined
+b.js:5 b done
+a.js:2 a starting
+a.js:4 in a, b.done = true
+a.js:5 a done
+app.js:2 app starting
+app.js:3 in app {done: true} {done: true}
+```
+
+首先打印的是 `b` 模块中的 `console.log('b starting')`，而不是 `app` 模块中的 `console.log('app starting')`，可以看出 **`Requirejs` 是遵循 `依赖前置` 原则**：demo 中 `a` 模块依赖 `b` 模块，在 `a` 模块回调执行前，会先确保 `b` 模块执行完毕，所以 `b` 模块中 `a.done = undefined`。需要注意的是，如果不使用 `exports` 包来导出模块返回值而选择直接 `return` 的话，`b` 模块中访问 `a` 模块导出值将会报 `undefined` 异常，相当于说 `exports` 包为模块的导出预置了一个空对象（详见 [RequireJS API](https://links.jianshu.com/go?to=http%3A%2F%2Fwww.requirejs.cn%2Fdocs%2Fapi.html%23circular)）。
+
+##### ES6 模块循环依赖
+
+跟 CommonJS 模块一样，ES6 不会再去执行重复加载的模块，又由于 ES6 动态输出绑定的特性，能保证 ES6 在任何时候都能获取其它模块当前的最新值。
+
+```js
+// a.js
+console.log('a starting')
+import {foo} from './b';
+console.log('in b, foo:', foo);
+export const bar = 2;
+console.log('a done');
+
+// b.js
+console.log('b starting');
+import {bar} from './a';
+export const foo = 'foo';
+console.log('in a, bar:', bar);
+setTimeout(() => {
+  console.log('in a, setTimeout bar:', bar);
+})
+console.log('b done');
+
+// babel-node a.js
+// 执行结果：
+// b starting
+// in a, bar: undefined
+// b done
+// a starting
+// in b, foo: foo
+// a done
+// in a, setTimeout bar: 2
+```
+
+#### 2. 动态 import()
 
 
+我们先来看下它的用法：
 
+- 动态的 import() 提供一个基于 Promise 的 API
+- 动态的import() 可以在脚本的任何地方使用
+- import() 接受字符串文字，你可以根据你的需要构造说明符
 
+举个简单的使用例子：
 
+```js
+// a.js
+const str = './b';
+const flag = true;
+if(flag) {
+  import('./b').then(({foo}) => {
+    console.log(foo);
+  })
+}
+import(str).then(({foo}) => {
+  console.log(foo);
+})
+
+// b.js
+export const foo = 'foo';
+
+// babel-node a.js
+// 执行结果
+// foo
+// foo
+```
+
+当然，如果在浏览器端的 import() 的用途就会变得更广泛，比如 按需异步加载模块，那么就和 require.ensure 功能类似了。
+
+因为是基于 Promise 的，所以如果你想要同时加载多个模块的话，可以是 Promise.all 进行并行异步加载。
+
+```js
+Promise.all([
+  import('./a.js'),
+  import('./b.js'),
+  import('./c.js'),
+]).then(([a, {default: b}, {c}]) => {
+    console.log('a.js is loaded dynamically');
+    console.log('b.js is loaded dynamically');
+    console.log('c.js is loaded dynamically');
+});
+```
+
+还有 Promise.race 方法，它检查哪个 Promise 被首先 resolved 或 reject。我们可以使用import()来检查哪个CDN速度更快：
+
+```js
+const CDNs = [
+  {
+    name: 'jQuery.com',
+    url: 'https://code.jquery.com/jquery-3.1.1.min.js'
+  },
+  {
+    name: 'googleapis.com',
+    url: 'https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'
+  }
+];
+
+console.log(`------`);
+console.log(`jQuery is: ${window.jQuery}`);
+
+Promise.race([
+  import(CDNs[0].url).then(()=>console.log(CDNs[0].name, 'loaded')),
+  import(CDNs[1].url).then(()=>console.log(CDNs[1].name, 'loaded'))
+]).then(()=> {
+  console.log(`jQuery version: ${window.jQuery.fn.jquery}`);
+});
+```
+
+当然，如果你觉得这样写还不够优雅，也可以结合 async/await 语法糖来使用。
+
+```js
+async function main() {
+  const myModule = await import('./myModule.js');
+  const {export1, export2} = await import('./myModule.js');
+  const [module1, module2, module3] =
+    await Promise.all([
+      import('./module1.js'),
+      import('./module2.js'),
+      import('./module3.js'),
+    ]);
+}
+```
+
+动态 import() 为我们提供了以异步方式使用 ES 模块的额外功能。 根据我们的需求动态或有条件地加载它们，这使我们能够更快，更好地创建更多优势应用程序。
+
+## 循环加载处理以及解决办法 circular dependency 面试题
+
+##### CommonJS
+
+CommonJS模块的重要特性是加载时执行，即脚本代码在`require`的时候，就会全部执行。
+
+**CommonJS解决循环加载的策略：一旦某个模块被循环加载，就只输出已经执行的部分，没有执行的部分不输出**
+
+> In order to prevent an infinite loop, an unfinished copy of the a.js exports object is returned to the b.js module. - 官方原文
+>
+> **JS引擎不需要关心是否存在循环依赖，只需要在代码运行的时候，从内存空间中读取该导出值。**
+
+##### `RequireJS` 
+
+`RequireJS`在解决循环依赖时，**假设模块都没有执行过（没有缓存记录）的前提下，总会有其中一个模块读取依赖值是 `空对象` 或者 `undefined`**。
+
+##### ES6模块
+
+ES6模块是动态引用，不存在缓存值的问题，而且模块里面的变量，绑定其所在的模块
+
+**ES6根本不会关心是否发生了"循环加载"，只是生成一个指向被加载模块的引用，需要开发者自己保证，真正取值的时候能够取到值**
+
+## 红宝石书本细节
+
+### module vs no module
+
+## 推荐阅读
+
+[使用 AMD、CommonJS 及 ES Harmony 编写模块化的 JavaScript](https://justineo.github.io/singles/writing-modular-js/)
 
 ## Reference
 
@@ -687,3 +1047,8 @@ console.log('b done');
 [import export 官方解释](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/import)
 
 尚硅谷模块化讲解
+
+[JS模块化加载之CommonJS、AMD、CMD、ES6](https://zhuanlan.zhihu.com/p/41231046)
+
+[CommonJS模块与es6模块的区别](http://www.cnblogs.com/unclekeith/p/7679503.html)
+

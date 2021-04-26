@@ -93,6 +93,12 @@ codepen
 - [js详细讲解](https://wangdoc.com/javascript/index.html)
 - [花裤衩的手摸手，带你用vue撸后台](https://juejin.cn/post/6844903476661583880)
 
+[京东零售官方团队](https://jelly.jd.com/)
+
+[360前端团队-奇舞团](https://www.ershicimi.com/a/rQA9W5QZ)
+
+[wiki](https://wiki.jikexueyuan.com/list/javascript/)
+
 ## 学习网站
 
 [30 seconds of code](https://www.30secondsofcode.org/)

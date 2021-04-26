@@ -23,7 +23,7 @@ categories: JS
 
 ### 1. 都有哪些异步
 
-用户交互，IO(*Input/Output*)，定时器
+callback promise generator generator+promise async await
 
 ### 2. 事件循环的理解
 
@@ -58,13 +58,28 @@ promise.then(function(value) {
 
 处理异步,外部传参,处理错误,
 
-### 5. Async 的用法和原理 (额外补充)
+### 5. Async 的用法和原理 (额外)
 
-async/await 是参照 Generator 封装的一套异步处理方案，可以理解为 Generator 的语法糖.async 函数返回的是一个 Promise 对象
+底层原理：用 Promise 控制 generator 函数的迭代器调用。
+
+async/await 解决了 callback hell 问题，是一个语法糖，promise，then，catch 是链式调用，但也是基于回调函数。
+
+> 它们和 Promise 的关系如下：
+> - 执行 async 函数，返回的是 Promise 对象；
+> - await 相当于 Promise 的 then；
+> - try...catch 可以捕获异常，代替了 Promise 的 catch
 
 ### 6.错误处理中的链式流
 
 错误方式一共有：return new Error () / throw new Error ()/ return Promise.reject(new Error())
+
+> 这里一定注意不要误解！！！！
+>
+> - pending 状态，不会触发 then 和 catch
+> - resolved 状态，会触发后续的 then 回调函数
+> - rejected 状态，会触发后续的 catch 回调函数
+> - then 正常返回 resolved，里面有报错则返回 rejected
+> - catch 正常返回 resolved，里面报错则返回 rejected
 
 ```js
 .then(() => {
@@ -80,7 +95,7 @@ async/await 是参照 Generator 封装的一套异步处理方案，可以理解
 
 Promise.resolve()
   .then(() => {
-    return Promise.reject(new Error('error!!!'))
+    return Promise.reject(new Error('error!!!')) //这里还是resolved
   })
   .then((res) => {
     console.log('then: ', res)
@@ -104,8 +119,6 @@ Promise.resolve()
   })
 //catch:  Error: error!!!
 ```
-
-
 
 [关于 generator hunk 这部分真的不是很能弄明白，请看这个](https://zhuanlan.zhihu.com/p/23845404)
 

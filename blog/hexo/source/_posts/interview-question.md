@@ -21,6 +21,12 @@ categories: interview
 
 ## [基础面试题库2](http://www.cpengx.cn/p/458.html)
 
+https://leetcode-cn.com/circle/discuss/rnaUEw/
+
+https://leetcode-cn.com/circle/discuss/SVKmhR/
+
+https://leetcode-cn.com/circle/discuss/RzTspQ/
+
 ## hexo是怎么运行的
 
 Hugo - better

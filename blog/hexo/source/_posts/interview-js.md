@@ -43,6 +43,36 @@ Undefined，Null，Boolean，String，Number 这些可以有固定长度，因�
 null 表示一个值被定义了，定义为“空值”；
 undefined 表示根本不存在定义。
 
+## 何时使用 === 何时使用 ==
+
+强制类型转换
+
+`===` 严格相等，会比较两个值的类型和值
+`==`  抽象相等，比较时，会先进行类型转换，然后再比较值
+
+```js
+if (obj.a == null) {
+	//这里相当于 obj.a === null || obj.a ===undefined 的简写形式
+	//这个是jq源码的书写形式
+}
+```
+
+除了 == null 之外，其他一律使用 ===。下面是一些场景：
+
+```js
+100 == '100' // true
+0 == '' // true
+0 == false // true
+false == '' // true
+null == undefined // true
+// 除了 == null 之外，其他一律用 ===，例如
+const obj = {x: 100}
+if (obj.a == null) {
+  // 相当于
+  // if (obj.a === null || obj.a === undefined) {}
+} 
+```
+
 ## 作用域的本质是什么？闭包和作用域的关系是什么？
 
 ## for in 和 for of 的区别？
@@ -139,7 +169,10 @@ setTimeout缺点：
 
 ## 箭头函数能访问原型嘛?
 
-不能 箭头函数 不能使用new 也没有super 没有原型
+1. 箭头函数 没有this
+2. 不能用arguments，但是可以用参数以及参数解构
+3. 匿名函数，奴能作为构造函数，不可以new
+4. 箭头函数没有原型属性
 
 ## [promise 原理解释](https://gitee.com/cpeng1314/laochenqianduan/blob/master/99-%E7%AC%94%E8%AF%95%E5%92%8C%E9%9D%A2%E8%AF%95%E9%A2%98/02-JavaScript/04-%E8%AF%A6%E8%A7%A3Promise.md)
 
@@ -179,13 +212,107 @@ const a = () => {
 
 使用await的时候，无需存储堆栈信息，因为存储b()到a()的指针的足够了。当b()函数执行的时候，a()函数被暂停了，因此a()函数的作用域还在内存可以访问。如果b()抛出一个错误，堆栈通过指针迅速生成。如果c()函数抛出一个错误，堆栈信息也可以像同步函数一样生成，因为c()是在a()中执行的。不论是b()还是c()，我们都不需要去存储堆栈信息，因为堆栈信息可以在需要的时候立即生成。而存储指针，显然比存储堆栈更加节省内存
 
-## Async如何捕获异常?
+## Async捕获异常
+
+async/await、Promise 场景题
+```js
+// catch 正常返回 resolved，里面有报错返回 rejected
+const p3 = Promise.reject('my error').catch(err => {
+  console.error(err)
+})
+console.log('p3', p3) // resolved ！！！！ 注意
+
+const p4 = Promise.reject('my error').catch(err => {
+  throw new Error('catch err')
+})
+console.log('p4', p4) // rejected
+
+Promise.resolve().then(() => {
+  console.log(1)  // 1. 1
+}).catch(() => {
+  console.log(2)
+}).then(() => {
+  console.log(3)  // 2. 3
+})
+
+Promise.resolve().then(() => {
+  console.log(1)  // 1. 1
+  throw new Error('error1')
+}).catch(() => {
+  console.log(2)  // 2. 2
+}).then(() => {
+  console.log(3)  // 3. 3
+})
+
+Promise.resolve().then(() => {
+  console.log(1)  // 1. 1
+  throw new Error('error1')
+}).catch(() => {
+  console.log(2)  // 2. 2
+}).catch(() => {
+  console.log(3) 
+})
+
+async function fn() {
+  return 100
+}
+(async function () {
+  const a = fn() // Promise，执行 async 返回一个 Promise
+  const b = await fn() // 100，await 相当于 Promise.then(100)，故返回 100
+})
+
+(async function () {
+  console.log('start') // 1. start
+  const a = await 100
+  console.log('a', a) // 2. a 100
+  const b = await Promise.resolve(200)
+  console.log('b', b) // 3. b 200
+  const c = await Promise.reject(300)
+  console.log('c', c) // 报错，后面的都不打印
+  console.log('end') 
+})
+
+async function async1() {
+  console.log('async start') // 2
+  await async2()
+  console.log('async1 end') // 6
+}
+
+async function async2 () {
+  console.log('async2') // 3
+}
+
+console.log('script start') // 1
+
+setTimeout(function () {
+  console.log('setTimeout') // 8
+}, 0)
+
+async1()
+
+new Promise (function (resolve) {
+  console.log('promise1') // 4
+  resolve()
+}).then(function () {
+  console.log('promise2') // 7
+})
+
+console.log('script end') // 5
+```
+
 
 ## 防抖节流
 
 ##  宏任务和微任务
 
 - 什么是 宏任务和微任务? 分别有哪些?
+
+  微任务执行要比宏任务执行要 早~~因为宏任务在 DOM 渲染后 触发，微任务在 DOM 渲染前 触发。
+  宏任务有：setTimeout，setInterval，Ajax，DOM
+  微任务有：Promise async/await
+
+  与事件循环不同的是，多了一个 micro task queue，在 call stack 清空之后，先执行 micro task queue 里的任务，然后 DOM 渲染，然后触发 Event Loop 执行宏任务。 
+
 - 如何判断顺序
 
 ## JS EventLoop

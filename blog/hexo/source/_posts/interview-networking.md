@@ -24,6 +24,29 @@ HTTP 缓存又分为强缓存和协商缓存：
   - 若资源更新，那么返回资源和 200 状态码
   - 如果资源未更新，那么告诉浏览器直接使用缓存获取资源
 
+### 强缓存
+
+Cache-Control 的值：
+
+- max-age： 缓存最大过期时间
+
+- no-cache：不适用强制缓存，正常想服务端发送请求
+
+- no-store：不用本地的强制缓存，也不用服务端作缓存（不常用）
+
+- private：只允许最终用户作缓存
+
+- public：允许中间路由缓存
+
+###  协商缓存（对比缓存）
+- 服务端缓存策略
+- 服务器判断客户端资源，是否和服务端资源一样
+- 已知返回 304，否则返回 200 和最新资源
+
+强缓存和协商缓存流程大致如下
+
+![](interview-networking/cache.png)
+
 ## （5）问：HTTP 常用的状态码及使用场景？
 
 - 1xx：表示目前是协议的中间状态，还需要后续请求
@@ -204,6 +227,12 @@ websocket 是 HTML5 的一种新协议，实现了浏览器和服务器的实时
 #### 参考链接
 
 - [www.jianshu.com/p/3fc3646fa…](https://www.jianshu.com/p/3fc3646fad80)
+
+## HTTP 区别
+
+[知乎：http1，http2， http3 的区别](https://zhuanlan.zhihu.com/p/102561034)
+
+![](interview-networking/http.png)
 
 ## HTTP 如何实现长连接？在什么时候会超时？
 

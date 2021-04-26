@@ -195,17 +195,18 @@ promise还是有些繁琐，于是es7又推出了async和await，将同步操作
 
 ### promise的状态改变
 
-Promise对象只有三种状态 （PromiseState）
+Promise 有三种状态：
 
-- 异步操作“未完成”（pending）
-- 异步操作“已完成”（resolved，又称fulfilled）
-- 异步操作“失败”（rejected）
+pending，resolved，rejected
+pending -> resolved 或 pending -> rejected
 
+状态的表现
 
-这三种的状态的变化途径只有两种且不可逆，且一个promise只能改变以此一次状态。
-
-- 异步操作从“未完成”到“已完成”（pending -  resolved）
-- 异步操作从“未完成”到“失败”。( pending - rejected)
+- pending 状态，不会触发 then 和 catch
+- resolved 状态，会触发后续的 then 回调函数
+- rejected 状态，会触发后续的 catch 回调函数
+- then 正常返回 resolved，里面有报错则返回 rejected
+- catch 正常返回 resolved，里面偶遇报错则返回 rejected
 
 因此，Promise对象的最终结果只有两种。**要么成功，要么失败。于是只会有一种数据产生，成功的结果数据称value,失败的结果数据称reason** （PromiseResult）
 

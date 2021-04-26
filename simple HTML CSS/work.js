@@ -1,4 +1,4 @@
-const { result, reject, object } = require("underscore");
+const { result, reject, object, isArray } = require("underscore");
 
 onmessage = function (e) {
   let sum = 0,
@@ -192,7 +192,7 @@ function debounce(func,wait){
 }
 
 //这里的apply最少两个参数 call bind 是不一定的 最少一个即可
-Function,prototype.call = function(context,arguments){
+Function.prototype.call = function(context,arguments){
     var context = context ||window;
     let fn = Symbol();
     context[fn]=this;
@@ -208,20 +208,21 @@ function newObj(){
     return typeof result === "object" ? result : obj;
 }
 
-function  myinstanceof(left,right){
-let objProto = left.__proto__;
-let prototype = right.prototype;
+function myInstanceOf(obj, Type) {
+  // 得到原型对象
+  let protoObj = obj.__proto__
 
-while(true){
-    if(!objProto){
-        return false
+  // 只要原型对象存在
+  while(protoObj) {
+    // 如果原型对象是Type的原型对象, 返回true
+    if (protoObj === Type.prototype) {
+      return true
     }
-    if(prototype === objProto){
-        return true
-    }
-    prototype = right.prototype;
-    myinstanceof(objProto,prototype)
-}
+    // 指定原型对象的原型对象
+    protoObj = protoObj.__proto__
+  }
+  
+  return false
 }
  
 let array = [promise1,promise2,promise3]
@@ -282,7 +283,7 @@ async function chuanxing(promises){
 function bingxing(promises){
   let resultArray= new Array(promises.length);
   let count=0;
-  promises.array.forEach(promise => {
+  promises.forEach(promise => {
     promise.then(value=>{
       resultArray.push(value); 
       count++;
@@ -291,4 +292,193 @@ function bingxing(promises){
       }
     },error=>{return reject(error)})
   });
+}
+
+//fn.call(obj)
+function mycall(obj,fn,...args){
+  if(obj === undefined || obj === null){
+    obj = globalThis;
+  }
+
+  obj.temp=fn;
+  let result = obj.temp(...args)
+  delete obj.temp;
+  return result
+}
+
+//fn.apply(obj,argumentArray)
+function myapply(obj,fn,argumentArray){
+  if(obj === undefined || obj === null){
+    obj = globalThis;
+  }
+  obj.temp=fn;
+  let result =obj.temp(...argumentArray);
+  delete obj.temp;
+  return result
+}
+
+//fn.bind(obj,..args)
+function bind(obj,fn,...args){
+  return function(...args2){
+    return call(obj,fn,...args,...args2)
+  }
+}
+//function debounce  throttle call apply bind newobj  parallelp queuep myinstanceof promise generator 
+
+//function map
+
+function map(array,callback){
+  const arr=[];
+  for (let index=0;index<array.length;index++){
+    arr.push(callback(array[index]))
+  }
+  return arr
+}
+function reduce(array,callback,initValue){
+  let result = initValue;
+  for(let index= 0;index< array.length;index++){
+    result=callback(result,array[index],index)
+  }
+  return result
+}
+
+function filter(array,callback){
+  let result=[]
+  for(let index=0;index<array.length;index++){
+    if(callback(array[index],index)){
+      result.push(array[index])
+    }
+  }
+  return result
+}
+/*
+const array1 = [5, 12, 8, 130, 44];
+
+const found = array1.find(element => element > 10);
+
+console.log(found);
+// expected output: 12
+ */
+function find(array,callback){
+  for(let index=0;index<array.length;index++){
+    if(callback(array[index],index)){
+        return array[index]
+    }
+  }
+  return -1
+}
+
+function findIndex(array,callback){
+  for(let index=0;index<array.length;index++){
+      if(callback(array[index],index)){
+          return index;
+      }
+  }
+  return -1
+}
+
+//每一个过了就过
+function every(array,callback){
+  for(let index=0;index<array.length;index++){
+        if(!callback(array[index])){
+            return false
+        }
+  }
+  return true
+}
+
+//一个通过就行
+function some(array,callback){
+    for(let index=0;index<array.length;index++){
+        if(callback(array[index],index)){
+            return true
+        }
+    }
+    return false
+}
+//map reduce filter find findIndex every some 
+
+//unique
+//双重便利
+function unique1(array){
+  let result=[]
+  array.forEach(item=>{
+      if(result.findIndex(item)===-1){
+        result.push(item)
+      }
+    }
+  )
+  return result
+}  
+
+function unique2(array){
+  return [new Set(array)]
+}
+
+function unique3(array){
+  let result={};
+  let resultArr=[];
+  array.forEach(item=>{
+  if(!result.hasOwnProperty(item)){
+      result[item]=true;
+    resultArr.push(item)
+    }
+  })
+  return resultArr
+}  
+
+
+
+
+//unique 
+
+
+
+
+
+//concat slice flatten chunk difference pull pullAll frop drop dropRight
+//这里不是完全的concat的实现 因为本身的是array不会拆的
+function concat(array,...args){
+const resultArr=[...array];
+resultArr.forEach((item)=>{
+  if(Array.isArray(item)){
+      resultArr.push(...item)
+  }else{
+    resultArr.push(item)
+  }
+})
+}
+/*
+- 　　如果start是负数，则start = max(length + start,0)
+- 　　如果end是负数，则end = max(length + end,0)
+- 　　start和end无法交换位置
+- 　　如果没有参数，则返回原数组
+*/ 
+function slice(array,start,end){
+  start = start < 0 ? Math.max(start+array.length,0) : start;
+  end = end < 0 ? Math.max(end+array.length,0) : end;
+  if(arr.length=0){return array}
+  let result=[];
+  for(let index=start;index<end;index++){
+    result.push(array[index])
+  }
+  return result
+}
+
+function flatten(array){
+  return array.reduce((prev,next,index)=>{
+    if(Array.isArray(item) && 
+    item.some((innerItem)=>{Array.isArray(innerItem)})){
+        return pre.concat(flatten(item))
+    }else{
+      return pre.concat(item)
+    }
+  })
+}
+function flatten2(array){
+  let arr=[].concat(...array);
+  while(arr.some(item =>Array.isArray(item))){
+        arr.concat(...item)
+  }
+  return arr
 }
