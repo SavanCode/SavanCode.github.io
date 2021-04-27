@@ -28,6 +28,13 @@ categories: JS
 
 原生模块定义(ES6) -> Babel(ES5)
 
+## 考点
+
+- 每种模块化的特点
+- 模块化的api 以及本质原理
+- 循环引用的解决办法
+- 重点掌握的commonJS AMD ES6
+
 ## 模块化的基本了解
 
 - 将一个复杂的程序依据一定的规则(规范)封装成几个块(文件), 并进行组合在一起
@@ -590,11 +597,14 @@ let module = await import('/modules/my-module.js');
 
 ### ES6 模块与 CommonJS 模块的对比
 
-**① CommonJS 模块输出的是一个值的拷贝，ES6 模块输出的是值的引用**。
+- CommonJS 模块输出的是一个值的拷贝，ES6 模块输出的是值的引用
 
-> 这里um。。。我战士没有找到很好的例子，基本大佬们解释的判断是从webpack中看怎么打包使用的。 因为从原理上，主要是
+> 这里um。。。我没有找到很好的例子，基本大佬们解释的判断是从webpack中看怎么打包使用的。 从而推断的
 
-**② CommonJS 模块是运行时加载，ES6 模块是编译时输出接口**。
+- CommonJS 模块是运行时加载，ES6 模块是编译时输出接口
+- CommonJS 的this是当前模块，ES6 Module 的this 是undefined
+- CommonJS 的动态语法可以写在判断里面，ES6 Module静态语法只能写在顶层
+- CommonJS 单个导出，ES6 Module可以花样导出
 
 ### CommonJS
 

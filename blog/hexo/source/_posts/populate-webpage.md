@@ -13,15 +13,29 @@ categories: web
 
 ## 浏览器渲染页面的过程
 
-从耗时的角度，浏览器请求、加载、渲染一个页面，时间花在下面五件事情上：
+1. 参考文章：[从输入url到页面加载完成发生了什么详解](https://www.cnblogs.com/liutianzeng/p/10456865.html)
 
-1. DNS 查询
-2. TCP 连接
-3. HTTP 请求即响应
-4. 服务器响应
-5. 客户端渲染
+   这是一道经典的面试题，没有一个标准的答案，它涉及很多的知识点，面试官会通过这道题了解你对哪一方面的知识比较擅长，然后继续追问看看你的掌握程度。从前端的角度出发，以下是首先必须达到的几个基本点。
+
+   1、浏览器的地址栏输入URL并按下回车。
+
+   2、浏览器查找当前URL是否存在缓存，并比较缓存是否过期。
+
+   3、DNS解析URL对应的IP。
+
+   4、根据IP建立TCP连接。（三次握手）
+
+   5、浏览器发出get请求。
+
+   6、服务器处理请求，浏览器接收http响应。
+
+   7、渲染页面，构建DOM树。
+
+   8、关闭TCP连接（四次挥手）。
 
 ## 客户端渲染- 图很重要
+
+![](populate-webpage/image-20210427182847368.png)
 
 - `HTML`,`SVG`,`XHTML`，解析生成`DOM`树。 （ **解码（encoding）**+ **预解析（pre-parsing）**+ **符号化（Tokenization）**+ **构建树（tree construction）**）
 - `CSS`解析生成`CSS`规则树。
@@ -120,15 +134,35 @@ reflow有如下的几个原因：
 
 2）批量修改多个DOM
 
-隐藏元素，进行修改后，然后再显示该元素
+- 隐藏元素，进行修改后，然后再显示该元素
 
-使用文档片段创建一个子树，然后再拷贝到文档中
+  ```js
+  let ul = document.querySelector('#mylist');
+  ul.style.display = 'none';
+  appendNode(ul, data);
+  ul.style.display = 'block';
+  ```
 
-将原始元素拷贝到一个独立的节点中，操作这个节点，然后覆盖原始元素
+  这种方法造成俩次重排，分别是控制元素的显示与隐藏。对于复杂的，数量巨大的节点段落可以  考虑这种方法。为啥使用display属性呢，因为display为none的时候，元素就不在文档流了，还不熟悉的老铁，手动Google一下，display:none, opacity: 0, visibility: hidden的区别
 
-> 使用documentFragment 对象在内存里操作DOM 先把DOM给display:none(有一次reflow)，然后你想怎么改就怎么改。比如修改100次，然后再把他显示出来。 clone一个DOM结点到内存里，然后想怎么改就怎么改，改完后，和在线的那个的交换一下。（**隐藏元素，进行修改后，然后再显示该元素**）
->
+- 使用文档片段创建一个子树，然后再拷贝到文档中
 
+  ```js
+  let fragment = document.createDocumentFragment();
+  appendNode(fragment, data);
+  ul.appendChild(fragment);
+  ```
+  文档片段是一个轻量级的document对象，它设计的目的就是用于更新，移动节点之类的任务，而且文档片段还有一个好处就是，当向一个节点添加文档片段时，添加的是文档片段的子节点群，自身不会被添加进去。不同于第一种方法，这个方法并不会使元素短暂消失造成逻辑问题。上面这个例子，只在添加文档片段的时候涉及到了一次重排
+
+- 将原始元素拷贝到一个独立的节点中，操作这个节点，然后覆盖原始元素
+
+  ```js
+  et old = document.querySelector('#mylist');
+  let clone = old.cloneNode(true);
+  appendNode(clone, data);
+  old.parentNode.replaceChild(clone, old);
+  ```
+  可以看到这种方法也是只有一次重排。总的来说，使用文档片段，可以操作更少的DOM（对比使用克隆节点），最小化重排重绘次数。
 
 
 3）为动画的HTML元件使用fixed或absoult的position，那么修改他们的CSS是不会reflow的。
@@ -143,7 +177,7 @@ reflow有如下的几个原因：
 
 [浏览器渲染原理](https://imweb.io/topic/56841c864c44bcc56092e3fa)
 
-https://segmentfault.com/a/1190000016990089
+[前端性能优化之重排和重绘](https://segmentfault.com/a/1190000016990089)
 
 [深入解析你不知道的 EventLoop 和浏览器渲染、帧动画、空闲回调（动图演示）](https://juejin.cn/post/6844904165462769678#heading-2)
 

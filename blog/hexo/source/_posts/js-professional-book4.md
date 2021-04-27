@@ -283,8 +283,6 @@ promise
   })
 ```
 
-
-
 #### [promise的具体函数API](https://es6.ruanyifeng.com/#docs/promise)
 
 #### Promise.all()和Promise.race()的区别
@@ -684,11 +682,7 @@ setTimeout(() => {
 console.log("start")
 ```
 
-
-
 ### [针对面试题目写的集合](https://savancode.github.io/2021/04/21/js-promise2/)
-
-
 
 ## 参考
 
