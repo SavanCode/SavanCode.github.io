@@ -1,5 +1,5 @@
 ---
-title: js 模块化编程
+title: js 模块化
 top: false
 cover: false
 toc: true
@@ -318,13 +318,33 @@ CommonJS 加载模块是同步的，所以只有加载完成才能执行后面�
 
 ### 2. AMD(Asynchromous Module Definition) 异步模块定义
 
-#### 描述流程
+#### 描述流程 面试题
 
-1. 根据加载器规则寻找模块，并通过插入script标签异步加载；
-2. 在模块代码中通过词法分析找出依赖模块并加载，递归此过程直到依赖树末端；
-3. 绑定 `load` 事件，当依赖模块都加载完成时执行回调函数；
+> 找了很多 都是描述得非常模糊。 下面的描述主要来源是一些我个人比较赞同的回答 
+>
+> [来源1](https://stackoverflow.com/questions/12117935/how-do-amd-loaders-work-under-the-hood)   [来源2](https://github.com/requirejs/requirejs/wiki/Differences-between-the-simplified-CommonJS-wrapper-and-standard-AMD-define#standard)
 
-因为是为了浏览器端,所以在不用browserify的条件下其实是IIFE 与 requireJS 结合
+由于js是单线程，所以实际上异步指的是对于其执行顺序上的控制优化。
+
+##### **So how does it work?**
+
+1. RequireJS reads the dependency array. 读取依赖
+2. Then it checks if each module was already registered for the current context: 检查是否在缓存
+
+   1. If module was registered uses it;
+   2. Otherwise:
+      - resolve the ID into a URI by checking the [paths.config](http://requirejs.org/docs/api.html#config) and current module path;
+      - loads script;
+      - If AMD module, repeat steps till all the dependencies are loaded.
+3. After all the dependencies are ready it calls the definition function passing the dependencies as arguments, it will then register the module as the value returned by the definition function. 全部的依赖执行完之后，将定义模块的结果返回作为缓存结果
+
+##### **Does it mean that AMD loads a,b,c asynchronously then checks to see if those files are loaded (doesn't care about the order) then execute the callback?**
+
+ Correct. AMD-define() allows you to load all scripts in any order you wish (i.e. ultimately you let the browser roll the dice and load them in any order it sees fit at any time it sees fit).
+
+Then any time a define() is called, the AMD-loader will check if the current list of dependencies for this define has already been satisfied. If it is, it will call the current callback immediately, and after that, it will check if any of the previously registered define-callbacks can be called too (because all of their dependencies have been satisfied). If the dependencies for this callback have not all been satisfied yet, the callback is added to the queue to be resolved later.
+
+This eventually results in all callbacks being called in the correct dependency order, regardless of the order in which the scripts have been loaded/executed in the first place.
 
 > `RequireJS` 基本思想为，通过一个函数来将所有所需的或者所依赖的模块装载进来，然后返回一个新的函数（模块）。后续所有的关于新模块的业务代码都在这个函数内部操作。
 
@@ -354,8 +374,7 @@ AMD异步加载模块。它的模块支持对象 函数 构造器 字符串 JSON
 define(id?: String, dependencies?: String[], factory: Function|Object);
 //定义一个名为 myModule 的模块，它依赖 jQuery 模块：
 define('myModule', ['jquery'], function($) {
-    // $ 是 jquery 模块的输出
-    $('body').text('hello world');
+    $('body').text('hello world');// $ 是 jquery 模块的输出
 });
 // 使用
 ```
@@ -365,7 +384,7 @@ define('myModule', ['jquery'], function($) {
 `dependencies` 指定了所要依赖的模块列表，它是一个数组，也是可选的参数，每个依赖的模块的输出将作为参数一次传入 `factory` 中。如果没有指定 `dependencies`，那么它的默认值是 `["require", "exports", "module"]`。
 
 ```js
-define(function(require, exports, module) {}）
+define(function(require, exports, module) {})
 ```
 
 `factory` 是最后一个参数，它包裹了模块的具体实现，它是一个函数或者对象。如果是函数，那么它的返回值就是模块的输出接口或值。
@@ -443,7 +462,7 @@ require(['alert'], function (alert) {
 > - JS 运行环境没有原生支持 AMD，需要先导入实现了 AMD 的库后才能正常使用。
 > - 开发成本高，代码的阅读和书写比较困难，模块定义方式的语义不顺畅
 
-### 3. CMD （Common Module Definition）通用模块定义(这里暂时跳过)
+### 3. CMD （Common Module Definition）通用模块定义(简单看看)
 
 CMD规范专门用于浏览器端，模块的加载是异步的，模块使用时才会加载执行。CMD规范整合了CommonJS和AMD规范的特点。在 Sea.js 中，所有 JavaScript 模块都遵循 CMD模块定义规范。
 
@@ -1020,7 +1039,13 @@ CommonJS模块的重要特性是加载时执行，即脚本代码在`require`的
 >
 > **JS引擎不需要关心是否存在循环依赖，只需要在代码运行的时候，从内存空间中读取该导出值。**
 
-##### `RequireJS` 
+##### RequireJS
+
+[来源](https://requirejs.org/docs/api.html#circular) [来源2](https://stackoverflow.com/questions/17146224/how-to-solve-circular-dependency-in-require-js)
+
+The `exports` technique solves the problem where circularly-dependent modules will return `undefined`. 
+
+The `require` technique solves the problem of having a dependency loop at define-time.
 
 `RequireJS`在解决循环依赖时，**假设模块都没有执行过（没有缓存记录）的前提下，总会有其中一个模块读取依赖值是 `空对象` 或者 `undefined`**。
 
