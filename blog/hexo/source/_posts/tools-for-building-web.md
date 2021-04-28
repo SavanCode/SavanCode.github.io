@@ -92,12 +92,9 @@ codepen
 - [js重点]( http://blog.haoji.me/?cat=javascript)
 - [js详细讲解](https://wangdoc.com/javascript/index.html)
 - [花裤衩的手摸手，带你用vue撸后台](https://juejin.cn/post/6844903476661583880)
-
-[京东零售官方团队](https://jelly.jd.com/)
-
-[360前端团队-奇舞团](https://www.ershicimi.com/a/rQA9W5QZ)
-
-[wiki](https://wiki.jikexueyuan.com/list/javascript/)
+- [京东零售官方团队](https://jelly.jd.com/)
+- [360前端团队-奇舞团](https://www.ershicimi.com/a/rQA9W5QZ)
+- [wiki](https://wiki.jikexueyuan.com/list/javascript/)
 
 ## 学习网站
 
@@ -105,3 +102,7 @@ codepen
 
 ## 面试手册
 https://yangshun.github.io/tech-interview-handbook
+
+## 算法推荐网站
+
+[推荐对于算法可视化的网站](https://clementmihailescu.github.io/Pathfinding-Visualizer/#)

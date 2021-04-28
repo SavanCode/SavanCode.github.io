@@ -123,7 +123,7 @@ CallStack又是也叫执行上下文栈（Execution Context Stack）- function/g
 > - non-blocking asynchronous: `EventLoop` + `callback queue`
 >
 >   ![](js-professional-book2/image-20210408001029398.png)
->   
+>
 > - ![](js-professional-book2/image-20210408024435381.png)
 >
 > - JavaScript 内存模型的角度，我们可以将内存划分为调用栈（Call Stack）、堆（Heap）以及队列（Queue）
@@ -131,6 +131,10 @@ CallStack又是也叫执行上下文栈（Execution Context Stack）- function/g
 > - 每个 JavaScript 运行时都必须包含一个任务队列。当调用栈为空时，运行时会从队列中取出某个消息并且执行其关联的函数（也就是创建栈帧的过程）
 >
 > [这里的理解来源](https://zhuanlan.zhihu.com/p/29116364?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
+>
+> 这里对于js知识点熟悉的同学，可以看下面这个js编译执行的更加宏观的图
+>
+> ![](js-professional-book2/image-20210428014911591.png)
 
 #### 作用域增强
 

@@ -595,6 +595,12 @@ let module = await import('/modules/my-module.js');
 
 ##### 静态化编译 ： import 优先执行 export变量提升
 
+##### ES 的 推荐 export 和 不建议 export default
+
+ES 模块化导出有 export 和 export default 两种。这里我们建议减少使用 export default 导出，原因是一方面 export default 导出整体对象结果，不利于 tree shaking 进行分析；另一方面，export default 导出的结果可以随意命名变量，不利于团队统一管理。
+
+Nicholas C. Zakas 有一篇文章： [Why I've stopped exporting defaults from my JavaScript modules](https://link.juejin.im/?target=https%3A%2F%2Fhumanwhocodes.com%2Fblog%2F2019%2F01%2Fstop- using-default-exports-javascript-module%2F) ，表达了类似的观点。
+
 ### ES6 模块与 CommonJS 模块的对比
 
 - CommonJS 模块输出的是一个值的拷贝，ES6 模块输出的是值的引用
@@ -615,6 +621,8 @@ let module = await import('/modules/my-module.js');
 5. 循环加载时，属于加载时执行。即脚本代码在require的时候，就会全部执行。一旦出现某个模块被"循环加载"，就只输出已经执行的部分，还未执行的部分不会输出。
 
 ### ES6模块
+
+> 设计思想是尽量 **静态化** ，这样能保证在编译时就确定模块之间的依赖关系，每个模块的输入和输出变量也都是确定的
 
 1. ES6模块中的值属于【动态只读引用】。
 2. 对于只读来说，即不允许修改引入变量的值，import的变量是只读的，不论是基本数据类型还是复杂数据类型。当模块遇到import命令时，就会生成一个只读引用。等到脚本真正执行时，再根据这个只读引用，到被加载的那个模块里面去取值。
@@ -718,10 +726,9 @@ setTimeout(() => {
 
 #### 编译区别
 
-对于es6
+- 对于es6，export 命令会有变量声明提前的效果。import 优先执行:
 
-export 命令会有变量声明提前的效果。
-import 优先执行:
+- CommonJS 和 AMD 模块，无法保证前置即确定这些内容，只能在运行时确定。(因为可以动态载入)
 
 ```js
 // a.js

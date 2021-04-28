@@ -13,7 +13,7 @@ categories: JS
 
 ## 数组创建
 
-### Array.of()
+### Array.of(value1, value2, value3)
 
 将参数中所有值作为元素形成数组。
 
@@ -28,6 +28,11 @@ console.log(Array.of()); // []
 ### Array.from(array,function)
 
 将类数组对象或可迭代对象转化为数组。
+
+**伪数组与真数组的区别**：
+
+伪数组的原型链中没有 Array.prototype，而真数组的原型链中有 Array.prototype。因此伪数组没有 pop、join等属性。
+
 ```js
 // 参数为数组,返回与原数组一样的数组
 console.log(Array.from([1, 2])); // [1, 2]

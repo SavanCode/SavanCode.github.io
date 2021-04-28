@@ -200,6 +200,10 @@ console.log(res);//Array
 
 ### 类数组和数组的区别 ？
 
+**伪数组与真数组的区别**：
+
+伪数组的原型链中没有 Array.prototype，而真数组的原型链中有 Array.prototype。因此伪数组没有 pop、join等属性。
+
 ### 实现一下防抖和节流？
 
 ### 队列和栈有什么区别？

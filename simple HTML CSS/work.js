@@ -465,6 +465,7 @@ function slice(array,start,end){
   return result
 }
 
+//这里不考虑layer
 function flatten(array){
   return array.reduce((prev,next,index)=>{
     if(Array.isArray(item) && 
@@ -481,4 +482,109 @@ function flatten2(array){
         arr.concat(...item)
   }
   return arr
+}
+
+function flatten(array){
+  return array.reduce((pre,item)=>{
+    if(Array.isArray(item)&&item.some(cItem=>Array.isArray(cItem))){
+      return pre.concat(flatten(item))
+    }else{
+      return pre.concat(item)
+    }
+  },[])
+}
+function flatten(array){
+  let result= [...array];
+  if(array.some(item=>Array.isArray(item))){
+    arr = [].concat(...arr)
+  }
+  return arr
+} 
+
+//function chunck 分切
+function chunk(array,chunkNum){
+  Array.isArray({length:Math.ceil(array.length/chunkNum)},(v,i)=>{
+    //v->undefined
+    array.slice(i*chunkNum,i*(chunkNum+1))
+  })
+}  
+
+//intersection 交集
+function intersection(arr1,arr2){
+  let result=[]
+  result.concat(arr1.filter(x=>{arr2.includes(x)}))
+}
+//difference 取自己的独特部分
+function difference(arr1,arr2){
+  return arr1.concat(arr2).filter(x=>{arr2.includes(x)})
+  //arr1.filter(x => !arr2.includes(x));
+}
+//sysmmetric 独立各自的部分 
+function symmetric(arr1,arr2){
+return arr1.filter(x1=>{!arr2.includes(x1)}).concat(arr2.filter(x2=>{!arr1.includes(x2)}))
+}
+//drop 从左边起 不要几个数字
+function drop(array,number){
+  if(number<0) return 
+  return array.slice(number);
+}
+
+//drop right 从右边起 丢弃几个数字
+function dropRight(array,number){
+  if(number<0) return 
+  return array.slice(-number)
+}
+
+/*
+语法: object mergeObject(...objs)
+功能: 合并多个对象, 返回一个合并后对象(不改变原对象)
+例子:
+{ a: [{ x: 2 }, { y: 4 }], b: 1}
+{ a: { z: 3}, b: [2, 3], c: 'foo'}
+合并后: { a: [ { x: 2 }, { y: 4 }, { z: 3 } ], b: [ 1, 2, 3 ], c: 'foo' }
+*/
+
+
+function merge(...objs){
+  let result={}
+  objs.forEach(obj=>{
+    Object.keys(obj).forEach((key)=>{
+      if(!result.hasOwnProperty(key)){
+        result[key]=obj[key];
+      }else{
+        result[key]=[].concat(result[key],obj[key])
+      }
+    })
+  })
+  return result
+}
+
+
+function shawllowClone(target){
+  //obj ...或者object assign
+  //function 或者null 或者普通类型 直接返回
+  if(target!=null && typeof target === 'object'){
+    if(target instanceof Array){
+        return array.slice();
+        //return array.filter(()=>true)
+        //return array.map(item=>item)
+        //return [...target]
+    }else{
+      //return Object.assign({},target)
+      return {...target}
+    }
+  }
+return target
+}
+
+function shallowclone(target){
+  if(target!=null && typeof target === 'object'){
+    let result =  Array.isArray(target)? []:{}
+    for(let key in target){
+       //这里有一个target.hasownproperty 的判断
+       cloneTarget[key] = target[key]
+    }
+  }else {
+    return target
+  }
 }
