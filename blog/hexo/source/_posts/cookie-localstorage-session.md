@@ -7,8 +7,8 @@ mathjax: true
 date: 2020-11-17 15:21:52
 password:
 summary: 前端本地存储的方式三种
-tags: JS
-categories: JS
+tags: [Cookie,LocalStorage,sessionStorage]
+categories: [Networking]
 ---
 
 前端本地存储的方式有三种，分别是cookie，localstorage和sessionStorage 
@@ -143,8 +143,6 @@ localStorage和sessionStorage：源生接口可以接受，亦可再次封装来
 ### localStorage和sessionStorage
 
 localStorage和sessionStorage唯一的差别一个是永久保存在浏览器里面，一个是关闭网页就清除了信息。localStorage可以用来夸页面传递参数，sessionStorage用来保存一些临时的数据，防止用户刷新页面之后丢失了一些参数。
-
- 
 
 Reference：
 

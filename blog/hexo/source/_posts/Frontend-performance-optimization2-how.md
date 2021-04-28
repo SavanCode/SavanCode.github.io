@@ -25,7 +25,10 @@ categories: optimization
 
 ## 资源优化
 
-### WebP 图片优化
+### 图片优化
+SVG 和 webP 是令人兴奋的新兴图片格式。SVG 适合于插画和简单图像的展示，而 webP 则在所有用到了 JPEG 和 PNG 的场景下成为了更好的选择。
+
+#### WebP 
 
 >WebP 是是一种支持有损压缩和无损压缩的图片文件格式，派生自图像编码格式 VP8,压缩下来体积会减少28%
 >
@@ -34,29 +37,66 @@ categories: optimization
 >- 转换后的 WebP 支持 Alpha 透明和 24-bit 颜色数，不存在 PNG8 色彩不够丰富和在浏览器中可能会出现毛边的问题
 
 
-### 雪碧图
+#### [雪碧图](https://css-tricks.com/css-sprites/)
 
 小图片合成 **雪碧图**，低于 5K 的图片可以转换成 **base64** 内嵌;
 
 合适场景下，使用 **iconfont** 或者 **svg**
 
+#### 使用 SVG 应对矢量图场景
+
+#### 使用 video 替代 GIF
+
+#### 渐进式手机加载
+
+- 基线 JPEG (baseline JPEG) 会从上往下逐步呈现
+- 渐进式 JPEG (progressive JPEG) 则会从模糊到逐渐清晰，使人的感受上会更加平滑。
+
 ### 开启gzip
 
-　　HTTP协议上的GZIP编码是一种用来改进WEB应用程序性能的技术。大流量的WEB站点常常使用GZIP压缩技术来让用户感受更快的速度。这一般是指WWW服务器中安装的一个功能，当有人来访问这个服务器中的网站时，服务器中的这个功能就将网页内容压缩后传输到来访的电脑浏览器中显示出来。一般对纯文本内容可压缩到原大小的40%
+　　HTTP协议上的GZIP编码是一种用来改进WEB应用程序性能的技术。通过向HTTP请求头中的Accept-Encoding
+
+大流量的WEB站点常常使用GZIP压缩技术来让用户感受更快的速度。这一般是指WWW服务器中安装的一个功能，当有人来访问这个服务器中的网站时，服务器中的这个功能就将网页内容压缩后传输到来访的电脑浏览器中显示出来。一般对纯文本内容可压缩到原大小的40%
+
+> 只要服务器开启Gzip压缩，网页HTML是否压缩对整个网页传送体积影响不大
+>
+> 对于一般的如果处理压缩
+>
+> [clean-css](https://github.com/jakubpawlowicz/clean-css)
+>
+> webpack可以使用如下插件进行压缩：
+>
+> - javascript: UglifyPlugin
+> - CSS: MiniCssExtractPlugin
+> - HTML: HtmlwebpackPlugin
+
+### 合并文件
+
+把一些 CSS 文件进行合并来减少请求数
 
 ## 合理设置缓存策略
 
-**浏览器缓存**: 通过设置请求的过期时间，合理运用浏览器缓存；
+### **浏览器缓存**
 
-**CDN缓存**: 静态文件合理使用 CDN 缓存技术；
+ 通过设置请求的过期时间，合理运用浏览器缓存；
+
+### **CDN缓存** 
+
+ Content Delivery Network 的缩写，即“内容分发网络”。静态文件合理使用 CDN 缓存技术；
+
+对于使用 CDN 的资源，DNS 解析会将 CDN 资源的域名解析到 CDN 服务的负载均衡器上，负载均衡器可以通过请求的信息获取用户对应的地理区域，从而通过负载均衡算法，在背后的诸多服务器中，综合选择一台地理位置近、负载低的机器来提供服务。
 
 - HTML 放于自己的服务器上；
 - 打包后的图片 / js / css 等资源上传到 CDN 上，文件带上 hash 值；
 - 由于浏览器对单个域名请求的限制，可以将资源放在多个不同域的 CDN 上，可以绕开该限制；
 
-**服务器缓存**: 将不变的数据、页面缓存到 内存 或 远程存储(redis等) 上；
+### **服务器缓存**
 
-**数据缓存**: 通过各种存储将不常变的数据进行缓存，缩短数据的获取时间
+将不变的数据、页面缓存到 内存 或 远程存储(redis等) 上；
+
+### **数据缓存**
+
+通过各种存储将不常变的数据进行缓存，缩短数据的获取时间
 
 ## 加载优化
 
@@ -66,7 +106,33 @@ categories: optimization
 
 　　async: 异步加载，加载完成后立即执行
 
-### 模块按需加载
+### 优先级加载
+
+### 请求的优先级排序 - 页面大小，页面加载顺序
+
+浏览器中的各类请求是有优先级排序的。低优请求会被排在高优之后再发送。
+
+![network priority](Frontend-performance-optimization2-how/priority.7e69b357.png)
+
+不过可惜的是，浏览器没有将优先级排序的能力给我们直接开放出来。但在一些场景下，我们可以通过更合理的使用媒体类型和媒体查询来实现资源加载的优先级。下面会介绍一下这种方法。
+
+一些网站为了达到不同屏幕之间的兼容，可能会使用媒体查询的方式来构建它的样式系统。一般而言，我们都会把样式代码写在一起，例如导航的在各类屏幕下的样式都会放在 `navigator.css` 下，列表都会放在 `list.css` 下。
+
+```html
+<link rel="stylesheet" href="navigator.css" />
+<link rel="stylesheet" href="list.css" />
+```
+
+这里带来的一个问题就是，在宽度小于 400px 的场景下，其实并不需要应用宽度 400px 以上的 CSS 样式。针对这个问题，`link` 标签上其实有一个 `media` 属性来处理媒体查询下的加载优先级。浏览器会优先下载匹配当前环境的样式资源，相对的，其他非匹配的优先级会下降。
+
+```html
+<link rel="stylesheet" href="navigator.css" media="all" />
+<link rel="stylesheet" href="list.css" media="all" />
+<link rel="stylesheet" href="navigator.small.css" media="(max-width: 500px)" />
+<link rel="stylesheet" href="list.small.css" media="(max-width: 500px)" />
+```
+
+这样拆分后，当页面大于 500 px 时，`navigator.small.css` 和 `list.small.css` 的优先级会降低，同时，**它们也不再会阻塞页面的渲染**。需要注意的是，优先级降低代表可能会后加载，并非不加载。
 
 ### 使用 prefetch / preload 预加载等新特性
 
@@ -116,7 +182,7 @@ function lazyWithPreload(factory, next) {
 <link rel="preconnect" href="https://my.com" crossorigin />
 ```
 
-#### 4. html 表现预加载
+#### 4. html 表现预加载 display
 
 ```html
 <img src="https://xxx.jpg" style="display: none" />
@@ -131,15 +197,15 @@ image.src = 'https://xxx.jpg';
 
 ### 图片懒加载 组件懒加载
 
-##### 懒加载 IntersectionObserver data-lazy 
+##### 懒加载 IntersectionObserver；监听页面滚动，判断图片是否进入视野
 
 - 使用IntersectionObserver来实现图片可视区域的懒加载
 
   传统的做法中，需要使用scroll事件，并调用getBoundingClientRect方法，来实现可视区域的判断，即使使用了函数节流，也会造成页面回流。使用IntersectionObserver，则没有上述问题
 
--  data-lazy 
+-  监听页面滚动，判断图片是否进入视野
 
-  把页面上“懒加载元素”src 属性设置为空字符，把真实的 src 属性写在 data-lazy 属性中，当页面滚动的时候监听 scroll 事件，如果“懒加载元素”在可视区域内，就把图片的 src 属性或者文件 URL 路径设置成 data-lazy 属性值。
+  当页面滚动的时候监听 scroll 事件，如果“懒加载元素”在可视区域内，就把图片的 src 属性或者文件 URL 路径设置成 data-lazy 属性值。
   
 ### 按需加载
 
@@ -168,6 +234,8 @@ new Vue({
     render: h => h(App)
 })
 ```
+
+#### 提取第三方库代码，减少冗余代码
 
 ## 以 tree shaking 手段为主的代码瘦身
 
@@ -258,11 +326,27 @@ new Vue({
 ### **css 优化**
 
 - **层级扁平**，避免过于多层级的选择器嵌套；
+
 - **特定的选择器** 好过一层一层查找:  .xxx-child-text{} 优于 .xxx .child .text{}
+
 - **减少使用通配符与属性选择器**；
+
 - **减少不必要的多余属性**；
+
 - 使用 **动画属性** 实现动画，动画时脱离文档流，开启硬件加速，优先使用 css 动画；
+
 - 使用 `<link>` 替代原生 @import；　CSS的@import会造成额外的请求
+
+- ### 避免使用昂贵的属性
+
+  有一些 CSS 的属性在渲染上是有比较高的成本的，渲染速度相较而言也会慢些。在不同的浏览器上，具体的表现不太一致，但总体来说，下面一些属性是比较昂贵的：
+
+  - border-radius
+  - box-shadow
+  - opacity
+  - transform
+  - filter
+  - position: fixed
 
 ### **html 优化**:
 
@@ -279,3 +363,36 @@ new Vue({
   是利用事件的冒泡原理来实现的
 
   适合用事件委托的事件：click，mousedown，mouseup，keydown，keyup，keypress。(缺点:误判,层级多,不冒泡)
+  
+- 减少闭包
+
+# 运行时的优化
+
+### 长列表优化
+
+![](Frontend-performance-optimization2-how/image-20210428184500970.png)
+
+实现 Virtual List （使用 `position: absolute` 配合 `transform: translate3d()`）
+
+其大致的实现思路如下：
+
+1. 监听页面滚动（或者其他导致视口变化的事件）；
+2. 滚动时根据滚动的距离计算需要展示的列表项；
+3. 将列表项中展示的数据与组件替换成当前需要展示的内容；
+4. 修改偏移量到对应的位置。
+
+### 避免 JavaScript 运行时间过长
+
+- 任务分解
+- 延迟执行  setTimeout
+- 并行计算  webworker
+
+### 滚动事件
+
+防抖节流
+
+## Reference
+
+[前端优化](https://fe.mbear.top/xing-neng-you-hua/031-xing-neng-jian-kong-he-cuo-wu-shou-ji-yu-shang-bao-shang)
+
+还有些零散整理的

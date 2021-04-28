@@ -433,7 +433,7 @@ try {
 
 也无法捕获。
 
-![](Frontend-performance-optimization1-what\b674d7f0-bfd9-11e9-8e2c-3b4fd17ad6da)
+![](Frontend-performance-optimization1-what\b674d7f0-bfd9-11e9-8e2c-3b4fd17ad6da.png)
 
 除非在 setTimeout 中再加一层 try catch：
 
@@ -575,13 +575,13 @@ window.addEventListener('error', error => {
 
 请看下图示例：
 
-![](Frontend-performance-optimization1-what\f275ddd0-bfd9-11e9-8e2c-3b4fd17ad6da)
+![](Frontend-performance-optimization1-what\f275ddd0-bfd9-11e9-8e2c-3b4fd17ad6da.png)
 
 > img 使用 onerror 以后，如果 onerror 指定的图片也是不存在的话，会出现无限死循环 404。
 
 - 而 window.addEventListener('error') 可以绑定多个回调函数，按照绑定顺序依次执行，请看下图示例：
 
-![](Frontend-performance-optimization1-what\0be789d0-bfda-11e9-98b2-fde9741b330a)
+![](Frontend-performance-optimization1-what\0be789d0-bfda-11e9-98b2-fde9741b330a.png)
 
 ## 页面崩溃收集和处理
 
