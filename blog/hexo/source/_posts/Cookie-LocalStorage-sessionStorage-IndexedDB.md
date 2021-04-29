@@ -11,6 +11,8 @@ tags: [Cookie,LocalStorage,sessionStorage,IndexedDB,Token]
 categories: [Networking]
 ---
 
+> 本文本来写的知识 cookie 跟 webstorage 区别 ； 然后发现跟IndexedDB 与Token的区别 也是很让人迷惑的 ； 主要的知识点是根据下面的参考文章写的。 希望写的会比较清晰
+
 ## Cookie
 
 ### 1. 定义
@@ -177,7 +179,7 @@ IndexedDB 不仅可以储存字符串，还可以储存二进制数据（ArrayBu
 
 这条指令并不会返回一个DB对象的句柄，我们得到的是一个`IDBOpenDBRequest`对象，而我们希望得到的DB对象在其result属性中
 
-![](Cookie-LocalStorage-sessionStorage-IndexedDB/169fb22fa2aecf2e)
+![](Cookie-LocalStorage-sessionStorage-IndexedDB/169fb22fa2aecf2e.png)
 
 除了result，IDBOpenDBRequest接口定义了几个重要属性:
 
@@ -210,15 +212,52 @@ onupgradeneeded:请求数据库版本变化句柄
 
 控制台得到一个 IDBDatabase对象，这就是IndexedDB对象
 
-![](Cookie-LocalStorage-sessionStorage-IndexedDB/169fb22fac3cfda5)
+![](Cookie-LocalStorage-sessionStorage-IndexedDB/169fb22fac3cfda5.png)
 
-- 关闭IndexedDB----`indexdb.close()`
+- 创建一个 `object store`（object store 对标到数据库中的“表”单位）。
+
+```js
+// onupgradeneeded事件会在初始化数据库/版本发生更新时被调用，我们在它的监听函数中创建object store
+request.onupgradeneeded = function(event){
+  let objectStore
+  // 如果同名表未被创建过，则新建test表
+  if (!db.objectStoreNames.contains('test')) {
+    objectStore = db.createObjectStore('test', { keyPath: 'id' })
+  }
+}  
+```
+
+- 构建一个事务来执行一些数据库操作，像增加或提取数据等。
+
+```js
+  // 创建事务，指定表格名称和读写权限
+  const transaction = db.transaction(["test"],"readwrite")
+  // 拿到Object Store对象
+  const objectStore = transaction.objectStore("test")
+  // 向表格写入数据
+  objectStore.add({id: 1, name: 'xiuyan'})
+```
+
+- 通过监听正确类型的事件以等待操作完成。
+
+```js
+  // 操作成功时的监听函数
+  transaction.oncomplete = function(event) {
+    console.log("操作成功")
+  }
+  // 操作失败时的监听函数
+  transaction.onerror = function(event) {
+    console.log("这里有一个Error")
+  }
+  
+```
+
+关闭IndexedDB----`indexdb.close()`
 
 ```js
 function closeDB(db){
     db.close();
-}
-复制代码
+} 
 ```
 
 - 删除IndexedDB----`window.indexedDB.deleteDatabase(indexdb)`
@@ -228,6 +267,8 @@ function deleteDB(name) {
   indexedDB.deleteDatabase(name)
 }
 ```
+
+> 因为是非关系型，所以不是一定要保持数据一致性，对于多人操作的能及时保存信息
 
 ## WebStorage、cookie 和 IndexedDB之间的区别
 
@@ -249,7 +290,14 @@ function deleteDB(name) {
 - Web Storage 是 HTML5 专门为浏览器存储而提供的数据存储机制，不与服务端发生通信
 - IndexedDB 用于客户端存储大量结构化数据
 
-## Token
+## Json Web Tokens
+
+Json Web Token 的简称就是 JWT，通常可以称为 `Json 令牌`。JWT 中存储的信息是经过`数字签名`的，因此可以被信任和理解。可以使用 HMAC 算法或使用 RSA/ECDSA 的公用/专用密钥对 JWT 进行签名。
+
+JWT 主要用于以下两点：
+
+- `认证`：一旦用户**登录**，后面每个请求都会包含 JWT，从而用户可以访问该令牌允许的路由、服务和资源。
+- `信息交换`：JWT 是能够**安全传输信息**的一种方式。通过使用公钥、私钥对 JWT 进行签名认证。此外，由于签名是使用 `head` 和 `payload` 计算的，因此你还可以**验证内容是否遭到篡改**
 
 ### Acesss Token
 
@@ -278,10 +326,9 @@ function deleteDB(name) {
 
 ### Refresh Token
 
-- 另外一种 token——refresh token
 - refresh token 是专用于刷新 access token 的 token。如果没有 refresh token，也可以刷新 access token，但每次刷新都要用户输入登录用户名与密码，会很麻烦。有了 refresh token，可以减少这个麻烦，客户端直接用 refresh token 去更新 access token，无需用户进行额外的操作。
 
-![](Cookie-LocalStorage-sessionStorage-IndexedDB/16f523a04d1c887b)
+![](Cookie-LocalStorage-sessionStorage-IndexedDB/16f523a04d1c887b.png)
 
 
 
@@ -292,9 +339,16 @@ function deleteDB(name) {
 
 - Session 是一种**记录服务器和客户端会话状态的机制，使服务端有状态化，可以记录会话信息**。而 Token 是**令牌**，**访问资源接口（API）时所需要的资源凭证**。Token **使服务端无状态化，不会存储会话信息。**
 - Session 和 Token 并不矛盾，作为身份认证 Token 安全性比 Session 好，因为每一个请求都有签名还能防止监听以及重放攻击，而 Session 就必须依赖链路层来保障通讯安全了。**如果你需要实现有状态的会话，仍然可以增加 Session 来在服务器端保存一些状态。**
-- 所谓 Session 认证只是简单的把 User 信息存储到 Session 里，因为 SessionID 的不可预测性，暂且认为是安全的。而 Token ，如果指的是 OAuth Token 或类似的机制的话，提供的是 认证 和 授权 ，认证是针对用户，授权是针对 App 。其目的是让某 App 有权利访问某用户的信息。这里的 Token 是唯一的。不可以转移到其它 App上，也不可以转到其它用户上。Session 只提供一种简单的认证，即只要有此 SessionID ，即认为有此 User 的全部权利。是需要严格保密的，这个数据应该只保存在站方，不应该共享给其它网站或者第三方 App。所以简单来说：**如果你的用户数据可能需要和第三方共享，或者允许第三方调用 API 接口，用 Token 。如果永远只是自己的网站，自己的 App，用什么就无所谓了**
+- 所谓 Session 认证只是简单的把 User 信息存储到 Session 里，因为 SessionID 的不可预测性，暂且认为是安全的。而 Token ，如果指的是 OAuth Token 或类似的机制的话，提供的是 认证 和 授权 ，认证是针对用户，授权是针对 App 。其目的是让某 App 有权利访问某用户的信息。这里的 **Token 是唯一的**。不可以转移到其它 App上，也不可以转到其它用户上。S**ession 只提供一种简单的认证，**即只要有此 SessionID ，即认为有此 User 的全部权利。是需要严格保密的，这个数据应该只保存在站方，不应该共享给其它网站或者第三方 App。所以简单来说：**如果你的用户数据可能需要和第三方共享，或者允许第三方调用 API 接口，用 Token 。如果永远只是自己的网站，自己的 App，用什么就无所谓了**
 
 ## 常见问题
+
+### [发展历史](https://www.cnblogs.com/moyand/p/9047978.html)
+
+这里主要记住几个点：
+
+- session主要是对应服务器的（cookie中会储存session ID，每次请求都带着）
+- token会存在客户端，对应多个服务器，解决跨域（）
 
 ### 使用 cookie 时需要考虑的问题
 
@@ -321,6 +375,8 @@ function deleteDB(name) {
 - **token 完全由应用管理，所以它可以避开同源策略**
 - **token 可以避免 CSRF 攻击(因为不需要 cookie 了)**
 - **移动端对 cookie 的支持不是很好，而 session 需要基于 cookie 实现，所以移动端常用的是 token**
+
+### [前端请求token过期时,刷新token的处理](https://cloud.tencent.com/developer/article/1467376)
 
 ## Reference
 

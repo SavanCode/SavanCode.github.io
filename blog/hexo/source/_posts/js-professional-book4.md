@@ -684,6 +684,10 @@ console.log("start")
 
 ### [针对面试题目写的集合](https://savancode.github.io/2021/04/21/js-promise2/)
 
+### 拓展关于Vue nexttick
+
+**`Vue` 中每产生一个状态更新任务，它就会被塞进一个叫 `callbacks` 的数组（此处是任务队列的实现形式）中。这个任务队列在被丢进 `micro` 或 `macro` 队列之前，会先去检查当前是否有异步更新任务正在执行（即检查 `pending` 锁）。如果确认 `pending` 锁是开着的（`false`），就把它设置为锁上（true），然后对当前 `callbacks` 数组的任务进行派发（丢进 `micro` 或 macro 队列）和执行。设置 `pending` 锁的意义在于保证状态更新任务的有序进行，避免发生混乱。**
+
 ## 参考
 
 你不知道的js

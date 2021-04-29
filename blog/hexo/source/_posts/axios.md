@@ -11,7 +11,7 @@ tags: Axios
 categories: Axios
 ---
 
-[基础部分笔记](https://savancode.github.io/2021/02/01/Vue-day7/)
+[Axios基础部分笔记](https://savancode.github.io/2021/02/01/Vue-day7/)
 
 ## 封装原因
 

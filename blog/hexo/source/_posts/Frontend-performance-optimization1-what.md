@@ -99,6 +99,14 @@ const weightMap = {
 
 了解了上述性能指标，我们来分析一下这些性能指标数据究竟该如何计算获取。
 
+## 工具
+
+`Performance` 面板  LightHouse performanceAPI
+
+- [Performance 官方文档(opens new window)](https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/reference)
+- [使用 Lighthouse 审查网络应用(opens new window)](https://developers.google.com/web/tools/lighthouse/?hl=zh-cn)
+- [MDN Performance API 介绍](https://developer.mozilla.org/zh-CN/docs/Web/API/Performance)
+
 ## window.performance：强大但有缺点
 
 目前最为流行和靠谱的方案是采用 Performance API，它非常强大：不仅包含了页面性能的相关数据，还带有页面资源加载和异步请求的相关数据。

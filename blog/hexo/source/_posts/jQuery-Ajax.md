@@ -15,6 +15,19 @@ AJAX = 异步 JavaScript 和 XML（Asynchronous JavaScript and XML）。
 
 简短地说，在不重载整个网页的情况下，AJAX 通过后台加载数据，并在网页上进行显示。
 
+## AJAX 的特点
+
+**优点**
+
+1. 可以无需刷新页面与服务器端进行通信
+2. 允许根据用户事件来更新部分页面内容
+
+**缺点**
+
+1. 没有浏览历史，不能回退
+2. 存在跨域问题（同源）
+3. SEO（Search Engine Optimization）搜索引擎优化不友好
+
 ## 1.jQuery中ajax的两种书写方式【一般采用第二种方式】
 
 1. $.ajax(url,[setting]);

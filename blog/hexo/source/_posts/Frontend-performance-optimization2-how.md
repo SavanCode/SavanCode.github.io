@@ -23,10 +23,18 @@ categories: optimization
 
 # 工程优化方向
 
-## 资源优化
+## 资源优化（静态资源走 CDN）
 
-### 图片优化
+### 1. 图片优化
 SVG 和 webP 是令人兴奋的新兴图片格式。SVG 适合于插画和简单图像的展示，而 webP 则在所有用到了 JPEG 和 PNG 的场景下成为了更好的选择。
+
+#### PNG  Logo
+
+优点 ：保真 但是体积过大
+
+#### JPG banner
+
+`JPG` 最大的特点是**有损压缩**。这种高效的压缩算法使它成为了一种非常轻巧的图片格式。JPG 图片经常作为大的背景图、轮播图或 Banner 图出现。
 
 #### WebP 
 
@@ -35,15 +43,26 @@ SVG 和 webP 是令人兴奋的新兴图片格式。SVG 适合于插画和简单
 >- PNG 转 WebP 的压缩率要高于 PNG 原图压缩率，同样支持有损与无损压缩
 >- 转换后的 WebP 体积大幅减少，图片质量也得到保障（同时肉眼几乎无法看出差异）
 >- 转换后的 WebP 支持 Alpha 透明和 24-bit 颜色数，不存在 PNG8 色彩不够丰富和在浏览器中可能会出现毛边的问题
+>- **但是兼容性问题**
 
+**主要处理：浏览器是否允许 WebP**
+
+- 浏览器兼容性的预判
+- 后端判断 header Accept
 
 #### [雪碧图](https://css-tricks.com/css-sprites/)
+
+> 雪碧图： 一种将小图标和背景图像合并到一张图片上，然后利用 CSS 的背景定位来显示其中的每一部分的>技术
+
+> Base64 是一种用于传输 8Bit 字节码的编码方式，通过对图片进行 Base64 编码，我们可以直接将编码结果写入 HTML 或者写入 CSS，从而减少 HTTP 请求的次数。
 
 小图片合成 **雪碧图**，低于 5K 的图片可以转换成 **base64** 内嵌;
 
 合适场景下，使用 **iconfont** 或者 **svg**
 
 #### 使用 SVG 应对矢量图场景
+
+SVG（可缩放矢量图形）是一种基于 XML 语法的图像格式；**文本文件、体积小、不失真、兼容性好**
 
 #### 使用 video 替代 GIF
 
@@ -52,14 +71,26 @@ SVG 和 webP 是令人兴奋的新兴图片格式。SVG 适合于插画和简单
 - 基线 JPEG (baseline JPEG) 会从上往下逐步呈现
 - 渐进式 JPEG (progressive JPEG) 则会从模糊到逐渐清晰，使人的感受上会更加平滑。
 
-### 开启gzip
+### 2. 开启gzip
 
 　　HTTP协议上的GZIP编码是一种用来改进WEB应用程序性能的技术。通过向HTTP请求头中的Accept-Encoding
 
-大流量的WEB站点常常使用GZIP压缩技术来让用户感受更快的速度。这一般是指WWW服务器中安装的一个功能，当有人来访问这个服务器中的网站时，服务器中的这个功能就将网页内容压缩后传输到来访的电脑浏览器中显示出来。一般对纯文本内容可压缩到原大小的40%
+`Gzip` 压缩背后的原理，是在一个文本文件中找出一些重复出现的字符串、临时替换它们，从而使整个文件变小。根据这个原理，文件中代码的重复率越高，那么压缩的效率就越高，使用 `Gzip` 的收益也就越大。反之亦然。
 
-> 只要服务器开启Gzip压缩，网页HTML是否压缩对整个网页传送体积影响不大
->
+在你的 `request headers` 中加上这么一句：
+
+```text
+accept-encoding:gzip
+```
+
+**webpack 的 Gzip 和服务端的 Gzip**
+
+- 一般来说，`Gzip` 压缩是服务器的活儿：服务器了解到我们这边有一个 `Gzip` 压缩的需求，它会启动自己的 `CPU` 去为我们完成这个任务。而压缩文件这个过程本身是需要耗费时间的，大家可以理解为我们以服务器压缩的时间开销和 `CPU` 开销（以及浏览器解析压缩文件的开销）为代价，省下了一些传输过程中的时间开销。
+- 既然存在着这样的交换，那么就要求我们学会权衡。服务器的 `CPU` 性能不是无限的，如果存在大量的压缩需求，服务器也扛不住的。服务器一旦因此慢下来了，用户还是要等。Webpack 中 `Gzip` 压缩操作的存在，事实上就是为了在构建过程中去做一部分服务器的工作，为服务器分压。
+- 因此，这两个地方的 `Gzip` 压缩，谁也不能替代谁。它们必须和平共处，好好合作。作为开发者，我们也应该结合业务压力的实际强度情况，去做好这其中的权衡。
+
+##  
+
 > 对于一般的如果处理压缩
 >
 > [clean-css](https://github.com/jakubpawlowicz/clean-css)
@@ -67,10 +98,10 @@ SVG 和 webP 是令人兴奋的新兴图片格式。SVG 适合于插画和简单
 > webpack可以使用如下插件进行压缩：
 >
 > - javascript: UglifyPlugin
-> - CSS: MiniCssExtractPlugin
+>- CSS: MiniCssExtractPlugin
 > - HTML: HtmlwebpackPlugin
 
-### 合并文件
+### 3. 合并文件
 
 把一些 CSS 文件进行合并来减少请求数
 
@@ -100,11 +131,33 @@ SVG 和 webP 是令人兴奋的新兴图片格式。SVG 适合于插画和简单
 
 ## 加载优化
 
-### 异步script标签
+### [异步script标签](https://javascript.plainenglish.io/async-and-defer-the-complete-guide-to-loading-javascript-properly-ce6edce1e6b5)
 
-　　defer: 异步加载，在HTML解析完成后执行。defer的实际效果与将代码放在body底部类似
+- 一般模式
 
-　　async: 异步加载，加载完成后立即执行
+```html
+<script src="index.js"></script>
+```
+
+> 这种情况下 JS 会阻塞浏览器，浏览器必须等待 `index.js` 加载和执行完毕才能去做其它事情。
+
+- async 模式：
+
+```html
+<script async src="index.js"></script>
+```
+
+> `async` 模式下，JS 不会阻塞浏览器做任何其它的事情。它的加载是异步的，当它加载结束，JS 脚本会**立即执行**。作用同defer，但是**不能保证脚本按顺序执行。**
+
+- defer 模式（等待DOM）
+
+```html
+<script defer src="index.js"></script>
+```
+
+> `defer` 模式下，JS 的加载是异步的，执行是**被推迟的**。等整个文档解析完成、`DOMContentLoaded` 事件即将被触发时，被标记了 `defer` 的 JS 文件才会开始依次执行。
+
+- 从应用的角度来说，一般当我们的脚本与 DOM 元素和其它脚本之间的依赖关系不强时，我们会选用 `async`；当脚本依赖于 DOM 元素和其它脚本的执行结果时，我们会选用 `defer`。
 
 ### 优先级加载
 
@@ -237,7 +290,221 @@ new Vue({
 
 #### 提取第三方库代码，减少冗余代码
 
-## 以 tree shaking 手段为主的代码瘦身
+## Webpack
+
+**构建优化**
+
+- 减少编译体积 `ContextReplacementPugin`、`IgnorePlugin`、`babel-plugin-import`、`babel-plugin-transform-runtime`
+- 并行编译 `happypack`、`thread-loader`、`uglifyjsWebpackPlugin`开启并行
+- 缓存 `cache-loader`、`hard-source-webpack-plugin`、`uglifyjsWebpackPlugin`开启缓存、`babel-loader`开启缓存
+- 预编译 `dllWebpackPlugin && DllReferencePlugin`、`auto-dll-webapck-plugin`
+
+**性能优化**
+
+- 减少编译体积 `Tree-shaking`、`Scope Hositing`
+- `hash`缓存 `webpack-md5-plugin`
+- 拆包 `splitChunksPlugin`、`import()`、`require.ensure`
+
+- 有哪些方式可以减少 `Webpack` 的打包时间
+- 有哪些方式可以让 `Webpack` 打出来的包更小
+
+### 减少 Webpack 打包时间
+
+**1. 优化 Loader**
+
+> 对于 `Loader` 来说，影响打包效率首当其冲必属 `Babel` 了。因为 `Babel` 会将代码转为字符串生成 `AST`，然后对 `AST` 继续进行转变最后再生成新的代码，项目越大，转换代码越多，效率就越低。当然了，我们是有办法优化的
+
+> 首先我们可以优化 `Loader` 的文件搜索范围
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        // js 文件才使用 babel
+        test: /\.js$/,
+        loader: 'babel-loader',
+        // 只在 src 文件夹下查找
+        include: [resolve('src')],
+        // 不会去查找的路径
+        exclude: /node_modules/
+      }
+    ]
+  }
+}
+```
+
+> 对于 `Babel` 来说，我们肯定是希望只作用在 `JS`代码上的，然后 `node_modules` 中使用的代码都是编译过的，所以我们也完全没有必要再去处理一遍
+
+- 当然这样做还不够，我们还可以将 `Babel` 编译过的文件缓存起来，下次只需要编译更改过的代码文件即可，这样可以大幅度加快打包时间
+
+```js
+loader: 'babel-loader?cacheDirectory=true'
+```
+
+**2. HappyPack** (plugin)
+
+> 受限于 `Node` 是单线程运行的，所以 `Webpack` 在打包的过程中也是单线程的，特别是在执行`Loader` 的时候，长时间编译的任务很多，这样就会导致等待的情况。
+
+> `HappyPack` 可以将 `Loader` 的同步执行转换为并行的，这样就能充分利用系统资源来加快打包效率了
+
+```js
+module: {
+  loaders: [
+    {
+      test: /\.js$/,
+      include: [resolve('src')],
+      exclude: /node_modules/,
+      // id 后面的内容对应下面
+      loader: 'happypack/loader?id=happybabel'
+    }
+  ]
+},
+plugins: [
+  new HappyPack({
+    id: 'happybabel',
+    loaders: ['babel-loader?cacheDirectory'],
+    // 开启 4 个线程
+    threads: 4
+  })
+]
+```
+
+**3. DllPlugin**
+
+> `DllPlugin` 可以将特定的**类库提前打包然后引入**。这种方式可以极大的减少打包类库的次数，只有当类库更新版本才有需要重新打包，并且也实现了将公共代码抽离成单独文件的优化方案。
+
+接下来我们就来学习如何使用 `DllPlugin`
+
+```js
+// 单独配置在一个文件中
+// webpack.dll.conf.js
+const path = require('path')
+const webpack = require('webpack')
+module.exports = {
+  entry: {
+    // 想统一打包的类库
+    vendor: ['react']
+  },
+  output: {
+    path: path.join(__dirname, 'dist'),
+    filename: '[name].dll.js',
+    library: '[name]-[hash]'
+  },
+  plugins: [
+    new webpack.DllPlugin({
+      // name 必须和 output.library 一致
+      name: '[name]-[hash]',
+      // 该属性需要与 DllReferencePlugin 中一致
+      context: __dirname,
+      path: path.join(__dirname, 'dist', '[name]-manifest.json')
+    })
+  ]
+}
+```
+
+> 然后我们需要执行这个配置文件生成依赖文件，接下来我们需要使用 `DllReferencePlugin` 将依赖文件引入项目中
+
+```js
+// webpack.conf.js
+module.exports = {
+  // ...省略其他配置
+  plugins: [
+    new webpack.DllReferencePlugin({
+      context: __dirname,
+      // manifest 就是之前打包出来的 json 文件
+      manifest: require('./dist/vendor-manifest.json'),
+    })
+  ]
+}
+```
+
+**4. 代码压缩**
+
+> 在 `Webpack3` 中，我们一般使**用 `UglifyJS` 来压缩代码**，但是这个是单线程运行的，为了加快效率，我们可以使用 **`webpack-parallel-uglify-plugin`** 来并行运行 `UglifyJS`，从而提高效率。
+
+> 在 `Webpack4` 中，我们就不需要以上这些操作了，只需要将 `mode` 设置为 `production` 就可以默认开启以上功能。代码压缩也是我们必做的性能优化方案，当然我们不止可以压缩 `JS` 代码，还可以压缩 `HTML`、`CSS` 代码，并且在压缩 `JS` 代码的过程中，我们还可以通过配置实现比如删除 `console.log` 这类代码的功能。
+
+**5. 一些小的优化点**
+
+> 我们还可以通过一些小的优化点来加快打包速度
+
+- `resolve.extensions`：用来表明文件后缀列表，默认查找顺序是 `['.js', '.json']`，如果你的导入文件没有添加后缀就会按照这个顺序查找文件。我们应该尽可能减少后缀列表长度，然后将出现频率高的后缀排在前面
+- `resolve.alias`：可以通过别名的方式来映射一个路径，能让 `Webpack` 更快找到路径
+- `module.noParse`：如果你确定一个文件下没有其他依赖，就可以使用该属性让 Webpack 不扫描该文件，这种方式对于大型的类库很有帮助
+
+### 减少 Webpack 打包后的文件体积
+
+**1. 按需加载**
+
+> 想必大家在开发 `SPA` 项目的时候，项目中都会存在十几甚至更多的路由页面。如果我们将这些页面全部打包进一个 `JS`文件的话，虽然将多个请求合并了，但是同样也加载了很多并不需要的代码，耗费了更长的时间。那么为了首页能更快地呈现给用户，我们肯定是希望首页能加载的文件体积越小越好，这时候我们就可以使用按需加载，将每个路由页面单独打包为一个文件。当然不仅仅路由可以按需加载，对于 `loadash` 这种大型类库同样可以使用这个功能。
+
+> 按需加载的代码实现这里就不详细展开了，因为鉴于用的框架不同，实现起来都是不一样的。当然了，虽然他们的用法可能不同，但是底层的机制都是一样的。都是当使用的时候再去下载对应文件，返回一个 `Promise`，当 `Promise`成功以后去执行回调。
+
+**2. Scope Hoisting**
+
+> `Scope Hoisting` 会分析出模块之间的依赖关系，尽可能的把打包出来的模块合并到一个函数中去。
+
+比如我们希望打包两个文件
+
+```js
+// test.js
+export const a = 1
+
+// index.js
+import { a } from './test.js'
+```
+
+> 对于这种情况，我们打包出来的代码会类似这样
+
+```js
+[
+  /* 0 */
+  function (module, exports, require) {
+    //...
+  },
+  /* 1 */
+  function (module, exports, require) {
+    //...
+  }
+]
+```
+
+> 但是如果我们使用 `Scope Hoisting` 的话，代码就会尽可能的合并到一个函数中去，也就变成了这样的类似代码
+
+```js
+[
+  /* 0 */
+  function (module, exports, require) {
+    //...
+  }
+]
+```
+
+> 这样的打包方式生成的代码明显比之前的少多了。如果在 `Webpack4` 中你希望开启这个功能，只需要启用 `optimization.concatenateModules`就可以了。
+
+```js
+module.exports = {
+  optimization: {
+    concatenateModules: true
+  }
+}
+```
+
+**3. Tree Shaking**
+
+> `Tree Shaking` 可以实现删除项目中未被引用的代码，比如
+
+```js
+// test.js
+export const a = 1
+export const b = 2
+// index.js
+import { a } from './test.js'
+```
+
+- 对于以上情况，`test` 文件中的变量 `b` 如果没有在项目中使用到的话，就不会被打包到文件中。
+- 如果你使用 `Webpack 4` 的话，开启生产环境就会自动启动这个优化功能。
 
 ## 操作 DOM 方向
 
