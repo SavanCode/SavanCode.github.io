@@ -250,6 +250,8 @@ image.src = 'https://xxx.jpg';
 
 ### 图片懒加载 组件懒加载
 
+> 这里的懒加载，预加载，按需加载原理部分写在另一个文章 链接在此
+
 ##### 懒加载 IntersectionObserver；监听页面滚动，判断图片是否进入视野
 
 - 使用IntersectionObserver来实现图片可视区域的懒加载

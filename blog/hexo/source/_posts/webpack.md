@@ -1189,6 +1189,9 @@ cache: {
 - `output.path: path.resolve(__dirname, "dist")`
 - `output.filename: "[name].js"`
 
+## 推荐阅读
+
+[Webpack深入浅出 很详细的gitbook](https://webpack.wuhaolin.cn/)
 
 ## 	Reference
 
