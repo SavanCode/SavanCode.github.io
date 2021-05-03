@@ -53,17 +53,22 @@ scheme + host + port
 
 这里你或许有个疑问：**请求跨域了，那么请求到底发出去没有？**
 
-**你的 Request 還是有發出去的」，而且瀏覽器也「確實有收到 Response」，重點是「瀏覽器因為同源政策，不把結果傳回給你的 JavaScript」。如果沒有瀏覽器的話其實就沒有這些問題，你愛發給誰就發給誰，不管怎樣都拿得到 Response**。你可能会疑问明明通过表单的方式可以发起跨域请求，为什么 Ajax 就不会?因为归根结底，跨域是为了阻止用户读取到另一个域名下的内容，Ajax 可以获取响应，浏览器认为这不安全，所以拦截了响应。但是表单并不会获取新的内容，所以可以发起跨域请求。同时也说明了跨域并不能完全阻止 CSRF，因为请求毕竟是发出去了。
+**「你的 Request 還是有發出去的」，而且瀏覽器也「確實有收到 Response」，重點是「瀏覽器因為同源政策，不把結果傳回給你的 JavaScript」。如果沒有瀏覽器的話其實就沒有這些問題，你愛發給誰就發給誰，不管怎樣都拿得到 Response**。你可能会疑问明明通过表单的方式可以发起跨域请求，为什么 Ajax 就不会?因为归根结底，跨域是为了阻止用户读取到另一个域名下的内容，Ajax 可以获取响应，浏览器认为这不安全，所以拦截了响应。但是表单并不会获取新的内容，所以可以发起跨域请求。同时也说明了跨域并不能完全阻止 CSRF，因为请求毕竟是发出去了。
 
 
 
 ## **那么怎样解决跨域问题的呢？**
 
-### 1.CORS是根本解决方案 - Cross-origin resource sharing
+### 1.CORS是根本解决方案 - Cross-origin resource sharing （通过前后端http header配置来进行跨域的一种方式）
 
 **CORS 需要浏览器和后端同时支持。IE 8 和 9 需要通过 XDomainRequest 来实现**。
 
 浏览器会自动进行 CORS 通信，实现 CORS 通信的关键是后端。只要后端实现了 CORS，就实现了跨域
+
+```
+Access-Control-Allow-Origin: *              # 允许所有域名访问，或者
+Access-Control-Allow-Origin: http://a.com   # 只允许所有域名访问
+```
 
 虽然设置 CORS 和前端没什么关系，但是通过这种方式解决跨域问题的话，会在发送请求时出现两种情况，分别为**简单请求**和**复杂请求**。
 
@@ -188,7 +193,7 @@ Preflight Request作用
 
 > 如果还想再看看CORS的内容， [推荐阅读](https://blog.huli.tw/2021/02/19/cors-guide-6/) 内容不错 但是挺多的
 
-### 2. 通过jsonp跨域 最早解决办法
+### 2. 通过jsonp跨域 最早解决办法 （浏览器与服务端的通信）
 
 > 此方法有一个致命的缺点就是只支持`GET`请求。所以说如果前端页面仅仅是作为页面的展示，就只获取数据的话，只用此方法就没有任何问题。
 
@@ -204,7 +209,11 @@ JSONP和AJAX相同，都是客户端向服务器端发送请求，从服务器�
 
 JSONP优点是简单兼容性好，可用于解决主流浏览器的跨域数据访问的问题。
 
-**缺点是仅支持get方法具有局限性, 不安全可能会遭受XSS攻击。**
+**缺点是仅支持get方法具有局限性。**
+
+- 它只支持跨域HTTP请求这种情况，**不能解决不同域的两个页面**之间如何进行JavaScript调用的问题。
+- **容易受xss攻击（安全问题）**。在使用JSONP的时候必须要保证使用的JSONP服务必须是安全可信的。万一提供JSONP的服务存在页面注入漏洞，它返回的javascript都将被执行，若被注入这是非常危险的。
+- **JSONP在调用失败的时候不会返回各种HTTP状态码**（解决方法：添加timeout参数，虽然JSONP请求本身的错误没有被捕获，但是最终会因为超时而执行error回调）。
 
 > “XSS是跨站脚本攻击(Cross Site Scripting)，为不和层叠样式表(Cascading Style Sheets, CSS)的缩写混淆，故将跨站脚本攻击缩写为XSS。恶意攻击者往Web页面里插入恶意Script代码，当用户浏览该页之时，嵌入其中Web里面的Script代码会被执行，从而达到恶意攻击用户的目的。”
 
@@ -298,7 +307,7 @@ console.log(data);}
 
 使用nginx反向代理实现跨域，是最简单的跨域方式。只需要修改nginx的配置即可解决跨域问题，支持所有浏览器，支持session，不需要修改任何代码，并且不会影响服务器性能。
 
-实现思路：通过nginx配置一个代理服务器（域名与domain1相同，端口不同）做跳板机，反向代理访问domain2接口，并且可以顺便修改cookie中domain信息，方便当前域cookie写入，实现跨域登录。
+实现思路：通过nginx配置一个代理服务器（**域名与domain1相同，端口不同**）做跳板机，反向代理访问domain2接口，并且可以顺便修改cookie中domain信息，方便当前域cookie写入，实现跨域登录。
 
 先下载[nginx](http://nginx.org/en/download.html)，然后将nginx目录下的nginx.conf修改如下:
 
@@ -356,14 +365,17 @@ console.log('Server is running at port 8080...');
 - 一般开发环境的域名跟线上环境不一样才需要这样处理。
 - 如果线上环境太复杂，使用反向代理实现跨域的将会变得很麻烦，那么这时候会需要采用 jsonp 或者 CORS 来处理。
 
-### 5. postMessage
+### 5. postMessage 完全不同源的跨域（两个页面之间的通信）
+
+>  如果两个网页不同源，就无法拿到对方的DOM。典型的例子是 iframe 窗口和window.open方法打开的窗口，它们与父窗口无法通信。
 
 postMessage是HTML5 XMLHttpRequest Level 2中的API，且是为数不多可以跨域操作的window属性之一，它可用于解决以下方面的问题：
 
 - 页面和其打开的新窗口的数据传递
 - 多窗口之间消息传递
 - 页面与嵌套的iframe消息传递
-- 上面三个场景的跨域数据传递
+
+  上面三个场景的跨域数据传递
 
 **postMessage()方法允许来自不同源的脚本采用异步方式进行有限的通信，可以实现跨文本档、多窗口、跨域消息传递**。
 
@@ -398,23 +410,59 @@ postMessage是HTML5 XMLHttpRequest Level 2中的API，且是为数不多可以�
 </script>
 ```
 
-[详细的解释](https://juejin.cn/post/6844903917684260877)
+[详细的解释](https://github.com/xuexueq/blog/issues/8)
 
-#### 优缺点
+##### 增加拓展iframe
 
-缺点:
+##### 如果两个窗口一级域名相同，只是二级域名不同
 
-1.iframe会阻塞主页面的Onload事件；
+[document.domain + iframe跨域(看看就行)](https://www.yuque.com/febb/story/cross-domain#gwlscg)
 
-2.相同域iframe和主页面共享http连接池，所以如果相同域用多个iframe会阻塞加载
+- 只需要给页面添加 `document.domain = 'test.com'` 表示主域名都相同就可以实现跨域
 
-解决方案：
+##### 对于完全不同源的网站，目前有三种方法，可以解决跨域窗口的通信问题
 
+1. [location.hash + iframe跨域(看看就行)](https://github.com/xuexueq/blog/issues/8)
+
+   > 原理：location.hash方式跨域，是**子框架能够修改父框架src的hash值，子框架通过修改父框架 src 的 hash 值来传递信息**。且更改hash值，页面不会刷新。但是传递的数据的字节数是有限的。
+
+   **优点**：1.可以解决域名完全不同的跨域。2.可以实现双向通讯。
+   **缺点**：location.hash会直接暴露在URL里，并且在一些浏览器里会产生历史记录，数据安全性不高也影响用户体验。另外由于URL大小的限制，支持传递的数据量也不大。有些浏览器不支持 onhashchange 事件，需要轮询来获知URL的变化。
+
+   1. 首先，在我的`A`页面中：
+
+```javascript
+//伪代码
+var B = document.getElementsByTagName('iframe');
+B.src = B.src + '#' + 'jsonString';  //我们可以把JS 对象，通过 JSON.stringify()方法转成 json字符串，发给 B
 ```
-动态生成iframe，在主页面加载完成后去生产iframe加载，从而避免阻塞的影响
+
+2. 然后，在`B`页面中：
+
+```js
+// B中的伪代码
+window.onhashchange = function () {  //通过onhashchange方法监听，url中的 hash 是否发生变化
+var data = window.location.hash;
+};
 ```
 
-3.iframe 对SEO不友好
+2. [window.name + iframe跨域(看看就行)](https://github.com/xuexueq/blog/issues/8)
+
+   > 原理：window.name（一般在js代码里出现）的值不是一个普通的全局变量，而是当前窗口的名字，这里要注意的是每个iframe都有包裹它的window，而这个window是top window的子窗口，每个 iframe 都有 window.name 的属性。window.name属性的神奇之处在于**一个 iframe 的 name 值在不同的页面（甚至不同域名，即改变了这个iframe的 src 默认情况下，name依然保持不变）加载后依旧存在**（如果没修改则值不会变化），并且**可以支持非常长的 name 值（2MB）**
+
+   也就是在iframe载入过程中，迅速重置iframe.src的指向，使之与index.html同源，那么index页面就能去获取到这个 iframe 的name值了(把子框架的 src 改变和父框架同源，而子框架的 name 依然保持不变)！
+
+   **优点**：window.name容量很大，可以放置非常长的字符串；（2MB）
+   **缺点**：必须监听子窗口window.name属性的变化，影响网页性能。
+
+3. [跨文档通信API： window.postMessage](https://github.com/xuexueq/blog/issues/8)
+
+   **优点**：不需要后端介入就可以非常简单的的做到跨域，一个函数外加两个参数（请求url，发送数据）就可以搞定；移动端兼容性好；
+   **缺点**：
+
+   - 无法做到一对一的传递方式：监听中需要做很多消息的识别，由于postMessage发出的消息对于同一个页面的不同功能相当于一个广播的过程，该页面的所有onmessage都会收到，所以需要做消息的判断；
+   - 安全性问题：三方可以通过截获，注入html或者脚本的形式监听到消息，从而能够做到篡改的效果，所以在 postMessag e和 onmessage 中一定要做好这方面的限制；
+   - 发送的数据会通过结构化克隆算法进行序列化，所以只有满足该算法要求的参数才能够被解析，否则会报错，如function就不能当作参数进行传递；
 
 ### 6.websocket
 
@@ -484,12 +532,6 @@ alert('get js data from parent ---> ' + window.parent.user);
 
 
 
-### [document.domain + iframe跨域(看看就行)](https://www.yuque.com/febb/story/cross-domain#gwlscg)
-
-### [location.hash + iframe跨域(看看就行)](https://www.yuque.com/febb/story/cross-domain#6tvfcr)
-
-### [window.name + iframe跨域(看看就行)](https://www.yuque.com/febb/story/cross-domain#ogc5za)
-
 ## 面试题
 
 > 在你开发的过程中，什么情况下会遇到跨域问题，你是怎么解决的？
@@ -513,6 +555,36 @@ alert('get js data from parent ---> ' + window.parent.user);
 - 不管是Node中间件代理还是nginx反向代理，主要是通过同源策略对服务器不加限制。
 - 日常工作中，用得比较多的跨域方案是cors和nginx反向代理
 
+![[图片来源](https://blog.csdn.net/weixin_44135121/article/details/88910456)](cross-origin/image-20210503184040941.png)
+
+> 图，个人感觉仅供参考，方便思路拓展
+
+## 拓展 CSRF以及XSS攻击
+
+### 什么是CSRF
+
+CSRF（Cross-site request forgery）跨站请求伪造：攻击者诱导受害者进入第三方网站，在第三方网站中，向被攻击网站发送跨站请求。利用受害者在被攻击网站已经获取的注册凭证，绕过后台的用户验证，达到冒充用户对被攻击的网站执行某项操作的目的。
+
+一个典型的CSRF攻击有着如下的流程：
+
+- 受害者登录a.com，并保留了登录凭证（Cookie）。
+- 攻击者引诱受害者访问了b.com。
+- b.com 向 a.com 发送了一个请求：a.com/act=xx。浏览器会默认携带a.com的Cookie。
+- a.com接收到请求后，对请求进行验证，并确认是受害者的凭证，误以为是受害者自己发送的请求。
+- a.com以受害者的名义执行了act=xx。
+- 攻击完成，攻击者在受害者不知情的情况下，冒充受害者，让a.com执行了自己定义的操作
+
+### 什么是 XSS
+
+Cross-Site Scripting（跨站脚本攻击）简称 XSS，是一种代码注入攻击。攻击者通过在目标网站上注入恶意脚本，使之在用户的浏览器上运行。利用这些恶意脚本，攻击者可获取用户的敏感信息如 Cookie、SessionID 等，进而危害数据安全。
+
+为了和 CSS 区分，这里把攻击的第一个字母改成了 X，于是叫做 XSS。
+
+XSS 的本质是：恶意代码未经过滤，与网站正常的代码混在一起；浏览器无法分辨哪些脚本是可信的，导致恶意脚本被执行。
+
+而由于直接在用户的终端执行，恶意代码能够直接获取用户的信息，或者利用这些信息冒充用户向网站发起攻击者定义的请求。
+
+在部分情况下，由于输入的限制，注入的恶意脚本比较短。但可以通过引入外部的脚本，并由浏览器执行，来完成比较复杂的攻击策略。
 
 ## Reference
 

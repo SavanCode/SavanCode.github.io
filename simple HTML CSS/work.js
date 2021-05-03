@@ -588,3 +588,82 @@ function shallowclone(target){
     return target
   }
 }
+
+function reverseString(str){
+  // return str.split('').reverse().join('')
+    // return [...str].reverse().join('')
+  return Array.from(str).reverse().join()
+}
+
+/* 
+2. 字符串是否是回文: palindrome(str) 如果给定的字符串是回文，则返回 true ；否则返回 false
+*/
+function palindrome(str){
+   return str === Array.from(str).reverse().join()
+}
+
+/* 
+3. 截取字符串: truncate(str, num) 如果字符串的长度超过了num, 截取前面num长度部分, 并以...结束
+*/
+function truncate(str, num) {
+	return str.length > num ? str.slice(0, num) + '...' : str
+}
+
+/*
+基于Promise封装Ajax
+返回一个新的Promise实例
+创建HMLHttpRequest异步对象
+调用open方法，打开url，与服务器建立链接（发送前的一些处理）
+监听Ajax状态信息
+如果xhr.readyState == 4（表示服务器响应完成，可以获取使用服务器的响应了）
+xhr.status == 200，返回resolve状态
+xhr.status == 404，返回reject状态
+xhr.readyState !== 4，把请求主体的信息基于send发送给服务器
+*/ 
+
+function ajax(url,method){
+  return new Promise((resolve,reject)=>{
+    const xhr = new XMLHttpRequest();
+    xhr.open(url,method,true)
+    xhr.onreadystatechange = function(){
+      //4 resolve 200 404  
+      // reject
+      if(xhr.readyState===4){
+        if(xhr.status===200){ resolve(xhr.responseText)}
+        if(xhr.status===404){ reject('404')}
+      }else{
+        reject('request fail')
+      }
+    }
+    xhr.send(null)
+  })
+}
+
+
+//普通请求
+function ajax() {
+  let xhr = new XMLHttpRequest() //实例化，以调用方法
+  xhr.open('get', 'https://www.google.com')  //参数2，url。参数三：异步
+  xhr.onreadystatechange = () => {  //每当 readyState 属性改变时，就会调用该函数。
+    if (xhr.readyState === 4) {  //XMLHttpRequest 代理当前所处状态。
+      if (xhr.status >= 200 && xhr.status < 300) {  //200-300请求成功
+        let string = request.responseText
+        //JSON.parse() 方法用来解析JSON字符串，构造由字符串描述的JavaScript值或对象
+        let object = JSON.parse(string)
+      }
+    }
+  }
+  request.send() //用于实际发出 HTTP 请求。不带参数为GET请求
+}
+
+// json 跨域
+function jsonp(url,jsonpCallback,success){
+const script = document.createElement('script');
+script.src=url;
+script.async=true;
+script.type='text/javascript'
+window[jsonpCallback]=function(data){
+  success && success(data)
+}
+document.body.appendChild(script)
+}
