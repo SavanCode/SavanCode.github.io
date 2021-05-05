@@ -45,6 +45,10 @@ scheme + host + port
 
 当协议、子域名、主域名、端口号中任意一个不相同时，都算作不同域。
 
+#### 什么叫做跨域
+
+跨域就是指在浏览器同源策略的限制下，浏览器不允许执行其他网站的脚本。
+
 ### 特别说明两点：
 
 **第一：如果是协议和端口造成的跨域问题“前台”是无能为力的。**
@@ -59,7 +63,7 @@ scheme + host + port
 
 ## **那么怎样解决跨域问题的呢？**
 
-### 1.CORS是根本解决方案 - Cross-origin resource sharing （通过前后端http header配置来进行跨域的一种方式）
+### 1.CORS是根本解决方案 - Cross-origin resource sharing  最常用
 
 **CORS 需要浏览器和后端同时支持。IE 8 和 9 需要通过 XDomainRequest 来实现**。
 
@@ -193,7 +197,7 @@ Preflight Request作用
 
 > 如果还想再看看CORS的内容， [推荐阅读](https://blog.huli.tw/2021/02/19/cors-guide-6/) 内容不错 但是挺多的
 
-### 2. 通过jsonp跨域 最早解决办法 （浏览器与服务端的通信）
+### 2. 通过jsonp跨域 最早最经典解决办法 （浏览器与服务端的通信）
 
 > 此方法有一个致命的缺点就是只支持`GET`请求。所以说如果前端页面仅仅是作为页面的展示，就只获取数据的话，只用此方法就没有任何问题。
 
@@ -301,7 +305,7 @@ console.log(data);}
 > 3.  baidu.com 回传资料给proxy（同上，没有跨来源限制）
 > 4. proxy 回传资料给浏览器，并加上CORS header（所以前端不会被挡）
 
-### 4. nginx反向代理  
+### 4. nginx反向代理  最简单
 
 实现原理类似于Node中间件代理，需要你搭建一个中转nginx服务器，用于转发请求。
 
@@ -365,21 +369,73 @@ console.log('Server is running at port 8080...');
 - 一般开发环境的域名跟线上环境不一样才需要这样处理。
 - 如果线上环境太复杂，使用反向代理实现跨域的将会变得很麻烦，那么这时候会需要采用 jsonp 或者 CORS 来处理。
 
-### 5. postMessage 完全不同源的跨域（两个页面之间的通信）
+### 5. postMessage 以及各种利用 iframe 完全不同源的跨域（两个页面之间的通信）
 
->  如果两个网页不同源，就无法拿到对方的DOM。典型的例子是 iframe 窗口和window.open方法打开的窗口，它们与父窗口无法通信。
+##### 实际操作对比
 
-postMessage是HTML5 XMLHttpRequest Level 2中的API，且是为数不多可以跨域操作的window属性之一，它可用于解决以下方面的问题：
+##### iframe 跨域实现原理
 
-- 页面和其打开的新窗口的数据传递
-- 多窗口之间消息传递
-- 页面与嵌套的iframe消息传递
+在a.html文件中，通过iframe引入b.html文件（即在a.html文件中引入b.html，引入的方式是iframe）。之后用b.html文件去访问b域，然后将访问结果，传递给a域中的a.html（传递过程就是通过iframe）。
 
-  上面三个场景的跨域数据传递
+##### 如果两个窗口一级域名相同，只是二级域名不同
+
+[document.domain + iframe跨域(看看就行)](https://www.yuque.com/febb/story/cross-domain#gwlscg)
+
+- 只需要给页面添加 `document.domain = 'test.com'` 表示主域名都相同就可以实现跨域
+
+##### 对于完全不同源的网站，目前有三种方法，可以解决跨域窗口的通信问题
+
+1. [location.hash + iframe跨域  假装写作业(看看就行)](https://github.com/xuexueq/blog/issues/8)
+
+   > 原理：location.hash方式跨域，是**子框架能够修改父框架src的hash值，子框架通过修改父框架 src 的 hash 值来传递信息**。且更改hash值，页面不会刷新。但是传递的数据的字节数是有限的。
+
+   **优点**：1.可以解决域名完全不同的跨域。2.可以实现双向通讯。
+   **缺点**：location.hash会直接暴露在URL里，并且在一些浏览器里会产生历史记录，数据安全性不高也影响用户体验。另外由于URL大小的限制，支持传递的数据量也不大。有些浏览器不支持 onhashchange 事件，需要轮询来获知URL的变化。
+
+   1. 首先，在我的`A`页面中：
+
+```javascript
+//伪代码
+var B = document.getElementsByTagName('iframe');
+B.src = B.src + '#' + 'jsonString';  //我们可以把JS 对象，通过 JSON.stringify()方法转成 json字符串，发给 B
+```
+
+2. 然后，在`B`页面中：
+
+```js
+// B中的伪代码
+window.onhashchange = function () {  //通过onhashchange方法监听，url中的 hash 是否发生变化
+var data = window.location.hash;
+};
+```
+
+2. [window.name + iframe跨域 找兄弟(看看就行)](https://github.com/xuexueq/blog/issues/8)
+
+   > 原理：window.name（一般在js代码里出现）的值不是一个普通的全局变量，而是当前窗口的名字，这里要注意的是每个iframe都有包裹它的window，而这个window是top window的子窗口，每个 iframe 都有 window.name 的属性。window.name属性的神奇之处在于**一个 iframe 的 name 值在不同的页面（甚至不同域名，即改变了这个iframe的 src 默认情况下，name依然保持不变）加载后依旧存在**（如果没修改则值不会变化），并且**可以支持非常长的 name 值（2MB）**
+
+   也就是在iframe载入过程中，迅速重置iframe.src的指向，使之与index.html同源，那么index页面就能去获取到这个 iframe 的name值了(把子框架的 src 改变和父框架同源，而子框架的 name 依然保持不变)！
+
+   **优点**：window.name容量很大，可以放置非常长的字符串；（2MB）
+   **缺点**：必须监听子窗口window.name属性的变化，影响网页性能。
+
+3. [跨文档通信API： window.postMessage- 新工具](https://github.com/xuexueq/blog/issues/8)
+
+   **优点**：不需要后端介入就可以非常简单的的做到跨域，一个函数外加两个参数（请求url，发送数据）就可以搞定；移动端兼容性好；
+   **缺点**：
+
+   - 无法做到一对一的传递方式：监听中需要做很多消息的识别，由于postMessage发出的消息对于同一个页面的不同功能相当于一个广播的过程，该页面的所有onmessage都会收到，所以需要做消息的判断；
+   - 安全性问题：三方可以通过截获，注入html或者脚本的形式监听到消息，从而能够做到篡改的效果，所以在 postMessag e和 onmessage 中一定要做好这方面的限制；
+   - 发送的数据会通过结构化克隆算法进行序列化，所以只有满足该算法要求的参数才能够被解析，否则会报错，如function就不能当作参数进行传递；
+
+
+- postMessage原理：HTML5允许窗口之间发送消息（ 可以给任何一个window发送消息，不论是否同源）
+- 限制：浏览器需要支持HTML5，获取窗口句柄后才能相互通信
 
 **postMessage()方法允许来自不同源的脚本采用异步方式进行有限的通信，可以实现跨文本档、多窗口、跨域消息传递**。
 
-> otherWindow.postMessage(message, targetOrigin, [transfer]);
+```js
+otherWindow.postMessage(message, targetOrigin, [transfer]);
+```
 
 - message: 将要发送到其他 window的数据。
 - targetOrigin:通过窗口的origin属性来指定哪些窗口能接收到消息事件，其值可以是字符串"*"（表示无限制）或者一个URI。在发送消息的时候，如果目标窗口的协议、主机地址或端口这三者的任意一项不匹配targetOrigin提供的值，那么消息就不会被发送；只有三者完全匹配，消息才会被发送。
@@ -412,59 +468,7 @@ postMessage是HTML5 XMLHttpRequest Level 2中的API，且是为数不多可以�
 
 [详细的解释](https://github.com/xuexueq/blog/issues/8)
 
-##### 增加拓展iframe
-
-##### 如果两个窗口一级域名相同，只是二级域名不同
-
-[document.domain + iframe跨域(看看就行)](https://www.yuque.com/febb/story/cross-domain#gwlscg)
-
-- 只需要给页面添加 `document.domain = 'test.com'` 表示主域名都相同就可以实现跨域
-
-##### 对于完全不同源的网站，目前有三种方法，可以解决跨域窗口的通信问题
-
-1. [location.hash + iframe跨域(看看就行)](https://github.com/xuexueq/blog/issues/8)
-
-   > 原理：location.hash方式跨域，是**子框架能够修改父框架src的hash值，子框架通过修改父框架 src 的 hash 值来传递信息**。且更改hash值，页面不会刷新。但是传递的数据的字节数是有限的。
-
-   **优点**：1.可以解决域名完全不同的跨域。2.可以实现双向通讯。
-   **缺点**：location.hash会直接暴露在URL里，并且在一些浏览器里会产生历史记录，数据安全性不高也影响用户体验。另外由于URL大小的限制，支持传递的数据量也不大。有些浏览器不支持 onhashchange 事件，需要轮询来获知URL的变化。
-
-   1. 首先，在我的`A`页面中：
-
-```javascript
-//伪代码
-var B = document.getElementsByTagName('iframe');
-B.src = B.src + '#' + 'jsonString';  //我们可以把JS 对象，通过 JSON.stringify()方法转成 json字符串，发给 B
-```
-
-2. 然后，在`B`页面中：
-
-```js
-// B中的伪代码
-window.onhashchange = function () {  //通过onhashchange方法监听，url中的 hash 是否发生变化
-var data = window.location.hash;
-};
-```
-
-2. [window.name + iframe跨域(看看就行)](https://github.com/xuexueq/blog/issues/8)
-
-   > 原理：window.name（一般在js代码里出现）的值不是一个普通的全局变量，而是当前窗口的名字，这里要注意的是每个iframe都有包裹它的window，而这个window是top window的子窗口，每个 iframe 都有 window.name 的属性。window.name属性的神奇之处在于**一个 iframe 的 name 值在不同的页面（甚至不同域名，即改变了这个iframe的 src 默认情况下，name依然保持不变）加载后依旧存在**（如果没修改则值不会变化），并且**可以支持非常长的 name 值（2MB）**
-
-   也就是在iframe载入过程中，迅速重置iframe.src的指向，使之与index.html同源，那么index页面就能去获取到这个 iframe 的name值了(把子框架的 src 改变和父框架同源，而子框架的 name 依然保持不变)！
-
-   **优点**：window.name容量很大，可以放置非常长的字符串；（2MB）
-   **缺点**：必须监听子窗口window.name属性的变化，影响网页性能。
-
-3. [跨文档通信API： window.postMessage](https://github.com/xuexueq/blog/issues/8)
-
-   **优点**：不需要后端介入就可以非常简单的的做到跨域，一个函数外加两个参数（请求url，发送数据）就可以搞定；移动端兼容性好；
-   **缺点**：
-
-   - 无法做到一对一的传递方式：监听中需要做很多消息的识别，由于postMessage发出的消息对于同一个页面的不同功能相当于一个广播的过程，该页面的所有onmessage都会收到，所以需要做消息的判断；
-   - 安全性问题：三方可以通过截获，注入html或者脚本的形式监听到消息，从而能够做到篡改的效果，所以在 postMessag e和 onmessage 中一定要做好这方面的限制；
-   - 发送的数据会通过结构化克隆算法进行序列化，所以只有满足该算法要求的参数才能够被解析，否则会报错，如function就不能当作参数进行传递；
-
-### 6.websocket
+### 6.websocket - 作弊哦
 
 Websocket是HTML5的一个持久化的协议，它实现了浏览器与服务器的全双工通信，同时也是跨域的一种解决方案。WebSocket和HTTP都是应用层协议，都基于 TCP 协议。但是 **WebSocket 是一种双向通信协议，在建立连接之后，WebSocket 的 server 与 client 都能主动向对方发送或接收数据**。同时，WebSocket 在建立连接时需要借助 HTTP 协议，连接建立好了之后 client 与 server 之间的双向通信就与 HTTP 无关了。
 
@@ -505,7 +509,7 @@ wss.on('connection',function(ws) {
 
 缺点：请求中有大半是无用，难于维护，浪费带宽和服务器资源
 
-### document.domain + iframe跨域(看看就行)
+### document.domain + iframe跨域(看看就行) - 找爸爸
 
 > 要求2个域之间的主域名相同，子域不同，[比如a.xxx.com和b.xxx.com](http://xn--a-ch1bt67c.xxx.xn--comb-221g.xxx.com/)。如果不同的话是不行的。
 

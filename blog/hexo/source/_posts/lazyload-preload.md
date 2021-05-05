@@ -11,8 +11,6 @@ tags: JS
 categories: JS
 ---
 
-# 懒加载/延迟加载
-
 # 图片懒加载
 
 ## 原理
@@ -87,10 +85,6 @@ window.addEventListener('scroll', imageLazyLoad)
 window.addEventListener('scroll', throttle(imageLazyLoad, 1000))
 ```
 
-
-
-
-
 ## intersectionObserver Api
 
 ```js
@@ -110,17 +104,72 @@ io.disconnect()
 
 可参考https://segmentfault.com/a/1190000038413073
 
-
-
 # 预加载
 
 ## 实现原理
 
-让img 标签先显示其他的图片，当其指向的真实图片缓存完成后，再显示为实际的图片。
+让img 标签先显示其他的图片，当其指向的真实图片缓存完成后，再显示为实际的图片
+
+**预加载简单来说就是将所有所需的资源提前请求加载到本地，这样后面在需要用到时就直接从缓存取资源**。
 
 ## 实现预加载的方法有哪些？
 
 实现图片预加载方法有很多，可以用CSS(background)、JS(Image)、HTML，常用的是使用new Image()，设置其src属性实现图片预加载，然后使用image对象的onload事件把预加载完成的图片赋值给要显示该图片的标签。
+
+- 使用HTML标签
+
+<img src="http://pic26.nipic.com/20121213/6168183 0044449030002.jpg" style="display:none"/>
+
+- 使用Image对象
+
+<script src="./myPreload.js"></script>
+
+```
+//myPreload.js文件
+var image= new Image()
+image.src="http://pic26.nipic.com/20121213/6168183 004444903000 2.jpg"
+```
+
+- 使用XMLHttpRequest对象,虽然存在跨域问题，但会精细控制预加载过程
+
+```js
+var xmlhttprequest=new XMLHttpRequest();
+xmlhttprequest.onreadystatechange=callback;
+xmlhttprequest.onprogress=progressCallback;
+xmlhttprequest.open("GET","http://image.baidu.com/mouse,jpg",true);
+xmlhttprequest.send();
+function callback(){
+  if(xmlhttprequest.readyState==4&& xmlhttprequest.status==200){
+    var responseText=xmlhttprequest.responseText;
+  }else{
+     console.log("Request was unsuccessful:"+xmlhttprequest.status);
+  }
+}
+function progressCallback(e){
+    e=e || event;
+    if(e.lengthComputable){
+    	console.log("Received"+e.loaded+"of"+e.total+"bytes")
+    }
+}
+```
+
+- 使用[PreloadJS库](https://createjs.com/preloadjs)
+
+PreloadJS提供了一种预加载内容的一致方式，以便在HTML应用程序中使用。预加载可以使用HTML标签以及XHR来完成。默认情况下，PreloadJS会尝试使用XHR加载内容，因为它提供了对进度和完成事件的更好支持，但是由于跨域问题，使用基于标记的加载可能更好。
+
+```js
+//使用preload.js
+var queue=new createjs.LoadQueue();//默认是xhr对象，如果是new createjs.LoadQueue(false)是指使用HTML标签，可以跨域
+queue.on("complete",handleComplete,this);
+queue.loadManifest([
+{id:"myImage",src:"http://pic26.nipic.com/20121213/61681830044449030002.jpg"},
+{id："myImage2"，src:"http://pic9.nipic.com/20100814/28395261931471581702.jpg"}
+]);
+function handleComplete(){
+  var image=queue.getResuLt("myImage");
+  document.body.appendChild(image);
+}
+```
 
 # 区别
 
@@ -281,7 +330,7 @@ module.exports = {
 
 ![](lazyload-preload\image-20210430160718283.png)
 
-- async 会在加载完JS后立即执行，最迟也会在**load事件**前执行完。
+- async 会在加载完JS后立即执行，最迟也会在**load事件**前执行完。async属性仅适用于外部脚本
 - defer会在HTML解析完成后执行，最迟也会在**DOMContentLoaded事件**前执行完。
 
 > 这里拓展一下 [页面生命周期](https://zh.javascript.info/onload-ondomcontentloaded)
@@ -297,7 +346,7 @@ module.exports = {
 
 ## 再次整理
 
-### 1.常见异步加载（Script DOM Element）
+### 1.常见异步加载（Script DOM Element） 不推荐
 
 ```js
 (function() {
@@ -313,7 +362,7 @@ module.exports = {
 
 异步加载又叫非阻塞，浏览器在下载执行 js 同时，还会继续进行后续页面的处理。
 
-这种方法是在页面中<script>标签内，用 js 创建一个 script 元素并插入到 document 中。这样就做到了非阻塞的下载 js 代码。
+这种方法是在页面中`<script>`标签内，用 js 创建一个 script 元素并插入到 document 中。这样就做到了非阻塞的下载 js 代码。
 
 此方法被称为 Script DOM Element 法，不要求 js 同源。
 
@@ -321,7 +370,7 @@ module.exports = {
 
 > **这种加载方式在加载执行完之前会阻止 onload 事件的触发**，而现在很多页面的代码都在 onload 时还要执行额外的渲染工作等，所以还是会阻塞部分页面的初始化处理
 
-### 2.onload 时的异步加载
+### 2.onload 时的异步加载 **动态创建script标签** 推荐
 
 ```js
 (function() {
@@ -343,7 +392,7 @@ module.exports = {
 
 这和前面的方式差不多，但关键是它不是立即开始异步加载 js ，而是在 onload 时才开始异步加载。这样就解决了阻塞 onload 事件触发的问题。
 
-###  3.通过 ajax 去获取 js 代码，然后通过 eval 执行
+###  3.通过 ajax 去获取 js 代码，然后通过 eval 执行 不推荐
 
 ```js
 window.onload = function(){
@@ -393,3 +442,5 @@ var iframe = document.createElement('iframe');
 ## Reference
 
 [Javascript 异步加载详解](https://www.cnblogs.com/tiwlin/archive/2011/12/26/2302554.html)
+
+[懒加载和预加载](https://github.com/ljianshu/Blog/issues/8)
