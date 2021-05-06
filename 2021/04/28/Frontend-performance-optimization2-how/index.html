@@ -1,0 +1,1456 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Frontend performance optimization2 之怎么做, Savannah">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Frontend performance optimization2 之怎么做 | Savannah</title>
+    <link rel="icon" type="image/png" href="../../../../favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="../../../../libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="../../../../libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../../libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="../../../../libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../../libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../../css/matery.css">
+    <link rel="stylesheet" type="text/css" href="../../../../css/my.css">
+
+    <script src="../../../../libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="../../../../index.html" class="waves-effect waves-light">
+                    
+                    <span class="logo-span">Savannah</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="../../../../index.html" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Index</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="../../../../tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>Tags</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="../../../../categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>Categories</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="../../../../archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>Archives</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="../../../../about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>About</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <div class="logo-name">Savannah</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="../../../../index.html" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Index
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="../../../../tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			Tags
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="../../../../categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			Categories
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="../../../../archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			Archives
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="../../../../about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			About
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/22.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Frontend performance optimization2 之怎么做</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="../../../../libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="../../../../tags/optimization/">
+                                <span class="chip bg-color">optimization</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="../../../../categories/optimization/" class="post-category">
+                                optimization
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2021-04-28
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>[TOC]</p>
+<p><strong>前端如何优化性能？</strong>(面试的回答主要方面)</p>
+<ul>
+<li><strong>页面工程优化</strong></li>
+<li><strong>代码细节优化</strong></li>
+</ul>
+<p><strong>页面工程优化</strong> 从页面请求开始，涉及网络协议、资源配置、浏览器性能、缓存等； <strong>代码细节优化</strong> 上相对零散，比如 JavaScript 对 DOM 操作，宿主环境的单线程相关内容等。(减少请求数量、减小资源大小、优化网络连接、优化资源加载、减少重绘回流、使用性能更好的API和构建优化)</p>
+<h1 id="工程优化方向"><a href="#工程优化方向" class="headerlink" title="工程优化方向"></a>工程优化方向</h1><h2 id="资源优化（静态资源走-CDN）"><a href="#资源优化（静态资源走-CDN）" class="headerlink" title="资源优化（静态资源走 CDN）"></a>资源优化（静态资源走 CDN）</h2><h3 id="1-图片优化"><a href="#1-图片优化" class="headerlink" title="1. 图片优化"></a>1. 图片优化</h3><p>SVG 和 webP 是令人兴奋的新兴图片格式。SVG 适合于插画和简单图像的展示，而 webP 则在所有用到了 JPEG 和 PNG 的场景下成为了更好的选择。</p>
+<h4 id="PNG-Logo-小图"><a href="#PNG-Logo-小图" class="headerlink" title="PNG  Logo - 小图"></a>PNG  Logo - 小图</h4><p>优点 ：保真 但是体积过大</p>
+<h4 id="JPG-banner-或者svg-banner"><a href="#JPG-banner-或者svg-banner" class="headerlink" title="JPG banner 或者svg banner"></a>JPG banner 或者svg banner</h4><p><code>JPG</code> 最大的特点是<strong>有损压缩</strong>。这种高效的压缩算法使它成为了一种非常轻巧的图片格式。JPG 图片经常作为大的背景图、轮播图或 Banner 图出现。</p>
+<h4 id="WebP"><a href="#WebP" class="headerlink" title="WebP"></a>WebP</h4><blockquote>
+<p>WebP 是是一种支持有损压缩和无损压缩的图片文件格式，派生自图像编码格式 VP8,压缩下来体积会减少28%</p>
+<ul>
+<li>PNG 转 WebP 的压缩率要高于 PNG 原图压缩率，同样支持有损与无损压缩</li>
+<li>转换后的 WebP 体积大幅减少，图片质量也得到保障（同时肉眼几乎无法看出差异）</li>
+<li>转换后的 WebP 支持 Alpha 透明和 24-bit 颜色数，不存在 PNG8 色彩不够丰富和在浏览器中可能会出现毛边的问题</li>
+<li><strong>但是兼容性问题</strong></li>
+</ul>
+</blockquote>
+<p><strong>主要处理：浏览器是否允许 WebP</strong></p>
+<ul>
+<li>浏览器兼容性的预判</li>
+<li>后端判断 header Accept</li>
+</ul>
+<h4 id="雪碧图"><a href="#雪碧图" class="headerlink" title="雪碧图"></a><a target="_blank" rel="noopener" href="https://css-tricks.com/css-sprites/">雪碧图</a></h4><blockquote>
+<p>雪碧图： 一种将小图标和背景图像合并到一张图片上，然后利用 CSS 的背景定位来显示其中的每一部分的&gt;技术</p>
+</blockquote>
+<blockquote>
+<p>Base64 是一种用于传输 8Bit 字节码的编码方式，通过对图片进行 Base64 编码，我们可以直接将编码结果写入 HTML 或者写入 CSS，从而减少 HTTP 请求的次数。</p>
+</blockquote>
+<p>小图片合成 <strong>雪碧图</strong>，低于 5K 的图片可以转换成 <strong>base64</strong> 内嵌;</p>
+<p>合适场景下，使用 <strong>iconfont</strong> 或者 <strong>svg</strong></p>
+<h4 id="使用-SVG-应对矢量图场景"><a href="#使用-SVG-应对矢量图场景" class="headerlink" title="使用 SVG 应对矢量图场景"></a>使用 SVG 应对矢量图场景</h4><p>SVG（可缩放矢量图形）是一种基于 XML 语法的图像格式；<strong>文本文件、体积小、不失真、兼容性好</strong></p>
+<h4 id="使用-video-替代-GIF"><a href="#使用-video-替代-GIF" class="headerlink" title="使用 video 替代 GIF"></a>使用 video 替代 GIF</h4><h4 id="渐进式手机加载"><a href="#渐进式手机加载" class="headerlink" title="渐进式手机加载"></a>渐进式手机加载</h4><ul>
+<li>基线 JPEG (baseline JPEG) 会从上往下逐步呈现</li>
+<li>渐进式 JPEG (progressive JPEG) 则会从模糊到逐渐清晰，使人的感受上会更加平滑。</li>
+</ul>
+<h3 id="2-开启gzip"><a href="#2-开启gzip" class="headerlink" title="2. 开启gzip"></a>2. 开启gzip</h3><p>　　HTTP协议上的GZIP编码是一种用来改进WEB应用程序性能的技术。通过向HTTP请求头中的Accept-Encoding</p>
+<p><code>Gzip</code> 压缩背后的原理，是在一个文本文件中找出一些重复出现的字符串、临时替换它们，从而使整个文件变小。根据这个原理，文件中代码的重复率越高，那么压缩的效率就越高，使用 <code>Gzip</code> 的收益也就越大。反之亦然。</p>
+<p>在你的 <code>request headers</code> 中加上这么一句：</p>
+<pre class=" language-text"><code class="language-text">accept-encoding:gzip</code></pre>
+<p><strong>webpack 的 Gzip 和服务端的 Gzip</strong></p>
+<ul>
+<li>一般来说，<code>Gzip</code> 压缩是服务器的活儿：服务器了解到我们这边有一个 <code>Gzip</code> 压缩的需求，它会启动自己的 <code>CPU</code> 去为我们完成这个任务。而压缩文件这个过程本身是需要耗费时间的，大家可以理解为我们以服务器压缩的时间开销和 <code>CPU</code> 开销（以及浏览器解析压缩文件的开销）为代价，省下了一些传输过程中的时间开销。</li>
+<li>既然存在着这样的交换，那么就要求我们学会权衡。服务器的 <code>CPU</code> 性能不是无限的，如果存在大量的压缩需求，服务器也扛不住的。服务器一旦因此慢下来了，用户还是要等。Webpack 中 <code>Gzip</code> 压缩操作的存在，事实上就是为了在构建过程中去做一部分服务器的工作，为服务器分压。</li>
+<li>因此，这两个地方的 <code>Gzip</code> 压缩，谁也不能替代谁。它们必须和平共处，好好合作。作为开发者，我们也应该结合业务压力的实际强度情况，去做好这其中的权衡。</li>
+</ul>
+<h2 id><a href="#" class="headerlink" title></a></h2><blockquote>
+<p>对于一般的如果处理压缩</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/jakubpawlowicz/clean-css">clean-css</a></p>
+<p>webpack可以使用如下插件进行压缩：</p>
+<ul>
+<li>javascript: UglifyPlugin</li>
+<li>CSS: MiniCssExtractPlugin</li>
+<li>HTML: HtmlwebpackPlugin</li>
+</ul>
+</blockquote>
+<h3 id="3-合并文件"><a href="#3-合并文件" class="headerlink" title="3. 合并文件"></a>3. 合并文件</h3><p>把一些 CSS 文件进行合并来减少请求数</p>
+<h2 id="合理设置缓存策略"><a href="#合理设置缓存策略" class="headerlink" title="合理设置缓存策略"></a>合理设置缓存策略</h2><h3 id="浏览器缓存"><a href="#浏览器缓存" class="headerlink" title="浏览器缓存"></a><strong>浏览器缓存</strong></h3><p> 通过设置请求的过期时间，合理运用浏览器缓存；</p>
+<h3 id="CDN缓存"><a href="#CDN缓存" class="headerlink" title="CDN缓存"></a><strong>CDN缓存</strong></h3><p> Content Delivery Network 的缩写，即“内容分发网络”。静态文件合理使用 CDN 缓存技术；</p>
+<p>对于使用 CDN 的资源，DNS 解析会将 CDN 资源的域名解析到 CDN 服务的负载均衡器上，负载均衡器可以通过请求的信息获取用户对应的地理区域，从而通过负载均衡算法，在背后的诸多服务器中，综合选择一台地理位置近、负载低的机器来提供服务。</p>
+<ul>
+<li>HTML 放于自己的服务器上；</li>
+<li>打包后的图片 / js / css 等资源上传到 CDN 上，文件带上 hash 值；</li>
+<li>由于浏览器对单个域名请求的限制，可以将资源放在多个不同域的 CDN 上，可以绕开该限制；</li>
+</ul>
+<h3 id="服务器缓存"><a href="#服务器缓存" class="headerlink" title="服务器缓存"></a><strong>服务器缓存</strong></h3><p>将不变的数据、页面缓存到 内存 或 远程存储(redis等) 上；</p>
+<h3 id="数据缓存"><a href="#数据缓存" class="headerlink" title="数据缓存"></a><strong>数据缓存</strong></h3><p>通过各种存储将不常变的数据进行缓存，缩短数据的获取时间</p>
+<h2 id="加载优化"><a href="#加载优化" class="headerlink" title="加载优化"></a>加载优化</h2><h3 id="异步script标签"><a href="#异步script标签" class="headerlink" title="异步script标签"></a><a target="_blank" rel="noopener" href="https://javascript.plainenglish.io/async-and-defer-the-complete-guide-to-loading-javascript-properly-ce6edce1e6b5">异步script标签</a></h3><ul>
+<li>一般模式</li>
+</ul>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>index.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code></pre>
+<blockquote>
+<p>这种情况下 JS 会阻塞浏览器，浏览器必须等待 <code>index.js</code> 加载和执行完毕才能去做其它事情。</p>
+</blockquote>
+<ul>
+<li>async 模式：</li>
+</ul>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">async</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>index.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code></pre>
+<blockquote>
+<p><code>async</code> 模式下，JS 不会阻塞浏览器做任何其它的事情。它的加载是异步的，当它加载结束，JS 脚本会<strong>立即执行</strong>。作用同defer，但是<strong>不能保证脚本按顺序执行。</strong></p>
+</blockquote>
+<ul>
+<li>defer 模式（等待DOM）</li>
+</ul>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">defer</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>index.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code></pre>
+<blockquote>
+<p><code>defer</code> 模式下，JS 的加载是异步的，执行是<strong>被推迟的</strong>。等整个文档解析完成、<code>DOMContentLoaded</code> 事件即将被触发时，被标记了 <code>defer</code> 的 JS 文件才会开始依次执行。</p>
+</blockquote>
+<ul>
+<li>从应用的角度来说，一般当我们的脚本与 DOM 元素和其它脚本之间的依赖关系不强时，我们会选用 <code>async</code>；当脚本依赖于 DOM 元素和其它脚本的执行结果时，我们会选用 <code>defer</code>。</li>
+</ul>
+<h3 id="优先级加载"><a href="#优先级加载" class="headerlink" title="优先级加载"></a>优先级加载</h3><h3 id="请求的优先级排序-页面大小，页面加载顺序"><a href="#请求的优先级排序-页面大小，页面加载顺序" class="headerlink" title="请求的优先级排序 - 页面大小，页面加载顺序"></a>请求的优先级排序 - 页面大小，页面加载顺序</h3><p>浏览器中的各类请求是有优先级排序的。低优请求会被排在高优之后再发送。</p>
+<p><img src="/2021/04/28/Frontend-performance-optimization2-how/priority.7e69b357.png" alt="network priority"></p>
+<p>不过可惜的是，浏览器没有将优先级排序的能力给我们直接开放出来。但在一些场景下，我们可以通过更合理的使用媒体类型和媒体查询来实现资源加载的优先级。下面会介绍一下这种方法。</p>
+<p>一些网站为了达到不同屏幕之间的兼容，可能会使用媒体查询的方式来构建它的样式系统。一般而言，我们都会把样式代码写在一起，例如导航的在各类屏幕下的样式都会放在 <code>navigator.css</code> 下，列表都会放在 <code>list.css</code> 下。</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>navigator.css<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>list.css<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span></code></pre>
+<p>这里带来的一个问题就是，在宽度小于 400px 的场景下，其实并不需要应用宽度 400px 以上的 CSS 样式。针对这个问题，<code>link</code> 标签上其实有一个 <code>media</code> 属性来处理媒体查询下的加载优先级。浏览器会优先下载匹配当前环境的样式资源，相对的，其他非匹配的优先级会下降。</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>navigator.css<span class="token punctuation">"</span></span> <span class="token attr-name">media</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>all<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>list.css<span class="token punctuation">"</span></span> <span class="token attr-name">media</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>all<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>navigator.small.css<span class="token punctuation">"</span></span> <span class="token attr-name">media</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>(max-width: 500px)<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>list.small.css<span class="token punctuation">"</span></span> <span class="token attr-name">media</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>(max-width: 500px)<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span></code></pre>
+<p>这样拆分后，当页面大于 500 px 时，<code>navigator.small.css</code> 和 <code>list.small.css</code> 的优先级会降低，同时，<strong>它们也不再会阻塞页面的渲染</strong>。需要注意的是，优先级降低代表可能会后加载，并非不加载。</p>
+<h3 id="使用-prefetch-preload-预加载等新特性"><a href="#使用-prefetch-preload-预加载等新特性" class="headerlink" title="使用 prefetch / preload 预加载等新特性"></a>使用 prefetch / preload 预加载等新特性</h3><h4 id="1-prefetch-用DNS预解析"><a href="#1-prefetch-用DNS预解析" class="headerlink" title="1. prefetch  - 用DNS预解析"></a>1. prefetch  - 用DNS预解析</h4><p>　　当浏览器访问一个域名的时候，需要解析一次DNS，获得对应域名的ip地址。在解析过程中，按照<code>浏览器缓存</code>、<code>系统缓存</code>、<code>路由器缓存</code>、<code>ISP(运营商)DNS缓存</code>、<code>根域名服务器</code>、<code>顶级域名服务器</code>、<code>主域名服务器</code>的顺序，逐步读取缓存，直到拿到IP地址</p>
+<p>　　DNS Prefetch，即DNS预解析就是根据浏览器定义的规则，提前解析之后可能会用到的域名，使解析结果缓存到<code>系统缓存</code>中，缩短DNS解析时间，来提高网站的访问速度</p>
+<p>　　方法是在 head 标签里面写上几个 link 标签</p>
+<pre><code>&lt;link rel=&quot;dns-prefecth&quot; href=&quot;https://www.google.com&quot;&gt;
+&lt;link rel=&quot;dns-prefecth&quot; href=&quot;https://www.google-analytics.com&quot;&gt;</code></pre>
+<p>　　对以上几个网站提前解析 DNS，由于它是并行的，不会堵塞页面渲染，这样可以缩短资源加载的时间</p>
+<h4 id="2-preload-js-提前加载"><a href="#2-preload-js-提前加载" class="headerlink" title="2. preload js 提前加载"></a>2. preload js 提前加载</h4><p>我们能不能提前把图表加载进来,避免图表渲染中加载时间过长的问题?这种提前加载的方法就是组件的预加载.</p>
+<p>原理也很简单,就是在用户的鼠标还处于 hover 状态的时候就开始触发图表资源的加载,通常情况下当用户点击结束之后,加载也基本完成,这个时候图表会很顺利地渲染出来,不会出现延迟.</p>
+<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">/**
+ * @param {*} factory 懒加载的组件
+ * @param {*} next factory组件下面需要预加载的组件
+ */</span>
+<span class="token keyword">function</span> <span class="token function">lazyWithPreload</span><span class="token punctuation">(</span>factory<span class="token punctuation">,</span> next<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> Component <span class="token operator">=</span> <span class="token function">lazy</span><span class="token punctuation">(</span>factory<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  Component<span class="token punctuation">.</span>preload <span class="token operator">=</span> next<span class="token punctuation">;</span>
+  <span class="token keyword">return</span> Component<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token operator">...</span>
+<span class="token comment" spellcheck="true">// 然后在组件的方法中触发预加载</span>
+  <span class="token keyword">const</span> preloadChart <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    Modal<span class="token punctuation">.</span><span class="token function">preload</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span></code></pre>
+<p><a target="_blank" rel="noopener" href="https://github.com/xiaomuzhu/preload-lazy-component">demo地址</a></p>
+<h4 id="5-preconnect"><a href="#5-preconnect" class="headerlink" title="5. preconnect"></a>5. preconnect</h4><pre class=" language-js"><code class="language-js"><span class="token operator">&lt;</span>link rel<span class="token operator">=</span><span class="token string">"preconnect"</span> href<span class="token operator">=</span><span class="token string">"https://my.com"</span> crossorigin <span class="token operator">/</span><span class="token operator">></span></code></pre>
+<h4 id="4-html-表现预加载-display"><a href="#4-html-表现预加载-display" class="headerlink" title="4. html 表现预加载 display"></a>4. html 表现预加载 display</h4><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>https://xxx.jpg<span class="token punctuation">"</span></span><span class="token style-attr language-css"><span class="token attr-name"> <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">display</span><span class="token punctuation">:</span> none</span><span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span></code></pre>
+<h4 id="5-image对象"><a href="#5-image对象" class="headerlink" title="5. image对象"></a>5. image对象</h4><pre class=" language-js"><code class="language-js"><span class="token keyword">const</span> image <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Image</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+image<span class="token punctuation">.</span>src <span class="token operator">=</span> <span class="token string">'https://xxx.jpg'</span><span class="token punctuation">;</span></code></pre>
+<h3 id="图片懒加载-组件懒加载"><a href="#图片懒加载-组件懒加载" class="headerlink" title="图片懒加载 组件懒加载"></a>图片懒加载 组件懒加载</h3><blockquote>
+<p>这里的懒加载，预加载，按需加载原理部分写在另一个文章 链接在此</p>
+</blockquote>
+<h5 id="懒加载-IntersectionObserver；监听页面滚动，判断图片是否进入视野"><a href="#懒加载-IntersectionObserver；监听页面滚动，判断图片是否进入视野" class="headerlink" title="懒加载 IntersectionObserver；监听页面滚动，判断图片是否进入视野"></a>懒加载 IntersectionObserver；监听页面滚动，判断图片是否进入视野</h5><ul>
+<li><p>使用IntersectionObserver来实现图片可视区域的懒加载</p>
+<p>传统的做法中，需要使用scroll事件，并调用getBoundingClientRect方法，来实现可视区域的判断，即使使用了函数节流，也会造成页面回流。使用IntersectionObserver，则没有上述问题</p>
+</li>
+<li><p>监听页面滚动，判断图片是否进入视野</p>
+<p>当页面滚动的时候监听 scroll 事件，如果“懒加载元素”在可视区域内，就把图片的 src 属性或者文件 URL 路径设置成 data-lazy 属性值。</p>
+</li>
+</ul>
+<h3 id="按需加载"><a href="#按需加载" class="headerlink" title="按需加载"></a>按需加载</h3><ul>
+<li>常规按需加载（如 JS 原生、jQuery）</li>
+<li>不同 App 按需加载（如 JS-SDK 脚本文件）</li>
+<li>不同设备按需加载（如 PC 端和 HTML5 端样式文件）</li>
+<li>不同分辨率按需加载（CSS Media Query）</li>
+</ul>
+<p>Vue 异步加载举例：</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> App <span class="token keyword">from</span> <span class="token string">'./App.vue'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> VueRouter <span class="token keyword">from</span> <span class="token string">'vue-router'</span><span class="token punctuation">;</span>
+
+Vue<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>VueRouter<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> componentA <span class="token operator">=</span> resolve <span class="token operator">=</span><span class="token operator">></span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'src/a.vue'</span> <span class="token punctuation">]</span><span class="token punctuation">,</span> resolve<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> componentB <span class="token operator">=</span> resolve <span class="token operator">=</span><span class="token operator">></span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'src/b.vue'</span> <span class="token punctuation">]</span><span class="token punctuation">,</span> resolve<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">VueRouter</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    routes<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>path<span class="token punctuation">:</span><span class="token string">"a”,name:"</span><span class="token operator">/</span>a”<span class="token punctuation">,</span>component<span class="token punctuation">:</span>componentA<span class="token punctuation">}</span><span class="token punctuation">,</span>
+     <span class="token punctuation">{</span>path<span class="token punctuation">:</span><span class="token string">"b”,name:"</span><span class="token operator">/</span>b”<span class="token punctuation">,</span>component<span class="token punctuation">:</span>componentB<span class="token punctuation">}</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    el<span class="token punctuation">:</span> <span class="token string">'#app'</span><span class="token punctuation">,</span>
+    router<span class="token punctuation">:</span> router<span class="token punctuation">,</span>
+    render<span class="token punctuation">:</span> h <span class="token operator">=</span><span class="token operator">></span> <span class="token function">h</span><span class="token punctuation">(</span>App<span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
+<h4 id="提取第三方库代码，减少冗余代码"><a href="#提取第三方库代码，减少冗余代码" class="headerlink" title="提取第三方库代码，减少冗余代码"></a>提取第三方库代码，减少冗余代码</h4><h2 id="Webpack"><a href="#Webpack" class="headerlink" title="Webpack"></a>Webpack</h2><p><strong>构建优化</strong></p>
+<ul>
+<li>减少编译体积 <code>ContextReplacementPugin</code>、<code>IgnorePlugin</code>、<code>babel-plugin-import</code>、<code>babel-plugin-transform-runtime</code></li>
+<li>并行编译 <code>happypack</code>、<code>thread-loader</code>、<code>uglifyjsWebpackPlugin</code>开启并行</li>
+<li>缓存 <code>cache-loader</code>、<code>hard-source-webpack-plugin</code>、<code>uglifyjsWebpackPlugin</code>开启缓存、<code>babel-loader</code>开启缓存</li>
+<li>预编译 <code>dllWebpackPlugin &amp;&amp; DllReferencePlugin</code>、<code>auto-dll-webapck-plugin</code></li>
+</ul>
+<p><strong>性能优化</strong></p>
+<ul>
+<li><p>减少编译体积 <code>Tree-shaking</code>、<code>Scope Hositing</code></p>
+</li>
+<li><p><code>hash</code>缓存 <code>webpack-md5-plugin</code></p>
+</li>
+<li><p>拆包 <code>splitChunksPlugin</code>、<code>import()</code>、<code>require.ensure</code></p>
+</li>
+<li><p>有哪些方式可以减少 <code>Webpack</code> 的打包时间</p>
+</li>
+<li><p>有哪些方式可以让 <code>Webpack</code> 打出来的包更小</p>
+</li>
+</ul>
+<h3 id="减少-Webpack-打包时间"><a href="#减少-Webpack-打包时间" class="headerlink" title="减少 Webpack 打包时间"></a>减少 Webpack 打包时间</h3><p><strong>1. 优化 Loader</strong></p>
+<blockquote>
+<p>对于 <code>Loader</code> 来说，影响打包效率首当其冲必属 <code>Babel</code> 了。因为 <code>Babel</code> 会将代码转为字符串生成 <code>AST</code>，然后对 <code>AST</code> 继续进行转变最后再生成新的代码，项目越大，转换代码越多，效率就越低。当然了，我们是有办法优化的</p>
+</blockquote>
+<blockquote>
+<p>首先我们可以优化 <code>Loader</code> 的文件搜索范围</p>
+</blockquote>
+<pre class=" language-js"><code class="language-js">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+  module<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    rules<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// js 文件才使用 babel</span>
+        test<span class="token punctuation">:</span> <span class="token regex">/\.js$/</span><span class="token punctuation">,</span>
+        loader<span class="token punctuation">:</span> <span class="token string">'babel-loader'</span><span class="token punctuation">,</span>
+        <span class="token comment" spellcheck="true">// 只在 src 文件夹下查找</span>
+        include<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token string">'src'</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token comment" spellcheck="true">// 不会去查找的路径</span>
+        exclude<span class="token punctuation">:</span> <span class="token regex">/node_modules/</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<blockquote>
+<p>对于 <code>Babel</code> 来说，我们肯定是希望只作用在 <code>JS</code>代码上的，然后 <code>node_modules</code> 中使用的代码都是编译过的，所以我们也完全没有必要再去处理一遍</p>
+</blockquote>
+<ul>
+<li>当然这样做还不够，我们还可以将 <code>Babel</code> 编译过的文件缓存起来，下次只需要编译更改过的代码文件即可，这样可以大幅度加快打包时间</li>
+</ul>
+<pre class=" language-js"><code class="language-js">loader<span class="token punctuation">:</span> <span class="token string">'babel-loader?cacheDirectory=true'</span></code></pre>
+<p><strong>2. HappyPack</strong> (plugin)</p>
+<blockquote>
+<p>受限于 <code>Node</code> 是单线程运行的，所以 <code>Webpack</code> 在打包的过程中也是单线程的，特别是在执行<code>Loader</code> 的时候，长时间编译的任务很多，这样就会导致等待的情况。</p>
+</blockquote>
+<blockquote>
+<p><code>HappyPack</code> 可以将 <code>Loader</code> 的同步执行转换为并行的，这样就能充分利用系统资源来加快打包效率了</p>
+</blockquote>
+<pre class=" language-js"><code class="language-js">module<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+  loaders<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      test<span class="token punctuation">:</span> <span class="token regex">/\.js$/</span><span class="token punctuation">,</span>
+      include<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token string">'src'</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      exclude<span class="token punctuation">:</span> <span class="token regex">/node_modules/</span><span class="token punctuation">,</span>
+      <span class="token comment" spellcheck="true">// id 后面的内容对应下面</span>
+      loader<span class="token punctuation">:</span> <span class="token string">'happypack/loader?id=happybabel'</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span>
+plugins<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+  <span class="token keyword">new</span> <span class="token class-name">HappyPack</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    id<span class="token punctuation">:</span> <span class="token string">'happybabel'</span><span class="token punctuation">,</span>
+    loaders<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'babel-loader?cacheDirectory'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token comment" spellcheck="true">// 开启 4 个线程</span>
+    threads<span class="token punctuation">:</span> <span class="token number">4</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">]</span></code></pre>
+<p><strong>3. DllPlugin</strong></p>
+<blockquote>
+<p><code>DllPlugin</code> 可以将特定的<strong>类库提前打包然后引入</strong>。这种方式可以极大的减少打包类库的次数，只有当类库更新版本才有需要重新打包，并且也实现了将公共代码抽离成单独文件的优化方案。</p>
+</blockquote>
+<p>接下来我们就来学习如何使用 <code>DllPlugin</code></p>
+<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// 单独配置在一个文件中</span>
+<span class="token comment" spellcheck="true">// webpack.dll.conf.js</span>
+<span class="token keyword">const</span> path <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'path'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> webpack <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'webpack'</span><span class="token punctuation">)</span>
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+  entry<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 想统一打包的类库</span>
+    vendor<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'react'</span><span class="token punctuation">]</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  output<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    path<span class="token punctuation">:</span> path<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">'dist'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    filename<span class="token punctuation">:</span> <span class="token string">'[name].dll.js'</span><span class="token punctuation">,</span>
+    library<span class="token punctuation">:</span> <span class="token string">'[name]-[hash]'</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  plugins<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token keyword">new</span> <span class="token class-name">webpack<span class="token punctuation">.</span>DllPlugin</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      <span class="token comment" spellcheck="true">// name 必须和 output.library 一致</span>
+      name<span class="token punctuation">:</span> <span class="token string">'[name]-[hash]'</span><span class="token punctuation">,</span>
+      <span class="token comment" spellcheck="true">// 该属性需要与 DllReferencePlugin 中一致</span>
+      context<span class="token punctuation">:</span> __dirname<span class="token punctuation">,</span>
+      path<span class="token punctuation">:</span> path<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">'dist'</span><span class="token punctuation">,</span> <span class="token string">'[name]-manifest.json'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span></code></pre>
+<blockquote>
+<p>然后我们需要执行这个配置文件生成依赖文件，接下来我们需要使用 <code>DllReferencePlugin</code> 将依赖文件引入项目中</p>
+</blockquote>
+<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// webpack.conf.js</span>
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">// ...省略其他配置</span>
+  plugins<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token keyword">new</span> <span class="token class-name">webpack<span class="token punctuation">.</span>DllReferencePlugin</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      context<span class="token punctuation">:</span> __dirname<span class="token punctuation">,</span>
+      <span class="token comment" spellcheck="true">// manifest 就是之前打包出来的 json 文件</span>
+      manifest<span class="token punctuation">:</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'./dist/vendor-manifest.json'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span></code></pre>
+<p><strong>4. 代码压缩</strong></p>
+<blockquote>
+<p>在 <code>Webpack3</code> 中，我们一般使<strong>用 <code>UglifyJS</code> 来压缩代码</strong>，但是这个是单线程运行的，为了加快效率，我们可以使用 <strong><code>webpack-parallel-uglify-plugin</code></strong> 来并行运行 <code>UglifyJS</code>，从而提高效率。</p>
+</blockquote>
+<blockquote>
+<p>在 <code>Webpack4</code> 中，我们就不需要以上这些操作了，只需要将 <code>mode</code> 设置为 <code>production</code> 就可以默认开启以上功能。代码压缩也是我们必做的性能优化方案，当然我们不止可以压缩 <code>JS</code> 代码，还可以压缩 <code>HTML</code>、<code>CSS</code> 代码，并且在压缩 <code>JS</code> 代码的过程中，我们还可以通过配置实现比如删除 <code>console.log</code> 这类代码的功能。</p>
+</blockquote>
+<p><strong>5. 一些小的优化点</strong></p>
+<blockquote>
+<p>我们还可以通过一些小的优化点来加快打包速度</p>
+</blockquote>
+<ul>
+<li><code>resolve.extensions</code>：用来表明文件后缀列表，默认查找顺序是 <code>[&#39;.js&#39;, &#39;.json&#39;]</code>，如果你的导入文件没有添加后缀就会按照这个顺序查找文件。我们应该尽可能减少后缀列表长度，然后将出现频率高的后缀排在前面</li>
+<li><code>resolve.alias</code>：可以通过别名的方式来映射一个路径，能让 <code>Webpack</code> 更快找到路径</li>
+<li><code>module.noParse</code>：如果你确定一个文件下没有其他依赖，就可以使用该属性让 Webpack 不扫描该文件，这种方式对于大型的类库很有帮助</li>
+</ul>
+<h3 id="减少-Webpack-打包后的文件体积"><a href="#减少-Webpack-打包后的文件体积" class="headerlink" title="减少 Webpack 打包后的文件体积"></a>减少 Webpack 打包后的文件体积</h3><p><strong>1. 按需加载</strong></p>
+<blockquote>
+<p>想必大家在开发 <code>SPA</code> 项目的时候，项目中都会存在十几甚至更多的路由页面。如果我们将这些页面全部打包进一个 <code>JS</code>文件的话，虽然将多个请求合并了，但是同样也加载了很多并不需要的代码，耗费了更长的时间。那么为了首页能更快地呈现给用户，我们肯定是希望首页能加载的文件体积越小越好，这时候我们就可以使用按需加载，将每个路由页面单独打包为一个文件。当然不仅仅路由可以按需加载，对于 <code>loadash</code> 这种大型类库同样可以使用这个功能。</p>
+</blockquote>
+<blockquote>
+<p>按需加载的代码实现这里就不详细展开了，因为鉴于用的框架不同，实现起来都是不一样的。当然了，虽然他们的用法可能不同，但是底层的机制都是一样的。都是当使用的时候再去下载对应文件，返回一个 <code>Promise</code>，当 <code>Promise</code>成功以后去执行回调。</p>
+</blockquote>
+<p><strong>2. Scope Hoisting</strong></p>
+<blockquote>
+<p><code>Scope Hoisting</code> 会分析出模块之间的依赖关系，尽可能的把打包出来的模块合并到一个函数中去。</p>
+</blockquote>
+<p>比如我们希望打包两个文件</p>
+<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// test.js</span>
+<span class="token keyword">export</span> <span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token number">1</span>
+
+<span class="token comment" spellcheck="true">// index.js</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> a <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./test.js'</span></code></pre>
+<blockquote>
+<p>对于这种情况，我们打包出来的代码会类似这样</p>
+</blockquote>
+<pre class=" language-js"><code class="language-js"><span class="token punctuation">[</span>
+  <span class="token comment" spellcheck="true">/* 0 */</span>
+  <span class="token keyword">function</span> <span class="token punctuation">(</span>module<span class="token punctuation">,</span> exports<span class="token punctuation">,</span> require<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//...</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment" spellcheck="true">/* 1 */</span>
+  <span class="token keyword">function</span> <span class="token punctuation">(</span>module<span class="token punctuation">,</span> exports<span class="token punctuation">,</span> require<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//...</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">]</span></code></pre>
+<blockquote>
+<p>但是如果我们使用 <code>Scope Hoisting</code> 的话，代码就会尽可能的合并到一个函数中去，也就变成了这样的类似代码</p>
+</blockquote>
+<pre class=" language-js"><code class="language-js"><span class="token punctuation">[</span>
+  <span class="token comment" spellcheck="true">/* 0 */</span>
+  <span class="token keyword">function</span> <span class="token punctuation">(</span>module<span class="token punctuation">,</span> exports<span class="token punctuation">,</span> require<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//...</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">]</span></code></pre>
+<blockquote>
+<p>这样的打包方式生成的代码明显比之前的少多了。如果在 <code>Webpack4</code> 中你希望开启这个功能，只需要启用 <code>optimization.concatenateModules</code>就可以了。</p>
+</blockquote>
+<pre class=" language-js"><code class="language-js">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+  optimization<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    concatenateModules<span class="token punctuation">:</span> <span class="token boolean">true</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p><strong>3. Tree Shaking</strong></p>
+<blockquote>
+<p><code>Tree Shaking</code> 可以实现删除项目中未被引用的代码，比如</p>
+</blockquote>
+<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// test.js</span>
+<span class="token keyword">export</span> <span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token keyword">export</span> <span class="token keyword">const</span> b <span class="token operator">=</span> <span class="token number">2</span>
+<span class="token comment" spellcheck="true">// index.js</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> a <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./test.js'</span></code></pre>
+<ul>
+<li>对于以上情况，<code>test</code> 文件中的变量 <code>b</code> 如果没有在项目中使用到的话，就不会被打包到文件中。</li>
+<li>如果你使用 <code>Webpack 4</code> 的话，开启生产环境就会自动启动这个优化功能。</li>
+</ul>
+<h2 id="操作-DOM-方向"><a href="#操作-DOM-方向" class="headerlink" title="操作 DOM 方向"></a>操作 DOM 方向</h2><ul>
+<li><p><strong>减少访问 dom 的次数</strong>，如需多次，将 dom 缓存于变量中；</p>
+</li>
+<li><p>减少重绘与回流</p>
+<ul>
+<li>多次操作合并为一次；</li>
+<li>减少对计算属性的访问；<ul>
+<li>例如 offsetTop， getComputedStyle 等</li>
+<li>因为浏览器需要获取最新准确的值，因此必须立即进行重排，这样会破坏了浏览器的队列整合，尽量将值进行缓存使用；</li>
+</ul>
+</li>
+<li>大量操作时，可将 dom 脱离文档流或者隐藏，待操作完成后再重新恢复；</li>
+<li>使用<code>DocumentFragment / cloneNode / replaceChild</code>进行操作；</li>
+</ul>
+</li>
+<li><p>使用事件委托，避免大量的事件绑定；</p>
+</li>
+</ul>
+<h2 id="浏览器加载、渲染性能方向"><a href="#浏览器加载、渲染性能方向" class="headerlink" title="浏览器加载、渲染性能方向"></a>浏览器加载、渲染性能方向</h2><h3 id="首屏渲染优化"><a href="#首屏渲染优化" class="headerlink" title="首屏渲染优化"></a>首屏渲染优化</h3><ul>
+<li><p><strong>css / js 分割</strong>，使首屏依赖的文件体积最小，内联首屏关键 css / js；</p>
+</li>
+<li><p>非关键性的文件尽可能的 <strong>异步加载和懒加载</strong>，避免阻塞首页渲染；</p>
+</li>
+<li><p>使用<code>dns-prefetch / preconnect / prefetch / preload</code>等浏览器提供的资源提示，加快文件传输；</p>
+</li>
+<li><p>谨慎控制好 </p>
+<p>Web字体</p>
+<p>，一个大字体包足够让你功亏一篑；</p>
+<ul>
+<li>控制字体包的加载时机；</li>
+<li>如果使用的字体有限，那尽可能只将使用的文字单独打包，能有效减少体积；</li>
+</ul>
+</li>
+<li><p>合理利用 Localstorage / server-worker 等存储方式进行 <strong>数据与资源缓存</strong>；</p>
+</li>
+</ul>
+<h3 id="减少重定向"><a href="#减少重定向" class="headerlink" title="减少重定向"></a>减少重定向</h3><p>　　尽量避免使用重定向，当页面发生了重定向，就会延迟整个HTML文档的传输。在HTML文档到达之前，页面中不会呈现任何东西，也没有任何组件会被下载，降低了用户体验</p>
+<p>　　如果一定要使用重定向，如http重定向到https，要使用301永久重定向，而不是302临时重定向。因为，如果使用302，则每一次访问http，都会被重定向到https的页面。而永久重定向，在第一次从http重定向到https之后 ，每次访问http，会直接返回https的页面</p>
+<h3 id="持久连接-keep-alive"><a href="#持久连接-keep-alive" class="headerlink" title="持久连接 keep-alive"></a>持久连接 keep-alive</h3><p>　　使用keep-alive或presistent来建立持久连接，持久连接降低了时延和连接建立的开销，将连接保持在已调谐状态，而且减少了打开连接的潜在数量</p>
+<h2 id="性能测量、监控方向"><a href="#性能测量、监控方向" class="headerlink" title="性能测量、监控方向"></a>性能测量、监控方向</h2><h2 id="服务端渲染-SSR"><a href="#服务端渲染-SSR" class="headerlink" title="服务端渲染(SSR)"></a>服务端渲染(SSR)</h2><ul>
+<li>减少首屏需要的数据量，剔除冗余数据和请求；</li>
+<li>控制好缓存，对数据/页面进行合理的缓存；</li>
+<li>页面的请求使用流的形式进行传递；</li>
+</ul>
+<h1 id="代码细节优化"><a href="#代码细节优化" class="headerlink" title="代码细节优化"></a><strong>代码细节优化</strong></h1><h3 id="数据读取"><a href="#数据读取" class="headerlink" title="数据读取"></a><strong>数据读取</strong></h3><ul>
+<li>通过作用域链 / 原型链 读取变量或方法时，需要更多的耗时，且越长越慢；</li>
+<li>对象嵌套越深，读取值也越慢；</li>
+<li>最佳实践:<ul>
+<li>尽量在局部作用域中进行 <strong>变量缓存</strong>；</li>
+<li>避免嵌套过深的数据结构，<strong>数据扁平化</strong> 有利于数据的读取和维护；</li>
+</ul>
+</li>
+</ul>
+<h3 id="循环"><a href="#循环" class="headerlink" title="循环"></a><strong>循环</strong></h3><p>循环通常是编码性能的关键点；</p>
+<ul>
+<li>代码的性能问题会再循环中被指数倍放大；</li>
+<li>最佳实践:<ul>
+<li>尽可能 减少循环次数；<ul>
+<li>减少遍历的数据量；</li>
+<li>完成目的后马上结束循环；</li>
+</ul>
+</li>
+<li>避免在循环中执行大量的运算，避免重复计算，相同的执行结果应该使用缓存；</li>
+<li>js 中使用 <strong>倒序循环</strong> 会略微提升性能；</li>
+<li>尽量避免使用 for-in 循环，因为它会枚举原型对象，耗时大于普通循环；</li>
+</ul>
+</li>
+</ul>
+<h3 id="条件流程性能-Map-Object-gt-switch-gt-if-else"><a href="#条件流程性能-Map-Object-gt-switch-gt-if-else" class="headerlink" title="条件流程性能: Map / Object &gt; switch &gt; if-else"></a><strong>条件流程性能</strong>: Map / Object &gt; switch &gt; if-else</h3><h3 id="减少-cookie-体积-能有效减少每次请求的体积和响应时间；"><a href="#减少-cookie-体积-能有效减少每次请求的体积和响应时间；" class="headerlink" title="减少 cookie 体积: 能有效减少每次请求的体积和响应时间；"></a><strong>减少 cookie 体积</strong>: 能有效减少每次请求的体积和响应时间；</h3><ul>
+<li>去除不必要的 cookie；</li>
+<li>压缩 cookie 大小；</li>
+<li>设置 domain 与 过期时间；</li>
+</ul>
+<h3 id="css-优化"><a href="#css-优化" class="headerlink" title="css 优化"></a><strong>css 优化</strong></h3><ul>
+<li><p><strong>层级扁平</strong>，避免过于多层级的选择器嵌套；</p>
+</li>
+<li><p><strong>特定的选择器</strong> 好过一层一层查找:  .xxx-child-text{} 优于 .xxx .child .text{}</p>
+</li>
+<li><p><strong>减少使用通配符与属性选择器</strong>；</p>
+</li>
+<li><p><strong>减少不必要的多余属性</strong>；</p>
+</li>
+<li><p>使用 <strong>动画属性</strong> 实现动画，动画时脱离文档流，开启硬件加速，优先使用 css 动画；</p>
+</li>
+<li><p>使用 <code>&lt;link&gt;</code> 替代原生 @import；　CSS的@import会造成额外的请求</p>
+</li>
+<li><h3 id="避免使用昂贵的属性"><a href="#避免使用昂贵的属性" class="headerlink" title="避免使用昂贵的属性"></a>避免使用昂贵的属性</h3><p>有一些 CSS 的属性在渲染上是有比较高的成本的，渲染速度相较而言也会慢些。在不同的浏览器上，具体的表现不太一致，但总体来说，下面一些属性是比较昂贵的：</p>
+<ul>
+<li>border-radius</li>
+<li>box-shadow</li>
+<li>opacity</li>
+<li>transform</li>
+<li>filter</li>
+<li>position: fixed</li>
+</ul>
+</li>
+</ul>
+<h3 id="html-优化"><a href="#html-优化" class="headerlink" title="html 优化:"></a><strong>html 优化</strong>:</h3><ul>
+<li><strong>减少 dom 数量</strong>，避免不必要的节点或嵌套；</li>
+<li>避免<code>&lt;img src=&quot;&quot; /&gt;</code>空标签</li>
+<li>图片提前 <strong>指定宽高</strong> 或者 <strong>脱离文档流</strong>，能有效减少因图片加载导致的页面回流；</li>
+<li><strong>语义化标签</strong> 有利于 SEO 与浏览器的解析时间；</li>
+<li>减少使用 table 进行布局，避免使用<code>&lt;br /&gt;</code>与<code>&lt;hr /&gt;</code>；</li>
+</ul>
+<h3 id="js优化"><a href="#js优化" class="headerlink" title="js优化"></a>js优化</h3><ul>
+<li><p>事件委托</p>
+<p>是利用事件的冒泡原理来实现的</p>
+<p>适合用事件委托的事件：click，mousedown，mouseup，keydown，keyup，keypress。(缺点:误判,层级多,不冒泡)</p>
+</li>
+<li><p>减少闭包</p>
+</li>
+</ul>
+<h1 id="运行时的优化"><a href="#运行时的优化" class="headerlink" title="运行时的优化"></a>运行时的优化</h1><h3 id="长列表优化"><a href="#长列表优化" class="headerlink" title="长列表优化"></a>长列表优化</h3><p><img src="/2021/04/28/Frontend-performance-optimization2-how/image-20210428184500970.png"></p>
+<p>实现 Virtual List （使用 <code>position: absolute</code> 配合 <code>transform: translate3d()</code>）</p>
+<p>其大致的实现思路如下：</p>
+<ol>
+<li>监听页面滚动（或者其他导致视口变化的事件）；</li>
+<li>滚动时根据滚动的距离计算需要展示的列表项；</li>
+<li>将列表项中展示的数据与组件替换成当前需要展示的内容；</li>
+<li>修改偏移量到对应的位置。</li>
+</ol>
+<h3 id="避免-JavaScript-运行时间过长"><a href="#避免-JavaScript-运行时间过长" class="headerlink" title="避免 JavaScript 运行时间过长"></a>避免 JavaScript 运行时间过长</h3><ul>
+<li>任务分解</li>
+<li>延迟执行  setTimeout</li>
+<li>并行计算  webworker</li>
+</ul>
+<h3 id="滚动事件"><a href="#滚动事件" class="headerlink" title="滚动事件"></a>滚动事件</h3><p>防抖节流</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a target="_blank" rel="noopener" href="https://fe.mbear.top/xing-neng-you-hua/031-xing-neng-jian-kong-he-cuo-wu-shou-ji-yu-shang-bao-shang">前端优化</a></p>
+<p>还有些零散整理的</p>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="../../../../about" rel="external nofollow noreferrer">Savannah</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://savancode.github.io">http://savancode.github.io</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint polocy. If reproduced, please indicate source
+                    <a href="../../../../about" target="_blank">Savannah</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="../../../../tags/optimization/">
+                                    <span class="chip bg-color">optimization</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="../../../../libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="../Cookie-LocalStorage-sessionStorage-IndexedDB/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="../../../../medias/featureimages/18.jpg" class="responsive-img" alt="对比Cookie、LocalStorage、sessionStorage、IndexedDB、Token">
+                        
+                        <span class="card-title">对比Cookie、LocalStorage、sessionStorage、IndexedDB、Token</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            对比Cookie、LocalStorage、sessionStorage与IndexedDB
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-04-28
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="../../../../categories/Networking/" class="post-category">
+                                    Networking
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="../../../../tags/Cookie/">
+                        <span class="chip bg-color">Cookie</span>
+                    </a>
+                    
+                    <a href="../../../../tags/LocalStorage/">
+                        <span class="chip bg-color">LocalStorage</span>
+                    </a>
+                    
+                    <a href="../../../../tags/sessionStorage/">
+                        <span class="chip bg-color">sessionStorage</span>
+                    </a>
+                    
+                    <a href="../../../../tags/IndexedDB/">
+                        <span class="chip bg-color">IndexedDB</span>
+                    </a>
+                    
+                    <a href="../../../../tags/Token/">
+                        <span class="chip bg-color">Token</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="../Frontend-performance-optimization1-what/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="../../../../medias/featureimages/22.jpg" class="responsive-img" alt="Frontend performance optimization1 前端优化之看什么">
+                        
+                        <span class="card-title">Frontend performance optimization1 前端优化之看什么</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            什么才能作为Frontend performance optimization的工具以及数据
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-04-28
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="../../../../categories/optimization/" class="post-category">
+                                    optimization
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="../../../../tags/optimization/">
+                        <span class="chip bg-color">optimization</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="../../../../libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="../../../../libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="../../../../libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="../../../../libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="../../../../libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4, h5, h6, h7, h8, h9, h10'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4, h5, h6, h7, h8, h9, h10').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="../../../../libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="../../../../libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2019</span>
+            <a href="../../../../about" target="_blank">Savannah</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/SavanCode/SavanCode.github.io" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1181062873@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="../../../../js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("../../../../search.xml", 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="../../../../libs/materialize/materialize.min.js"></script>
+    <script src="../../../../libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="../../../../libs/aos/aos.js"></script>
+    <script src="../../../../libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="../../../../libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="../../../../js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="../../../../libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="../../../../libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <script type="text/javascript" src="../../../../libs/background/ribbon-dynamic.js" async="async"></script>
+    
+
+    
+    <script src="../../../../libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

@@ -382,16 +382,16 @@
                     
                     <div class="article-tag">
                         
+                            <a href="../../../../tags/JS-Async/">
+                                <span class="chip bg-color">JS Async</span>
+                            </a>
+                        
                             <a href="../../../../tags/JS/">
                                 <span class="chip bg-color">JS</span>
                             </a>
                         
                             <a href="../../../../tags/book/">
                                 <span class="chip bg-color">book</span>
-                            </a>
-                        
-                            <a href="../../../../tags/JS-Async/">
-                                <span class="chip bg-color">JS Async</span>
                             </a>
                         
                     </div>
@@ -434,8 +434,10 @@
                 <blockquote>
 <p>这里是阅读完 你不知道的JS 中卷 中的异步 做出的总结</p>
 <p>（其实之前的总结 也是有结合“你不知道的JS” 只是会把主要的书名字放在标题）</p>
+<p>之前写的关于异步的笔记</p>
+<p><a href="https://savancode.github.io/2021/03/23/Eventloop/">eventLoop</a>  <a href="https://savancode.github.io/2020/12/10/js-promise/">js异步基础笔记</a> js promise详细笔记</p>
 </blockquote>
-<h2 id="重点部分摘抄"><a href="#重点部分摘抄" class="headerlink" title="重点部分摘抄"></a>重点部分摘抄</h2><h3 id="1-都有哪些异步"><a href="#1-都有哪些异步" class="headerlink" title="1. 都有哪些异步"></a>1. 都有哪些异步</h3><p>用户交互，IO(<em>Input/Output</em>)，定时器</p>
+<h2 id="重点部分摘抄"><a href="#重点部分摘抄" class="headerlink" title="重点部分摘抄"></a>重点部分摘抄</h2><h3 id="1-都有哪些异步"><a href="#1-都有哪些异步" class="headerlink" title="1. 都有哪些异步"></a>1. 都有哪些异步</h3><p>callback promise generator generator+promise async await</p>
 <h3 id="2-事件循环的理解"><a href="#2-事件循环的理解" class="headerlink" title="2. 事件循环的理解"></a>2. 事件循环的理解</h3><p><strong>首先推荐一个<a target="_blank" rel="noopener" href="http://latentflip.com/loupe">Event Loop可视化执行</a>的网站。</strong></p>
 <p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/23fad3814398">JavaScript事件循环机制解析</a></p>
 <h3 id="3-Promise-的原理"><a href="#3-Promise-的原理" class="headerlink" title="3. Promise 的原理"></a>3. Promise 的原理</h3><p><img src="/2021/04/18/js-professional-book4/image-20210419143315106.png"></p>
@@ -454,8 +456,27 @@ promise<span class="token punctuation">.</span><span class="token function">then
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <p>果我们的后续任务是异步任务的话，必须return 一个 新的 promise 对象。<br>如果后续任务是同步任务，只需 return 一个结果即可</p>
 <h3 id="4-Generator-怎么用"><a href="#4-Generator-怎么用" class="headerlink" title="4. Generator 怎么用"></a>4. Generator 怎么用</h3><p>处理异步,外部传参,处理错误,</p>
-<h3 id="5-Async-的用法和原理-额外补充"><a href="#5-Async-的用法和原理-额外补充" class="headerlink" title="5. Async 的用法和原理 (额外补充)"></a>5. Async 的用法和原理 (额外补充)</h3><p>async/await 是参照 Generator 封装的一套异步处理方案，可以理解为 Generator 的语法糖.async 函数返回的是一个 Promise 对象</p>
+<h3 id="5-Async-的用法和原理-额外"><a href="#5-Async-的用法和原理-额外" class="headerlink" title="5. Async 的用法和原理 (额外)"></a>5. Async 的用法和原理 (额外)</h3><p>底层原理：用 Promise 控制 generator 函数的迭代器调用。</p>
+<p>async/await 解决了 callback hell 问题，是一个语法糖，promise，then，catch 是链式调用，但也是基于回调函数。</p>
+<blockquote>
+<p>它们和 Promise 的关系如下：</p>
+<ul>
+<li>执行 async 函数，返回的是 Promise 对象；</li>
+<li>await 相当于 Promise 的 then；</li>
+<li>try…catch 可以捕获异常，代替了 Promise 的 catch</li>
+</ul>
+</blockquote>
 <h3 id="6-错误处理中的链式流"><a href="#6-错误处理中的链式流" class="headerlink" title="6.错误处理中的链式流"></a>6.错误处理中的链式流</h3><p>错误方式一共有：return new Error () / throw new Error ()/ return Promise.reject(new Error())</p>
+<blockquote>
+<p>这里一定注意不要误解！！！！</p>
+<ul>
+<li>pending 状态，不会触发 then 和 catch</li>
+<li>resolved 状态，会触发后续的 then 回调函数</li>
+<li>rejected 状态，会触发后续的 catch 回调函数</li>
+<li>then 正常返回 resolved，里面有报错则返回 rejected</li>
+<li>catch 正常返回 resolved，里面报错则返回 rejected</li>
+</ul>
+</blockquote>
 <pre class=" language-js"><code class="language-js"><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
     <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token string">'error!!!'</span><span class="token punctuation">)</span>
   <span class="token punctuation">}</span><span class="token punctuation">)</span>
@@ -469,7 +490,7 @@ promise<span class="token punctuation">.</span><span class="token function">then
 
 Promise<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
   <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
-    <span class="token keyword">return</span> Promise<span class="token punctuation">.</span><span class="token function">reject</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token string">'error!!!'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> Promise<span class="token punctuation">.</span><span class="token function">reject</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token string">'error!!!'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//这里还是resolved</span>
   <span class="token punctuation">}</span><span class="token punctuation">)</span>
   <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
     console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'then: '</span><span class="token punctuation">,</span> res<span class="token punctuation">)</span>
@@ -903,9 +924,26 @@ console<span class="token punctuation">.</span><span class="token function">log<
 复制代码</code></pre>
 <p>这道题目大部分读者肯定会想到 <code>await</code> 左边是异步代码，因此会先把同步代码执行完，此时 <code>a</code> 已经变成 1，所以答案应该是 11。</p>
 <p>其实 <code>a</code> 为 0 是因为加法运算法，先算左边再算右边，所以会把 0 固定下来。如果我们把题目改成 <code>await 10 + a</code> 的话，答案就是 11 了。 </p>
-<h3 id="练习题目推荐"><a href="#练习题目推荐" class="headerlink" title="练习题目推荐"></a>练习题目推荐</h3><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903591518404622#heading-9">Promise面试题</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/everlose/p/12950564.html">Promise组合面试题</a></p>
-<p><a target="_blank" rel="noopener" href="https://my.oschina.net/u/3991187/blog/4779209">Promise面试题</a></p>
+<h3 id="重点自测2"><a href="#重点自测2" class="headerlink" title="重点自测2"></a>重点自测2</h3><pre class=" language-js"><code class="language-js"><span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">async1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"async1 start"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">await</span> <span class="token function">async2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"async1 end"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'timer1'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">async2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'timer2'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"async2"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token function">async1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'timer3'</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"start"</span><span class="token punctuation">)</span></code></pre>
+<h3 id="针对面试题目写的集合"><a href="#针对面试题目写的集合" class="headerlink" title="针对面试题目写的集合"></a><a href="https://savancode.github.io/2021/04/21/js-promise2/">针对面试题目写的集合</a></h3><h3 id="拓展关于Vue-nexttick"><a href="#拓展关于Vue-nexttick" class="headerlink" title="拓展关于Vue nexttick"></a>拓展关于Vue nexttick</h3><p><strong><code>Vue</code> 中每产生一个状态更新任务，它就会被塞进一个叫 <code>callbacks</code> 的数组（此处是任务队列的实现形式）中。这个任务队列在被丢进 <code>micro</code> 或 <code>macro</code> 队列之前，会先去检查当前是否有异步更新任务正在执行（即检查 <code>pending</code> 锁）。如果确认 <code>pending</code> 锁是开着的（<code>false</code>），就把它设置为锁上（true），然后对当前 <code>callbacks</code> 数组的任务进行派发（丢进 <code>micro</code> 或 macro 队列）和执行。设置 <code>pending</code> 锁的意义在于保证状态更新任务的有序进行，避免发生混乱。</strong></p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>你不知道的js</p>
 <p><a target="_blank" rel="noopener" href="https://tsejx.github.io/javascript-guidebook/core-modules/executable-code-and-execution-contexts/concurrency-model/timers-mechanism">JS guidebook</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=vn3tm0quoqE">The Async Await Episode I Promised</a></p>
@@ -973,16 +1011,16 @@ console<span class="token punctuation">.</span><span class="token function">log<
                     
                         <div class="article-tag">
                             
+                                <a href="../../../../tags/JS-Async/">
+                                    <span class="chip bg-color">JS Async</span>
+                                </a>
+                            
                                 <a href="../../../../tags/JS/">
                                     <span class="chip bg-color">JS</span>
                                 </a>
                             
                                 <a href="../../../../tags/book/">
                                     <span class="chip bg-color">book</span>
-                                </a>
-                            
-                                <a href="../../../../tags/JS-Async/">
-                                    <span class="chip bg-color">JS Async</span>
                                 </a>
                             
                         </div>
@@ -1029,15 +1067,15 @@ console<span class="token punctuation">.</span><span class="token function">log<
                     <div class="card-image">
                         
                         
-                        <img src="../../../../medias/featureimages/6.jpg" class="responsive-img" alt="js interview 手写题目">
+                        <img src="../../../../medias/featureimages/12.jpg" class="responsive-img" alt="js interview 题目收集">
                         
-                        <span class="card-title">js interview 手写题目</span>
+                        <span class="card-title">js interview 题目收集</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            JS 手写题
+                            JS 题目收集
                         
                     </div>
                     <div class="publish-info">
@@ -1052,10 +1090,6 @@ console<span class="token punctuation">.</span><span class="token function">log<
                                     JS
                                 </a>
                             
-                            <a href="../../../../categories/JS/interview/" class="post-category">
-                                    interview
-                                </a>
-                            
                             
                         </span>
                     </div>
@@ -1065,6 +1099,10 @@ console<span class="token punctuation">.</span><span class="token function">log<
                     
                     <a href="../../../../tags/JS/">
                         <span class="chip bg-color">JS</span>
+                    </a>
+                    
+                    <a href="../../../../tags/interview/">
+                        <span class="chip bg-color">interview</span>
                     </a>
                     
                 </div>

@@ -452,7 +452,9 @@
 <pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> sum <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token function">sum</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token keyword">return</span> <span class="token punctuation">{</span> name<span class="token punctuation">:</span> <span class="token string">'a'</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
-<h2 id="4-箭头函数和普通函数明显的区别"><a href="#4-箭头函数和普通函数明显的区别" class="headerlink" title="4.箭头函数和普通函数明显的区别"></a>4.箭头函数和普通函数明显的区别</h2><p>箭头函数内部的<code>this</code>是词法作用域，由上下文确定。</p>
+<h2 id="4-箭头函数和普通函数明显的区别"><a href="#4-箭头函数和普通函数明显的区别" class="headerlink" title="4.箭头函数和普通函数明显的区别"></a>4.箭头函数和普通函数明显的区别</h2><ol>
+<li>箭头函数内部的<code>this</code>是词法作用域，由上下文确定。</li>
+</ol>
 <pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">//普通函数</span>
 <span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span>
     birth<span class="token punctuation">:</span> <span class="token number">1990</span><span class="token punctuation">,</span>
@@ -475,9 +477,11 @@
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 obj1<span class="token punctuation">.</span><span class="token function">getAge</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 26，箭头函数完全修复了this的指向，this总是指向词法作用域，也就是外层调用者obj1</span></code></pre>
-<blockquote>
-<p>不能用arguments，但是可以用参数以及参数解构</p>
-</blockquote>
+<ol start="2">
+<li>不能用arguments，但是可以用参数以及参数解构</li>
+<li>匿名函数，奴能作为构造函数，不可以new</li>
+<li>箭头函数没有原型属性</li>
+</ol>
 <h2 id="5-创建立即执行函数表达式"><a href="#5-创建立即执行函数表达式" class="headerlink" title="5.创建立即执行函数表达式"></a>5.创建立即执行函数表达式</h2><pre class=" language-js"><code class="language-js"><span class="token keyword">let</span> person <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
   <span class="token keyword">return</span> <span class="token punctuation">{</span>
     getName<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span> <span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -681,9 +685,9 @@ var obj = {
                     <div class="card-image">
                         
                         
-                        <img src="../../../../medias/featureimages/2.jpg" class="responsive-img" alt="js 模块化编程">
+                        <img src="../../../../medias/featureimages/23.jpg" class="responsive-img" alt="js 模块化">
                         
-                        <span class="card-title">js 模块化编程</span>
+                        <span class="card-title">js 模块化</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -713,6 +717,10 @@ var obj = {
                     
                     <a href="../../../../tags/JS/">
                         <span class="chip bg-color">JS</span>
+                    </a>
+                    
+                    <a href="../../../../tags/module/">
+                        <span class="chip bg-color">module</span>
                     </a>
                     
                 </div>

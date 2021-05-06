@@ -695,6 +695,46 @@ console<span class="token punctuation">.</span><span class="token function">log<
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span>
 <span class="token punctuation">}</span></code></pre>
+<h2 id="实际应用-跳过"><a href="#实际应用-跳过" class="headerlink" title="实际应用 (跳过)"></a>实际应用 (跳过)</h2><p>在定时器、事件监听器、 Ajax 请求、跨窗口通信、Web Workers 或者任何其他的异步(或者同步)任务中，只要使用了回调函数，实际上就是在使用闭包!</p>
+<h3 id="定时器闭包案例："><a href="#定时器闭包案例：" class="headerlink" title="定时器闭包案例："></a>定时器闭包案例：</h3><pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">wait</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token function">setTimeout</span><span class="token punctuation">(</span> <span class="token keyword">function</span> <span class="token function">timer</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span> message <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">1000</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token function">wait</span><span class="token punctuation">(</span> <span class="token string">"Hello, closure!"</span> <span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h3 id="事件监听闭包案例："><a href="#事件监听闭包案例：" class="headerlink" title="事件监听闭包案例："></a>事件监听闭包案例：</h3><pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">setupBot</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> selector<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token function">$</span><span class="token punctuation">(</span>selector<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">click</span><span class="token punctuation">(</span> <span class="token keyword">function</span> <span class="token function">activator</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span> <span class="token string">"Activating: "</span> <span class="token operator">+</span> name <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token function">setupBot</span><span class="token punctuation">(</span> <span class="token string">"Closure Bot 1"</span><span class="token punctuation">,</span> <span class="token string">"#bot_1"</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">setupBot</span><span class="token punctuation">(</span> <span class="token string">"Closure Bot 2"</span><span class="token punctuation">,</span> <span class="token string">"#bot_2"</span> <span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>上面的案例中，有个相同的特点：先定义函数，后执行函数时能够调用到函数中的私有变量或者实参。这便是闭包的特点吧</p>
+<h3 id="Currying"><a href="#Currying" class="headerlink" title="Currying"></a>Currying</h3><pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">//Un-curried function</span>
+<span class="token keyword">function</span> <span class="token function">unCurried</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> x <span class="token operator">+</span> y<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">//Curried function</span>
+<span class="token keyword">function</span> <span class="token function">curried</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token keyword">function</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> x <span class="token operator">+</span> y<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">//Alternative using ES6</span>
+<span class="token keyword">const</span> curried <span class="token operator">=</span> x <span class="token operator">=</span><span class="token operator">></span> y <span class="token operator">=</span><span class="token operator">></span> x <span class="token operator">+</span> y
+
+<span class="token function">curried</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// Returns 3</span></code></pre>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">add</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">// Only change code below this line</span>
+<span class="token keyword">return</span> <span class="token keyword">function</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">function</span><span class="token punctuation">(</span>z<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> x <span class="token operator">+</span> y <span class="token operator">+</span> z<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token comment" spellcheck="true">// Only change code above this line</span>
+<span class="token punctuation">}</span>
+<span class="token function">add</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <h3 id="实际应用中经典例子"><a href="#实际应用中经典例子" class="headerlink" title="实际应用中经典例子"></a>实际应用中经典例子</h3><pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">/** 
 * &lt;body> 
 * &lt;ul> 
@@ -869,9 +909,9 @@ console<span class="token punctuation">.</span><span class="token function">log<
                     <div class="card-image">
                         
                         
-                        <img src="../../../../medias/featureimages/2.jpg" class="responsive-img" alt="js 模块化编程">
+                        <img src="../../../../medias/featureimages/23.jpg" class="responsive-img" alt="js 模块化">
                         
-                        <span class="card-title">js 模块化编程</span>
+                        <span class="card-title">js 模块化</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -901,6 +941,10 @@ console<span class="token punctuation">.</span><span class="token function">log<
                     
                     <a href="../../../../tags/JS/">
                         <span class="chip bg-color">JS</span>
+                    </a>
+                    
+                    <a href="../../../../tags/module/">
+                        <span class="chip bg-color">module</span>
                     </a>
                     
                 </div>
