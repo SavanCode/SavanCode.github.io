@@ -191,9 +191,10 @@ function debounce(func,wait){
     }
 }
 
+
 //这里的apply最少两个参数 call bind 是不一定的 最少一个即可
 Function.prototype.call = function(context,arguments){
-    var context = context ||window;
+    context = context ||window;
     let fn = Symbol();
     context[fn]=this;
     let result = context[fn](...arguments)
@@ -208,6 +209,7 @@ function newObj(){
     return typeof result === "object" ? result : obj;
 }
 
+//object instanceof constructor
 function myInstanceOf(obj, Type) {
   // 得到原型对象
   let protoObj = obj.__proto__
@@ -656,6 +658,8 @@ function ajax() {
   request.send() //用于实际发出 HTTP 请求。不带参数为GET请求
 }
 
+
+
 // json 跨域
 function jsonp(url,jsonpCallback,success){
 const script = document.createElement('script');
@@ -666,4 +670,117 @@ window[jsonpCallback]=function(data){
   success && success(data)
 }
 document.body.appendChild(script)
+}
+
+
+
+//eventbus
+
+// 创建一个 Event Bus（本质上也是 Vue 实例）并导出：
+
+// const EventBus = new Vue()
+// export default EventBus
+// 在主文件里引入EventBus，并挂载到全局：
+
+// import bus from 'EventBus的文件路径'
+// Vue.prototype.bus = bus
+// 订阅事件：
+
+// // 这里func指someEvent这个事件的监听函数
+// this.bus.$on('someEvent', func)
+// 发布（触发）事件：
+
+// // 这里params指someEvent这个事件被触发时回调函数接收的入参
+// this.bus.$emit('someEvent', params)
+
+
+class evebtbus{
+  constructor(){
+    this.handlers={}
+  }
+
+  on(eventName,fn){
+    if(this.handlers[eventName]){this.handlers(eventName).push(fn)}
+    else{
+      this.handlers[eventName]=[];
+      this.handlers[eventName].push(fn)
+    }
+  }
+
+  emit(eventName,...args){
+    if(this.handlers[eventName]){
+      this.handlers[eventName].forEach((callback)=>{ callback(...args)})
+    }
+  }
+
+  off(eventName,fn){
+    if(!fn){
+      delete this.handlers[eventName]
+    }
+    if(! this.handlers[eventName] || this.handlers[eventName].length ==0){
+      return true
+    }
+        fnIndex=this.handlers[eventName].indexof(fn)
+        if(fnIndex!=-1){
+            this.handlers[eventName].splice(fnIndex,1)
+        }
+
+  }
+
+  once(eventName,fn){
+    const warpper= (...args)=>{
+      fn.apply(...args)
+      this.off(eventName,warpper)
+    }
+    this.on(eventName,warpper)
+  }
+
+}
+
+
+class eventbus{
+  constructor(){
+    this.handlers={}
+  }
+  on(eventName,fn){
+      if(!this.handlers[eventName]){
+          this.handlers[eventName]=[]
+      }
+      this.handlers[eventName].push(fn)
+  }
+
+
+  off(eventName,fn){
+    if(this.handlers[eventName]){
+        fnIndex= this.handlers[eventName].indexof(fn)
+        if(fnIndex!=-1){ this.handlers[eventName].splice(fnIndex,1)}
+    }
+  }
+
+  emit(eventName,args){
+    if(this.handlers[eventName]){
+      this.handlers[eventName].forEach((callback)=>{callback(...args)})
+    }
+  }
+  once(eventName,fn){
+    const onceEvent=(...args)=>{
+        fn(...args)
+        this.on(eventName,onceEvent)
+    }
+    this.off(eventName,onceEvent)
+  }
+}
+
+// 不断找到最小的放前面
+function selectionSort(arr){
+  for(let i=0;i<arr.length-1;i++){
+    minIndex=i;
+    for(let j=i;j<arr.length;j++){
+        if(arr[j]<arr[minIndex]){ minIndex=j}
+    }
+     if(minIndex!==i){
+    [arr[i],arr[minIndex]]=[arr[minIndex],arr[i]]
+    }
+  }
+ return arr
 }

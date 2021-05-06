@@ -28,11 +28,11 @@ categories: optimization
 ### 1. 图片优化
 SVG 和 webP 是令人兴奋的新兴图片格式。SVG 适合于插画和简单图像的展示，而 webP 则在所有用到了 JPEG 和 PNG 的场景下成为了更好的选择。
 
-#### PNG  Logo
+#### PNG  Logo - 小图
 
 优点 ：保真 但是体积过大
 
-#### JPG banner
+#### JPG banner 或者svg banner
 
 `JPG` 最大的特点是**有损压缩**。这种高效的压缩算法使它成为了一种非常轻巧的图片格式。JPG 图片经常作为大的背景图、轮播图或 Banner 图出现。
 

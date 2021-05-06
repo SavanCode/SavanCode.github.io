@@ -434,21 +434,27 @@ function optimzedBubbleSort = (arr) => {
 ![Insertion Sort](js-basic-algo/849589-20171015225645277-115110000.gif)
 
 ```js
-function insertionSort(arr) {
-    var len = arr.length,
-        preIndex;
-    // 无序序列从i=1处开始遍历
-    for (var i = 1; i < len; i++) {
-        // 记录上一个值的索引
-        preIndex = i - 1;
-        // 如果上一个值比当前值大，互换位置，考虑有序序列可能有多个，所以需要让preIndex递减
-        while (preIndex >= 0 && arr[preIndex] > arr[preIndex + 1]) {
-            arr[preIndex] = [arr[preIndex + 1], arr[preIndex + 1] = arr[preIndex]][0];
-            preIndex--;
-        };
-    };
-    return arr;
-};
+function insertSort(arr) {
+  // 缓存数组长度
+  const len = arr.length
+  // temp 用来保存当前需要插入的元素
+  let temp  
+  // i用于标识每次被插入的元素的索引
+  for(let i = 1;i < len; i++) {
+    // j用于帮助 temp 寻找自己应该有的定位
+    let j = i
+    temp = arr[i]  
+    // 判断 j 前面一个元素是否比 temp 大
+    while(j > 0 && arr[j-1] > temp) {
+      // 如果是，则将 j 前面的一个元素后移一位，为 temp 让出位置
+      arr[j] = arr[j-1]   
+      j--
+    }
+    // 循环让位，最后得到的 j 就是 temp 的正确索引
+    arr[j] = temp
+  }
+  return arr
+}
 var arr = [4, 2, 1, 3];
 insertionSort(arr); //[1, 2, 3, 4]
 ```
@@ -460,21 +466,28 @@ insertionSort(arr); //[1, 2, 3, 4]
 ![选择排序（Selection Sort）](js-basic-algo/849589-20171015224719590-1433219824.gif)
 
 ```js
-function selectionSort(arr){
-    var len = arr.length;
-    var minIndex,temp;
-    for(var i=0;i<len;i++){
-        minIndex=1;
-        for(var j=i+1;j<len;j++){
-            if(arr[j]<arr[minIndex]){
-             	minIndex=j   
-            }
-        }
-        temp=arr[i];
-        arr[i]=arr[minIndex];
-        arr[minIndex]=temp;
+function selectSort(arr)  {
+  // 缓存数组长度
+  const len = arr.length 
+  // 定义 minIndex，缓存当前区间最小值的索引，注意是索引
+  let minIndex  
+  // i 是当前排序区间的起点
+  for(let i = 0; i < len - 1; i++) { 
+    // 初始化 minIndex 为当前区间第一个元素
+    minIndex = i  
+    // i、j分别定义当前区间的上下界，i是左边界，j是右边界
+    for(let j = i; j < len; j++) {  
+      // 若 j 处的数据项比当前最小值还要小，则更新最小值索引为 j
+      if(arr[j] < arr[minIndex]) {  
+        minIndex = j
+      }
     }
-    return arr
+    // 如果 minIndex 对应元素不是目前的头部元素，则交换两者
+    if(minIndex !== i) {
+      [arr[i], arr[minIndex]] = [arr[minIndex], arr[i]]
+    }
+  }
+  return arr
 }
 ```
 
