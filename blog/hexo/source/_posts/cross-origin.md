@@ -172,8 +172,12 @@ Preflight Request作用
 #### 特殊性： 带上cookie
 
 1. 后端 Response header 有 `Access-Control-Allow-Credentials: true`
+
+   前端   request.credentials =  'same-origin'; // 同源携带  
+
+   ​		   或者 request.credentials =  'include'; // 可跨域携带
+
 2. **后端 Response header 的 `Access-Control-Allow-Origin` 不能是 `*`，要明确指定**
-3. 前端 fetch 加上 `credentials: 'include'`
 
 > **`Access-Control-Allow-Origin` 不要設定成 `*` 而是明確指定 origin，避免預期之外的 origin 跨站存取資源。若是你有多個 origin 的話，建議在後端有一個 origin 的清單，判斷 request header 內的 origin 有沒有在清單中，有的話就設定 `Access-Control-Allow-Origin`，沒有的話就不管它。**
 
