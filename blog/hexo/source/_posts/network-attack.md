@@ -139,13 +139,9 @@ DOM 型 XSS 的攻击步骤：
   }
 ```
 
-- 预防: 在VUE,REACT中使用 `.innerHTML`、`.outerHTML`、`document.write()` 时要特别小心，不要把不可信的数据作为 HTML 插到页面上，而应尽量使用 `.textContent`、`.setAttribute()`
+- 设置白名单
 
-- ### 输入内容长度控制
-
-  对于不受信任的输入，都应该限定一个合理的长度。虽然无法完全防止 XSS 发生，但可以增加 XSS 攻击的难度。
-
-- **HTTP-only Cookie**: 禁止 JavaScript 读取某些敏感 Cookie，攻击者完成 XSS 注入后也无法窃取此 Cookie。(HttpOnly 并非阻止 XSS 攻击，而是能阻止 XSS 攻击后的 Cookie 劫持攻击。)
+  只允许部分的标签可以通过提交。
 
 - 验证码：防止脚本冒充用户提交危险操作。
 
