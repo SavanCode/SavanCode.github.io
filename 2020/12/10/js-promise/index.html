@@ -382,6 +382,10 @@
                     
                     <div class="article-tag">
                         
+                            <a href="../../../../tags/JS-Async/">
+                                <span class="chip bg-color">JS Async</span>
+                            </a>
+                        
                             <a href="../../../../tags/JS/">
                                 <span class="chip bg-color">JS</span>
                             </a>
@@ -396,10 +400,6 @@
                         
                             <a href="../../../../categories/JS/" class="post-category">
                                 JS
-                            </a>
-                        
-                            <a href="../../../../categories/JS/JS-Async/" class="post-category">
-                                JS Async
                             </a>
                         
                     </div>
@@ -568,16 +568,15 @@ p<span class="token punctuation">.</span><span class="token function">then</span
 <span class="token function">f1</span><span class="token punctuation">(</span>para<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>value<span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>reject<span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <p><strong>第三阶段 异步函数</strong></p>
 <p>promise还是有些繁琐，于是es7又推出了async和await，将同步操作以同步的方式书写出来。</p>
-<h3 id="promise的状态改变"><a href="#promise的状态改变" class="headerlink" title="promise的状态改变"></a>promise的状态改变</h3><p>Promise对象只有三种状态 （PromiseState）</p>
+<h3 id="promise的状态改变"><a href="#promise的状态改变" class="headerlink" title="promise的状态改变"></a>promise的状态改变</h3><p>Promise 有三种状态：</p>
+<p>pending，resolved，rejected<br>pending -&gt; resolved 或 pending -&gt; rejected</p>
+<p>状态的表现</p>
 <ul>
-<li>异步操作“未完成”（pending）</li>
-<li>异步操作“已完成”（resolved，又称fulfilled）</li>
-<li>异步操作“失败”（rejected）</li>
-</ul>
-<p>这三种的状态的变化途径只有两种且不可逆，且一个promise只能改变以此一次状态。</p>
-<ul>
-<li>异步操作从“未完成”到“已完成”（pending -  resolved）</li>
-<li>异步操作从“未完成”到“失败”。( pending - rejected)</li>
+<li>pending 状态，不会触发 then 和 catch</li>
+<li>resolved 状态，会触发后续的 then 回调函数</li>
+<li>rejected 状态，会触发后续的 catch 回调函数</li>
+<li>then 正常返回 resolved，里面有报错则返回 rejected</li>
+<li>catch 正常返回 resolved，里面偶遇报错则返回 rejected</li>
 </ul>
 <p>因此，Promise对象的最终结果只有两种。<strong>要么成功，要么失败。于是只会有一种数据产生，成功的结果数据称value,失败的结果数据称reason</strong> （PromiseResult）</p>
 <ul>
@@ -1343,6 +1342,10 @@ async function run() &#123;
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
+                            
+                                <a href="../../../../tags/JS-Async/">
+                                    <span class="chip bg-color">JS Async</span>
+                                </a>
                             
                                 <a href="../../../../tags/JS/">
                                     <span class="chip bg-color">JS</span>

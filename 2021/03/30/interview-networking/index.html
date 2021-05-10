@@ -433,6 +433,26 @@
 </ul>
 </li>
 </ul>
+<h3 id="强缓存"><a href="#强缓存" class="headerlink" title="强缓存"></a>强缓存</h3><p>Cache-Control 的值：</p>
+<ul>
+<li><p>max-age： 缓存最大过期时间</p>
+</li>
+<li><p>no-cache：不适用强制缓存，正常想服务端发送请求</p>
+</li>
+<li><p>no-store：不用本地的强制缓存，也不用服务端作缓存（不常用）</p>
+</li>
+<li><p>private：只允许最终用户作缓存</p>
+</li>
+<li><p>public：允许中间路由缓存</p>
+</li>
+</ul>
+<h3 id="协商缓存（对比缓存）"><a href="#协商缓存（对比缓存）" class="headerlink" title="协商缓存（对比缓存）"></a>协商缓存（对比缓存）</h3><ul>
+<li>服务端缓存策略</li>
+<li>服务器判断客户端资源，是否和服务端资源一样</li>
+<li>已知返回 304，否则返回 200 和最新资源</li>
+</ul>
+<p>强缓存和协商缓存流程大致如下</p>
+<p><img src="/2021/03/30/interview-networking/cache.png"></p>
 <h2 id="（5）问：HTTP-常用的状态码及使用场景？"><a href="#（5）问：HTTP-常用的状态码及使用场景？" class="headerlink" title="（5）问：HTTP 常用的状态码及使用场景？"></a>（5）问：HTTP 常用的状态码及使用场景？</h2><ul>
 <li>1xx：表示目前是协议的中间状态，还需要后续请求</li>
 <li>2xx：表示请求成功</li>
@@ -550,6 +570,8 @@
 <h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><ul>
 <li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/3fc3646fad80">www.jianshu.com/p/3fc3646fa…</a></li>
 </ul>
+<h2 id="HTTP-区别"><a href="#HTTP-区别" class="headerlink" title="HTTP 区别"></a>HTTP 区别</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/102561034">知乎：http1，http2， http3 的区别</a></p>
+<p><img src="interview-networking/http.png"></p>
 <h2 id="HTTP-如何实现长连接？在什么时候会超时？"><a href="#HTTP-如何实现长连接？在什么时候会超时？" class="headerlink" title="HTTP 如何实现长连接？在什么时候会超时？"></a>HTTP 如何实现长连接？在什么时候会超时？</h2><p>通过在头部（请求和响应头）设置 Connection: keep-alive，HTTP1.0协议支持，但是默认关闭，从HTTP1.1协议以后，连接默认都是长连接</p>
 <ul>
 <li>HTTP 一般会有 httpd 守护进程，里面可以设置 keep-alive timeout，当 tcp 链接闲置超过这个时间就会关闭，也可以在 HTTP 的 header 里面设置超时时间</li>

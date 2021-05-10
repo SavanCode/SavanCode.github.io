@@ -542,7 +542,24 @@ callerObj<span class="token punctuation">.</span><span class="token function">ne
 <span class="token punctuation">}</span>
 <span class="token comment" spellcheck="true">// first: Jane</span>
 <span class="token comment" spellcheck="true">// last: Doe</span></code></pre>
-<h3 id="执行异步任务"><a href="#执行异步任务" class="headerlink" title="执行异步任务"></a>执行异步任务</h3><p>休息休息 看不下去了</p>
+<h3 id="执行异步任务"><a href="#执行异步任务" class="headerlink" title="执行异步任务"></a>执行异步任务</h3><h2 id="额外知识点"><a href="#额外知识点" class="headerlink" title="额外知识点"></a>额外知识点</h2><h3 id="generator的this"><a href="#generator的this" class="headerlink" title="generator的this"></a>generator的this</h3><p><strong>Generator 函数总是返回一个遍历器，ES6 规定这个遍历器是 Generator 函数的实例，也继承了 Generator 函数的<code>prototype</code>对象上的方法。</strong></p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">function</span><span class="token operator">*</span> <span class="token function">g</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+g<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>hello <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token string">'hi!'</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> obj <span class="token operator">=</span> <span class="token function">g</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+obj <span class="token keyword">instanceof</span> <span class="token class-name">g</span> <span class="token comment" spellcheck="true">// true</span>
+obj<span class="token punctuation">.</span><span class="token function">hello</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 'hi!'</span></code></pre>
+<blockquote>
+<p>上面代码表明，<strong>Generator 函数<code>g</code>返回的遍历器<code>obj</code>，是<code>g</code>的实例</strong>，而且继承了<code>g.prototype</code>。但是，如果把<code>g</code>当作普通的构造函数，并不会生效，因为**<code>g</code>返回的总是遍历器对象，而不是<code>this</code>对象。**</p>
+</blockquote>
+<h3 id="generator-与上下文"><a href="#generator-与上下文" class="headerlink" title="generator 与上下文"></a>generator 与上下文</h3><blockquote>
+<p>这里先估计大家理解context 上下文 以及 执行栈 call stack的运行机制</p>
+</blockquote>
+<p>Generator 函数与普通的call stack函数运行是不一样的，它执行产生的上下文环境，一旦遇到<code>yield</code>命令，就会暂时退出堆栈，但是并不消失，里面的所有变量和对象会冻结在当前状态。等到对它执行<code>next</code>命令时，这个上下文环境又会重新加入调用栈，冻结的变量和对象恢复执行。</p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a target="_blank" rel="noopener" href="https://es6.ruanyifeng.com/#docs/generator">Generator 函数的语法</a></p>
 
             </div>

@@ -423,7 +423,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p><a href="https://savancode.github.io/2021/02/01/Vue-day7/">基础部分笔记</a></p>
+                <p><a href="https://savancode.github.io/2021/02/01/Vue-day7/">Axios基础部分笔记</a></p>
 <h2 id="封装原因"><a href="#封装原因" class="headerlink" title="封装原因"></a>封装原因</h2><ul>
 <li>统一 url 配置</li>
 <li>统一 api 请求 （因为会遇到不同域名 类似 开发域名，测试域名，生产域名）</li>
@@ -668,6 +668,99 @@
 <span class="token punctuation">}</span>
 
 <span class="token keyword">export</span> <span class="token keyword">default</span> install</code></pre>
+<h2 id="原理实现-手写ajax请求函数"><a href="#原理实现-手写ajax请求函数" class="headerlink" title="原理实现 - 手写ajax请求函数"></a>原理实现 - 手写ajax请求函数</h2><h3 id="实现整体流程"><a href="#实现整体流程" class="headerlink" title="实现整体流程"></a>实现整体流程</h3><ol>
+<li><p>函数的参数为一个配置对象</p>
+<p>{ url: ‘’, // 请求地址 method: ‘’, // 请求方式GET/POST/PUT/DELETE params: {}, // GET/DELETE请求的query参数 data: {}, // POST或DELETE请求的请求体参数 }</p>
+</li>
+<li><p>返回值: 函数的返回值为promise, 成功的结果为response, 失败的结果为error</p>
+</li>
+<li><p>能处理多种类型的请求: GET/POST/PUT/DELETE</p>
+</li>
+<li><p>响应json数据自动解析为js的对象/数组</p>
+</li>
+</ol>
+<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">/* 发送任意类型请求的函数 */</span>
+<span class="token keyword">function</span> <span class="token function">axios</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  url<span class="token punctuation">,</span>
+  method<span class="token operator">=</span><span class="token string">'GET'</span><span class="token punctuation">,</span>
+  params<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  data<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">// 返回一个promise对象</span>
+  <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span>resolve<span class="token punctuation">,</span> reject<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+
+    <span class="token comment" spellcheck="true">// 处理method(转大写)</span>
+    method <span class="token operator">=</span> method<span class="token punctuation">.</span><span class="token function">toUpperCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token comment" spellcheck="true">// 处理query参数(拼接到url上)   id=1&amp;xxx=abc</span>
+    <span class="token comment" spellcheck="true">/* { id: 1, xxx: 'abc'} */</span>
+    <span class="token keyword">let</span> queryString <span class="token operator">=</span> <span class="token string">''</span>
+    Object<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span>params<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>key <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+      queryString <span class="token operator">+</span><span class="token operator">=</span> <span class="token template-string"><span class="token string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>key<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">=</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>params<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">&amp;`</span></span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>queryString<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// id=1&amp;xxx=abc&amp;</span>
+      <span class="token comment" spellcheck="true">// 去除最后的&amp;</span>
+      queryString <span class="token operator">=</span> queryString<span class="token punctuation">.</span><span class="token function">substring</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> queryString<span class="token punctuation">.</span>length<span class="token number">-1</span><span class="token punctuation">)</span>
+      <span class="token comment" spellcheck="true">// 接到url</span>
+      url <span class="token operator">+</span><span class="token operator">=</span> <span class="token string">'?'</span> <span class="token operator">+</span> queryString
+    <span class="token punctuation">}</span>
+
+
+    <span class="token comment" spellcheck="true">// 1. 执行异步ajax请求</span>
+    <span class="token comment" spellcheck="true">// 创建xhr对象</span>
+    <span class="token keyword">const</span> request <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">XMLHttpRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true">// 打开连接(初始化请求, 没有请求)</span>
+    request<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span>method<span class="token punctuation">,</span> url<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span>
+
+    <span class="token comment" spellcheck="true">// 发送请求</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>method<span class="token operator">===</span><span class="token string">'GET'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      request<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>method<span class="token operator">===</span><span class="token string">'POST'</span> <span class="token operator">||</span> method<span class="token operator">===</span><span class="token string">'PUT'</span> <span class="token operator">||</span> method<span class="token operator">===</span><span class="token string">'DELETE'</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+      <span class="token comment" spellcheck="true">// 告诉服务器请求体的格式是json</span>
+      request<span class="token punctuation">.</span><span class="token function">setRequestHeader</span><span class="token punctuation">(</span><span class="token string">'Content-Type'</span><span class="token punctuation">,</span> <span class="token string">'application/json;charset=utf-8'</span><span class="token punctuation">)</span> 
+       <span class="token comment" spellcheck="true">// 发送json格式请求体参数</span>
+      request<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span>JSON<span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">// 绑定状态改变的监听</span>
+    request<span class="token punctuation">.</span>onreadystatechange <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment" spellcheck="true">// 如果请求没有完成, 直接结束</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>request<span class="token punctuation">.</span>readyState<span class="token operator">!==</span><span class="token number">4</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span>
+      <span class="token punctuation">}</span>
+      <span class="token comment" spellcheck="true">// 如果响应状态码在[200, 300)之间代表成功, 否则失败</span>
+      <span class="token keyword">const</span> <span class="token punctuation">{</span>status<span class="token punctuation">,</span> statusText<span class="token punctuation">}</span> <span class="token operator">=</span> request
+      <span class="token comment" spellcheck="true">// 2.1. 如果请求成功了, 调用resolve()</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>status<span class="token operator">>=</span><span class="token number">200</span> <span class="token operator">&amp;&amp;</span> status<span class="token operator">&lt;=</span><span class="token number">299</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 准备结果数据对象response</span>
+        <span class="token keyword">const</span> response <span class="token operator">=</span> <span class="token punctuation">{</span>
+          data<span class="token punctuation">:</span> JSON<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>request<span class="token punctuation">.</span>response<span class="token punctuation">)</span><span class="token punctuation">,</span>
+          status<span class="token punctuation">,</span>
+          statusText
+        <span class="token punctuation">}</span>
+        <span class="token function">resolve</span><span class="token punctuation">(</span>response<span class="token punctuation">)</span>
+      <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// 2.2. 如果请求失败了, 调用reject()</span>
+        <span class="token function">reject</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token string">'request error status is '</span> <span class="token operator">+</span> status<span class="token punctuation">)</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">/* 发送特定请求的静态方法 */</span>
+axios<span class="token punctuation">.</span><span class="token keyword">get</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>url<span class="token punctuation">,</span> options<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token function">axios</span><span class="token punctuation">(</span>Object<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span>options<span class="token punctuation">,</span> <span class="token punctuation">{</span>url<span class="token punctuation">,</span> method<span class="token punctuation">:</span> <span class="token string">'GET'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+axios<span class="token punctuation">.</span><span class="token keyword">delete</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>url<span class="token punctuation">,</span> options<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token function">axios</span><span class="token punctuation">(</span>Object<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span>options<span class="token punctuation">,</span> <span class="token punctuation">{</span>url<span class="token punctuation">,</span> method<span class="token punctuation">:</span> <span class="token string">'DELETE'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+axios<span class="token punctuation">.</span>post <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>url<span class="token punctuation">,</span> data<span class="token punctuation">,</span> options<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token function">axios</span><span class="token punctuation">(</span>Object<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span>options<span class="token punctuation">,</span> <span class="token punctuation">{</span>url<span class="token punctuation">,</span> data<span class="token punctuation">,</span> method<span class="token punctuation">:</span> <span class="token string">'POST'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+axios<span class="token punctuation">.</span>put <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>url<span class="token punctuation">,</span> data<span class="token punctuation">,</span> options<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token function">axios</span><span class="token punctuation">(</span>Object<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span>options<span class="token punctuation">,</span> <span class="token punctuation">{</span>url<span class="token punctuation">,</span> data<span class="token punctuation">,</span> method<span class="token punctuation">:</span> <span class="token string">'PUT'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> axios</code></pre>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/xifengxiaoma/article/details/92839222?spm=1001.2014.3001.5501">Vue + Element UI 实现权限管理系统 前端篇（三）：工具模块封装</a></p>
 
             </div>

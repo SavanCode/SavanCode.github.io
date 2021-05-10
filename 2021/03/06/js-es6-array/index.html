@@ -427,13 +427,15 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="数组创建"><a href="#数组创建" class="headerlink" title="数组创建"></a>数组创建</h2><h3 id="Array-of"><a href="#Array-of" class="headerlink" title="Array.of()"></a>Array.of()</h3><p>将参数中所有值作为元素形成数组。</p>
+                <h2 id="数组创建"><a href="#数组创建" class="headerlink" title="数组创建"></a>数组创建</h2><h3 id="Array-of-value1-value2-value3"><a href="#Array-of-value1-value2-value3" class="headerlink" title="Array.of(value1, value2, value3)"></a>Array.of(value1, value2, value3)</h3><p>将参数中所有值作为元素形成数组。</p>
 <pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// 参数值可为不同类型</span>
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Array<span class="token punctuation">.</span><span class="token keyword">of</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">'2'</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// [1, '2', true]</span>
 
 <span class="token comment" spellcheck="true">// 参数为空时返回空数组</span>
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Array<span class="token punctuation">.</span><span class="token keyword">of</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// []</span></code></pre>
 <h3 id="Array-from-array-function"><a href="#Array-from-array-function" class="headerlink" title="Array.from(array,function)"></a>Array.from(array,function)</h3><p>将类数组对象或可迭代对象转化为数组。</p>
+<p><strong>伪数组与真数组的区别</strong>：</p>
+<p>伪数组的原型链中没有 Array.prototype，而真数组的原型链中有 Array.prototype。因此伪数组没有 pop、join等属性。</p>
 <pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// 参数为数组,返回与原数组一样的数组</span>
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Array<span class="token punctuation">.</span><span class="token keyword">from</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// [1, 2]</span>
 
