@@ -161,7 +161,8 @@ BFC(Block Formatting Context)，块级格式化上下文，是一个独立的渲
 ### flex
 
 flex容器
- 定义了display: flex  inline-flex(行内元素)的元素，默认存在两根轴，横向主轴，垂直交叉轴，默认沿主轴排列，以下为容器属性：
+
+定义了display: flex  inline-flex(行内元素)的元素，默认存在两根轴，横向主轴，垂直交叉轴，默认沿主轴排列，以下为容器属性：
 
 1. flex-direction:  row（默认） | row-reverse | column | column-reverse  项目排列方向
 
@@ -198,10 +199,19 @@ flex项目
 
 ### css 动画
 
+1. **CSS3动画**
+- Transform（变形）
+    - Transition（过渡）
+    - Animation（动画）
+2. **JS动画（操作DOM、修改CSS属性值）**
+2. **Canvas动画** （切换速度非常快的静态画面）
+3. **SVG动画**（**svg**的描边**动画**就是利用stroke-dasharray和stroke-dashoffset两个属性值的变化来实现的。 为path，则可以实现任意复杂图形的描边**动画**）---**这个注意要会用！！！**
+4. **以Three.js为首的3D动画**
+
 #### **1. transition过渡** 
 
 
- transition: `<property> <duration> <timing-function> <delay>`;
+ **transition: `<property> <duration> <timing-function> <delay>`; 属性 时长 速度**
 
 
 将变化按照设置的时间长度缓慢执行完毕，而不是立即执行。
@@ -232,9 +242,31 @@ transition: 1s height, 1s 1s width;
 transition: 1s height ease;
 /* 指定自定义移状态变化速度 */
 transition: 1s height cubic-bezier(.83,.97,.05,1.44);
+
+//下面就是hover 之后width加长
+div
+{
+	width:100px;
+	height:100px;
+	background:red;
+	transition-property:width;
+	transition-duration:1s;
+	transition-timing-function:linear;
+	transition-delay:2s;
+	/* Safari */
+	-webkit-transition-property:width;
+	-webkit-transition-duration:1s;
+	-webkit-transition-timing-function:linear;
+	-webkit-transition-delay:2s;
+}
+
+div:hover
+{
+	width:200px;
+}
 ```
 
-#### **transition的局限** 
+##### **transition的局限** 
 
 transition的优点在于简单易用，但是它有几个很大的局限。
 
@@ -248,7 +280,7 @@ CSS Animation就是为了解决这些问题而提出的。
 - Transition 强调过渡，Transition ＋ Transform ＝ 两个关键帧的Animation
 - Animation 强调流程与控制，Duration ＋ TransformLib ＋ Control ＝ 多个关键帧的Animation
 
-#### **2. animation动画**
+#### **2. [animation动画](https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Animations/Using_CSS_animations)**
 
 `animation`和关键帧配合使用【@keyframes】
 
@@ -260,11 +292,23 @@ CSS Animation就是为了解决这些问题而提出的。
   animation: 1s rainbow 3; 指定动画播放次数
   */
 }
-
+@keyframes rainbow
+{
+    from {background: red;}
+    to {background: yellow;}
+}
 @keyframes rainbow {
   0% { background: #c00; }
   50% { background: orange; }
   100% { background: yellowgreen; }
+}
+@keyframes myfirst
+{
+    0%   {background: red; left:0px; top:0px;}
+    25%  {background: yellow; left:200px; top:0px;}
+    50%  {background: blue; left:200px; top:200px;}
+    75%  {background: green; left:0px; top:200px;}
+    100% {background: red; left:0px; top:0px;}
 }
 ```
 
@@ -280,3 +324,80 @@ CSS Animation就是为了解决这些问题而提出的。
 8. animation-play-state: 暂停/启动动画。
 
 - 参考：[CSS动画简介](http://www.ruanyifeng.com/blog/2014/02/css_transition_and_animation.html)
+
+#### 3. transform
+
+这种就只是变形
+
+[语法](https://developer.mozilla.org/en-US/docs/Web/CSS/transform#syntax)
+
+#### 4. CSS3 2D
+
+2D变换方法：
+
+- translate()
+- rotate()
+- scale()
+- skew()
+- matrix()
+
+```css
+div
+{
+transform: rotate(30deg);
+-ms-transform: rotate(30deg); /* IE 9 */
+-webkit-transform: rotate(30deg); /* Safari and Chrome */
+}
+/*
+translate值（50px，100px）是从左边元素移动50个像素，并从顶部移动100像素
+rotate值（30deg）元素顺时针旋转30度。
+scale（2,3）转变宽度为原来的大小的2倍，和其原始大小3倍的高度。
+skew(30deg,20deg) 元素在X轴和Y轴上倾斜20度30度
+*/
+```
+
+2D 转换方法
+
+| 函数                            | 描述                                     |
+| :------------------------------ | :--------------------------------------- |
+| matrix(*n*,*n*,*n*,*n*,*n*,*n*) | 定义 2D 转换，使用六个值的矩阵。         |
+| translate(*x*,*y*)              | 定义 2D 转换，沿着 X 和 Y 轴移动元素。   |
+| translateX(*n*)                 | 定义 2D 转换，沿着 X 轴移动元素。        |
+| translateY(*n*)                 | 定义 2D 转换，沿着 Y 轴移动元素。        |
+| scale(*x*,*y*)                  | 定义 2D 缩放转换，改变元素的宽度和高度。 |
+| scaleX(*n*)                     | 定义 2D 缩放转换，改变元素的宽度。       |
+| scaleY(*n*)                     | 定义 2D 缩放转换，改变元素的高度。       |
+| rotate(*angle*)                 | 定义 2D 旋转，在参数中规定角度。         |
+| skew(*x-angle*,*y-angle*)       | 定义 2D 倾斜转换，沿着 X 和 Y 轴。       |
+| skewX(*angle*)                  | 定义 2D 倾斜转换，沿着 X 轴。            |
+| skewY(*angle*)                  | 定义 2D 倾斜转换，沿着 Y 轴。            |
+
+#### 4. CSS 3D
+
+```css
+div
+{
+    transform: rotateX(120deg);
+    -webkit-transform: rotateX(120deg); /* Safari 与 Chrome */
+}
+```
+
+| 函数                                                         | 描述                                      |
+| :----------------------------------------------------------- | :---------------------------------------- |
+| matrix3d(*n*,*n*,*n*,*n*,*n*,*n*, *n*,*n*,*n*,*n*,*n*,*n*,*n*,*n*,*n*,*n*) | 定义 3D 转换，使用 16 个值的 4x4 矩阵。   |
+| translate3d(*x*,*y*,*z*)                                     | 定义 3D 转化。                            |
+| translateX(*x*)                                              | 定义 3D 转化，仅使用用于 X 轴的值。       |
+| translateY(*y*)                                              | 定义 3D 转化，仅使用用于 Y 轴的值。       |
+| translateZ(*z*)                                              | 定义 3D 转化，仅使用用于 Z 轴的值。       |
+| scale3d(*x*,*y*,*z*)                                         | 定义 3D 缩放转换。                        |
+| scaleX(*x*)                                                  | 定义 3D 缩放转换，通过给定一个 X 轴的值。 |
+| scaleY(*y*)                                                  | 定义 3D 缩放转换，通过给定一个 Y 轴的值。 |
+| scaleZ(*z*)                                                  | 定义 3D 缩放转换，通过给定一个 Z 轴的值。 |
+| rotate3d(*x*,*y*,*z*,*angle*)                                | 定义 3D 旋转。                            |
+| rotateX(*angle*)                                             | 定义沿 X 轴的 3D 旋转。                   |
+| rotateY(*angle*)                                             | 定义沿 Y 轴的 3D 旋转。                   |
+| rotateZ(*angle*)                                             | 定义沿 Z 轴的 3D 旋转。                   |
+| perspective(*n*)                                             | 定义 3D 转换元素的透视视图。              |
+
+
+
