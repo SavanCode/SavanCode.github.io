@@ -12,3 +12,5 @@ categories: project_note
 ---
 
 本次练习的是参考youtube [React JS Crash Course 2021](https://www.youtube.com/watch?v=w7ejDZ8SWv8)
+
+额外proejct [react project](https://www.youtube.com/watch?v=a_7Z7C_JCyo)

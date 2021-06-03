@@ -291,6 +291,8 @@ Vue实现数据双向绑定主要利用的就是: **数据劫持**和**发布订
 
 `Object.defineProperty`还不了解的请阅读[文档](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty)
 
+对于Proxy，[详细的讲解](https://es6.ruanyifeng.com/#docs/proxy)
+
 > Object.defineProperty() 的问题主要有三个：
 
 - 不能监听数组的变化
