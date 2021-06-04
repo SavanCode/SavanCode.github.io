@@ -11,6 +11,8 @@ tags: [ Vue , webpack]
 categories: webpack
 ---
 
+> 非常八股的笔记 ， 另外一篇会更加解释清楚
+
 #  一、Webpack 简介
 
 ## 1.1 webpack 是什么

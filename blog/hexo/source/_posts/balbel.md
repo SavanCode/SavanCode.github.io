@@ -1,26 +1,26 @@
 ---
-title: Balbel 重新学习记录~
+title: Babel 重新学习记录~
 top: false
 cover: false
 toc: true
 mathjax: true
 date: 2021-06-02 12:15:46
 password:
-summary: 重新学习Balbel
-tags: [Balbel]
-categories: [Balbel]
+summary: 重新学习Babel
+tags: [Babel]
+categories: [Babel]
 ---
 
 **BabelJS**是一个 JavaScript 转译器，可将新功能转译为旧标准。有了这个，这些功能可以在新旧浏览器上轻松运行。如果新特性是一个方法或对象，我们需要使用 Babel-polyfill 和 transpiling 使其在旧浏览器上工作。
 
-## Balbel 学习手册
+## Babel 学习手册
 
 - [Balbel 官方](https://babeljs.io/docs/en/)
 - [Babel 手册](https://github.com/jamiebuilds/babel-handbook/blob/master/translations/zh-Hans/README.md)
 
 Balbel 的学习教程不多，其实建议是直接看这两个官方的就够了
 
-## Balbel 基本理解
+## Babel 基本理解
 
 ### Babel的工作过程
 
