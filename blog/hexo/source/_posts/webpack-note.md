@@ -1017,3 +1017,10 @@ tree shaking 依赖于 ES2015 模块语法的 [静态结构](http://exploringjs.
 
 其实根据官方的文档， webapck实际上是兼容commonJS AMD CMD ES6的，也就是说在理解上，它更多地是构建了模块系统通过替换，然后暴露给全局（？maybe 个人理解哈？）。对于模块化地理解，更多的可以理解为是一个函数的引入，然后返回一个对象。
 
+## 推荐阅读
+
+- **[webpack-demos](https://github.com/ruanyf/webpack-demos)**：来自阮一峰的 Webpack 案例集合。
+- **[Webpack 官网](https://webpack.js.org/)**：官方网站，涵盖入门教程，已经详细 API 文档。
+- **[Webpack 中文文档](https://doc.webpack-china.org/)**：翻译自官方网站。
+- **[Webpack 官方博客](https://medium.com/webpack)**：在 Medium 上的 Webpack 官方博客，能看到最新特性和未来计划。
+- **[SurviveJS - Webpack](https://survivejs.com/webpack/)**：来自 SurviveJS 的 Webpack 英文电子书，从入门到精通。
