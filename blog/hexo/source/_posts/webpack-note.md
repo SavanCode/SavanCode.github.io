@@ -10,6 +10,10 @@ summary:  webpack 重新学习
 tags: webpack
 categories: webpack
 ---
+> 这里先声明一下~~ 深入浅出webpack其实已经很老的了。但是用来看原理的东西还是不错的，一定要结合最新的官方文档！！！！
+>
+> 他的优化以及实战部分~ 我就跳过了 有兴趣的同学自行搜索吧
+
 # webpack的基础动手了解
 
 ## 通过基本操作了解webpack
@@ -354,9 +358,30 @@ rules: [
 >  },
 > ```
 
-## 配置
+## 配置（config 中配置）
 
 (这里我根据《深入浅出webpack》书本的章节记录重点 以及一些个人笔记)
+
+### Mode
+
+```js
+string = 'production': 'none' | 'development' | 'production'
+```
+
+在**开发环境**中，我们需要：强大的 source map 和一个有着 live reloading(实时重新加载) 或 hot module replacement(热模块替换) 能力的 localhost server。
+
+而**生产环境**目标则转移至其他方面，关注点在于压缩 bundle、更轻量的 source map、资源优化等，通过这些优化方式改善加载时间
+
+- development 
+  - Tooling for in browser debugging **(source map)**
+  - Fast incremental compilation for a fast development cycle
+  - Useful **error messages** at runtime
+- production
+  - **Small output size**
+  - Fast code at runtime
+  - Omitting **development-only code**
+  - Not exposing source code or file paths
+  - Easy to use output assets
 
 ### [Entry(**必填的**)](https://webpack.wuhaolin.cn/2%E9%85%8D%E7%BD%AE/2-1Entry.html)
 
@@ -464,7 +489,7 @@ resolve:{
 
 在导入语句没带文件后缀时，Webpack 会自动带上后缀后去尝试访问文件是否存在。 `resolve.extensions` 用于配置在尝试过程中用到的后缀列表
 
-#### modules
+#### [modules](https://webpack.js.org/concepts/modules/#what-is-a-webpack-module)
 
 `resolve.modules` 配置 Webpack 去哪些目录下寻找第三方模块，默认是只会去 `node_modules` 目录下寻找。 有时你的项目里会有一些模块会大量被其它模块依赖和导入，由于其它模块的位置分布不定，针对不同的文件都要去计算被导入模块文件的相对路径， 这个路径有时候会很长，就像这样 `import '../../../components/button'` 这时你可以利用 `modules` 配置项优化，
 
@@ -697,9 +722,158 @@ module.exports = {
 }
 ```
 
+## webpack原理理解（webpack 怎么写的）
+
+### Entry Ouput 
+
+Entry 就只是制定了入口文件地址
+
+Output 这里要好好的理解一下，不仅仅是一个路径的指向
+> 重点是要理解下面的问题
+>
+> 1. Webpack 输出的 `bundle.js` 是什么样子的吗？ 
+> 2. 为什么原来一个个的模块文件被合并成了一个单独的文件？
+> 3. 为什么 `bundle.js` 能直接运行在浏览器中？
+
+[详细版的解释 来源于《深入浅出Webpack》](https://webpack.wuhaolin.cn/5%E5%8E%9F%E7%90%86/5-1%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E6%A6%82%E6%8B%AC.html)
+
+1. bundle.js 主要是一个理解执行函数
+
+```js
+(function(modules) {
+  // 模拟 require 语句
+  function __webpack_require__() {
+  }
+
+  // 执行存放所有模块数组中的第0个模块
+  __webpack_require__(0);
+})([/*存放所有模块的数组*/])
+```
+
+2. 为什么可以合并成一个文件，理解这个必须就要知道bundle.js 里面的结构（这里详细的代码结构看书本哈）
+
+   **在于浏览器不能像 Node.js 那样快速地去本地加载一个个模块文件，而必须通过网络请求去加载还未得到的文件。 如果模块数量很多，加载时间会很长，因此把所有模块都存放在了数组中，执行一次网络加载**。（这个是比较白话文，下面的通过代码结构来）
+
+   - 首先最外部是一个立即执行函数（即为启动函数）
+   - 然后 就要处理modules( 这里现在内存找module缓存 -> 没有缓存的module，安装配置index并加入缓存，引入结果 -> 有缓存的 直接加载 并且引入结果)
+   - 再然后是对于加载分割出去的异步代码（由于所有的模块都在一个数组里面，所以会通过_webpack_require 根据模块的index来区分以及定位模块）
+
+3. `bundle.js` 能直接运行在浏览器中的原因
+
+   - 在于输出的文件中通过 `__webpack_require__` 函数定义了一个可以在浏览器中执行的加载函数来模拟 Node.js 中的 `require` 语句。
+
+### [Loader 原理](https://webpack.wuhaolin.cn/5%E5%8E%9F%E7%90%86/5-3%E7%BC%96%E5%86%99Loader.html)
+
+[官方链接](https://webpack.js.org/concepts/loaders/) [编写loader 官方指南](https://webpack.js.org/contribute/writing-a-loader/)
+
+这里不要跟loader 的配置的运行过程混淆！ 这里讲的是loader自身怎么实现的
+
+**由于 Webpack 是运行在 Node.js 之上的，一个 Loader 其实就是一个 Node.js 模块，这个模块需要导出一个函数**。 这个导出的函数的工作就是获得处理前的原内容，对原内容执行处理后，返回处理后的内容。
+
+一个最简单的 Loader 的源码如下：
+
+```js
+module.exports = function(source) {
+  // source 为 compiler 传递给 Loader 的一个文件的原内容
+  // 该函数需要返回处理后的内容，这里简单起见，直接把原内容返回了，相当于该 Loader 没有做任何转换
+  return source;
+};
+```
+
+由于 Loader 运行在 Node.js 中，你可以调用任何 Node.js 自带的 API，或者安装第三方模块进行调用：
+
+```js
+const sass = require('node-sass');
+module.exports = function(source) {
+  return sass(source);
+};
+```
+
+对于 loader中的option 以及返回其他结果
+
+```js
+const loaderUtils = require('loader-utils');
+module.exports = function(source) {
+
+ // 获取到用户给当前 Loader 传入的 options 这里就直接return source
+ const options = loaderUtils.getOptions(this);
+    
+// 通过 this.callback 告诉 Webpack 返回的结果
+this.callback(null, source, sourceMaps);
+// 当你使用 this.callback 返回内容时，该 Loader 必须返回 undefined，
+// 以让 Webpack 知道该 Loader 返回的结果在 this.callback 中，而不是 return 中 
+  return;
+};
+```
+
+Loader 有同步和异步之分。但在需要**通过网络请求才能得出结果**，如果采用同步的方式网络请求就会阻塞整个构建，导致构建非常缓慢。
+
+```js
+module.exports = function(source) {
+    // 告诉 Webpack 本次转换是异步的，Loader 会在 callback 中回调结果
+    var callback = this.async();
+    someAsyncOperation(source, function(err, result, sourceMaps, ast) {
+        // 通过 callback 返回异步执行后的结果
+        callback(err, result, sourceMaps, ast);
+    });
+};
+```
+
+> 编写loader 特点/要求
+>
+> - Keep them **simple**.
+> - Utilize **chaining**.
+> - Emit **modular** output.
+> - Make sure they're **stateless**.
+> - Employ **loader utilities**.
+> - Mark **loader dependencies**.
+> - Resolve **module dependencies**.
+> - Extract **common code**.
+> - Avoid **absolute paths**.
+> - Use **peer dependencies**
+
+### [plugin原理](https://webpack.wuhaolin.cn/5%E5%8E%9F%E7%90%86/5-4%E7%BC%96%E5%86%99Plugin.html)
+
+这个问题看[官方文档](https://webpack.js.org/concepts/plugins/)最明了，或者可以看[深入浅出](https://webpack.wuhaolin.cn/5%E5%8E%9F%E7%90%86/5-4%E7%BC%96%E5%86%99Plugin.html)。自己总结一下就是：
+
+- **使用类来编写，必须实现一个apply方法**；如果是方法实现，需要在其prototype 上定义一个 apply 方法。
+
+```js
+class webpackPlugin {
+　　constructor(){
+　　　　console.log('插件被使用了')
+　　}
+　　apply(compiler) {
+　　// compiler 很重要，是webpack的一个实例，这个实例存储了webpack各种信息，所有打包信息
+　　}
+}
+module.exports = webpackPlugin;
+```
+
+- 我们的逻辑是在apply中实现
+
+目前是用两种实现api，一种是 **compiler.plugin('done'…)**；一种是 **compiler.hooks.done**。后者是新的api，目前使用较多。
+
+- 定义 compiler hook 在生命周期中使用
+
+- 操作 webpack 内部实例特定数据。
+
+- 在功能完成后调用 webpack 提供的回调。
+
+- config的时候
+
+```js
+plugins: [
+  new webpack.ProgressPlugin(),
+  new HtmlWebpackPlugin({ template: './src/index.html' }),
+]
+```
+
 ## 面试题收集
 
 ### 文件监听原理呢？--watch
+
+[详细的讲解-- 深入浅出webpack](https://webpack.wuhaolin.cn/4%E4%BC%98%E5%8C%96/4-5%E4%BD%BF%E7%94%A8%E8%87%AA%E5%8A%A8%E5%88%B7%E6%96%B0.html)
 
 在发现源码发生变化时，自动重新构建出新的输出文件。
 
@@ -783,7 +957,60 @@ module.export = {
 
   在使用类似于jq库的时候，我们不需要webpack再去构建其内部依赖关系，这时候我们可以手动干预。在module中 noParse: /jquery/
 
-  
-
 - DLLPlugin
   dll是一个很好的优化手段，可以极大的提升我们的编译速度。让我们每次只编译业务代码，类似于React、Redux等我们不更改的包，只打包一次就可以。 DLL的使用需要自己写一丢丢代码，也很简单，具体看官方文档。
+
+### [文件指纹策略](https://juejin.cn/post/6875511103716229133)
+
+### [开启模块热替换](https://webpack.wuhaolin.cn/4%E4%BC%98%E5%8C%96/4-5%E4%BD%BF%E7%94%A8%E8%87%AA%E5%8A%A8%E5%88%B7%E6%96%B0.html)(Hot Module Replacement)
+
+[深度解析热更新](https://zhuanlan.zhihu.com/p/30669007)
+
+基本实现原理大致这样的，构建 bundle 的时候，加入一段 HMR runtime 的 js 和一段和服务沟通的 js 。文件修改会触发 webpack 重新构建，服务器通过向浏览器发送更新消息，浏览器通过 jsonp 拉取更新的模块文件，jsonp 回调触发模块热替换逻辑。
+
+**整个 HMR 的工作流程**
+
+- 第一步：webpack 对文件系统进行 watch 打包到内存中
+- 第二步：devServer 通知浏览器端文件发生改变
+- 第三步：webpack-dev-server/client 接收到服务端消息做出响应
+- 第四步：webpack 接收到最新 hash 值验证并请求模块代码
+- 第五步：HotModuleReplacement.runtime 对模块进行热更新
+- 第六步：业务代码中， index.js 文件中调用 HMR 的 accept 方法，添加模块更新后的处理函数
+
+![](webpack-note/image-20210609182558846.png)
+
+>  [深度解析热更新 图来源](https://zhuanlan.zhihu.com/p/30669007)
+
+### [Tree shaking （Dead code elimination）](https://webpack.docschina.org/guides/tree-shaking/)
+
+tree shaking 依赖于 ES2015 模块语法的 [静态结构](http://exploringjs.com/es6/ch_modules.html#static-module-structure) 特性, 从通过 `package.json` 的 `"sideEffects"` 属性作为标记，向 compiler 提供提示，表明项目中的哪些文件是 "pure(纯正 ES2015 模块)"，由此可以安全地删除文件中未使用的部分。
+
+**原理是**
+
+- `ES6 Module`引入进行静态分析，故而编译的时候正确判断到底加载了那些模块
+- 静态分析程序流，判断那些模块和变量未被使用或者引用，进而删除对应代码（在package.json中开启`"sideEffects": false`来告知 webpack 它可以安全地删除未用到的 export）
+
+**sideEffects**决定代码是否导入。比如`console.log()`、 `polyfills`、`import a CSS file`等。由于编译器并不知道其是否会影响运行效果，故而不做处理。
+
+```json
+ // package.json
+//false:无副作用，模块无export被使用时，可直接跳过（删除）该模块
+ //true:有副作用，保留副作用代码
+ "sideEffects": [Boolean], 
+ or
+ //[file1,file2]:指定有副作用的文件，在webpack作用域提升时就不会引入
+ //accepts relative, absolute, and glob patterns to the relevant files
+  "sideEffects": ['*.css', 'src/tool.js'],
+```
+
+1）treeShaking可以删除未被导出使用的代码，而sideEffects决定了副作用的处理方式，可以进一步提高有效代码的纯粹度；
+
+2）__webpack_require__.d用的很巧妙，工具方法的抽象，复用性；
+
+3）另外模块化是服务于人的，方便维护；对机器来说，代码放在一起，少了链接加载过程，执行会更快。
+
+> 这里很容易问道关于模块化的问题~~~ 看模块化的复习部分哦
+
+### 结合模块化的理解
+
+其实根据官方的文档， 我联想output 这个写法的里面的webpack_require 中

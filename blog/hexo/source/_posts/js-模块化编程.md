@@ -721,6 +721,10 @@ setTimeout(() => {
 - CommonJS 模块输出的是值的拷贝(原始值的拷贝)，也就是说，一旦输出一个值，模块内部的变化就影响不到这个值。
 - CommonJS 模块重复引入的模块并不会重复执行，再次获取模块直接获得暴露的 module.exports 对象
 - 如果你要处处获取到模块内的最新值的话，也可以你每次更新数据的时候每次都要去更新 module.exports 上的值; 如果你暴露的 module.exports 的属性是个对象，那就不存在这个问题了
+- CommonJs 的 this 是当前模块，ES6 Module的 this 是 undefined
+- `CommonJS` 模块是运行时加载，`ES6` 模块是编译时输出接口。
+- `CommonJs` 是单个值导出，`ES6 Module`可以导出多个
+- `CommonJs` 是动态语法可以写在判断里，`ES6 Module` 静态语法只能写在顶层
 
 但是对于ES6 不再是生成输出对象的拷贝，而是动态关联模块中的值.所以不会有这个问题
 
