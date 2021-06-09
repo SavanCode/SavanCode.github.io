@@ -985,6 +985,8 @@ module.export = {
 
 tree shaking 依赖于 ES2015 模块语法的 [静态结构](http://exploringjs.com/es6/ch_modules.html#static-module-structure) 特性, 从通过 `package.json` 的 `"sideEffects"` 属性作为标记，向 compiler 提供提示，表明项目中的哪些文件是 "pure(纯正 ES2015 模块)"，由此可以安全地删除文件中未使用的部分。
 
+> 之前这里脑子不知道怎么抽筋，会想到说，哎，那么es5或者更加老的怎么办？ 后来看到stack overflow说~ 拜托 新版本肯定支持老版本啊（瞬间觉得自己好像降智了）
+
 **原理是**
 
 - `ES6 Module`引入进行静态分析，故而编译的时候正确判断到底加载了那些模块
@@ -1013,4 +1015,5 @@ tree shaking 依赖于 ES2015 模块语法的 [静态结构](http://exploringjs.
 
 ### 结合模块化的理解
 
-其实根据官方的文档， 我联想output 这个写法的里面的webpack_require 中
+其实根据官方的文档， webapck实际上是兼容commonJS AMD CMD ES6的，也就是说在理解上，它更多地是构建了模块系统通过替换，然后暴露给全局（？maybe 个人理解哈？）。对于模块化地理解，更多的可以理解为是一个函数的引入，然后返回一个对象。
+
