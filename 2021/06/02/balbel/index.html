@@ -1,0 +1,1289 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Babel 重新学习记录~, Savannah">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Babel 重新学习记录~ | Savannah</title>
+    <link rel="icon" type="image/png" href="../../../../favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="../../../../libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="../../../../libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../../libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="../../../../libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../../libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../../css/matery.css">
+    <link rel="stylesheet" type="text/css" href="../../../../css/my.css">
+
+    <script src="../../../../libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="../../../../index.html" class="waves-effect waves-light">
+                    
+                    <span class="logo-span">Savannah</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="../../../../index.html" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Index</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="../../../../tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>Tags</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="../../../../categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>Categories</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="../../../../archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>Archives</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="../../../../about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>About</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <div class="logo-name">Savannah</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="../../../../index.html" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Index
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="../../../../tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			Tags
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="../../../../categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			Categories
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="../../../../archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			Archives
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="../../../../about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			About
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/18.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Babel 重新学习记录~</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="../../../../libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="../../../../tags/Babel/">
+                                <span class="chip bg-color">Babel</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="../../../../categories/Babel/" class="post-category">
+                                Babel
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2021-06-02
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p><strong>BabelJS</strong>是一个 JavaScript 转译器，可将新功能转译为旧标准。有了这个，这些功能可以在新旧浏览器上轻松运行。如果新特性是一个方法或对象，我们需要使用 Babel-polyfill 和 transpiling 使其在旧浏览器上工作。</p>
+<h2 id="Babel-学习手册"><a href="#Babel-学习手册" class="headerlink" title="Babel 学习手册"></a>Babel 学习手册</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://babeljs.io/docs/en/">Balbel 官方</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/jamiebuilds/babel-handbook/blob/master/translations/zh-Hans/README.md">Babel 手册</a></li>
+</ul>
+<p>Balbel 的学习教程不多，其实建议是直接看这两个官方的就够了</p>
+<h2 id="Babel-基本理解"><a href="#Babel-基本理解" class="headerlink" title="Babel 基本理解"></a>Babel 基本理解</h2><h3 id="Babel的工作过程"><a href="#Babel的工作过程" class="headerlink" title="Babel的工作过程"></a>Babel的工作过程</h3><p>Babel的处理过程主要为3个：*<strong>解析(parse)*</strong>、*<strong>转换(transform)*</strong>、*<strong>生成(generate)*</strong>。</p>
+<ul>
+<li><p>解析</p>
+<p>解析主要包含两个过程：词法分析和语法分析，输入是代码字符串，输出是AST。<a target="_blank" rel="noopener" href="https://astexplorer.net/">在线分析AST结果</a></p>
+</li>
+<li><p>转换</p>
+<p>处理AST。处理工具、插件等就是在这个过程中介入，将代码按照需求进行转换。</p>
+</li>
+<li><p>生成</p>
+<p>遍历AST，输出代码字符串。</p>
+</li>
+</ul>
+<p>解析和生成过程，都有Babel都为我们处理得很好了，我们要做的就是在 <strong><em>转换\</em></strong> 过程中搞事情，进行个性化的定制开发。</p>
+<p><img src="/2021/06/02/balbel/image-20210602215109210.png"></p>
+<p><img src="/2021/06/02/balbel/image-20210602215141165.png"></p>
+<h3 id="具体解释"><a href="#具体解释" class="headerlink" title="具体解释"></a>具体解释</h3><h3 id="Babel-插件-plugin"><a href="#Babel-插件-plugin" class="headerlink" title="Babel 插件 plugin"></a>Babel 插件 plugin</h3><p>插件和预设是 Babel 转译代码的配置细节。Babel 支持许多插件，如果我们知道代码执行的环境，它们可以单独使用。</p>
+<h3 id="Babel-预设-presets"><a href="#Babel-预设-presets" class="headerlink" title="Babel-预设 presets"></a>Babel-预设 presets</h3><p>Babel 预设是一组插件，即 babel-transpiler 的配置细节，指示 Babel 在特定模式下进行转译。我们需要使用预设，它具有我们想要转换代码的环境。例如，<em>es2015</em>预设会将代码转换为<em>es5</em>。</p>
+<blockquote>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://babeljs.io/docs/en/babel-preset-env">@babel/preset-env</a> for compiling ES2015+ syntax</li>
+<li><a target="_blank" rel="noopener" href="https://babeljs.io/docs/en/babel-preset-typescript">@babel/preset-typescript</a> for <a target="_blank" rel="noopener" href="https://www.typescriptlang.org/">TypeScript</a></li>
+<li><a target="_blank" rel="noopener" href="https://babeljs.io/docs/en/babel-preset-react">@babel/preset-react</a> for <a target="_blank" rel="noopener" href="https://reactjs.org/">React</a></li>
+<li><a target="_blank" rel="noopener" href="https://babeljs.io/docs/en/babel-preset-flow">@babel/preset-flow</a> for <a target="_blank" rel="noopener" href="https://flow.org/">Flow</a></li>
+</ul>
+</blockquote>
+<blockquote>
+<p>对于stage X</p>
+<p>The <a target="_blank" rel="noopener" href="https://github.com/tc39">TC39</a> categorizes proposals into the following stages:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://babeljs.io/docs/en/babel-preset-stage-0">Stage 0</a> - Strawman: just an idea, possible Babel plugin.</li>
+<li><a target="_blank" rel="noopener" href="https://babeljs.io/docs/en/babel-preset-stage-1">Stage 1</a> - Proposal: this is worth working on.</li>
+<li><a target="_blank" rel="noopener" href="https://babeljs.io/docs/en/babel-preset-stage-2">Stage 2</a> - Draft: initial spec.</li>
+<li><a target="_blank" rel="noopener" href="https://babeljs.io/docs/en/babel-preset-stage-3">Stage 3</a> - Candidate: complete spec and initial browser implementations.</li>
+<li>Stage 4 - Finished: will be added to the next yearly release.</li>
+</ul>
+</blockquote>
+<h3 id="Babel-Polyfills"><a href="#Babel-Polyfills" class="headerlink" title="Babel-Polyfills"></a>Babel-Polyfills</h3><p>有一些特性，如方法和对象，不能被转译。在这种情况下，我们可以使用 babel-polyfill 来促进在任何浏览器中使用功能。让我们考虑 Promise 的例子；为了使该功能在旧浏览器中工作，我们需要使用 polyfills。</p>
+<p><img src="/2021/06/02/balbel/image-20210602230611234.png"></p>
+<h2 id="使用-BabelJS-的优势"><a href="#使用-BabelJS-的优势" class="headerlink" title="使用 BabelJS 的优势"></a>使用 BabelJS 的优势</h2><ul>
+<li>BabelJS 为 JavaScript 的所有新增功能提供向后兼容性，并且可以在任何浏览器中使用。</li>
+<li>BabelJS 有能力转译为 JavaScript 的下一个即将推出的版本——ES6、ES7、ESNext 等。</li>
+<li>BabelJS 可以与 gulp、webpack、flow、react、typescript 等一起使用，使其非常强大，并且可以与大型项目一起使用，使开发人员的生活变得轻松。</li>
+<li>BabelJS 还可以与 react JSX 语法一起使用，并且可以以 JSX 形式编译。</li>
+<li>BabelJS 支持插件、polyfills、babel-cli，可以轻松处理大型项目。</li>
+</ul>
+<h2 id="使用-BabelJS-的缺点"><a href="#使用-BabelJS-的缺点" class="headerlink" title="使用 BabelJS 的缺点"></a>使用 BabelJS 的缺点</h2><ul>
+<li>BabelJS 代码在转译时改变了语法，这使得代码在生产环境中发布时难以理解。</li>
+<li>与原始代码相比，转译后的代码规模更大。</li>
+<li>并非所有 ES6/7/8 或即将推出的新功能都可以转译，我们必须使用 polyfill 才能在旧浏览器上运行。</li>
+</ul>
+<h2 id="执行例子"><a href="#执行例子" class="headerlink" title="执行例子"></a>执行例子</h2><p>我们将执行以下命令安装<em>babel-cli, babel-core, babel-preset-es2015</em>。</p>
+<h3 id="babel-6-的包"><a href="#babel-6-的包" class="headerlink" title="babel 6 的包"></a>babel 6 的包</h3><pre><code>npm install babel-cli babel-core babel-preset-es2015 --save-dev</code></pre>
+<h3 id="babel-7-的包"><a href="#babel-7-的包" class="headerlink" title="babel 7 的包"></a>babel 7 的包</h3><pre><code>npm install @babel/cli @babel/core @babel/preset-env --save-dev</code></pre>
+<p><a target="_blank" rel="noopener" href="https://www.tutorialspoint.com/babeljs/babeljs_es6_code_execution.htm">例子</a></p>
+<h2 id="了解AST-Tree"><a href="#了解AST-Tree" class="headerlink" title="了解AST Tree"></a>了解AST Tree</h2><pre class=" language-js"><code class="language-js">js<span class="token punctuation">:</span> <span class="token template-string"><span class="token string">`let a = 2`</span></span>
+ast<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+     <span class="token string">"type"</span><span class="token punctuation">:</span> <span class="token string">"VariableDeclaration"</span><span class="token punctuation">,</span>
+    <span class="token string">"start"</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+    <span class="token string">"end"</span><span class="token punctuation">:</span> <span class="token number">9</span><span class="token punctuation">,</span>
+    <span class="token string">"loc"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      <span class="token string">"start"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        <span class="token string">"line"</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+        <span class="token string">"column"</span><span class="token punctuation">:</span> <span class="token number">0</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token string">"end"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        <span class="token string">"line"</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+        <span class="token string">"column"</span><span class="token punctuation">:</span> <span class="token number">9</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token string">"declarations"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        <span class="token string">"type"</span><span class="token punctuation">:</span> <span class="token string">"VariableDeclarator"</span><span class="token punctuation">,</span>
+        <span class="token string">"start"</span><span class="token punctuation">:</span> <span class="token number">4</span><span class="token punctuation">,</span>
+        <span class="token string">"end"</span><span class="token punctuation">:</span> <span class="token number">9</span><span class="token punctuation">,</span>
+        <span class="token string">"loc"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+          <span class="token string">"start"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            <span class="token string">"line"</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+            <span class="token string">"column"</span><span class="token punctuation">:</span> <span class="token number">4</span>
+          <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token string">"end"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            <span class="token string">"line"</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+            <span class="token string">"column"</span><span class="token punctuation">:</span> <span class="token number">9</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token string">"id"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+          <span class="token string">"type"</span><span class="token punctuation">:</span> <span class="token string">"Identifier"</span><span class="token punctuation">,</span>
+          <span class="token string">"start"</span><span class="token punctuation">:</span> <span class="token number">4</span><span class="token punctuation">,</span>
+          <span class="token string">"end"</span><span class="token punctuation">:</span> <span class="token number">5</span><span class="token punctuation">,</span>
+          <span class="token string">"loc"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            <span class="token string">"start"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+              <span class="token string">"line"</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+              <span class="token string">"column"</span><span class="token punctuation">:</span> <span class="token number">4</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token string">"end"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+              <span class="token string">"line"</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+              <span class="token string">"column"</span><span class="token punctuation">:</span> <span class="token number">5</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token string">"identifierName"</span><span class="token punctuation">:</span> <span class="token string">"a"</span>
+          <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token string">"name"</span><span class="token punctuation">:</span> <span class="token string">"a"</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token string">"init"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+          <span class="token string">"type"</span><span class="token punctuation">:</span> <span class="token string">"NumericLiteral"</span><span class="token punctuation">,</span>
+          <span class="token string">"start"</span><span class="token punctuation">:</span> <span class="token number">8</span><span class="token punctuation">,</span>
+          <span class="token string">"end"</span><span class="token punctuation">:</span> <span class="token number">9</span><span class="token punctuation">,</span>
+          <span class="token string">"loc"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            <span class="token string">"start"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+              <span class="token string">"line"</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+              <span class="token string">"column"</span><span class="token punctuation">:</span> <span class="token number">8</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token string">"end"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+              <span class="token string">"line"</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+              <span class="token string">"column"</span><span class="token punctuation">:</span> <span class="token number">9</span>
+            <span class="token punctuation">}</span>
+          <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token string">"extra"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            <span class="token string">"rawValue"</span><span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+            <span class="token string">"raw"</span><span class="token punctuation">:</span> <span class="token string">"2"</span>
+          <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token string">"value"</span><span class="token punctuation">:</span> <span class="token number">2</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token string">"kind"</span><span class="token punctuation">:</span> <span class="token string">"let"</span>
+<span class="token punctuation">}</span></code></pre>
+<h2 id="编写preset"><a href="#编写preset" class="headerlink" title="编写preset"></a>编写preset</h2><p><a target="_blank" rel="noopener" href="https://babeljs.io/docs/en/presets">参考</a></p>
+<p>可以直接返回一串plugins</p>
+<pre class=" language-js"><code class="language-js">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    plugins<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">"pluginA"</span><span class="token punctuation">,</span> <span class="token string">"pluginB"</span><span class="token punctuation">,</span> <span class="token string">"pluginC"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<p>可以直接返回带有presets &amp;plugins</p>
+<pre class=" language-js"><code class="language-js">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">(</span><span class="token punctuation">{</span>
+  presets<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"@babel/preset-env"</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  plugins<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">[</span><span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"@babel/plugin-proposal-class-properties"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> loose<span class="token punctuation">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"@babel/plugin-proposal-object-rest-spread"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h3 id="运行顺序"><a href="#运行顺序" class="headerlink" title="运行顺序"></a>运行顺序</h3><pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"presets"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"a"</span><span class="token punctuation">,</span> <span class="token string">"b"</span><span class="token punctuation">,</span> <span class="token string">"c"</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+//这是直接 从c b a， 保持 backwards compatibility<span class="token punctuation">,</span></code></pre>
+<h3 id="特殊设置"><a href="#特殊设置" class="headerlink" title="特殊设置"></a>特殊设置</h3><pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"presets"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">[</span>
+      <span class="token string">"@babel/preset-env"</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        <span class="token property">"loose"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+        <span class="token property">"modules"</span><span class="token operator">:</span> <span class="token boolean">false</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span></code></pre>
+<h2 id="编写你的第一个-Babel-插件-参考来源"><a href="#编写你的第一个-Babel-插件-参考来源" class="headerlink" title="编写你的第一个 Babel 插件 参考来源"></a>编写你的第一个 Babel 插件 <a target="_blank" rel="noopener" href="https://github.com/jamiebuilds/babel-handbook/blob/master/translations/zh-Hans/plugin-handbook.md#toc-writing-your-first-babel-plugin">参考来源</a></h2><p>现在你已经熟悉了 Babel 的所有基础知识了，让我们把这些知识和插件的 API融合在一起来编写第一个 Babel 插件吧。</p>
+<p>先从一个接收了当前<code>babel</code>对象作为参数的 <a target="_blank" rel="noopener" href="https://github.com/babel/babel/tree/master/packages/babel-core"><code>function</code></a> 开始。</p>
+<pre><code>export default function(babel) &#123;
+  // plugin contents
+&#125;</code></pre>
+<p>由于你将会经常这样使用，所以直接取出 <code>babel.types</code> 会更方便：（译注：这是 ES2015 语法中的对象解构，即 Destructuring）</p>
+<pre><code>export default function(&#123; types: t &#125;) &#123;
+  // plugin contents
+&#125;</code></pre>
+<p>接着返回一个对象，其 <code>visitor</code> 属性是这个插件的主要访问者。</p>
+<pre><code>export default function(&#123; types: t &#125;) &#123;
+  return &#123;
+    visitor: &#123;
+      // visitor contents
+    &#125;
+  &#125;;
+&#125;;</code></pre>
+<p>Visitor 中的每个函数接收2个参数：<code>path</code> 和 <code>state</code></p>
+<pre><code>export default function(&#123; types: t &#125;) &#123;
+  return &#123;
+    visitor: &#123;
+      Identifier(path, state) &#123;&#125;,
+      ASTNodeTypeHere(path, state) &#123;&#125;
+    &#125;
+  &#125;;
+&#125;;</code></pre>
+<p>让我们快速编写一个可用的插件来展示一下它是如何工作的。下面是我们的源代码：</p>
+<pre><code>foo === bar;</code></pre>
+<p>其 AST 形式如下：</p>
+<pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
+  type<span class="token operator">:</span> <span class="token string">"BinaryExpression"</span><span class="token punctuation">,</span>
+  operator<span class="token operator">:</span> <span class="token string">"==="</span><span class="token punctuation">,</span>
+  left<span class="token operator">:</span> <span class="token punctuation">{</span>
+    type<span class="token operator">:</span> <span class="token string">"Identifier"</span><span class="token punctuation">,</span>
+    name<span class="token operator">:</span> <span class="token string">"foo"</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  right<span class="token operator">:</span> <span class="token punctuation">{</span>
+    type<span class="token operator">:</span> <span class="token string">"Identifier"</span><span class="token punctuation">,</span>
+    name<span class="token operator">:</span> <span class="token string">"bar"</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>我们从添加 <code>BinaryExpression</code> 访问者方法开始：</p>
+<pre><code>export default function(&#123; types: t &#125;) &#123;
+  return &#123;
+    visitor: &#123;
+      BinaryExpression(path) &#123;
+        // ...
+      &#125;
+    &#125;
+  &#125;;
+&#125;</code></pre>
+<p>然后我们更确切一些，只关注哪些使用了 <code>===</code> 的 <code>BinaryExpression</code>。</p>
+<pre><code>visitor: &#123;
+  BinaryExpression(path) &#123;
+    if (path.node.operator !== &quot;===&quot;) &#123;
+      return;
+    &#125;
+
+    // ...
+  &#125;
+&#125;</code></pre>
+<p>现在我们用新的标识符来替换 <code>left</code> 属性：</p>
+<pre><code>BinaryExpression(path) &#123;
+  if (path.node.operator !== &quot;===&quot;) &#123;
+    return;
+  &#125;
+
+  path.node.left = t.identifier(&quot;sebmck&quot;);
+  // ...
+&#125;</code></pre>
+<p>于是如果我们运行这个插件我们会得到：</p>
+<pre><code>sebmck === bar;</code></pre>
+<p>现在只需要替换 <code>right</code> 属性了。</p>
+<pre><code>BinaryExpression(path) &#123;
+  if (path.node.operator !== &quot;===&quot;) &#123;
+    return;
+  &#125;
+
+  path.node.left = t.identifier(&quot;sebmck&quot;);
+  path.node.right = t.identifier(&quot;dork&quot;);
+&#125;</code></pre>
+<p>这就是我们的最终结果了：</p>
+<pre><code>sebmck === dork;</code></pre>
+<p>完美！我们的第一个 Babel 插件。</p>
+<blockquote>
+<h3 id="path"><a href="#path" class="headerlink" title="path"></a>path</h3><p>path存储着AST节点信息以及一些节点操作方法，因为AST是一颗树，那么树的查找，和树节点之间的关系就需要工具去处理，就像DOM树一样：</p>
+<h4 id="path存储的ast属性有"><a href="#path存储的ast属性有" class="headerlink" title="path存储的ast属性有:"></a>path存储的ast属性有:</h4><ul>
+<li>node节点(当前遍历到的node节点)</li>
+<li>parent 节点(父级AST节点)</li>
+<li>parentPath 父级path</li>
+<li>scope 作用域</li>
+</ul>
+<h4 id="path存储的方法"><a href="#path存储的方法" class="headerlink" title="path存储的方法:"></a>path存储的方法:</h4><ul>
+<li>get获取子节点</li>
+<li>findParent向父节点搜寻节点</li>
+<li>getSibling 获取兄弟路径</li>
+<li>getFunctionParent 获取包含该节点最近的父函数节点(查找的是function)</li>
+<li>getStatementParent 向上获取最近的statement类型节点</li>
+<li>relaceWith：用AST节点替换该节点</li>
+<li>relaceWithMultiple 用多个AST节点替换节点</li>
+<li>replaceWidthSourceString 用源码解析后的AST节点替换节点</li>
+<li>insertBefore在之前插入兄弟节点</li>
+<li>insertAfter 在之后插入兄弟节点</li>
+<li>remove 删除节点</li>
+<li>pushContainer 将ASTpush到节点属性里面</li>
+<li>stop 停止遍历</li>
+<li>skip 跳过此次遍历</li>
+</ul>
+</blockquote>
+<h3 id="Plugin运行顺序"><a href="#Plugin运行顺序" class="headerlink" title="Plugin运行顺序"></a>Plugin运行顺序</h3><p>This means if two transforms both visit the “Program” node, the transforms will run in either plugin or preset order.</p>
+<ul>
+<li>Plugins run before Presets.</li>
+<li><strong>Plugin ordering is first to last.</strong></li>
+<li>Preset ordering is reversed (last to first).</li>
+</ul>
+<h3 id="额外例子"><a href="#额外例子" class="headerlink" title="额外例子"></a>额外例子</h3><pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">//现在我们写一个简单的编译目的是将let a = 5; 编译为 var a = 5;</span>
+<span class="token keyword">import</span> template <span class="token keyword">from</span> <span class="token string">"babel-template"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> temp <span class="token operator">=</span> <span class="token function">template</span><span class="token punctuation">(</span><span class="token string">"var b = 1"</span><span class="token punctuation">)</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">{</span> types<span class="token punctuation">:</span> t <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment" spellcheck="true">// 插件内容</span>
+      <span class="token keyword">return</span> <span class="token punctuation">{</span>
+        visitor<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">// 接收两个参数path, state</span>
+            <span class="token function">VariableDeclaration</span><span class="token punctuation">(</span>path<span class="token punctuation">,</span> state<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token comment" spellcheck="true">// 找到AST节点</span>
+                <span class="token keyword">const</span> node <span class="token operator">=</span> path<span class="token punctuation">.</span>node<span class="token punctuation">;</span>
+                <span class="token comment" spellcheck="true">// 保险一点还可以判断一下节点类型，强行用一下babel-types做个示例</span>
+                <span class="token comment" spellcheck="true">// 判断节点类型 是否是变量节点, 申明方式是let</span>
+                 <span class="token keyword">if</span> <span class="token punctuation">(</span>t<span class="token punctuation">.</span><span class="token function">isVariableDeclaration</span><span class="token punctuation">(</span>node<span class="token punctuation">,</span> <span class="token punctuation">{</span> kind<span class="token punctuation">:</span> <span class="token string">"let"</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>          
+                    <span class="token comment" spellcheck="true">// 将let 声明编译为var</span>
+                    node<span class="token punctuation">.</span>kind <span class="token operator">=</span> <span class="token string">"var"</span><span class="token punctuation">;</span>
+                    <span class="token comment" spellcheck="true">// var b = 1 的AST节点</span>
+                    <span class="token keyword">const</span> insertNode <span class="token operator">=</span> <span class="token function">temp</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token comment" spellcheck="true">// 插入一行代码var b = 1</span>
+                    path<span class="token punctuation">.</span><span class="token function">insertBefore</span><span class="token punctuation">(</span>insertNode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                 <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+   <span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">//接下来使用编写的插件:</span>
+
+
+<span class="token comment" spellcheck="true">// 导入自己写的插件</span>
+<span class="token keyword">const</span> myPlugin <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'xxxx'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> babel <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'@babel/core'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> content <span class="token operator">=</span> <span class="token string">'let a = 5'</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 通过你编写的插件输出的代码</span>
+<span class="token keyword">const</span> <span class="token punctuation">{</span> code <span class="token punctuation">}</span> <span class="token operator">=</span> babel<span class="token punctuation">.</span><span class="token function">transform</span><span class="token punctuation">(</span>content<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+   plugins<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+       myPlugin
+   <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h2 id="WTF-are-Babel-and-Webpack-😵-Explained-in-2-mins"><a href="#WTF-are-Babel-and-Webpack-😵-Explained-in-2-mins" class="headerlink" title="WTF are Babel and Webpack 😵 ? Explained in 2 mins."></a>WTF are Babel and Webpack 😵 ? Explained in 2 mins.</h2><p><a target="_blank" rel="noopener" href="https://dev.to/getd/wtf-are-babel-and-webpack-explained-in-2-mins-43be">来源</a></p>
+<h3 id="Balbel"><a href="#Balbel" class="headerlink" title="Balbel"></a>Balbel</h3><p>we need Babel to translate above into the equivalent not-so-fancy code below, that our browser / Node.js actually understands.</p>
+<p>That’s why Babel is sometimes called a <em>transpiler</em>.</p>
+<p><strong>It’s worth noting that Babel is commonly used for both front- and back-end. Why do I mention this? Because Webpack is front-end only (in most cases).</strong></p>
+<h3 id="Webpack"><a href="#Webpack" class="headerlink" title="Webpack"></a>Webpack</h3><p>If Babel is a translator for JS, you can think of Webpack as a mega-multi-translator that works with all kinds of languages (or assets). </p>
+<p><strong>Why do we need such a monster for front-end, but not back-end?</strong></p>
+<p>Because front-end has many kinds of assets such as CSS, SASS, images, fonts and is way more complex and dynamic than back-end which only has JS. And in the end of day we need to somehow package all variety of assets into a small file that our users’ browser can download at page load time. This is also known as minify and uglify. You see, back-end has none of the above requirement.</p>
+<p>Another important reason is that front-end doesn’t work with modules (again, in most cases). Modules are built-in features of Node.js, not browsers. Nowadays developers are so used to npm install, import and export JS modules in front-end, as it allows us to better organize code and share packages. But in reality they are only syntactic sugars, and it’s Webpack’s job to figure out all the dependencies among all the modules that we use in the code, and compile them into one big chunk of JS code that the browser actually understands.</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>Backend: we use Babel so that we can use the fanciest JS syntax (ES6/7) with Node.js.</li>
+<li>Frontend: we use Webpack (which uses Babel and other things) to compile JS code and many other assets into a few small bundle files that our users can download when they first load our webpage. For example, <a target="_blank" rel="noopener" href="https://github.com/facebook/create-react-app#get-started-immediately"><code>create-react-app</code> uses Webpack and Babel</a> when creating your app.</li>
+</ul>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="../../../../about" rel="external nofollow noreferrer">Savannah</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://savancode.github.io">http://savancode.github.io</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint polocy. If reproduced, please indicate source
+                    <a href="../../../../about" target="_blank">Savannah</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="../../../../tags/Babel/">
+                                    <span class="chip bg-color">Babel</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="../../../../libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
+            <div class="card">
+                <a href="">
+                    <div class="card-image">
+                        
+                        
+                        <img src="../../../../medias/featureimages/18.jpg" class="responsive-img" alt="Babel 重新学习记录~">
+                        
+                        <span class="card-title">Babel 重新学习记录~</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            重新学习Babel
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-06-02
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="../../../../categories/Babel/" class="post-category">
+                                    Babel
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="../../../../tags/Babel/">
+                        <span class="chip bg-color">Babel</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="../../../05/26/youtube-project-note/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="../../../../medias/featureimages/10.jpg" class="responsive-img" alt="youtube project note">
+                        
+                        <span class="card-title">youtube project note</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            本次练习的是参考youtube React JS Crash Course 2021
+额外proejct react project
+
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-26
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="../../../../categories/project-note/" class="post-category">
+                                    project_note
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="../../../../tags/project-note/">
+                        <span class="chip bg-color">project_note</span>
+                    </a>
+                    
+                    <a href="../../../../tags/react/">
+                        <span class="chip bg-color">react</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="../../../../libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="../../../../libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="../../../../libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="../../../../libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="../../../../libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4, h5, h6, h7, h8, h9, h10'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4, h5, h6, h7, h8, h9, h10').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="../../../../libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="../../../../libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2019</span>
+            <a href="../../../../about" target="_blank">Savannah</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/SavanCode/SavanCode.github.io" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1181062873@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="../../../../js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("../../../../search.xml", 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="../../../../libs/materialize/materialize.min.js"></script>
+    <script src="../../../../libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="../../../../libs/aos/aos.js"></script>
+    <script src="../../../../libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="../../../../libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="../../../../js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="../../../../libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="../../../../libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <script type="text/javascript" src="../../../../libs/background/ribbon-dynamic.js" async="async"></script>
+    
+
+    
+    <script src="../../../../libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
