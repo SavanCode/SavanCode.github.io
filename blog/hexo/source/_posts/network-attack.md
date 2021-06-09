@@ -7,8 +7,8 @@ mathjax: true
 date: 2021-05-08 14:10:57
 password:
 summary:CSRF以及XSS攻击
-tags: [Networking]
-categories: [Networking]
+tags:[Networking]
+categories: Networking
 ---
 
 ## CSRF以及XSS攻击

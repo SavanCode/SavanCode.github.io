@@ -8,7 +8,7 @@ date: 2021-04-30 21:56:54
 password:
 summary: 跨域原理以及问题解决
 tags: [cross_origin]
-categories: [Networking]
+categories: Networking
 ---
 
 > 这里很建议可以看一下 这篇基础文章 [ajax& cors](https://blog.huli.tw/2017/08/27/ajax-and-cors/)
