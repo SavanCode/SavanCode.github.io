@@ -319,6 +319,176 @@ student. attach(teacher);
 student. setState('被欺负了');
 ```
 
+## 工厂模式
+
+![](JS-design-pattern/image-20210611175048092.png)
+
+### 基本特征
+
+工厂模式有三种形式：简单工厂模式（Simple Factory）、工厂方法模式（Factory Method）和抽象工厂模式（Abstract Factory）。在js中我们最常见的当属简单工厂模式。工厂模式的设计思想即：
+
+- 将 new 操作单独封装，只对外提供相应接口；
+- 遇到new 时，就要考虑是否应该使用工厂模式；
+
+###  核心作用
+
+- 主要用于隐藏创建实例的复杂度，只需对外提供一个接口；
+- 实现构造函数和创建者的分离，满足开放封闭的原则；
+
+###  分类
+
+- 简单工厂模式：一个工厂对象创建一种产品对象实例。即用来创建同一类对象；
+- 工厂方法模式：建立抽象核心类，将创建实例的实际重心放在核心抽象大类的子类中；
+- 抽象工厂模式：对类的工厂抽象用来创建产品类簇，不负责创建某一类产品的实例。 由于在JS中基本不会使用抽象工厂模式，因此本文探究前两类模式。
+
+### 优点
+
+- 良好的封装，代码结构清晰，访问者无需知道对象的创建流程，特别是创建比较复杂的情况下；
+
+- 扩展性优良，通过工厂方法隔离了用户和创建流程隔离，符合开放封闭原则；
+
+- 解耦了高层逻辑和底层产品类，符合最少知识原则，不需要的就不要去交流；
+
+### 缺点
+
+- 带来了额外的系统复杂度，增加了抽象性；
+
+### 实例演示
+
+先通过一个简单例子最直观感受什么是工厂：
+
+```js
+/* 工厂类 */
+class Factory {
+    static getInstance(type) {
+        switch (type) {
+            case 'Product1':
+                return new Product1()
+            case 'Product2':
+                return new Product2()
+            default:
+                throw new Error('当前没有这个产品')
+        }
+    }
+}
+
+/* 产品类1 */
+class Product1 {
+    constructor() { this.type = 'Product1' }
+    operate() { console.log(this.type) }
+}
+
+/* 产品类2 */
+class Product2 {
+    constructor() { this.type = 'Product2' }  
+    operate() { console.log(this.type) }
+}
+
+const prod1 = Factory.getInstance('Product1')
+prod1.operate()	// 输出: Product1
+const prod2 = Factory.getInstance('Product3')// 输出: Error 当前没有这个产品
+```
+
+工厂模式最直观的地方在于，创建产品对象不是通过直接new 产品类实现，而是通过工厂方法实现。现在再用一个稍微有些好看的例子描述一下简单工厂：
+
+```js
+//User类
+class User {
+  //构造器
+  constructor(opt) {
+    this.name = opt.name;
+    this.viewPage = opt.viewPage;
+  }
+
+  static getInstance(role) {
+    switch (role) {
+      case 'superAdmin':
+        return new User({ name: '超级管理员', viewPage: ['首页', '通讯录', '发现页', '应用数据', '权限管理'] });
+        break;
+      case 'admin':
+        return new User({ name: '管理员', viewPage: ['首页', '通讯录'] });
+        break;
+      default:
+        throw new Error('params error')
+    }
+  }
+}
+
+//调用
+let superAdmin = User.getInstance('superAdmin');
+let admin = User.getInstance('admin'); 
+```
+
+通过上例，我们可以看到，每次创建新的对象实例时，只需要传入相应的参数，就可以得到指定的对象实例。最直观的例子是如果不用工厂模式，那代码中是不是就会多出好多个new，这样看着也不太舒服。
+
+其实简单工厂模式已经能满足我们前端大部分业务场景了，如果非要说其一个缺陷，那就是每次有新实例时，我们需要重写这个User大类，总归感觉和后面所述的装饰器模式有一些冲突。此时，工厂方法模式就出来了，其核心思想就是独立出一个大的User类，将创建实例对象的过程用其子类来实现：
+
+```js
+class User {
+  constructor(name = '', viewPage = []) {
+    this.name = name;
+    this.viewPage = viewPage;
+  }
+}
+
+class UserFactory extends User {
+  constructor(name, viewPage) {
+    super(name, viewPage)
+  }
+  create(role) {
+    switch (role) {
+      case 'superAdmin': 
+        return new UserFactory( '超级管理员', ['首页', '通讯录', '发现页', '应用数据', '权限管理'] );
+        break;
+      case 'admin':
+        return new UserFactory( '管理员', ['首页', '通讯录'] );
+        break;
+      default:
+        throw new Error('params error');
+    }
+  }
+}
+let userFactory = new UserFactory();
+let superAdmin = userFactory.create('superAdmin');
+let admin = userFactory.create('admin');
+let user = userFactory.create('user');
+```
+
+这样，虽然也得通过 new 一个实例，但至少我们可以无需修改User类里面的东西，虽说代码量上感觉和简单模式差不了多少，但思想主体确实就是这样。
+
+### 应用场景
+
+#### (1) jQuery的选择器$(selector)
+
+`$('div')` 和 `new $('div')` 有何区别？ 为什么 `$('div')` 就能直接实现 `new`的效果，同时去除了 `new $('div')` 这种`$('div')` 去除了 `new` 书写繁杂的弊端，还能实现完美的链式操作代码简介，就是因为`$`内置的实现机制是工厂模式。其底层代码如下：
+
+```js
+class jQuery {
+    constructor(selector) {
+        super(selector)
+    }
+    // ...
+}
+
+window.$ = function(selector) {
+    return new jQuery(selector)
+}
+```
+
+#### (2) Vue 异步组件
+
+```js
+Vue.component('async-example' , (resolve , reject) => {
+    setTimeout(function() {
+        resolve({
+            template: `<div>I am async!</div>`
+        })
+    }, 1000)
+})
+```
+
+除了上述两个常见的实例场景，还有`React.createElement()` 也是工厂原理。所以，当我们平时遇到要创建实例的时候，就可以想想能否用工厂模式实现了。
+
 # 下面是拓展（面试很少问，了解即可）
 
  ### [中介者模式 Mediator Pattern](https://juejin.cn/post/6844903745570996238#heading-0)
@@ -505,3 +675,9 @@ static void Main(string[] args)
 > - 中介者模式和发布-订阅模式都可以用来进行对象间的解耦，比如发布-订阅模式的发布者/订阅者和中介者模式里面的中介者/同事对象功能上就比较类似。
 > - 这两个模式也可以组合使用，比如中介者模式就可以使用发布-订阅模式，对相关同事对象进行消息的广播通知。
 > - 比如上面相亲的例子中，注册各方和通知信息就使用了发布-订阅模式。
+
+## 推荐阅读
+
+[腾讯前端AlloyTeam 解读设计者模式](http://www.alloyteam.com/2012/10/common-javascript-design-patterns/)
+
+[《JavaScript设计模式与开发实践》最全知识点汇总大全](https://juejin.cn/post/6844903751870840839)
