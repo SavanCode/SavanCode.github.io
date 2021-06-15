@@ -421,7 +421,7 @@ let admin = User.getInstance('admin');
 
 通过上例，我们可以看到，每次创建新的对象实例时，只需要传入相应的参数，就可以得到指定的对象实例。最直观的例子是如果不用工厂模式，那代码中是不是就会多出好多个new，这样看着也不太舒服。
 
-其实简单工厂模式已经能满足我们前端大部分业务场景了，如果非要说其一个缺陷，那就是每次有新实例时，我们需要重写这个User大类，总归感觉和后面所述的装饰器模式有一些冲突。此时，工厂方法模式就出来了，其核心思想就是独立出一个大的User类，将创建实例对象的过程用其子类来实现：
+其实简单工厂模式已经能满足我们前端大部分业务场景了，如果非要说其一个缺陷，那就是每次有新实例时，我们需要重写这个User大类，总归感觉和后面所述的装饰器模式有一些冲突。此时，**工厂方法模式**就出来了，其核心思想就是独立出一个大的User类，将创建实例对象的过程用其子类来实现：
 
 ```js
 class User {
@@ -488,6 +488,255 @@ Vue.component('async-example' , (resolve , reject) => {
 ```
 
 除了上述两个常见的实例场景，还有`React.createElement()` 也是工厂原理。所以，当我们平时遇到要创建实例的时候，就可以想想能否用工厂模式实现了。
+
+## 抽象工厂模式
+
+抽象工厂 （Abstract Factory）：通过对类的工厂抽象使其业务用于对产品类簇的创建，而不是负责创建某一类产品的实例。关键在于使用抽象类制定了实例的结构，调用者直接面向实例的结构编程，从实例的具体实现中解耦。
+
+我们可以先看看例子 然后在讨论具体比较
+
+### 实例演示
+
+```js
+//使用 class 语法
+/* 饭店方法 */
+class Restaurant {
+    static orderDish(type) {
+        switch (type) {
+            case '鱼香肉丝':
+                return new YuXiangRouSi()
+            case '宫保鸡丁':
+                return new GongBaoJiDin()
+            default:
+                throw new Error('本店没有这个 -。-')
+        }
+    }
+}
+
+/* 菜品抽象类 */
+class Dish {
+    constructor() {
+        if (new.target === Dish) {
+            throw new Error('抽象类不能直接实例化!')
+        }
+        this.kind = '菜'
+    }
+    
+    /* 抽象方法 */
+    eat() { throw new Error('抽象方法不能调用!') }
+}
+
+/* 鱼香肉丝类 */
+class YuXiangRouSi extends Dish {
+    constructor() {
+        super()
+        this.type = '鱼香肉丝'
+    }
+    
+    eat() { console.log(this.kind + ' - ' + this.type + ' 真香~') }
+}
+
+/* 宫保鸡丁类 */
+class GongBaoJiDin extends Dish {
+    constructor() {
+        super()
+        this.type = '宫保鸡丁'
+    }
+    
+    eat() { console.log(this.kind + ' - ' + this.type + ' 让我想起了外婆做的菜~') }
+}
+
+const dish0 = new Dish()  // 输出: Error 抽象方法不能调用!
+const dish1 = Restaurant.orderDish('鱼香肉丝')
+dish1.eat()	// 输出: 菜 - 鱼香肉丝 真香~
+const dish2 = Restaurant.orderDish('红烧排骨') // 输出: Error 本店没有这个 -。-
+```
+
+- 这里的 Dish 类就是抽象产品类，继承该类的子类需要实现它的方法 eat。
+- 上面的实现将产品的功能结构抽象出来成为抽象产品类。事实上我们还可以更进一步，将工厂类也使用抽象类约束一下，也就是抽象工厂类，比如这个饭店可以做菜和汤，另一个饭店也可以做菜和汤，存在共同的功能结构，就可以将共同结构作为抽象类抽象出来
+
+```js
+/* 饭店 抽象类，饭店都可以做菜和汤 */
+class AbstractRestaurant {
+    constructor() {
+        if (new.target === AbstractRestaurant)
+            throw new Error('抽象类不能直接实例化!')
+        this.signborad = '饭店'
+    }
+    
+    /* 抽象方法：创建菜 */
+    createDish() { throw new Error('抽象方法不能调用!') }
+    
+    /* 抽象方法：创建汤 */
+    createSoup() { throw new Error('抽象方法不能调用!') }
+}
+
+/* 具体饭店类 */
+class Restaurant extends AbstractRestaurant {
+    constructor() { super() }
+    
+    createDish(type) {
+        switch (type) {
+            case '鱼香肉丝':
+                return new YuXiangRouSi()
+            case '宫保鸡丁':
+                return new GongBaoJiDing()
+            default:
+                throw new Error('本店没这个菜')
+        }
+    }
+    
+    createSoup(type) {
+        switch (type) {
+            case '紫菜蛋汤':
+                return new ZiCaiDanTang()
+            default:
+                throw new Error('本店没这个汤')
+        }
+    }
+}
+
+/* 菜 抽象类，菜都有吃的功能 eat */
+class AbstractDish {
+    constructor() {
+        if (new.target === AbstractDish) {
+            throw new Error('抽象类不能直接实例化!')
+        }
+        this.kind = '菜'
+    }
+    
+    /* 抽象方法 */
+    eat() { throw new Error('抽象方法不能调用!') }
+}
+
+/* 菜 鱼香肉丝类 */
+class YuXiangRouSi extends AbstractDish {
+    constructor() {
+        super()
+        this.type = '鱼香肉丝'
+    }
+    
+    eat() { console.log(this.kind + ' - ' + this.type + ' 真香~') }
+}
+
+/* 菜 宫保鸡丁类 */
+class GongBaoJiDing extends AbstractDish {
+    constructor() {
+        super()
+        this.type = '宫保鸡丁'
+    }
+    
+    eat() { console.log(this.kind + ' - ' + this.type + ' 让我想起了外婆做的菜~') }
+}
+
+/* 汤 抽象类，汤都有喝的功能 drink */
+class AbstractSoup {
+    constructor() {
+        if (new.target === AbstractDish) {
+            throw new Error('抽象类不能直接实例化!')
+        }
+        this.kind = '汤'
+    }
+    
+    /* 抽象方法 */
+    drink() { throw new Error('抽象方法不能调用!') }
+}
+
+/* 汤 紫菜蛋汤类 */
+class ZiCaiDanTang extends AbstractSoup {
+    constructor() {
+        super()
+        this.type = '紫菜蛋汤'
+    }
+    
+    drink() { console.log(this.kind + ' - ' + this.type + ' 我从小喝到大~') }
+}
+
+const restaurant = new Restaurant()
+
+const soup1 = restaurant.createSoup('紫菜蛋汤')
+soup1.drink()// 输出: 汤 - 紫菜蛋汤 我从小喝到大~
+const dish1 = restaurant.createDish('鱼香肉丝')
+dish1.eat()	// 输出: 菜 - 鱼香肉丝 真香~
+const dish2 = restaurant.createDish('红烧排骨')  // 输出: Error 本店没有这个 -。-
+```
+
+### 抽象工厂模式 特点
+
+- Factory ：工厂，负责返回产品实例；
+- AbstractFactory ：虚拟工厂，制定工厂实例的结构；
+- Product ：产品，访问者从工厂中拿到的产品实例，实现抽象类；
+- AbstractProduct ：产品抽象类，由具体产品实现，制定产品实例的结构；
+
+![](JS-design-pattern/image-20210615150631215.png)
+
+### 优点
+
+> 抽象产品类将产品的结构抽象出来，访问者不需要知道产品的具体实现，只需要面向产品的结构编程即可，从产品的具体实现中解耦；
+
+### 缺点
+
+- 扩展新类簇的产品类比较困难，因为需要创建新的抽象产品类，并且还要修改工厂类，违反开闭原则；
+- 带来了系统复杂度，增加了新的类，和新的继承关系；
+
+### 抽象工厂模式的使用场景
+
+> 如果一组实例都有相同的结构，那么就可以使用抽象工厂模式。
+
+### 抽象工厂模式与工厂模式区别
+
+- 工厂模式 主要关注单独的产品实例的创建；
+- 抽象工厂模式 主要关注产品类簇实例的创建，如果产品类簇只有一个产品，那么这时的抽象工厂模式就退化为工厂模式了；根据场景灵活使用即可。
+
+## 对于三种工厂模式的实例解读
+
+简单工厂模式不是 23 种里的一种，简而言之，就是有一个专门生产某个产品的类。
+
+比如下图中的鼠标工厂，专业生产鼠标，给参数 0，生产戴尔鼠标，给参数 1，生产惠普鼠标。
+
+![](JS-design-pattern\image-20210615151529439.png)
+
+### 工厂模式
+
+工厂模式也就是鼠标工厂是个父类，有生产鼠标这个接口。
+
+戴尔鼠标工厂，惠普鼠标工厂继承它，可以分别生产戴尔鼠标，惠普鼠标。
+
+生产哪种鼠标不再由参数决定，而是创建鼠标工厂时，由戴尔鼠标工厂创建。
+
+后续直接调用**factory.createMouse()**即可
+
+![](JS-design-pattern\image-20210615151451189.png)
+
+### 抽象工厂模式
+
+抽象工厂模式也就是不仅生产鼠标，同时生产键盘。
+
+也就是 PC 厂商是个父类，有生产鼠标，生产键盘两个接口。
+
+戴尔工厂，惠普工厂继承它，可以分别生产戴尔鼠标+戴尔键盘，和惠普鼠标+惠普键盘。
+
+创建工厂时，由戴尔工厂创建。
+
+后续**factory.createMouse()**则生产戴尔鼠标，**factory.createKeybo()**则生产戴尔键盘。
+
+![](JS-design-pattern/image-20210615151249428.png)
+
+> 在抽象工厂模式中，假设我们需要增加一个工厂
+
+假设我们增加华硕工厂，则我们需要增加华硕工厂，和戴尔工厂一样，继承 PC 厂商。
+
+之后创建华硕鼠标，继承鼠标类。创建华硕键盘，继承键盘类即可。
+
+![](JS-design-pattern/image-20210615151225056.png)
+
+> 在抽象工厂模式中，假设我们需要增加一个产品
+
+假设我们增加耳麦这个产品，则首先我们需要增加耳麦这个父类，再加上戴尔耳麦，惠普耳麦这两个子类。
+
+之后在PC厂商这个父类中，增加生产耳麦的接口。最后在戴尔工厂，惠普工厂这两个类中，分别实现生产戴尔耳麦，惠普耳麦的功能。 以上。
+
+![](JS-design-pattern/image-20210615151202077.png)
 
 # 下面是拓展（面试很少问，了解即可）
 
@@ -675,6 +924,534 @@ static void Main(string[] args)
 > - 中介者模式和发布-订阅模式都可以用来进行对象间的解耦，比如发布-订阅模式的发布者/订阅者和中介者模式里面的中介者/同事对象功能上就比较类似。
 > - 这两个模式也可以组合使用，比如中介者模式就可以使用发布-订阅模式，对相关同事对象进行消息的广播通知。
 > - 比如上面相亲的例子中，注册各方和通知信息就使用了发布-订阅模式。
+
+### 策略模式（Strategy Pattern）
+
+略模式 （Strategy Pattern）又称政策模式，其定义一系列的算法，把它们一个个封装起来，并且使它们可以互相替换。封装的策略算法一般是独立的，策略模式根据输入来调整采用哪个算法。关键是策略的实现和使用分离
+
+#### 例子
+
+这里的例子比如 对于不同的价格折扣，一般我们直接想到的就是利用if-else。 但是这样后期随着折扣变多，会变得臃肿。
+
+计算折扣的算法部分提取出来保存为一个对象，折扣的类型作为 `key`，这样索引的时候通过对象的键值索引调用具体的算法：
+
+```js
+const DiscountMap = {
+    minus100_30: function(price) {
+        return price - Math.floor(price / 100) * 30
+    },
+    minus200_80: function(price) {
+        return price - Math.floor(price / 200) * 80
+    },
+    percent80: function(price) {
+        return price * 0.8
+    }
+}
+
+/* 计算总售价*/
+function priceCalculate(discountType, price) {
+    return DiscountMap[discountType] && DiscountMap[discountType](price)
+}
+
+priceCalculate('minus100_30', 270)
+priceCalculate('percent80', 250)
+
+// 输出: 210
+// 输出: 200
+```
+
+这样算法的实现和算法的使用就被分开了，想添加新的算法也变得十分简单：
+
+```js
+DiscountMap.minus150_40 = function(price) {
+    return price - Math.floor(price / 150) * 40
+}
+```
+
+如果你希望计算算法隐藏起来，那么可以借助 IIFE 使用闭包的方式，这时需要添加增加策略的入口，以方便扩展：
+
+```js
+const PriceCalculate = (function() {
+    /* 售价计算方式 */
+    const DiscountMap = {
+        minus100_30: function(price) {      // 满100减30
+            return price - Math.floor(price / 100) * 30
+        },
+        minus200_80: function(price) {      // 满200减80
+            return price - Math.floor(price / 200) * 80
+        },
+        percent80: function(price) {        // 8折
+            return price * 0.8
+        }
+    }
+    
+    return {
+        priceClac: function(discountType, price) {
+            return DiscountMap[discountType] && DiscountMap[discountType](price)
+        },
+        addStrategy: function(discountType, fn) {		// 注册新计算方式
+            if (DiscountMap[discountType]) return
+            DiscountMap[discountType] = fn
+        }
+    }
+})()
+
+PriceCalculate.priceClac('minus100_30', 270)	// 输出: 210
+
+PriceCalculate.addStrategy('minus150_40', function(price) {
+    return price - Math.floor(price / 150) * 40
+})
+PriceCalculate.priceClac('minus150_40', 270)	// 输出: 230
+```
+
+#### 内部结构详解
+
+- Context ：封装上下文，根据需要调用需要的策略，屏蔽外界对策略的直接调用，只对外提供一个接口，根据需要调用对应的策略；
+- Strategy ：策略，含有具体的算法，其方法的外观相同，因此可以互相代替；
+- StrategyMap ：所有策略的合集，供封装上下文调用；
+
+![](JS-design-pattern\image-20210615153946358.png)
+
+#### 实例
+
+- `Element` 的表格控件的 `Column` 接受一个 `formatter` 参数，用来格式化内容，其类型为函数，并且还可以接受几个特定参数，像这样： `Function(row, column, cellValue, index)`。
+- 以文件大小转化为例，后端经常会直接传 `bit` 单位的文件大小，那么前端需要根据后端的数据，根据需求转化为自己需要的单位的文件大小，比如 `KB/MB`。
+
+首先实现文件计算的算法：
+
+```js
+export const StrategyMap = {
+    /* Strategy 1: 将文件大小（bit）转化为 KB */
+    bitToKB: val => {
+        const num = Number(val)
+        return isNaN(num) ? val : (num / 1024).toFixed(0) + 'KB'
+    },
+    /* Strategy 2: 将文件大小（bit）转化为 MB */
+    bitToMB: val => {
+        const num = Number(val)
+        return isNaN(num) ? val : (num / 1024 / 1024).toFixed(1) + 'MB'
+    }
+}
+
+/* Context: 生成el表单 formatter */
+const strategyContext = function(type, rowKey){ 
+  return function(row, column, cellValue, index){
+  	StrategyMap[type](row[rowKey])
+  }
+}
+
+export default strategyContext
+```
+
+那么在组件中我们可以直接：
+
+```html
+<template>
+    <el-table :data="tableData">
+        <el-table-column prop="date" label="日期"></el-table-column>
+        <el-table-column prop="name" label="文件名"></el-table-column>
+        <!-- 直接调用 strategyContext -->
+        <el-table-column prop="sizeKb" label="文件大小(KB)"
+                         :formatter='strategyContext("bitToKB", "sizeKb")'>
+        </el-table-column>
+        <el-table-column prop="sizeMb" label="附件大小(MB)"
+                         :formatter='strategyContext("bitToMB", "sizeMb")'>
+        </el-table-column>
+    </el-table>
+</template>
+
+<script type='text/javascript'>
+    import strategyContext from './strategyContext.js'
+    
+    export default {
+        name: 'ElTableDemo',
+        data() {
+            return {
+                strategyContext,
+                tableData: [
+                    { date: '2019-05-02', name: '文件1', sizeKb: 1234, sizeMb: 1234426 },
+                    { date: '2019-05-04', name: '文件2', sizeKb: 4213, sizeMb: 8636152 }]
+            }
+        }
+    }
+</script>
+
+<style scoped></style>
+```
+
+![](JS-design-pattern\image-20210615154119007.png)
+
+#### 优点
+
+- 策略之间相互独立，但策略可以自由切换，这个策略模式的特点给策略模式带来很多灵活性，也提高了策略的复用率；
+- 如果不采用策略模式，那么在选策略时一般会采用多重的条件判断，采用策略模式可以避免多重条件判断，增加可维护性；
+- 可扩展性好，策略可以很方便的进行扩展；
+
+#### 缺点
+
+- 策略相互独立，因此一些复杂的算法逻辑无法共享，造成一些资源浪费；
+- 如果用户想采用什么策略，必须了解策略的实现，因此所有策略都需向外暴露，这是违背迪米特法则/最少知识原则的，也增加了用户对策略对象的使用成本。
+
+### 代理模式
+
+代理模式 （Proxy Pattern）又称委托模式，它为目标对象创造了一个代理对象，以控制对目标对象的访问。
+
+```js
+/* 明星 */
+const SuperStar = {
+    name: '小鲜肉',
+    playAdvertisement(ad) {
+        console.log(ad)
+    }
+}
+
+/* 经纪人 */
+const ProxyAssistant = {
+    name: '经纪人张某',
+    scheduleTime() {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                console.log('小鲜鲜有空了')
+                resolve()
+            }, 2000)                        // 发现明星有空了
+        })
+    },
+    playAdvertisement(reward, ad) {
+        if (reward > 1000000) {             // 如果报酬超过100w
+            console.log('没问题，我们小鲜鲜最喜欢拍广告了！')
+            ProxyAssistant.scheduleTime()   // 安排上了
+              .then(() => SuperStar.playAdvertisement(ad))
+        } else
+            console.log('没空，滚！')
+    }
+}
+
+ProxyAssistant.playAdvertisement(10000, '纯蒸酸牛奶，味道纯纯，尽享纯蒸')
+// 输出： 没空，滚
+
+ProxyAssistant.playAdvertisement(1000001, '纯蒸酸牛奶，味道纯纯，尽享纯蒸')
+// 输出： 没问题，我们小鲜鲜最喜欢拍广告了！
+// 2秒后
+// 输出： 小鲜鲜有空了
+// 输出： 纯蒸酸牛奶，味道纯纯，尽享纯蒸
+```
+
+#### 概念
+
+- `Target`： 目标对象，也是被代理对象，是具体业务的实际执行者；
+- `Proxy`： 代理对象，负责引用目标对象，以及对访问的过滤和预处理；
+
+概略图如下：
+
+![](JS-design-pattern\image-20210615162158918.png)
+
+#### **ES6 原生提供了 `Proxy` 构造函数**
+
+```js
+var proxy = new Proxy(target, handler);
+```
+
+- 拦截和监视外部对对象的访问
+- 降低函数或类的复杂度
+- 在复杂操作前对操作进行校验或对所需资源进行管理
+
+`Proxy(target, handler)` 是一个构造函数，`target` 是被代理的对象，`handlder` 是声明了各类代理操作的对象，最终返回一个代理对象。外界每次通过代理对象访问 `target` 对象的属性时，就会经过 `handler` 对象，从这个流程来看，代理对象很类似 middleware（中间件）。 
+
+这里使用 `Proxy` 来实现一下上面的经纪人例子：
+
+```js
+//在 ES6 之前，一般是使用 Object.defineProperty 来完成相同的功能，我们可以使用这个 API 改造一下：
+
+/* 明星 */
+const SuperStar = {
+    name: '小鲜肉',
+    scheduleFlagActually: false,// 档期标识位，false-没空（默认值），true-有空
+    playAdvertisement(ad) {
+        console.log(ad)
+    }
+}
+
+/* 经纪人 */
+const ProxyAssistant = {
+    name: '经纪人张某',
+    scheduleTime(ad) {
+        Object.defineProperty(SuperStar, 'scheduleFlag', { // 在这里监听 scheduleFlag 值的变化
+            get() {
+                return SuperStar.scheduleFlagActually
+            },
+            set(val) {
+                if (SuperStar.scheduleFlagActually === false &&
+                  val === true) {// 小鲜肉现在有空了
+                    SuperStar.scheduleFlagActually = true
+                    SuperStar.playAdvertisement(ad)// 安排上了
+                }
+            }
+        })
+        
+        setTimeout(() => {
+            console.log('小鲜鲜有空了')
+            SuperStar.scheduleFlag = true
+        }, 2000)// 明星有空了
+    },
+    playAdvertisement(reward, ad) {
+        if (reward > 1000000) {// 如果报酬超过100w
+            console.log('没问题，我们小鲜鲜最喜欢拍广告了！')
+            ProxyAssistant.scheduleTime(ad)
+        } else
+            console.log('没空，滚！')
+    }
+}
+
+ProxyAssistant.playAdvertisement(10000, '纯蒸酸牛奶，味道纯纯，尽享纯蒸')
+// 输出： 没空，滚
+
+ProxyAssistant.playAdvertisement(1000001, '纯蒸酸牛奶，味道纯纯，尽享纯蒸')
+// 输出： 没问题，我们小鲜鲜最喜欢拍广告了！
+// 2秒后
+// 输出： 小鲜鲜有空了
+// 输出： 纯蒸酸牛奶，味道纯纯，尽享纯蒸
+```
+
+或者[参考例子](https://blog.csdn.net/qq_43955202/article/details/104271193)
+
+### 迭代器模式 （Iterator Pattern）
+
+迭代器模式（Iterator Pattern）是 Java 和 .Net 编程环境中非常常用的设计模式。这种模式用于顺序访问集合对象的元素，不需要知道集合对象的底层表示。
+
+迭代器模式属于行为型模式。（**主要解决：**不同的方式来遍历整个整合对象）
+
+#### **ES6 中的迭代器**
+
+- `ES6` 规定，默认的迭代器部署在对应数据结构的 `Symbol.iterator` 属性上，如果一个数据结构具有 `Symbol.iterator` 属性，就被视为可遍历的，就可以用 `for...of` 循环遍历它的成员。也就是说，`for...of`循环内部调用的是数据结构的`Symbol.iterator` 方法。
+- `for-of` 循环可以使用的范围包括 `Array`、`Set`、`Map` 结构、上文提到的类数组结构、`Generator` 对象，以及字符串。
+
+> 注意： `ES6` 的 `Iterator` 相关内容与本节主题无关，所以不做更详细的介绍，如果读者希望更深入，推介先阅读阮一峰的 `<Iterator 和 for...of 循环>` 相关内容。
+
+- 通过 `for-of` 可以使用 `Symbol.iterator` 这个属性提供的迭代器可以遍历对应数据结构，如果对没有提供 `Symbol.iterator` 的目标使用 `for-of` 则会抛错
+
+#### 例子
+
+```js
+var bar = {
+    a: 1,
+    [Symbol.iterator]: function() {
+        var valArr = [
+            { value: 'hello', done: false },
+            { value: 'world', done: false },
+            { value: '!', done: false },
+            { value: undefined, done: true }
+        ]
+        return {
+            next: function() {
+                return valArr.shift()
+            }
+        }
+    }
+}
+
+for (var key of bar) {
+    console.log(key)
+}
+
+// 输出： hello
+// 输出： world
+// 输出： !
+```
+
+#### 模式结构
+
+![](JS-design-pattern/image-20210615173212929.png)
+
+**关键代码：**定义接口：hasNext, next。
+
+**应用实例：**JAVA 中的 iterator。
+
+#### 优点
+
+1、它支持以不同的方式遍历一个聚合对象。 2、迭代器简化了聚合类。 3、在同一个聚合上可以有多个遍历。 4、在迭代器模式中，增加新的聚合类和迭代器类都很方便，无须修改原有代码。
+
+#### 缺点
+
+由于迭代器模式将存储数据和遍历数据的职责分离，增加新的聚合类需要对应增加新的迭代器类，类的个数成对增加，这在一定程度上增加了系统的复杂性。
+
+**使用场景：** 1、访问一个聚合对象的内容而无须暴露它的内部表示。 2、需要为聚合对象提供多种遍历方式。 3、为遍历不同的聚合结构提供一个统一的接口。
+
+### 适配器模式
+
+- 适配器模式（Adapter Pattern）又称包装器模式，将一个类（对象）的接口（方法、属性）转化为用户需要的另一个接口，解决类（对象）之间接口不兼容的问题。
+- 主要功能是进**行转换匹配，目的是复用已有的功能**，而不是来实现新的接口。也就是说，访问者需要的功能应该是已经实现好了的，不需要适配器模式来实现，适配器模式主要是负责把不兼容的接口转换成访问者期望的格式而已。
+
+#### 基本实现原理
+
+```js
+chinaPlug.chinaInPlug()
+// 输出：开始供电
+```
+
+> 但是我们出国旅游了，到了日本，需要增加一个日本插头到中国插头的电源适配器，来将我们原来的电源线用起来：
+
+```js
+var chinaPlug = {
+    type: '中国插头',
+    chinaInPlug() {
+        console.log('开始供电')
+    }
+}
+
+var japanPlug = {
+    type: '日本插头',
+    japanInPlug() {
+        console.log('开始供电')
+    }
+}
+
+/* 日本插头电源适配器 */
+function japanPlugAdapter(plug) {
+    return {
+        chinaInPlug() {
+            return plug.japanInPlug()
+        }
+    }
+}
+
+japanPlugAdapter(japanPlug).chinaInPlug()
+// 输出：开始供电
+```
+
+#### 原理
+
+![](JS-design-pattern\image-20210615174249534.png)
+
+#### 实际例子
+
+##### ajax 与axios
+
+> 有的使用 `jQuery` 的老项目使用 `$.ajax` 来发送请求，现在的新项目一般使用 `Axios`，那么现在有个老项目的代码中全是 `$.ajax`，如果你挨个修改，那么 `bug` 可能就跟地鼠一样到处冒出来让你焦头烂额，这时可以采用适配器模式来将老的使用形式适配到新的技术栈上：
+
+```js
+/* 适配器 */
+function ajax2AxiosAdapter(ajaxOptions) {
+    return axios({
+        url: ajaxOptions.url,
+        method: ajaxOptions.type,
+        responseType: ajaxOptions.dataType,
+        data: ajaxOptions.data
+    })
+      .then(ajaxOptions.success)
+      .catch(ajaxOptions.error)
+}
+
+/* 经过适配器包装 */
+$.ajax = function(options) {
+    return ajax2AxiosAdapter(options)
+}
+
+$.ajax({
+    url: '/demo-url',
+    type: 'POST',
+    dataType: 'json',
+    data: {
+        name: '张三',
+        id: '2345'
+    },
+    success: function(data) {
+        console.log('访问成功！')
+    },
+    error: function(err) {
+        console.err('访问失败～')
+    }
+})
+```
+
+##### 业务数据平铺
+
+```js
+/* 原来的树形结构 */
+const oldTreeData = [
+    {
+        name: '总部',
+        place: '一楼',
+        children: [
+            { name: '财务部', place: '二楼' },
+            { name: '生产部', place: '三楼' },
+            {
+                name: '开发部', place: '三楼', children: [
+                    {
+                        name: '软件部', place: '四楼', children: [
+                            { name: '后端部', place: '五楼' },
+                            { name: '前端部', place: '七楼' },
+                            { name: '技术支持部', place: '六楼' }]
+                    }, {
+                        name: '硬件部', place: '四楼', children: [
+                            { name: 'DSP部', place: '八楼' },
+                            { name: 'ARM部', place: '二楼' },
+                            { name: '调试部', place: '三楼' }]
+                    }]
+            }
+        ]
+    }
+]
+
+/* 树形结构平铺 */
+function treeDataAdapter(treeData, lastArrayData = []) {
+    treeData.forEach(item => {
+        if (item.children) {
+            treeDataAdapter(item.children, lastArrayData)
+        }
+        const { name, place } = item
+        lastArrayData.push({ name, place })
+    })
+    return lastArrayData
+}
+
+treeDataAdapter(oldTreeData)
+
+// 返回平铺的组织结构
+```
+
+##### Vue 计算属性
+
+> `Vue` 中的计算属性也是一个适配器模式的实例，以官网的例子为例，我们可以一起来理解一下：
+
+```html
+<template>
+    <div id="example">
+        <p>Original message: "{{ message }}"</p>  <!-- Hello -->
+        <p>Computed reversed message: "{{ reversedMessage }}"</p>  <!-- olleH -->
+    </div>
+</template>
+
+<script type='text/javascript'>
+    export default {
+        name: 'demo',
+        data() {
+            return {
+                message: 'Hello'
+            }
+        },
+        computed: {
+            reversedMessage: function() {
+                return this.message.split('').reverse().join('')
+            }
+        }
+    }
+</script>
+```
+
+> 旧有 `data` 中的数据不满足当前的要求，通过计算属性的规则来适配成我们需要的格式，对原有数据并没有改变，只改变了原有数据的表现形式。
+
+[`Axios` 是比较热门的网络请求库，在浏览器中使用的时候，`Axios` 的用来发送请求的 `adapter` 本质上是封装浏览器提供的 `API XMLHttpRequest`，我们可以看看源码中是如何封装这个 `API` 的](http://interview.poetries.top/docs/design-pattern.html#%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F)
+
+#### 优点 
+
+- 已有的功能如果只是接口不兼容，使用适配器适配已有功能，可以使原有逻辑得到更好的复用，有助于避免大规模改写现有代码；
+
+- 可扩展性良好，在实现适配器功能的时候，可以调用自己开发的功能，从而方便地扩展系统的功能；
+
+- 灵活性好，因为适配器并没有对原有对象的功能有所影响，如果不想使用适配器了，那么直接删掉即可，不会对使用原有对象的代码有影响；
+
+#### 缺点
+会让系统变得零乱，明明调用 A，却被适配到了 B，如果系统中这样的情况很多，那么对可阅读性不太友好。如果没必要使用适配器模式的话，可以考虑重构，如果使用的话，可以考虑尽量把文档完善。
 
 ## 推荐阅读
 
