@@ -1458,3 +1458,7 @@ treeDataAdapter(oldTreeData)
 [腾讯前端AlloyTeam 解读设计者模式](http://www.alloyteam.com/2012/10/common-javascript-design-patterns/)
 
 [《JavaScript设计模式与开发实践》最全知识点汇总大全](https://juejin.cn/post/6844903751870840839)
+
+[菜鸟教程-设计模式](https://www.runoob.com/design-pattern/design-pattern-tutorial.html)
+
+[设计模式总结-付费版本](http://interview.poetries.top/docs/design-pattern.html#%E4%BA%8C%E3%80%81%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F)
