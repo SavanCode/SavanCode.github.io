@@ -13,6 +13,234 @@ categories: [NodeJS]
 
 > 这里主要参考的是nodejs的主要内容参考，后面再补充阅读深入浅出Nodejs
 
+这里我个人认为整个的意识很重要,也就是nodejs 作为什么东西
+
+![](nodejs\image-20210621002355083.png)
+
+### Node 学习教程
+
+Node.js 是异步的、事件驱动的、非阻塞的和单线程的
+
+[官方教程](http://nodejs.cn/learn/how-to-exit-from-a-nodejs-program)
+
+[菜鸟教程](https://www.runoob.com/nodejs/nodejs-tutorial.html)
+
+### Node回调函数 阻塞&非阻塞 异步&同步
+
+**同步：**同步就是你要做的事你列了一个清单，按照清单上的顺序 一个一个执行
+
+**异步：**就是可以同时干好几件事
+
+**阻塞：**就是按照清单上的顺序一件一件的往下走，当一件事没有做完，下面的事都干不了
+
+**非阻塞：**就是这件事没有干完，后面的事不会等你这件事干完了再干，而是直接开始干下一件事，等你这件事干完了，后面的事也干完了，这样就大大提高了效率
+
+异步函数例子
+
+```js
+var fs = require("fs");
+
+fs.readFile('input.txt', function (err, data) {
+   if (err){
+      console.log(err.stack);
+      return;
+   }
+   console.log(data.toString());
+});
+console.log("程序执行完毕");
+```
+
+### Node.js 事件循环
+
+Node.js 使用事件驱动模型，当web server接收到请求，就把它关闭然后进行处理，然后去服务下一个web请求。当这个请求完成，它被放回处理队列，当到达队列开头，这个结果被返回给用户。
+
+![](nodejs\image-20210618142721417.png)
+
+```js
+// 引入 events 模块
+var events = require('events');
+// 创建 eventEmitter 对象
+var eventEmitter = new events.EventEmitter();
+ 
+// 创建事件处理程序
+var connectHandler = function connected() {
+   console.log('连接成功。');
+  
+   // 触发 data_received 事件 
+   eventEmitter.emit('data_received');
+}
+ 
+// 绑定 connection 事件处理程序
+eventEmitter.on('connection', connectHandler);
+ 
+// 使用匿名函数绑定 data_received 事件
+eventEmitter.on('data_received', function(){
+   console.log('数据接收成功。');
+});
+ 
+// 触发 connection 事件 
+eventEmitter.emit('connection');
+ 
+console.log("程序执行完毕。");
+//连接成功。
+//数据接收成功。
+//程序执行完毕。
+```
+
+#### EventEmitter 
+
+[API 表](https://www.runoob.com/nodejs/nodejs-event.html)
+
+EventEmitter 的核心就是事件触发与事件监听器功能的封装。这里我理解为引入模块，然后对时间进行实例化，通过增加名字，达到一个时间监听。
+
+```js
+//event.js 文件
+var events = require('events'); 
+var emitter = new events.EventEmitter(); 
+emitter.on('someEvent', function(arg1, arg2) { 
+    console.log('listener1', arg1, arg2); 
+}); 
+emitter.on('someEvent', function(arg1, arg2) { 
+    console.log('listener2', arg1, arg2); 
+}); 
+emitter.emit('someEvent', 'arg1 参数', 'arg2 参数'); 
+//$ node event.js 
+//listener1 arg1 参数 arg2 参数
+//listener2 arg1 参数 arg2 参数
+
+//最好Es6中class extends的办法写
+```
+
+- 增加监听的方式有两种：`eventEmitter.addListener('connection', listener1)`;`eventEmitter.on('connection', listener2);`
+
+- eventEmitter.on()与eventEmitter.addListener()没有区别，且一个事件可以绑定多个回调函数；
+
+- 若事件队列中出现一个未绑定事件则触发error事件，若未绑定 error事件则程序抛出异常结束执行
+
+- EventEmitter 里面的 error 事件，EventEmitter 即使绑定了 error 事件，也是不会输出的。而是会在控制台打印该异常的堆栈信息，并结束进程。 获取异常只能通过 try catch。
+
+```js
+  eventEmitter.on('error',function(err){
+      console.error('Error:',err);
+  });
+```
+
+  我测试了一下，绑定 error 事件。只能自己触发，**eventEmitter.emit('error');** 当没有错误时，会在控制台打印 **Error：undefined**。有错误时，不会打印，直接打印该异常的堆栈信息，并结束进程。
+
+### [Buffer(缓冲区)](https://www.runoob.com/nodejs/nodejs-buffer.html)
+
+> 这部分还没有实战过~ sorry
+
+ Buffer 类用来创建一个专门存放二进制数据的缓存区。
+
+### Stream(流)
+
+流(Stream)是基于 EventEmitter的数据管理模式，由各种不同的抽象接口组成，主要包括可写、可读、可读写、可转换等类型。
+
+Stream 有四种流类型：
+
+- **Readable** - 可读操作。
+- **Writable** - 可写操作。
+- **Duplex** - 可读可写操作.
+- **Transform** - 操作被写入数据，然后读出结果。
+
+所有的 Stream 对象都是 EventEmitter 的实例。常用的事件有：
+
+- **data** - 当有数据可读时触发。
+- **end** - 没有更多的数据可读时触发。
+- **error** - 在接收和写入过程中发生错误时触发。
+- **finish** - 所有数据已被写入到底层系统时触发。
+
+[基本的读取例子](https://www.runoob.com/nodejs/nodejs-stream.html)
+
+- 读取流 `fs.createReadStream('input.txt');`
+- 写入流 `fs.createWriteStream('output.txt');`
+- 管道流 `readerStream.pipe(writerStream);`
+- 链式流
+
+```js
+var fs = require("fs");
+var zlib = require('zlib');
+
+// 压缩 input.txt 文件为 input.txt.gz
+fs.createReadStream('input.txt')
+  .pipe(zlib.createGzip())
+  .pipe(fs.createWriteStream('input.txt.gz'));
+  
+console.log("文件压缩完成。");
+```
+
+### node 模块
+
+- http、fs、path等，原生模块。
+- ./mod或../mod，相对路径的文件模块。
+- /pathtomodule/mod，绝对路径的文件模块。
+- mod，非原生模块的文件模块。
+
+这里 练习一下commonjs 的 module.exports 文件的导入导出~
+
+> 来源于菜鸟~
+>
+> 不建议同时使用 exports 和 module.exports。
+>
+> 如果先使用 exports 对外暴露属性或方法，再使用 module.exports 暴露对象，会使得 exports 上暴露的属性或者方法失效。
+>
+> 原因在于，exports 仅仅是 module.exports 的一个引用。在 nodejs 中，是这么设计 require 函数的：
+
+```js
+function require(...){
+  var module = {exports: {}};
+
+  ((module, exports) => {
+    function myfn () {}
+    // 这个myfn就是我们自己的代码
+    exports.myfn = myfn; // 这里是在原本的对象上添加了一个myfn方法。
+    module.exports = myfn;// 这个直接把当初的对象进行覆盖。
+  })(module,module.exports)
+  return module.exports;
+}
+```
+
+### [router](https://www.runoob.com/nodejs/nodejs-router.html)
+
+### [node 变量对象](https://www.runoob.com/nodejs/nodejs-global-object.html)
+
+_ 下划线代表当前。 比如**__filename** 表示当前正在执行的脚本的文件名
+
+process 是一个全局变量，即 global 对象的属性
+
+> 剩下的看api吧
+
+### Node.js 常用工具 util
+
+util 是一个Node.js 核心模块，提供常用函数的集合，用于弥补核心 JavaScript 的功能 过于精简的不足。
+
+- **util.callbackify(original)** 将 `async` 异步函数（或者一个返回值为 `Promise` 的函数）转换成遵循异常优先的回调风格的函数，例如将 `(err, value) => ...` 回调作为最后一个参数。 在回调函数中，第一个参数为拒绝的原因（如果 `Promise` 解决，则为 `null`），第二个参数则是解决的值
+
+- **util.inherits(constructor, superConstructor)** 是一个实现对象间原型继承的函数。
+
+- **util.inspect(object,[showHidden],[depth],[colors])** 是一个将任意对象转换 为字符串的方法，通常用于调试和错误输出。它至少接受一个参数 object，即要转换的对象。
+
+- **util.isArray(object)**  如果给定的参数 "object" 是一个数组返回 true，否则返回 false。
+
+- **util.isRegExp(object)**  如果给定的参数 "object" 是一个正则表达式返回true，否则返回false
+
+- **util.isDate(object) ** 如果给定的参数 "object" 是一个日期返回true，否则返回false。
+
+### [GET/POST请求](GET/POST请求)
+
+### process.nextTick()
+
+process.nextTick()方法，会将回调函数放入队列中，在下一轮Tick时取出执行
+
+ setImmediate()与nexttick方法类似，都是将回调函数延迟执行，但process.nextTick()中的回调函数执行优先级高于setImmediate()
+
+![](nodejs\image-20210621192647938.png)
+
+## 下面的内容是
+
+## 看官网以及书（有点干&无聊）
+
 ### [Path](https://nodejs.org/dist./v0.10.44/docs/api/path.html)
 
 #### node 中的路径分类
@@ -102,11 +330,21 @@ path.relative(from, to)
 
 ### fs模块
 
-Node.js 中的 fs 模块是文件操作的封装，它提供了文件读取、写入、更名、删除、遍历目录、链接等 POSIX 文件系统操作。与其它模块不同的是，fs 模块中所有的操作都提供了异步和同步的两个版本,具有 sync 后缀的方法为同步方法，不具有 sync 后缀的方法为异步方法 
+Node.js 中的 fs 模块是文件操作的封装，它一共以下几个部分
+
+（1） POSIX文件 Wrapper，对应操作系统的原生文件操作。
+
+（2）文件流，fs. createReadStream和 fs.createWriteStrean。
+
+（3）同步文件读写， fs.readFileSync和fs.writeFileSync。
+
+（4）异步文件读写， fs.readFile和fs.writeFile。
+
+> 与其它模块不同的是，fs 模块中所有的操作都提供了异步和同步的两个版本,具有 sync 后缀的方法为同步方法，不具有 sync 后缀的方法为异步方法 
 
 #### 基本文件操作知识
 
-#### 权限位 mode
+##### 权限位 mode
 
 因为 fs 模块需要对文件进行操作，会涉及到操作权限的问题，所以需要先清楚文件权限是什么，都有哪些权限。
 
@@ -131,7 +369,7 @@ drwxr-xr-x 1 koala 197121 0 Jun 28 14:41 core
 
 ![](nodejs\image-20210616183544085.png)
 
-#### 标识位 flag
+##### 标识位 flag
 
 Node.js 中，标识位代表着对文件的操作方式，如可读、可写、即可读又可写等等，在下面用一张表来表示文件操作的标识位和其对应的含义。
 
@@ -159,7 +397,7 @@ Node.js 中，标识位代表着对文件的操作方式，如可读、可写、
 
 > r+ 和 w+ 的区别，当文件不存在时，r+ 不会创建文件，而会抛出异常，但 w+ 会创建文件；如果文件存在，r+ 不会自动清空文件，但 w+ 会自动把已有文件的内容清空。
 
-## fs 文件操作
+## [fs 文件操作](https://www.runoob.com/nodejs/nodejs-fs.html)
 
 ### 完整性读写文件操作
 
@@ -753,7 +991,11 @@ Node.js 是异步的、事件驱动的、非阻塞的和单线程的，使得它
 - 其他 I/O 密集型应用程序，如协作平台
 - 遵循微服务架构的网络后端
 
-## readFile 和 createReadStream 函数有什么区别？
+### **Node. js的使用场景是什么？**
+
+高并发、实时聊天、实时消息推送、客户端逻辑强大的SPA（单页面应用程序）
+
+### readFile 和 createReadStream 函数有什么区别？
 
 - readFile 函数异步读取文件的全部内容，并存储在内存中，然后再传递给用户。
 
@@ -767,3 +1009,33 @@ fs.readFile("test.txt", (err, content) => {
 	console.log(content);
 });
 ```
+
+### REPL 是什么？
+
+REPL 代表 Read Eval Print Loop，是一个虚拟环境，可以在其中轻松地运行编程语言。Node.js 带有一个内置的 REPL 来运行 JavaScript 代码，类似于我们在浏览器中用来运行 JavaScript 代码的控制台。
+
+要启动 Node.js REPL，只需在命令行上运行 node，然后写一行 JavaScript 代码，就可以在下一行看到它的输出。
+
+**Node. js有哪些全局对象？**
+
+global、 process, console、 module和 exports。
+
+### **Node. js的优缺点是什么？**
+
+优点如下：
+
+（1） Node. js是基于事件驱动和无阻塞的，非常适合处理并发请求，因此构建在 Node. js的代理服务器相比其他技术实现的服务器要好一点。
+
+（2）与 Node. js代理服务器交互的客户端代码由 JavaScript语言编写，客户端与服务端都采用一种语言编写。
+
+缺点如下：
+
+（1） Node .js是一个相对新的开源项目，不太稳定，变化速度快。
+
+（2）不适合CPU密集型应用，如果有长时间运行的计算（比如大循环），将会导致CPU时间片不能释放，使得后续I/O无法发起
+
+### Node 与浏览器的 Event Loop 差异
+
+浏览器环境下，microtask 的任务队列是每个 macrotask 执行完之后执行。而在 Node.js 中，microtask 会在事件循环的各个阶段之间执行，也就是一个阶段执行完毕，就会去执行 microtask 队列的任务。
+
+![](nodejs/image-20210618191137438.png)
