@@ -17,13 +17,17 @@ categories: [NodeJS]
 
 ![](nodejs\image-20210621002355083.png)
 
-### Node 学习教程
+### Node 是什么
 
-Node.js 是异步的、事件驱动的、非阻塞的和单线程的
+Node.js 是异步的、事件驱动的、非阻塞的和单线程的running environment!! 最主要得是提供http server 以及对于文件处理
+
+**注意!! nodejs 不是编程语言,也不是framework**
 
 [官方教程](http://nodejs.cn/learn/how-to-exit-from-a-nodejs-program)
 
 [菜鸟教程](https://www.runoob.com/nodejs/nodejs-tutorial.html)
+
+[IBM developer nodejs](https://github.com/jstevenperry/IBM-Developer/tree/master/Node.js/Course)
 
 ### Node回调函数 阻塞&非阻塞 异步&同步
 
@@ -34,6 +38,12 @@ Node.js 是异步的、事件驱动的、非阻塞的和单线程的
 **阻塞：**就是按照清单上的顺序一件一件的往下走，当一件事没有做完，下面的事都干不了
 
 **非阻塞：**就是这件事没有干完，后面的事不会等你这件事干完了再干，而是直接开始干下一件事，等你这件事干完了，后面的事也干完了，这样就大大提高了效率
+
+所以 这里我们理解一下nodejs 是怎么运行的: 
+
+- nodejs 是单线程,所以他会管理多个task
+- 同时也要listen to event queue
+- 所以对于node,比较合适 real time I/O intensive APP ,而不是 CPU intensive APP
 
 异步函数例子
 
@@ -54,40 +64,150 @@ console.log("程序执行完毕");
 
 Node.js 使用事件驱动模型，当web server接收到请求，就把它关闭然后进行处理，然后去服务下一个web请求。当这个请求完成，它被放回处理队列，当到达队列开头，这个结果被返回给用户。
 
-![](nodejs\image-20210618142721417.png)
+![](nodejs\image-20210623201146397.png)
+
+![](nodejs\image-20210623164947078.png)
+
+![](nodejs\image-20210623165019576.png)
 
 ```js
-// 引入 events 模块
-var events = require('events');
-// 创建 eventEmitter 对象
-var eventEmitter = new events.EventEmitter();
- 
-// 创建事件处理程序
-var connectHandler = function connected() {
-   console.log('连接成功。');
-  
-   // 触发 data_received 事件 
-   eventEmitter.emit('data_received');
-}
- 
-// 绑定 connection 事件处理程序
-eventEmitter.on('connection', connectHandler);
- 
-// 使用匿名函数绑定 data_received 事件
-eventEmitter.on('data_received', function(){
-   console.log('数据接收成功。');
-});
- 
-// 触发 connection 事件 
-eventEmitter.emit('connection');
- 
-console.log("程序执行完毕。");
-//连接成功。
-//数据接收成功。
-//程序执行完毕。
+ //每个框被称为事件循环机制的一个阶段
+   ┌───────────────────────────┐
+┌─>│           timers          │
+│  └─────────────┬─────────────┘
+│  ┌─────────────┴─────────────┐
+│  │     pending callbacks     │
+│  └─────────────┬─────────────┘
+│  ┌─────────────┴─────────────┐
+│  │       idle, prepare       │
+│  └─────────────┬─────────────┘      ┌───────────────┐
+│  ┌─────────────┴─────────────┐      │   incoming:   │
+│  │           poll            │<─────┤  connections, │
+│  └─────────────┬─────────────┘      │   data, etc.  │
+│  ┌─────────────┴─────────────┐      └───────────────┘
+│  │           check           │
+│  └─────────────┬─────────────┘
+│  ┌─────────────┴─────────────┐
+└──┤      close callbacks      │
+   └───────────────────────────┘
 ```
 
+- **timers**: this phase executes callbacks scheduled by `setTimeout()` and `setInterval()`.
+- **pending callbacks**: executes I/O callbacks deferred to the next loop iteration. (I/O callbacks 也就是readFile 啥的)
+- **idle, prepare**: only used internally.
+- **poll**: <u>retrieve new I/O events; execute I/O related callbacks</u> (almost all with the exception of close callbacks, the ones scheduled by timers, and **`setImmediate()`**); node will block here when appropriate.
+- **check**: `setImmediate()` callbacks are invoked here.
+- **close callbacks**: some close callbacks, e.g. `socket.on('close', ...)`.
+
+这里肯定会想到js 得运行 对不对,这里建议看看[这里IBM 教程](https://www.youtube.com/watch?v=X9zVB9WafdE) [文字版资料](https://developer.ibm.com/tutorials/learn-nodejs-the-event-loop/)
+
+![](nodejs\image-20210623172426578.png)
+
+microtasks are callbacks from:
+
+- `process.nextTick()`
+- `then()` handlers for resolved or rejected Promises
+
+#### nodejs 事件循环自测
+
+答案请参考https://developer.ibm.com/tutorials/learn-nodejs-the-event-loop/
+
+ ```js
+//关于process.nexttick()
+//这里最需要注意的
+const fs = require("fs");
+const logger = require("../common/logger");
+const ITERATIONS_MAX = 2;
+let iteration = 0;
+process.nextTick(() => {
+  logger.info("process.nextTick", "MAINLINE MICROTASK");
+});
+logger.info("START", "MAINLINE");
+const timeout = setInterval(() => {
+  logger.info("START iteration " + iteration + ": setInterval", "TIMERS PHASE");
+
+  if (iteration < ITERATIONS_MAX) {
+    setTimeout(
+      (iteration) => {
+        logger.info(
+          "TIMER EXPIRED (from iteration " +
+            iteration +
+            "): setInterval.setTimeout",
+          "TIMERS PHASE"
+        );
+        process.nextTick(() => {
+          logger.info(
+            "setInterval.setTimeout.process.nextTick",
+            "TIMERS PHASE MICROTASK"
+          );
+        });
+      },
+      0,
+      iteration
+    );
+    fs.readdir("../data", (err, files) => {
+      logger.info(
+        "fs.readdir() callback: Directory contains: " + files.length + " files",
+        "POLL PHASE"
+      );
+      process.nextTick(() => {
+        logger.info(
+          "setInterval.fs.readdir.process.nextTick",
+          "POLL PHASE MICROTASK"
+        );
+      });
+    });
+    setImmediate(() => {
+      logger.info("setInterval.setImmediate", "CHECK PHASE");
+      process.nextTick(() => {
+        logger.info(
+          "setInterval.setTimeout.process.nextTick",
+          "CHECK PHASE MICROTASK"
+        );
+      });
+    });
+  } else {
+    logger.info("Max interval count exceeded. Goodbye.", "TIMERS PHASE");
+    clearInterval(timeout);
+  }
+  logger.info("END iteration " + iteration + ": setInterval", "TIMERS PHASE");
+  iteration++;
+}, 0);
+logger.info("MAINLINE: END");
+ ```
+
+输出:
+
+```text
+1530401857782:INFO: MAINLINE: START
+1530401857784:INFO: MAINLINE: END
+1530401857785:INFO: MAINLINE MICROTASK: process.nextTick
+1530401857786:INFO: TIMERS PHASE: START iteration 0: setInterval
+1530401857786:INFO: TIMERS PHASE: END iteration 0: setInterval
+1530401857787:INFO: POLL PHASE: fs.readdir() callback: Directory contains: 8 files
+1530401857787:INFO: POLL PHASE MICROTASK: setInterval.fs.readdir.process.nextTick
+1530401857787:INFO: CHECK PHASE: setInterval.setImmediate
+1530401857787:INFO: CHECK PHASE MICROTASK: setInterval.setTimeout.process.nextTick
+1530401857787:INFO: TIMERS PHASE: TIMER EXPIRED (from iteration 0): setInterval.setTimeout
+1530401857787:INFO: TIMERS PHASE: START iteration 1: setInterval
+1530401857788:INFO: TIMERS PHASE: END iteration 1: setInterval
+1530401857788:INFO: TIMERS PHASE MICROTASK: setInterval.setTimeout.process.nextTick
+1530401857788:INFO: POLL PHASE: fs.readdir() callback: Directory contains: 8 files
+1530401857788:INFO: POLL PHASE MICROTASK: setInterval.fs.readdir.process.nextTick
+1530401857788:INFO: CHECK PHASE: setInterval.setImmediate
+1530401857788:INFO: CHECK PHASE MICROTASK: setInterval.setTimeout.process.nextTick
+1530401857788:INFO: TIMERS PHASE: TIMER EXPIRED (from iteration 1): setInterval.setTimeout
+1530401857788:INFO: TIMERS PHASE: START iteration 2: setInterval
+1530401857788:INFO: TIMERS PHASE: Max interval count exceeded. Goodbye.
+1530401857788:INFO: TIMERS PHASE: END iteration 2: setInterval
+1530401857788:INFO: TIMERS PHASE MICROTASK: setInterval.setTimeout.process.nextTick
+```
+
+**After each event loop phase, there is a `process.nextTick()` delimiter callback to mark the end of that phase. Since you know the phase delimiter callback MUST run after that phase, whatever output follows MUST be coming from a subsequent phase of the event loop.**
+
 #### EventEmitter 
+
+首先要理解eventEmitter是一个class, 每次都要实例化,然后用这个新的obj通过on emit进行操作
 
 [API 表](https://www.runoob.com/nodejs/nodejs-event.html)
 
@@ -108,7 +228,18 @@ emitter.emit('someEvent', 'arg1 参数', 'arg2 参数');
 //listener1 arg1 参数 arg2 参数
 //listener2 arg1 参数 arg2 参数
 
-//最好Es6中class extends的办法写
+//Es6中class extends的办法写
+const EventEmitter = require('events');
+
+class MyEmitter extends EventEmitter {
+  // Add any custom methods here
+}
+
+const myEmitter = new MyEmitter();
+myEmitter.on('event', () => {
+  console.log('an event occurred!');
+});
+myEmitter.emit('event');
 ```
 
 - 增加监听的方式有两种：`eventEmitter.addListener('connection', listener1)`;`eventEmitter.on('connection', listener2);`
@@ -236,6 +367,15 @@ process.nextTick()方法，会将回调函数放入队列中，在下一轮Tick�
  setImmediate()与nexttick方法类似，都是将回调函数延迟执行，但process.nextTick()中的回调函数执行优先级高于setImmediate()
 
 ![](nodejs\image-20210621192647938.png)
+
+### `process.nextTick()` 对比 `setImmediate()`
+
+就用户而言，我们有两个类似的调用，但它们的名称令人费解。
+
+- `process.nextTick()` 在同一个阶段立即执行。
+- `setImmediate()` 在事件循环的接下来的迭代或 'tick' 上触发。
+
+实质上，这两个名称应该交换，因为 `process.nextTick()` 比 `setImmediate()` 触发得更快，但这是过去遗留问题，因此不太可能改变。如果贸然进行名称交换，将破坏 npm 上的大部分软件包。每天都有更多新的模块在增加，这意味着我们要多等待每一天，则更多潜在破坏会发生。尽管这些名称使人感到困惑，但它们本身名字不会改变。
 
 ## 下面的内容是
 
@@ -1039,3 +1179,11 @@ global、 process, console、 module和 exports。
 浏览器环境下，microtask 的任务队列是每个 macrotask 执行完之后执行。而在 Node.js 中，microtask 会在事件循环的各个阶段之间执行，也就是一个阶段执行完毕，就会去执行 microtask 队列的任务。
 
 ![](nodejs/image-20210618191137438.png)
+
+## 推荐阅读
+
+[nodejs tutorial](https://developer.ibm.com/languages/node-js/tutorials/)
+
+[node -程序员成长指北](http://www.inode.club/node/)
+
+[Node.js Tutorial for Beginners: Learn Node in 1 Hour](https://www.youtube.com/watch?v=TlB_eWDSMt4)
