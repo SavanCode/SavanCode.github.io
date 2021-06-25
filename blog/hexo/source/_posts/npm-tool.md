@@ -192,3 +192,11 @@ moment([2001]).isLeapYear() // false
 ```sh
 npm install iconv-lite --save
 ```
+
+## Json server
+
+json server 是能快速启动server，提供restful API 支持
+
+这里我们命名前面给两条横线，原因是为了表明这个文件是暂时的
+
+![](npm-tool\image-20210625154440848.png)
