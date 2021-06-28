@@ -13,6 +13,20 @@ categories: [NodeJS]
 
 > 这里主要参考的是nodejs的主要内容参考，后面再补充阅读深入浅出Nodejs
 
+### 小基础 -V8引擎
+
+这里V8没有深入地写，这里我理解V8为解析执行的js的引擎（用于chorm，nodejs）
+
+![](nodejs\image-20210628173633342.png)
+
+这里其实有一个拓展的东西，就是关于ts 为什么更好。 这里有一个deoptimization。 这里就是当输入没有进行处理（以往都是int，突然来了string） 这样就会出现重新逆向转换字节码，然后再次处理。 但是ts呢，就可以提前固定~~
+
+那么node 跟 浏览器有什么区别呢？
+
+![](nodejs\image-20210628180601170.png)
+
+### nodejs 角色
+
 这里我个人认为整个的意识很重要,也就是nodejs 作为什么东西
 
 ![](nodejs\image-20210621002355083.png)
@@ -22,6 +36,8 @@ categories: [NodeJS]
 Node.js 是异步的、事件驱动的、非阻塞的和单线程的running environment!! 最主要得是提供http server 以及对于文件处理
 
 **注意!! nodejs 不是编程语言,也不是framework**
+
+![nodejs架构图](nodejs\image-20210628180654873.png)
 
 [官方教程](http://nodejs.cn/learn/how-to-exit-from-a-nodejs-program)
 
