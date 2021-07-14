@@ -431,15 +431,9 @@
 <p>Balbel 的学习教程不多，其实建议是直接看这两个官方的就够了</p>
 <h2 id="Babel-基本理解"><a href="#Babel-基本理解" class="headerlink" title="Babel 基本理解"></a>Babel 基本理解</h2><h3 id="Babel的工作过程"><a href="#Babel的工作过程" class="headerlink" title="Babel的工作过程"></a>Babel的工作过程</h3><p>Babel的处理过程主要为3个：*<strong>解析(parse)*</strong>、*<strong>转换(transform)*</strong>、*<strong>生成(generate)*</strong>。</p>
 <ul>
-<li><p>解析</p>
-<p>解析主要包含两个过程：词法分析和语法分析，输入是代码字符串，输出是AST。<a target="_blank" rel="noopener" href="https://astexplorer.net/">在线分析AST结果</a></p>
-</li>
-<li><p>转换</p>
-<p>处理AST。处理工具、插件等就是在这个过程中介入，将代码按照需求进行转换。</p>
-</li>
-<li><p>生成</p>
-<p>遍历AST，输出代码字符串。</p>
-</li>
+<li>解析 Parse: 将代码解析生成抽象语法树( 即 AST )，即词法分析与语法分析的过程</li>
+<li>转换 Transform: 对于 AST 进行变换一系列的操作，babel 接受得到 AST 并通过 babel-traverse 对其进行遍历，在此过程中进行添加、更新 及移除等操作</li>
+<li>生成 Generate: 将变换后的 AST 再转换为 JS 代码, 使用到的模块是 babel-generator</li>
 </ul>
 <p>解析和生成过程，都有Babel都为我们处理得很好了，我们要做的就是在 <strong><em>转换\</em></strong> 过程中搞事情，进行个性化的定制开发。</p>
 <p><img src="/2021/06/02/balbel/image-20210602215109210.png"></p>
@@ -855,48 +849,46 @@ ast<span class="token punctuation">:</span> <span class="token punctuation">{</s
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;Current
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="">
+                <a href="../../10/JS-design-pattern/">
                     <div class="card-image">
                         
                         
-                        <img src="../../../../medias/featureimages/18.jpg" class="responsive-img" alt="Babel 重新学习记录~">
+                        <img src="../../../../medias/featureimages/13.jpg" class="responsive-img" alt="JS design pattern">
                         
-                        <span class="card-title">Babel 重新学习记录~</span>
+                        <span class="card-title">JS design pattern</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            重新学习Babel
+                            JS design pattern
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-06-02
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-06-10
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="../../../../categories/Babel/" class="post-category">
-                                    Babel
+                            <a href="../../../../categories/JS/" class="post-category">
+                                    JS
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="../../../../tags/Babel/">
-                        <span class="chip bg-color">Babel</span>
+                    <a href="../../../../tags/JS/">
+                        <span class="chip bg-color">JS</span>
                     </a>
                     
                 </div>
