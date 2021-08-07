@@ -11,6 +11,14 @@ tags: [Node]
 categories: [NodeJS]
 ---
 
+对于Node，最基础的就是node环境设置，这里有一个东西要很注意
+
+除了设置npm config 中的淘宝镜像之外，还要设置好
+
+ npm config set prefix "D:\node\node -global"
+
+ npm config set cache "D:\node\node - cache"
+
 > 这里主要参考的是nodejs的主要内容参考，后面再补充阅读深入浅出Nodejs
 
 ### 小基础 -V8引擎
