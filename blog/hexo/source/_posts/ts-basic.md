@@ -149,3 +149,7 @@ function identity<T>(arg: T): T {
     return arg;
 }
 ```
+
+![]( ts-basic/image-20210808114707399.png)
+
+这样的做法，及时下面的add的obj是本身obj要求数据的一部分，也不会报错
