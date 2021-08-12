@@ -34,8 +34,7 @@ webpack 是一种**前端资源构建工具**，一个静态模块打包器(modu
 
 #### 1.2.3 Loader
 
-Loader：让 webpack 能够去处理那些非 JS 的文件，比如样式文件、图片文件(webpack 自身只理解
-JS)
+Loader：让 webpack 能够去处理那些非 JS 的文件，比如样式文件、图片文件(webpack 自身只理解JS)
 
 #### 1.2.4 Plugins
 
