@@ -118,13 +118,16 @@ io.disconnect()
 
 - 使用HTML标签
 
+``` js
 <img src="http://pic26.nipic.com/20121213/6168183 0044449030002.jpg" style="display:none"/>
+```
 
 - 使用Image对象
 
+```js
 <script src="./myPreload.js"></script>
-
 ```
+```js
 //myPreload.js文件
 var image= new Image()
 image.src="http://pic26.nipic.com/20121213/6168183 004444903000 2.jpg"
